@@ -1,27 +1,27 @@
-import * as c from "./assets/constants.js";
-import "./assets/css/fonts.css";
-import "./assets/css/styles.css";
+import * as c from './assets/constants.js';
+import './assets/css/fonts.css';
+import './assets/css/styles.css';
 
-import MainPage from "./pages/MainPage";
-import PaymentInstrumentPage from "./pages/PaymentInstrumentPage";
-import PayerDataPage from "./pages/PayerDataPage";
-import PayeeSearchPage from "./pages/PayeeSearchPage";
-import PayPage from "./pages/PayPage";
-import PayeeDataPage from "./pages/PayeeDataPage";
-import SuccessPage from "./pages/SuccessPage";
-import PayErrorPage from "./pages/PayErrorPage";
-import GeneralErrorPage from "./pages/GeneralErrorPage";
-import PaymentConfirmationPage from "./pages/PaymentConfirmationPage";
-import PaymentWaitConfirmation from "./pages/PaymentWaitConfirmation";
-import PaymentMethodsPage from "./pages/PaymentMethodsPage.jsx";
+import MainPage from './pages/MainPage';
+import PaymentInstrumentPage from './pages/PaymentInstrumentPage';
+import PayerDataPage from './pages/PayerDataPage';
+import PayeeSearchPage from './pages/PayeeSearchPage';
+import PayPage from './pages/PayPage';
+import PayeeDataPage from './pages/PayeeDataPage';
+import SuccessPage from './pages/SuccessPage';
+import PayErrorPage from './pages/PayErrorPage';
+import GeneralErrorPage from './pages/GeneralErrorPage';
+import PaymentConfirmationPage from './pages/PaymentConfirmationPage';
+import PaymentWaitConfirmation from './pages/PaymentWaitConfirmation';
+import PaymentMethodsPage from './pages/PaymentMethodsPage.jsx';
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { useContext, useEffect } from "react";
-import AppContext from "./AppContext.jsx";
-import Loader from "./ui/Loader.jsx";
-import { getCookie } from "react-use-cookie";
-import PayOutPage from "./pages/PayOutPage.jsx";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { useContext, useEffect } from 'react';
+import AppContext from './AppContext.jsx';
+import Loader from './ui/Loader.jsx';
+import { getCookie } from 'react-use-cookie';
+import PayOutPage from './pages/PayOutPage.jsx';
 
 const defaultPages = [
     {
@@ -76,7 +76,7 @@ const defaultPages = [
 
 const router = createBrowserRouter([
     {
-        path: "/", //"/",
+        path: '/', //"/",
         // index: true,
         element: <MainPage />,
     },
@@ -96,6 +96,24 @@ const router = createBrowserRouter([
         ],
     },
     {
+        path: `/payouts/`,
+        children: [
+            {
+                path: c.PAGE_PAYOUT_NOT_FOUND,
+                element: <PayErrorPage notFound={true} />,
+            },
+        ],
+    },
+    {
+        path: `/payments/`, //${c.PAGE_MAIN} //"/",
+        children: [
+            {
+                path: c.PAGE_PAYMENT_NOT_FOUND,
+                element: <PayErrorPage notFound={true} />,
+            },
+        ],
+    },
+    {
         path: c.PAGE_PAYMENT_NOT_FOUND,
         element: <PayErrorPage notFound={true} />,
     },
@@ -104,7 +122,7 @@ const router = createBrowserRouter([
         element: <PayErrorPage notFound={true} />,
     },
     {
-        path: "*",
+        path: '*',
         elementError: <div>404</div>,
     },
     /* {
@@ -119,15 +137,15 @@ const App = () => {
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
-    const blowfishId = pathname.split("/")[2]; //.substring(1);
+    const blowfishId = pathname.split('/')[2]; //.substring(1);
+    const payMode = pathname.split('/')[1]; //.substring(1);
 
     // если отсутствует - сразу редиректим
     if (!blowfishId) {
-        console.log(`blowfishId from URL is NULL`);
-        window.location.replace(c.PAGE_PAYMENT_NOT_FOUND);
+        window.location.replace(payMode === 'payouts' ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND);
     }
 
-    let storedCurrentPaymentMethod = getCookie("CurrentPaymentMethod", null);
+    let storedCurrentPaymentMethod = getCookie('CurrentPaymentMethod', null);
     useEffect(() => {
         if (storedCurrentPaymentMethod) {
             setCurrentPaymentMethod(JSON.parse(storedCurrentPaymentMethod));
@@ -135,14 +153,14 @@ const App = () => {
     }, []);
 
     const { data: BFData, isFetching: isFetching_Blowfish } = useQuery({
-        queryKey: ["exist"],
+        queryKey: ['exist'],
         // refetchInterval: 1000,
         enabled: Boolean(blowfishId), //Boolean(blowfishId),
         // refetchIntervalInBackground: true,
         // retry: false,
         refetchOnWindowFocus: false,
         queryFn: async () => {
-            console.log("exist ");
+            console.log('exist ');
 
             /* try {
                 const { data } = await axios
@@ -161,13 +179,13 @@ const App = () => {
             const data = {
                 success: true,
                 data: {
-                    id: "449bc546-e589-4aca-83fd-775099333842",
-                    blowfish_id: "01355e23-0eb6-446e-a4cc-4d403f789ee8",
+                    id: '449bc546-e589-4aca-83fd-775099333842',
+                    blowfish_id: '01355e23-0eb6-446e-a4cc-4d403f789ee8',
                     status: 1,
-                    amount: "1000.20",
-                    currency: "RUB",
-                    fail_url: "https://google.com",
-                    success_url: "",
+                    amount: '1000.20',
+                    currency: 'RUB',
+                    fail_url: 'https://google.com',
+                    success_url: '',
                     created_at: 1719389044819,
                     die_at: 1719389944819,
                 },
@@ -175,11 +193,11 @@ const App = () => {
 
             // data = null;
 
-            console.log("exist response:");
+            console.log('exist response:');
             // console.log(data);
 
             if (data) {
-                console.log("data");
+                console.log('data');
                 console.log(data);
                 if (data?.success) {
                     //данные получены успешно
