@@ -20,7 +20,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import AppContext from "./AppContext.jsx";
 import Loader from "./ui/Loader.jsx";
-import useCookie, { getCookie, setCookie } from "react-use-cookie";
+import { getCookie } from "react-use-cookie";
 import PayOutPage from "./pages/PayOutPage.jsx";
 
 const defaultPages = [
@@ -127,20 +127,6 @@ const App = () => {
         window.location.replace(c.PAGE_PAYMENT_NOT_FOUND);
     }
 
-    //если BFData сохранена в cookie - считываем, парсим и сохраняем
-    let storedBlowfishId = null;
-    let storedBFData = getCookie("BFData", null);
-    if (storedBFData) {
-        storedBFData = JSON.parse(storedBFData);
-        if (storedBFData?.blowfish_id != blowfishId) {
-            storedBlowfishId = storedBFData?.blowfish_id;
-        }
-    }
-
-    useEffect(() => {
-        setBFData(storedBFData);
-    }, [storedBlowfishId]);
-
     let storedCurrentPaymentMethod = getCookie("CurrentPaymentMethod", null);
     useEffect(() => {
         if (storedCurrentPaymentMethod) {
@@ -151,7 +137,7 @@ const App = () => {
     const { data: BFData, isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
         // refetchInterval: 1000,
-        enabled: Boolean(blowfishId) && blowfishId != storedBlowfishId, //Boolean(blowfishId),
+        enabled: Boolean(blowfishId), //Boolean(blowfishId),
         // refetchIntervalInBackground: true,
         // retry: false,
         refetchOnWindowFocus: false,
@@ -199,7 +185,6 @@ const App = () => {
                 if (data?.success) {
                     //данные получены успешно
                     setBFData(data?.data);
-                    setCookie("BFData", JSON.stringify(data?.data));
                 } else {
                     //транзакция не подлежит оплате
                     window.location.replace(c.PAGE_GENERAL_ERROR);
