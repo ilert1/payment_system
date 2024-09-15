@@ -1369,12 +1369,17 @@ header .language-selector .drop-down .flag-container:last-of-type {
   height: 30px;
   background-color: #f5f5f5;
   border-radius: 5px;
+  overflow: hidden;
+}
+.content .payout-info .payout-progress__bar--complete .payout-progress__fill:last-child {
+  border-right: none;
 }
 .content .payout-info .payout-progress__fill {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  border-right: 1px dashed rgba(0, 0, 0, 0.5);
   transition: background-color ease-out 0.3s;
 }
 .content .payout-info .payout-progress__fill--new {
@@ -1387,7 +1392,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
   background-color: #37a8f3;
 }
 .content .payout-info .payout-progress__fill--awaiting {
-  border-radius: 5px;
   position: relative;
   flex-grow: 1;
   overflow: hidden;
@@ -1412,17 +1416,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
   100% {
     transform: translateX(-100%);
   }
-}
-.content .payout-info .payout-progress__fill:first-child {
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-}
-.content .payout-info .payout-progress__fill:last-child {
-  border-bottom-right-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.content .payout-info .payout-progress__fill:not(:last-child) {
-  border-right: 1px dashed rgba(0, 0, 0, 0.5);
 }
 
 footer {
