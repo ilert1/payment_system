@@ -1,0 +1,165 @@
+{
+    "Common": {
+        "continue": "Devam Et",
+        "support": "Destek",
+        "next": "Sonraki",
+        "error": "Bir hata oluştu",
+        "approve": "Onayla"
+    },
+    "Header": {},
+    "Footer": {
+        "protected": "Çeviri korunmaktadır.",
+        "details": "Detaylar"
+    },
+    "Main": {
+        "header": "Sağlayıcımız aracılığıyla bakiye yükleme",
+        "description": {
+            "part1": "Sağlayıcımızın (bireysel) bilgilerine göre transfer yapın.",
+            "part2": "Sağlayıcı sizden parayı aldığı anda, bakiyenizi hemen yükleyeceğiz."
+        }
+    },
+    "PaymentInstrument": {
+        "amount": "Yükleme miktarı"
+    },
+    "PayeeSearch": {
+        "lookingFor": "Yükleme bilgilerinizi arıyoruz",
+        "via": "üzerinden"
+    },
+    "Pay": {
+        "approveTransfer": "Transferi onayla",
+        "withoutComments": "Transfer için yorum yapmadan",
+        "steps": {
+            "open": "Aç",
+            "transfer": "Transfer et",
+            "wholeAmount": "tam tutarı",
+            "approveTransfer": "Transferi onayla",
+            "openYourBankApp": "Banka uygulamanızı açın"
+        }
+    },
+    "PayOut": {
+        "payout": "Çekilmesi",
+        "header": "Sağlayıcımız aracılığıyla para çekme",
+        "description": {
+            "part1": "Transfer için bilgilerinizi girin",
+            "part2": "Sağlayıcı transferi onayladıktan sonra paranızı alacaksınız."
+        },
+        "approvePayout": "Transferi onayla",
+        "discardPayout": "Transfer alınmadı",
+        "payoutMethod": "Çekim yöntemini seçin",
+        "payoutAmount": "Çekim tutarı",
+        "withoutComments": "Transfer için yorum yapmadan",
+        "steps": {
+            "open": "Aç",
+            "checkIncomingTransferSum": "Gelen transfer tutarını kontrol edin",
+            "approveTransfer": "Transferi onayla",
+            "openYourBankApp": "Banka uygulamanızı açın"
+        },
+        "enterYourCard": "Kart bilgilerinizi girin",
+        "enterYourPhone": "Telefon numaranızı girin",
+        "checkYourRequisites": "Bilgilerinizi kontrol edin!",
+        "wrongRequisites": "Bilgileri yanlış girerseniz, paranızı geri dönüşü olmaksızın kaybedersiniz",
+        "requisitesIsCorrect": "Bilgiler doğru girildi",
+        "correctRequisites": "Bilgileri düzelt",
+        "waitForTransferConfirmation": "Transfer onayını bekleyin",
+        "transferConfirmed": "Operatör transferi onayladı",
+        "lookingForOperator": "Para çekimi için operatör aranıyor",
+        "transferInAmount": "Tutarında transfer",
+        "transferReceived": "alındı",
+        "approveTransferText": "Transfer yapıldıysa, anahtarı açın ve devam düğmesine tıklayın.",
+        "approveReceivedCheckbox": "Transfer yapıldı",
+        "appreveButtonText": "Evet, transfer yapıldı",
+        "notYet": "Henüz değil",
+        "dontCloseWindow": "Ödeme penceresini kapatmayın!",
+        "dontCloseSteps": {
+            "one": "Hesabınız birkaç ödeme ile doldurulacak ve her biri onaylanmalıdır",
+            "two": "Onay düğmesine tıklayın",
+            "three": "Başarılı doldurma ekranını bekleyin",
+            "gotIt": "Anladım"
+        },
+        "dispute": {
+            "dispute": "İhtilaf",
+            "operator": "Operatör",
+            "moderator": "Moderatör",
+            "opened": "açık",
+            "closed": "kapalı",
+            "video": "Video",
+            "photo": "Fotoğraf",
+            "writeMessage": "Mesaj yaz...",
+            "success": "İhtilaf sizin lehinize kapandı",
+            "successText": "Size yeni bir ödeme operatörü sunulacak.",
+            "fail": "İhtilaf operatör lehine kapandı",
+            "failText": "Bir sonraki ödeme adımına yönlendirileceksiniz.",
+            "notification": {
+                "title": "Lütfen bir sonraki transfer kontrolünde daha dikkatli olun.",
+                "text": "Operatör lehine ikinci ihtilaf kapandıktan sonra para çekme işlemlerine erişiminizi sınırlamak zorunda kalacağız.",
+                "ok": "Tamam"
+            }
+        }
+    },
+    "PayerData": {
+        "enter4": "Son 4 haneyi girin",
+        "yourPhone": "telefon numaranızın",
+        "yourCard": "kartınızın"
+    },
+    "PayeeData": {
+        "waitConfirmation": "Sağlayıcı transferinizi kontrol ediyor",
+        "waitComment": "Sağlayıcı transferi onayladığında, bakiyenizi yükleyeceğiz",
+        "waitTime": "Genellikle 2 dakika sürer"
+    },
+    "GeneralError": {
+        "repeatOrder": "siparişi tekrarla",
+        "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın"
+    },
+    "PayError": {
+        "payError": "Ödeme başarısız oldu",
+        "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın",
+        "notFound": "Ödeme bulunamadı",
+        "pleaseRepeatOrSupport": "Lütfen tekrar deneyin veya destek servisine bildirin",
+        "payed": "Ödedim!"
+    },
+    "Success": {
+        "header": "Bakiyeniz yüklendi",
+        "payoutHeader": "=Вы успешно вывели"
+    },
+    "PayeeCard": {
+        "copy": "Kopyala",
+        "copyed": "Kart numarası kopyalandı",
+        "copyedPhone": "Telefon numarası kopyalandı"
+    },
+    "PayeeHint": {
+        "hint": {
+            "part1": "Ortak hakkında ek bilgiye ihtiyacınız varsa, desteğe bildirin.",
+            "part2": "Banka transfer amacını sorarsa, güvenilir bir kişiye transfer yaptığınızı ve detay vermediğinizi söyleyebilirsiniz."
+        }
+    },
+    "PayeeInfo": {
+        "payeeInfo": "Alıcı bilgileri"
+    },
+    "PayMethod": {
+        "payMethod": "Yükleme yöntemi",
+        "payMethodChoise": "Yükleme yöntemi",
+        "emptyList": "arama sonucu listesi boş"
+    },
+    "SearchPayMethod": {
+        "transferMethod": "Transfer yöntemi"
+    },
+    "PleasePay": {
+        "transfer": "Transfer et"
+    },
+    "ProgressSteper": {
+        "step1": "Sağlayıcı ile iletişim kuruluyor...",
+        "step2": "Bilgiler alınıyor...",
+        "step3": "Bilgiler gönderiliyor...",
+        "comment": "Genellikle 2 dakika sürer"
+    },
+    "Rating": {
+        "question": "Her şey nasıl geçti?"
+    },
+    "SupportDialog": {
+        "copy": "Kopyala",
+        "copyed": "Kimlik kopyalandı",
+        "header": "Değerli kullanıcı!",
+        "text": "Talep kimliğini kopyalayın ve destek sohbetine gönderin. Operatör durumu kontrol edecektir.",
+        "chatButton": "Sohbete git"
+    }
+}

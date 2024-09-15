@@ -1,0 +1,13 @@
+services:
+  pnp-frontend:
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.pnp-frontend.rule=Host(`${PNP_FRONTEND_UI_URL}`)
+      - traefik.http.routers.pnp-frontend.entrypoints=https
+      - traefik.http.routers.pnp-frontend.service=pnp-frontend
+      - traefik.http.services.pnp-frontend.loadbalancer.server.port=80
+
+networks:
+  default:
+    external: true
+    name: blowfish-network

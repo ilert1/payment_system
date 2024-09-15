@@ -1,0 +1,165 @@
+{
+    "Common": {
+        "continue": "Davam et",
+        "support": "Dəstək",
+        "next": "Növbəti",
+        "error": "Xəta baş verdi",
+        "approve": "Təsdiqlə"
+    },
+    "Header": {},
+    "Footer": {
+        "protected": "Tərcümə qorunur.",
+        "details": "Təfərrüatlar"
+    },
+    "Main": {
+        "header": "Balansın təminatçımız vasitəsilə artırılması",
+        "description": {
+            "part1": "Təminatçımızın (fiziki şəxs) rekvizitlərinə uyğun olaraq köçürmə edin.",
+            "part2": "Təminatçı sizdən pulu aldıqda, dərhal balansınızı artıracağıq."
+        }
+    },
+    "PaymentInstrument": {
+        "amount": "Artırılma məbləği"
+    },
+    "PayeeSearch": {
+        "lookingFor": "Balansınızı artırmaq üçün rekvizitlər axtarılır",
+        "via": "vasitəsilə"
+    },
+    "Pay": {
+        "approveTransfer": "Köçürməni təsdiqlə",
+        "withoutComments": "Köçürməyə şərh yazılmadan",
+        "steps": {
+            "open": "Aç",
+            "transfer": "Köçür",
+            "wholeAmount": "bütün məbləği",
+            "approveTransfer": "Köçürməni təsdiqlə",
+            "openYourBankApp": "Bank tətbiqinizi açın"
+        }
+    },
+    "PayOut": {
+        "payout": "Vəsaitlərin",
+        "header": "Vəsaitlərin bizim provayder vasitəsilə çıxarılması",
+        "description": {
+            "part1": "Köçürmə üçün məlumatlarınızı daxil edin",
+            "part2": "Provayder köçürməni təsdiqlədikdən sonra, siz vəsaitlərinizi alacaqsınız."
+        },
+        "approvePayout": "Köçürməni təsdiqlə",
+        "discardPayout": "Köçürmə alınmadı",
+        "payoutMethod": "Çıxarış metodunu seçin",
+        "payoutAmount": "Çıxarış məbləği",
+        "withoutComments": "Köçürməyə şərh yazılmadan",
+        "steps": {
+            "open": "Aç",
+            "checkIncomingTransferSum": "Gələn köçürmə məbləğini yoxlayın",
+            "approveTransfer": "Köçürməni təsdiqlə",
+            "openYourBankApp": "Bank tətbiqinizi açın"
+        },
+        "enterYourCard": "Kart məlumatlarınızı daxil edin",
+        "enterYourPhone": "Telefon nömrənizi daxil edin",
+        "checkYourRequisites": "Məlumatlarınızı yoxlayın!",
+        "wrongRequisites": "Əgər məlumatları yanlış daxil etsəniz, vəsaitləri geri qaytarmaq mümkün olmayacaq",
+        "requisitesIsCorrect": "Məlumatlar düzgündür",
+        "correctRequisites": "Məlumatları düzəltmək",
+        "waitForTransferConfirmation": "Köçürmənin təsdiqini gözləyin",
+        "transferConfirmed": "Operator köçürməni təsdiqlədi",
+        "lookingForOperator": "Çıxarış üçün operator axtarılır",
+        "transferInAmount": "Məbləğdə köçürmə",
+        "transferReceived": "gəldi",
+        "approveTransferText": "Əgər köçürmə gəlibsə, keçidi aktiv edin və davam düyməsinə basın.",
+        "approveReceivedCheckbox": "Köçürmə edildi",
+        "appreveButtonText": "Bəli, köçürmə edildi",
+        "notYet": "Hələ yox",
+        "dontCloseWindow": "Ödəniş pəncərəsini bağlamayın!",
+        "dontCloseSteps": {
+            "one": "Hesabınız bir neçə ödənişlə dolacaq və hər biri təsdiqlənməlidir",
+            "two": "Təsdiq düyməsini basın",
+            "three": "Uğurlu doldurma ekranını gözləyin",
+            "gotIt": "Başa düşdüm"
+        },
+        "dispute": {
+            "dispute": "Mübahisə",
+            "operator": "Operator",
+            "moderator": "Moderator",
+            "opened": "açıqdır",
+            "closed": "bağlıdır",
+            "video": "Video",
+            "photo": "Foto",
+            "writeMessage": "Mesaj yazın...",
+            "success": "Mübahisə sizin xeyrinizə bağlandı",
+            "successText": "Sizə yeni çıxarış operatoru təklif olunacaq.",
+            "fail": "Mübahisə operatorun xeyrinə bağlandı",
+            "failText": "Siz ödənişin növbəti mərhələsinə yönləndiriləcəksiniz.",
+            "notification": {
+                "title": "Zəhmət olmasa növbəti köçürmə yoxlamasında diqqətli olun.",
+                "text": "Operatorun lehinə ikinci dəfə mübahisə bağlandıqdan sonra çıxarışa girişinizi məhdudlaşdırmağa məcbur olacağıq.",
+                "ok": "Yaxşı"
+            }
+        }
+    },
+    "PayerData": {
+        "enter4": "Son 4 rəqəmi daxil edin",
+        "yourPhone": "telefonunuzun",
+        "yourCard": "kartınızın"
+    },
+    "PayeeData": {
+        "waitConfirmation": "Təminatçı köçürmənizi yoxlayır",
+        "waitComment": "Təminatçı köçürməni təsdiqlədikdən sonra balansınızı artıracağıq",
+        "waitTime": "Adətən 2 dəqiqəyə qədər vaxt alır"
+    },
+    "GeneralError": {
+        "repeatOrder": "sifarişi təkrarla",
+        "pleaseRepeatOrder": "Xahiş edirik, sifarişi təkrarlayın"
+    },
+    "PayError": {
+        "payError": "Ödəniş uğursuz oldu",
+        "pleaseRepeatOrder": "Xahiş edirik, sifarişi təkrarlayın",
+        "notFound": "Ödəniş tapılmadı",
+        "pleaseRepeatOrSupport": "Zəhmət olmasa bir daha cəhd edin və ya dəstək xidmətinə məlumat verin",
+        "payed": "Mən ödəmişəm!"
+    },
+    "Success": {
+        "header": "Balansınız artırıldı",
+        "payoutHeader": "=Вы успешно вывели"
+    },
+    "PayeeCard": {
+        "copy": "Kopyala",
+        "copyed": "Kart nömrəsi kopyalandı",
+        "copyedPhone": "Telefon nömrəsi kopyalandı"
+    },
+    "PayeeHint": {
+        "hint": {
+            "part1": "Əgər tərəfdaş haqqında əlavə məlumat lazım olarsa, dəstək xidməti ilə əlaqə saxlayın.",
+            "part2": "Bank köçürmənin məqsədini soruşarsa, etibarlı bir şəxsə köçürmə etdiyinizi və əlavə məlumat vermədiyinizi deyə bilərsiniz."
+        }
+    },
+    "PayeeInfo": {
+        "payeeInfo": "Alıcı rekvizitləri"
+    },
+    "PayMethod": {
+        "payMethod": "Artırılma metodu",
+        "payMethodChoise": "Artırılma metodu",
+        "emptyList": "axtarış nəticələri siyahısı boşdur"
+    },
+    "SearchPayMethod": {
+        "transferMethod": "Köçürmə metodu"
+    },
+    "PleasePay": {
+        "transfer": "Köçür"
+    },
+    "ProgressSteper": {
+        "step1": "Təminatçı ilə əlaqə saxlanılır...",
+        "step2": "Rekvizitlər əldə edilir...",
+        "step3": "Rekvizitlər göndərilir...",
+        "comment": "Adətən 2 dəqiqəyə qədər vaxt alır"
+    },
+    "Rating": {
+        "question": "Hər şey necə keçdi?"
+    },
+    "SupportDialog": {
+        "copy": "Kopyala",
+        "copyed": "İdentifikator kopyalandı",
+        "header": "Hörmətli istifadəçi!",
+        "text": "Sorğu identifikatorunu kopyalayın və dəstək çatına göndərin. Operator statusunu yoxlayacaq.",
+        "chatButton": "Çata keç"
+    }
+}
