@@ -119,7 +119,7 @@ const App = () => {
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
-    const blowfishId = pathname.split("/")[2];
+    const blowfishId = pathname.split("/")[2]; //.substring(1);
 
     // если отсутствует - сразу редиректим
     if (!blowfishId) {
