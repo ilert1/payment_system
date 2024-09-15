@@ -12,7 +12,7 @@ import { PayoutBar } from "../widgets/PayoutBar.jsx";
 // import axios from "axios";
 
 const PayOutPage = () => {
-  const { BFData, currentPaymentInstrument, t, getCurrencySymbol } =
+  const { BFData, currentPaymentInstrument, t, getCurrencySymbol, supportDialog } =
     useContext(AppContext);
 
   //translation
@@ -132,7 +132,7 @@ const PayOutPage = () => {
           caption: t("discardPayout", ns),
           disabled: disabledButon,
           callback: () => {
-            console.log("discard");
+            supportDialog.setIsActive(true)
           },
         }}
       />
