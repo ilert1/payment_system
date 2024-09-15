@@ -89,7 +89,8 @@ const router = createBrowserRouter([
         children: [
             ...defaultPages,
             {
-                path: c.PAGE_OUT_PAY, //"/pay-out-page",
+                // path: c.PAGE_OUT_PAY, //"/pay-out-page",
+                index: true,
                 element: <PayOutPage />,
             },
         ],
