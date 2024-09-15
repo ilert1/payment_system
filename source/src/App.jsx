@@ -81,7 +81,7 @@ const defaultPages = [
 const router = createBrowserRouter([
     {
         path: "/", //"/",
-        index: true,
+        // index: true,
         element: <MainPage />,
     },
     {
