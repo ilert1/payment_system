@@ -1,0 +1,9 @@
+services:
+  pnp-frontend:
+    ports:
+      - 127.0.0.1:8091:80
+
+networks:
+  default:
+    external: true
+    name: blowfish-network
