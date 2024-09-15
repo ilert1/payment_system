@@ -119,7 +119,7 @@ const App = () => {
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
-    const blowfishId = pathname.split("/")[1]; //.substring(1);
+    const blowfishId = pathname.split("/")[2];
 
     // если отсутствует - сразу редиректим
     if (!blowfishId) {
@@ -170,7 +170,6 @@ const App = () => {
                     success_url: "",
                     created_at: 1719389044819,
                     die_at: 1719389944819,
-                    mode: "payOut",
                 },
             };
 

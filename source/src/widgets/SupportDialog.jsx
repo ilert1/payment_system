@@ -5,9 +5,10 @@ import AlertTriangleBig from "../assets/images/alert-triangle-big.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useParams } from "react-router-dom";
 
 const SupportDialog = () => {
-    const { navigate, BFData, t } = useContext(AppContext);
+    const { navigate, BFData, t, payoutMode } = useContext(AppContext);
     const { isActive, setIsActive } = useContext(AppContext).supportDialog;
     const [showPopup, setShowPopup] = useState(false);
 
@@ -25,26 +26,38 @@ const SupportDialog = () => {
         }, 1000);
     };
 
+    const params = useParams();
+
     return (
         <div
             id="support-dialog"
             className={`overlay ${isActive ? "active" : ""}`}
             onClick={() => {
                 setIsActive(false);
-            }}>
+            }}
+        >
             <div
                 className="dialog"
-                onClick={e => {
+                onClick={(e) => {
                     e.stopPropagation();
-                }}>
+                }}
+            >
                 <img src={AlertTriangleBig} alt="" />
                 <div className="uuid-container">
-                    <div id="copy-dialog-popup" className={`popup ${showPopup ? "active" : ""}`}>
+                    <div
+                        id="copy-dialog-popup"
+                        className={`popup ${showPopup ? "active" : ""}`}
+                    >
                         {t("copyed", ns)}
                         <img src={CheckCircle} alt="" />
                     </div>
-                    <p id="uuid">{BFData?.trn}</p>
-                    <CopyToClipboard text={BFData?.trn} onCopy={showPopupCallback}>
+                    <p id="uuid">
+                        {payoutMode ? params.blowfishId : BFData?.trn}
+                    </p>
+                    <CopyToClipboard
+                        text={payoutMode ? params.blowfishId : BFData?.trn}
+                        onCopy={showPopupCallback}
+                    >
                         <button id="copy-dialog-button">{t("copy", ns)}</button>
                     </CopyToClipboard>
                 </div>
@@ -55,8 +68,13 @@ const SupportDialog = () => {
                 <button
                     className="dialog-button"
                     onClick={() => {
-                        window.open(import.meta.env.VITE_SUPPORT_LINK + (BFData?.trn ? BFData?.trn : ""));
-                    }}>
+                        window.open(
+                            import.meta.env.VITE_SUPPORT_LINK +
+                                "=" +
+                                (payoutMode ? params.blowfishId : BFData?.trn)
+                        );
+                    }}
+                >
                     {t("chatButton", ns)}
                 </button>
             </div>

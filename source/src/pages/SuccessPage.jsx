@@ -9,7 +9,8 @@ import { useContext } from "react";
 import AppContext from "../AppContext";
 
 const SuccessPage = () => {
-    const { BFData, resetCookies, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, resetCookies, t, getCurrencySymbol, payoutMode } =
+        useContext(AppContext);
 
     //translation
     const ns = { ns: "Success" };
@@ -34,7 +35,7 @@ const SuccessPage = () => {
 
             <div className="content">
                 <div className="header-container grow wide center">
-                    <h1>{t("header", ns)}</h1>
+                    <h1>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
                     <p className="amount">
                         + {BFData?.amount} {getCurrencySymbol(BFData?.currency)}
                     </p>
