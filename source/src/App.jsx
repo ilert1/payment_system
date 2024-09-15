@@ -80,7 +80,7 @@ const defaultPages = [
 
 const router = createBrowserRouter([
     {
-        // path: "", //"/",
+        path: "/", //"/",
         index: true,
         element: <MainPage />,
     },
