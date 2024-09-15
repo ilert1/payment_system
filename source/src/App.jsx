@@ -72,10 +72,6 @@ const defaultPages = [
         path: c.PAGE_GENERAL_ERROR, //"/general-error-page",
         element: <GeneralErrorPage />,
     },
-    {
-        path: "*",
-        elementError: <div>404</div>,
-    },
 ];
 
 const router = createBrowserRouter([
@@ -93,7 +89,8 @@ const router = createBrowserRouter([
         children: [
             ...defaultPages,
             {
-                path: c.PAGE_OUT_PAY, //"/pay-out-page",
+                // path: c.PAGE_OUT_PAY, //"/pay-out-page",
+                index: true,
                 element: <PayOutPage />,
             },
         ],
@@ -101,6 +98,10 @@ const router = createBrowserRouter([
     {
         path: c.PAGE_PAYMENT_NOT_FOUND,
         element: <PayErrorPage notFound={true} />,
+    },
+    {
+        path: "*",
+        elementError: <div>404</div>,
     },
     /* {
         path: `/:blowfishId`, //${c.PAGE_MAIN} //"/",
