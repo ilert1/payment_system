@@ -25,72 +25,68 @@ import PayOutPage from "./pages/PayOutPage.jsx";
 
 const defaultPages = [
     {
-        index: true,
-        element: <MainPage /> //
-    },
-    {
         path: c.PAGE_PAYMENT_METHODS, // "/payment-methods",
-        element: <PaymentMethodsPage />
+        element: <PaymentMethodsPage />,
     },
     {
         path: c.PAGE_PAYMENT_INSTRUMENT, //"/payment-instrument-page",
-        element: <PaymentInstrumentPage />
+        element: <PaymentInstrumentPage />,
     },
     {
         path: c.PAGE_PAYER_DATA, //"/payer-data-page",
-        element: <PayerDataPage />
+        element: <PayerDataPage />,
     },
     {
         path: c.PAGE_PAYEE_SEARCH, //"/payee-search-page",
-        element: <PayeeSearchPage />
+        element: <PayeeSearchPage />,
     },
     {
         path: c.PAGE_PAY, //"/pay-page",
-        element: <PayPage />
+        element: <PayPage />,
     },
     {
         path: c.PAGE_PAYEE_DATA, //"/payee-data-page",
-        element: <PayeeDataPage />
+        element: <PayeeDataPage />,
     },
     {
         path: c.PAGE_SUCCESS, //"/success-page",
-        element: <SuccessPage />
+        element: <SuccessPage />,
     },
     {
         path: c.PAGE_PAY_ERROR, // payment-fault "/pay-error-page",
-        element: <PayErrorPage />
+        element: <PayErrorPage />,
     },
     {
         path: c.PAGE_PAYMENT_NOT_FOUND,
-        element: <PayErrorPage notFound={true} />
+        element: <PayErrorPage notFound={true} />,
     },
     {
         path: c.PAGE_PAYMENT_CONFIRMATION, //"/payment-confirmation-page",
-        element: <PaymentConfirmationPage />
+        element: <PaymentConfirmationPage />,
     },
     {
         path: c.PAGE_PAYMENT_WAIT_CONFIRMATION, //"/payment-wait-confirmation",
-        element: <PaymentWaitConfirmation />
+        element: <PaymentWaitConfirmation />,
     },
     {
         path: c.PAGE_GENERAL_ERROR, //"/general-error-page",
-        element: <GeneralErrorPage />
+        element: <GeneralErrorPage />,
     },
     {
         path: "*",
-        elementError: <div>404</div>
-    }
+        elementError: <div>404</div>,
+    },
 ];
 
 const router = createBrowserRouter([
-    /* {
-        // path: "", //"/",
-        index: true,
-        element: <MainPage />
-    }, */
+    {
+        path: "/", //"/",
+        // index: true,
+        element: <MainPage />,
+    },
     {
         path: `/payments/:blowfishId/`, //${c.PAGE_MAIN} //"/",
-        children: [...defaultPages]
+        children: [...defaultPages],
     },
     {
         path: `/payouts/:blowfishId/`,
@@ -98,14 +94,14 @@ const router = createBrowserRouter([
             ...defaultPages,
             {
                 path: c.PAGE_OUT_PAY, //"/pay-out-page",
-                element: <PayOutPage />
-            }
-        ]
+                element: <PayOutPage />,
+            },
+        ],
     },
     {
         path: c.PAGE_PAYMENT_NOT_FOUND,
-        element: <PayErrorPage notFound={true} />
-    }
+        element: <PayErrorPage notFound={true} />,
+    },
     /* {
         path: `/:blowfishId`, //${c.PAGE_MAIN} //"/",
         element: <MainPage />,
@@ -183,8 +179,8 @@ const App = () => {
                     success_url: "",
                     created_at: 1719389044819,
                     die_at: 1719389944819,
-                    mode: "payOut"
-                }
+                    mode: "payOut",
+                },
             };
 
             // data = null;
@@ -205,7 +201,7 @@ const App = () => {
                 }
             }
             return data;
-        }
+        },
     });
 
     /* useEffect(() => {
