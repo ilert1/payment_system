@@ -13,7 +13,7 @@ import CurrencyLibrary from "./assets/library/Currency.json";
 import { binary_to_base58 } from "base58-js";
 
 var encoder = new TextEncoder();
-export const base58 = (str) => {
+export const base58 = str => {
     binary_to_base58(encoder.encode(str));
 };
 
@@ -21,7 +21,7 @@ export const AppContext = createContext({
     navigate: null,
     supportDialog: {
         isActive: false,
-        setIsActive: null,
+        setIsActive: null
     },
     urlData: null,
 
@@ -48,28 +48,28 @@ export const AppContext = createContext({
 
     lang: null,
     setLang: null,
-    payoutMode: null,
+    payoutMode: null
 });
 
 export const AppProvider = ({ children }) => {
     const navigate = useNavigate;
     const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
 
-    const payoutMode =
-        new URL(window.location.href).pathname.split("/")[1] == "payouts";
+    const payoutMode = new URL(window.location.href).pathname.split("/")[1] == "payouts";
+
+    const blowfishId = pathname.split("/")[2];
 
     const queryClient = new QueryClient();
 
     var supportDialog = {
         isActive: supportDialogIsActive,
-        setIsActive: supportDialogSetIsActive,
+        setIsActive: supportDialogSetIsActive
     };
 
     const { t, i18n } = useTranslation();
 
     const [currentPaymentMethod, setCurrentPaymentMethod] = useState(null);
-    const [currentPaymentInstrument, setCurrentPaymentInstrument] =
-        useState(null);
+    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState(null);
 
     const [cardNumberLast4, setCardNumberLast4] = useCookie("last4", null);
     const [traderData, setTraderData] = useCookie("traderData", null);
@@ -88,8 +88,8 @@ export const AppProvider = ({ children }) => {
         localStorage.setItem("language", lang);
     }, [lang]);
 
-    const getLangsForHeader = (langs) => {
-        langs = langs.filter((item) => {
+    const getLangsForHeader = langs => {
+        langs = langs.filter(item => {
             return item !== lang;
         });
         return langs;
@@ -108,8 +108,8 @@ export const AppProvider = ({ children }) => {
         fingerprintConfig = {
             headers: {
                 "X-Fingerprint": fingerprint,
-                "Accept-Language": [lang, ...langs].toString(),
-            },
+                "Accept-Language": [lang, ...langs].toString()
+            }
         };
 
         console.log(fingerprintConfig);
@@ -118,7 +118,7 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         let fp = `${getBrowserFingerprint({
             hardwareOnly: true,
-            enableScreen: false /* , enableWebgl: true */,
+            enableScreen: false /* , enableWebgl: true */
         })}`;
         setFingerprint(fp);
 
@@ -130,10 +130,7 @@ export const AppProvider = ({ children }) => {
     }, [currentPaymentMethod]);
 
     useEffect(() => {
-        setCookie(
-            "CurrentPaymentInstrument",
-            JSON.stringify(currentPaymentInstrument)
-        );
+        setCookie("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
     }, [currentPaymentInstrument]);
 
     const resetCookies = () => {
@@ -141,7 +138,7 @@ export const AppProvider = ({ children }) => {
         setTraderData(null);
     };
 
-    const getCurrencySymbol = (code) => {
+    const getCurrencySymbol = code => {
         if (CurrencyLibrary.hasOwnProperty(code)) {
             return CurrencyLibrary[code].symbol_native;
         }
@@ -173,9 +170,8 @@ export const AppProvider = ({ children }) => {
                     setFailUrlParams,
                     lang,
                     setLang,
-                    payoutMode,
-                }}
-            >
+                    payoutMode
+                }}>
                 {children}
             </AppContext.Provider>
         </QueryClientProvider>
