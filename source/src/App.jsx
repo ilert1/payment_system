@@ -100,6 +100,10 @@ const router = createBrowserRouter([
         element: <PayErrorPage notFound={true} />,
     },
     {
+        path: c.PAGE_PAYOUT_NOT_FOUND,
+        element: <PayErrorPage notFound={true} />,
+    },
+    {
         path: "*",
         elementError: <div>404</div>,
     },

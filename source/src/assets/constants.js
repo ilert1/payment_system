@@ -4,6 +4,7 @@ export const PAGE_PAYMENT_CONFIRMATION = "payment-confirmation-page";
 export const PAGE_PAYMENT_INSTRUMENT = "payment-instrument-page";
 export const PAGE_PAY_ERROR = "payment-fault";
 export const PAGE_PAYMENT_NOT_FOUND = "payment-not-found";
+export const PAGE_PAYOUT_NOT_FOUND = "payout-not-found";
 export const PAGE_PAY = "pay-page";
 export const PAGE_OUT_PAY = "pay-out-page";
 export const PAGE_PAYEE_DATA = "payee-data-page";
