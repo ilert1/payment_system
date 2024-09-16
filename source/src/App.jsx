@@ -153,32 +153,31 @@ const App = () => {
         // retry: false,
         refetchOnWindowFocus: false,
         queryFn: async () => {
-            console.log("exist ");
+            if (blowfishId) {
+                try {
+                    const { data } = await axios
+                        .get(`${import.meta.env.VITE_API_URL}/payouts/${blowfishId}`, fingerprintConfig)
+                        .catch(e => {
+                            console.log(e);
+                        });
 
-            try {
-                const { data } = await axios
-                    .get(`${import.meta.env.VITE_API_URL}/payouts/${blowfishId}`, fingerprintConfig)
-                    .catch(e => {
-                        console.log(e);
-                    });
-
-                if (data) {
-                    console.log("data");
-                    console.log(data);
-                    if (data?.success) {
-                        //данные получены успешно
-                        setBFData(data?.data);
-                    } else {
-                        //транзакция не подлежит оплате
-                        // window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    if (data) {
+                        console.log("data: ", data);
+                        if (data?.success) {
+                            //данные получены успешно
+                            setBFData(data?.data);
+                        } else {
+                            //транзакция не подлежит оплате
+                            window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                        }
                     }
-                }
 
-                return data;
-            } catch (e) {
-                console.error(e.response.statusCode);
-                if (e.response.statusCode === 404) {
-                    window.location.replace(`${blowfishId}/${c.PAGE_PAYOUT_NOT_FOUND}`);
+                    return data;
+                } catch (e) {
+                    console.error(e.response.statusCode);
+                    if (e.response.statusCode === 404) {
+                        window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    }
                 }
             }
 
