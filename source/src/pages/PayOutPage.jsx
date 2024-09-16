@@ -70,7 +70,7 @@ const PayOutPage = () => {
                         if (data?.data.redirectUrlOnFailure) {
                             window.location.replace(data?.data.redirectUrlOnFailure);
                         } else {
-                            nav("../" + c.PAGE_SUCCESS, { replace: true });
+                            nav("../" + c.PAGE_PAYOUT_NOT_FOUND, { replace: true });
                         }
                     }
                 }
