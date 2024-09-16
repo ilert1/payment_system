@@ -55,9 +55,11 @@ export const AppProvider = ({ children }) => {
     const navigate = useNavigate;
     const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
 
-    const payoutMode = new URL(window.location.href).pathname.split("/")[1] == "payouts";
+    const pathname = new URL(window.location.href).pathname;
+    const payoutMode = pathname.split("/")[1] == "payouts";
 
-    const blowfishId = pathname.split("/")[2];
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
 
     const queryClient = new QueryClient();
 

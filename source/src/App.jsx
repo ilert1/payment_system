@@ -2,7 +2,6 @@ import * as c from "./assets/constants.js";
 import "./assets/css/fonts.css";
 import "./assets/css/styles.css";
 
-import MainPage from "./pages/MainPage";
 import PaymentInstrumentPage from "./pages/PaymentInstrumentPage";
 import PayerDataPage from "./pages/PayerDataPage";
 import PayeeSearchPage from "./pages/PayeeSearchPage";
@@ -22,6 +21,8 @@ import AppContext from "./AppContext.jsx";
 import Loader from "./ui/Loader.jsx";
 import { getCookie } from "react-use-cookie";
 import PayOutPage from "./pages/PayOutPage.jsx";
+
+import axios from "axios";
 
 const defaultPages = [
     {
@@ -123,13 +124,14 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, setCurrentPaymentMethod } = useContext(AppContext);
+    const { setBFData, setCurrentPaymentMethod, fingerprintConfig } = useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
 
-    const blowfishId = pathname.split("/")[2];
-    const payMode = pathname.split("/")[1];
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
+    // const payMode = pathname.split("/")[1];
 
     /* // если отсутствует - сразу редиректим
     if (!blowfishId) {
@@ -143,7 +145,7 @@ const App = () => {
         }
     }, []);
 
-    const { data: BFData, isFetching: isFetching_Blowfish } = useQuery({
+    const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
         // refetchInterval: 1000,
         enabled: Boolean(blowfishId), //Boolean(blowfishId),
@@ -153,52 +155,50 @@ const App = () => {
         queryFn: async () => {
             console.log("exist ");
 
-            /* try {
+            try {
                 const { data } = await axios
-                    .get(`${import.meta.env.VITE_API_URL}/${blowfishId}`, fingerprintConfig)
+                    .get(`${import.meta.env.VITE_API_URL}/payouts/${blowfishId}`, fingerprintConfig)
                     .catch(e => {
                         console.log(e);
                     });
+
+                if (data) {
+                    console.log("data");
+                    console.log(data);
+                    if (data?.success) {
+                        //данные получены успешно
+                        setBFData(data?.data);
+                    } else {
+                        //транзакция не подлежит оплате
+                        // window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    }
+                }
+
+                return data;
             } catch (e) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
-                    window.location.replace(`${blowfishId}/${c.PAGE_PAYMENT_NOT_FOUND}`);
-                }
-            } */
-
-            //response mock
-            const data = {
-                success: true,
-                data: {
-                    id: "449bc546-e589-4aca-83fd-775099333842",
-                    blowfish_id: "01355e23-0eb6-446e-a4cc-4d403f789ee8",
-                    status: 1,
-                    amount: "1000.20",
-                    currency: "RUB",
-                    fail_url: "https://google.com",
-                    success_url: "",
-                    created_at: 1719389044819,
-                    die_at: 1719389944819
-                }
-            };
-
-            // data = null;
-
-            console.log("exist response:");
-            // console.log(data);
-
-            if (data) {
-                console.log("data");
-                console.log(data);
-                if (data?.success) {
-                    //данные получены успешно
-                    setBFData(data?.data);
-                } else {
-                    //транзакция не подлежит оплате
-                    window.location.replace(c.PAGE_GENERAL_ERROR);
+                    window.location.replace(`${blowfishId}/${c.PAGE_PAYOUT_NOT_FOUND}`);
                 }
             }
-            return data;
+
+            //response mock
+            // const data = {
+            //     success: true,
+            //     data: {
+            //         id: "449bc546-e589-4aca-83fd-775099333842",
+            //         blowfish_id: "01355e23-0eb6-446e-a4cc-4d403f789ee8",
+            //         status: 1,
+            //         amount: "1000.20",
+            //         currency: "RUB",
+            //         fail_url: "https://google.com",
+            //         success_url: "",
+            //         created_at: 1719389044819,
+            //         die_at: 1719389944819
+            //     }
+            // };
+
+            // data = null;
         }
     });
 
