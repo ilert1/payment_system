@@ -32,7 +32,7 @@ const PayOutPage = () => {
     useEffect(() => {
         if (BFData?.status === "payoutLotSearching") {
             setAwaiting(true);
-        } else if (BFData?.status === "payoutLotWaitingForPayee") {
+        } else if (BFData?.status === "payoutLotConfirmedByPayee") {
             setDisabledButon(false);
             setAwaiting(false);
         } else {
@@ -87,8 +87,6 @@ const PayOutPage = () => {
     }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
     const approveLotHandler = async () => {
-        setDisabledButon(true);
-
         try {
             const { data } = await axios
                 .patch(
@@ -108,8 +106,6 @@ const PayOutPage = () => {
                     window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
                 }
             }
-
-            return data;
         } catch (e) {
             console.error(e.response.statusCode);
         }
