@@ -63,15 +63,15 @@ const PayOutPage = () => {
                             setBFData(data?.data);
 
                             if (data?.data.status === "payoutFullyExecuted") {
-                                if (data?.data.redirectUrlOnSuccess) {
-                                    window.location.replace(data?.data.redirectUrlOnSuccess);
+                                if (data?.data.success_url) {
+                                    window.location.replace(data?.data.success_url);
                                 } else {
                                     nav(c.PAGE_SUCCESS, { replace: true });
                                 }
                             }
                         } else {
-                            if (data?.data.redirectUrlOnFailure) {
-                                window.location.replace(data?.data.redirectUrlOnFailure);
+                            if (data?.data.fail_url) {
+                                window.location.replace(data?.data.fail_url);
                             } else {
                                 nav(c.PAGE_PAYOUT_NOT_FOUND, { replace: true });
                             }
