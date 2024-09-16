@@ -16,8 +16,14 @@ const PayOutPage = () => {
     const ns = { ns: ["Common", "PayOut"] };
 
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
-    const [disabledButon, setDisabledButon] = useState(true);
+    const [disabledButon, setDisabledButon] = useState(false);
     const [awaiting, setAwaiting] = useState(true);
+
+    useEffect(() => {
+        if (BFData?.status !== "payoutLotSearching") {
+            setAwaiting(false);
+        }
+    }, []);
 
     const approveLotHandler = async () => {
         setDisabledButon(true);
