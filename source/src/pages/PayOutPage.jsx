@@ -26,12 +26,15 @@ const PayOutPage = () => {
     const nav = navigate();
 
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
-    const [disabledButon, setDisabledButon] = useState(false);
+    const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
 
     useEffect(() => {
         if (BFData?.status === "payoutLotSearching") {
             setAwaiting(true);
+        } else if (BFData?.status === "payoutLotWaitingForPayee") {
+            setDisabledButon(false);
+            setAwaiting(false);
         } else {
             setAwaiting(false);
         }
