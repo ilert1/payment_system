@@ -114,7 +114,7 @@ export const AppProvider = ({ children }) => {
             }
         };
 
-        console.log(fingerprintConfig);
+        console.log("fingerprintConfig: ", fingerprintConfig);
     }, [, fingerprint, /* customerId, */ lang]);
 
     useEffect(() => {
