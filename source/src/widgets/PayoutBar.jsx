@@ -97,42 +97,42 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                     {awaiting && <div className="payout-progress__fill--awaiting"></div>}
                 </div>
             </div>
-            {payoutLots.length > 0 && (
-                <div className="payout-description">
-                    {payoutLots[payoutLots.length - 1].status === "await" && (
-                        <div className="payout-description__block">
-                            <Timer down={false} className="payout-description__timer" />
-                            <p className="payout-description__title">{t("waitForTransferConfirmation", ns)}</p>
-                        </div>
-                    )}
 
-                    {payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer" && (
-                        <p className="payout-description__title">
-                            {t("waitForTransferConfirmation", ns)}{" "}
-                            <span className="payout-description__title--accent">
-                                {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
-                            </span>
-                        </p>
-                    )}
+            <div className="payout-description">
+                {awaiting && (
+                    <div className="payout-description__block">
+                        <Timer down={false} className="payout-description__timer" />
+                        <p className="payout-description__title">{t("waitForTransferConfirmation", ns)}</p>
+                    </div>
+                )}
 
-                    {payoutLots[payoutLots.length - 1].status === "lotWaitingForPayee" && (
-                        <p className="payout-description__title">
-                            {t("transferConfirmed", ns)}{" "}
-                            <span className="payout-description__title--accent">
-                                {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
-                            </span>
-                        </p>
-                    )}
-
-                    <p className="payout-description__text">
-                        {payoutLots[payoutLots.length - 1].status === "await" ||
-                        payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer"
-                            ? t("waitTime", ns)
-                            : ""}
-                        &nbsp; {/* Нужно, чтобы текст не дергался */}
+                {payoutLots.length > 0 && payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer" && (
+                    <p className="payout-description__title">
+                        {t("waitForTransferConfirmation", ns)}{" "}
+                        <span className="payout-description__title--accent">
+                            {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
+                        </span>
                     </p>
-                </div>
-            )}
+                )}
+
+                {payoutLots.length > 0 && payoutLots[payoutLots.length - 1].status === "lotWaitingForPayee" && (
+                    <p className="payout-description__title">
+                        {t("transferConfirmed", ns)}{" "}
+                        <span className="payout-description__title--accent">
+                            {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
+                        </span>
+                    </p>
+                )}
+
+                <p className="payout-description__text">
+                    {payoutLots.length > 0 &&
+                    (payoutLots[payoutLots.length - 1].status === "await" ||
+                        payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer")
+                        ? t("waitTime", ns)
+                        : ""}
+                    &nbsp; {/* Нужно, чтобы текст не дергался */}
+                </p>
+            </div>
         </div>
     );
 };
