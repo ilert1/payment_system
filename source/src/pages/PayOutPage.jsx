@@ -48,32 +48,38 @@ const PayOutPage = () => {
         es.onerror = e => console.log("ERROR!", e);
 
         es.onmessage = async e => {
-            console.log(">>>", e.data);
+            try {
+                const resEventData = JSON.parse(e.data);
 
-            if (e.event === "statusChanged") {
-                const { data } = await axios
-                    .get(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`, fingerprintConfig)
-                    .catch(e => {
-                        console.log(e);
-                    });
+                if (resEventData.event === "statusChanged") {
+                    const { data } = await axios
+                        .get(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`, fingerprintConfig)
+                        .catch(e => {
+                            console.log(e);
+                        });
 
-                if (data) {
-                    if (data?.success) {
-                        setBFData(data?.data);
+                    if (data) {
+                        if (data?.success) {
+                            setBFData(data?.data);
 
-                        if (data?.data.status === "payoutFullyExecuted" && data?.data.redirectUrlOnSuccess) {
-                            window.location.replace(data?.data.redirectUrlOnSuccess);
+                            if (data?.data.status === "payoutFullyExecuted") {
+                                if (data?.data.redirectUrlOnSuccess) {
+                                    window.location.replace(data?.data.redirectUrlOnSuccess);
+                                } else {
+                                    nav(c.PAGE_SUCCESS, { replace: true });
+                                }
+                            }
                         } else {
-                            nav("../" + c.PAGE_SUCCESS, { replace: true });
-                        }
-                    } else {
-                        if (data?.data.redirectUrlOnFailure) {
-                            window.location.replace(data?.data.redirectUrlOnFailure);
-                        } else {
-                            nav("../" + c.PAGE_PAYOUT_NOT_FOUND, { replace: true });
+                            if (data?.data.redirectUrlOnFailure) {
+                                window.location.replace(data?.data.redirectUrlOnFailure);
+                            } else {
+                                nav(c.PAGE_PAYOUT_NOT_FOUND, { replace: true });
+                            }
                         }
                     }
                 }
+            } catch (error) {
+                // continue
             }
         };
 
