@@ -16,12 +16,8 @@ const PayOutPage = () => {
     const ns = { ns: ["Common", "PayOut"] };
 
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
-    const [disabledButon, setDisabledButon] = useState(false);
+    const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
-
-    useEffect(() => {
-        setAwaiting(false);
-    }, []);
 
     const approveLotHandler = async () => {
         setDisabledButon(true);
