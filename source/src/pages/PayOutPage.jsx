@@ -39,7 +39,7 @@ const PayOutPage = () => {
 
             if (data) {
                 if (data?.success) {
-                    if (data?.data.payout.status === "payoutLotSearching") {
+                    if (data?.data.status === "payoutLotSearching") {
                         setAwaiting(true);
                     }
 
@@ -63,19 +63,15 @@ const PayOutPage = () => {
             <Header />
             <div className="content">
                 <PleasePay
-                    amount={BFData?.payout.amount}
-                    currency={getCurrencySymbol(BFData?.payout.currency)}
+                    amount={BFData?.amount}
+                    currency={getCurrencySymbol(BFData?.currency)}
                     payOut={true}
                     bank={currentPaymentInstrument?.bank_name}
                 />
 
                 <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
-                <PayoutBar
-                    transactions={BFData?.payout.lots}
-                    sumAmount={Number(BFData?.payout.amount)}
-                    awaiting={awaiting}
-                />
+                <PayoutBar transactions={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
 
                 <div className="instructions small">
                     <ul>
@@ -99,7 +95,7 @@ const PayOutPage = () => {
             {showPayoutSubmit && (
                 <PayoutSubmitModal
                     data={{
-                        title: `${t("transferInAmount", ns)} ${BFData?.payout.amount}\u00A0${getCurrencySymbol(
+                        title: `${t("transferInAmount", ns)} ${BFData?.amount}\u00A0${getCurrencySymbol(
                             BFData?.currency
                         )} ${t("transferReceived", ns)}?`,
                         text: t("approveTransferText", ns),
