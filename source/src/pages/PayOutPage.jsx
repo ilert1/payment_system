@@ -38,7 +38,7 @@ const PayOutPage = () => {
     }, [BFData?.status]);
 
     useEffect(() => {
-        const es = new EventSource(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`);
+        const es = new EventSource(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}/events`);
 
         es.onopen = () => console.log(">>> Connection opened!");
 
@@ -75,8 +75,7 @@ const PayOutPage = () => {
         };
 
         return () => es.close();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [BFData?.id, BFData.success_url, fingerprintConfig, nav, setBFData]);
 
     const approveLotHandler = async () => {
         setDisabledButon(true);
