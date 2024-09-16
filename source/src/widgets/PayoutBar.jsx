@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Timer } from "../ui/Timer";
 import Loading from "../assets/images/payOut/loading.svg";
 import ApproveOne from "../assets/images/payOut/approveOne.svg";

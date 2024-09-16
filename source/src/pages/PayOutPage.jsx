@@ -1,3 +1,4 @@
+import * as c from "../assets/constants.js";
 import Header from "../widgets/Header.jsx";
 import Footer from "../widgets/Footer.jsx";
 import PayoutSubmitModal from "../widgets/PayoutSubmitModal";
@@ -10,10 +11,19 @@ import { PayoutBar } from "../widgets/PayoutBar.jsx";
 import axios from "axios";
 
 const PayOutPage = () => {
-    const { setBFData, BFData, currentPaymentInstrument, t, getCurrencySymbol, supportDialog, fingerprintConfig } =
-        useContext(AppContext);
+    const {
+        setBFData,
+        BFData,
+        currentPaymentInstrument,
+        t,
+        getCurrencySymbol,
+        supportDialog,
+        fingerprintConfig,
+        navigate
+    } = useContext(AppContext);
 
     const ns = { ns: ["Common", "PayOut"] };
+    const nav = navigate();
 
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(false);
@@ -34,9 +44,34 @@ const PayOutPage = () => {
 
         es.onerror = e => console.log("ERROR!", e);
 
-        es.onmessage = e => {
-            setBFData(e.data);
+        es.onmessage = async e => {
             console.log(">>>", e.data);
+
+            if (e.event === "statusChanged") {
+                const { data } = await axios
+                    .get(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`, fingerprintConfig)
+                    .catch(e => {
+                        console.log(e);
+                    });
+
+                if (data) {
+                    if (data?.success) {
+                        setBFData(data?.data);
+
+                        if (data?.data.status === "payoutFullyExecuted" && data?.data.redirectUrlOnSuccess) {
+                            window.location.replace(BFData.success_url);
+                        } else {
+                            nav("../" + c.PAGE_SUCCESS, { replace: true });
+                        }
+                    } else {
+                        if (data?.data.redirectUrlOnFailure) {
+                            window.location.replace(data?.data.redirectUrlOnFailure);
+                        } else {
+                            nav("../" + c.PAGE_SUCCESS, { replace: true });
+                        }
+                    }
+                }
+            }
         };
 
         return () => es.close();
@@ -62,7 +97,7 @@ const PayOutPage = () => {
                     setBFData(data?.data);
                 } else {
                     //транзакция не подлежит оплате
-                    // window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
                 }
             }
 
