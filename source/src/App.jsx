@@ -131,6 +131,7 @@ const App = () => {
 
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
+    const notFound = pathname.indexOf("not-found") >= 0;
     // const payMode = pathname.split("/")[1];
 
     /* // если отсутствует - сразу редиректим
@@ -148,7 +149,7 @@ const App = () => {
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
         // refetchInterval: 1000,
-        enabled: Boolean(blowfishId), //Boolean(blowfishId),
+        enabled: Boolean(blowfishId) && !notFound, //Boolean(blowfishId),
         // refetchIntervalInBackground: true,
         // retry: false,
         refetchOnWindowFocus: false,
