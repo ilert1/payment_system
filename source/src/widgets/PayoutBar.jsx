@@ -49,7 +49,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                 <div
                     className={
                         "payout-progress__bar " +
-                        (payoutLots.reduce((accum, curVal) => accum + Number(curVal.value), 0) === sumAmount
+                        (payoutLots.reduce((accum, curVal) => accum + Number(curVal.value), 0) >= sumAmount
                             ? "payout-progress__bar--complete"
                             : "")
                     }>
