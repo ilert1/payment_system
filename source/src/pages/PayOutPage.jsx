@@ -59,7 +59,7 @@ const PayOutPage = () => {
                         setBFData(data?.data);
 
                         if (data?.data.status === "payoutFullyExecuted" && data?.data.redirectUrlOnSuccess) {
-                            window.location.replace(BFData.success_url);
+                            window.location.replace(data?.data.redirectUrlOnSuccess);
                         } else {
                             nav("../" + c.PAGE_SUCCESS, { replace: true });
                         }
@@ -75,7 +75,7 @@ const PayOutPage = () => {
         };
 
         return () => es.close();
-    }, [BFData?.id, BFData.success_url, fingerprintConfig, nav, setBFData]);
+    }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
     const approveLotHandler = async () => {
         setDisabledButon(true);
