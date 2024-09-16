@@ -20,10 +20,28 @@ const PayOutPage = () => {
     const [awaiting, setAwaiting] = useState(true);
 
     useEffect(() => {
-        if (BFData?.status !== "payoutLotSearching") {
+        if (BFData?.status === "payoutLotSearching") {
+            setAwaiting(true);
+        } else {
             setAwaiting(false);
         }
     }, [BFData?.status]);
+
+    useEffect(() => {
+        const es = new EventSource(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`);
+
+        es.onopen = () => console.log(">>> Connection opened!");
+
+        es.onerror = e => console.log("ERROR!", e);
+
+        es.onmessage = e => {
+            setBFData(e.data);
+            console.log(">>>", e.data);
+        };
+
+        return () => es.close();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const approveLotHandler = async () => {
         setDisabledButon(true);
