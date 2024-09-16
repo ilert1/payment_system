@@ -50,7 +50,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                 <div
                     className={
                         "payout-progress__bar " +
-                        (payoutLots.reduce((accum, curVal) => accum + Number(curVal.value), 0) >= sumAmount
+                        (payoutLots.reduce((accum, curVal) => accum + Number(curVal.amount), 0) >= sumAmount
                             ? "payout-progress__bar--complete"
                             : "")
                     }>
@@ -59,7 +59,10 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                             <div
                                 key={index}
                                 style={{
-                                    width: (Number(item.value) * 100) / Number(sumAmount) + "%",
+                                    width:
+                                        Number(item.amount) < Number(sumAmount)
+                                            ? (Number(item.amount) * 100) / Number(sumAmount) + "%"
+                                            : "100%",
                                     display: awaiting && item.status !== "lotExecuted" ? "none" : "flex"
                                 }}
                                 className={["payout-progress__fill", progressFillStatus(item.status)].join(" ")}>
@@ -81,7 +84,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
 											{romanNumber(index)}
 									</span>
 
-									{item.value && item.currency && (
+									{item.amount && item.currency && (
 											<span
 													className={
 															"payout-progress__value " +
@@ -89,7 +92,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
 																	? "payout-progress__value--active"
 																	: "payout-progress__value--disabled")
 													}>
-													{item.value} {item.currency}
+													{item.amount} {item.currency}
 											</span>
 									)} */}
                             </div>
@@ -111,7 +114,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                     <p className="payout-description__title">
                         {t("waitForTransferConfirmation", ns)}{" "}
                         <span className="payout-description__title--accent">
-                            {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
+                            {payoutLots[payoutLots.length - 1].amount} {payoutLots[payoutLots.length - 1].currency}
                         </span>
                     </p>
                 )}
@@ -120,7 +123,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                     <p className="payout-description__title">
                         {t("transferConfirmed", ns)}{" "}
                         <span className="payout-description__title--accent">
-                            {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
+                            {payoutLots[payoutLots.length - 1].amount} {payoutLots[payoutLots.length - 1].currency}
                         </span>
                     </p>
                 )}

@@ -121,7 +121,7 @@ const PayOutPage = () => {
 
                 <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
-                <PayoutBar transactions={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
+                <PayoutBar payoutLots={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
 
                 <div className="instructions small">
                     <ul>
