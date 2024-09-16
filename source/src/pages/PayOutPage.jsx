@@ -59,10 +59,6 @@ const PayOutPage = () => {
 
             if (data) {
                 if (data?.success) {
-                    if (data?.data.status === "payoutLotSearching") {
-                        setAwaiting(true);
-                    }
-
                     setBFData(data?.data);
                 } else {
                     //транзакция не подлежит оплате
