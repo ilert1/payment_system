@@ -2,69 +2,69 @@ import Header from "../widgets/Header.jsx";
 import Footer from "../widgets/Footer.jsx";
 import PayoutSubmitModal from "../widgets/PayoutSubmitModal";
 
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext.jsx";
 import { PleasePay } from "../widgets/PleasePay.jsx";
 import { DeadlineInfo } from "../widgets/DeadlineInfo.jsx";
 import { PayoutBar } from "../widgets/PayoutBar.jsx";
-
-// import { useQuery } from "@tanstack/react-query";
-// import axios from "axios";
+import axios from "axios";
 
 const PayOutPage = () => {
-    const {
-        BFData,
-        currentPaymentInstrument,
-        t,
-        getCurrencySymbol,
-        supportDialog,
-    } = useContext(AppContext);
+    const { setBFData, BFData, currentPaymentInstrument, t, getCurrencySymbol, supportDialog, fingerprintConfig } =
+        useContext(AppContext);
 
-    //translation
     const ns = { ns: ["Common", "PayOut"] };
 
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(false);
-    const [transactionsMock, setTransactiosnMock] = useState([
-        {
-            status: "approveOne",
-            value: 300,
-            currency: "₽",
-        },
-    ]);
+    const [awaiting, setAwaiting] = useState(true);
 
-    // const currPayMethod = JSON.parse(currentPaymentInstrument);
-    // const trader = JSON.parse(traderData);
+    useEffect(() => {
+        setAwaiting(false);
+    }, []);
 
-    // const nav = navigate();
+    const approveLotHandler = async () => {
+        setDisabledButon(true);
 
-    useMemo(() => {
-        const temp = [...transactionsMock];
-        const index = temp.findIndex((item) => item.status === "await");
+        try {
+            const { data } = await axios
+                .patch(
+                    `${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`,
+                    { status: "payoutLotConfirmedByPayee" },
+                    fingerprintConfig
+                )
+                .catch(e => {
+                    console.log(e);
+                });
 
-        if (index !== -1) {
-            setTimeout(() => {
-                const temp = [...transactionsMock];
-                temp[index].status = "new";
-                setTransactiosnMock(temp);
-            }, 3000);
+            if (data) {
+                if (data?.success) {
+                    if (data?.data.payout.status === "payoutLotSearching") {
+                        setAwaiting(true);
+                    }
 
-            setTimeout(() => {
-                const temp = [...transactionsMock];
-                temp[index].status = "approveOne";
-                setDisabledButon(false);
-                setTransactiosnMock(temp);
-            }, 5000);
+                    setBFData(data?.data);
+                } else {
+                    //транзакция не подлежит оплате
+                    // window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                }
+            }
+
+            return data;
+        } catch (e) {
+            console.error(e.response.statusCode);
         }
-    }, [transactionsMock]);
+
+        setShowPayoutSubmit(false);
+    };
 
     return (
         <div className="container">
             <Header />
             <div className="content">
                 <PleasePay
-                    amount={BFData?.amount}
-                    currency={getCurrencySymbol(BFData?.currency)}
+                    amount={BFData?.payout.amount}
+                    currency={getCurrencySymbol(BFData?.payout.currency)}
                     payOut={true}
                     bank={currentPaymentInstrument?.bank_name}
                 />
@@ -72,12 +72,9 @@ const PayOutPage = () => {
                 <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
                 <PayoutBar
-                    transactions={transactionsMock}
-                    sumAmount={1000}
-                    awaiting={
-                        transactionsMock[transactionsMock.length - 1].status ===
-                        "await"
-                    }
+                    transactions={BFData?.payout.lots}
+                    sumAmount={Number(BFData?.payout.amount)}
+                    awaiting={awaiting}
                 />
 
                 <div className="instructions small">
@@ -102,32 +99,14 @@ const PayOutPage = () => {
             {showPayoutSubmit && (
                 <PayoutSubmitModal
                     data={{
-                        title: `${t("transferInAmount", ns)} ${
-                            BFData?.amount
-                        }\u00A0${getCurrencySymbol(BFData?.currency)} ${t(
-                            "transferReceived",
-                            ns
-                        )}?`,
+                        title: `${t("transferInAmount", ns)} ${BFData?.payout.amount}\u00A0${getCurrencySymbol(
+                            BFData?.currency
+                        )} ${t("transferReceived", ns)}?`,
                         text: t("approveTransferText", ns),
                         toggleText: t("approveReceivedCheckbox", ns),
                         primaryBtnText: t("appreveButtonText", ns),
-                        primaryBtnCallback: () => {
-                            setDisabledButon(true);
-                            const temp = [...transactionsMock];
-                            const index = temp.findIndex(
-                                (item) => item.status === "approveOne"
-                            );
-                            temp[index].status = "approveFull";
-                            temp.push({
-                                status: "await",
-                                value: 100,
-                                currency: "₽",
-                            });
-                            setTransactiosnMock(temp);
-
-                            setShowPayoutSubmit(false);
-                        },
-                        secondaryBtnText: t("notYet", ns),
+                        primaryBtnCallback: approveLotHandler,
+                        secondaryBtnText: t("notYet", ns)
                     }}
                     closeModal={() => setShowPayoutSubmit(false)}
                 />
@@ -139,14 +118,14 @@ const PayOutPage = () => {
                     disabled: disabledButon,
                     callback: () => {
                         setShowPayoutSubmit(true);
-                    },
+                    }
                 }}
                 discardButton={{
                     caption: t("discardPayout", ns),
                     disabled: disabledButon,
                     callback: () => {
                         supportDialog.setIsActive(true);
-                    },
+                    }
                 }}
             />
         </div>

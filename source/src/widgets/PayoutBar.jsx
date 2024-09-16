@@ -5,23 +5,19 @@ import ApproveFill from "../assets/images/payOut/approveFill.svg";
 import { useContext } from "react";
 import AppContext from "../AppContext";
 
-export const PayoutBar = ({
-    transactions = [],
-    sumAmount = 0,
-    awaiting = false,
-}) => {
+export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) => {
     const { t } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PayOut", "PayeeData"] };
 
-    const progressFillStatus = (status) => {
+    const progressFillStatus = status => {
         switch (status) {
-            case "new":
+            case "lotWaitingForPayer":
                 return "payout-progress__fill--new";
-            case "approveOne":
+            case "lotWaitingForPayee":
                 return "payout-progress__fill--approve-one";
-            case "approveFull":
+            case "lotExecuted":
                 return "payout-progress__fill--approve-full";
             default:
                 return "";
@@ -53,53 +49,31 @@ export const PayoutBar = ({
                 <div
                     className={
                         "payout-progress__bar " +
-                        (transactions.reduce(
-                            (accum, curVal) => accum + Number(curVal.value),
-                            0
-                        ) === sumAmount
+                        (payoutLots.reduce((accum, curVal) => accum + Number(curVal.value), 0) === sumAmount
                             ? "payout-progress__bar--complete"
                             : "")
-                    }
-                >
-                    {transactions.length > 0 &&
-                        transactions.map((item, index) => (
+                    }>
+                    {payoutLots.length > 0 &&
+                        payoutLots.map((item, index) => (
                             <div
                                 key={index}
                                 style={{
-                                    width:
-                                        (Number(item.value) * 100) /
-                                            Number(sumAmount) +
-                                        "%",
-                                    display:
-                                        awaiting &&
-                                        item.status !== "approveFull"
-                                            ? "none"
-                                            : "flex",
+                                    width: (Number(item.value) * 100) / Number(sumAmount) + "%",
+                                    display: awaiting && item.status !== "lotExecuted" ? "none" : "flex"
                                 }}
-                                className={[
-                                    "payout-progress__fill",
-                                    progressFillStatus(item.status),
-                                ].join(" ")}
-                            >
-                                {item.status === "new" && (
-                                    <img
-                                        className="payout-progress__fill-loading"
-                                        src={Loading}
-                                    />
+                                className={["payout-progress__fill", progressFillStatus(item.status)].join(" ")}>
+                                {item.status === "lotWaitingForPayer" && (
+                                    <img className="payout-progress__fill-loading" src={Loading} />
                                 )}
 
-                                {item.status === "approveOne" && (
-                                    <img src={ApproveOne} />
-                                )}
+                                {item.status === "lotWaitingForPayee" && <img src={ApproveOne} />}
 
-                                {item.status === "approveFull" && (
-                                    <img src={ApproveFill} />
-                                )}
+                                {item.status === "lotExecuted" && <img src={ApproveFill} />}
 
                                 {/* <span
 											className={
 													"payout-progress__roman-number " +
-													(item.status === "approveOne" || item.status === "new"
+													(item.status === "lotWaitingForPayee" || item.status === "lotWaitingForPayer"
 															? "payout-progress__roman-number--active"
 															: "payout-progress__roman-number--disabled")
 											}>
@@ -110,7 +84,7 @@ export const PayoutBar = ({
 											<span
 													className={
 															"payout-progress__value " +
-															(item.status === "approveOne" || item.status === "new"
+															(item.status === "lotWaitingForPayee" || item.status === "lotWaitingForPayer"
 																	? "payout-progress__value--active"
 																	: "payout-progress__value--disabled")
 													}>
@@ -120,48 +94,38 @@ export const PayoutBar = ({
                             </div>
                         ))}
 
-                    {awaiting && (
-                        <div className="payout-progress__fill--awaiting"></div>
-                    )}
+                    {awaiting && <div className="payout-progress__fill--awaiting"></div>}
                 </div>
             </div>
             <div className="payout-description">
-                {transactions[transactions.length - 1].status === "await" && (
+                {payoutLots[payoutLots.length - 1].status === "await" && (
                     <div className="payout-description__block">
-                        <Timer
-                            down={false}
-                            className="payout-description__timer"
-                        />
-                        <p className="payout-description__title">
-                            {t("waitForTransferConfirmation", ns)}
-                        </p>
+                        <Timer down={false} className="payout-description__timer" />
+                        <p className="payout-description__title">{t("waitForTransferConfirmation", ns)}</p>
                     </div>
                 )}
 
-                {transactions[transactions.length - 1].status === "new" && (
+                {payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer" && (
                     <p className="payout-description__title">
                         {t("waitForTransferConfirmation", ns)}{" "}
                         <span className="payout-description__title--accent">
-                            {transactions[transactions.length - 1].value}{" "}
-                            {transactions[transactions.length - 1].currency}
+                            {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
                         </span>
                     </p>
                 )}
 
-                {transactions[transactions.length - 1].status ===
-                    "approveOne" && (
+                {payoutLots[payoutLots.length - 1].status === "lotWaitingForPayee" && (
                     <p className="payout-description__title">
                         {t("transferConfirmed", ns)}{" "}
                         <span className="payout-description__title--accent">
-                            {transactions[transactions.length - 1].value}{" "}
-                            {transactions[transactions.length - 1].currency}
+                            {payoutLots[payoutLots.length - 1].value} {payoutLots[payoutLots.length - 1].currency}
                         </span>
                     </p>
                 )}
 
                 <p className="payout-description__text">
-                    {transactions[transactions.length - 1].status === "await" ||
-                    transactions[transactions.length - 1].status === "new"
+                    {payoutLots[payoutLots.length - 1].status === "await" ||
+                    payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer"
                         ? t("waitTime", ns)
                         : ""}
                     &nbsp; {/* Нужно, чтобы текст не дергался */}
