@@ -23,7 +23,7 @@ const PayOutPage = () => {
         if (BFData?.status !== "payoutLotSearching") {
             setAwaiting(false);
         }
-    }, []);
+    }, [BFData?.status]);
 
     const approveLotHandler = async () => {
         setDisabledButon(true);
