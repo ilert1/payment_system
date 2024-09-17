@@ -1965,6 +1965,33 @@ footer > .top:not(.big-footer-container) {
     border-radius: 3px;
   }
 }
+.overlay .dialog .payout-dialog .main-button__loading {
+  pointer-events: none;
+  position: relative;
+}
+.overlay .dialog .payout-dialog .main-button__loading::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border: 4px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: button-loading-spinner 1s ease infinite;
+}
+@keyframes button-loading-spinner {
+  from {
+    transform: rotate(0turn);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
 .overlay .dialog .payout-dialog .main-button:disabled {
   background-color: #bebebe;
   opacity: 0.3;
@@ -1980,6 +2007,12 @@ footer > .top:not(.big-footer-container) {
   line-height: 133%;
   color: #37A8F3;
   flex-grow: 1;
+}
+.overlay .dialog .payout-dialog .outline-button:disabled {
+  border-color: #bebebe;
+  opacity: 0.3;
+  pointer-events: none;
+  color: #010f18;
 }
 @media (max-width: 520px) {
   .overlay .dialog .payout-dialog .outline-button {

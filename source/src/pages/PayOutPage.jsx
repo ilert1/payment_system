@@ -28,6 +28,7 @@ const PayOutPage = () => {
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
+    const [loadingButton, setLoadingButton] = useState(false);
 
     useEffect(() => {
         if (BFData?.status === "payoutLotSearching") {
@@ -87,6 +88,8 @@ const PayOutPage = () => {
     }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
     const approveLotHandler = async () => {
+        setLoadingButton(true);
+
         try {
             const { data } = await axios
                 .patch(
@@ -103,13 +106,15 @@ const PayOutPage = () => {
                     setBFData(data?.data);
                 } else {
                     //транзакция не подлежит оплате
-                    window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    console.log("Patch error: ", data);
+                    // window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
                 }
             }
         } catch (e) {
             console.error(e.response.statusCode);
         }
 
+        setLoadingButton(false);
         setShowPayoutSubmit(false);
     };
 
@@ -157,7 +162,8 @@ const PayOutPage = () => {
                         toggleText: t("approveReceivedCheckbox", ns),
                         primaryBtnText: t("appreveButtonText", ns),
                         primaryBtnCallback: approveLotHandler,
-                        secondaryBtnText: t("notYet", ns)
+                        secondaryBtnText: t("notYet", ns),
+                        loadingButton: loadingButton
                     }}
                     closeModal={() => setShowPayoutSubmit(false)}
                 />
