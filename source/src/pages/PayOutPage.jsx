@@ -91,7 +91,7 @@ const PayOutPage = () => {
         try {
             setLoadingButton(true);
 
-            const { data } = await axios
+            await axios
                 .patch(
                     `${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`,
                     { status: "payoutLotConfirmedByPayee" },
@@ -100,16 +100,6 @@ const PayOutPage = () => {
                 .catch(e => {
                     console.log(e);
                 });
-
-            if (data) {
-                if (data?.success) {
-                    setBFData(data?.data);
-                } else {
-                    //транзакция не подлежит оплате
-                    console.log("Patch error: ", data);
-                    // window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
-                }
-            }
         } catch (e) {
             console.error(e.response.message);
         } finally {
