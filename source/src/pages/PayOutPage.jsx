@@ -104,6 +104,7 @@ const PayOutPage = () => {
         } finally {
             setLoadingButton(false);
             setShowPayoutSubmit(false);
+            setDisabledButon(true);
         }
     };
 
