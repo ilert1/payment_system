@@ -63,12 +63,11 @@ const PayOutPage = () => {
                         if (data?.success) {
                             setBFData(data?.data);
 
-                            if (data?.data.status === "payoutFullyExecuted") {
-                                if (data?.data.success_url) {
-                                    window.location.replace(data?.data.success_url);
-                                } else {
-                                    nav(c.PAGE_SUCCESS, { replace: true });
-                                }
+                            if (
+                                data?.data.status === "payoutFullyExecuted" ||
+                                data?.data.status === "payoutPartiallyExecuted"
+                            ) {
+                                nav(c.PAGE_SUCCESS, { replace: true });
                             }
                         } else {
                             if (data?.data.fail_url) {

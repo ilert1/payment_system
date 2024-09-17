@@ -794,6 +794,11 @@ header .language-selector .drop-down .flag-container:last-of-type {
     font-size: 36px;
   }
 }
+.content .header-container .instructions.small {
+  text-align: center;
+  margin: 0;
+  align-items: flex-start;
+}
 .content .bank-deadline-info {
   display: inline-flex;
   flex-wrap: nowrap;

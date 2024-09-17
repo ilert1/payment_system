@@ -950,6 +950,12 @@ header {
                 font-size: 36px;
             }
         }
+
+        .instructions.small {
+            text-align: center;
+            margin: 0;
+            align-items: flex-start;
+        }
     }
 
     .bank-deadline-info {
