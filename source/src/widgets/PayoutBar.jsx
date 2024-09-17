@@ -25,25 +25,6 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
         }
     };
 
-    // const romanNumber = index => {
-    //     switch (index) {
-    //         case 0:
-    //             return "I";
-    //         case 1:
-    //             return "II";
-    //         case 2:
-    //             return "III";
-    //         case 3:
-    //             return "IV";
-    //         case 4:
-    //             return "V";
-    //         case 5:
-    //             return "VI";
-    //         default:
-    //             return "";
-    //     }
-    // };
-
     return (
         <div className="payout-info">
             <div className="payout-progress">
@@ -73,28 +54,6 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                                 {item.status === "lotWaitingForPayee" && <img src={ApproveOne} />}
 
                                 {item.status === "lotExecuted" && <img src={ApproveFill} />}
-
-                                {/* <span
-											className={
-													"payout-progress__roman-number " +
-													(item.status === "lotWaitingForPayee" || item.status === "lotWaitingForPayer"
-															? "payout-progress__roman-number--active"
-															: "payout-progress__roman-number--disabled")
-											}>
-											{romanNumber(index)}
-									</span>
-
-									{item.amount && item.currency && (
-											<span
-													className={
-															"payout-progress__value " +
-															(item.status === "lotWaitingForPayee" || item.status === "lotWaitingForPayer"
-																	? "payout-progress__value--active"
-																	: "payout-progress__value--disabled")
-													}>
-													{item.amount} {item.currency}
-											</span>
-									)} */}
                             </div>
                         ))}
 
