@@ -150,9 +150,9 @@ const PayOutPage = () => {
             {showPayoutSubmit && (
                 <PayoutSubmitModal
                     data={{
-                        title: `${t("transferInAmount", ns)} ${BFData?.amount}\u00A0${getCurrencySymbol(
-                            BFData?.currency
-                        )} ${t("transferReceived", ns)}?`,
+                        title: `${t("transferInAmount", ns)} ${
+                            BFData.lots[BFData.lots.length - 1].amount
+                        }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
                         text: t("approveTransferText", ns),
                         toggleText: t("approveReceivedCheckbox", ns),
                         primaryBtnText: t("appreveButtonText", ns),
