@@ -88,9 +88,9 @@ const PayOutPage = () => {
     }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
     const approveLotHandler = async () => {
-        setLoadingButton(true);
-
         try {
+            setLoadingButton(true);
+
             const { data } = await axios
                 .patch(
                     `${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`,
@@ -111,11 +111,11 @@ const PayOutPage = () => {
                 }
             }
         } catch (e) {
-            console.error(e.response.statusCode);
+            console.error(e.response.message);
+        } finally {
+            setLoadingButton(false);
+            setShowPayoutSubmit(false);
         }
-
-        setLoadingButton(false);
-        setShowPayoutSubmit(false);
     };
 
     return (
