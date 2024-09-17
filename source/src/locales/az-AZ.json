@@ -62,7 +62,7 @@
         "correctRequisites": "Məlumatları düzəltmək",
         "waitForTransferConfirmation": "Köçürmənin təsdiqini gözləyin",
         "transferConfirmed": "Operator köçürməni təsdiqlədi",
-        "lookingForOperator": "Çıxarış üçün operator axtarılır",
+        "lookingForOperator": "Operator axtarışı",
         "transferInAmount": "Məbləğdə köçürmə",
         "transferReceived": "gəldi",
         "approveTransferText": "Əgər köçürmə gəlibsə, keçidi aktiv edin və davam düyməsinə basın.",

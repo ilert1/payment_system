@@ -62,7 +62,7 @@
         "correctRequisites": "Correct details",
         "waitForTransferConfirmation": "Wait for transfer confirmation",
         "transferConfirmed": "Operator confirmed the transfer",
-        "lookingForOperator": "Looking for an operator for withdrawal",
+        "lookingForOperator": "Searching for an operator",
         "transferInAmount": "Transfer in the amount of",
         "transferReceived": "received",
         "approveTransferText": "If the transfer was received, toggle the switch and press the continue button.",

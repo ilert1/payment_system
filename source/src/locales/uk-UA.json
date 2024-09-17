@@ -62,7 +62,7 @@
         "correctRequisites": "Виправити реквізити",
         "waitForTransferConfirmation": "Очікуйте підтвердження переказу",
         "transferConfirmed": "Оператор підтвердив переказ",
-        "lookingForOperator": "Пошук оператора для виведення",
+        "lookingForOperator": "Пошук оператора",
         "transferInAmount": "Переказ у розмірі",
         "transferReceived": "надійшов",
         "approveTransferText": "Якщо переказ надійшов, увімкніть перемикач і натисніть кнопку продовження.",

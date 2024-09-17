@@ -106,7 +106,7 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                 {awaiting && (
                     <div className="payout-description__block">
                         <Timer down={false} className="payout-description__timer" />
-                        <p className="payout-description__title">{t("waitForTransferConfirmation", ns)}</p>
+                        <p className="payout-description__title">{t("lookingForOperator", ns)}</p>
                     </div>
                 )}
 
@@ -129,9 +129,8 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                 )}
 
                 <p className="payout-description__text">
-                    {payoutLots.length > 0 &&
-                    (payoutLots[payoutLots.length - 1].status === "await" ||
-                        payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer")
+                    {(payoutLots.length > 0 && payoutLots[payoutLots.length - 1].status === "lotWaitingForPayer") ||
+                    awaiting
                         ? t("waitTime", ns)
                         : ""}
                     &nbsp; {/* Нужно, чтобы текст не дергался */}
