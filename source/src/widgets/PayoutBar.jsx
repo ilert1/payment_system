@@ -7,7 +7,7 @@ import { useContext } from "react";
 import AppContext from "../AppContext";
 
 export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) => {
-    const { t } = useContext(AppContext);
+    const { t, getCurrencySymbol } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PayOut", "PayeeData"] };
@@ -73,7 +73,8 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                     <p className="payout-description__title">
                         {t("waitForTransferConfirmation", ns)}{" "}
                         <span className="payout-description__title--accent">
-                            {payoutLots[payoutLots.length - 1].amount} {payoutLots[payoutLots.length - 1].currency}
+                            {payoutLots[payoutLots.length - 1].amount}{" "}
+                            {getCurrencySymbol(payoutLots[payoutLots.length - 1].currency)}
                         </span>
                     </p>
                 )}
@@ -82,7 +83,8 @@ export const PayoutBar = ({ payoutLots = [], sumAmount = 0, awaiting = false }) 
                     <p className="payout-description__title">
                         {t("transferConfirmed", ns)}{" "}
                         <span className="payout-description__title--accent">
-                            {payoutLots[payoutLots.length - 1].amount} {payoutLots[payoutLots.length - 1].currency}
+                            {payoutLots[payoutLots.length - 1].amount}{" "}
+                            {getCurrencySymbol(payoutLots[payoutLots.length - 1].currency)}
                         </span>
                     </p>
                 )}
