@@ -12,6 +12,8 @@ import getBrowserFingerprint from "get-browser-fingerprint";
 import CurrencyLibrary from "./assets/library/Currency.json";
 import { binary_to_base58 } from "base58-js";
 
+import ToastContainer from "./ui/ToastContainer";
+
 var encoder = new TextEncoder();
 export const base58 = str => {
     binary_to_base58(encoder.encode(str));
@@ -175,6 +177,8 @@ export const AppProvider = ({ children }) => {
                     payoutMode
                 }}>
                 {children}
+
+                <ToastContainer />
             </AppContext.Provider>
         </QueryClientProvider>
     );

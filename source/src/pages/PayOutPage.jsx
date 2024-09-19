@@ -10,6 +10,8 @@ import { DeadlineInfo } from "../widgets/DeadlineInfo.jsx";
 import { PayoutBar } from "../widgets/PayoutBar.jsx";
 import axios from "axios";
 
+import { toast, Slide } from "react-toastify";
+
 const PayOutPage = () => {
     const {
         setBFData,
@@ -56,6 +58,12 @@ const PayOutPage = () => {
                     const { data } = await axios
                         .get(`${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`, fingerprintConfig)
                         .catch(e => {
+                            toast(
+                                <>
+                                    <p>Ошибка ответа сервера.</p>
+                                    <p>Повторите попытку позже.</p>
+                                </>
+                            );
                             console.log(e);
                         });
 
@@ -97,14 +105,29 @@ const PayOutPage = () => {
                     fingerprintConfig
                 )
                 .catch(e => {
+                    toast(
+                        <>
+                            <p>Ошибка ответа сервера.</p>
+                            <p>Повторите попытку позже.</p>
+                        </>
+                    );
+
                     console.log(e);
                 });
+
+            setDisabledButon(true);
         } catch (e) {
+            toast(
+                <>
+                    <p>Что-то пошло не так.</p>
+                    <p>Повторите попытку позже.</p>
+                </>
+            );
+
             console.error(e.response.message);
         } finally {
             setLoadingButton(false);
             setShowPayoutSubmit(false);
-            setDisabledButon(true);
         }
     };
 
