@@ -13,7 +13,7 @@ export default function CustomToastContainer() {
             limit={3}
             icon={false}
             position="top-center"
-            autoClose={false}
+            autoClose={5000}
             hideProgressBar
             newestOnTop={false}
             closeOnClick
