@@ -1,5 +1,5 @@
 import "react-toastify/dist/ReactToastify.css";
-import { toast, ToastContainer, Slide } from "react-toastify";
+import { ToastContainer, Slide } from "react-toastify";
 
 const CloseButton = ({ closeToast }) => (
     <button className="toast__close-btn" onClick={closeToast}>

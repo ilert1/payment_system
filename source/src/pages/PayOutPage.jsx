@@ -9,8 +9,8 @@ import { PleasePay } from "../widgets/PleasePay.jsx";
 import { DeadlineInfo } from "../widgets/DeadlineInfo.jsx";
 import { PayoutBar } from "../widgets/PayoutBar.jsx";
 import axios from "axios";
-
-import { toast, Slide } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const PayOutPage = () => {
     const {
@@ -30,7 +30,7 @@ const PayOutPage = () => {
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
-    const [loadingButton, setLoadingButton] = useState(false);
+    const [submitProcess, setSubmitProcess] = useState(false);
 
     useEffect(() => {
         if (BFData?.status === "payoutLotSearching") {
@@ -94,42 +94,38 @@ const PayOutPage = () => {
         return () => es.close();
     }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
-    const approveLotHandler = async () => {
-        try {
-            setLoadingButton(true);
+    const { isSuccess, isError, isFetched } = useQuery({
+        queryKey: ["submitLotByPayee"],
+        enabled: submitProcess,
+        refetchOnWindowFocus: true,
+        refetchOnReconnect: true,
+        queryFn: async () => {
+            const { data } = await axios.patch(
+                `${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`,
+                { status: "payoutLotConfirmedByPayee" },
+                fingerprintConfig
+            );
 
-            await axios
-                .patch(
-                    `${import.meta.env.VITE_API_URL}/payouts/${BFData?.id}`,
-                    { status: "payoutLotConfirmedByPayee" },
-                    fingerprintConfig
-                )
-                .catch(e => {
-                    toast(
-                        <>
-                            <p>Ошибка ответа сервера.</p>
-                            <p>Повторите попытку позже.</p>
-                        </>
-                    );
+            return data;
+        }
+    });
 
-                    console.log(e);
-                });
-
+    useEffect(() => {
+        if (isSuccess) {
+            setSubmitProcess(false);
             setDisabledButon(true);
-        } catch (e) {
+            setShowPayoutSubmit(false);
+        } else if (isError) {
             toast(
                 <>
-                    <p>Что-то пошло не так.</p>
+                    <p>Ошибка ответа сервера.</p>
                     <p>Повторите попытку позже.</p>
                 </>
             );
-
-            console.error(e.response.message);
-        } finally {
-            setLoadingButton(false);
-            setShowPayoutSubmit(false);
+        } else if (!isFetched) {
+            setSubmitProcess(false);
         }
-    };
+    }, [isFetched, isSuccess, isError]);
 
     return (
         <div className="container">
@@ -174,9 +170,9 @@ const PayOutPage = () => {
                         text: t("approveTransferText", ns),
                         toggleText: t("approveReceivedCheckbox", ns),
                         primaryBtnText: t("appreveButtonText", ns),
-                        primaryBtnCallback: approveLotHandler,
+                        primaryBtnCallback: () => setSubmitProcess(true),
                         secondaryBtnText: t("notYet", ns),
-                        loadingButton: loadingButton
+                        loadingButton: submitProcess
                     }}
                     closeModal={() => setShowPayoutSubmit(false)}
                 />
