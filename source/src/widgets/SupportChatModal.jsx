@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import AppContext from "../AppContext";
 import ChatSend from "../assets/images/chat-send.svg";
 import ChatPaperclip from "../assets/images/chat-paperclip.svg";
+import Copy from "../assets/images/copy.svg";
+import CheckCircle from "../assets/images/check-circle.svg";
 import { DisputeClosed } from "../ui/DisputeClosed";
-import PdfFile from "../assets/images/pdf-file.svg";
+
+import { CopyToClipboard } from "react-copy-to-clipboard";
+
 const Avatar = ({ name, small = false, type = "" }) => {
     const switchType = type => {
         switch (type) {
@@ -75,8 +80,73 @@ const ModeratorMessage = ({ text }) => (
 );
 
 const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
-    const [messages, setMessages] = useState([]);
+    const { t } = useContext(AppContext);
+    const ns = { ns: "SupportDialog" };
+
+    const [messages, setMessages] = useState([
+        {
+            text: "Ща все решим не ссы",
+            type: "moderator",
+            files: []
+        },
+        {
+            text: "Я все скинул!!!",
+            type: "operator",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Пиздун",
+            type: "user",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Сам пиздун",
+            type: "moderator",
+            files: []
+        },
+        {
+            text: "Ща все решим не ссы",
+            type: "moderator",
+            files: []
+        },
+        {
+            text: "Я все скинул!!!",
+            type: "operator",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Пиздун",
+            type: "user",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Сам пиздун",
+            type: "moderator",
+            files: []
+        }
+    ]);
     const [inputValue, setInputValue] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
+    const messagesRef = useRef();
+
+    let popupTimeout = null;
+
+    const showPopupCallback = () => {
+        clearTimeout(popupTimeout);
+        setShowPopup(true);
+
+        popupTimeout = setTimeout(() => {
+            setShowPopup(false);
+        }, 1000);
+    };
+
+    const scrollHandler = ref => {
+        ref.current.scrollTo({
+            top: 1000000,
+            left: 0,
+            behavior: "smooth"
+        });
+    };
 
     const [isPdfSelected, setIsPdfSelected] = useState(false);
     const fileInputRef = useRef(null);
@@ -96,8 +166,13 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
         if (inputValue.trim()) {
             setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
             setInputValue("");
+            scrollHandler(messagesRef);
         }
     };
+
+    useEffect(() => {
+        scrollHandler(messagesRef);
+    }, []);
 
     return (
         <div className="chat__container">
@@ -108,31 +183,32 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                     <Avatar small={true} name="О" type="operator" />
                 </div>
 
-                <div className="chat__dispute">Диспут {disputeNumber}</div>
+                <div className="chat__dispute">
+                    Диспут {disputeNumber}
+                    <CopyToClipboard text={disputeNumber} onCopy={showPopupCallback}>
+                        <button>
+                            <img src={Copy} alt="" />
+                        </button>
+                    </CopyToClipboard>
+                    <div id="copy-dialog-popup" className={`popup ${showPopup ? "active" : ""}`}>
+                        {t("copyed", ns)}
+                        <img src={CheckCircle} alt="" />
+                    </div>
+                </div>
             </div>
 
-            <div className="chat__messages">
+            <div ref={messagesRef} className="chat__messages">
                 <DisputeLine text={`Диспут ${disputeNumber} открыт`} />
 
-                <ModeratorMessage text="Ща все решим не ссы" />
-                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
-                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <ModeratorMessage text="Ща все решим не ссы" />
-                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
-                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <ModeratorMessage text="Ща все решим не ссы" />
-                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
-                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
-
-                {messages.map((message, index) =>
-                    message.type === "user" ? (
-                        <UserMessage key={index} text={message.text} files={message.files} />
-                    ) : (
-                        <OperatorMessage key={index} text={message.text} files={message.files} />
-                    )
+                {messages.map(
+                    (message, index) =>
+                        (message.type === "user" && (
+                            <UserMessage key={index} text={message.text} files={message.files} />
+                        )) ||
+                        (message.type === "operator" && (
+                            <OperatorMessage key={index} text={message.text} files={message.files} />
+                        )) ||
+                        (message.type === "moderator" && <ModeratorMessage key={index} text={message.text} />)
                 )}
 
                 <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
@@ -154,6 +230,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                         placeholder="Введите сообщение..."
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
+                        onKeyDown={e => {
+                            if (e.key === "Enter") {
+                                handleSendMessage();
+                            }
+                        }}
                     />
 
                     {isPdfSelected && <img src={PdfFile} alt="pdf-icon" className="chat__pdf-icon" />}
