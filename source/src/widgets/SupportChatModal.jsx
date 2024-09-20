@@ -75,7 +75,48 @@ const ModeratorMessage = ({ text }) => (
 );
 
 const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState([
+        {
+            text: "Ща все решим не ссы",
+            type: "moderator",
+            files: []
+        },
+        {
+            text: "Я все скинул!!!",
+            type: "operator",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Пиздун",
+            type: "user",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Сам пиздун",
+            type: "moderator",
+            files: []
+        },
+        {
+            text: "Ща все решим не ссы",
+            type: "moderator",
+            files: []
+        },
+        {
+            text: "Я все скинул!!!",
+            type: "operator",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Пиздун",
+            type: "user",
+            files: [{ type: "video" }, { type: "image" }]
+        },
+        {
+            text: "Сам пиздун",
+            type: "moderator",
+            files: []
+        }
+    ]);
     const [inputValue, setInputValue] = useState("");
 
     const handleSendMessage = () => {
@@ -100,25 +141,15 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
             <div className="chat__messages">
                 <DisputeLine text={`Диспут ${disputeNumber} открыт`} />
 
-                <ModeratorMessage text="Ща все решим не ссы" />
-                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
-                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <ModeratorMessage text="Ща все решим не ссы" />
-                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
-                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <ModeratorMessage text="Ща все решим не ссы" />
-                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
-                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
-                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
-
-                {messages.map((message, index) =>
-                    message.type === "user" ? (
-                        <UserMessage key={index} text={message.text} files={message.files} />
-                    ) : (
-                        <OperatorMessage key={index} text={message.text} files={message.files} />
-                    )
+                {messages.map(
+                    (message, index) =>
+                        (message.type === "user" && (
+                            <UserMessage key={index} text={message.text} files={message.files} />
+                        )) ||
+                        (message.type === "operator" && (
+                            <OperatorMessage key={index} text={message.text} files={message.files} />
+                        )) ||
+                        (message.type === "moderator" && <ModeratorMessage key={index} text={message.text} />)
                 )}
 
                 <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
