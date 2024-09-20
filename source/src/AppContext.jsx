@@ -12,7 +12,7 @@ import getBrowserFingerprint from "get-browser-fingerprint";
 import CurrencyLibrary from "./assets/library/Currency.json";
 import { binary_to_base58 } from "base58-js";
 
-import ToastContainer from "./ui/ToastContainer";
+import CustomToastContainer from "./ui/CustomToastContainer";
 
 var encoder = new TextEncoder();
 export const base58 = str => {
@@ -178,7 +178,7 @@ export const AppProvider = ({ children }) => {
                 }}>
                 {children}
 
-                <ToastContainer />
+                <CustomToastContainer />
             </AppContext.Provider>
         </QueryClientProvider>
     );
