@@ -219,7 +219,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                 <div
                     className="chat__dispute"
                     onClick={() => {
-                        setPayoutMode(prev => !prev);
+                        //отладочный стейт
+                        // setPayoutMode(prev => !prev);
                     }}>
                     Диспут {disputeNumber}
                     <CopyToClipboard text={disputeNumber} onCopy={showPopupCallback}>
