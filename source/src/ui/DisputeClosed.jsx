@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import CircleChecked from "../assets/images/check-circle-green.svg";
 import Crist from "../assets/images/plus-circle.svg";
 
-export const DisputeClosed = ({ favor }) => {
+export const DisputeClosed = ({ favor = false, backButtonHandler = () => {} }) => {
     // Favor = true (значит зыкрыт в вашу сторону)
 
     return (
@@ -15,6 +16,10 @@ export const DisputeClosed = ({ favor }) => {
                 <p>{favor ? "Вам будет представлен новый" : "Вы будете перенаправлены на "}</p>
                 <p>{favor ? "оператор для оплаты части вывода." : "следующий шаг оплаты."}</p>
             </div>
+
+            <button className="dispute_button" onClick={backButtonHandler}>
+                Назад
+            </button>
         </div>
     );
 };

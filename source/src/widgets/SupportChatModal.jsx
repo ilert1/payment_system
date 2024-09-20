@@ -102,7 +102,7 @@ const ModeratorMessage = ({ text }) => (
     </div>
 );
 
-const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
+const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () => {}, failedDispute = () => {} }) => {
     const { t } = useContext(AppContext);
     const ns = { ns: "SupportDialog" };
 
@@ -203,6 +203,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
         scrollHandler(messagesRef);
     }, []);
 
+    const mockFavor = true;
+
     return (
         <div className="chat__container">
             <div className="chat__header">
@@ -242,7 +244,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
 
                 <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
 
-                <DisputeClosed favor={false} />
+                <DisputeClosed favor={mockFavor} backButtonHandler={mockFavor ? successDispute : failedDispute} />
             </div>
 
             <div className="chat__input">

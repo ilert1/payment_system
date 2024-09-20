@@ -135,7 +135,16 @@ const PayOutPage = () => {
 
             <div className="content">
                 {isDispute ? (
-                    <SupportChatModal />
+                    <SupportChatModal
+                        successDispute={() => setIsDispute(false)}
+                        failedDispute={() => {
+                            if (BFData.data.fail_url) {
+                                window.location.replace(BFData.data.fail_url);
+                            } else {
+                                nav(c.PAGE_PAYOUT_NOT_FOUND, { replace: true });
+                            }
+                        }}
+                    />
                 ) : (
                     <>
                         <PleasePay
