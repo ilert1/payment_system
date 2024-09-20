@@ -398,7 +398,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  margin-bottom: 5px;
 }
 @media (max-width: 520px) {
   .chat__container .chat__messages .chat__text {

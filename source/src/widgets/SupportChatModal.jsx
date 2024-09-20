@@ -201,6 +201,21 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         }
     };
 
+    var send = obj => {
+        // let files = obj.files;
+        /* const obj = {   
+            type: "user",
+            text: "шёл бы ты отсюда, петушок",
+            files: [{ type: "pdf" }],
+        } */
+
+        if (inputValue.trim()) {
+            setMessages([...messages, { type: obj.type, text: obj.text, files: obj.files }]);
+            setInputValue("");
+            scrollHandler(messagesRef);
+        }
+    };
+
     useEffect(() => {
         scrollHandler(messagesRef);
     }, []);
