@@ -281,6 +281,11 @@ header {
             line-height: 21px;
             color: #010F18;
 
+            @media (max-width: 520px) {
+                font-size: 14px;
+                line-height: 18px;
+            }
+
             .popup {
                 top: -100%;
                 left: auto;
@@ -295,13 +300,6 @@ header {
                 outline: none;
                 cursor: pointer;
                 background-color: transparent;
-
-                font-family: inherit;
-                font-size: 17px;
-                font-weight: 400;
-                line-height: 133%;
-
-                color: #010f1880;
             }
         }
 
@@ -316,6 +314,10 @@ header {
                 top: 0;
                 bottom: 0;
                 left: 31px;
+
+                @media(max-width: 520px) {
+                    left: 23px;
+                }
             }
 
             .chat__avatar:last-child {
@@ -324,6 +326,10 @@ header {
                 top: 0;
                 bottom: 0;
                 left: 62px;
+
+                @media(max-width: 520px) {
+                    left: 45px;
+                }
             }
         }
     }
@@ -340,6 +346,13 @@ header {
         border-radius: 50%;
         overflow: hidden;
 
+        @media (max-width: 520px) {
+            width: 41px;
+            height: 41px;
+            font-size: 16px;
+            line-height: 21px;
+        }
+
         &--small {
             width: 34px;
             height: 34px;
@@ -347,6 +360,13 @@ header {
             font-size: 14px;
             line-height: 18px;
             border: 2px solid #E7F5FE;
+
+            @media (max-width: 520px) {
+                width: 25px;
+                height: 25px;
+                font-size: 10px;
+                line-height: 13px;
+            }
         }
 
         &--user-type {
@@ -433,7 +453,16 @@ header {
         }
 
         .chat__text {
+            text-align: left;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
             margin-bottom: 5px;
+
+            @media (max-width: 520px) {
+                font-size: 14px;
+                line-height: 18px;
+            }
         }
 
         .chat__files {
@@ -473,6 +502,11 @@ header {
                 line-height: 21px;
                 opacity: 30%;
                 color: rgba(1, 15, 24, 1);
+
+                @media (max-width: 520px) {
+                    font-size: 14px;
+                    line-height: 18px;
+                }
             }
         }
 
@@ -493,6 +527,10 @@ header {
                 width: 75px;
                 height: 75px;
                 margin-bottom: 20px;
+
+                @media (max-width: 520px) {
+                    margin-bottom: 15px;
+                }
             }
 
             .dispute_closed {
@@ -504,6 +542,11 @@ header {
                     font-size: 32px;
                     margin: 0;
                     text-align: start;
+
+                    @media (max-width: 520px) {
+                        font-size: 24px;
+                        line-height: 32px;
+                    }
                 }
             }
 
@@ -517,6 +560,10 @@ header {
                     margin: 0;
                     text-align: start;
 
+                    @media (max-width: 520px) {
+                        font-size: 14px;
+                        line-height: 18px;
+                    }
                 }
             }
         }
@@ -538,11 +585,15 @@ header {
             background-color: #F5F5F5;
             position: relative;
 
+            @media (max-width: 520px) {
+                padding: 10px;
+            }
+
             .chat__input-text {
                 flex-grow: 1;
                 padding-right: 40px; // Место для иконки PDF
             }
-    
+
             .chat__pdf-icon {
                 position: absolute;
                 right: 10px;
@@ -574,9 +625,16 @@ header {
             font-size: 18px;
             line-height: 24px;
             color: #010F18;
+
+            @media (max-width: 520px) {
+                font-size: 14px;
+                line-height: 18px;
+            }
         }
 
         .chat__send-button {
+            display: flex;
+            align-items: center;
             padding: 20px;
             background-color: #37A8F3;
             color: white;
@@ -584,9 +642,13 @@ header {
             border-radius: 5px;
             cursor: pointer;
 
+            @media (max-width: 520px) {
+                padding: 8px 12px;
+            }
+
             img {
-                width: 20px;
-                height: 20px;
+                width: 24px;
+                height: 24px;
             }
         }
 
