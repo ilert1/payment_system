@@ -8,10 +8,11 @@ services:
       args:
         VITE_API_URL: ${VITE_API_URL}
         VITE_SUPPORT_LINK: ${VITE_SUPPORT_LINK}
+        VITE_DISPUT_CHAT: ${VITE_DISPUT_CHAT}
     container_name: ${COMPOSE_PROJECT_NAME}
     hostname: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
     env_file: ./../.env
     labels:
-    - metrics_tenant=blowfish
-    - compose_project_name=${COMPOSE_PROJECT_NAME}
+      - metrics_tenant=blowfish
+      - compose_project_name=${COMPOSE_PROJECT_NAME}
