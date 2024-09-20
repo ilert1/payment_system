@@ -3,8 +3,6 @@ import ChatFile from "../ui/ChatFile";
 import MessageBlock from "./MessageBlock";
 
 const Message = ({ message, block }) => {
-    console.log(message);
-
     const { files, text, type } = message;
 
     const getName = type => {
@@ -24,7 +22,7 @@ const Message = ({ message, block }) => {
     };
 
     const name = getName(type);
-
+    console.log(files);
     return (
         <>
             <MessageBlock name={name} type={type} block={block}>

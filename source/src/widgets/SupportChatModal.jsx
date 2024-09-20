@@ -183,8 +183,15 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
     };
 
     const handleSendMessage = () => {
+        let files = [];
+        if (isPdfSelected) {
+            files.push({ type: "pdf" });
+        }
+        if (isVideoSelected) {
+            files.push({ type: "video" });
+        }
         if (inputValue.trim()) {
-            setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
+            setMessages([...messages, { type: "user", text: inputValue, files }]);
             setInputValue("");
             scrollHandler(messagesRef);
         }
