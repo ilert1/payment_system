@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ChatSend from "../assets/images/chat-send.svg";
 import ChatPaperclip from "../assets/images/chat-paperclip.svg";
+import { DisputeClosed } from "../ui/DisputeClosed";
 
 const Avatar = ({ name, small = false, type = "" }) => {
     const switchType = type => {
@@ -101,6 +102,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                         <OperatorMessage key={index} text={message.text} files={message.files} />
                     )
                 )}
+                <DisputeClosed favor={false} />
             </div>
 
             <div className="chat__input">
