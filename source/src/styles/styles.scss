@@ -456,7 +456,7 @@ header {
             font-weight: 400;
             font-size: 18px;
             line-height: 24px;
-            margin-bottom: 5px;
+            // margin-bottom: 5px;
 
             @media (max-width: 520px) {
                 font-size: 14px;
@@ -467,10 +467,19 @@ header {
         .chat__files {
             display: flex;
             gap: 5px;
+            flex-wrap: wrap;
 
-            &__file {
+            /* &__file {
                 background-color: #f1f1f1;
                 border-radius: 5px;
+                padding: 5px;
+            } */
+
+            .chat__file {
+                display: flex;
+                gap: 4px;
+                background-color: rgba(0, 0, 0, 0.1);
+                border-radius: 80px;
                 padding: 5px;
             }
         }

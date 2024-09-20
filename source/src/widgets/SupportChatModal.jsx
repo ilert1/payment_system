@@ -225,8 +225,25 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         }
     };
 
+    const send = obj => {
+        // let files = obj.files;
+        /* const obj = {   
+            type: "user",
+            text: "шёл бы ты отсюда, петушок",
+            files: [{ type: "pdf" }],
+        } */
+
+        if (inputValue.trim()) {
+            setMessages([...messages, { type: obj.type, text: obj.text, files: obj.files }]);
+            setInputValue("");
+            scrollHandler(messagesRef);
+        }
+    };
+
     useEffect(() => {
         scrollHandler(messagesRef);
+
+        window.send = send;
     }, []);
 
     const mockFavor = true;
@@ -243,7 +260,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                 <div
                     className="chat__dispute"
                     onClick={() => {
-                        setPayoutMode(prev => !prev);
+                        //отладочный стейт
+                        // setPayoutMode(prev => !prev);
                     }}>
                     Диспут {disputeNumber}
                     <CopyToClipboard text={disputeNumber} onCopy={showPopupCallback}>
