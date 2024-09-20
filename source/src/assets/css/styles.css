@@ -327,7 +327,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   word-wrap: break-word;
 }
 .chat__container .chat__messages .chat__message--user {
-  background-color: #4da6ff;
+  background-color: #6FC0F6;
   align-self: flex-end;
   text-align: left;
 }
