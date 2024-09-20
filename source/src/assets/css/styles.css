@@ -209,7 +209,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   background-color: #fff;
   flex-grow: 1;
 }
@@ -298,6 +297,13 @@ header .language-selector .drop-down .flag-container:last-of-type {
   gap: 15px;
   border-radius: 5px;
   background-color: #F5F5F5;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+.chat__container .chat__messages::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
 }
 .chat__container .chat__messages .chat__message-block {
   position: relative;

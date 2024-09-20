@@ -253,7 +253,6 @@ header {
     bottom: 0;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     background-color: #fff;
     flex-grow: 1;
 
@@ -353,6 +352,14 @@ header {
         gap: 15px;
         border-radius: 5px;
         background-color: #F5F5F5;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* for Chrome, Safari, and Opera */
+        }
 
         .chat__message-block {
             position: relative;
