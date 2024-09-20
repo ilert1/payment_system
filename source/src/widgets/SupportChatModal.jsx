@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ChatSend from "../assets/images/chat-send.svg";
 import ChatPaperclip from "../assets/images/chat-paperclip.svg";
 import { DisputeClosed } from "../ui/DisputeClosed";
-
+import PdfFile from "../assets/images/pdf-file.svg";
 const Avatar = ({ name, small = false, type = "" }) => {
     const switchType = type => {
         switch (type) {
@@ -78,6 +78,20 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState("");
 
+    const [isPdfSelected, setIsPdfSelected] = useState(false);
+    const fileInputRef = useRef(null);
+
+    const handleFileSelection = event => {
+        const file = event.target.files[0];
+        if (file) {
+            setIsPdfSelected(true);
+        }
+    };
+
+    const openFileDialog = () => {
+        fileInputRef.current.click();
+    };
+
     const handleSendMessage = () => {
         if (inputValue.trim()) {
             setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
@@ -128,9 +142,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
 
             <div className="chat__input">
                 <div className="chat__input-field">
-                    <button className="chat__btn-paperclip">
+                    <button className="chat__btn-paperclip" onClick={openFileDialog}>
                         <img src={ChatPaperclip} alt="paperclip" />
                     </button>
+
+                    <input ref={fileInputRef} type="file" style={{ display: "none" }} onChange={handleFileSelection} />
 
                     <input
                         className="chat__input-text"
@@ -139,6 +155,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
                     />
+
+                    {isPdfSelected && <img src={PdfFile} alt="pdf-icon" className="chat__pdf-icon" />}
                 </div>
 
                 <button className="chat__send-button" onClick={handleSendMessage}>
