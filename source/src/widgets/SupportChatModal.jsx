@@ -6,7 +6,8 @@ import ChatPaperclip from "../assets/images/chat-paperclip.svg";
 import Copy from "../assets/images/copy.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
 import { DisputeClosed } from "../ui/DisputeClosed";
-
+import PdfFile from "../assets/images/pdf-file.svg";
+import VideoFile from "../assets/images/video-818.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Avatar = ({ name, small = false, type = "" }) => {
@@ -41,7 +42,19 @@ const UserMessage = ({ text, files }) => (
                 {files &&
                     files.map((file, index) => (
                         <div key={index} className="chat__file">
-                            <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span>
+                            {/* <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span> */}
+                            <span>
+                                {(() => {
+                                    switch (file.type) {
+                                        case "image":
+                                            return "🖼 Фото";
+                                        case "pdf":
+                                            return "📂 Файл";
+                                        default:
+                                            return "📹 Видео";
+                                    }
+                                })()}
+                            </span>
                         </div>
                     ))}
             </div>
@@ -60,7 +73,17 @@ const OperatorMessage = ({ text, files }) => (
                 {files &&
                     files.map((file, index) => (
                         <div key={index} className="chat__file">
-                            <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span>
+                            {/* <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span> */}
+                            {(() => {
+                                switch (file.type) {
+                                    case "image":
+                                        return "🖼 Фото";
+                                    case "pdf":
+                                        return "📂 Файл";
+                                    default:
+                                        return "📹 Видео";
+                                }
+                            })()}
                         </div>
                     ))}
             </div>
@@ -92,12 +115,12 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
         {
             text: "Я все скинул!!!",
             type: "operator",
-            files: [{ type: "video" }, { type: "image" }]
+            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
         },
         {
             text: "Пиздун",
             type: "user",
-            files: [{ type: "video" }, { type: "image" }]
+            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
         },
         {
             text: "Сам пиздун",
@@ -112,7 +135,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
         {
             text: "Я все скинул!!!",
             type: "operator",
-            files: [{ type: "video" }, { type: "image" }]
+            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
         },
         {
             text: "Пиздун",
@@ -149,12 +172,18 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
     };
 
     const [isPdfSelected, setIsPdfSelected] = useState(false);
+    const [isVideoSelected, setIsVideoSelected] = useState(false);
+    const videoTypes = ["video/mp4", "video/mov", "video/quicktime", "video/mpeg"];
     const fileInputRef = useRef(null);
 
     const handleFileSelection = event => {
+        setIsPdfSelected(false);
+        setIsVideoSelected(false);
         const file = event.target.files[0];
-        if (file) {
+        if (file && file.type === "application/pdf") {
             setIsPdfSelected(true);
+        } else if (file && videoTypes.includes(file.type)) {
+            setIsVideoSelected(true);
         }
     };
 
@@ -238,6 +267,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                     />
 
                     {isPdfSelected && <img src={PdfFile} alt="pdf-icon" className="chat__pdf-icon" />}
+                    {isVideoSelected && <img src={VideoFile} alt="pdf-icon" className="chat__pdf-icon" />}
                 </div>
 
                 <button className="chat__send-button" onClick={handleSendMessage}>
