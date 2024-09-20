@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ChatSend from "../assets/images/chat-send.svg";
 import ChatPaperclip from "../assets/images/chat-paperclip.svg";
 
@@ -68,13 +68,27 @@ const ModeratorMessage = ({ text }) => (
 const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const messagesRef = useRef();
+
+    const scrollHandler = ref => {
+        ref.current.scrollTo({
+            top: 1000000,
+            left: 0,
+            behavior: "smooth"
+        });
+    };
 
     const handleSendMessage = () => {
         if (inputValue.trim()) {
             setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
             setInputValue("");
+            scrollHandler(messagesRef);
         }
     };
+
+    useEffect(() => {
+        scrollHandler(messagesRef);
+    }, []);
 
     return (
         <div className="chat__container">
@@ -88,7 +102,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                 <div className="chat__dispute">Диспут {disputeNumber}</div>
             </div>
 
-            <div className="chat__messages">
+            <div ref={messagesRef} className="chat__messages">
                 <ModeratorMessage text="Ща все решим не ссы" />
                 <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
                 <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
@@ -123,6 +137,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                         placeholder="Введите сообщение..."
                         value={inputValue}
                         onChange={e => setInputValue(e.target.value)}
+                        onKeyDown={e => {
+                            if (e.key === "Enter") {
+                                handleSendMessage();
+                            }
+                        }}
                     />
                 </div>
 
