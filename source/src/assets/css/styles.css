@@ -202,16 +202,12 @@ header .language-selector .drop-down .flag-container:last-of-type {
 }
 
 .chat__container {
-  z-index: 100;
-  position: absolute;
-  top: -10px;
-  left: 0;
-  right: 0;
-  bottom: 0;
   display: flex;
   flex-direction: column;
   overflow: hidden;
   background-color: #fff;
+  flex-grow: 1;
+  margin-top: 15px;
 }
 .chat__container .chat__header {
   border-top-left-radius: 5px;
@@ -445,7 +441,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  position: relative;
   margin-top: 29px;
 }
 @media (max-width: 520px) {
