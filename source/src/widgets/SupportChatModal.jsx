@@ -201,6 +201,30 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         }
     };
 
+    const [show, setShow] = useState(false);
+    const [favorState, setFavorState] = useState("success");
+
+    const showPanel = state => {
+        setShow(true);
+        if (state === "success") setFavorState("success");
+        else if (state === "fail") setFavorState("fail");
+        else if (state === "repeat") setFavorState("repeat");
+        else setShow(false);
+        scrollToBottom();
+    };
+    useEffect(() => {
+        window.showPanel = showPanel;
+    }, []);
+    const divRef = useRef(null);
+
+    const scrollToBottom = () => {
+        const div = divRef.current;
+        console.log(div);
+        if (div) {
+            div.scrollTop = div.scrollHeight;
+        }
+    };
+
     useEffect(() => {
         scrollHandler(messagesRef);
     }, []);
@@ -208,7 +232,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
     const mockFavor = true;
 
     return (
-        <div className="chat__container">
+        <div className="chat__container" ref={divRef}>
             <div className="chat__header">
                 <div className="chat__participants">
                     <Avatar small={true} name={payoutMode ? "Вы" : "П"} type="user" />
@@ -251,9 +275,14 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                     );
                 })}
 
-                <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
-
-                <DisputeClosed favor={mockFavor} backButtonHandler={mockFavor ? successDispute : failedDispute} />
+                {show && <DisputeLine text={`Диспут ${disputeNumber} закрыт`} show={show} />}
+                {show && (
+                    <DisputeClosed
+                        favor={favorState}
+                        backButtonHandler={mockFavor ? successDispute : failedDispute}
+                        show={show}
+                    />
+                )}
             </div>
 
             <div className="chat__input">
