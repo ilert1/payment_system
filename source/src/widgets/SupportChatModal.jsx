@@ -201,7 +201,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         }
     };
 
-    var send = obj => {
+    const send = obj => {
         // let files = obj.files;
         /* const obj = {   
             type: "user",
@@ -218,6 +218,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     useEffect(() => {
         scrollHandler(messagesRef);
+
+        window.send = send;
     }, []);
 
     const mockFavor = true;
