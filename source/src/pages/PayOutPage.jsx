@@ -14,16 +14,8 @@ import { toast } from "react-toastify";
 import SupportChatModal from "../widgets/SupportChatModal.jsx";
 
 const PayOutPage = () => {
-    const {
-        setBFData,
-        BFData,
-        currentPaymentInstrument,
-        t,
-        getCurrencySymbol,
-        supportDialog,
-        fingerprintConfig,
-        navigate
-    } = useContext(AppContext);
+    const { setBFData, BFData, currentPaymentInstrument, t, getCurrencySymbol, fingerprintConfig, navigate } =
+        useContext(AppContext);
 
     const ns = { ns: ["Common", "PayOut"] };
     const nav = navigate();
@@ -31,7 +23,7 @@ const PayOutPage = () => {
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
-    const [showSupporChat, setShowSupporChat] = useState(false);
+    const [isDispute, setIsDispute] = useState(false);
     const [submitProcess, setSubmitProcess] = useState(false);
 
     useEffect(() => {
@@ -134,68 +126,72 @@ const PayOutPage = () => {
             <Header />
 
             <div className="content">
-                {showSupporChat && <SupportChatModal />}
+                {isDispute ? (
+                    <SupportChatModal />
+                ) : (
+                    <>
+                        <PleasePay
+                            amount={BFData?.amount}
+                            currency={getCurrencySymbol(BFData?.currency)}
+                            payOut={true}
+                            bank={currentPaymentInstrument?.bank_name}
+                        />
 
-                <PleasePay
-                    amount={BFData?.amount}
-                    currency={getCurrencySymbol(BFData?.currency)}
-                    payOut={true}
-                    bank={currentPaymentInstrument?.bank_name}
-                />
+                        <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
-                <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
+                        <PayoutBar payoutLots={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
 
-                <PayoutBar payoutLots={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
+                        <div className="instructions small">
+                            <ul>
+                                <h2>{t("dontCloseWindow", ns)}</h2>
+                                <li>
+                                    <span>1. </span>
+                                    {t("dontCloseSteps.one", ns)}
+                                </li>
+                                <li>
+                                    <span>2. </span>
+                                    {t("dontCloseSteps.two", ns)}
+                                </li>
+                                <li>
+                                    <span>3. </span>
+                                    {t("dontCloseSteps.three", ns)}
+                                </li>
+                            </ul>
+                        </div>
 
-                <div className="instructions small">
-                    <ul>
-                        <h2>{t("dontCloseWindow", ns)}</h2>
-                        <li>
-                            <span>1. </span>
-                            {t("dontCloseSteps.one", ns)}
-                        </li>
-                        <li>
-                            <span>2. </span>
-                            {t("dontCloseSteps.two", ns)}
-                        </li>
-                        <li>
-                            <span>3. </span>
-                            {t("dontCloseSteps.three", ns)}
-                        </li>
-                    </ul>
-                </div>
+                        {showPayoutSubmit && (
+                            <PayoutSubmitModal
+                                data={{
+                                    title: `${t("transferInAmount", ns)} ${
+                                        BFData.lots[BFData.lots.length - 1].amount
+                                    }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
+                                    text: t("approveTransferText", ns),
+                                    toggleText: t("approveReceivedCheckbox", ns),
+                                    primaryBtnText: t("appreveButtonText", ns),
+                                    primaryBtnCallback: () => setSubmitProcess(true),
+                                    secondaryBtnText: t("notYet", ns),
+                                    loadingButton: submitProcess
+                                }}
+                                closeModal={() => setShowPayoutSubmit(false)}
+                            />
+                        )}
 
-                {showPayoutSubmit && (
-                    <PayoutSubmitModal
-                        data={{
-                            title: `${t("transferInAmount", ns)} ${
-                                BFData.lots[BFData.lots.length - 1].amount
-                            }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
-                            text: t("approveTransferText", ns),
-                            toggleText: t("approveReceivedCheckbox", ns),
-                            primaryBtnText: t("appreveButtonText", ns),
-                            primaryBtnCallback: () => setSubmitProcess(true),
-                            secondaryBtnText: t("notYet", ns),
-                            loadingButton: submitProcess
-                        }}
-                        closeModal={() => setShowPayoutSubmit(false)}
-                    />
+                        <Footer
+                            approveButton={{
+                                caption: t("approvePayout", ns),
+                                disabled: disabledButon,
+                                callback: () => {
+                                    setShowPayoutSubmit(true);
+                                }
+                            }}
+                            discardButton={{
+                                caption: t("discardPayout", ns),
+                                disabled: disabledButon,
+                                callback: () => setIsDispute(true)
+                            }}
+                        />
+                    </>
                 )}
-
-                <Footer
-                    approveButton={{
-                        caption: t("approvePayout", ns),
-                        disabled: disabledButon,
-                        callback: () => {
-                            setShowPayoutSubmit(true);
-                        }
-                    }}
-                    discardButton={{
-                        caption: t("discardPayout", ns),
-                        disabled: disabledButon,
-                        callback: () => setShowSupporChat(true)
-                    }}
-                />
             </div>
         </div>
     );

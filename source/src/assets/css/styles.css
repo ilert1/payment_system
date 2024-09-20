@@ -202,7 +202,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
 }
 
 .chat__container {
-  z-index: 100;
   position: absolute;
   top: -10px;
   left: 0;
@@ -210,18 +209,24 @@ header .language-selector .drop-down .flag-container:last-of-type {
   bottom: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   background-color: #fff;
+  flex-grow: 1;
 }
 .chat__container .chat__header {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding: 10px;
-  background-color: rgba(159, 213, 249, 0.3490196078);
+  background-color: rgba(159, 213, 249, 0.35);
   text-align: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  backdrop-filter: blur(10px);
 }
 .chat__container .chat__header .chat__dispute {
   font-weight: 600;
@@ -284,15 +289,21 @@ header .language-selector .drop-down .flag-container:last-of-type {
 }
 .chat__container .chat__messages {
   flex: 1;
-  padding: 20px 10px 10px;
+  padding: 20px 10px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
   margin-bottom: 15px;
   gap: 15px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-radius: 5px;
   background-color: #F5F5F5;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  overflow-y: scroll;
+}
+.chat__container .chat__messages::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
 }
 .chat__container .chat__messages .chat__message-block {
   position: relative;
@@ -301,6 +312,9 @@ header .language-selector .drop-down .flag-container:last-of-type {
   gap: 10px;
   max-width: 60%;
   word-wrap: break-word;
+}
+.chat__container .chat__messages .chat__message-block:first-child {
+  margin-top: 60px;
 }
 .chat__container .chat__messages .chat__message {
   position: relative;
@@ -499,12 +513,12 @@ header .language-selector .drop-down .flag-container:last-of-type {
 }
 
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
-  position: relative;
   margin-top: 29px;
 }
 @media (max-width: 520px) {
