@@ -11,6 +11,7 @@ import { PayoutBar } from "../widgets/PayoutBar.jsx";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import SupportChatModal from "../widgets/SupportChatModal.jsx";
 
 const PayOutPage = () => {
     const {
@@ -30,6 +31,7 @@ const PayOutPage = () => {
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
+    const [showSupporChat, setShowSupporChat] = useState(false);
     const [submitProcess, setSubmitProcess] = useState(false);
 
     useEffect(() => {
@@ -130,7 +132,10 @@ const PayOutPage = () => {
     return (
         <div className="container">
             <Header />
+
             <div className="content">
+                {showSupporChat && <SupportChatModal />}
+
                 <PleasePay
                     amount={BFData?.amount}
                     currency={getCurrencySymbol(BFData?.currency)}
@@ -159,41 +164,39 @@ const PayOutPage = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
 
-            {showPayoutSubmit && (
-                <PayoutSubmitModal
-                    data={{
-                        title: `${t("transferInAmount", ns)} ${
-                            BFData.lots[BFData.lots.length - 1].amount
-                        }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
-                        text: t("approveTransferText", ns),
-                        toggleText: t("approveReceivedCheckbox", ns),
-                        primaryBtnText: t("appreveButtonText", ns),
-                        primaryBtnCallback: () => setSubmitProcess(true),
-                        secondaryBtnText: t("notYet", ns),
-                        loadingButton: submitProcess
+                {showPayoutSubmit && (
+                    <PayoutSubmitModal
+                        data={{
+                            title: `${t("transferInAmount", ns)} ${
+                                BFData.lots[BFData.lots.length - 1].amount
+                            }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
+                            text: t("approveTransferText", ns),
+                            toggleText: t("approveReceivedCheckbox", ns),
+                            primaryBtnText: t("appreveButtonText", ns),
+                            primaryBtnCallback: () => setSubmitProcess(true),
+                            secondaryBtnText: t("notYet", ns),
+                            loadingButton: submitProcess
+                        }}
+                        closeModal={() => setShowPayoutSubmit(false)}
+                    />
+                )}
+
+                <Footer
+                    approveButton={{
+                        caption: t("approvePayout", ns),
+                        disabled: disabledButon,
+                        callback: () => {
+                            setShowPayoutSubmit(true);
+                        }
                     }}
-                    closeModal={() => setShowPayoutSubmit(false)}
+                    discardButton={{
+                        caption: t("discardPayout", ns),
+                        disabled: disabledButon,
+                        callback: () => setShowSupporChat(true)
+                    }}
                 />
-            )}
-
-            <Footer
-                approveButton={{
-                    caption: t("approvePayout", ns),
-                    disabled: disabledButon,
-                    callback: () => {
-                        setShowPayoutSubmit(true);
-                    }
-                }}
-                discardButton={{
-                    caption: t("discardPayout", ns),
-                    disabled: disabledButon,
-                    callback: () => {
-                        supportDialog.setIsActive(true);
-                    }
-                }}
-            />
+            </div>
         </div>
     );
 };

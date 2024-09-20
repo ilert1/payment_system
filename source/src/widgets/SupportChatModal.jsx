@@ -1,0 +1,129 @@
+/* eslint-disable react/prop-types */
+import { useState } from "react";
+import ChatSend from "../assets/images/chat-send.svg";
+import ChatPaperclip from "../assets/images/chat-paperclip.svg";
+
+const Avatar = ({ name, small = false, type = "" }) => {
+    const switchType = type => {
+        switch (type) {
+            case "user":
+                return "chat__avatar--user-type";
+            case "operator":
+                return "chat__avatar--operator-type";
+            case "moderator":
+                return "chat__avatar--moderator-type";
+            default:
+                return "";
+        }
+    };
+
+    return <span className={"chat__avatar " + (small ? "chat__avatar--small " : "") + switchType(type)}>{name}</span>;
+};
+
+const UserMessage = ({ text, files }) => (
+    <div className="chat__message chat__message--user">
+        <div className="chat__content">
+            <div className="chat__files">
+                {files &&
+                    files.map((file, index) => (
+                        <div key={index} className="chat__file">
+                            <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span>
+                        </div>
+                    ))}
+            </div>
+
+            <div className="chat__text">{text}</div>
+        </div>
+    </div>
+);
+
+const OperatorMessage = ({ text, files }) => (
+    <div className="chat__message-block">
+        <Avatar name="О" type="operator" />
+
+        <div className="chat__content chat__message chat__message--operator">
+            <div className="chat__files">
+                {files &&
+                    files.map((file, index) => (
+                        <div key={index} className="chat__file">
+                            <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span>
+                        </div>
+                    ))}
+            </div>
+
+            <div className="chat__text">{text}</div>
+        </div>
+    </div>
+);
+
+const ModeratorMessage = ({ text }) => (
+    <div className="chat__message-block">
+        <Avatar name="М" type="moderator" />
+        <div className="chat__content chat__message chat__message--moderator">
+            <div className="chat__text">{text}</div>
+        </div>
+    </div>
+);
+
+const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
+    const [messages, setMessages] = useState([]);
+    const [inputValue, setInputValue] = useState("");
+
+    const handleSendMessage = () => {
+        if (inputValue.trim()) {
+            setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
+            setInputValue("");
+        }
+    };
+
+    return (
+        <div className="chat__container">
+            <div className="chat__header">
+                <div className="chat__participants">
+                    <Avatar small={true} name="Вы" type="user" />
+                    <Avatar small={true} name="М" type="moderator" />
+                    <Avatar small={true} name="О" type="operator" />
+                </div>
+
+                <div className="chat__dispute">Диспут {disputeNumber}</div>
+            </div>
+
+            <div className="chat__messages">
+                <ModeratorMessage text="Ща все решим не ссы" />
+                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
+                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
+                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
+
+                {messages.map((message, index) =>
+                    message.type === "user" ? (
+                        <UserMessage key={index} text={message.text} files={message.files} />
+                    ) : (
+                        <OperatorMessage key={index} text={message.text} files={message.files} />
+                    )
+                )}
+            </div>
+
+            <div className="chat__input">
+                <div className="chat__input-field">
+                    <button className="chat__btn-paperclip">
+                        <img src={ChatPaperclip} alt="paperclip" />
+                    </button>
+
+                    <input
+                        className="chat__input-text"
+                        type="text"
+                        placeholder="Введите сообщение..."
+                        value={inputValue}
+                        onChange={e => setInputValue(e.target.value)}
+                    />
+                </div>
+
+                <button className="chat__send-button" onClick={handleSendMessage}>
+                    <img src={ChatSend} alt="send" />
+                </button>
+            </div>
+        </div>
+    );
+};
+
+export default SupportChatModal;
