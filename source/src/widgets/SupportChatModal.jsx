@@ -209,17 +209,14 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
             files: [{ type: "pdf" }],
         } */
 
-        if (inputValue.trim()) {
-            setMessages([...messages, { type: obj.type, text: obj.text, files: obj.files }]);
-            setInputValue("");
-            scrollHandler(messagesRef);
-        }
+        setMessages([...messages, obj]);
+        setInputValue("");
+        scrollHandler(messagesRef);
     };
 
     useEffect(() => {
         scrollHandler(messagesRef);
-
-        window.send = send;
+        window.sendMessage = send;
     }, []);
 
     const mockFavor = true;
