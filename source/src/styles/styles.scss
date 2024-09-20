@@ -536,6 +536,21 @@ header {
             flex: 1;
             border-radius: 5px;
             background-color: #F5F5F5;
+            position: relative;
+
+            .chat__input-text {
+                flex-grow: 1;
+                padding-right: 40px; // Место для иконки PDF
+            }
+    
+            .chat__pdf-icon {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+            }
         }
 
         .chat__btn-paperclip {

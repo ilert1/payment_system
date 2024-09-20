@@ -148,6 +148,20 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
         });
     };
 
+    const [isPdfSelected, setIsPdfSelected] = useState(false);
+    const fileInputRef = useRef(null);
+
+    const handleFileSelection = event => {
+        const file = event.target.files[0];
+        if (file) {
+            setIsPdfSelected(true);
+        }
+    };
+
+    const openFileDialog = () => {
+        fileInputRef.current.click();
+    };
+
     const handleSendMessage = () => {
         if (inputValue.trim()) {
             setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
@@ -204,9 +218,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
 
             <div className="chat__input">
                 <div className="chat__input-field">
-                    <button className="chat__btn-paperclip">
+                    <button className="chat__btn-paperclip" onClick={openFileDialog}>
                         <img src={ChatPaperclip} alt="paperclip" />
                     </button>
+
+                    <input ref={fileInputRef} type="file" style={{ display: "none" }} onChange={handleFileSelection} />
 
                     <input
                         className="chat__input-text"
@@ -220,6 +236,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                             }
                         }}
                     />
+
+                    {isPdfSelected && <img src={PdfFile} alt="pdf-icon" className="chat__pdf-icon" />}
                 </div>
 
                 <button className="chat__send-button" onClick={handleSendMessage}>
