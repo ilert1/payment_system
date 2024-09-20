@@ -28,7 +28,8 @@ const Message = ({ message, block }) => {
     return (
         <>
             <MessageBlock name={name} type={type} block={block}>
-                <div className={`chat__message chat__message--${block ? type : "user"}`}>
+                {/* <div className={`chat__message chat__message--${block ? type : "user"}`}> */}
+                <div className={`chat__message chat__message--${block ? "notme" : "me"} chat__message--${type}`}>
                     <div className="chat__content">
                         <div className="chat__files">
                             {files &&

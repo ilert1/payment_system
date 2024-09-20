@@ -88,12 +88,16 @@ const DisputeLine = ({ text }) => {
 const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () => {}, failedDispute = () => {} }) => {
     const { t } = useContext(AppContext);
 
+    //fallback для payIn на всякий
     let payoutMode = null;
     try {
         payoutMode = useContext(AppContext).payoutMode;
     } catch (e) {
         console.log(e);
     }
+
+    //TODO поменять на глобальный стейт из контекста (выше)
+    /* const [payoutMode, setPayoutMode] = useState(true); */
 
     const ns = { ns: "SupportDialog" };
 
@@ -184,7 +188,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     const handleSendMessage = () => {
         if (inputValue.trim()) {
-            setMessages([...messages, { type: "user", text: inputValue, files: [] }]);
+            setMessages([...messages, { type: !payoutMode ? "operator" : "user", text: inputValue, files: [] }]);
             setInputValue("");
             scrollHandler(messagesRef);
         }
@@ -205,7 +209,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                     <Avatar small={true} name={!payoutMode ? "Вы" : "О"} type="operator" />
                 </div>
 
-                <div className="chat__dispute">
+                <div
+                    className="chat__dispute"
+                    onClick={() => {
+                        setPayoutMode(prev => !prev);
+                    }}>
                     Диспут {disputeNumber}
                     <CopyToClipboard text={disputeNumber} onCopy={showPopupCallback}>
                         <button>

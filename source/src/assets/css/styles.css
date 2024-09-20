@@ -235,7 +235,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   font-weight: 600;
   font-size: 16px;
   line-height: 21px;
-  color: #010F18;
+  color: #010f18;
 }
 @media (max-width: 520px) {
   .chat__container .chat__header .chat__dispute {
@@ -312,7 +312,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
-  border: 2px solid #E7F5FE;
+  border: 2px solid #e7f5fe;
 }
 @media (max-width: 520px) {
   .chat__container .chat__avatar--small {
@@ -323,13 +323,13 @@ header .language-selector .drop-down .flag-container:last-of-type {
   }
 }
 .chat__container .chat__avatar--user-type {
-  background-color: #37A8F3;
+  background-color: #37a8f3;
 }
 .chat__container .chat__avatar--moderator-type {
-  background-color: #CFEAFC;
+  background-color: #cfeafc;
 }
 .chat__container .chat__avatar--operator-type {
-  background-color: #E8CCFF;
+  background-color: #e8ccff;
 }
 .chat__container .chat__avatar img {
   width: 100%;
@@ -345,7 +345,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   margin-bottom: 15px;
   gap: 15px;
   border-radius: 5px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   -ms-overflow-style: none;
   scrollbar-width: none;
   overflow-y: scroll;
@@ -375,22 +375,23 @@ header .language-selector .drop-down .flag-container:last-of-type {
   max-width: 60%;
   word-wrap: break-word;
 }
-.chat__container .chat__messages .chat__message--user {
-  background-color: #6FC0F6;
+.chat__container .chat__messages .chat__message--me {
+  background-color: #6fc0f6;
   align-self: flex-end;
   text-align: left;
 }
-.chat__container .chat__messages .chat__message--operator {
-  background-color: #E8CCFF;
+.chat__container .chat__messages .chat__message--notme {
   align-self: flex-start;
+  background-color: #e8ccff;
 }
 .chat__container .chat__messages .chat__message--moderator {
-  background-color: #CFEAFC;
   align-self: flex-start;
+  background-color: #cfeafc;
 }
 .chat__container .chat__messages .chat__content {
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 .chat__container .chat__messages .chat__text {
   text-align: left;
@@ -535,7 +536,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   padding: 15px;
   flex: 1;
   border-radius: 5px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   position: relative;
 }
 @media (max-width: 520px) {
@@ -574,7 +575,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  color: #010F18;
+  color: #010f18;
 }
 @media (max-width: 520px) {
   .chat__container .chat__input .chat__input-text {
@@ -586,7 +587,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   display: flex;
   align-items: center;
   padding: 20px;
-  background-color: #37A8F3;
+  background-color: #37a8f3;
   color: white;
   border: none;
   border-radius: 5px;
@@ -602,7 +603,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   height: 24px;
 }
 .chat__container .chat__input .chat__send-button:hover {
-  background-color: #37A8F3;
+  background-color: #37a8f3;
 }
 
 .Toastify .Toastify__toast-container {
@@ -621,8 +622,8 @@ header .language-selector .drop-down .flag-container:last-of-type {
 .Toastify .Toastify__toast-container .Toastify__toast {
   margin-bottom: 0;
   padding: 15px;
-  background-color: #EA4444;
-  color: #FFFFFF;
+  background-color: #ea4444;
+  color: #ffffff;
   gap: 12px;
   font-weight: 600;
   font-size: 17px;
@@ -649,7 +650,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   border: none;
   border-radius: 5px;
   background: #fff;
-  color: #010F18;
+  color: #010f18;
   cursor: pointer;
 }
 
@@ -1791,7 +1792,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
 }
 .content .payout-info .payout-description__title--accent {
   font-weight: 700;
-  color: #37A8F3;
+  color: #37a8f3;
 }
 .content .payout-info .payout-description__timer {
   font-weight: 600;
@@ -2294,7 +2295,7 @@ footer > .top:not(.big-footer-container) {
   font-weight: 600;
   font-size: 30px;
   line-height: 40px;
-  color: #37A8F3;
+  color: #37a8f3;
 }
 @media (max-width: 520px) {
   .overlay .dialog .payout-dialog__card-number {
@@ -2332,7 +2333,7 @@ footer > .top:not(.big-footer-container) {
 .overlay .dialog .payout-dialog .toggle-switch__slider {
   width: 57px;
   height: 33px;
-  background-color: #FF0000;
+  background-color: #ff0000;
   border-radius: 100px;
   position: relative;
   cursor: pointer;
@@ -2345,7 +2346,7 @@ footer > .top:not(.big-footer-container) {
   }
 }
 .overlay .dialog .payout-dialog .toggle-switch__slider--checked {
-  background-color: #E7F5FE;
+  background-color: #e7f5fe;
 }
 .overlay .dialog .payout-dialog .toggle-switch__thumb {
   width: 26px;
@@ -2377,7 +2378,7 @@ footer > .top:not(.big-footer-container) {
   }
 }
 .overlay .dialog .payout-dialog .toggle-switch__slider--checked .toggle-switch__thumb {
-  background-color: #37A8F3;
+  background-color: #37a8f3;
   transform: translateX(25px);
 }
 @media (max-width: 520px) {
@@ -2459,12 +2460,12 @@ footer > .top:not(.big-footer-container) {
 }
 .overlay .dialog .payout-dialog .outline-button {
   background-color: transparent;
-  border: 2px solid #37A8F3;
+  border: 2px solid #37a8f3;
   transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   font-size: 20px;
   font-weight: 500;
   line-height: 133%;
-  color: #37A8F3;
+  color: #37a8f3;
   flex-grow: 1;
 }
 .overlay .dialog .payout-dialog .outline-button:disabled {
