@@ -1,8 +1,13 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
+import AppContext from "../AppContext";
 import ChatSend from "../assets/images/chat-send.svg";
 import ChatPaperclip from "../assets/images/chat-paperclip.svg";
+import Copy from "../assets/images/copy.svg";
+import CheckCircle from "../assets/images/check-circle.svg";
 import { DisputeClosed } from "../ui/DisputeClosed";
+
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 const Avatar = ({ name, small = false, type = "" }) => {
     const switchType = type => {
@@ -75,6 +80,9 @@ const ModeratorMessage = ({ text }) => (
 );
 
 const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
+    const { t } = useContext(AppContext);
+    const ns = { ns: "SupportDialog" };
+
     const [messages, setMessages] = useState([
         {
             text: "Ща все решим не ссы",
@@ -118,7 +126,19 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
         }
     ]);
     const [inputValue, setInputValue] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
     const messagesRef = useRef();
+
+    let popupTimeout = null;
+
+    const showPopupCallback = () => {
+        clearTimeout(popupTimeout);
+        setShowPopup(true);
+
+        popupTimeout = setTimeout(() => {
+            setShowPopup(false);
+        }, 1000);
+    };
 
     const scrollHandler = ref => {
         ref.current.scrollTo({
@@ -149,7 +169,18 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                     <Avatar small={true} name="О" type="operator" />
                 </div>
 
-                <div className="chat__dispute">Диспут {disputeNumber}</div>
+                <div className="chat__dispute">
+                    Диспут {disputeNumber}
+                    <CopyToClipboard text={disputeNumber} onCopy={showPopupCallback}>
+                        <button>
+                            <img src={Copy} alt="" />
+                        </button>
+                    </CopyToClipboard>
+                    <div id="copy-dialog-popup" className={`popup ${showPopup ? "active" : ""}`}>
+                        {t("copyed", ns)}
+                        <img src={CheckCircle} alt="" />
+                    </div>
+                </div>
             </div>
 
             <div ref={messagesRef} className="chat__messages">
