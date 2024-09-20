@@ -9,8 +9,9 @@ import { DisputeClosed } from "../ui/DisputeClosed";
 import PdfFile from "../assets/images/pdf-file.svg";
 import VideoFile from "../assets/images/video-818.svg";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import Message from "./Message";
 
-const Avatar = ({ name, small = false, type = "" }) => {
+export const Avatar = ({ name, small = false, type = "" }) => {
     const switchType = type => {
         switch (type) {
             case "user":
@@ -35,14 +36,13 @@ const DisputeLine = ({ text }) => {
     );
 };
 
-const UserMessage = ({ text, files }) => (
+/* const UserMessage = ({ text, files }) => (
     <div className="chat__message chat__message--user">
         <div className="chat__content">
             <div className="chat__files">
                 {files &&
                     files.map((file, index) => (
                         <div key={index} className="chat__file">
-                            {/* <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span> */}
                             <span>
                                 {(() => {
                                     switch (file.type) {
@@ -62,9 +62,9 @@ const UserMessage = ({ text, files }) => (
             <div className="chat__text">{text}</div>
         </div>
     </div>
-);
+); */
 
-const OperatorMessage = ({ text, files }) => (
+/* const OperatorMessage = ({ text, files }) => (
     <div className="chat__message-block">
         <Avatar name="О" type="operator" />
 
@@ -73,7 +73,6 @@ const OperatorMessage = ({ text, files }) => (
                 {files &&
                     files.map((file, index) => (
                         <div key={index} className="chat__file">
-                            {/* <span>{file.type === "image" ? "🖼 Фото" : "📹 Видео"}</span> */}
                             {(() => {
                                 switch (file.type) {
                                     case "image":
@@ -91,19 +90,19 @@ const OperatorMessage = ({ text, files }) => (
             <div className="chat__text">{text}</div>
         </div>
     </div>
-);
+); */
 
-const ModeratorMessage = ({ text }) => (
+/* const ModeratorMessage = ({ text }) => (
     <div className="chat__message-block">
         <Avatar name="М" type="moderator" />
         <div className="chat__content chat__message chat__message--moderator">
             <div className="chat__text">{text}</div>
         </div>
     </div>
-);
+); */
 
 const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () => {}, failedDispute = () => {} }) => {
-    const { t } = useContext(AppContext);
+    const { t, payoutMode } = useContext(AppContext);
     const ns = { ns: "SupportDialog" };
 
     const [messages, setMessages] = useState([
@@ -209,9 +208,9 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         <div className="chat__container">
             <div className="chat__header">
                 <div className="chat__participants">
-                    <Avatar small={true} name="Вы" type="user" />
+                    <Avatar small={true} name={payoutMode ? "Вы" : "П"} type="user" />
                     <Avatar small={true} name="М" type="moderator" />
-                    <Avatar small={true} name="О" type="operator" />
+                    <Avatar small={true} name={!payoutMode ? "Вы" : "О"} type="operator" />
                 </div>
 
                 <div className="chat__dispute">
@@ -232,14 +231,16 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                 <DisputeLine text={`Диспут ${disputeNumber} открыт`} />
 
                 {messages.map(
-                    (message, index) =>
-                        (message.type === "user" && (
+                    (message, index) => {
+                        return <Message key={index} message={message} />;
+                    }
+                    /* (message.type === "user" && (
                             <UserMessage key={index} text={message.text} files={message.files} />
                         )) ||
                         (message.type === "operator" && (
                             <OperatorMessage key={index} text={message.text} files={message.files} />
                         )) ||
-                        (message.type === "moderator" && <ModeratorMessage key={index} text={message.text} />)
+                        (message.type === "moderator" && <ModeratorMessage key={index} text={message.text} />) */
                 )}
 
                 <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
