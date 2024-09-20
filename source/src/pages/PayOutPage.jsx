@@ -14,8 +14,16 @@ import { toast } from "react-toastify";
 import SupportChatModal from "../widgets/SupportChatModal.jsx";
 
 const PayOutPage = () => {
-    const { setBFData, BFData, currentPaymentInstrument, t, getCurrencySymbol, fingerprintConfig, navigate } =
-        useContext(AppContext);
+    const {
+        setBFData,
+        BFData,
+        currentPaymentInstrument,
+        t,
+        getCurrencySymbol,
+        fingerprintConfig,
+        navigate,
+        supportDialog
+    } = useContext(AppContext);
 
     const ns = { ns: ["Common", "PayOut"] };
     const nav = navigate();
@@ -187,7 +195,10 @@ const PayOutPage = () => {
                             discardButton={{
                                 caption: t("discardPayout", ns),
                                 disabled: disabledButon,
-                                callback: () => setIsDispute(true)
+                                callback: () =>
+                                    import.meta.env.VITE_DISPUT_CHAT
+                                        ? setIsDispute(true)
+                                        : supportDialog.setIsActive(true)
                             }}
                         />
                     </>
