@@ -86,7 +86,15 @@ const DisputeLine = ({ text }) => {
 ); */
 
 const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () => {}, failedDispute = () => {} }) => {
-    const { t, payoutMode } = useContext(AppContext);
+    const { t } = useContext(AppContext);
+
+    let payoutMode = null;
+    try {
+        payoutMode = useContext(AppContext).payoutMode;
+    } catch (e) {
+        console.log(e);
+    }
+
     const ns = { ns: "SupportDialog" };
 
     const [messages, setMessages] = useState([
@@ -214,18 +222,19 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
             <div ref={messagesRef} className="chat__messages">
                 <DisputeLine text={`Диспут ${disputeNumber} открыт`} />
 
-                {messages.map(
-                    (message, index) => {
-                        return <Message key={index} message={message} />;
-                    }
-                    /* (message.type === "user" && (
-                            <UserMessage key={index} text={message.text} files={message.files} />
-                        )) ||
-                        (message.type === "operator" && (
-                            <OperatorMessage key={index} text={message.text} files={message.files} />
-                        )) ||
-                        (message.type === "moderator" && <ModeratorMessage key={index} text={message.text} />) */
-                )}
+                {messages.map((message, index) => {
+                    return (
+                        <Message
+                            key={index}
+                            message={message}
+                            block={
+                                (message.type == "user" && payoutMode) ||
+                                (message.type == "operator" && !payoutMode) ||
+                                message.type == "moderator"
+                            }
+                        />
+                    );
+                })}
 
                 <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
 

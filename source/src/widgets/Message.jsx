@@ -1,7 +1,7 @@
 import Avatar from "../ui/Avatar";
 import ChatFile from "../ui/ChatFile";
 
-const Message = ({ message }) => {
+const Message = ({ message, block }) => {
     console.log(message);
 
     const { files, text, type } = message;
@@ -24,7 +24,7 @@ const Message = ({ message }) => {
 
     return (
         <>
-            <div className={`chat__message chat__message--${type}`}>
+            <div className={`chat__message${block ? "-block" : ""} chat__message--${type}`}>
                 <Avatar name={getName(type)} type={type} />
                 <div className="chat__content">
                     <div className="chat__files">
