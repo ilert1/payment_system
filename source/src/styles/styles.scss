@@ -253,7 +253,6 @@ header {
     bottom: 0;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
     background-color: #fff;
     flex-grow: 1;
 
@@ -345,7 +344,7 @@ header {
 
     .chat__messages {
         flex: 1;
-        padding: 20px 10px 10px;
+        padding: 20px 10px;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
@@ -353,6 +352,14 @@ header {
         gap: 15px;
         border-radius: 5px;
         background-color: #F5F5F5;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* for Chrome, Safari, and Opera */
+        }
 
         .chat__message-block {
             position: relative;
@@ -378,7 +385,7 @@ header {
             word-wrap: break-word;
 
             &--user {
-                background-color: #4da6ff;
+                background-color: #6FC0F6;
                 align-self: flex-end;
                 text-align: left;
             }
@@ -413,7 +420,83 @@ header {
                 padding: 5px;
             }
         }
+
+        .chat__dispute-line {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 10px;
+
+            &:first-child {
+                margin-top: 120px;
+            }
+
+            &::before,
+            &::after {
+                content: '';
+                flex: 1;
+                border-bottom: 1px solid rgba(1, 15, 24, 1);
+                opacity: 30%;
+                margin: 0 10px;
+            }
+
+            span {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 21px;
+                opacity: 30%;
+                color: rgba(1, 15, 24, 1);
+            }
+        }
+
+        .chat_dispute {
+            width: px;
+            background-color: rgba(231, 245, 254, 1);
+            height: 280px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-around;
+            padding-left: 15px;
+            padding-top: 20px;
+            border-radius: 5px;
+
+            .dispute_image {
+                width: 75px;
+                height: 75px;
+                margin-bottom: 20px;
+            }
+
+            .dispute_closed {
+                margin-bottom: 10px;
+
+                p {
+                    font-weight: 600;
+                    line-height: 42.72px;
+                    font-size: 32px;
+                    margin: 0;
+                    text-align: start;
+                }
+            }
+
+            .dispute_details {
+                margin-bottom: 10px;
+
+                p {
+                    font-size: 18px;
+                    font-weight: 400;
+                    line-height: 24.03px;
+                    margin: 0;
+                    text-align: start;
+
+                }
+            }
+        }
+
     }
+
 
     .chat__input {
         display: flex;
@@ -469,6 +552,8 @@ header {
         .chat__send-button:hover {
             background-color: #37A8F3;
         }
+
+
     }
 }
 
