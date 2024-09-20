@@ -49,7 +49,7 @@ const UserMessage = ({ text, files }) => (
                                         case "image":
                                             return "🖼 Фото";
                                         case "pdf":
-                                            return "📂 Файл";
+                                            return "📄 Файл";
                                         default:
                                             return "📹 Видео";
                                     }
@@ -79,7 +79,7 @@ const OperatorMessage = ({ text, files }) => (
                                     case "image":
                                         return "🖼 Фото";
                                     case "pdf":
-                                        return "📂 Файл";
+                                        return "📄 Файл";
                                     default:
                                         return "📹 Видео";
                                 }
