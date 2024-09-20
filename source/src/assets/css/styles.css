@@ -355,21 +355,24 @@ header .language-selector .drop-down .flag-container:last-of-type {
   border-radius: 5px;
   padding: 5px;
 }
-.chat__container .chat__messages .dispute_line {
+.chat__container .chat__messages .chat__dispute-line {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
   margin-bottom: 10px;
 }
-.chat__container .chat__messages .dispute_line::before, .chat__container .chat__messages .dispute_line::after {
+.chat__container .chat__messages .chat__dispute-line:first-child {
+  margin-top: 120px;
+}
+.chat__container .chat__messages .chat__dispute-line::before, .chat__container .chat__messages .chat__dispute-line::after {
   content: "";
   flex: 1;
   border-bottom: 1px solid rgb(1, 15, 24);
   opacity: 30%;
   margin: 0 10px;
 }
-.chat__container .chat__messages .dispute_line span {
+.chat__container .chat__messages .chat__dispute-line span {
   font-size: 16px;
   font-weight: 400;
   line-height: 21px;

@@ -21,6 +21,14 @@ const Avatar = ({ name, small = false, type = "" }) => {
     return <span className={"chat__avatar " + (small ? "chat__avatar--small " : "") + switchType(type)}>{name}</span>;
 };
 
+const DisputeLine = ({ text }) => {
+    return (
+        <div className="chat__dispute-line">
+            <span>{text}</span>
+        </div>
+    );
+};
+
 const UserMessage = ({ text, files }) => (
     <div className="chat__message chat__message--user">
         <div className="chat__content">
@@ -90,6 +98,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
             </div>
 
             <div className="chat__messages">
+                <DisputeLine text={`Диспут ${disputeNumber} открыт`} />
+
                 <ModeratorMessage text="Ща все решим не ссы" />
                 <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
                 <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
@@ -110,6 +120,9 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                         <OperatorMessage key={index} text={message.text} files={message.files} />
                     )
                 )}
+
+                <DisputeLine text={`Диспут ${disputeNumber} закрыт`} />
+
                 <DisputeClosed favor={false} />
             </div>
 
