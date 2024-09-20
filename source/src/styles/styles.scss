@@ -246,22 +246,32 @@ header {
 
 
 .chat__container {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     background-color: #fff;
     flex-grow: 1;
-    margin-top: 15px;
 
     .chat__header {
+        z-index: 2;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
         padding: 10px;
-        background-color: #9FD5F959;
+        background-color: rgba(159, 213, 249, 0.35);
         text-align: center;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(10px);
 
         .chat__dispute {
             font-weight: 600;
@@ -341,8 +351,7 @@ header {
         flex-direction: column;
         margin-bottom: 15px;
         gap: 15px;
-        border-bottom-left-radius: 5px;
-        border-bottom-right-radius: 5px;
+        border-radius: 5px;
         background-color: #F5F5F5;
 
         .chat__message-block {
@@ -352,6 +361,10 @@ header {
             gap: 10px;
             max-width: 60%;
             word-wrap: break-word;
+
+            &:first-child {
+                margin-top: 60px;
+            }
         }
 
         .chat__message {
@@ -514,6 +527,7 @@ header {
 }
 
 .content {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;

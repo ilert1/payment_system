@@ -93,6 +93,14 @@ const SupportChatModal = ({ disputeNumber = "00032340123" }) => {
                 <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
                 <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
                 <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
+                <ModeratorMessage text="Ща все решим не ссы" />
+                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
+                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
+                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
+                <ModeratorMessage text="Ща все решим не ссы" />
+                <OperatorMessage text="Я все скинул!!!" files={[{ type: "video" }, { type: "image" }]} />
+                <UserMessage text="Пиздун" files={[{ type: "video" }, { type: "image" }]} />
+                <OperatorMessage text="Сам пиздун" files={[{ type: "video" }, { type: "image" }]} />
 
                 {messages.map((message, index) =>
                     message.type === "user" ? (
