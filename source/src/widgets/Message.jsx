@@ -22,7 +22,7 @@ const Message = ({ message, block }) => {
     };
 
     const name = getName(type);
-    console.log(files);
+    // console.log(files);
     return (
         <>
             <MessageBlock name={name} type={type} block={block}>

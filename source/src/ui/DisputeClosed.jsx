@@ -2,7 +2,7 @@
 import CircleChecked from "../assets/images/check-circle-green.svg";
 import Crist from "../assets/images/plus-circle.svg";
 
-export const DisputeClosed = ({ favor = "success", backButtonHandler = () => {} }) => {
+export const DisputeClosed = ({ favor = "success", buttonHandler = () => {} }) => {
     // Favor = true (значит зыкрыт в вашу сторону)
 
     return (
@@ -21,30 +21,18 @@ export const DisputeClosed = ({ favor = "success", backButtonHandler = () => {} 
                     {(() => {
                         switch (favor) {
                             case "fail":
-                                return "Вы будете перенаправлены на ";
+                                return "Вы будете перенаправлены на следующий шаг оплаты.";
                             case "success":
-                                return "Вам будет представлен новый";
+                                return "Нажмите Продолжить, чтобы перейти на следующий шаг.";
                             default:
-                                return "оператор дал ошибочную информацию";
-                        }
-                    })()}
-                </p>
-                <p>
-                    {(() => {
-                        switch (favor) {
-                            case "fail":
-                                return "следующий шаг оплаты.";
-                            case "success":
-                                return "оператор для оплаты части вывода.";
-                            default:
-                                return "и данного перевода не было";
+                                return "Оператор дал ошибочную информацию и данного перевода не было. Вам будет представлен новый оператор для вывода средств.";
                         }
                     })()}
                 </p>
             </div>
 
-            <button className="dispute_button" onClick={backButtonHandler}>
-                Назад
+            <button className="dispute_button" onClick={buttonHandler}>
+                Продолжить
             </button>
         </div>
     );

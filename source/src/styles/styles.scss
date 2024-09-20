@@ -367,7 +367,7 @@ header {
             }
         }
 
-        &--user-type {
+        &--me {
             background-color: #37a8f3;
         }
 
@@ -375,7 +375,7 @@ header {
             background-color: #cfeafc;
         }
 
-        &--operator-type {
+        &--notme {
             background-color: #e8ccff;
         }
     }
@@ -480,7 +480,7 @@ header {
                 gap: 4px;
                 background-color: rgba(0, 0, 0, 0.1);
                 border-radius: 80px;
-                padding: 5px;
+                padding: 5px 8px;
             }
         }
 

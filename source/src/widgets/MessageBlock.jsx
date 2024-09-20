@@ -5,7 +5,7 @@ const MessageBlock = ({ name, type, children, block }) => {
         <>
             {block && (
                 <div className="chat__message-block">
-                    <Avatar name={name} type={type} />
+                    <Avatar name={name} type={type} me={!block} />
                     {children}
                 </div>
             )}

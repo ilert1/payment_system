@@ -1,20 +1,12 @@
-export const Avatar = ({ name, small = false, type = "" }) => {
-    const switchType = type => {
-        switch (type) {
-            case "user":
-                return "chat__avatar--user-type";
-            case "operator":
-                return "chat__avatar--operator-type";
-            case "moderator":
-                return "chat__avatar--moderator-type";
-            default:
-                return "";
-        }
-    };
+export const Avatar = ({ name, small = false, type = "", me = "moderator" }) => {
+    let cn = `chat__avatar--${me ? "me" : "notme"} `;
+    if (type == "moderator") {
+        cn = "chat__avatar--moderator-type";
+    }
 
     return (
         <>
-            <span className={"chat__avatar " + (small ? "chat__avatar--small " : "") + switchType(type)}>{name}</span>
+            <span className={"chat__avatar " + (small ? "chat__avatar--small " : "") + cn}>{name}</span>
         </>
     );
 };

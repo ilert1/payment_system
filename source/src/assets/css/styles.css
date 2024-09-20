@@ -322,13 +322,13 @@ header .language-selector .drop-down .flag-container:last-of-type {
     line-height: 13px;
   }
 }
-.chat__container .chat__avatar--user-type {
+.chat__container .chat__avatar--me {
   background-color: #37a8f3;
 }
 .chat__container .chat__avatar--moderator-type {
   background-color: #cfeafc;
 }
-.chat__container .chat__avatar--operator-type {
+.chat__container .chat__avatar--notme {
   background-color: #e8ccff;
 }
 .chat__container .chat__avatar img {
@@ -420,7 +420,7 @@ header .language-selector .drop-down .flag-container:last-of-type {
   gap: 4px;
   background-color: rgba(0, 0, 0, 0.1);
   border-radius: 80px;
-  padding: 5px;
+  padding: 5px 8px;
 }
 .chat__container .chat__messages .chat__dispute-line {
   display: flex;

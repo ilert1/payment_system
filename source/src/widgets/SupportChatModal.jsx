@@ -89,20 +89,20 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
     const { t } = useContext(AppContext);
 
     //fallback для payIn на всякий
-    let payoutMode = null;
+    /* let payoutMode = null;
     try {
         payoutMode = useContext(AppContext).payoutMode;
     } catch (e) {
         console.log(e);
-    }
+    } */
 
     //TODO поменять на глобальный стейт из контекста (выше)
-    /* const [payoutMode, setPayoutMode] = useState(true); */
+    const [payoutMode, setPayoutMode] = useState(true);
 
     const ns = { ns: "SupportDialog" };
 
     const [messages, setMessages] = useState([
-        {
+        /* {
             text: "Ща все решим не ссы",
             type: "moderator",
             files: []
@@ -141,8 +141,21 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
             text: "Сам пиздун",
             type: "moderator",
             files: []
-        }
+        } */
     ]);
+
+    /* useEffect(() => {
+        if (payoutMode) {
+            setTimeout(() => {
+                send(messages, {
+                    type: "moderator",
+                    text: "Добрый день! Вы сообщили, что не получили перевод. Ожидайте, пожалуйста"
+                    // files: [{ type: "pdf" }]
+                });
+            }, 1000);
+        }
+    }, []); */
+
     const [inputValue, setInputValue] = useState("");
     const [showPopup, setShowPopup] = useState(false);
     const messagesRef = useRef();
@@ -195,8 +208,10 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
             files.push({ type: "video" });
         }
         if (inputValue.trim()) {
-            setMessages([...messages, { type: "user", text: inputValue, files }]);
+            setMessages([...messages, { type: payoutMode ? "user" : "operator", text: inputValue, files }]);
             setInputValue("");
+            setIsPdfSelected(false);
+            setIsVideoSelected(false);
             scrollHandler(messagesRef);
         }
     };
@@ -210,28 +225,34 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         else if (state === "fail") setFavorState("fail");
         else if (state === "repeat") setFavorState("repeat");
         else setShow(false);
-        scrollToBottom();
+        scrollHandler(messagesRef);
+        // scrollToBottom();
     };
+
+    useEffect(() => {
+        scrollHandler(messagesRef);
+    }, [show]);
+
     useEffect(() => {
         window.showPanel = showPanel;
     }, []);
     const divRef = useRef(null);
 
-    const scrollToBottom = () => {
+    /* const scrollToBottom = () => {
         const div = divRef.current;
         console.log(div);
         if (div) {
             div.scrollTop = div.scrollHeight;
         }
-    };
+    }; */
 
-    const send = obj => {
+    const send = (messages, obj) => {
         // let files = obj.files;
         /* const obj = {   
-            type: "user",
-            text: "шёл бы ты отсюда, петушок",
-            files: [{ type: "pdf" }],
-        } */
+                type: "user",
+                text: "шёл бы ты отсюда, петушок",
+                files: [{ type: "pdf" }],
+            } */
 
         setMessages([...messages, obj]);
         setInputValue("");
@@ -240,8 +261,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     useEffect(() => {
         scrollHandler(messagesRef);
-        window.sendMessage = send;
-    }, []);
+        window.sendMessage = obj => send(messages, obj);
+    }, [, messages]);
 
     const mockFavor = true;
 
@@ -249,9 +270,9 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         <div className="chat__container" ref={divRef}>
             <div className="chat__header">
                 <div className="chat__participants">
-                    <Avatar small={true} name={payoutMode ? "Вы" : "П"} type="user" />
+                    <Avatar small={true} name={payoutMode ? "Вы" : "П"} type="user" me={payoutMode} />
                     <Avatar small={true} name="М" type="moderator" />
-                    <Avatar small={true} name={!payoutMode ? "Вы" : "О"} type="operator" />
+                    <Avatar small={true} name={!payoutMode ? "Вы" : "О"} type="operator" me={!payoutMode} />
                 </div>
 
                 <div
@@ -259,6 +280,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                     onClick={() => {
                         //отладочный стейт
                         // setPayoutMode(prev => !prev);
+                        /* sendMessage({
+                            type: "user",
+                            text: "шёл бы ты отсюда, петушок",
+                            files: [{ type: "pdf" }]
+                        }); */
                     }}>
                     Диспут {disputeNumber}
                     <CopyToClipboard text={disputeNumber} onCopy={showPopupCallback}>
@@ -294,7 +320,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                 {show && (
                     <DisputeClosed
                         favor={favorState}
-                        backButtonHandler={mockFavor ? successDispute : failedDispute}
+                        buttonHandler={mockFavor ? successDispute : failedDispute}
                         show={show}
                     />
                 )}
