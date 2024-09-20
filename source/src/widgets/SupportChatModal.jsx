@@ -228,8 +228,8 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
                             key={index}
                             message={message}
                             block={
-                                (message.type == "user" && payoutMode) ||
-                                (message.type == "operator" && !payoutMode) ||
+                                (message.type == "user" && !payoutMode) ||
+                                (message.type == "operator" && payoutMode) ||
                                 message.type == "moderator"
                             }
                         />

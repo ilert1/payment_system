@@ -1,5 +1,6 @@
 import Avatar from "../ui/Avatar";
 import ChatFile from "../ui/ChatFile";
+import MessageBlock from "./MessageBlock";
 
 const Message = ({ message, block }) => {
     console.log(message);
@@ -22,21 +23,24 @@ const Message = ({ message, block }) => {
         }
     };
 
+    const name = getName(type);
+
     return (
         <>
-            <div className={`chat__message${block ? "-block" : ""} chat__message--${type}`}>
-                <Avatar name={getName(type)} type={type} />
-                <div className="chat__content">
-                    <div className="chat__files">
-                        {files &&
-                            files.map((file, index) => {
-                                return <ChatFile key={index} file={file} />;
-                            })}
-                    </div>
+            <MessageBlock name={name} type={type} block={block}>
+                <div className={`chat__message chat__message--${block ? type : "user"}`}>
+                    <div className="chat__content">
+                        <div className="chat__files">
+                            {files &&
+                                files.map((file, index) => {
+                                    return <ChatFile key={index} file={file} />;
+                                })}
+                        </div>
 
-                    <div className="chat__text">{text}</div>
+                        <div className="chat__text">{text}</div>
+                    </div>
                 </div>
-            </div>
+            </MessageBlock>
         </>
     );
 };
