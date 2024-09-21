@@ -20,71 +20,6 @@ const DisputeLine = ({ text }) => {
     );
 };
 
-/* const UserMessage = ({ text, files }) => (
-    <div className="chat__message chat__message--user">
-        <div className="chat__content">
-            <div className="chat__files">
-                {files &&
-                    files.map((file, index) => (
-                        <div key={index} className="chat__file">
-                            <span>
-                                {(() => {
-                                    switch (file.type) {
-                                        case "image":
-                                            return "🖼 Фото";
-                                        case "pdf":
-                                            return "📄 Файл";
-                                        default:
-                                            return "📹 Видео";
-                                    }
-                                })()}
-                            </span>
-                        </div>
-                    ))}
-            </div>
-
-            <div className="chat__text">{text}</div>
-        </div>
-    </div>
-); */
-
-/* const OperatorMessage = ({ text, files }) => (
-    <div className="chat__message-block">
-        <Avatar name="О" type="operator" />
-
-        <div className="chat__content chat__message chat__message--operator">
-            <div className="chat__files">
-                {files &&
-                    files.map((file, index) => (
-                        <div key={index} className="chat__file">
-                            {(() => {
-                                switch (file.type) {
-                                    case "image":
-                                        return "🖼 Фото";
-                                    case "pdf":
-                                        return "📄 Файл";
-                                    default:
-                                        return "📹 Видео";
-                                }
-                            })()}
-                        </div>
-                    ))}
-            </div>
-
-            <div className="chat__text">{text}</div>
-        </div>
-    </div>
-); */
-
-/* const ModeratorMessage = ({ text }) => (
-    <div className="chat__message-block">
-        <Avatar name="М" type="moderator" />
-        <div className="chat__content chat__message chat__message--moderator">
-            <div className="chat__text">{text}</div>
-        </div>
-    </div>
-); */
-
 const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () => {}, failedDispute = () => {} }) => {
     const { t } = useContext(AppContext);
 
@@ -270,9 +205,11 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
         <div className="chat__container" ref={divRef}>
             <div className="chat__header">
                 <div className="chat__participants">
-                    <Avatar small={true} name={payoutMode ? "Вы" : "П"} type="user" me={payoutMode} />
+                    {payoutMode && <Avatar small={true} name={payoutMode ? "Вы" : "П"} type="user" me={payoutMode} />}
                     <Avatar small={true} name="М" type="moderator" />
-                    <Avatar small={true} name={!payoutMode ? "Вы" : "О"} type="operator" me={!payoutMode} />
+                    {!payoutMode && (
+                        <Avatar small={true} name={!payoutMode ? "Вы" : "О"} type="operator" me={!payoutMode} />
+                    )}
                 </div>
 
                 <div

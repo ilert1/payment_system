@@ -279,7 +279,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
   z-index: 1;
   top: 0;
   bottom: 0;
-  left: 62px;
 }
 @media (max-width: 520px) {
   .chat__container .chat__header .chat__participants .chat__avatar:last-child {
