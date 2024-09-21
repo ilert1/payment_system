@@ -35,12 +35,16 @@ const PayOutPage = () => {
     const [submitProcess, setSubmitProcess] = useState(false);
 
     useEffect(() => {
+        setSubmitProcess(false);
+
         if (BFData?.status === "payoutLotSearching") {
             setAwaiting(true);
+            setDisabledButon(true);
         } else if (BFData?.status === "payoutLotConfirmedByPayee") {
             setDisabledButon(false);
             setAwaiting(false);
         } else {
+            setDisabledButon(true);
             setAwaiting(false);
         }
     }, [BFData?.status]);
@@ -96,7 +100,7 @@ const PayOutPage = () => {
         return () => es.close();
     }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
-    const { isSuccess, isError, isFetched } = useQuery({
+    const { isError } = useQuery({
         queryKey: ["submitLotByPayee"],
         enabled: submitProcess,
         refetchOnWindowFocus: true,
@@ -113,21 +117,15 @@ const PayOutPage = () => {
     });
 
     useEffect(() => {
-        if (isSuccess) {
-            setSubmitProcess(false);
-            setDisabledButon(true);
-            setShowPayoutSubmit(false);
-        } else if (isError) {
+        if (isError) {
             toast(
                 <>
                     <p>Ошибка ответа сервера.</p>
                     <p>Повторите попытку позже.</p>
                 </>
             );
-        } else if (!isFetched) {
-            setSubmitProcess(false);
         }
-    }, [isFetched, isSuccess, isError]);
+    }, [isError]);
 
     return (
         <div className="container">
@@ -185,7 +183,10 @@ const PayOutPage = () => {
                                     text: t("approveTransferText", ns),
                                     toggleText: t("approveReceivedCheckbox", ns),
                                     primaryBtnText: t("appreveButtonText", ns),
-                                    primaryBtnCallback: () => setSubmitProcess(true),
+                                    primaryBtnCallback: () => {
+                                        setSubmitProcess(true);
+                                        setShowPayoutSubmit(false);
+                                    },
                                     secondaryBtnText: t("notYet", ns),
                                     loadingButton: submitProcess
                                 }}
