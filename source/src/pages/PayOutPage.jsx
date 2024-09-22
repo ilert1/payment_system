@@ -11,6 +11,7 @@ import { PayoutBar } from "../widgets/PayoutBar.jsx";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import SupportChatModal from "../widgets/SupportChatModal.jsx";
 
 const PayOutPage = () => {
     const {
@@ -19,9 +20,9 @@ const PayOutPage = () => {
         currentPaymentInstrument,
         t,
         getCurrencySymbol,
-        supportDialog,
         fingerprintConfig,
-        navigate
+        navigate,
+        supportDialog
     } = useContext(AppContext);
 
     const ns = { ns: ["Common", "PayOut"] };
@@ -30,15 +31,20 @@ const PayOutPage = () => {
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [disabledButon, setDisabledButon] = useState(true);
     const [awaiting, setAwaiting] = useState(true);
+    const [isDispute, setIsDispute] = useState(false);
     const [submitProcess, setSubmitProcess] = useState(false);
 
     useEffect(() => {
+        setSubmitProcess(false);
+
         if (BFData?.status === "payoutLotSearching") {
             setAwaiting(true);
+            setDisabledButon(true);
         } else if (BFData?.status === "payoutLotConfirmedByPayee") {
             setDisabledButon(false);
             setAwaiting(false);
         } else {
+            setDisabledButon(true);
             setAwaiting(false);
         }
     }, [BFData?.status]);
@@ -94,7 +100,7 @@ const PayOutPage = () => {
         return () => es.close();
     }, [BFData?.id, fingerprintConfig, nav, setBFData]);
 
-    const { isSuccess, isError, isFetched } = useQuery({
+    const { isError } = useQuery({
         queryKey: ["submitLotByPayee"],
         enabled: submitProcess,
         refetchOnWindowFocus: true,
@@ -111,89 +117,103 @@ const PayOutPage = () => {
     });
 
     useEffect(() => {
-        if (isSuccess) {
-            setSubmitProcess(false);
-            setDisabledButon(true);
-            setShowPayoutSubmit(false);
-        } else if (isError) {
+        if (isError) {
             toast(
                 <>
                     <p>Ошибка ответа сервера.</p>
                     <p>Повторите попытку позже.</p>
                 </>
             );
-        } else if (!isFetched) {
-            setSubmitProcess(false);
         }
-    }, [isFetched, isSuccess, isError]);
+    }, [isError]);
 
     return (
         <div className="container">
             <Header />
+
             <div className="content">
-                <PleasePay
-                    amount={BFData?.amount}
-                    currency={getCurrencySymbol(BFData?.currency)}
-                    payOut={true}
-                    bank={currentPaymentInstrument?.bank_name}
-                />
+                {isDispute ? (
+                    <SupportChatModal
+                        successDispute={() => setIsDispute(false)}
+                        failedDispute={() => {
+                            if (BFData.data.fail_url) {
+                                window.location.replace(BFData.data.fail_url);
+                            } else {
+                                nav(c.PAGE_PAYOUT_NOT_FOUND, { replace: true });
+                            }
+                        }}
+                    />
+                ) : (
+                    <>
+                        <PleasePay
+                            amount={BFData?.amount}
+                            currency={getCurrencySymbol(BFData?.currency)}
+                            payOut={true}
+                            bank={currentPaymentInstrument?.bank_name}
+                        />
 
-                <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
+                        <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
-                <PayoutBar payoutLots={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
+                        <PayoutBar payoutLots={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
 
-                <div className="instructions small">
-                    <ul>
-                        <h2>{t("dontCloseWindow", ns)}</h2>
-                        <li>
-                            <span>1. </span>
-                            {t("dontCloseSteps.one", ns)}
-                        </li>
-                        <li>
-                            <span>2. </span>
-                            {t("dontCloseSteps.two", ns)}
-                        </li>
-                        <li>
-                            <span>3. </span>
-                            {t("dontCloseSteps.three", ns)}
-                        </li>
-                    </ul>
-                </div>
+                        <div className="instructions small">
+                            <ul>
+                                <h2>{t("dontCloseWindow", ns)}</h2>
+                                <li>
+                                    <span>1. </span>
+                                    {t("dontCloseSteps.one", ns)}
+                                </li>
+                                <li>
+                                    <span>2. </span>
+                                    {t("dontCloseSteps.two", ns)}
+                                </li>
+                                <li>
+                                    <span>3. </span>
+                                    {t("dontCloseSteps.three", ns)}
+                                </li>
+                            </ul>
+                        </div>
+
+                        {showPayoutSubmit && (
+                            <PayoutSubmitModal
+                                data={{
+                                    title: `${t("transferInAmount", ns)} ${
+                                        BFData.lots[BFData.lots.length - 1].amount
+                                    }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
+                                    text: t("approveTransferText", ns),
+                                    toggleText: t("approveReceivedCheckbox", ns),
+                                    primaryBtnText: t("appreveButtonText", ns),
+                                    primaryBtnCallback: () => {
+                                        setSubmitProcess(true);
+                                        setShowPayoutSubmit(false);
+                                    },
+                                    secondaryBtnText: t("notYet", ns),
+                                    loadingButton: submitProcess
+                                }}
+                                closeModal={() => setShowPayoutSubmit(false)}
+                            />
+                        )}
+
+                        <Footer
+                            approveButton={{
+                                caption: t("approvePayout", ns),
+                                disabled: disabledButon,
+                                callback: () => {
+                                    setShowPayoutSubmit(true);
+                                }
+                            }}
+                            discardButton={{
+                                caption: t("discardPayout", ns),
+                                disabled: disabledButon,
+                                callback: () =>
+                                    import.meta.env.VITE_DISPUT_CHAT
+                                        ? setIsDispute(true)
+                                        : supportDialog.setIsActive(true)
+                            }}
+                        />
+                    </>
+                )}
             </div>
-
-            {showPayoutSubmit && (
-                <PayoutSubmitModal
-                    data={{
-                        title: `${t("transferInAmount", ns)} ${
-                            BFData.lots[BFData.lots.length - 1].amount
-                        }\u00A0${getCurrencySymbol(BFData?.currency)} ${t("transferReceived", ns)}?`,
-                        text: t("approveTransferText", ns),
-                        toggleText: t("approveReceivedCheckbox", ns),
-                        primaryBtnText: t("appreveButtonText", ns),
-                        primaryBtnCallback: () => setSubmitProcess(true),
-                        secondaryBtnText: t("notYet", ns),
-                        loadingButton: submitProcess
-                    }}
-                    closeModal={() => setShowPayoutSubmit(false)}
-                />
-            )}
-
-            <Footer
-                approveButton={{
-                    caption: t("approvePayout", ns),
-                    disabled: disabledButon,
-                    callback: () => {
-                        setShowPayoutSubmit(true);
-                    }
-                }}
-                discardButton={{
-                    caption: t("discardPayout", ns),
-                    disabled: disabledButon,
-                    callback: () => {
-                        supportDialog.setIsActive(true);
-                    }
-                }}
-            />
         </div>
     );
 };
