@@ -30,12 +30,13 @@ const Message = ({ message, block }) => {
                         {type === "moderator" && block && <h3 className="chat__title">Модератор</h3>}
                         {type === "user" && block && <h3 className="chat__title">Пользователь</h3>}
 
-                        <div className="chat__files">
-                            {files &&
-                                files.map((file, index) => {
+                        {files && files.length > 0 && (
+                            <div className="chat__files">
+                                {files.map((file, index) => {
                                     return <ChatFile key={index} file={file} />;
                                 })}
-                        </div>
+                            </div>
+                        )}
 
                         <div className="chat__text">{text}</div>
 
