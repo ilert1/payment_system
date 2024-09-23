@@ -375,17 +375,48 @@ header .language-selector .drop-down .flag-container:last-of-type {
   word-wrap: break-word;
 }
 .chat__container .chat__messages .chat__message--me {
+  position: relative;
   background-color: #6fc0f6;
   align-self: flex-end;
   text-align: left;
+  margin-right: 14px;
+  border-bottom-right-radius: 0;
+}
+.chat__container .chat__messages .chat__message--me::after {
+  content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 13.9915C6.38936 13.7336 0.266356 7.61064 0.0084591 0H0V14H14V13.9915Z' fill='%236FC0F6'/%3E%3C/svg%3E%0A");
+  position: absolute;
+  bottom: 2.2px;
+  right: -14px;
+  width: 14px;
+  height: 14px;
 }
 .chat__container .chat__messages .chat__message--notme {
+  position: relative;
   align-self: flex-start;
   background-color: #e8ccff;
+  border-bottom-left-radius: 0;
+}
+.chat__container .chat__messages .chat__message--notme::after {
+  content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 13.9915C7.61064 13.7336 13.7336 7.61064 13.9915 0H14V14H0V13.9915Z' fill='%23E8CCFF'/%3E%3C/svg%3E%0A");
+  position: absolute;
+  bottom: 2.2px;
+  left: -13.8px;
+  width: 14px;
+  height: 14px;
 }
 .chat__container .chat__messages .chat__message--moderator {
+  position: relative;
   align-self: flex-start;
   background-color: #cfeafc;
+  border-bottom-left-radius: 0;
+}
+.chat__container .chat__messages .chat__message--moderator::after {
+  content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 13.9915C7.61064 13.7336 13.7336 7.61064 13.9915 0H14V14H0V13.9915Z' fill='%23CFEAFC'/%3E%3C/svg%3E%0A");
+  position: absolute;
+  bottom: 2.2px;
+  left: -13.8px;
+  width: 14px;
+  height: 14px;
 }
 .chat__container .chat__messages .chat__content {
   display: flex;

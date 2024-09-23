@@ -36,48 +36,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     const ns = { ns: "SupportDialog" };
 
-    const [messages, setMessages] = useState([
-        /* {
-            text: "Ща все решим не ссы",
-            type: "moderator",
-            files: []
-        },
-        {
-            text: "Я все скинул!!!",
-            type: "operator",
-            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
-        },
-        {
-            text: "Пиздун",
-            type: "user",
-            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
-        },
-        {
-            text: "Сам пиздун",
-            type: "moderator",
-            files: []
-        },
-        {
-            text: "Ща все решим не ссы",
-            type: "moderator",
-            files: []
-        },
-        {
-            text: "Я все скинул!!!",
-            type: "operator",
-            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
-        },
-        {
-            text: "Пиздун",
-            type: "user",
-            files: [{ type: "video" }, { type: "image" }]
-        },
-        {
-            text: "Сам пиздун",
-            type: "moderator",
-            files: []
-        } */
-    ]);
+    const [messages, setMessages] = useState([]);
 
     /* useEffect(() => {
         if (payoutMode) {
@@ -183,7 +142,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     const send = (messages, obj) => {
         // let files = obj.files;
-        /* const obj = {   
+        /* const obj = {
                 type: "user",
                 text: "шёл бы ты отсюда, петушок",
                 files: [{ type: "pdf" }],

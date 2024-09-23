@@ -1,4 +1,4 @@
-import Avatar from "../ui/Avatar";
+/* eslint-disable react/prop-types */
 import ChatFile from "../ui/ChatFile";
 import MessageBlock from "./MessageBlock";
 
@@ -9,13 +9,10 @@ const Message = ({ message, block }) => {
         switch (type) {
             case "operator":
                 return "О";
-                break;
             case "moderator":
                 return "М";
-                break;
             case "user":
                 return "П";
-                break;
             default:
                 return "M";
         }
