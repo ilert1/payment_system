@@ -102,7 +102,15 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
             files.push({ type: "video" });
         }
         if (inputValue.trim()) {
-            setMessages([...messages, { type: payoutMode ? "user" : "operator", text: inputValue, files }]);
+            setMessages([
+                ...messages,
+                {
+                    type: payoutMode ? "user" : "operator",
+                    text: inputValue,
+                    files,
+                    timestamp: new Date().toLocaleTimeString("ru-RU", { timeStyle: "short" })
+                }
+            ]);
             setInputValue("");
             setIsPdfSelected(false);
             setIsVideoSelected(false);
