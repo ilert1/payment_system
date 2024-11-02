@@ -36,48 +36,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     const ns = { ns: "SupportDialog" };
 
-    const [messages, setMessages] = useState([
-        /* {
-            text: "Ща все решим не ссы",
-            type: "moderator",
-            files: []
-        },
-        {
-            text: "Я все скинул!!!",
-            type: "operator",
-            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
-        },
-        {
-            text: "Пиздун",
-            type: "user",
-            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
-        },
-        {
-            text: "Сам пиздун",
-            type: "moderator",
-            files: []
-        },
-        {
-            text: "Ща все решим не ссы",
-            type: "moderator",
-            files: []
-        },
-        {
-            text: "Я все скинул!!!",
-            type: "operator",
-            files: [{ type: "video" }, { type: "image" }, { type: "pdf" }]
-        },
-        {
-            text: "Пиздун",
-            type: "user",
-            files: [{ type: "video" }, { type: "image" }]
-        },
-        {
-            text: "Сам пиздун",
-            type: "moderator",
-            files: []
-        } */
-    ]);
+    const [messages, setMessages] = useState([]);
 
     /* useEffect(() => {
         if (payoutMode) {
@@ -143,7 +102,15 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
             files.push({ type: "video" });
         }
         if (inputValue.trim()) {
-            setMessages([...messages, { type: payoutMode ? "user" : "operator", text: inputValue, files }]);
+            setMessages([
+                ...messages,
+                {
+                    type: payoutMode ? "user" : "operator",
+                    text: inputValue,
+                    files,
+                    timestamp: new Date().toLocaleTimeString("ru-RU", { timeStyle: "short" })
+                }
+            ]);
             setInputValue("");
             setIsPdfSelected(false);
             setIsVideoSelected(false);
@@ -183,7 +150,7 @@ const SupportChatModal = ({ disputeNumber = "00032340123", successDispute = () =
 
     const send = (messages, obj) => {
         // let files = obj.files;
-        /* const obj = {   
+        /* const obj = {
                 type: "user",
                 text: "шёл бы ты отсюда, петушок",
                 files: [{ type: "pdf" }],

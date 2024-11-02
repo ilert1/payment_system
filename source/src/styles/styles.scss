@@ -419,29 +419,69 @@ header {
         }
 
         .chat__message {
+            min-width: 90px;
             position: relative;
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            padding: 10px;
+            padding: 10px 10px 26px 10px;
             border-radius: 5px;
             max-width: 60%;
             word-wrap: break-word;
 
+            @media (max-width: 520px) {
+                min-width: 70px;
+                padding: 10px 10px 17px 10px;
+            }
+
             &--me {
+                position: relative;
                 background-color: #6fc0f6;
                 align-self: flex-end;
                 text-align: left;
+                margin-right: 14px;
+                border-bottom-right-radius: 0;
+
+                &::after {
+                    content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 13.9915C6.38936 13.7336 0.266356 7.61064 0.0084591 0H0V14H14V13.9915Z' fill='%236FC0F6'/%3E%3C/svg%3E%0A");
+                    position: absolute;
+                    bottom: 2px;
+                    right: -13.7px;
+                    width: 14px;
+                    height: 14px;
+                }
             }
 
             &--notme {
+                position: relative;
                 align-self: flex-start;
                 background-color: #e8ccff;
+                border-bottom-left-radius: 0;
+
+                &::after {
+                    content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 13.9915C7.61064 13.7336 13.7336 7.61064 13.9915 0H14V14H0V13.9915Z' fill='%23E8CCFF'/%3E%3C/svg%3E%0A");
+                    position: absolute;
+                    bottom: 2.2px;
+                    left: -13.8px;
+                    width: 14px;
+                    height: 14px;
+                }
             }
 
             &--moderator {
+                position: relative;
                 align-self: flex-start;
                 background-color: #cfeafc;
+                border-bottom-left-radius: 0;
+
+                &::after {
+                    content: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 13.9915C7.61064 13.7336 13.7336 7.61064 13.9915 0H14V14H0V13.9915Z' fill='%23CFEAFC'/%3E%3C/svg%3E%0A");
+                    position: absolute;
+                    bottom: 2.2px;
+                    left: -13.8px;
+                    width: 14px;
+                    height: 14px;
+                }
             }
         }
 
@@ -449,6 +489,36 @@ header {
             display: flex;
             flex-direction: column;
             overflow: auto;
+            gap: 5px;
+
+            @media (max-width: 520px) {
+                gap: 2px;
+            }
+        }
+
+        .chat__timestamp {
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 13px;
+            color: rgba(1, 15, 24, 0.5);
+            position: absolute;
+            width: 100%;
+            bottom: 2px;
+            right: 10px;
+            text-align: right;
+        }
+
+        .chat__title {
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 18.7px;
+            color: #010f18;
+
+            @media (max-width: 520px) {
+                font-size: 12px;
+                line-height: 16.7px;
+            }
         }
 
         .chat__text {
@@ -477,10 +547,13 @@ header {
 
             .chat__file {
                 display: flex;
-                gap: 4px;
+                gap: 3px;
                 background-color: rgba(0, 0, 0, 0.1);
                 border-radius: 80px;
-                padding: 5px 8px;
+                padding: 2px 10px 2px 5px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18.7px;
             }
         }
 
@@ -2438,7 +2511,7 @@ footer {
         }
     }
 
-    & > .top:not(.big-footer-container) {
+    &>.top:not(.big-footer-container) {
         display: contents;
     }
 }
@@ -2557,11 +2630,12 @@ footer {
         z-index: 1000;
         min-height: 70%;
 
-        transition: translate 0.5s ease, opacity 0.3s ease;
+        transition: translate 0.5s ease,
+        opacity 0.3s ease;
         translate: 0 50px;
         opacity: 0;
 
-        & > img {
+        &>img {
             align-self: center;
             margin-bottom: 10px;
             user-select: none;
