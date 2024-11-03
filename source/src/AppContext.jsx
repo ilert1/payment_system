@@ -12,6 +12,8 @@ import getBrowserFingerprint from "get-browser-fingerprint";
 import CurrencyLibrary from "./assets/library/Currency.json";
 import { binary_to_base58 } from "base58-js";
 
+import CustomToastContainer from "./ui/CustomToastContainer";
+
 var encoder = new TextEncoder();
 export const base58 = str => {
     binary_to_base58(encoder.encode(str));
@@ -47,12 +49,19 @@ export const AppContext = createContext({
     setFailUrlParams: null,
 
     lang: null,
-    setLang: null
+    setLang: null,
+    payoutMode: null
 });
 
 export const AppProvider = ({ children }) => {
     const navigate = useNavigate;
     const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
+
+    const pathname = new URL(window.location.href).pathname;
+    const payoutMode = pathname.split("/")[1] == "payouts";
+
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
 
     const queryClient = new QueryClient();
 
@@ -107,7 +116,7 @@ export const AppProvider = ({ children }) => {
             }
         };
 
-        console.log(fingerprintConfig);
+        console.log("fingerprintConfig: ", fingerprintConfig);
     }, [, fingerprint, /* customerId, */ lang]);
 
     useEffect(() => {
@@ -164,9 +173,12 @@ export const AppProvider = ({ children }) => {
                     failUrlParams,
                     setFailUrlParams,
                     lang,
-                    setLang
+                    setLang,
+                    payoutMode
                 }}>
                 {children}
+
+                <CustomToastContainer />
             </AppContext.Provider>
         </QueryClientProvider>
     );

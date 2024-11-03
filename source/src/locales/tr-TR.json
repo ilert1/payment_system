@@ -62,7 +62,7 @@
         "correctRequisites": "Bilgileri düzelt",
         "waitForTransferConfirmation": "Transfer onayını bekleyin",
         "transferConfirmed": "Operatör transferi onayladı",
-        "lookingForOperator": "Para çekimi için operatör aranıyor",
+        "lookingForOperator": "Operatör aranıyor",
         "transferInAmount": "Tutarında transfer",
         "transferReceived": "alındı",
         "approveTransferText": "Transfer yapıldıysa, anahtarı açın ve devam düğmesine tıklayın.",
@@ -119,7 +119,7 @@
     },
     "Success": {
         "header": "Bakiyeniz yüklendi",
-        "payoutHeader": "=Вы успешно вывели"
+        "payoutHeader": "Başarılı bir şekilde çıkardınız"
     },
     "PayeeCard": {
         "copy": "Kopyala",
