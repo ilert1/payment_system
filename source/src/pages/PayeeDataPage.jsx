@@ -12,7 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const PayeeDataPage = () => {
-    const { BFData, navigate, resetCookies, fingerprintConfig, fingerprintReady, t, getCurrencySymbol } =
+    const { BFData, navigate, resetStorage, fingerprintConfig, fingerprintReady, t, getCurrencySymbol } =
         useContext(AppContext);
 
     //translation
@@ -63,7 +63,7 @@ const PayeeDataPage = () => {
                 if (data?.success) {
                     if (data?.data?.state == 5) {
                         if (BFData?.success_url) {
-                            resetCookies();
+                            resetStorage();
                             // document.location.href = BFData.success_url;
                             window.location.replace(BFData.success_url);
                         } else {

@@ -9,7 +9,7 @@ import { useContext } from "react";
 import AppContext from "../AppContext";
 
 const SuccessPage = () => {
-    const { BFData, resetCookies, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
+    const { BFData, resetStorage, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
 
     //translation
     const ns = { ns: "Success" };
@@ -26,7 +26,7 @@ const SuccessPage = () => {
 
 
     */
-    resetCookies();
+    resetStorage();
 
     return (
         <div className="container">

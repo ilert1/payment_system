@@ -19,7 +19,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import AppContext from "./AppContext.jsx";
 import Loader from "./ui/Loader.jsx";
-import { getCookie } from "react-use-cookie";
 import PayOutPage from "./pages/PayOutPage.jsx";
 
 import axios from "axios";
@@ -139,7 +138,7 @@ const App = () => {
         window.location.replace(payMode === "payouts" ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND);
     } */
 
-    let storedCurrentPaymentMethod = getCookie("CurrentPaymentMethod", null);
+    let storedCurrentPaymentMethod = localStorage.getItem("CurrentPaymentMethod");
     useEffect(() => {
         if (storedCurrentPaymentMethod) {
             setCurrentPaymentMethod(JSON.parse(storedCurrentPaymentMethod));
