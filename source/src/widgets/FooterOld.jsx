@@ -12,7 +12,7 @@ import BankIcon from "../assets/images/bank-icon.svg"; //Sberbank_Logo_2020.svg"
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
 
-const Footer = ({
+const FooterOld = ({
     buttonCaption = "",
     nextPage = "",
     //backButton = false,
