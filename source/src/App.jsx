@@ -124,7 +124,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, setCurrentPaymentMethod, fingerprintConfig } = useContext(AppContext);
+    const { setBFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode } = useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -155,15 +155,15 @@ const App = () => {
         refetchOnWindowFocus: false,
         queryFn: async () => {
             if (blowfishId) {
+                let dest = payoutMode ? "payouts" : "payments";
                 try {
                     const { data } = await axios
-                        .get(`${import.meta.env.VITE_API_URL}/payouts/${blowfishId}`, fingerprintConfig)
+                        .get(`${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`, fingerprintConfig)
                         .catch(e => {
                             console.log(e);
                         });
-
+                    console.log(data);
                     if (data) {
-                        console.log("data: ", data);
                         if (data?.success) {
                             //данные получены успешно
                             setBFData(data?.data);
@@ -172,7 +172,6 @@ const App = () => {
                             window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
                         }
                     }
-
                     return data;
                 } catch (e) {
                     console.error(e.response.statusCode);

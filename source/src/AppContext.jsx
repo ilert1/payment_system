@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useCookie, { setCookie } from "react-use-cookie";
@@ -117,7 +118,7 @@ export const AppProvider = ({ children }) => {
         };
 
         console.log("fingerprintConfig: ", fingerprintConfig);
-    }, [, fingerprint, /* customerId, */ lang]);
+    }, [fingerprint, /* customerId, */ lang]);
 
     useEffect(() => {
         let fp = `${getBrowserFingerprint({
@@ -143,7 +144,7 @@ export const AppProvider = ({ children }) => {
     };
 
     const getCurrencySymbol = code => {
-        if (CurrencyLibrary.hasOwnProperty(code)) {
+        if (Object.hasOwn(CurrencyLibrary, code)) {
             return CurrencyLibrary[code].symbol_native;
         }
         return code;
