@@ -46,7 +46,7 @@ export const AppContext = createContext({
 });
 
 export const AppProvider = ({ children }) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate;
     const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
 
     const pathname = new URL(window.location.href).pathname;
