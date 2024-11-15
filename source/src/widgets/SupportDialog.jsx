@@ -8,7 +8,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import ym from "react-yandex-metrika";
 
 const SupportDialog = () => {
-    const { stored, t } = useContext(AppContext);
+    const { BFData, t } = useContext(AppContext);
     const { isActive, setIsActive } = useContext(AppContext).supportDialog;
     const [showPopup, setShowPopup] = useState(false);
 
@@ -19,7 +19,7 @@ const SupportDialog = () => {
 
     const showPopupCallback = () => {
         if (import.meta.env.VITE_YMETRICS_COUNTER) {
-            ym("reachGoal", "copy-dialog-button", { trn: stored?.trn });
+            ym("reachGoal", "copy-dialog-button", { trn: BFData?.trn });
         }
         clearTimeout(popupTimeout);
         setShowPopup(true);
@@ -47,8 +47,8 @@ const SupportDialog = () => {
                         {t("copyed", ns)}
                         <img src={CheckCircle} alt="" />
                     </div>
-                    <p id="uuid">{stored?.trn}</p>
-                    <CopyToClipboard text={stored?.trn} onCopy={showPopupCallback}>
+                    <p id="uuid">{BFData?.trn}</p>
+                    <CopyToClipboard text={BFData?.trn} onCopy={showPopupCallback}>
                         <button id="copy-dialog-button">{t("copy", ns)}</button>
                     </CopyToClipboard>
                 </div>
@@ -60,7 +60,7 @@ const SupportDialog = () => {
                     className="dialog-button"
                     onClick={() => {
                         if (import.meta.env.VITE_YMETRICS_COUNTER) {
-                            ym("reachGoal", "dialog-button", { trn: stored?.trn });
+                            ym("reachGoal", "dialog-button", { trn: BFData?.trn });
                         }
                         open("https://t.me/MoneygateSupportBot", "_blank").focus();
                     }}>
