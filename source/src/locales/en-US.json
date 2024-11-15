@@ -9,7 +9,13 @@
     "Header": {},
     "Footer": {
         "protected": "Translation protected.",
-        "details": "Details"
+        "details": "Details",
+        "cancel": "Cancel the transfer",
+        "cancelDialog": {
+            "title": "Cancel the transfer and return to the store",
+            "text": "If you cancel the transfer, you will have to create a new order first.",
+            "continue": "Continue the transfer"
+        }
     },
     "Main": {
         "header": "Balance replenishment through our provider",

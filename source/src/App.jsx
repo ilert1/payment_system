@@ -22,6 +22,7 @@ import Loader from "./ui/Loader.jsx";
 import PayOutPage from "./pages/PayOutPage.jsx";
 
 import axios from "axios";
+import PayPageNew from "./pages/PayPageNew.jsx";
 
 const defaultPages = [
     {
@@ -82,7 +83,13 @@ const router = createBrowserRouter([
     }, */
     {
         path: `/payments/:blowfishId/`, //${c.PAGE_MAIN} //"/",
-        children: [...defaultPages]
+        children: [
+            ...defaultPages,
+            {
+                index: true,
+                element: <PayPageNew />
+            }
+        ]
     },
     {
         path: `/payouts/:blowfishId/`,

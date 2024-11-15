@@ -1,0 +1,36 @@
+/* eslint-disable react/prop-types */
+import { useContext } from "react";
+import AppContext from "../AppContext";
+import BankIcon from "../assets/images/bank.svg";
+import CardsIcon from "../assets/images/cards.svg";
+import DollarCircleIcon from "../assets/images/dollar-circle.svg";
+import User2Icon from "../assets/images/user2.svg";
+import PayeeDataItem from "./PayeeDataItem";
+
+const PayeeData = ({ requisite, trader, bankName, isPhone }) => {
+    const { stored, getCurrencySymbol, t } = useContext(AppContext);
+    const ns = { ns: "PayeeCard" };
+
+    return (
+        <div className="payee-data">
+            {bankName && <PayeeDataItem img={BankIcon} label={t("bankName", ns)} value={bankName} cl={"dark"} />}
+            <PayeeDataItem
+                img={CardsIcon}
+                label={t("requisite", ns)}
+                value={requisite}
+                copyData={requisite}
+                messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
+            />
+            <PayeeDataItem
+                img={DollarCircleIcon}
+                label={t("amount", ns)}
+                value={`${stored?.amount}\u00A0${getCurrencySymbol(stored?.currency)}`}
+                copyData={stored?.amount}
+                messageOnCopy={t("copyedAmount", ns)}
+            />
+            {trader?.cardholder && <PayeeDataItem img={User2Icon} label={t("payee", ns)} value={trader?.cardholder} />}
+        </div>
+    );
+};
+
+export default PayeeData;

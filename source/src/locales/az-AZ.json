@@ -9,7 +9,13 @@
     "Header": {},
     "Footer": {
         "protected": "Tərcümə qorunur.",
-        "details": "Təfərrüatlar"
+        "details": "Təfərrüatlar",
+        "cancel": "Köçürməni ləğv edin",
+        "cancelDialog": {
+            "title": "Köçürməni ləğv edin və mağazaya qayıdın",
+            "text": "Köçürməni ləğv etsəniz, əvvəlcə yeni bir sifariş yaratmalı olacaqsınız.",
+            "continue": "Tərcüməyə davam edin"
+        }
     },
     "Main": {
         "header": "Balansın təminatçımız vasitəsilə artırılması",

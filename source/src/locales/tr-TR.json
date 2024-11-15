@@ -9,7 +9,12 @@
     "Header": {},
     "Footer": {
         "protected": "Çeviri korunmaktadır.",
-        "details": "Detaylar"
+        "details": "Detaylar",
+        "cancelDialog": {
+            "title": "Отменить перевод и вернуться в магазин",
+            "text": "Transferi iptal edin ve mağazaya geri dönün",
+            "continue": "Çeviriye devam et"
+        }
     },
     "Main": {
         "header": "Sağlayıcımız aracılığıyla bakiye yükleme",
