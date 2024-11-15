@@ -2598,4 +2598,44 @@ footer > .top:not(.big-footer-container) {
   opacity: 1;
 }
 
+.cardNumberForm {
+  background-color: #f5f5f5;
+  width: 100%;
+  padding: 38px 26px;
+}
+.cardNumberForm__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.cardNumberForm__bottom {
+  display: flex;
+  gap: 34px;
+  width: 66.67%;
+}
+.cardNumberForm__item {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.cardNumberForm__label {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 133.5%;
+  color: #010f18;
+  opacity: 0.5;
+}
+.cardNumberForm__input {
+  width: 100%;
+  padding: 0.8rem 0;
+  background: #ffffff;
+  border-radius: 5px;
+  border: none;
+}
+.cardNumberForm__input-focus {
+  border: 1px solid #6fc0f6;
+}
+
 /*# sourceMappingURL=styles.css.map */

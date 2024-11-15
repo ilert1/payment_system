@@ -2511,7 +2511,7 @@ footer {
         }
     }
 
-    &>.top:not(.big-footer-container) {
+    & > .top:not(.big-footer-container) {
         display: contents;
     }
 }
@@ -2630,12 +2630,11 @@ footer {
         z-index: 1000;
         min-height: 70%;
 
-        transition: translate 0.5s ease,
-        opacity 0.3s ease;
+        transition: translate 0.5s ease, opacity 0.3s ease;
         translate: 0 50px;
         opacity: 0;
 
-        &>img {
+        & > img {
             align-self: center;
             margin-bottom: 10px;
             user-select: none;
@@ -3023,5 +3022,50 @@ footer {
 
     &.active {
         opacity: 1;
+    }
+}
+
+.cardNumberForm {
+    background-color: #f5f5f5;
+    width: 100%;
+    padding: 38px 26px;
+
+    &__wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    &__bottom {
+        display: flex;
+        gap: 34px;
+        width: 66.67%;
+    }
+
+    &__item {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &__label {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 133.5%;
+        color: #010f18;
+        opacity: 0.5;
+    }
+
+    &__input {
+        width: 100%;
+        padding: 0.8rem 0;
+        background: #ffffff;
+        border-radius: 5px;
+        border: none;
+        &-focus {
+            border: 1px solid #6fc0f6;
+        }
     }
 }

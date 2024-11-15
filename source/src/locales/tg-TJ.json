@@ -99,7 +99,9 @@
     "PayerData": {
         "enter4": "Чор рақами охирини",
         "yourPhone": "телефони шумо",
-        "yourCard": "кортатонро ворид кунед"
+        "yourCard": "кортатонро ворид кунед",
+        "cardNumber": "Рақами Корти",
+        "expirationDate": "Мӯҳлати Амал"
     },
     "PayeeData": {
         "waitConfirmation": "Таъминкунанда интиқоли шуморо тафтиш мекунад",

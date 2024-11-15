@@ -99,7 +99,9 @@
     "PayerData": {
         "enter4": "Son 4 haneyi girin",
         "yourPhone": "telefon numaranızın",
-        "yourCard": "kartınızın"
+        "yourCard": "kartınızın",
+        "cardNumber": "Kart Numarası",
+        "expirationDate": "Son Kullanma Tarihi"
     },
     "PayeeData": {
         "waitConfirmation": "Sağlayıcı transferinizi kontrol ediyor",

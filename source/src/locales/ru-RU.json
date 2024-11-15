@@ -99,7 +99,9 @@
     "PayerData": {
         "enter4": "Введите 4 последние цифры",
         "yourPhone": "Вашего телефона",
-        "yourCard": "Вашей карты"
+        "yourCard": "Вашей карты",
+        "cardNumber": "Номер карты",
+        "expirationDate": "Срок действия"
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер проверяет ваш перевод",
