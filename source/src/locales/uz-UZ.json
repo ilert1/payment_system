@@ -106,7 +106,15 @@
         "yourPhone": "telefoningizning",
         "yourCard": "karta raqamingizni",
         "cardNumber": "Karta Raqami",
-        "expirationDate": "Amal Qilish Muddati"
+        "expirationDate": "Amal Qilish Muddati",
+        "errors": {        
+            "cardValidationError": "Karta raqami 16 raqamdan iborat bo'lishi kerak",
+            "expireDateError": "Amal qilish muddati MM/YY formatida bo'lishi kerak",
+            "expreDateRangeError": "Amal qilish muddati kelajakda bo'lishi kerak",
+            "cvvError": "CVV 3 raqamdan iborat bo'lishi kerak",
+            "paymentNotFound": "Ushbu ID bilan to'lov topilmadi",
+            "unknownError": "Noma'lum xato"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Provayder sizning o'tkazmangizni tekshiryapti",

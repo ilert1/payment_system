@@ -3067,7 +3067,7 @@ footer > .top:not(.big-footer-container) {
 .cardNumberForm__bottom {
   display: flex;
   gap: 34px;
-  width: 66.7%;
+  width: 80%;
 }
 @media (max-width: 540px) {
   .cardNumberForm__bottom {
@@ -3082,6 +3082,7 @@ footer > .top:not(.big-footer-container) {
 }
 .cardNumberForm__item {
   width: 100%;
+  width: auto;
   display: flex;
   gap: 10px;
   flex-direction: column;

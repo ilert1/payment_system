@@ -106,7 +106,15 @@
         "yourPhone": "telefon numaranızın",
         "yourCard": "kartınızın",
         "cardNumber": "Kart Numarası",
-        "expirationDate": "Son Kullanma Tarihi"
+        "expirationDate": "Son Kullanma Tarihi",
+        "errors": {
+            "cardValidationError": "Kart numarası 16 haneli olmalıdır",
+            "expireDateError": "Son kullanma tarihi MM/YY formatında olmalıdır",
+            "expreDateRangeError": "Son kullanma tarihi gelecekte olmalıdır",
+            "cvvError": "CVV 3 haneli olmalıdır",
+            "paymentNotFound": "Bu ID ile ödeme bulunamadı",
+            "unknownError": "Bilinmeyen hata"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Sağlayıcı transferinizi kontrol ediyor",

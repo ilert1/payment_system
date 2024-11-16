@@ -106,7 +106,15 @@
         "yourPhone": "телефони шумо",
         "yourCard": "кортатонро ворид кунед",
         "cardNumber": "Рақами Корти",
-        "expirationDate": "Мӯҳлати Амал"
+        "expirationDate": "Мӯҳлати Амал",
+        "errors": {
+            "cardValidationError": "Шумораи корт бояд 16 рақам бошад",
+            "expireDateError": "Мӯҳлати истифода бояд дар формати MM/YY бошад",
+            "expreDateRangeError": "Мӯҳлати истифода бояд дар оянда бошад",
+            "cvvError": "CVV бояд аз 3 рақам иборат бошад",
+            "paymentNotFound": "Платеж бо этим ID наёфт",
+            "unknownError": "Хатои номаълум"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Таъминкунанда интиқоли шуморо тафтиш мекунад",

@@ -172,7 +172,7 @@ const PayerDataPage = () => {
         handleExpiryInputChange,
         handleExpiryKeyDown,
         handleCvvInputChange
-    } = useGetCardNumberFormData();
+    } = useGetCardNumberFormData(t, ns);
 
     const handleSubmit = async () => {
         const url = `${baseUrl}/payment/${BFData?.blowfishId}/events`;
@@ -194,20 +194,17 @@ const PayerDataPage = () => {
                     }
                 }
             });
-
             if (!data.data.success) {
                 const match = data.data.error.match(/code=(\d+)/);
                 const errorCode = match[1];
-                console.log(errorCode);
-                if (errorCode === "404") throw new Error("Payment with this id was not found");
-                else throw new Error("Unknown error");
+                if (errorCode === "404") throw new Error(t("errors.paymentNotFound", { ns: ["PayerData"] }));
+                else throw new Error(t("errors.unknownError", { ns: ["PayerData"] }));
             }
         } catch (error) {
             toast.error(error.message, { autoClose: 2000, closeButton: <></> });
         }
     };
 
-    console.log();
     return (
         <div className="container">
             <Header />

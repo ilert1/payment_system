@@ -107,7 +107,15 @@
         "yourPhone": "telefonunuzun",
         "yourCard": "kartınızın",
         "cardNumber": "Kart Nömrəsi",
-        "expirationDate": "Etibarlılıq Müddəti"
+        "expirationDate": "Etibarlılıq Müddəti",
+        "errors": {
+            "cardValidationError": "Kartın nömrəsi 16 rəqəm olmalıdır",
+            "expireDateError": "Son istifadə tarixi MM/YY formatında daxil edilməlidir",
+            "expreDateRangeError": "Son istifadə tarixi gələcəkdə olmalıdır",
+            "cvvError": "CVV 3 rəqəmdən ibarət olmalıdır",
+            "paymentNotFound": "Bu ID ilə ödəniş tapılmadı",
+            "unknownError": "Bilinməyən səhv"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Təminatçı köçürmənizi yoxlayır",

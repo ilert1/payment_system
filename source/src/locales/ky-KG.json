@@ -107,7 +107,15 @@
         "yourPhone": "телефонуңуздун",
         "yourCard": "картанын",
         "cardNumber": "Карта Номери",
-        "expirationDate": "Мөөнөтү Бүткөн Күні"
+        "expirationDate": "Мөөнөтү Бүткөн Күні",
+        "errors": {
+            "cardValidationError": "Картанын номери 16 сан болушу керек",
+            "expireDateError": "Жарамдылык мөөнөтү MM/YY форматында болушу керек",
+            "expreDateRangeError": "Жарамдылык мөөнөтү келечекте болушу керек",
+            "cvvError": "CVV 3 сандан турушу керек",
+            "paymentNotFound": "Бул ID менен төлөм табылбай калды",
+            "unknownError": "Белгисиз каталар"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер сиздин которууну текшерүүдө",
