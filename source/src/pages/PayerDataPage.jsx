@@ -11,6 +11,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { CardNumberForm } from "../widgets/CardNumberForm.jsx";
 import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
+import FooterOld from "../widgets/FooterOld.jsx";
+
+import { toast } from "react-toastify";
+
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
     const {
@@ -23,7 +28,6 @@ const PayerDataPage = () => {
         fingerprintReady,
         t
     } = useContext(AppContext);
-    // useUrlInfoCheck(navigate);
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
@@ -170,11 +174,40 @@ const PayerDataPage = () => {
         handleCvvInputChange
     } = useGetCardNumberFormData();
 
-    const handleSubmit = () => {
-        console.log(errors);
-        console.log(1);
+    const handleSubmit = async () => {
+        const url = `${baseUrl}/payment/${BFData?.blowfishId}/events`;
+        console.log(url);
+        try {
+            const data = await axios.post(url, {
+                event: "paymentPayerDataEntered",
+                payload: {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    card_number: cardNumber.replace(/\s+/g, ""),
+                                    card_expiration_date: `20${expiryDate.slice(3)}-${expiryDate.slice(0, 2)}`,
+                                    card_security_code: cvv
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            if (!data.data.success) {
+                const match = data.data.error.match(/code=(\d+)/);
+                const errorCode = match[1];
+                console.log(errorCode);
+                if (errorCode === "404") throw new Error("Payment with this id was not found");
+                else throw new Error("Unknown error");
+            }
+        } catch (error) {
+            toast.error(error.message, { autoClose: 2000, closeButton: <></> });
+        }
     };
 
+    console.log();
     return (
         <div className="container">
             <Header />
@@ -226,14 +259,16 @@ const PayerDataPage = () => {
                     closeModal={() => setShowPayoutSubmit(false)}
                 />
             )}
-
-            <Footer
+            <FooterOld
                 buttonCaption={t("approve", ns)}
                 buttonCallback={currentPaymentMethod?.payment_type !== "ecom" ? handleSubmit : buttonCallback}
                 nextPage={c.PAGE_PAYEE_SEARCH}
                 nextEnabled={
                     currentPaymentMethod?.payment_type !== "ecom"
-                        ? !Object.keys(errors).length && cardNumber.length && cvv.length && expiryDate.length
+                        ? !Object.keys(errors).length &&
+                          cardNumber.length === 19 &&
+                          cvv.length === 3 &&
+                          expiryDate.length === 5
                         : !isFetching_confirmPayIN &&
                           (!need_startPayIN || (need_startPayIN && data_startPayIN)) &&
                           isComplete
@@ -242,6 +277,7 @@ const PayerDataPage = () => {
                 }
                 approve={true}
                 focused={buttonFocused}
+                prevPage="/"
             />
         </div>
     );
