@@ -5,14 +5,25 @@ import Footer from "../widgets/Footer";
 // import Rating from "../widgets/Rating";
 
 // import { useLocation } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
 
 const SuccessPage = () => {
-    const { BFData, resetStorage, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
+    const { BFData, resetStorage, navigate, paymentEcomPage, t, getCurrencySymbol, payoutMode } =
+        useContext(AppContext);
 
     //translation
     const ns = { ns: "Success" };
+
+    const nav = navigate();
+
+    useEffect(() => {
+        const paymentPage = paymentEcomPage();
+
+        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
+            nav("../" + paymentPage, { replace: true });
+        }
+    }, [nav, paymentEcomPage]);
 
     // const location = useLocation();
     // const [rate, setRate] = useState(0);

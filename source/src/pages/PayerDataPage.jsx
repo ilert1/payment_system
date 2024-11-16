@@ -19,6 +19,7 @@ const PayerDataPage = () => {
         BFData,
         currentPaymentMethod,
         fingerprintConfig,
+        paymentEcomPage,
         fingerprintReady,
         t
     } = useContext(AppContext);
@@ -28,6 +29,14 @@ const PayerDataPage = () => {
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
 
     const nav = navigate();
+
+    useEffect(() => {
+        const paymentPage = paymentEcomPage();
+
+        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
+            nav("../" + paymentPage, { replace: true });
+        }
+    }, [nav, paymentEcomPage]);
 
     const [isComplete, setIsComplete] = useState(false);
     const [payoutMode, setPayoutMode] = useState(false);

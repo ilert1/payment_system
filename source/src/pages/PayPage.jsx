@@ -14,7 +14,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const PayPage = () => {
-    const { navigate, BFData, currentPaymentInstrument, traderData, t, getCurrencySymbol } = useContext(AppContext);
+    const { navigate, BFData, currentPaymentInstrument, traderData, t, getCurrencySymbol, paymentEcomPage } =
+        useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -23,6 +24,14 @@ const PayPage = () => {
     const trader = JSON.parse(traderData);
 
     const nav = navigate();
+
+    useEffect(() => {
+        const paymentPage = paymentEcomPage();
+
+        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
+            nav("../" + paymentPage, { replace: true });
+        }
+    }, [nav, paymentEcomPage]);
 
     return (
         <div className="container">

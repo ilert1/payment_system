@@ -9,8 +9,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const PaymentInstrumentPage = () => {
-    const { navigate, currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t } =
-        useContext(AppContext);
+    const {
+        navigate,
+        paymentEcomPage,
+        currentPaymentInstrument,
+        fingerprintConfig,
+        getCurrencySymbol,
+        fingerprintReady,
+        BFData,
+        t
+    } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
@@ -19,6 +27,14 @@ const PaymentInstrumentPage = () => {
     const [enabled_startPayIN, setEnabled_startPayIN] = useState(false);
 
     const nav = navigate();
+
+    useEffect(() => {
+        const paymentPage = paymentEcomPage();
+
+        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
+            nav("../" + paymentPage, { replace: true });
+        }
+    }, [nav, paymentEcomPage]);
 
     /* console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
     console.log(`MODE: ${import.meta.env.MODE}`); */

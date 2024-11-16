@@ -13,6 +13,7 @@ import GeneralErrorPage from "./pages/GeneralErrorPage";
 import PaymentConfirmationPage from "./pages/PaymentConfirmationPage";
 import PaymentWaitConfirmation from "./pages/PaymentWaitConfirmation";
 import PaymentMethodsPage from "./pages/PaymentMethodsPage.jsx";
+import MainPage from "./pages/MainPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
@@ -97,7 +98,7 @@ const router = createBrowserRouter([
             ...defaultPages,
             {
                 index: true,
-                element: <PayPageNew />
+                element: <MainPage />
             }
         ]
     },
@@ -171,18 +172,60 @@ const App = () => {
         refetchOnWindowFocus: false,
         queryFn: async () => {
             if (blowfishId) {
-                let dest = payoutMode ? "payouts" : "payments";
+                // let dest = payoutMode ? "payouts" : "payments";
                 try {
-                    const { data } = await axios
-                        .get(`${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`, fingerprintConfig)
-                        .catch(e => {
-                            console.log(e);
-                        });
-                    console.log(data);
+                    // const { data } = await axios
+                    //     .get(`${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`, fingerprintConfig)
+                    //     .catch(e => {
+                    //         console.log(e);
+                    //     });
+                    // console.log(data);
+
+                    const data = {
+                        success: true,
+                        payment: {
+                            id: "449bc546-e589-4aca-83fd-775099333842",
+                            amount: "10500.00",
+                            currency: "AZN",
+                            status: "paymentPayerDataEntrу",
+                            createdAt: 1726153942,
+                            method: {
+                                name: "ecom",
+                                display_name: "Банковский перевод",
+                                payer: {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            card_number: {
+                                                type: "string",
+                                                description: "Card number"
+                                            },
+                                            card_expiration_date: {
+                                                type: "string",
+                                                description: "Card expiration date"
+                                            },
+                                            card_security_code: {
+                                                type: "string",
+                                                description: "Card security code"
+                                            }
+                                        },
+                                        required: ["card_number", "card_expiration_date", "card_security_code"]
+                                    }
+                                },
+                                payee: null,
+                                context: {
+                                    success_redirect_url: "https://for.success.com",
+                                    error_redirect_url: "https://for.error.com",
+                                    "cancel_redirect_url ": "https://for.cancel.com"
+                                }
+                            }
+                        }
+                    };
+
                     if (data) {
                         if (data?.success) {
                             //данные получены успешно
-                            setBFData(data?.data);
+                            setBFData(data?.data || data?.payment);
                         } else {
                             //транзакция не подлежит оплате
                             window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
