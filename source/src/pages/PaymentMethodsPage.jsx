@@ -8,19 +8,31 @@ import { AppContext, base58 } from "../AppContext";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.jsx";
+import { useNavigate } from "react-router-dom";
 // import { base58_to_binary, binary_to_base58 } from "base58-js";
 
 const PaymentMethodsPage = () => {
     const {
-        // navigate,
+        navigate,
         setCurrentPaymentMethod,
         currentPaymentMethod,
+        paymentEcomPage,
         getCurrencySymbol,
         fingerprintReady,
         t,
         BFData,
         setFailUrlParams
     } = useContext(AppContext);
+
+    const nav = navigate();
+
+    useEffect(() => {
+        const paymentPage = paymentEcomPage();
+
+        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
+            nav("../" + paymentPage, { replace: true });
+        }
+    }, [nav, paymentEcomPage]);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };

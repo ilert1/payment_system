@@ -5,13 +5,23 @@ import Footer from "../widgets/Footer";
 import Wallet from "../assets/images/wallet.png";
 import WalletPayout from "../assets/images/payOut/wallet.png";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useParams } from "react-router-dom";
 
 const MainPage = () => {
     const contextData = useContext(AppContext);
     const payOutMode = contextData?.BFData?.mode === "payOut";
+
+    const nav = contextData.navigate();
+
+    useEffect(() => {
+        const paymentPage = contextData.paymentEcomPage();
+
+        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
+            nav(paymentPage, { replace: true });
+        }
+    }, [contextData, nav]);
 
     //translation
     let { t } = contextData;

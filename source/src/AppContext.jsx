@@ -1,4 +1,5 @@
-import { createContext, useState, useEffect } from "react";
+import * as c from "./assets/constants.js";
+import { createContext, useState, useEffect, useMemo, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -122,6 +123,33 @@ export const AppProvider = ({ children }) => {
         return code;
     };
 
+    const paymentEcomPage = useCallback(() => {
+        if (BFData?.method?.name === "ecom") {
+            switch (BFData?.status) {
+                case "paymentAwaitingStart":
+                    return c.PAGE_MAIN;
+                case "paymentMethodSelecting":
+                    return c.PAGE_PAYMENT_METHODS;
+                case "payoutBankSelecting":
+                    return c.PAGE_PAYMENT_INSTRUMENT;
+                case "paymentPayerDataEntrу":
+                    return c.PAGE_PAYER_DATA;
+                case "paymentPayeeSearching":
+                    return c.PAGE_PAYEE_SEARCH;
+                case "paymentAwaitingTransfer":
+                    return c.PAGE_PAY;
+                case "paymentConfirmedByPayer":
+                    return c.PAGE_PAYEE_DATA;
+                case "paymentExecuted":
+                    return c.PAGE_SUCCESS;
+                default:
+                    return c.PAGE_PAYOUT_NOT_FOUND;
+            }
+        } else {
+            return "";
+        }
+    }, [BFData?.method?.name, BFData?.status]);
+
     return (
         <QueryClientProvider client={queryClient}>
             <AppContext.Provider
@@ -148,6 +176,7 @@ export const AppProvider = ({ children }) => {
                         }
                     },
                     getCurrencySymbol,
+                    paymentEcomPage,
                     fingerprintReady,
                     BFData,
                     setBFData,
