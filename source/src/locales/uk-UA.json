@@ -107,7 +107,15 @@
         "yourPhone": "вашого телефону",
         "yourCard": "вашої картки",
         "cardNumber": "Номер Карти",
-        "expirationDate": "Термін Дії"
+        "expirationDate": "Термін Дії",
+        "errors": {
+            "cardValidationError": "Номер картки має містити 16 цифр",
+            "expireDateError": "Термін придатності має бути у форматі MM/YY",
+            "expreDateRangeError": "Термін придатності має бути в майбутньому",
+            "cvvError": "CVV має містити 3 цифри",
+            "paymentNotFound": "Платіж з цим ID не знайдено",
+            "unknownError": "Невідома помилка"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Постачальник перевіряє ваш переказ",

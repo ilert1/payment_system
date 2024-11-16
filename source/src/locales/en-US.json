@@ -107,7 +107,15 @@
         "yourPhone": "of your phone",
         "yourCard": "of your card",
         "cardNumber": "Card Number",
-        "expirationDate": "Expiration Date"
+        "expirationDate": "Expiration Date",
+        "errors": {
+            "cardValidationError": "Card number must contain 16 digits",
+            "expireDateError": "Expiration date must be in MM/YY format",
+            "expreDateRangeError": "Expiration date must be in the future",
+            "cvvError": "CVV must contain 3 digits",
+            "paymentNotFound": "Payment with this id was not found",
+            "unknownError": "Unknown error"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "The provider is checking your transfer",

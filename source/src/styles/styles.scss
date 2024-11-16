@@ -3567,8 +3567,7 @@ footer {
     &__bottom {
         display: flex;
         gap: 34px;
-        width: 66.7%;
-        
+        width: 80%;
         @media (max-width: 540px) {
             flex-direction: column;
             gap: 18px;
@@ -3582,6 +3581,7 @@ footer {
 
     &__item {
         width: 100%;
+        width: auto;
         display: flex;
         gap: 10px;
         flex-direction: column;

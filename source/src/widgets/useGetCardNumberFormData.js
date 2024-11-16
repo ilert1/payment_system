@@ -1,27 +1,25 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-export const useGetCardNumberFormData = () => {
+export const useGetCardNumberFormData = (t, ns) => {
     const cardFormSchema = z.object({
         cardNumber: z
             .string()
-            .regex(/^\d{4} \d{4} \d{4} \d{4}$/, "Номер карты должен содержать 16 цифр") // проверяем формат с пробелами
-            .length(19, "Номер карты должен содержать 16 цифр"),
-        // .regex(/^\d+$/, "Номер карты должен состоять только из цифр"),
+            .regex(/^\d{4} \d{4} \d{4} \d{4}$/, t("errors.cardValidationError", ns)) // проверяем формат с пробелами
+            .length(19, t("errors.expireDateError", ns)),
 
         expiryDate: z
             .string()
-            .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Введите срок действия в формате MM/YY")
+            .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, t("errors.expireDateError", ns))
             .refine(value => {
                 const [month, year] = value.split("/").map(Number);
                 const currentYear = new Date().getFullYear() % 100;
                 const currentMonth = new Date().getMonth() + 1;
                 return year > currentYear || (year === currentYear && month >= currentMonth);
-            }, "Срок действия должен быть в будущем"),
-
-        cvv: z.string().length(3, "CVV должен содержать 3 цифры").regex(/^\d+$/, "CVV должен содержать только цифры")
+            }),
+        cvv: z.string().length(3, t("errors.cvvError", ns))
     });
 
     const {

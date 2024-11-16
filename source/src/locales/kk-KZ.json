@@ -107,7 +107,15 @@
         "yourPhone": "телефоныңыздың",
         "yourCard": "картаңыздың",
         "cardNumber": "Карта Нөмірі",
-        "expirationDate": "Жарамдылық Мерзімі"
+        "expirationDate": "Жарамдылық Мерзімі",
+        "errors": {
+            "cardValidationError": "Картаның нөмірі 16 цифрдан тұруы керек",
+            "expireDateError": "Жарамдылық мерзімі MM/YY форматында енгізілуі керек",
+            "expreDateRangeError": "Жарамдылық мерзімі болашақта болуы керек",
+            "cvvError": "CVV 3 цифрдан тұруы керек",
+            "paymentNotFound": "Бұл ID-мен төлем табылмады",
+            "unknownError": "Белгісіз қате"
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер сіздің аудармаңызды тексеруде",

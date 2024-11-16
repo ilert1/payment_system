@@ -107,7 +107,16 @@
         "yourPhone": "Вашего телефона",
         "yourCard": "Вашей карты",
         "cardNumber": "Номер карты",
-        "expirationDate": "Срок действия"
+        "expirationDate": "Срок действия",
+        "errors": {
+            "cardValidationError": "Номер карты должен содержать 16 цифр",
+            "expireDateError": "Введите срок действия в формате MM/ГГ",
+            "expreDateRangeError": "Срок действия должен быть в будущем",
+            "cvvError": "CVV должен содержать 3 цифры",
+            "paymentNotFound": "Платеж с этим ID не найден",
+            "unknownError": "Неизвестная ошибка"
+            
+        }
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер проверяет ваш перевод",
