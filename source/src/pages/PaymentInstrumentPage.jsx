@@ -2,23 +2,16 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 import { PayInstruments } from "../widgets/PayInstruments.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PaymentInstrumentPage = () => {
-    const {
-        navigate,
-        paymentEcomPage,
-        currentPaymentInstrument,
-        fingerprintConfig,
-        getCurrencySymbol,
-        fingerprintReady,
-        BFData,
-        t
-    } = useContext(AppContext);
+    const { navigate, currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t } =
+        useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
@@ -28,13 +21,7 @@ const PaymentInstrumentPage = () => {
 
     const nav = navigate();
 
-    useEffect(() => {
-        const paymentPage = paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav("../" + paymentPage, { replace: true });
-        }
-    }, [nav, paymentEcomPage]);
+    usePaymentPage({ absolutePath: false });
 
     /* console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
     console.log(`MODE: ${import.meta.env.MODE}`); */

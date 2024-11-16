@@ -11,19 +11,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { CardNumberForm } from "../widgets/CardNumberForm.jsx";
 import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayerDataPage = () => {
-    const {
-        navigate,
-        setCardNumberLast4,
-        cardNumberLast4,
-        BFData,
-        currentPaymentMethod,
-        fingerprintConfig,
-        paymentEcomPage,
-        fingerprintReady,
-        t
-    } = useContext(AppContext);
+    const { navigate, setCardNumberLast4, cardNumberLast4, BFData, currentPaymentMethod, fingerprintReady, t } =
+        useContext(AppContext);
     // useUrlInfoCheck(navigate);
 
     //translation
@@ -31,13 +23,7 @@ const PayerDataPage = () => {
 
     const nav = navigate();
 
-    useEffect(() => {
-        const paymentPage = paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav("../" + paymentPage, { replace: true });
-        }
-    }, [nav, paymentEcomPage]);
+    usePaymentPage({ absolutePath: false });
 
     const [isComplete, setIsComplete] = useState(false);
     const [payoutMode, setPayoutMode] = useState(false);

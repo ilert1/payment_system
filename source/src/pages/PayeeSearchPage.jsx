@@ -10,6 +10,7 @@ import { ProgressSteper } from "../widgets/ProgressSteper";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayeeSearchPage = () => {
     const {
@@ -19,7 +20,6 @@ const PayeeSearchPage = () => {
         currentPaymentInstrument,
         setTraderData,
         fingerprintConfig,
-        paymentEcomPage,
         fingerprintReady,
         t,
         getCurrencySymbol
@@ -27,13 +27,7 @@ const PayeeSearchPage = () => {
 
     const nav = navigate();
 
-    useEffect(() => {
-        const paymentPage = paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav("../" + paymentPage, { replace: true });
-        }
-    }, [nav, paymentEcomPage]);
+    usePaymentPage({ absolutePath: false });
 
     //translation
     const ns = { ns: ["Common", "PayeeSearch"] };

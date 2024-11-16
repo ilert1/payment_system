@@ -2,21 +2,19 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext, base58 } from "../AppContext";
 // import { PayMethod } from "../widgets/PayInstrument.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.jsx";
-import { useNavigate } from "react-router-dom";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 // import { base58_to_binary, binary_to_base58 } from "base58-js";
 
 const PaymentMethodsPage = () => {
     const {
-        navigate,
         setCurrentPaymentMethod,
         currentPaymentMethod,
-        paymentEcomPage,
         getCurrencySymbol,
         fingerprintReady,
         t,
@@ -24,15 +22,7 @@ const PaymentMethodsPage = () => {
         setFailUrlParams
     } = useContext(AppContext);
 
-    const nav = navigate();
-
-    useEffect(() => {
-        const paymentPage = paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav("../" + paymentPage, { replace: true });
-        }
-    }, [nav, paymentEcomPage]);
+    usePaymentPage({ absolutePath: false });
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
