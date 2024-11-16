@@ -59,6 +59,8 @@ export const AppProvider = ({ children }) => {
     const queryClient = new QueryClient();
     const { t } = useTranslation();
 
+    // const [currentStatus,  = useState
+
     const [currentPaymentMethod, setCurrentPaymentMethod] = useState(() => {
         return JSON.parse(localStorage.getItem("CurrentPaymentMethod")) || null;
     });
@@ -124,6 +126,8 @@ export const AppProvider = ({ children }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
+        console.log(BFData?.status);
+        
         if (BFData?.method?.name === "ecom") {
             switch (BFData?.status) {
                 case "paymentAwaitingStart":

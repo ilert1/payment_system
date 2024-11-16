@@ -14,11 +14,16 @@ export default function usePaymentPage({ absolutePath = false }) {
         const locationSplits = location.pathname.split("/");
 
         if (paymentPage) {
-            if (!location.pathname.includes(paymentPage) || paymentPage !== PAGE_MAIN) {
-                nav(absolutePath ? paymentPage : "../" + paymentPage, { replace: true });
-            } else if (paymentPage === PAGE_MAIN && locationSplits.length > 3 && locationSplits[3]) {
-                nav("..", { replace: true });
+            if (
+                locationSplits.length > 1 &&
+                locationSplits.slice(0, -1).join("/") + "/" + paymentPage !== location.pathname
+            ) {
+                if (!location.pathname.includes(paymentPage) || paymentPage !== PAGE_MAIN) {
+                    nav(absolutePath ? paymentPage : "../" + paymentPage, { replace: true });
+                } else if (paymentPage === PAGE_MAIN && locationSplits.length > 3 && locationSplits[3]) {
+                    nav("..", { replace: true });
+                }
             }
         }
-    }, [paymentEcomPage, nav, absolutePath, location]);
+    }, []);
 }

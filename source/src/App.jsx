@@ -82,7 +82,7 @@ const router = createBrowserRouter([
         // index: true,
         element: <MainPage />
     }, */
-    {
+    /* {
         path: `/payer-data-page`,
         children: [
             ...defaultPages,
@@ -91,7 +91,7 @@ const router = createBrowserRouter([
                 element: <PayerDataPage />
             }
         ]
-    },
+    }, */
     {
         path: `/payments/:blowfishId/`, //${c.PAGE_MAIN} //"/",
         children: [
@@ -188,6 +188,7 @@ const App = () => {
                             amount: "10500.00",
                             currency: "AZN",
                             status: "paymentAwaitingStart",
+                            //status: "paymentMethodSelecting",
                             createdAt: 1726153942,
                             method: {
                                 name: "ecom",

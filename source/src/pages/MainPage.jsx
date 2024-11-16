@@ -5,7 +5,7 @@ import Footer from "../widgets/Footer";
 import Wallet from "../assets/images/wallet.png";
 import WalletPayout from "../assets/images/payOut/wallet.png";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
 import { Outlet } from "react-router-dom";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
