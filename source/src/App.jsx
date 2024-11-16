@@ -24,6 +24,7 @@ import PayOutPage from "./pages/PayOutPage.jsx";
 
 import axios from "axios";
 import PayPageNew from "./pages/PayPageNew.jsx";
+import { ToastContainer } from "react-toastify";
 
 const defaultPages = [
     {
@@ -277,6 +278,7 @@ const App = () => {
             ) : (
                 <RouterProvider router={router} />
             )}
+            <ToastContainer />
         </>
     );
 };

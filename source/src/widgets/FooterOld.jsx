@@ -145,4 +145,4 @@ const FooterOld = ({
     );
 };
 
-export default Footer;
+export default FooterOld;

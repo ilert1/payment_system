@@ -16,7 +16,7 @@ export const useGetCardNumberFormData = () => {
             .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Введите срок действия в формате MM/YY")
             .refine(value => {
                 const [month, year] = value.split("/").map(Number);
-                const currentYear = new Date().getFullYear() % 100; // Последние две цифры текущего года
+                const currentYear = new Date().getFullYear() % 100;
                 const currentMonth = new Date().getMonth() + 1;
                 return year > currentYear || (year === currentYear && month >= currentMonth);
             }, "Срок действия должен быть в будущем"),
@@ -49,8 +49,8 @@ export const useGetCardNumberFormData = () => {
 
     const handleCvvInputChange = e => {
         clearErrors("cvv");
-        let value = e.target.value.replace(/\D/g, ""); // Удаляем все нецифровые символы
-        setCvv(value.slice(0, 3)); // Ограничиваем длину до 3 символов
+        let value = e.target.value.replace(/\D/g, "");
+        setCvv(value.slice(0, 3));
     };
 
     const handleExpiryInputChange = e => {
@@ -65,11 +65,10 @@ export const useGetCardNumberFormData = () => {
             value = `${String(month).padStart(2, "0")}/${value.slice(2, 4)}`;
         }
 
-        setExpiryDate(value.slice(0, 5)); // Ограничиваем длину до 5 символов (MM/YY)
+        setExpiryDate(value.slice(0, 5));
     };
 
     const handleExpiryKeyDown = e => {
-        // Предотвращаем удаление слэша
         if (e.key === "Backspace" && e.target.selectionStart === 3) {
             e.preventDefault();
         }
