@@ -105,7 +105,9 @@
     "PayerData": {
         "enter4": "Son 4 rəqəmi daxil edin",
         "yourPhone": "telefonunuzun",
-        "yourCard": "kartınızın"
+        "yourCard": "kartınızın",
+        "cardNumber": "Kart Nömrəsi",
+        "expirationDate": "Etibarlılıq Müddəti"
     },
     "PayeeData": {
         "waitConfirmation": "Təminatçı köçürmənizi yoxlayır",

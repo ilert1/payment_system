@@ -105,7 +105,9 @@
     "PayerData": {
         "enter4": "Акыркы 4 санды киргизиңиз",
         "yourPhone": "телефонуңуздун",
-        "yourCard": "картанын"
+        "yourCard": "картанын",
+        "cardNumber": "Карта Номери",
+        "expirationDate": "Мөөнөтү Бүткөн Күні"
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер сиздин которууну текшерүүдө",

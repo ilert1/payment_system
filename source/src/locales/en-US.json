@@ -105,7 +105,9 @@
     "PayerData": {
         "enter4": "Enter the last 4 digits",
         "yourPhone": "of your phone",
-        "yourCard": "of your card"
+        "yourCard": "of your card",
+        "cardNumber": "Card Number",
+        "expirationDate": "Expiration Date"
     },
     "PayeeData": {
         "waitConfirmation": "The provider is checking your transfer",

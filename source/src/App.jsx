@@ -82,6 +82,16 @@ const router = createBrowserRouter([
         element: <MainPage />
     }, */
     {
+        path: `/payer-data-page`,
+        children: [
+            ...defaultPages,
+            {
+                index: true,
+                element: <PayerDataPage />
+            }
+        ]
+    },
+    {
         path: `/payments/:blowfishId/`, //${c.PAGE_MAIN} //"/",
         children: [
             ...defaultPages,

@@ -104,7 +104,9 @@
     "PayerData": {
         "enter4": "Oxirgi 4 raqamni kiriting",
         "yourPhone": "telefoningizning",
-        "yourCard": "karta raqamingizni"
+        "yourCard": "karta raqamingizni",
+        "cardNumber": "Karta Raqami",
+        "expirationDate": "Amal Qilish Muddati"
     },
     "PayeeData": {
         "waitConfirmation": "Provayder sizning o'tkazmangizni tekshiryapti",

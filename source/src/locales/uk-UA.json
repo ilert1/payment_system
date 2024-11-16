@@ -105,7 +105,9 @@
     "PayerData": {
         "enter4": "Введіть останні 4 цифри",
         "yourPhone": "вашого телефону",
-        "yourCard": "вашої картки"
+        "yourCard": "вашої картки",
+        "cardNumber": "Номер Карти",
+        "expirationDate": "Термін Дії"
     },
     "PayeeData": {
         "waitConfirmation": "Постачальник перевіряє ваш переказ",
