@@ -2601,7 +2601,12 @@ footer > .top:not(.big-footer-container) {
 .cardNumberForm {
   background-color: #f5f5f5;
   width: 100%;
-  padding: 38px 26px;
+  margin: 25px;
+  margin-top: 0;
+  border-radius: 7.22px;
+}
+.cardNumberForm form {
+  padding: 38px 26px 38px 26px;
 }
 .cardNumberForm__wrapper {
   display: flex;
@@ -2611,7 +2616,18 @@ footer > .top:not(.big-footer-container) {
 .cardNumberForm__bottom {
   display: flex;
   gap: 34px;
-  width: 66.67%;
+  width: 66.7%;
+}
+@media (max-width: 540px) {
+  .cardNumberForm__bottom {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+@media (max-width: 705px) {
+  .cardNumberForm__bottom {
+    width: 100%;
+  }
 }
 .cardNumberForm__item {
   width: 100%;
@@ -2625,7 +2641,7 @@ footer > .top:not(.big-footer-container) {
   font-size: 20px;
   line-height: 133.5%;
   color: #010f18;
-  opacity: 0.5;
+  opacity: 50%;
 }
 .cardNumberForm__input {
   width: 100%;
@@ -2633,9 +2649,34 @@ footer > .top:not(.big-footer-container) {
   background: #ffffff;
   border-radius: 5px;
   border: none;
+  padding: 14px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26.7px;
+  letter-spacing: 0.15em;
+  box-sizing: border-box;
+}
+.cardNumberForm__input::placeholder {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 26.7px;
+  opacity: 20%;
+  color: rgb(1, 15, 24);
 }
 .cardNumberForm__input-focus {
   border: 1px solid #6fc0f6;
+}
+.cardNumberForm .error-message {
+  font-size: 12px;
+  color: rgb(177, 14, 14);
+}
+
+.cardPage {
+  justify-content: flex-start;
+  margin-top: 30px;
+}
+.cardPage h1 {
+  max-width: 350px;
 }
 
 /*# sourceMappingURL=styles.css.map */

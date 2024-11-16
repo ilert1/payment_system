@@ -10,6 +10,7 @@ import { CardNumberLast4 } from "../widgets/CardNumberLast4";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { CardNumberForm } from "../widgets/CardNumberForm.jsx";
+import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
 
 const PayerDataPage = () => {
     const {
@@ -154,15 +155,49 @@ const PayerDataPage = () => {
         }
     };
 
+    const {
+        cardNumber,
+        expiryDate,
+        cvv,
+        errors,
+        register,
+        setCardNumber,
+        setExpiryDate,
+        onSubmit,
+        handleCardNumberInputChange,
+        handleExpiryInputChange,
+        handleExpiryKeyDown,
+        handleCvvInputChange
+    } = useGetCardNumberFormData();
+
+    const handleSubmit = () => {
+        console.log(errors);
+        console.log(1);
+    };
+
     return (
         <div className="container">
             <Header />
 
-            <div className="content">
+            <div className="content cardPage">
                 {currentPaymentMethod?.payment_type !== "ecom" ? (
                     <>
-                        <h1 className="">{t("enterYourCard", ns)}</h1>
-                        <CardNumberForm />
+                        <h1 className="grow">{t("enterYourCard", ns)}</h1>
+                        <CardNumberForm
+                            register={register}
+                            // handleSubmit={handleSubmit}
+                            errors={errors}
+                            cardNumber={cardNumber}
+                            setCardNumber={setCardNumber}
+                            expiryDate={expiryDate}
+                            setExpiryDate={setExpiryDate}
+                            onSubmit={onSubmit}
+                            handleCardNumberInputChange={handleCardNumberInputChange}
+                            handleExpiryInputChange={handleExpiryInputChange}
+                            handleExpiryKeyDown={handleExpiryKeyDown}
+                            handleCvvInputChange={handleCvvInputChange}
+                            cvv={cvv}
+                        />
                     </>
                 ) : (
                     <>
@@ -194,11 +229,14 @@ const PayerDataPage = () => {
 
             <Footer
                 buttonCaption={t("approve", ns)}
-                buttonCallback={buttonCallback}
+                buttonCallback={currentPaymentMethod?.payment_type !== "ecom" ? handleSubmit : buttonCallback}
                 nextPage={c.PAGE_PAYEE_SEARCH}
-                // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
                 nextEnabled={
-                    !isFetching_confirmPayIN && (!need_startPayIN || (need_startPayIN && data_startPayIN)) && isComplete
+                    currentPaymentMethod?.payment_type !== "ecom"
+                        ? !Object.keys(errors).length && cardNumber.length && cvv.length && expiryDate.length
+                        : !isFetching_confirmPayIN &&
+                          (!need_startPayIN || (need_startPayIN && data_startPayIN)) &&
+                          isComplete
                         ? true
                         : false
                 }
