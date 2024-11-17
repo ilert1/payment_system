@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import AppContext from "../AppContext";
 
-export const cardNumberForm = props => {
+export const CardNumberForm = props => {
     const { t } = useContext(AppContext);
     const {
         register,
