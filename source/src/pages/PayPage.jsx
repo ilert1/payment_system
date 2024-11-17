@@ -15,7 +15,8 @@ import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayPage = () => {
-    const { BFData, currentPaymentInstrument, traderData, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, currentPaymentInstrument, fingerprintConfig, traderData, t, getCurrencySymbol } =
+        useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -25,11 +26,30 @@ const PayPage = () => {
 
     usePaymentPage({ absolutePath: false });
 
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
+    const buttonCallback = async () => {
+        const { data } = await axios
+            .post(
+                `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                {
+                    event: "paymentPayerConfirm"
+                },
+                fingerprintConfig
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        console.log(data);
+    };
+
     return (
         <div className="container">
             <Header />
             <div className="content">
-                <PleasePay amount={BFData?.amount} currency={getCurrencySymbol(BFData?.currency)} />
+                <PleasePay amount={BFData?.[dest]?.amount} currency={getCurrencySymbol(BFData?.[dest]?.currency)} />
 
                 <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
@@ -49,12 +69,12 @@ const PayPage = () => {
                     <ul>
                         <li>
                             <span>1. </span>
-                            {t("steps.open", ns)} "{currentPaymentInstrument?.bank_name}"
+                            {t("steps.open", ns)} &quot;{currentPaymentInstrument?.bank_name}&quot;
                         </li>
                         <li>
                             <span>2. </span>
-                            {t("steps.transfer", ns)} {BFData?.amount}&nbsp;
-                            {getCurrencySymbol(BFData?.currency)} {t("steps.wholeAmount", ns)}
+                            {t("steps.transfer", ns)} {BFData?.[dest]?.amount}&nbsp;
+                            {getCurrencySymbol(BFData?.[dest]?.currency)} {t("steps.wholeAmount", ns)}
                         </li>
                         <li>
                             <span>3. </span>
@@ -66,7 +86,7 @@ const PayPage = () => {
 
             <Footer
                 buttonCaption={t("approveTransfer", ns)}
-                // buttonCallback={buttonCallback}
+                buttonCallback={buttonCallback}
                 nextPage={`../${c.PAGE_PAYEE_DATA}`}
                 // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
                 approve={true}
