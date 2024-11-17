@@ -4,11 +4,6 @@ import Footer from "../widgets/Footer";
 
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
-import { PleasePay } from "../widgets/PleasePay";
-import { DeadlineInfo } from "../widgets/DeadlineInfo";
-import { PayeeCard } from "../widgets/PayeeCard";
-import { PayeeInfo } from "../widgets/PayeeInfo";
-import AlertTriangle from "../assets/images/alert-triangle.svg";
 
 import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
@@ -16,7 +11,7 @@ import PayHeader from "../widgets/PayHeader.jsx";
 import PayeeData from "../widgets/PayeeData.jsx";
 
 const PayPage = () => {
-    const { BFData, currentPaymentInstrument, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };

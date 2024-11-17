@@ -20,10 +20,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import AppContext from "./AppContext.jsx";
 import Loader from "./ui/Loader.jsx";
-import PayOutPage from "./pages/PayOutPage.jsx";
-
 import axios from "axios";
-import PayPageNew from "./pages/PayPageNew.jsx";
 import { ToastContainer } from "react-toastify";
 
 const defaultPages = [
