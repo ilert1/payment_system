@@ -16,13 +16,15 @@ const MainPage = () => {
     const { fingerprintConfig } = useContext(AppContext);
     const payOutMode = Boolean(contextData?.BFData?.payout);
     // const ecomMode = contextData?.BFData?.payment?.method?.name === "ecom";
-    // const dest = contextData?.BFData?.payment ? contextData?.BFData?.payment : contextData?.BFData?.payout;
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
 
     const buttonCallback = async () => {
         const { data } = await axios
             .post(
-                `
-                ${import.meta.env.VITE_API_URL}/${dest}/${contextData?.id}`,
+                `${baseApiURL}/${dest}/${
+                    payOutMode ? contextData?.BFData?.payout?.id : contextData?.BFData?.payment?.id
+                }/events`,
                 {
                     event: "paymentPayerStart"
                 },
