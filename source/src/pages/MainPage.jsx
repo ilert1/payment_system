@@ -9,10 +9,30 @@ import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
 import { Outlet } from "react-router-dom";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import axios from "axios";
 
 const MainPage = () => {
     const contextData = useContext(AppContext);
-    const payOutMode = contextData?.BFData?.mode === "payOut";
+    const { fingerprintConfig } = useContext(AppContext);
+    const payOutMode = Boolean(contextData?.BFData?.payout);
+    // const ecomMode = contextData?.BFData?.payment?.method?.name === "ecom";
+    // const dest = contextData?.BFData?.payment ? contextData?.BFData?.payment : contextData?.BFData?.payout;
+
+    const buttonCallback = async () => {
+        const { data } = await axios
+            .post(
+                `
+                ${import.meta.env.VITE_API_URL}/${dest}/${contextData?.id}`,
+                {
+                    event: "paymentPayerStart"
+                },
+                fingerprintConfig
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        console.log(data);
+    };
 
     usePaymentPage({ absolutePath: true });
 
@@ -50,7 +70,11 @@ const MainPage = () => {
                 )}
             </div>
 
-            <Footer buttonCaption={t("continue", ns)} nextPage={c.PAGE_PAYMENT_METHODS} />
+            <Footer
+                buttonCaption={t("continue", ns)}
+                nextPage={c.PAGE_PAYMENT_METHODS}
+                buttonCallback={buttonCallback}
+            />
 
             <Outlet />
         </div>

@@ -126,33 +126,34 @@ export const AppProvider = ({ children }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
-        console.log(BFData?.status);
-        
-        if (BFData?.method?.name === "ecom") {
-            switch (BFData?.status) {
-                case "paymentAwaitingStart":
-                    return c.PAGE_MAIN;
-                case "paymentMethodSelecting":
-                    return c.PAGE_PAYMENT_METHODS;
-                case "payoutBankSelecting":
-                    return c.PAGE_PAYMENT_INSTRUMENT;
-                case "paymentPayerDataEntrу":
-                    return c.PAGE_PAYER_DATA;
-                case "paymentPayeeSearching":
-                    return c.PAGE_PAYEE_SEARCH;
-                case "paymentAwaitingTransfer":
-                    return c.PAGE_PAY;
-                case "paymentConfirmedByPayer":
-                    return c.PAGE_PAYEE_DATA;
-                case "paymentExecuted":
-                    return c.PAGE_SUCCESS;
-                default:
-                    return c.PAGE_PAYOUT_NOT_FOUND;
-            }
-        } else {
-            return "";
+        const data = BFData?.payment ? BFData?.payment : BFData?.payout;
+        console.log(data?.status);
+
+        // if (BFData?.method?.name === "ecom") {
+        switch (data?.status) {
+            case "paymentAwaitingStart":
+                return c.PAGE_MAIN;
+            case "paymentMethodSelecting":
+                return c.PAGE_PAYMENT_METHODS;
+            case "payoutBankSelecting":
+                return c.PAGE_PAYMENT_INSTRUMENT;
+            case "paymentPayerDataEntrу":
+                return c.PAGE_PAYER_DATA;
+            case "paymentPayeeSearching":
+                return c.PAGE_PAYEE_SEARCH;
+            case "paymentAwaitingTransfer":
+                return c.PAGE_PAY;
+            case "paymentConfirmedByPayer":
+                return c.PAGE_PAYEE_DATA;
+            case "paymentExecuted":
+                return c.PAGE_SUCCESS;
+            default:
+                return c.PAGE_PAYOUT_NOT_FOUND;
         }
-    }, [BFData?.method?.name, BFData?.status]);
+        // } else {
+        return "";
+        // }
+    }, [BFData?.payment?.status, BFData?.payout?.status]);
 
     return (
         <QueryClientProvider client={queryClient}>

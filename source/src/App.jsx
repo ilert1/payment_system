@@ -110,7 +110,7 @@ const router = createBrowserRouter([
             {
                 // path: c.PAGE_OUT_PAY, //"/pay-out-page",
                 index: true,
-                element: <PayOutPage />
+                element: <MainPage />
             }
         ]
     },
@@ -175,14 +175,14 @@ const App = () => {
             if (blowfishId) {
                 let dest = payoutMode ? "payouts" : "payments";
                 try {
-                    // const { data } = await axios
-                    //     .get(`${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`, fingerprintConfig)
-                    //     .catch(e => {
-                    //         console.log(e);
-                    //     });
-                    // console.log(data);
+                    const { data } = await axios
+                        .get(`${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`, fingerprintConfig)
+                        .catch(e => {
+                            console.log(e);
+                        });
+                    console.log(data);
 
-                    const data = {
+                    /* const data = {
                         success: true,
                         payment: {
                             id: "449bc546-e589-4aca-83fd-775099333842",
@@ -222,12 +222,12 @@ const App = () => {
                                 }
                             }
                         }
-                    };
+                    }; */
 
                     if (data) {
                         if (data?.success) {
                             //данные получены успешно
-                            setBFData(data?.data || data?.payment);
+                            setBFData(data);
                         } else {
                             //транзакция не подлежит оплате
                             window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
