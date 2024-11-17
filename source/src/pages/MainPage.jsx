@@ -22,7 +22,7 @@ const MainPage = () => {
     const buttonCallback = async () => {
         const { data } = await axios
             .post(
-                `${baseApiURL}/${dest}/${
+                `${baseApiURL}/${dest}s/${
                     payOutMode ? contextData?.BFData?.payout?.id : contextData?.BFData?.payment?.id
                 }/events`,
                 {

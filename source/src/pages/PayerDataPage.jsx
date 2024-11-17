@@ -14,6 +14,7 @@ import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js
 import FooterOld from "../widgets/FooterOld.jsx";
 
 import { toast } from "react-toastify";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
