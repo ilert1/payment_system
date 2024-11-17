@@ -65,24 +65,11 @@ const PayPage = () => {
         <div className="container">
             <Header />
             <div className="content">
-                {/* <PleasePay amount={BFData?.[dest]?.amount} currency={getCurrencySymbol(BFData?.[dest]?.currency)} /> */}
                 <PayHeader
                     amount={BFData?.[dest]?.amount}
                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                     bankName={trader?.bank_name}
                 />
-
-                {/* <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} /> */}
-
-                {/* <PayeeCard
-                    payeeCardNumber={trader?.card_number ? trader?.card_number : trader?.phone}
-                    isPhone={!!trader?.phone}
-                />
-
-                <PayeeInfo
-                    PayeeName={trader?.card_holder ? trader?.card_holder : trader?.bank_name}
-                    showPayeeData={trader?.card_number}
-                /> */}
 
                 <PayeeData
                     requisite={requisite}
@@ -90,29 +77,6 @@ const PayPage = () => {
                     bankName={BFData?.[dest]?.method?.payee?.data?.bank_name}
                     isPhone={!!trader?.phone}
                 />
-
-                {/* <div className="payment-comment-alert">
-                    <img src={AlertTriangle} alt="" />
-                    <p>{t("withoutComments", ns)}</p>
-                </div> */}
-
-                {/* <div className="instructions">
-                    <ul>
-                        <li>
-                            <span>1. </span>
-                            {t("steps_new.one", ns)} &quot;{currentPaymentInstrument?.bank_name}&quot;
-                        </li>
-                        <li>
-                            <span>2. </span>
-                            {t("steps_new.two", ns)} {getCurrencySymbol(BFData?.[dest]?.currency)}{" "}
-                            {t("steps.wholeAmount", ns)}
-                        </li>
-                        <li>
-                            <span>3. </span>
-                            {t("steps.approveTransfer", ns)}
-                        </li>
-                    </ul>
-                </div> */}
 
                 <div className="instructions_new">
                     <ul>
@@ -122,8 +86,6 @@ const PayPage = () => {
                         </li>
                         <li>
                             <span>2. </span>
-                            {/* {t("steps.transfer", ns)} {stored?.amount}&nbsp;
-                                        {getCurrencySymbol(stored?.currency)} {t("steps.wholeAmount", ns)} */}
                             {t("steps_new.two", ns)} <span>{trader?.bank_name}</span> {t("steps_new.onAmount", ns)}{" "}
                             <span>
                                 {BFData?.[dest]?.amount}&nbsp;

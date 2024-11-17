@@ -15,20 +15,10 @@ const SuccessPage = () => {
     //translation
     const ns = { ns: "Success" };
 
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
     usePaymentPage({ absolutePath: false });
-
-    // const location = useLocation();
-    // const [rate, setRate] = useState(0);
-
-    /* <Rating rate={rate} setRate={setRate} />
-
-    <div className="feedback-container">
-        <p>Напишите отзыв, если есть чем поделиться</p>
-        <textarea id="feedback-text" placeholder="Отзыв"></textarea>
-    </div>
-
-
-    */
     resetStorage();
 
     return (
@@ -38,11 +28,11 @@ const SuccessPage = () => {
             <div className="content">
                 <div className="header-container grow wide center">
                     <h1>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
-                    {BFData.status && BFData?.status === "payoutPartiallyExecuted" ? (
+                    {BFData?.[dest]?.status && BFData?.[dest].status === "payoutPartiallyExecuted" ? (
                         <>
                             <p className="amount">
-                                + {BFData?.lots.reduce((accum, curVal) => accum + Number(curVal.amount), 0)}{" "}
-                                {getCurrencySymbol(BFData?.currency)}
+                                + {BFData?.[dest]?.lots.reduce((accum, curVal) => accum + Number(curVal.amount), 0)}{" "}
+                                {getCurrencySymbol(BFData?.[dest]?.currency)}
                             </p>
                             <div className="instructions small">
                                 <ul>
@@ -54,13 +44,13 @@ const SuccessPage = () => {
                         </>
                     ) : (
                         <p className="amount">
-                            + {BFData?.amount} {getCurrencySymbol(BFData?.currency)}
+                            + {BFData?.[dest]?.amount} {getCurrencySymbol(BFData?.[dest]?.currency)}
                         </p>
                     )}
                 </div>
             </div>
 
-            {BFData?.success_url && <Footer prevPage={BFData?.success_url} absolutePrev={true} />}
+            {BFData?.[dest]?.success_url && <Footer prevPage={BFData?.[dest]?.success_url} absolutePrev={true} />}
         </div>
     );
 };

@@ -10,10 +10,7 @@ import BankIcon from "../assets/images/bank-icon.svg"; //Sberbank_Logo_2020.svg"
 
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
-import PaymentSubmitModal from "./PaymentSubmitModal";
-import { useQuery } from "@tanstack/react-query";
 import ym from "react-yandex-metrika";
-import axios from "axios";
 import PayoutSubmitModal from "./PayoutSubmitModal";
 
 const Footer = ({
@@ -30,17 +27,11 @@ const Footer = ({
 }) => {
     const navigate = useContext(AppContext).navigate();
     // const { traderData, currentPaymentMethod, t, BFData } = useContext(AppContext);
-    const {
-        traderData,
-        BFData,
-        // currentPaymentMethod,
-        fingerprintReady,
-        fingerprintConfig,
-        t,
-        navigate: nav
-    } = useContext(AppContext);
+    const { BFData, t } = useContext(AppContext);
 
-    const [trader, setTrader] = useState(null);
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const trader = BFData?.[dest]?.method?.payee?.data;
     const [requisite, setRequisite] = useState(null);
 
     const returnUrl = BFData?.return_url;
@@ -49,7 +40,7 @@ const Footer = ({
 
     const [dialogShow, setDialogShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [enabled_cancel, setEnabled_cancel] = useState(false);
+    // const [enabled_cancel, setEnabled_cancel] = useState(false);
 
     const cancelRequestIgnore = false;
 
@@ -59,22 +50,14 @@ const Footer = ({
     const mainButton = useRef();
 
     useEffect(() => {
-        try {
-            setTrader(JSON.parse(traderData));
-        } catch (error) {
-            /* empty */
-        }
-    }, [traderData]);
-
-    useEffect(() => {
         if (focused) {
             mainButton.current.focus();
         }
     }, [focused]);
 
     useEffect(() => {
-        if (trader?.card) {
-            setRequisite(trader.card);
+        if (trader?.card_number) {
+            setRequisite(trader.card_number);
         }
         if (trader?.phone) {
             setRequisite(trader.phone);
@@ -85,6 +68,7 @@ const Footer = ({
         if (trader?.iban) {
             setRequisite(trader.iban);
         }
+        console.log(trader);
     }, [trader]);
 
     let buttonIcon = ArrowRight;
@@ -108,7 +92,7 @@ const Footer = ({
                 }
             } else {
                 setIsLoading(true);
-                setEnabled_cancel(true);
+                // setEnabled_cancel(true);
             }
         },
         secondaryBtnText: t("cancelDialog.continue", ns),
@@ -117,63 +101,61 @@ const Footer = ({
         }
     };
 
-    const { data: data_cancel, isFetching: isFetching_cancel } = useQuery({
-        queryKey: ["cancel"],
-        enabled: enabled_cancel && fingerprintReady,
-        refetchOnWindowFocus: false,
-        queryFn: async () => {
-            console.log("cancel");
-            let payload = BFData;
-            const { trn, wf } = payload;
-            payload = {
-                message: {
-                    payment: {
-                        trn: trn
-                    }
-                }
-            };
-            console.log("cancel payload:");
-            console.log(payload);
+    // const { data: data_cancel, isFetching: isFetching_cancel } = useQuery({
+    //     queryKey: ["cancel"],
+    //     enabled: enabled_cancel && fingerprintReady,
+    //     refetchOnWindowFocus: false,
+    //     queryFn: async () => {
+    //         console.log("cancel");
+    //         let payload = BFData;
+    //         const { trn, wf } = payload;
+    //         payload = {
+    //             message: {
+    //                 payment: {
+    //                     trn: trn
+    //                 }
+    //             }
+    //         };
+    //         console.log("cancel payload:");
+    //         console.log(payload);
 
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/cancel`, payload, fingerprintConfig);
-            console.log("cancel response:");
-            console.log(data);
+    //         const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/cancel`, payload, fingerprintConfig);
+    //         console.log("cancel response:");
+    //         console.log(data);
 
-            if (data?.success) {
-                if (returnUrl) {
-                    window.location.replace = returnUrl;
-                } else {
-                    navigate(c.PAGE_CANCEL, { replace: true });
-                }
-            } else {
-                if (BFData?.fail_url) {
-                    document.location.replace(BFData.fail_url);
-                } else {
-                    nav(c.PAGE_GENERAL_ERROR, { replace: true });
-                }
-            }
-            setIsLoading(false);
+    //         if (data?.success) {
+    //             if (returnUrl) {
+    //                 window.location.replace = returnUrl;
+    //             } else {
+    //                 navigate(c.PAGE_CANCEL, { replace: true });
+    //             }
+    //         } else {
+    //             if (BFData?.fail_url) {
+    //                 document.location.replace(BFData.fail_url);
+    //             } else {
+    //                 nav(c.PAGE_GENERAL_ERROR, { replace: true });
+    //             }
+    //         }
+    //         setIsLoading(false);
 
-            return data;
-        }
-    });
+    //         return data;
+    //     }
+    // });
 
     return (
         <>
             <footer>
                 <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
-                    {payeeCard ? (
+                    {payeeCard && (
                         <div className="payee-data">
                             <BankCardInfo BankIcon={BankIcon} cardNumber={requisite} />
-                            {trader?.cardholder && (
+                            {trader?.card_holder && (
                                 <PayeeInfo
-                                    PayeeName={trader?.cardholder ? trader?.cardholder : ""}
-                                    showPayeeData={trader?.card || trader?.iban || trader?.account_number}
+                                    PayeeName={trader?.card_holder}
+                                    showPayeeData={trader?.card_number || trader?.iban || trader?.account_number}
                                 />
                             )}
                         </div>
-                    ) : (
-                        ""
                     )}
                     <div className="buttons-container">
                         {prevPage && (
@@ -216,31 +198,17 @@ const Footer = ({
                             {/* <img src={CancelIcon} alt="" /> */}
                         </button>
                     </div>
-
-                    {payeeCard ? (
-                        <div className="payee-data">
-                            <BankCardInfo
-                                BankIcon={BankIcon}
-                                cardNumber={trader?.card ? trader?.card : trader?.phone}
-                            />
-                            <PayoutSubmitModal
-                                show={dialogShow}
-                                setShow={setDialogShow}
-                                data={submitModalData}
-                                isLoading={isLoading}
-                            />
-                        </div>
-                    ) : (
-                        ""
-                    )}
                 </div>
             </footer>
-            <PaymentSubmitModal
-                show={dialogShow}
-                setShow={setDialogShow}
-                data={submitModalData}
-                isLoading={isLoading}
-            />
+
+            {payOutMode && (
+                <PayoutSubmitModal
+                    show={dialogShow}
+                    setShow={setDialogShow}
+                    data={submitModalData}
+                    isLoading={isLoading}
+                />
+            )}
         </>
     );
 };
