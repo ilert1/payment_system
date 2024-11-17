@@ -35,13 +35,7 @@ const PayerDataPage = () => {
 
     const nav = navigate();
 
-    useEffect(() => {
-        const paymentPage = paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav("../" + paymentPage, { replace: true });
-        }
-    }, [nav, paymentEcomPage]);
+    usePaymentPage({ absolutePath: false });
 
     const [isComplete, setIsComplete] = useState(false);
     const [payoutMode, setPayoutMode] = useState(false);

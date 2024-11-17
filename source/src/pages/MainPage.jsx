@@ -7,21 +7,14 @@ import WalletPayout from "../assets/images/payOut/wallet.png";
 
 import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const MainPage = () => {
     const contextData = useContext(AppContext);
     const payOutMode = contextData?.BFData?.mode === "payOut";
 
-    const nav = contextData.navigate();
-
-    useEffect(() => {
-        const paymentPage = contextData.paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav(paymentPage, { replace: true });
-        }
-    }, [contextData, nav]);
+    usePaymentPage({ absolutePath: true });
 
     //translation
     let { t } = contextData;

@@ -2,7 +2,7 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import AppContext from "../AppContext";
 import { PleasePay } from "../widgets/PleasePay";
 import { DeadlineInfo } from "../widgets/DeadlineInfo";
@@ -12,10 +12,10 @@ import AlertTriangle from "../assets/images/alert-triangle.svg";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayPage = () => {
-    const { navigate, BFData, currentPaymentInstrument, traderData, t, getCurrencySymbol, paymentEcomPage } =
-        useContext(AppContext);
+    const { BFData, currentPaymentInstrument, traderData, t, getCurrencySymbol } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -23,15 +23,7 @@ const PayPage = () => {
     // const currPayMethod = JSON.parse(currentPaymentInstrument);
     const trader = JSON.parse(traderData);
 
-    const nav = navigate();
-
-    useEffect(() => {
-        const paymentPage = paymentEcomPage();
-
-        if (paymentPage && !window.location.pathname.includes(paymentPage)) {
-            nav("../" + paymentPage, { replace: true });
-        }
-    }, [nav, paymentEcomPage]);
+    usePaymentPage({ absolutePath: false });
 
     return (
         <div className="container">
