@@ -1,5 +1,5 @@
 import * as c from "./assets/constants.js";
-import { createContext, useState, useEffect, useMemo, useCallback } from "react";
+import { createContext, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -53,13 +53,8 @@ export const AppProvider = ({ children }) => {
     const pathname = new URL(window.location.href).pathname;
     const payoutMode = pathname.split("/")[1] === "payouts";
 
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
-
     const queryClient = new QueryClient();
     const { t } = useTranslation();
-
-    // const [currentStatus,  = useState
 
     const [currentPaymentMethod, setCurrentPaymentMethod] = useState(() => {
         return JSON.parse(localStorage.getItem("CurrentPaymentMethod")) || null;
