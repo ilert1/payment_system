@@ -2,7 +2,7 @@
 import { useContext } from "react";
 import AppContext from "../AppContext";
 
-export const CardNumberForm = props => {
+export const cardNumberForm = props => {
     const { t } = useContext(AppContext);
     const {
         register,
@@ -20,34 +20,34 @@ export const CardNumberForm = props => {
     const ns = { ns: ["PayerData"] };
 
     return (
-        <div className="cardNumberForm">
+        <div className="card-number-form">
             <form>
-                <div className="cardNumberForm__wrapper">
-                    <div className="cardNumberForm__item">
-                        <label className="cardNumberForm__label" htmlFor="cardNumber">
+                <div className="card-number-form__wrapper">
+                    <div className="card-number-form__item">
+                        <label className="card-number-form__label" htmlFor="cardNumber">
                             {t("cardNumber", ns)}:
                         </label>
                         <input
                             {...register("cardNumber")}
                             type="text"
                             id="cardNumber"
-                            className="cardNumberForm__input"
+                            className="card-number-form__input"
                             value={cardNumber}
                             onChange={handleCardNumberInputChange}
                             placeholder={`${t("cardNumber", ns)}:`}
                         />
                         {errors.cardNumber && <p className="error-message">{errors.cardNumber.message}</p>}
                     </div>
-                    <div className="cardNumberForm__bottom">
-                        <div className="cardNumberForm__item">
-                            <label className="cardNumberForm__label" htmlFor="expiryDate">
+                    <div className="card-number-form__bottom">
+                        <div className="card-number-form__item">
+                            <label className="card-number-form__label" htmlFor="expiryDate">
                                 {t("expirationDate", ns)}:
                             </label>
                             <input
                                 {...register("expiryDate")}
                                 type="text"
                                 id="expiryDate"
-                                className="cardNumberForm__input"
+                                className="card-number-form__input"
                                 value={expiryDate}
                                 onChange={handleExpiryInputChange}
                                 onKeyDown={handleExpiryKeyDown}
@@ -56,8 +56,8 @@ export const CardNumberForm = props => {
                             />
                             {errors.expiryDate && <p className="error-message">{errors.expiryDate.message}</p>}
                         </div>
-                        <div className="cardNumberForm__item">
-                            <label className="cardNumberForm__label" htmlFor="cvv">
+                        <div className="card-number-form__item">
+                            <label className="card-number-form__label" htmlFor="cvv">
                                 CVV:
                             </label>
                             <input
@@ -66,7 +66,7 @@ export const CardNumberForm = props => {
                                 value={cvv}
                                 type="text"
                                 id="cvv"
-                                className="cardNumberForm__input"
+                                className="card-number-form__input"
                                 placeholder="000"
                                 maxLength={3}
                             />
