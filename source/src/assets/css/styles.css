@@ -3050,6 +3050,11 @@ footer > .top:not(.big-footer-container) {
   color: #010f18;
   opacity: 50%;
 }
+@media (max-width: 520px) {
+  .cardNumberForm__label {
+    font-size: 14px;
+  }
+}
 .cardNumberForm__input {
   width: 100%;
   padding: 0.8rem 0;
@@ -3063,12 +3068,22 @@ footer > .top:not(.big-footer-container) {
   letter-spacing: 0.15em;
   box-sizing: border-box;
 }
+@media (max-width: 520px) {
+  .cardNumberForm__input {
+    font-size: 14px;
+  }
+}
 .cardNumberForm__input::placeholder {
   font-size: 20px;
   font-weight: 500;
   line-height: 26.7px;
   opacity: 20%;
   color: rgb(1, 15, 24);
+}
+@media (max-width: 520px) {
+  .cardNumberForm__input::placeholder {
+    font-size: 14px;
+  }
 }
 .cardNumberForm__input-focus {
   border: 1px solid #6fc0f6;

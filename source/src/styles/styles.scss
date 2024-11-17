@@ -3543,6 +3543,10 @@ footer {
         line-height: 133.5%;
         color: #010f18;
         opacity: 50%;
+
+        @media (max-width: 520px) {
+            font-size: 14px;
+        }
     }
 
     &__input {
@@ -3558,12 +3562,20 @@ footer {
         letter-spacing: 0.15em;
         box-sizing: border-box;
 
+        @media (max-width: 520px) {
+            font-size: 14px;
+        }
+
         &::placeholder {
             font-size: 20px;
             font-weight: 500;
             line-height: 26.7px;
             opacity: 20%;
             color: rgba(1, 15, 24, 1);
+
+            @media (max-width: 520px) {
+                font-size: 14px;
+            }
         }
 
         &-focus {
