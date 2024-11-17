@@ -142,8 +142,10 @@ export const AppProvider = ({ children }) => {
                 return c.PAGE_PAYEE_SEARCH;
             case "paymentAwaitingTransfer":
                 return c.PAGE_PAY;
-            case "paymentConfirmedByPayer":
+            case "paymentAwaitingConfirmationByPayee":
                 return c.PAGE_PAYEE_DATA;
+            // case "paymentConfirmedByPayer":
+            //     return c.PAGE_PAYEE_DATA;
             case "paymentExecuted":
                 return c.PAGE_SUCCESS;
             case "paymentError":
