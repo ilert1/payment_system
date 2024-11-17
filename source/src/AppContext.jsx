@@ -129,7 +129,6 @@ export const AppProvider = ({ children }) => {
         const data = BFData?.payment ? BFData?.payment : BFData?.payout;
         console.log(data?.status);
 
-        // if (BFData?.method?.name === "ecom") {
         switch (data?.status) {
             case "paymentAwaitingStart":
                 return c.PAGE_MAIN;
@@ -147,12 +146,12 @@ export const AppProvider = ({ children }) => {
                 return c.PAGE_PAYEE_DATA;
             case "paymentExecuted":
                 return c.PAGE_SUCCESS;
+            case "paymentError":
+                return c.PAGE_PAYOUT_NOT_FOUND;
             default:
                 return c.PAGE_PAYOUT_NOT_FOUND;
         }
-        // } else {
-        return "";
-        // }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [BFData?.payment?.status, BFData?.payout?.status]);
 
     return (
