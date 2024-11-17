@@ -39,128 +39,19 @@ const PayerDataPage = () => {
     usePaymentPage({ absolutePath: false });
 
     const [isComplete, setIsComplete] = useState(false);
-    const [payoutMode, setPayoutMode] = useState(false);
+    // const [payoutMode, setPayoutMode] = useState(false);
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
     const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [buttonFocused, setButtonFocused] = useState(false);
 
-    const [enabled_startPayIN, setEnabled_startPayIN] = useState(false);
-    const [need_startPayIN, setNeed_startPayIN] = useState(false);
-    const [enabled_confirmPayIN, setEnabled_confirmPayIN] = useState(false);
+    const [nextEnabled, setNextEnabled] = useState(false);
 
     const onComplete = numbers => {
         setIsComplete(true);
         setButtonFocused(true);
         setCardNumberLast4(numbers);
-    };
-
-    useEffect(() => {
-        if (window.location.pathname.includes("/payouts")) {
-            setPayoutMode(true);
-        }
-
-        if (currentPaymentMethod?.bank) {
-            setEnabled_startPayIN(true);
-            setNeed_startPayIN(true);
-        } else {
-            setNeed_startPayIN(false);
-        }
-    }, []);
-
-    const { data: data_startPayIN, isFetching: isFetching_startPayIN } = useQuery({
-        queryKey: ["startPayIN"],
-        enabled: enabled_startPayIN && fingerprintReady,
-        refetchOnWindowFocus: false,
-        queryFn: async () => {
-            console.log("startPayIN");
-            let payload = BFData;
-            const { trn } = payload;
-            payload = {
-                message: {
-                    payment: {
-                        bank: currentPaymentMethod?.bank,
-                        trn: trn,
-                        type: currentPaymentMethod?.payment_type //"card2card",
-                        // wf: wf
-                    }
-                }
-            };
-
-            console.log("startPayIN payload:");
-            console.log(payload);
-
-            // const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/startPayIN`, payload, fingerprintConfig);
-
-            //response mock
-            const data = {
-                success: true
-            };
-
-            console.log("startPayIN response:");
-            console.log(data);
-
-            nav(`../${c.PAGE_PAYER_DATA}`, { replace: true });
-            return data;
-        }
-    });
-
-    const { data: data_confirmPayIN, isFetching: isFetching_confirmPayIN } = useQuery({
-        queryKey: ["confirmPayIN"],
-        enabled: enabled_confirmPayIN && fingerprintReady,
-        refetchOnWindowFocus: false,
-        queryFn: async () => {
-            console.log("confirmPayIN");
-            let payload = BFData;
-            const { trn, wf } = payload;
-            payload = {
-                message: {
-                    payment:
-                        currentPaymentMethod?.payment_type != "sbp"
-                            ? {
-                                  trn: trn,
-                                  customerCardLastDigits: cardNumberLast4
-                              }
-                            : {
-                                  trn: trn,
-                                  customerPhoneLastDigits: cardNumberLast4
-                              }
-                }
-            };
-            console.log("confirmPayIN payload:");
-            console.log(payload);
-
-            /* const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/confirmPayIN`,
-                payload,
-                fingerprintConfig
-            ); */
-
-            //response mock
-            const data = {
-                success: true
-            };
-
-            console.log("confirmPayIN response:");
-            console.log(data);
-
-            if (data?.success) {
-                nav(`../${c.PAGE_PAYEE_SEARCH}`, { replace: true });
-            } else {
-                if (BFData?.fail_url) {
-                    document.location.replace(BFData.fail_url);
-                } else {
-                    nav(`../${c.PAGE_GENERAL_ERROR}`, { replace: true });
-                }
-            }
-            return data;
-        }
-    });
-
-    const buttonCallback = () => {
-        if (payoutMode) {
-            setShowPayoutSubmit(true);
-        } else {
-            setEnabled_confirmPayIN(true);
-        }
     };
 
     const {
@@ -179,14 +70,10 @@ const PayerDataPage = () => {
     } = useGetCardNumberFormData(t, ns);
 
     const handleSubmit = async () => {
-        const payOutMode = Boolean(BFData?.payout);
-        const dest = payOutMode ? "payout" : "payment";
-
-        const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
-        try {
-            const data = await axios.post(url, {
-                event: "paymentPayerDataEntered",
-                payload: {
+        let payload = {};
+        switch (BFData?.method?.name) {
+            case "ecom":
+                payload = {
                     payment: {
                         method: {
                             payer: {
@@ -198,25 +85,81 @@ const PayerDataPage = () => {
                             }
                         }
                     }
-                }
+                };
+                break;
+
+            case "sbp":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    phone: cardNumber
+                                }
+                            }
+                        }
+                    }
+                };
+                break;
+
+            case "card2card":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    card: cardNumber
+                                }
+                            }
+                        }
+                    }
+                };
+                break;
+
+            default:
+                break;
+        }
+
+        const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
+        try {
+            const data = await axios.post(url, {
+                event: "paymentPayerDataEntered",
+                payload: payload
             });
             if (!data.data.success) {
-                const match = data.data.error.match(/code=(\d+)/);
+                console.log(data.data.error);
+                /* const match = data.data.error.match(/code=(\d+)/);
                 const errorCode = match[1];
                 if (errorCode === "404") throw new Error(t("errors.paymentNotFound", { ns: ["PayerData"] }));
-                else throw new Error(t("errors.unknownError", { ns: ["PayerData"] }));
+                else throw new Error(t("errors.unknownError", { ns: ["PayerData"] })); */
             }
         } catch (error) {
             toast.error(error.message, { autoClose: 2000, closeButton: <></> });
         }
     };
 
+    const buttonCallback = () => {
+        if (payOutMode) {
+            setShowPayoutSubmit(true);
+        } else {
+            handleSubmit();
+        }
+    };
+
+    useEffect(() => {
+        BFData?.[dest]?.method?.name === "ecom"
+            ? setNextEnabled(
+                  !Object.keys(errors).length && cardNumber.length === 19 && cvv.length === 3 && expiryDate.length === 5
+              )
+            : setNextEnabled(isComplete);
+    }, [cardNumber, expiryDate, cvv, isComplete, errors]);
+
     return (
         <div className="container">
             <Header />
 
             <div className="content cardPage">
-                {currentPaymentMethod?.payment_type !== "ecom" ? (
+                {BFData?.[dest]?.method?.name === "ecom" ? (
                     <>
                         <h1 className="grow">{t("enterYourCard", ns)}</h1>
                         <CardNumberForm
@@ -238,49 +181,21 @@ const PayerDataPage = () => {
                 ) : (
                     <>
                         <h1 className="grow">{`${t("enter4", ns)} ${
-                            currentPaymentMethod?.payment_type == "sbp" ? t("yourPhone", ns) : t("yourCard", ns)
+                            BFData?.[dest]?.method?.name == "sbp" ? t("yourPhone", ns) : t("yourCard", ns)
                         }`}</h1>
-                        <CardNumberLast4
-                            onComplete={onComplete}
-                            showHidden={currentPaymentMethod?.payment_type != "sbp"}
-                        />
+                        <CardNumberLast4 onComplete={onComplete} showHidden={BFData?.[dest]?.method?.name != "sbp"} />
                     </>
                 )}
             </div>
 
-            {showPayoutSubmit && (
-                <PayoutSubmitModal
-                    data={{
-                        title: "Проверьте реквизиты!",
-                        text: "Если вы не верно указали реквизиты, вы безвозвратно потеряте средства",
-                        cardNumber: "1234 1234 1234 1234",
-                        toggleText: "Реквизиты указаны верно",
-                        primaryBtnText: "Продолжить",
-                        primaryBtnCallback: () => {},
-                        secondaryBtnText: "Исправить реквизиты"
-                    }}
-                    closeModal={() => setShowPayoutSubmit(false)}
-                />
-            )}
-            <FooterOld
+            <Footer
                 buttonCaption={t("approve", ns)}
-                buttonCallback={currentPaymentMethod?.payment_type !== "ecom" ? handleSubmit : buttonCallback}
+                buttonCallback={BFData?.[dest]?.method?.name !== "ecom" ? handleSubmit : buttonCallback}
                 nextPage={c.PAGE_PAYEE_SEARCH}
-                nextEnabled={
-                    currentPaymentMethod?.payment_type !== "ecom"
-                        ? !Object.keys(errors).length &&
-                          cardNumber.length === 19 &&
-                          cvv.length === 3 &&
-                          expiryDate.length === 5
-                        : !isFetching_confirmPayIN &&
-                          (!need_startPayIN || (need_startPayIN && data_startPayIN)) &&
-                          isComplete
-                        ? true
-                        : false
-                }
+                nextEnabled={nextEnabled}
                 approve={true}
                 focused={buttonFocused}
-                prevPage="/"
+                // prevPage="/"
             />
         </div>
     );

@@ -8,17 +8,15 @@ export const useGetCardNumberFormData = (t, ns) => {
         cardNumber: z
             .string()
             .regex(/^\d{4} \d{4} \d{4} \d{4}$/, t("errors.cardValidationError", ns)) // проверяем формат с пробелами
-            .length(19, t("errors.expireDateError", ns)),
+            .length(19, t("errors.cardValidationError", ns)),
 
-        expiryDate: z
-            .string()
-            .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, t("errors.expireDateError", ns))
-            .refine(value => {
+        expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, t("errors.expireDateError", ns)),
+        /* .refine(value => {
                 const [month, year] = value.split("/").map(Number);
                 const currentYear = new Date().getFullYear() % 100;
                 const currentMonth = new Date().getMonth() + 1;
                 return year > currentYear || (year === currentYear && month >= currentMonth);
-            }),
+            }) */
         cvv: z.string().length(3, t("errors.cvvError", ns))
     });
 
