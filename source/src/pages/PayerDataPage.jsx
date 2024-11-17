@@ -1,17 +1,14 @@
 import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import PayoutSubmitModal from "../widgets/PayoutSubmitModal";
 
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { CardNumberLast4 } from "../widgets/CardNumberLast4";
 
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { CardNumberForm } from "../widgets/CardNumberForm.jsx";
 import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
-import FooterOld from "../widgets/FooterOld.jsx";
 
 import { toast } from "react-toastify";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
@@ -19,31 +16,17 @@ import usePaymentPage from "../hooks/usePaymentPage.jsx";
 const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
-    const {
-        navigate,
-        setCardNumberLast4,
-        cardNumberLast4,
-        BFData,
-        currentPaymentMethod,
-        fingerprintConfig,
-        paymentEcomPage,
-        fingerprintReady,
-        t
-    } = useContext(AppContext);
+    const { setCardNumberLast4, BFData, t } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
 
-    const nav = navigate();
-
     usePaymentPage({ absolutePath: false });
 
     const [isComplete, setIsComplete] = useState(false);
-    // const [payoutMode, setPayoutMode] = useState(false);
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
-    const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
     const [buttonFocused, setButtonFocused] = useState(false);
 
     const [nextEnabled, setNextEnabled] = useState(false);
@@ -126,12 +109,9 @@ const PayerDataPage = () => {
                 event: "paymentPayerDataEntered",
                 payload: payload
             });
+
             if (!data.data.success) {
                 console.log(data.data.error);
-                /* const match = data.data.error.match(/code=(\d+)/);
-                const errorCode = match[1];
-                if (errorCode === "404") throw new Error(t("errors.paymentNotFound", { ns: ["PayerData"] }));
-                else throw new Error(t("errors.unknownError", { ns: ["PayerData"] })); */
             }
         } catch (error) {
             toast.error(error.message, { autoClose: 2000, closeButton: <></> });
@@ -139,11 +119,7 @@ const PayerDataPage = () => {
     };
 
     const buttonCallback = () => {
-        if (payOutMode) {
-            setShowPayoutSubmit(true);
-        } else {
-            handleSubmit();
-        }
+        handleSubmit();
     };
 
     useEffect(() => {
@@ -152,6 +128,7 @@ const PayerDataPage = () => {
                   !Object.keys(errors).length && cardNumber.length === 19 && cvv.length === 3 && expiryDate.length === 5
               )
             : setNextEnabled(isComplete);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cardNumber, expiryDate, cvv, isComplete, errors]);
 
     return (
