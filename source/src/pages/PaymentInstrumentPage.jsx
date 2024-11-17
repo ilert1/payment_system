@@ -23,6 +23,10 @@ const PaymentInstrumentPage = () => {
 
     usePaymentPage({ absolutePath: false });
 
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
     /* console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
     console.log(`MODE: ${import.meta.env.MODE}`); */
 
@@ -94,8 +98,28 @@ const PaymentInstrumentPage = () => {
         }
     });
 
-    const buttonCallback = () => {
+    const buttonCallback = async () => {
         setEnabled_startPayIN(true);
+
+        if (currentPaymentInstrument?.bank) {
+            const { data } = await axios
+                .post(
+                    `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                    {
+                        event: "paymentBankSelected",
+                        method: {
+                            bank: {
+                                name: currentPaymentInstrument.bank
+                            }
+                        }
+                    },
+                    fingerprintConfig
+                )
+                .catch(e => {
+                    console.log(e);
+                });
+            console.log(data);
+        }
     };
 
     return (

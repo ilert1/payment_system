@@ -17,6 +17,7 @@ const PaymentMethodsPage = () => {
         currentPaymentMethod,
         getCurrencySymbol,
         fingerprintReady,
+        fingerprintConfig,
         t,
         BFData,
         setFailUrlParams
@@ -33,6 +34,30 @@ const PaymentMethodsPage = () => {
     console.log(`MODE: ${import.meta.env.MODE}`);
 
     console.log(BFData); */
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
+    const buttonCallback = async () => {
+        if (currentPaymentMethod?.payment_type) {
+            const { data } = await axios
+                .post(
+                    `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                    {
+                        event: "paymentMethodSelected",
+                        method: {
+                            name: currentPaymentMethod?.payment_type
+                        }
+                    },
+                    fingerprintConfig
+                )
+                .catch(e => {
+                    console.log(e);
+                });
+            console.log(data);
+        }
+    };
 
     let redirectUrl;
 
@@ -140,7 +165,7 @@ const PaymentMethodsPage = () => {
 
             <Footer
                 buttonCaption={t("next", ns)}
-                // buttonCallback={buttonCallback}
+                buttonCallback={buttonCallback}
                 nextPage={
                     currentPaymentMethod?.bank_name || currentPaymentMethod?.payment_type == "sbp"
                         ? `/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`

@@ -179,8 +179,10 @@ const PayerDataPage = () => {
     } = useGetCardNumberFormData(t, ns);
 
     const handleSubmit = async () => {
-        const url = `${baseUrl}/payment/${BFData?.blowfishId}/events`;
-        console.log(url);
+        const payOutMode = Boolean(BFData?.payout);
+        const dest = payOutMode ? "payout" : "payment";
+
+        const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
         try {
             const data = await axios.post(url, {
                 event: "paymentPayerDataEntered",
