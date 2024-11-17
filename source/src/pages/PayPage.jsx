@@ -10,25 +10,22 @@ import { PayeeCard } from "../widgets/PayeeCard";
 import { PayeeInfo } from "../widgets/PayeeInfo";
 import AlertTriangle from "../assets/images/alert-triangle.svg";
 
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayPage = () => {
-    const { BFData, currentPaymentInstrument, fingerprintConfig, traderData, t, getCurrencySymbol } =
-        useContext(AppContext);
+    const { BFData, currentPaymentInstrument, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
-
-    // const currPayMethod = JSON.parse(currentPaymentInstrument);
-    const trader = JSON.parse(traderData);
 
     usePaymentPage({ absolutePath: false });
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
+
+    const trader = BFData?.[dest]?.method?.payee?.data;
 
     const buttonCallback = async () => {
         const { data } = await axios
@@ -53,11 +50,14 @@ const PayPage = () => {
 
                 <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
 
-                <PayeeCard payeeCardNumber={trader?.card ? trader?.card : trader?.phone} isPhone={!!trader?.phone} />
+                <PayeeCard
+                    payeeCardNumber={trader?.card_number ? trader?.card_number : trader?.phone}
+                    isPhone={!!trader?.phone}
+                />
 
                 <PayeeInfo
-                    PayeeName={trader?.cardholder ? trader?.cardholder : currentPaymentInstrument?.bank_name}
-                    showPayeeData={trader?.card}
+                    PayeeName={trader?.card_holder ? trader?.card_holder : trader?.bank_name}
+                    showPayeeData={trader?.card_number}
                 />
 
                 <div className="payment-comment-alert">
@@ -69,7 +69,7 @@ const PayPage = () => {
                     <ul>
                         <li>
                             <span>1. </span>
-                            {t("steps.open", ns)} &quot;{currentPaymentInstrument?.bank_name}&quot;
+                            {t("steps_new.one", ns)} &quot;{currentPaymentInstrument?.bank_name}&quot;
                         </li>
                         <li>
                             <span>2. </span>
