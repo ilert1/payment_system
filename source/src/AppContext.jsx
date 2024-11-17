@@ -149,7 +149,7 @@ export const AppProvider = ({ children }) => {
             case "paymentError":
                 return c.PAGE_PAYOUT_NOT_FOUND;
             default:
-                return c.PAGE_PAYOUT_NOT_FOUND;
+                return "";
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [BFData?.payment?.status, BFData?.payout?.status]);
