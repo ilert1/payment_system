@@ -2430,7 +2430,8 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+
+    // margin-top: 81px;
     row-gap: 27px;
 
     @media (max-width: 520px) {
@@ -2439,8 +2440,11 @@ footer {
     }
 
     .buttons-container {
-        display: inline-flex;
-        flex-wrap: nowrap;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // flex-wrap: nowrap;
+        // flex-wrap: wrap;
         gap: 10px;
         width: 100%;
     }
@@ -2460,6 +2464,7 @@ footer {
         background: #e7f5fe;
 
         cursor: pointer;
+        user-select: none;
     }
 
     .main-button {
@@ -2476,22 +2481,7 @@ footer {
         // cursor: pointer;
 
         flex-grow: 1;
-
-        &.main-button__approve,
-        &.main-button__discard {
-            width: 100%;
-        }
-
-        &.main-button__discard {
-            background-color: #fbe5e5;
-            color: #ea4444;
-
-            &.disabled {
-                img {
-                    filter: brightness(100) invert(1);
-                }
-            }
-        }
+        width: 100%;
 
         &.approve {
             img {
@@ -2533,8 +2523,7 @@ footer {
         // line-height: 26.97px;
         line-height: 133%;
 
-        // color: #ea4444;
-        color: #ff0000;
+        color: #ea4444;
 
         // cursor: pointer;
 
@@ -2643,7 +2632,6 @@ footer {
             font-weight: 400;
             line-height: 133%;
             color: #010f1880;
-
             @media (max-width: 520px) {
                 font-size: 12px;
             }
@@ -2742,111 +2730,21 @@ footer {
                 position: relative;
             }
         }
-
-        .payee-data-item {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            color: #010f18;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-
-            padding: 7px;
-            padding-right: 22px;
-            column-gap: 12px;
-
-            &.dark {
-                background-color: #e7f5fe;
-            }
-
-            .icon-container {
-                display: flex;
-                flex-shrink: 0;
-                align-items: center;
-                justify-content: center;
-                $size: 56px;
-                width: $size;
-                height: $size;
-
-                background-color: #fff;
-                border-radius: 5px;
-
-                @media (max-width: 520px) {
-                    $size: 34px;
-                    width: $size;
-                    height: $size;
-                }
-
-                img {
-                    $size: 24px;
-                    width: $size;
-                    height: $size;
-
-                    @media (max-width: 520px) {
-                        $size: 20px;
-                        width: $size;
-                        height: $size;
-                    }
-                }
-            }
-
-            .text-container {
-                flex-grow: 1;
-                text-align: left;
-
-                label {
-                    font-size: 14px;
-                    line-height: 19px;
-                    font-weight: 400;
-                    opacity: 0.5;
-
-                    @media (max-width: 520px) {
-                        font-size: 12px;
-                        line-height: 16px;
-                    }
-                }
-
-                .value {
-                    font-size: 26px;
-                    line-height: 35px;
-                    font-weight: 600;
-
-                    @media (max-width: 520px) {
-                        font-size: 18px;
-                        line-height: 24px;
-                    }
-                }
-            }
-
-            .copy {
-                border: none;
-                background-color: transparent;
-                cursor: pointer;
-
-                img {
-                    $size: 24px;
-                    width: $size;
-                    height: $size;
-
-                    @media (max-width: 520px) {
-                        $size: 20px;
-                        width: $size;
-                        height: $size;
-                    }
-                }
-            }
-        }
     }
 
     .big-footer-container {
         display: flex;
         flex-direction: column;
-        row-gap: 0;
+        // row-gap: 0;
+        row-gap: 15px;
         width: 100%;
 
         @media (max-width: 520px) {
             row-gap: 0;
+        }
+
+        .payee-data {
+            border-radius: 5px;
         }
     }
 
@@ -3552,7 +3450,7 @@ footer {
     margin: 25px;
     margin-top: 0;
     border-radius: 7.22px;
-    
+
     form {
         padding: 38px 26px 38px 26px;
     }
@@ -3576,7 +3474,6 @@ footer {
         @media (max-width: 705px) {
             width: 100%;
         }
-
     }
 
     &__item {
