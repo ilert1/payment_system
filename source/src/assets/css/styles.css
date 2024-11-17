@@ -1424,54 +1424,6 @@ header .language-selector .drop-down .flag-container:last-of-type {
     height: 20px;
   }
 }
-.content .bank-deadline-info {
-  display: inline-flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  width: 100%;
-  margin: 20px 0;
-  /* .deadline-container{
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-
-      .deadline-timer{
-          font-family: Inter;
-          font-size: 32px;
-          font-weight: 600;
-          line-height: 133%;
-
-          color: #37A8F3;
-      }
-
-  } */
-}
-@media (max-width: 520px) {
-  .content .bank-deadline-info {
-    margin: 15px 0;
-  }
-}
-.content .bank-deadline-info .bank-info {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: Inter;
-  font-size: 23px;
-  font-weight: 400;
-  line-height: 133%;
-  text-align: left;
-}
-.content .bank-deadline-info .bank-info img {
-  width: 43px;
-  height: 43px;
-}
-@media (max-width: 520px) {
-  .content .bank-deadline-info .bank-info img {
-    font-size: 16px;
-    width: 30px;
-    height: 30px;
-  }
-}
 .content .payee-card-number-container {
   display: inline-flex;
   justify-content: space-between;
@@ -1561,6 +1513,97 @@ header .language-selector .drop-down .flag-container:last-of-type {
 }
 .content .payee-info-container .payee-container {
   position: relative;
+}
+.content .payee-data {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 14px;
+  margin: 18px 0;
+  flex-grow: 1;
+}
+.content .payee-data .payee-data-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #010f18;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 7px;
+  padding-right: 22px;
+  column-gap: 12px;
+}
+.content .payee-data .payee-data-item.dark {
+  background-color: #e7f5fe;
+}
+.content .payee-data .payee-data-item .icon-container {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+@media (max-width: 520px) {
+  .content .payee-data .payee-data-item .icon-container {
+    width: 34px;
+    height: 34px;
+  }
+}
+.content .payee-data .payee-data-item .icon-container img {
+  width: 24px;
+  height: 24px;
+}
+@media (max-width: 520px) {
+  .content .payee-data .payee-data-item .icon-container img {
+    width: 20px;
+    height: 20px;
+  }
+}
+.content .payee-data .payee-data-item .text-container {
+  flex-grow: 1;
+  text-align: left;
+}
+.content .payee-data .payee-data-item .text-container label {
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 400;
+  opacity: 0.5;
+}
+@media (max-width: 520px) {
+  .content .payee-data .payee-data-item .text-container label {
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+.content .payee-data .payee-data-item .text-container .value {
+  font-size: 26px;
+  line-height: 35px;
+  font-weight: 600;
+}
+@media (max-width: 520px) {
+  .content .payee-data .payee-data-item .text-container .value {
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+.content .payee-data .payee-data-item .copy {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.content .payee-data .payee-data-item .copy img {
+  width: 24px;
+  height: 24px;
+}
+@media (max-width: 520px) {
+  .content .payee-data .payee-data-item .copy img {
+    width: 20px;
+    height: 20px;
+  }
 }
 .content .payment-comment-alert {
   display: inline-flex;

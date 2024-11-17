@@ -17,9 +17,12 @@ const SupportDialog = () => {
 
     let popupTimeout = null;
 
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
     const showPopupCallback = () => {
         if (import.meta.env.VITE_YMETRICS_COUNTER) {
-            ym("reachGoal", "copy-dialog-button", { trn: BFData?.trn });
+            ym("reachGoal", "copy-dialog-button", { id: BFData?.[dest]?.id });
         }
         clearTimeout(popupTimeout);
         setShowPopup(true);
@@ -47,8 +50,8 @@ const SupportDialog = () => {
                         {t("copyed", ns)}
                         <img src={CheckCircle} alt="" />
                     </div>
-                    <p id="uuid">{BFData?.trn}</p>
-                    <CopyToClipboard text={BFData?.trn} onCopy={showPopupCallback}>
+                    <p id="uuid">{BFData?.[dest]?.id}</p>
+                    <CopyToClipboard text={BFData?.[dest]?.id} onCopy={showPopupCallback}>
                         <button id="copy-dialog-button">{t("copy", ns)}</button>
                     </CopyToClipboard>
                 </div>
@@ -60,7 +63,7 @@ const SupportDialog = () => {
                     className="dialog-button"
                     onClick={() => {
                         if (import.meta.env.VITE_YMETRICS_COUNTER) {
-                            ym("reachGoal", "dialog-button", { trn: BFData?.trn });
+                            ym("reachGoal", "dialog-button", { id: BFData?.[dest]?.id });
                         }
                         open("https://t.me/MoneygateSupportBot", "_blank").focus();
                     }}>

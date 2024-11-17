@@ -40,7 +40,17 @@
             "wholeAmount": "in one amount",
             "approveTransfer": "Approve transfer",
             "openYourBankApp": "Open your bank app"
-        }
+        },
+        "steps_new": {
+            "one": "Copy the phone number and go to your bank application",
+            "two": "Make the transfer using the card number",
+            "onAmount": "for the amount",
+            "pressButton": "Press the button",
+            "payed": "Paid"
+        },
+        "payed": "Paid",
+        "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
+        "agree": "Okay, understood"
     },
     "PayOut": {
         "payout": "Withdrawal",
@@ -140,7 +150,12 @@
     "PayeeCard": {
         "copy": "Copy",
         "copyed": "Card number copied",
-        "copyedPhone": "Phone number copied"
+        "copyedPhone": "Phone number copied",
+        "copyedAmount": "Amount copied",
+        "bankName": "Recipient's bank",
+        "requisite": "Requisites",
+        "amount": "Transfer amount",
+        "payee": "Payee"
     },
     "PayeeHint": {
         "hint": {
@@ -177,5 +192,9 @@
         "header": "Dear user!",
         "text": "Copy the request identifier and send it to the support chat. The operator will check its status.",
         "chatButton": "Go to chat"
+    },
+    "PayHeader": {
+        "transfer": "Make a transfer of",
+        "to": "to"
     }
 }

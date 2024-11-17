@@ -2,7 +2,7 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { PleasePay } from "../widgets/PleasePay";
 import { DeadlineInfo } from "../widgets/DeadlineInfo";
@@ -12,6 +12,8 @@ import AlertTriangle from "../assets/images/alert-triangle.svg";
 
 import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import PayHeader from "../widgets/PayHeader.jsx";
+import PayeeData from "../widgets/PayeeData.jsx";
 
 const PayPage = () => {
     const { BFData, currentPaymentInstrument, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
@@ -26,6 +28,7 @@ const PayPage = () => {
     const baseApiURL = import.meta.env.VITE_API_URL;
 
     const trader = BFData?.[dest]?.method?.payee?.data;
+    const [requisite, setRequisite] = useState(null);
 
     const buttonCallback = async () => {
         const { data } = await axios
@@ -42,15 +45,36 @@ const PayPage = () => {
         console.log(data);
     };
 
+    useEffect(() => {
+        if (trader?.card_number) {
+            setRequisite(trader.card_number);
+        }
+        if (trader?.phone) {
+            setRequisite(trader.phone);
+        }
+        if (trader?.account_number) {
+            setRequisite(trader.account_number);
+        }
+        if (trader?.iban) {
+            setRequisite(trader.iban);
+        }
+        console.log(trader);
+    }, [trader]);
+
     return (
         <div className="container">
             <Header />
             <div className="content">
-                <PleasePay amount={BFData?.[dest]?.amount} currency={getCurrencySymbol(BFData?.[dest]?.currency)} />
+                {/* <PleasePay amount={BFData?.[dest]?.amount} currency={getCurrencySymbol(BFData?.[dest]?.currency)} /> */}
+                <PayHeader
+                    amount={BFData?.[dest]?.amount}
+                    currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                    bankName={trader?.bank_name}
+                />
 
-                <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
+                {/* <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} /> */}
 
-                <PayeeCard
+                {/* <PayeeCard
                     payeeCardNumber={trader?.card_number ? trader?.card_number : trader?.phone}
                     isPhone={!!trader?.phone}
                 />
@@ -58,14 +82,21 @@ const PayPage = () => {
                 <PayeeInfo
                     PayeeName={trader?.card_holder ? trader?.card_holder : trader?.bank_name}
                     showPayeeData={trader?.card_number}
+                /> */}
+
+                <PayeeData
+                    requisite={requisite}
+                    trader={trader}
+                    bankName={BFData?.[dest]?.method?.payee?.data?.bank_name}
+                    isPhone={!!trader?.phone}
                 />
 
-                <div className="payment-comment-alert">
+                {/* <div className="payment-comment-alert">
                     <img src={AlertTriangle} alt="" />
                     <p>{t("withoutComments", ns)}</p>
-                </div>
+                </div> */}
 
-                <div className="instructions">
+                {/* <div className="instructions">
                     <ul>
                         <li>
                             <span>1. </span>
@@ -73,12 +104,40 @@ const PayPage = () => {
                         </li>
                         <li>
                             <span>2. </span>
-                            {t("steps.transfer", ns)} {BFData?.[dest]?.amount}&nbsp;
-                            {getCurrencySymbol(BFData?.[dest]?.currency)} {t("steps.wholeAmount", ns)}
+                            {t("steps_new.two", ns)} {getCurrencySymbol(BFData?.[dest]?.currency)}{" "}
+                            {t("steps.wholeAmount", ns)}
                         </li>
                         <li>
                             <span>3. </span>
                             {t("steps.approveTransfer", ns)}
+                        </li>
+                    </ul>
+                </div> */}
+
+                <div className="instructions_new">
+                    <ul>
+                        <li>
+                            <span>1. </span>
+                            {t("steps_new.one", ns)}
+                        </li>
+                        <li>
+                            <span>2. </span>
+                            {/* {t("steps.transfer", ns)} {stored?.amount}&nbsp;
+                                        {getCurrencySymbol(stored?.currency)} {t("steps.wholeAmount", ns)} */}
+                            {t("steps_new.two", ns)} <span>{trader?.bank_name}</span> {t("steps_new.onAmount", ns)}{" "}
+                            <span>
+                                {BFData?.[dest]?.amount}&nbsp;
+                                {getCurrencySymbol(BFData?.[dest]?.currency)}
+                            </span>
+                        </li>
+                        <li>
+                            <span>3. </span>
+                            {t("steps_new.pressButton", ns)}
+                            <span>
+                                {' "'}
+                                {t("steps_new.payed", ns)}
+                                {'"'}
+                            </span>
                         </li>
                     </ul>
                 </div>

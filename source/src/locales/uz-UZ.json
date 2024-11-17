@@ -39,7 +39,17 @@
             "wholeAmount": "to'liq miqdor",
             "approveTransfer": "O'tkazmani tasdiqlash",
             "openYourBankApp": "Bank ilovangizni oching"
-        }
+        },
+        "steps_new": {
+            "one": "Telefon raqamini nusxalab bank ilovasiga o'ting",
+            "two": "Kartaga o'tkazma qiling",
+            "onAmount": "miqdorda",
+            "pressButton": "Tugmani bosing",
+            "payed": "To'landi"
+        },
+        "payed": "To'landi",
+        "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
+        "agree": "Yaxshi, tushundim"
     },
     "PayOut": {
         "payout": "Olib qo'yish",
@@ -107,7 +117,7 @@
         "yourCard": "karta raqamingizni",
         "cardNumber": "Karta Raqami",
         "expirationDate": "Amal Qilish Muddati",
-        "errors": {        
+        "errors": {
             "cardValidationError": "Karta raqami 16 raqamdan iborat bo'lishi kerak",
             "expireDateError": "Amal qilish muddati MM/YY formatida bo'lishi kerak",
             "expreDateRangeError": "Amal qilish muddati kelajakda bo'lishi kerak",
@@ -139,7 +149,12 @@
     "PayeeCard": {
         "copy": "Nusxalash",
         "copyed": "Karta raqami nusxalandi",
-        "copyedPhone": "Telefon raqami nusxalandi"
+        "copyedPhone": "Telefon raqami nusxalandi",
+        "copyedAmount": "Summasi nusxalandi",
+        "bankName": "Qabul qiluvchining banki",
+        "requisite": "Rekvizitlar",
+        "amount": "O'tkazma summasi",
+        "payee": "Qabul qiluvchi"
     },
     "PayeeHint": {
         "hint": {
@@ -176,5 +191,9 @@
         "header": "Hurmatli foydalanuvchi!",
         "text": "So'rov identifikatorini nusxalab, qo'llab-quvvatlash chatiga yuboring. Operator uning holatini tekshiradi.",
         "chatButton": "Chatga o'ting"
+    },
+    "PayHeader": {
+        "transfer": "Pul o'tkazing",
+        "to": "ga"
     }
 }

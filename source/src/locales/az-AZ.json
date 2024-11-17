@@ -40,7 +40,17 @@
             "wholeAmount": "bütün məbləği",
             "approveTransfer": "Köçürməni təsdiqlə",
             "openYourBankApp": "Bank tətbiqinizi açın"
-        }
+        },
+        "steps_new": {
+            "one": "Telefon nömrəsini kopyalayın və bank tətbiqinizi açın",
+            "two": "Kart nömrəsinə köçürmə edin",
+            "onAmount": "məbləğə",
+            "pressButton": "Düyməyə basın",
+            "payed": "Ödənilib"
+        },
+        "payed": "Ödənilib",
+        "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
+        "agree": "Tamam, başa düşdüm"
     },
     "PayOut": {
         "payout": "Vəsaitlərin",
@@ -140,7 +150,12 @@
     "PayeeCard": {
         "copy": "Kopyala",
         "copyed": "Kart nömrəsi kopyalandı",
-        "copyedPhone": "Telefon nömrəsi kopyalandı"
+        "copyedPhone": "Telefon nömrəsi kopyalandı",
+        "copyedAmount": "Məbləğ kopyalandı",
+        "bankName": "Alıcının bankı",
+        "requisite": "Rekvizitlər",
+        "amount": "Köçürmə məbləği",
+        "payee": "Alıcı"
     },
     "PayeeHint": {
         "hint": {
@@ -177,5 +192,9 @@
         "header": "Hörmətli istifadəçi!",
         "text": "Sorğu identifikatorunu kopyalayın və dəstək çatına göndərin. Operator statusunu yoxlayacaq.",
         "chatButton": "Çata keç"
+    },
+    "PayHeader": {
+        "transfer": "Köçürmə edin",
+        "to": "üzrə"
     }
 }

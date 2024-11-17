@@ -8,8 +8,11 @@ import User2Icon from "../assets/images/user2.svg";
 import PayeeDataItem from "./PayeeDataItem";
 
 const PayeeData = ({ requisite, trader, bankName, isPhone }) => {
-    const { stored, getCurrencySymbol, t } = useContext(AppContext);
+    const { BFData, getCurrencySymbol, t } = useContext(AppContext);
     const ns = { ns: "PayeeCard" };
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
 
     return (
         <div className="payee-data">
@@ -24,11 +27,13 @@ const PayeeData = ({ requisite, trader, bankName, isPhone }) => {
             <PayeeDataItem
                 img={DollarCircleIcon}
                 label={t("amount", ns)}
-                value={`${stored?.amount}\u00A0${getCurrencySymbol(stored?.currency)}`}
-                copyData={stored?.amount}
+                value={`${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency)}`}
+                copyData={BFData?.[dest]?.amount}
                 messageOnCopy={t("copyedAmount", ns)}
             />
-            {trader?.cardholder && <PayeeDataItem img={User2Icon} label={t("payee", ns)} value={trader?.cardholder} />}
+            {trader?.card_holder && (
+                <PayeeDataItem img={User2Icon} label={t("payee", ns)} value={trader?.card_holder} />
+            )}
         </div>
     );
 };
