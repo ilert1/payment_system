@@ -142,7 +142,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode } = useContext(AppContext);
+    const { setBFData, BFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode } = useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -163,6 +163,38 @@ const App = () => {
             setCurrentPaymentMethod(JSON.parse(storedCurrentPaymentMethod));
         }
     }, []);
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
+    useEffect(() => {
+        if (BFData?.payout?.id || BFData?.payment?.id) {
+            const mode = payOutMode ? "payout" : "payment";
+
+            const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[mode]?.id}/events`);
+
+            es.onopen = () => console.log(">>> Connection opened!");
+
+            es.onerror = e => console.log("ERROR!", e);
+
+            es.onmessage = async e => {
+                try {
+                    const resEventData = JSON.parse(e.data);
+                    console.log("SSE: ", resEventData);
+
+                    const tempBFData = { ...BFData };
+                    tempBFData[mode].status = resEventData.data.status;
+
+                    setBFData(tempBFData);
+                } catch (error) {
+                    // continue
+                }
+            };
+
+            return () => es.close();
+        }
+    }, [BFData?.payout?.id, BFData?.payment?.id]);
 
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],

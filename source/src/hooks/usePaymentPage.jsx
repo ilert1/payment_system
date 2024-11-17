@@ -4,7 +4,7 @@ import AppContext from "../AppContext";
 import { useLocation } from "react-router-dom";
 
 export default function usePaymentPage({ absolutePath = false }) {
-    const { paymentEcomPage, navigate } = useContext(AppContext);
+    const { paymentEcomPage, navigate, BFData } = useContext(AppContext);
 
     const location = useLocation();
     const nav = navigate();
@@ -25,5 +25,5 @@ export default function usePaymentPage({ absolutePath = false }) {
                 }
             }
         }
-    }, []);
+    }, [BFData?.payment?.status, BFData?.payout?.status]);
 }
