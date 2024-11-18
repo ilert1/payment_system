@@ -18,6 +18,7 @@ const Footer = ({
     buttonCaption = "",
     nextPage = "",
     //backButton = false,
+    showCancelBtn = true,
     prevPage = "",
     nextEnabled = true,
     approve = false,
@@ -36,6 +37,7 @@ const Footer = ({
     const [requisite, setRequisite] = useState(null);
 
     const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
+    // const failUrl = BFData?.[dest]?.context?.error_redirect_url;
 
     // const currPayMethod = JSON.parse(currentPaymentMethod);
 
@@ -76,6 +78,47 @@ const Footer = ({
     if (noIcon) buttonIcon = null;
     if (approve) buttonIcon = Check;
 
+    // const { isFetching: isFetching_cancel } = useQuery({
+    //     queryKey: ["cancel"],
+    //     enabled: enabled_cancel && fingerprintReady,
+    //     refetchOnWindowFocus: false,
+    //     queryFn: async () => {
+    //         console.log("cancel");
+    //         let payload = BFData;
+    //         const { id } = payload;
+    //         payload = {
+    //             message: {
+    //                 payment: {
+    //                     trn: id
+    //                 }
+    //             }
+    //         };
+    //         console.log("cancel payload:");
+    //         console.log(payload);
+
+    //         const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/cancel`, payload, fingerprintConfig);
+    //         console.log("cancel response:");
+    //         console.log(data);
+
+    //         if (data?.success) {
+    //             if (returnUrl) {
+    //                 window.location.replace = returnUrl;
+    //             } else {
+    //                 navigate(c.PAGE_CANCEL, { replace: true });
+    //             }
+    //         } else {
+    //             if (failUrl) {
+    //                 document.location.replace(failUrl);
+    //             } else {
+    //                 navigate(c.PAGE_GENERAL_ERROR, { replace: true });
+    //             }
+    //         }
+    //         setIsLoading(false);
+
+    //         return data;
+    //     }
+    // });
+
     const submitModalData = {
         title: t("cancelDialog.title", ns),
         text: t("cancelDialog.text", ns),
@@ -101,47 +144,6 @@ const Footer = ({
             setDialogShow(false);
         }
     };
-
-    // const { data: data_cancel, isFetching: isFetching_cancel } = useQuery({
-    //     queryKey: ["cancel"],
-    //     enabled: enabled_cancel && fingerprintReady,
-    //     refetchOnWindowFocus: false,
-    //     queryFn: async () => {
-    //         console.log("cancel");
-    //         let payload = BFData;
-    //         const { trn, wf } = payload;
-    //         payload = {
-    //             message: {
-    //                 payment: {
-    //                     trn: trn
-    //                 }
-    //             }
-    //         };
-    //         console.log("cancel payload:");
-    //         console.log(payload);
-
-    //         const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/cancel`, payload, fingerprintConfig);
-    //         console.log("cancel response:");
-    //         console.log(data);
-
-    //         if (data?.success) {
-    //             if (returnUrl) {
-    //                 window.location.replace = returnUrl;
-    //             } else {
-    //                 navigate(c.PAGE_CANCEL, { replace: true });
-    //             }
-    //         } else {
-    //             if (BFData?.fail_url) {
-    //                 document.location.replace(BFData.fail_url);
-    //             } else {
-    //                 nav(c.PAGE_GENERAL_ERROR, { replace: true });
-    //             }
-    //         }
-    //         setIsLoading(false);
-
-    //         return data;
-    //     }
-    // });
 
     return (
         <>
@@ -189,15 +191,17 @@ const Footer = ({
                                 {buttonIcon && <img src={buttonIcon} alt="" />}
                             </button>
                         )}
-                        <button
-                            id="cancel-button"
-                            className={`button cancel-button no-bg`}
-                            onClick={() => {
-                                setDialogShow(true);
-                            }}>
-                            {submitModalData?.primaryBtnText}
-                            {/* <img src={CancelIcon} alt="" /> */}
-                        </button>
+
+                        {showCancelBtn && (
+                            <button
+                                id="cancel-button"
+                                className={`button cancel-button no-bg`}
+                                onClick={() => {
+                                    setDialogShow(true);
+                                }}>
+                                {submitModalData?.primaryBtnText}
+                            </button>
+                        )}
                     </div>
                 </div>
             </footer>

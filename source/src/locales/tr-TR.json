@@ -139,18 +139,21 @@
         "cancelPage": {
             "cancel": "Ödemeyi iptal ettiniz",
             "transactionCanceled": "İşlem başarıyla iptal edildi."
-        }
+        },
+        "returnBtn": "Siteye geri dön"
     },
     "PayError": {
         "payError": "Ödeme başarısız oldu",
         "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın",
         "notFound": "Ödeme bulunamadı",
         "pleaseRepeatOrSupport": "Lütfen tekrar deneyin veya destek servisine bildirin",
-        "payed": "Ödedim!"
+        "payed": "Ödedim!",
+        "returnBtn": "Siteye geri dön"
     },
     "Success": {
         "header": "Bakiyeniz yüklendi",
-        "payoutHeader": "Başarılı bir şekilde çıkardınız"
+        "payoutHeader": "Başarılı bir şekilde çıkardınız",
+        "returnBtn": "Siteye geri dön"
     },
     "PayeeCard": {
         "copy": "Kopyala",

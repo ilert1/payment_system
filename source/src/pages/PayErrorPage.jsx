@@ -2,22 +2,24 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
 
 const PayErrorPage = (notFound = false) => {
     const { t, BFData, failUrlParams } = useContext(AppContext);
-    const { setIsActive } = useContext(AppContext).supportDialog;
+    // const { setIsActive } = useContext(AppContext).supportDialog;
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
 
     //translation
     const ns = { ns: "PayError" };
 
-    const buttonCallback = () => {
-        setIsActive(true);
-    };
+    // const buttonCallback = () => {
+    //     setIsActive(true);
+    // };
 
-    // console.log(BFData?.fail_url);
     console.log(failUrlParams);
 
     return (
@@ -35,14 +37,13 @@ const PayErrorPage = (notFound = false) => {
             </div>
 
             <Footer
-                buttonCaption={t("payed", ns)}
-                buttonCallback={!notFound && buttonCallback}
-                payeeCard={!notFound && true}
-                // nextPage={`/${BFData?.blowfish_id}/${c.PAGE_PAYMENT_CONFIRMATION}`}
+                buttonCaption={t("returnBtn", ns)}
+                // buttonCallback={!notFound && buttonCallback}
+                // payeeCard={!notFound && true}
+                nextPage={BFData?.[dest]?.method?.context?.error_redirect_url}
+                nextEnabled={BFData?.[dest]?.method?.context?.error_redirect_url}
                 noIcon={true}
-                // prevPage={BFData?.fail_url ? BFData?.fail_url : ""}
-                // prevPage={BFData?.fail_url ? `${BFData?.fail_url}${failUrlParams}` : ""}
-                absolutePrev={true}
+                showCancelBtn={false}
             />
         </div>
     );

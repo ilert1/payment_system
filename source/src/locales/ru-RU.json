@@ -140,18 +140,21 @@
         "cancelPage": {
             "cancel": "Вы отменили платеж",
             "transactionCanceled": "Транзакция была успешно отменена."
-        }
+        },
+        "returnBtn": "Вернуться на сайт"
     },
     "PayError": {
         "payError": "Оплата не прошла",
         "pleaseRepeatOrder": "Пожалуйста, повторите заказ",
         "notFound": "Платеж не найден",
         "pleaseRepeatOrSupport": "Повторите попытку еще раз или сообщите в службу поддержки",
-        "payed": "Я оплатил!"
+        "payed": "Я оплатил!",
+        "returnBtn": "Вернуться на сайт"
     },
     "Success": {
         "header": "Ваш баланс пополнен",
-        "payoutHeader": "Вы успешно вывели"
+        "payoutHeader": "Вы успешно вывели",
+        "returnBtn": "Вернуться на сайт"
     },
     "PayeeCard": {
         "copy": "Скопировать",

@@ -139,18 +139,21 @@
         "cancelPage": {
             "cancel": "Siz to'lovni bekor qildingiz",
             "transactionCanceled": "Bitim muvaffaqiyatli bekor qilindi."
-        }
+        },
+        "returnBtn": "Saytga qaytish"
     },
     "PayError": {
         "payError": "To'lov muvaffaqiyatsiz tugadi",
         "pleaseRepeatOrder": "Iltimos, buyurtmani takrorlang",
         "notFound": "To'lov topilmadi",
         "pleaseRepeatOrSupport": "Iltimos, yana bir bor urinib ko'ring yoki qo'llab-quvvatlash xizmatiga murojaat qiling",
-        "payed": "Men to'ladim!"
+        "payed": "Men to'ladim!",
+        "returnBtn": "Saytga qaytish"
     },
     "Success": {
         "header": "Balansingiz to'ldirildi",
-        "payoutHeader": "Siz muvaffaqiyatli chiqdingiz"
+        "payoutHeader": "Siz muvaffaqiyatli chiqdingiz",
+        "returnBtn": "Saytga qaytish"
     },
     "PayeeCard": {
         "copy": "Nusxalash",
