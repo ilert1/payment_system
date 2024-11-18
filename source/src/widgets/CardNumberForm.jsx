@@ -15,12 +15,13 @@ export const CardNumberForm = props => {
         handleExpiryInputChange,
         handleExpiryKeyDown,
         handleCvvInputChange,
-        cvv
+        cvv,
+        disabled
     } = props;
     const ns = { ns: ["PayerData"] };
 
     return (
-        <div className="card-number-form">
+        <div className="card-number-form" disabled={disabled}>
             <form>
                 <div className="card-number-form__wrapper">
                     <div className="card-number-form__item">

@@ -3562,6 +3562,8 @@ footer {
         box-sizing: border-box;
         font-family: Inter;
         color: #010f18;
+        outline: 1px solid #6fc0f600;
+        transition: outline 0.3s ease;
 
         &.wide-spacing {
             letter-spacing: 0.15em;
@@ -3585,8 +3587,8 @@ footer {
             }
         }
 
-        &-focus {
-            border: 1px solid #6fc0f6;
+        &:focus {
+            outline: 1px solid #6fc0f6ff;
         }
     }
 

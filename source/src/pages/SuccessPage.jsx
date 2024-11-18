@@ -10,7 +10,7 @@ import AppContext from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
 
 const SuccessPage = () => {
-    const { BFData, resetStorage, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
+    const { BFData, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
 
     //translation
     const ns = { ns: "Success" };
@@ -19,7 +19,7 @@ const SuccessPage = () => {
     const dest = payOutMode ? "payout" : "payment";
 
     usePaymentPage({ absolutePath: false });
-    resetStorage();
+    // resetStorage();
 
     return (
         <div className="container">

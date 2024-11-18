@@ -3068,6 +3068,8 @@ footer > .top:not(.big-footer-container) {
   box-sizing: border-box;
   font-family: Inter;
   color: #010f18;
+  outline: 1px solid rgba(111, 192, 246, 0);
+  transition: outline 0.3s ease;
 }
 .card-number-form__input.wide-spacing {
   letter-spacing: 0.15em;
@@ -3091,8 +3093,8 @@ footer > .top:not(.big-footer-container) {
     line-height: 21.36px;
   }
 }
-.card-number-form__input-focus {
-  border: 1px solid #6fc0f6;
+.card-number-form__input:focus {
+  outline: 1px solid #6fc0f6;
 }
 .card-number-form .error-message {
   font-size: 12px;

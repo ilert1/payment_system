@@ -22,8 +22,9 @@ const PayPage = () => {
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 
-    const trader = BFData?.[dest]?.method?.payee?.data;
-    const ecom = BFData?.[dest]?.method?.name === "ecom";
+    const method = BFData?.[dest]?.method;
+    const trader = method?.payee?.data;
+    const ecom = method?.name === "ecom";
     const [requisite, setRequisite] = useState(null);
 
     const buttonCallback = async () => {
@@ -64,13 +65,13 @@ const PayPage = () => {
                 <PayHeader
                     amount={BFData?.[dest]?.amount}
                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                    bankName={trader?.bank_name}
+                    bankName={method?.bank?.display_name}
                 />
 
                 <PayeeData
                     requisite={requisite}
                     trader={trader}
-                    bankName={BFData?.[dest]?.method?.payee?.data?.bank_name}
+                    bankName={method?.bank?.display_name}
                     isPhone={!!trader?.phone}
                 />
 
@@ -82,7 +83,8 @@ const PayPage = () => {
                         </li>
                         <li>
                             <span>2. </span>
-                            {t("steps_new.two", ns)} <span>{trader?.bank_name}</span> {t("steps_new.onAmount", ns)}{" "}
+                            {t("steps_new.two", ns)} <span>{method?.bank?.display_name}</span>{" "}
+                            {t("steps_new.onAmount", ns)}{" "}
                             <span>
                                 {BFData?.[dest]?.amount}&nbsp;
                                 {getCurrencySymbol(BFData?.[dest]?.currency)}
@@ -101,15 +103,13 @@ const PayPage = () => {
                 </div>
             </div>
 
-            {!isFetching && (
-                <Footer
-                    buttonCaption={t("approveTransfer", ns)}
-                    buttonCallback={buttonCallback}
-                    nextPage={`../${c.PAGE_PAYEE_DATA}`}
-                    // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
-                    approve={true}
-                />
-            )}
+            <Footer
+                buttonCaption={t("approveTransfer", ns)}
+                buttonCallback={buttonCallback}
+                nextPage={`../${c.PAGE_PAYEE_DATA}`}
+                // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
+                approve={true}
+            />
         </div>
     );
 };

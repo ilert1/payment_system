@@ -89,13 +89,13 @@ export const AppProvider = ({ children }) => {
         localStorage.setItem("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
     }, [currentPaymentInstrument]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         localStorage.setItem("last4", cardNumberLast4);
     }, [cardNumberLast4]);
 
     useEffect(() => {
         localStorage.setItem("traderData", traderData);
-    }, [traderData]);
+    }, [traderData]); */
 
     useEffect(() => {
         let fp = `${getBrowserFingerprint({
@@ -106,12 +106,12 @@ export const AppProvider = ({ children }) => {
         setFingerprintReady(true);
     }, []);
 
-    const resetStorage = () => {
+    /* const resetStorage = () => {
         setCardNumberLast4(null);
         setTraderData(null);
         localStorage.removeItem("last4");
         localStorage.removeItem("traderData");
-    };
+    }; */
 
     const getCurrencySymbol = code => {
         if (Object.hasOwn(CurrencyLibrary, code)) {
@@ -169,7 +169,7 @@ export const AppProvider = ({ children }) => {
                     setCardNumberLast4,
                     traderData,
                     setTraderData,
-                    resetStorage,
+                    // resetStorage,
                     t,
                     fingerprintConfig: {
                         headers: {

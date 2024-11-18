@@ -320,6 +320,7 @@ const PayerDataPage = () => {
                                 handleExpiryKeyDown={handleExpiryKeyDown}
                                 handleCvvInputChange={handleCvvInputChange}
                                 cvv={cvv}
+                                disabled={isPressed || isFetching}
                             />
                         </>
                     ) : (
