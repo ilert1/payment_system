@@ -199,7 +199,7 @@ const App = () => {
 
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
-        // refetchInterval: 1000,
+        refetchInterval: BFData?.[dest]?.status === "paymentAwaitingStart" ? 1000 : false,
         enabled: Boolean(blowfishId) && !notFound, //Boolean(blowfishId),
         // refetchIntervalInBackground: true,
         // retry: false,
