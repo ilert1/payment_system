@@ -13,6 +13,9 @@ export const GeneralErrorPage = ({ cancel = false }) => {
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
+    const failUrl = BFData?.[dest]?.method?.context?.error_redirect_url;
+    const cancelUrl = BFData?.[dest]?.method?.context?.cancel_redirect_url;
+
     //translation
     const ns = { ns: ["Common", "GeneralError"] };
 
@@ -40,8 +43,9 @@ export const GeneralErrorPage = ({ cancel = false }) => {
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}
-                nextPage={BFData?.[dest]?.method?.context?.error_redirect_url}
-                nextEnabled={BFData?.[dest]?.method?.context?.error_redirect_url}
+                buttonCallback={() => window.location.replace(cancel ? cancelUrl : failUrl)}
+                nextPage={cancel ? cancelUrl : failUrl}
+                nextEnabled={cancel ? cancelUrl : failUrl}
                 noIcon={true}
                 showCancelBtn={false}
             />
