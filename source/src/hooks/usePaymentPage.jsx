@@ -19,7 +19,9 @@ export default function usePaymentPage({ absolutePath = false }) {
                 locationSplits.slice(0, -1).join("/") + "/" + paymentPage !== location.pathname
             ) {
                 if (!location.pathname.includes(paymentPage) || paymentPage !== PAGE_MAIN) {
-                    nav(absolutePath ? paymentPage : "../" + paymentPage, { replace: true });
+                    nav(absolutePath || paymentPage.includes("/") ? paymentPage : "../" + paymentPage, {
+                        replace: true
+                    });
                 } else if (paymentPage === PAGE_MAIN && locationSplits.length > 3 && locationSplits[3]) {
                     nav("..", { replace: true });
                 }

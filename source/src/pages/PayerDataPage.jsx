@@ -172,69 +172,6 @@ const PayerDataPage = () => {
                         console.log(e);
                     });
 
-                /* const data = {
-                    success: true,
-                    payment: {
-                        id: "2564dbd3-dc17-4713-8bd2-41c70dd9ef48",
-                        amount: "992.00",
-                        currency: "AZN",
-                        method: {
-                            name: "ecom",
-                            display_name: "Банковский перевод",
-                            payer: {
-                                schema: {
-                                    type: "object",
-                                    properties: {
-                                        card_cvc: {
-                                            type: "string",
-                                            description: "Card security code",
-                                            format: ""
-                                        },
-                                        card_lifetime_month: {
-                                            type: "string",
-                                            description: "Card expiration date month",
-                                            format: ""
-                                        },
-                                        card_lifetime_year: {
-                                            type: "string",
-                                            description: "Card expiration date year",
-                                            format: ""
-                                        },
-                                        card_number: {
-                                            type: "string",
-                                            description: "Card number",
-                                            format: ""
-                                        }
-                                    }
-                                },
-                                required: ["card_number", "card_lifetime_month", "card_lifetime_year", "card_cvc"],
-                                data: {
-                                    card_cvc: "123",
-                                    card_lifetime_month: "11",
-                                    card_lifetime_year: "29",
-                                    card_number: "4169738851576482"
-                                }
-                            },
-                            payee: {
-                                schema: {
-                                    type: "",
-                                    properties: null
-                                },
-                                required: null,
-                                redirect_url:
-                                    "https://imap.inout-sarysu-az.icu/3ds-transaction?id=25135340&secret=a5289598b607ff1cd28f69c3cdf59bb3d02427be51d87c92dbe0f6ec1063953d"
-                            },
-                            context: {
-                                success_redirect_url: "https://merchant-side.com/success",
-                                error_redirect_url: "https://merchant-side.com/fail",
-                                cancel_redirect_url: "https://merchant-side.com/return"
-                            }
-                        },
-                        status: "paymentAwaitingTransfer",
-                        created_at: -62135596800
-                    }
-                }; */
-
                 console.log(data);
                 console.log("redirect_url");
                 console.log(data?.[dest]?.method?.payee?.redirect_url);
@@ -245,14 +182,14 @@ const PayerDataPage = () => {
                         setBFData(data);
                     } else {
                         //транзакция не подлежит оплате
-                        window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                        window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
                     }
                 }
                 return data;
             } catch (e) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
-                    window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
                 }
             }
         }
