@@ -2,20 +2,27 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
 
 export const GeneralErrorPage = ({ cancel = false }) => {
-    const { t } = useContext(AppContext);
-    const { setIsActive } = useContext(AppContext).supportDialog;
+    const { t, BFData } = useContext(AppContext);
+    // const { setIsActive } = useContext(AppContext).supportDialog;
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
 
     //translation
     const ns = { ns: ["Common", "GeneralError"] };
 
-    const buttonCallback = () => {
-        setIsActive(true);
-    };
+    // const buttonCallback = () => {
+    //     setIsActive(true);
+    // };
+
+    useEffect(() => {
+        console.log("fail_url: ", BFData);
+    }, []);
 
     return (
         <div className="container">
@@ -31,7 +38,13 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                 <img className="error-image" src={PlusCircle} alt="" />
             </div>
 
-            {/* <Footer buttonCaption={t("repeatOrder", ns)} nextPage={c.PAGE_PAYMENT_INSTRUMENT} noIcon={true} /> */}
+            <Footer
+                buttonCaption={t("returnBtn", ns)}
+                nextPage={BFData?.[dest]?.method?.context?.error_redirect_url}
+                nextEnabled={BFData?.[dest]?.method?.context?.error_redirect_url}
+                noIcon={true}
+                showCancelBtn={false}
+            />
         </div>
     );
 };
