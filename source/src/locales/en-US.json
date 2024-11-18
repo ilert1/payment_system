@@ -140,18 +140,21 @@
         "cancelPage": {
             "cancel": "You canceled the payment",
             "transactionCanceled": "The transaction was successfully canceled."
-        }
+        },
+        "returnBtn": "Go back to the site"
     },
     "PayError": {
         "payError": "Payment failed",
         "pleaseRepeatOrder": "Please repeat the order",
         "notFound": "Payment not found",
         "pleaseRepeatOrSupport": "Please try again or contact support",
-        "payed": "I have paid!"
+        "payed": "I have paid!",
+        "returnBtn": "Go back to the site"
     },
     "Success": {
         "header": "Your balance has been replenished",
-        "payoutHeader": "You have successfully withdrawn"
+        "payoutHeader": "You have successfully withdrawn",
+        "returnBtn": "Go back to the site"
     },
     "PayeeCard": {
         "copy": "Copy",

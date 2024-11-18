@@ -140,18 +140,21 @@
         "cancelPage": {
             "cancel": "Сіз төлемнен бас тарттыңыз ба",
             "transactionCanceled": "Транзакция сәтті тоқтатылды."
-        }
+        },
+        "returnBtn": "Сайтқа оралу"
     },
     "PayError": {
         "payError": "Төлем орындалмады",
         "pleaseRepeatOrder": "Тапсырысты қайталаңыз",
         "notFound": "Төлем табылмады",
         "pleaseRepeatOrSupport": "Қайтадан әрекет жасап көріңіз немесе қолдау қызметіне хабарласыңыз",
-        "payed": "Мен төледім!"
+        "payed": "Мен төледім!",
+        "returnBtn": "Сайтқа оралу"
     },
     "Success": {
         "header": "Балансыңыз толтырылды",
-        "payoutHeader": "Сіз сәтті шығардыңыз"
+        "payoutHeader": "Сіз сәтті шығардыңыз",
+        "returnBtn": "Сайтқа оралу"
     },
     "PayeeCard": {
         "copy": "Көшіру",

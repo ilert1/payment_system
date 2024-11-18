@@ -140,18 +140,21 @@
         "cancelPage": {
             "cancel": "Ödənişi ləğv etdiniz",
             "transactionCanceled": "Əməliyyat uğurla ləğv edildi."
-        }
+        },
+        "returnBtn": "Veb saytına qayıt"
     },
     "PayError": {
         "payError": "Ödəniş uğursuz oldu",
         "pleaseRepeatOrder": "Xahiş edirik, sifarişi təkrarlayın",
         "notFound": "Ödəniş tapılmadı",
         "pleaseRepeatOrSupport": "Zəhmət olmasa bir daha cəhd edin və ya dəstək xidmətinə məlumat verin",
-        "payed": "Mən ödəmişəm!"
+        "payed": "Mən ödəmişəm!",
+        "returnBtn": "Veb saytına qayıt"
     },
     "Success": {
         "header": "Balansınız artırıldı",
-        "payoutHeader": "Uğurla çıxardınız"
+        "payoutHeader": "Uğurla çıxardınız",
+        "returnBtn": "Veb saytına qayıt"
     },
     "PayeeCard": {
         "copy": "Kopyala",

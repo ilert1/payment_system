@@ -140,18 +140,21 @@
         "cancelPage": {
             "cancel": "Ви скасували платіж",
             "transactionCanceled": "Транзакція була успішно скасовано."
-        }
+        },
+        "returnBtn": "Повернутися на сайт"
     },
     "PayError": {
         "payError": "Платіж не вдався",
         "pleaseRepeatOrder": "Будь ласка, повторіть замовлення",
         "notFound": "Платіж не знайдено",
         "pleaseRepeatOrSupport": "Будь ласка, спробуйте ще раз або зверніться до служби підтримки",
-        "payed": "Я оплатив!"
+        "payed": "Я оплатив!",
+        "returnBtn": "Повернутися на сайт"
     },
     "Success": {
         "header": "Ваш баланс поповнено",
-        "payoutHeader": "Ви успішно вивели"
+        "payoutHeader": "Ви успішно вивели",
+        "returnBtn": "Повернутися на сайт"
     },
     "PayeeCard": {
         "copy": "Копіювати",
