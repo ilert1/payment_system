@@ -1,33 +1,29 @@
 import SupportDialog from "../widgets/SupportDialog";
-import { useState } from "react";
 
 import { useContext } from "react";
 import AppContext from "../AppContext";
 
-import PayHubLogo from "../assets/images/Pay_n_Play.svg";
 import MessageSquare from "../assets/images/message-square.svg";
+
 import LanguageSelector from "./LanguageSelector";
+import ym from "react-yandex-metrika";
 
 const Header = () => {
     const { isActive, setIsActive } = useContext(AppContext).supportDialog;
     const { lang, setLang } = useContext(AppContext);
     const { t } = useContext(AppContext);
-
-    // console.log("lang");
-    // console.log(langShort);
-
     //translation
     const ns = { ns: "Common" };
 
     return (
         <>
             <header>
-                <div className="logo-container">
-                    <img src={PayHubLogo} alt="" />
-                </div>
                 <div
                     className="support-container"
                     onClick={() => {
+                        if (import.meta.env.VITE_YMETRICS_COUNTER) {
+                            ym("reachGoal", "support-dialog.overlay.active");
+                        }
                         setIsActive(!isActive);
                     }}>
                     <img src={MessageSquare} alt="" />

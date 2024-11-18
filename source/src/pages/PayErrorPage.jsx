@@ -41,7 +41,7 @@ const PayErrorPage = (notFound = false) => {
                 // nextPage={`/${BFData?.blowfish_id}/${c.PAGE_PAYMENT_CONFIRMATION}`}
                 noIcon={true}
                 // prevPage={BFData?.fail_url ? BFData?.fail_url : ""}
-                prevPage={BFData?.fail_url ? `${BFData?.fail_url}${failUrlParams}` : ""}
+                // prevPage={BFData?.fail_url ? `${BFData?.fail_url}${failUrlParams}` : ""}
                 absolutePrev={true}
             />
         </div>

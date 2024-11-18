@@ -6,7 +6,7 @@ import { useContext } from "react";
 import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
 
-export const GeneralErrorPage = () => {
+export const GeneralErrorPage = ({ cancel = false }) => {
     const { t } = useContext(AppContext);
     const { setIsActive } = useContext(AppContext).supportDialog;
 
@@ -23,15 +23,15 @@ export const GeneralErrorPage = () => {
 
             <div className="content">
                 <div className="header-container grow">
-                    <h1>{t("error", ns)}</h1>
+                    <h1>{t(cancel ? "cancelPage.cancel" : "error", ns)}</h1>
                 </div>
                 <div className="description low-mb low-mt">
-                    <p>{t("repeatOrder", ns)}</p>
+                    <p>{t(cancel ? "cancelPage.transactionCanceled" : "repeatOrder", ns)}</p>
                 </div>
                 <img className="error-image" src={PlusCircle} alt="" />
             </div>
 
-            <Footer buttonCaption={t("repeatOrder", ns)} nextPage={c.PAGE_PAYMENT_INSTRUMENT} noIcon={true} />
+            {/* <Footer buttonCaption={t("repeatOrder", ns)} nextPage={c.PAGE_PAYMENT_INSTRUMENT} noIcon={true} /> */}
         </div>
     );
 };

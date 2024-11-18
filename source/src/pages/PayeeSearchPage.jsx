@@ -10,6 +10,7 @@ import { ProgressSteper } from "../widgets/ProgressSteper";
 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayeeSearchPage = () => {
     const {
@@ -24,7 +25,9 @@ const PayeeSearchPage = () => {
         getCurrencySymbol
     } = useContext(AppContext);
 
-    let nav = navigate();
+    const nav = navigate();
+
+    usePaymentPage({ absolutePath: false });
 
     //translation
     const ns = { ns: ["Common", "PayeeSearch"] };

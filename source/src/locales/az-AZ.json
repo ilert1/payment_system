@@ -9,7 +9,13 @@
     "Header": {},
     "Footer": {
         "protected": "Tərcümə qorunur.",
-        "details": "Təfərrüatlar"
+        "details": "Təfərrüatlar",
+        "cancel": "Köçürməni ləğv edin",
+        "cancelDialog": {
+            "title": "Köçürməni ləğv edin və mağazaya qayıdın",
+            "text": "Köçürməni ləğv etsəniz, əvvəlcə yeni bir sifariş yaratmalı olacaqsınız.",
+            "continue": "Tərcüməyə davam edin"
+        }
     },
     "Main": {
         "header": "Balansın təminatçımız vasitəsilə artırılması",
@@ -34,7 +40,17 @@
             "wholeAmount": "bütün məbləği",
             "approveTransfer": "Köçürməni təsdiqlə",
             "openYourBankApp": "Bank tətbiqinizi açın"
-        }
+        },
+        "steps_new": {
+            "one": "Telefon nömrəsini kopyalayın və bank tətbiqinizi açın",
+            "two": "Kart nömrəsinə köçürmə edin",
+            "onAmount": "məbləğə",
+            "pressButton": "Düyməyə basın",
+            "payed": "Ödənilib"
+        },
+        "payed": "Ödənilib",
+        "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
+        "agree": "Tamam, başa düşdüm"
     },
     "PayOut": {
         "payout": "Vəsaitlərin",
@@ -99,7 +115,19 @@
     "PayerData": {
         "enter4": "Son 4 rəqəmi daxil edin",
         "yourPhone": "telefonunuzun",
-        "yourCard": "kartınızın"
+        "yourCard": "kartınızın",
+        "cardNumber": "Kart Nömrəsi",
+        "expirationDate": "Etibarlılıq Müddəti",
+        "errors": {
+            "cardValidationError": "Kartın nömrəsi 16 rəqəm olmalıdır",
+            "expireDateError": "Son istifadə tarixi MM/YY formatında daxil edilməlidir",
+            "expreDateRangeError": "Son istifadə tarixi gələcəkdə olmalıdır",
+            "cvvError": "CVV 3 rəqəmdən ibarət olmalıdır",
+            "paymentNotFound": "Bu ID ilə ödəniş tapılmadı",
+            "unknownError": "Bilinməyən səhv"
+        },
+        "getCard": "Kartınız qəbul edildi, ödəniş səhifəsinə keçmək üçün ödəniş düyməsini basın",
+        "pay": "Ödə"
     },
     "PayeeData": {
         "waitConfirmation": "Təminatçı köçürmənizi yoxlayır",
@@ -108,7 +136,11 @@
     },
     "GeneralError": {
         "repeatOrder": "sifarişi təkrarla",
-        "pleaseRepeatOrder": "Xahiş edirik, sifarişi təkrarlayın"
+        "pleaseRepeatOrder": "Xahiş edirik, sifarişi təkrarlayın",
+        "cancelPage": {
+            "cancel": "Ödənişi ləğv etdiniz",
+            "transactionCanceled": "Əməliyyat uğurla ləğv edildi."
+        }
     },
     "PayError": {
         "payError": "Ödəniş uğursuz oldu",
@@ -124,7 +156,12 @@
     "PayeeCard": {
         "copy": "Kopyala",
         "copyed": "Kart nömrəsi kopyalandı",
-        "copyedPhone": "Telefon nömrəsi kopyalandı"
+        "copyedPhone": "Telefon nömrəsi kopyalandı",
+        "copyedAmount": "Məbləğ kopyalandı",
+        "bankName": "Alıcının bankı",
+        "requisite": "Rekvizitlər",
+        "amount": "Köçürmə məbləği",
+        "payee": "Alıcı"
     },
     "PayeeHint": {
         "hint": {
@@ -161,5 +198,9 @@
         "header": "Hörmətli istifadəçi!",
         "text": "Sorğu identifikatorunu kopyalayın və dəstək çatına göndərin. Operator statusunu yoxlayacaq.",
         "chatButton": "Çata keç"
+    },
+    "PayHeader": {
+        "transfer": "Köçürmə edin",
+        "to": "üzrə"
     }
 }

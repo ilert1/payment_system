@@ -2,25 +2,28 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AppContext, base58 } from "../AppContext";
 // import { PayMethod } from "../widgets/PayInstrument.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.jsx";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 // import { base58_to_binary, binary_to_base58 } from "base58-js";
 
 const PaymentMethodsPage = () => {
     const {
-        // navigate,
         setCurrentPaymentMethod,
         currentPaymentMethod,
         getCurrencySymbol,
         fingerprintReady,
+        fingerprintConfig,
         t,
         BFData,
         setFailUrlParams
     } = useContext(AppContext);
+
+    usePaymentPage({ absolutePath: false });
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
@@ -31,6 +34,30 @@ const PaymentMethodsPage = () => {
     console.log(`MODE: ${import.meta.env.MODE}`);
 
     console.log(BFData); */
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
+    const buttonCallback = async () => {
+        if (currentPaymentMethod?.payment_type) {
+            const { data } = await axios
+                .post(
+                    `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                    {
+                        event: "paymentMethodSelected",
+                        method: {
+                            name: currentPaymentMethod?.payment_type
+                        }
+                    },
+                    fingerprintConfig
+                )
+                .catch(e => {
+                    console.log(e);
+                });
+            console.log(data);
+        }
+    };
 
     let redirectUrl;
 
@@ -138,7 +165,7 @@ const PaymentMethodsPage = () => {
 
             <Footer
                 buttonCaption={t("next", ns)}
-                // buttonCallback={buttonCallback}
+                buttonCallback={buttonCallback}
                 nextPage={
                     currentPaymentMethod?.bank_name || currentPaymentMethod?.payment_type == "sbp"
                         ? `/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`

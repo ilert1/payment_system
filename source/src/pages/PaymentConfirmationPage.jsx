@@ -83,7 +83,7 @@ const PaymentConfirmationPage = () => {
             </div>
 
             <Footer
-                buttonCaption={"Подтвердить"}
+                buttonCaption={t("Common.approve")}
                 approve={true}
                 // prevPage={c.PAGE_PAY_ERROR}
                 nextPage={c.PAGE_PAYMENT_WAIT_CONFIRMATION}

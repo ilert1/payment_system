@@ -9,7 +9,13 @@
     "Header": {},
     "Footer": {
         "protected": "Translation protected.",
-        "details": "Details"
+        "details": "Details",
+        "cancel": "Cancel the transfer",
+        "cancelDialog": {
+            "title": "Cancel the transfer and return to the store",
+            "text": "If you cancel the transfer, you will have to create a new order first.",
+            "continue": "Continue the transfer"
+        }
     },
     "Main": {
         "header": "Balance replenishment through our provider",
@@ -34,7 +40,17 @@
             "wholeAmount": "in one amount",
             "approveTransfer": "Approve transfer",
             "openYourBankApp": "Open your bank app"
-        }
+        },
+        "steps_new": {
+            "one": "Copy the phone number and go to your bank application",
+            "two": "Make the transfer using the card number",
+            "onAmount": "for the amount",
+            "pressButton": "Press the button",
+            "payed": "Paid"
+        },
+        "payed": "Paid",
+        "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
+        "agree": "Okay, understood"
     },
     "PayOut": {
         "payout": "Withdrawal",
@@ -99,7 +115,19 @@
     "PayerData": {
         "enter4": "Enter the last 4 digits",
         "yourPhone": "of your phone",
-        "yourCard": "of your card"
+        "yourCard": "of your card",
+        "cardNumber": "Card Number",
+        "expirationDate": "Expiration Date",
+        "errors": {
+            "cardValidationError": "Card number must contain 16 digits",
+            "expireDateError": "Expiration date must be in MM/YY format",
+            "expreDateRangeError": "Expiration date must be in the future",
+            "cvvError": "CVV must contain 3 digits",
+            "paymentNotFound": "Payment with this id was not found",
+            "unknownError": "Unknown error"
+        },
+        "getCard": "Your card has been accepted, press pay to proceed to the payment page",
+        "pay": "Pay"
     },
     "PayeeData": {
         "waitConfirmation": "The provider is checking your transfer",
@@ -108,7 +136,11 @@
     },
     "GeneralError": {
         "repeatOrder": "repeat order",
-        "pleaseRepeatOrder": "Please repeat the order"
+        "pleaseRepeatOrder": "Please repeat the order",
+        "cancelPage": {
+            "cancel": "You canceled the payment",
+            "transactionCanceled": "The transaction was successfully canceled."
+        }
     },
     "PayError": {
         "payError": "Payment failed",
@@ -124,7 +156,12 @@
     "PayeeCard": {
         "copy": "Copy",
         "copyed": "Card number copied",
-        "copyedPhone": "Phone number copied"
+        "copyedPhone": "Phone number copied",
+        "copyedAmount": "Amount copied",
+        "bankName": "Recipient's bank",
+        "requisite": "Requisites",
+        "amount": "Transfer amount",
+        "payee": "Payee"
     },
     "PayeeHint": {
         "hint": {
@@ -161,5 +198,9 @@
         "header": "Dear user!",
         "text": "Copy the request identifier and send it to the support chat. The operator will check its status.",
         "chatButton": "Go to chat"
+    },
+    "PayHeader": {
+        "transfer": "Make a transfer of",
+        "to": "to"
     }
 }

@@ -35,16 +35,14 @@ export const PayeeInfo = ({ PayeeName, showPayeeData }) => {
         <div className="payee-info-container">
             <img src={UserIcon} alt="" />
             <p className="payee-name">{PayeeName}</p>
-            {showPayeeData ? (
+            {/* {showPayeeData && (
                 <div className="payee-container">
                     <a href="" onClick={showPopupCallback}>
                         {t("payeeInfo", ns)}
                     </a>
                     <PayeeHint showPopup={showPopup} payeeData={PayeeName} />
                 </div>
-            ) : (
-                ""
-            )}
+            )} */}
         </div>
     );
 };

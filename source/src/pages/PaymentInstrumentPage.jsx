@@ -2,11 +2,12 @@ import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 import { PayInstruments } from "../widgets/PayInstruments.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PaymentInstrumentPage = () => {
     const { navigate, currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t } =
@@ -19,6 +20,12 @@ const PaymentInstrumentPage = () => {
     const [enabled_startPayIN, setEnabled_startPayIN] = useState(false);
 
     const nav = navigate();
+
+    usePaymentPage({ absolutePath: false });
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
 
     /* console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
     console.log(`MODE: ${import.meta.env.MODE}`); */
@@ -91,8 +98,28 @@ const PaymentInstrumentPage = () => {
         }
     });
 
-    const buttonCallback = () => {
+    const buttonCallback = async () => {
         setEnabled_startPayIN(true);
+
+        if (currentPaymentInstrument?.bank) {
+            const { data } = await axios
+                .post(
+                    `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                    {
+                        event: "paymentBankSelected",
+                        method: {
+                            bank: {
+                                name: currentPaymentInstrument.bank
+                            }
+                        }
+                    },
+                    fingerprintConfig
+                )
+                .catch(e => {
+                    console.log(e);
+                });
+            console.log(data);
+        }
     };
 
     return (

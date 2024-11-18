@@ -1,16 +1,18 @@
-import { useContext, useRef, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import { useContext, useRef, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 
-import Lock from "../assets/images/lock.svg";
 import ArrowRight from "../assets/images/arrow-right.svg";
 import ArrowLeft from "../assets/images/arrow-left.svg";
 import Check from "../assets/images/check.svg";
-import Discard from "../assets/images/discard.svg";
-
+import * as c from "../assets/constants.js";
 import BankIcon from "../assets/images/bank-icon.svg"; //Sberbank_Logo_2020.svg";
 
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
+import ym from "react-yandex-metrika";
+import PayoutSubmitModal from "./PayoutSubmitModal";
+import SubmitModal from "./SubmitModal.jsx";
 
 const Footer = ({
     buttonCaption = "",
@@ -22,18 +24,29 @@ const Footer = ({
     focused = false,
     payeeCard = false,
     noIcon = false,
-    buttonCallback = null,
-    absolutePrev = false,
-    discardButton = { caption: "", disabled: true, callback: () => {} },
-    approveButton = { caption: "", disabled: true, callback: () => {} }
+    buttonCallback = null
 }) => {
     const navigate = useContext(AppContext).navigate();
-    const { traderData, currentPaymentMethod, t, BFData } = useContext(AppContext);
+    // const { traderData, currentPaymentMethod, t, BFData } = useContext(AppContext);
+    const { BFData, t } = useContext(AppContext);
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const trader = BFData?.[dest]?.method?.payee?.data;
+    const [requisite, setRequisite] = useState(null);
+
+    const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
+
+    // const currPayMethod = JSON.parse(currentPaymentMethod);
+
+    const [dialogShow, setDialogShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    // const [enabled_cancel, setEnabled_cancel] = useState(false);
+
+    const cancelRequestIgnore = false;
 
     //translation
     const ns = { ns: "Footer" };
-
-    const trader = JSON.parse(traderData);
 
     const mainButton = useRef();
 
@@ -41,37 +54,123 @@ const Footer = ({
         if (focused) {
             mainButton.current.focus();
         }
-    }, [, focused]);
+    }, [focused]);
+
+    useEffect(() => {
+        if (trader?.card_number) {
+            setRequisite(trader.card_number);
+        }
+        if (trader?.phone) {
+            setRequisite(trader.phone);
+        }
+        if (trader?.account_number) {
+            setRequisite(trader.account_number);
+        }
+        if (trader?.iban) {
+            setRequisite(trader.iban);
+        }
+        console.log(trader);
+    }, [trader]);
 
     let buttonIcon = ArrowRight;
     if (noIcon) buttonIcon = null;
     if (approve) buttonIcon = Check;
 
-    // console.log(prevPage);
+    const submitModalData = {
+        title: t("cancelDialog.title", ns),
+        text: t("cancelDialog.text", ns),
+        primaryBtnText: t("cancel", ns),
+        primaryBtnCallback: () => {
+            if (import.meta.env.VITE_YMETRICS_COUNTER) {
+                ym("reachGoal", "cancel-button", { cancel_redirect_url: returnUrl });
+            }
+            if (cancelRequestIgnore) {
+                if (returnUrl) {
+                    setIsLoading(true);
+                    window.location.replace(returnUrl);
+                } else {
+                    navigate(c.PAGE_CANCEL, { replace: true });
+                }
+            } else {
+                setIsLoading(true);
+                // setEnabled_cancel(true);
+            }
+        },
+        secondaryBtnText: t("cancelDialog.continue", ns),
+        secondaryBtnCallback: () => {
+            setDialogShow(false);
+        }
+    };
+
+    // const { data: data_cancel, isFetching: isFetching_cancel } = useQuery({
+    //     queryKey: ["cancel"],
+    //     enabled: enabled_cancel && fingerprintReady,
+    //     refetchOnWindowFocus: false,
+    //     queryFn: async () => {
+    //         console.log("cancel");
+    //         let payload = BFData;
+    //         const { trn, wf } = payload;
+    //         payload = {
+    //             message: {
+    //                 payment: {
+    //                     trn: trn
+    //                 }
+    //             }
+    //         };
+    //         console.log("cancel payload:");
+    //         console.log(payload);
+
+    //         const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/cancel`, payload, fingerprintConfig);
+    //         console.log("cancel response:");
+    //         console.log(data);
+
+    //         if (data?.success) {
+    //             if (returnUrl) {
+    //                 window.location.replace = returnUrl;
+    //             } else {
+    //                 navigate(c.PAGE_CANCEL, { replace: true });
+    //             }
+    //         } else {
+    //             if (BFData?.fail_url) {
+    //                 document.location.replace(BFData.fail_url);
+    //             } else {
+    //                 nav(c.PAGE_GENERAL_ERROR, { replace: true });
+    //             }
+    //         }
+    //         setIsLoading(false);
+
+    //         return data;
+    //     }
+    // });
 
     return (
-        <footer>
-            <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
-                {prevPage || nextPage ? (
+        <>
+            <footer>
+                <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
+                    {payeeCard && (
+                        <div className="payee-data">
+                            <BankCardInfo BankIcon={BankIcon} cardNumber={requisite} />
+                            {trader?.card_holder && (
+                                <PayeeInfo
+                                    PayeeName={trader?.card_holder}
+                                    showPayeeData={trader?.card_number || trader?.iban || trader?.account_number}
+                                />
+                            )}
+                        </div>
+                    )}
                     <div className="buttons-container">
-                        {prevPage ? (
+                        {prevPage && (
                             <button
                                 id="back-button"
                                 className={`button back-button${nextPage == "" ? " grow" : ""}`}
                                 onClick={() => {
-                                    if (absolutePrev) {
-                                        window.location.replace(prevPage);
-                                    } else {
-                                        navigate(prevPage, { replace: true });
-                                    }
+                                    navigate(prevPage, { replace: true });
                                 }}>
                                 <img src={ArrowLeft} alt="" />
                             </button>
-                        ) : (
-                            ""
                         )}
 
-                        {nextPage ? (
+                        {nextPage && (
                             <button
                                 id="main-button"
                                 ref={mainButton}
@@ -80,68 +179,30 @@ const Footer = ({
                                     if (buttonCallback) {
                                         buttonCallback();
                                     } else {
-                                        navigate(`${nextPage}`, { replace: true });
+                                        if (import.meta.env.VITE_YMETRICS_COUNTER) {
+                                            ym("reachGoal", "main-button", { caption: buttonCaption });
+                                        }
+                                        navigate(nextPage, { replace: true });
                                     }
                                 }}>
                                 {buttonCaption}
-                                <img src={buttonIcon} alt="" />
-                            </button>
-                        ) : (
-                            ""
-                        )}
-                    </div>
-                ) : (
-                    ""
-                )}
-
-                {(discardButton.caption || approveButton.caption) && (
-                    <div className="buttons-container">
-                        {approveButton.caption && (
-                            <button
-                                ref={mainButton}
-                                className={`button main-button main-button__approve ${
-                                    approveButton.disabled ? "disabled" : ""
-                                }`}
-                                onClick={approveButton.callback}>
-                                {approveButton.caption}
-                                <img src={Check} alt="" />
+                                {buttonIcon && <img src={buttonIcon} alt="" />}
                             </button>
                         )}
-
-                        {discardButton.caption && (
-                            <button
-                                ref={mainButton}
-                                className={`button main-button main-button__discard  ${
-                                    discardButton.disabled ? "disabled" : ""
-                                }`}
-                                onClick={discardButton.callback}>
-                                {discardButton.caption}
-                                <img src={Discard} alt="" />
-                            </button>
-                        )}
+                        <button
+                            id="cancel-button"
+                            className={`button cancel-button no-bg`}
+                            onClick={() => {
+                                setDialogShow(true);
+                            }}>
+                            {submitModalData?.primaryBtnText}
+                            {/* <img src={CancelIcon} alt="" /> */}
+                        </button>
                     </div>
-                )}
-
-                {payeeCard ? (
-                    <div className="payee-data">
-                        <BankCardInfo BankIcon={BankIcon} cardNumber={trader?.card ? trader?.card : trader?.phone} />
-                        <PayeeInfo
-                            PayeeName={trader?.cardholder ? trader?.cardholder : currentPaymentMethod?.bank_name}
-                            showPayeeData={trader?.card}
-                        />
-                    </div>
-                ) : (
-                    ""
-                )}
-            </div>
-
-            <div className="security-details">
-                <img src={Lock} alt="" />
-                <p>
-                    {t("protected", ns)} <a href="#">{t("details", ns)}</a>
-                </p>
-            </div>
-        </footer>
+                </div>
+            </footer>
+            <SubmitModal show={dialogShow} setShow={setDialogShow} data={submitModalData} isLoading={isLoading} />
+        </>
     );
 };
 

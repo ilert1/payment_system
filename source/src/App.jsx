@@ -13,16 +13,15 @@ import GeneralErrorPage from "./pages/GeneralErrorPage";
 import PaymentConfirmationPage from "./pages/PaymentConfirmationPage";
 import PaymentWaitConfirmation from "./pages/PaymentWaitConfirmation";
 import PaymentMethodsPage from "./pages/PaymentMethodsPage.jsx";
+import MainPage from "./pages/MainPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
 import AppContext from "./AppContext.jsx";
 import Loader from "./ui/Loader.jsx";
-import { getCookie } from "react-use-cookie";
-import PayOutPage from "./pages/PayOutPage.jsx";
-
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 const defaultPages = [
     {
@@ -72,6 +71,10 @@ const defaultPages = [
     {
         path: c.PAGE_GENERAL_ERROR, //"/general-error-page",
         element: <GeneralErrorPage />
+    },
+    {
+        path: c.PAGE_CANCEL, //"/cancel-page",
+        element: <GeneralErrorPage cancel={true} />
     }
 ];
 
@@ -81,9 +84,25 @@ const router = createBrowserRouter([
         // index: true,
         element: <MainPage />
     }, */
+    /* {
+        path: `/payer-data-page`,
+        children: [
+            ...defaultPages,
+            {
+                index: true,
+                element: <PayerDataPage />
+            }
+        ]
+    }, */
     {
         path: `/payments/:blowfishId/`, //${c.PAGE_MAIN} //"/",
-        children: [...defaultPages]
+        children: [
+            ...defaultPages,
+            {
+                index: true,
+                element: <MainPage />
+            }
+        ]
     },
     {
         path: `/payouts/:blowfishId/`,
@@ -92,7 +111,7 @@ const router = createBrowserRouter([
             {
                 // path: c.PAGE_OUT_PAY, //"/pay-out-page",
                 index: true,
-                element: <PayOutPage />
+                element: <MainPage />
             }
         ]
     },
@@ -124,7 +143,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, setCurrentPaymentMethod, fingerprintConfig } = useContext(AppContext);
+    const { setBFData, BFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode } = useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -139,40 +158,138 @@ const App = () => {
         window.location.replace(payMode === "payouts" ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND);
     } */
 
-    let storedCurrentPaymentMethod = getCookie("CurrentPaymentMethod", null);
+    let storedCurrentPaymentMethod = localStorage.getItem("CurrentPaymentMethod");
     useEffect(() => {
         if (storedCurrentPaymentMethod) {
             setCurrentPaymentMethod(JSON.parse(storedCurrentPaymentMethod));
         }
     }, []);
 
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
+    useEffect(() => {
+        if (BFData?.payout?.id || BFData?.payment?.id) {
+            const mode = payOutMode ? "payout" : "payment";
+
+            const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[mode]?.id}/events`);
+
+            es.onopen = () => console.log(">>> Connection opened!");
+
+            es.onerror = e => console.log("ERROR!", e);
+
+            es.onmessage = async e => {
+                try {
+                    const resEventData = JSON.parse(e.data);
+                    console.log("SSE: ", resEventData);
+
+                    const tempBFData = { ...BFData };
+                    tempBFData[mode].status = resEventData.data.status;
+
+                    setBFData(tempBFData);
+                } catch (error) {
+                    // continue
+                }
+            };
+
+            return () => es.close();
+        }
+    }, [BFData?.payout?.id, BFData?.payment?.id]);
+
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
-        // refetchInterval: 1000,
+        refetchInterval: BFData?.[dest]?.status === "paymentAwaitingStart" ? 1000 : false,
         enabled: Boolean(blowfishId) && !notFound, //Boolean(blowfishId),
         // refetchIntervalInBackground: true,
         // retry: false,
         refetchOnWindowFocus: false,
         queryFn: async () => {
             if (blowfishId) {
+                let dest = payoutMode ? "payouts" : "payments";
                 try {
                     const { data } = await axios
-                        .get(`${import.meta.env.VITE_API_URL}/payouts/${blowfishId}`, fingerprintConfig)
+                        .get(`${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`, fingerprintConfig)
                         .catch(e => {
                             console.log(e);
                         });
 
+                    /* const data = {
+                        success: true,
+                        payment: {
+                            id: "2564dbd3-dc17-4713-8bd2-41c70dd9ef48",
+                            amount: "992.00",
+                            currency: "AZN",
+                            method: {
+                                name: "ecom",
+                                display_name: "Банковский перевод",
+                                payer: {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            card_cvc: {
+                                                type: "string",
+                                                description: "Card security code",
+                                                format: ""
+                                            },
+                                            card_lifetime_month: {
+                                                type: "string",
+                                                description: "Card expiration date month",
+                                                format: ""
+                                            },
+                                            card_lifetime_year: {
+                                                type: "string",
+                                                description: "Card expiration date year",
+                                                format: ""
+                                            },
+                                            card_number: {
+                                                type: "string",
+                                                description: "Card number",
+                                                format: ""
+                                            }
+                                        }
+                                    },
+                                    required: ["card_number", "card_lifetime_month", "card_lifetime_year", "card_cvc"],
+                                    data: {
+                                        card_cvc: "123",
+                                        card_lifetime_month: "11",
+                                        card_lifetime_year: "29",
+                                        card_number: "4169738851576482"
+                                    }
+                                },
+                                payee: {
+                                    schema: {
+                                        type: "",
+                                        properties: null
+                                    },
+                                    required: null
+                                    // redirect_url:
+                                    //     "https://imap.inout-sarysu-az.icu/3ds-transaction?id=25135340&secret=a5289598b607ff1cd28f69c3cdf59bb3d02427be51d87c92dbe0f6ec1063953d"
+                                },
+                                context: {
+                                    success_redirect_url: "https://merchant-side.com/success",
+                                    error_redirect_url: "https://merchant-side.com/fail",
+                                    cancel_redirect_url: "https://merchant-side.com/return"
+                                }
+                            },
+                            // status: "paymentAwaitingStart",
+                            status: "paymentPayerDataEntrу",
+                            // status: "paymentAwaitingTransfer",
+                            created_at: -62135596800
+                        }
+                    }; */
+
+                    console.log(data);
+
                     if (data) {
-                        console.log("data: ", data);
                         if (data?.success) {
                             //данные получены успешно
-                            setBFData(data?.data);
+                            setBFData(data);
                         } else {
                             //транзакция не подлежит оплате
                             window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
                         }
                     }
-
                     return data;
                 } catch (e) {
                     console.error(e.response.statusCode);
@@ -219,6 +336,7 @@ const App = () => {
             ) : (
                 <RouterProvider router={router} />
             )}
+            <ToastContainer />
         </>
     );
 };

@@ -4,60 +4,100 @@ import Footer from "../widgets/Footer";
 
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
-import { PleasePay } from "../widgets/PleasePay";
-import { DeadlineInfo } from "../widgets/DeadlineInfo";
-import { PayeeCard } from "../widgets/PayeeCard";
-import { PayeeInfo } from "../widgets/PayeeInfo";
-import AlertTriangle from "../assets/images/alert-triangle.svg";
 
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import PayHeader from "../widgets/PayHeader.jsx";
+import PayeeData from "../widgets/PayeeData.jsx";
 
 const PayPage = () => {
-    const { navigate, BFData, currentPaymentInstrument, traderData, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
 
-    // const currPayMethod = JSON.parse(currentPaymentInstrument);
-    const trader = JSON.parse(traderData);
+    usePaymentPage({ absolutePath: false });
 
-    const nav = navigate();
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+    const baseApiURL = import.meta.env.VITE_API_URL;
+
+    const method = BFData?.[dest]?.method;
+    const trader = method?.payee?.data;
+    const ecom = method?.name === "ecom";
+    const [requisite, setRequisite] = useState(null);
+
+    const buttonCallback = async () => {
+        const { data } = await axios
+            .post(
+                `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                {
+                    event: "paymentPayerConfirm"
+                },
+                fingerprintConfig
+            )
+            .catch(e => {
+                console.log(e);
+            });
+        console.log(data);
+    };
+
+    useEffect(() => {
+        if (trader?.card_number) {
+            setRequisite(trader.card_number);
+        }
+        if (trader?.phone) {
+            setRequisite(trader.phone);
+        }
+        if (trader?.account_number) {
+            setRequisite(trader.account_number);
+        }
+        if (trader?.iban) {
+            setRequisite(trader.iban);
+        }
+        console.log(trader);
+    }, [trader]);
 
     return (
         <div className="container">
             <Header />
             <div className="content">
-                <PleasePay amount={BFData?.amount} currency={getCurrencySymbol(BFData?.currency)} />
-
-                <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
-
-                <PayeeCard payeeCardNumber={trader?.card ? trader?.card : trader?.phone} isPhone={!!trader?.phone} />
-
-                <PayeeInfo
-                    PayeeName={trader?.cardholder ? trader?.cardholder : currentPaymentInstrument?.bank_name}
-                    showPayeeData={trader?.card}
+                <PayHeader
+                    amount={BFData?.[dest]?.amount}
+                    currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                    bankName={method?.bank?.display_name}
                 />
 
-                <div className="payment-comment-alert">
-                    <img src={AlertTriangle} alt="" />
-                    <p>{t("withoutComments", ns)}</p>
-                </div>
+                <PayeeData
+                    requisite={requisite}
+                    trader={trader}
+                    bankName={method?.bank?.display_name}
+                    isPhone={!!trader?.phone}
+                />
 
-                <div className="instructions">
+                <div className="instructions_new">
                     <ul>
                         <li>
                             <span>1. </span>
-                            {t("steps.open", ns)} "{currentPaymentInstrument?.bank_name}"
+                            {t("steps_new.one", ns)}
                         </li>
                         <li>
                             <span>2. </span>
-                            {t("steps.transfer", ns)} {BFData?.amount}&nbsp;
-                            {getCurrencySymbol(BFData?.currency)} {t("steps.wholeAmount", ns)}
+                            {t("steps_new.two", ns)} <span>{method?.bank?.display_name}</span>{" "}
+                            {t("steps_new.onAmount", ns)}{" "}
+                            <span>
+                                {BFData?.[dest]?.amount}&nbsp;
+                                {getCurrencySymbol(BFData?.[dest]?.currency)}
+                            </span>
                         </li>
                         <li>
                             <span>3. </span>
-                            {t("steps.approveTransfer", ns)}
+                            {t("steps_new.pressButton", ns)}
+                            <span>
+                                {' "'}
+                                {t("steps_new.payed", ns)}
+                                {'"'}
+                            </span>
                         </li>
                     </ul>
                 </div>
@@ -65,7 +105,7 @@ const PayPage = () => {
 
             <Footer
                 buttonCaption={t("approveTransfer", ns)}
-                // buttonCallback={buttonCallback}
+                buttonCallback={buttonCallback}
                 nextPage={`../${c.PAGE_PAYEE_DATA}`}
                 // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
                 approve={true}

@@ -5,10 +5,10 @@ import AlertTriangleBig from "../assets/images/alert-triangle-big.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { useParams } from "react-router-dom";
+import ym from "react-yandex-metrika";
 
 const SupportDialog = () => {
-    const { navigate, BFData, t, payoutMode } = useContext(AppContext);
+    const { BFData, t } = useContext(AppContext);
     const { isActive, setIsActive } = useContext(AppContext).supportDialog;
     const [showPopup, setShowPopup] = useState(false);
 
@@ -17,7 +17,13 @@ const SupportDialog = () => {
 
     let popupTimeout = null;
 
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
     const showPopupCallback = () => {
+        if (import.meta.env.VITE_YMETRICS_COUNTER) {
+            ym("reachGoal", "copy-dialog-button", { id: BFData?.[dest]?.id });
+        }
         clearTimeout(popupTimeout);
         setShowPopup(true);
 
@@ -26,38 +32,26 @@ const SupportDialog = () => {
         }, 1000);
     };
 
-    const params = useParams();
-
     return (
         <div
             id="support-dialog"
             className={`overlay ${isActive ? "active" : ""}`}
             onClick={() => {
                 setIsActive(false);
-            }}
-        >
+            }}>
             <div
                 className="dialog"
-                onClick={(e) => {
+                onClick={e => {
                     e.stopPropagation();
-                }}
-            >
+                }}>
                 <img src={AlertTriangleBig} alt="" />
                 <div className="uuid-container">
-                    <div
-                        id="copy-dialog-popup"
-                        className={`popup ${showPopup ? "active" : ""}`}
-                    >
+                    <div id="copy-dialog-popup" className={`popup ${showPopup ? "active" : ""}`}>
                         {t("copyed", ns)}
                         <img src={CheckCircle} alt="" />
                     </div>
-                    <p id="uuid">
-                        {payoutMode ? params.blowfishId : BFData?.trn}
-                    </p>
-                    <CopyToClipboard
-                        text={payoutMode ? params.blowfishId : BFData?.trn}
-                        onCopy={showPopupCallback}
-                    >
+                    <p id="uuid">{BFData?.[dest]?.id}</p>
+                    <CopyToClipboard text={BFData?.[dest]?.id} onCopy={showPopupCallback}>
                         <button id="copy-dialog-button">{t("copy", ns)}</button>
                     </CopyToClipboard>
                 </div>
@@ -68,13 +62,11 @@ const SupportDialog = () => {
                 <button
                     className="dialog-button"
                     onClick={() => {
-                        window.open(
-                            import.meta.env.VITE_SUPPORT_LINK +
-                                "=" +
-                                (payoutMode ? params.blowfishId : BFData?.trn)
-                        );
-                    }}
-                >
+                        if (import.meta.env.VITE_YMETRICS_COUNTER) {
+                            ym("reachGoal", "dialog-button", { id: BFData?.[dest]?.id });
+                        }
+                        open("https://t.me/MoneygateSupportBot", "_blank").focus();
+                    }}>
                     {t("chatButton", ns)}
                 </button>
             </div>

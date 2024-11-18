@@ -1,14 +1,12 @@
-import { createContext, useState, useEffect } from "react";
+import * as c from "./assets/constants.js";
+import { createContext, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import useCookie, { setCookie } from "react-use-cookie";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import i18n, { getLanguage } from "./Localization";
 import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
-
 import CurrencyLibrary from "./assets/library/Currency.json";
 import { binary_to_base58 } from "base58-js";
 
@@ -26,28 +24,23 @@ export const AppContext = createContext({
         setIsActive: null
     },
     urlData: null,
-
     currentPaymentMethod: null,
     setCurrentPaymentMethod: null,
-
     currentPaymentInstrument: null,
     setCurrentPaymentInstrument: null,
-
     cardNumberLast4: null,
     setCardNumberLast4: null,
     traderData: null,
     setTraderData: null,
-    resetCookies: null,
+    resetStorage: null,
     t: null,
     fingerprintConfig: null,
     getCurrencySymbol: null,
     fingerprintReady: false,
     BFData: null,
     setBFData: () => {},
-
     failUrlParams: null,
     setFailUrlParams: null,
-
     lang: null,
     setLang: null,
     payoutMode: null
@@ -58,32 +51,28 @@ export const AppProvider = ({ children }) => {
     const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
 
     const pathname = new URL(window.location.href).pathname;
-    const payoutMode = pathname.split("/")[1] == "payouts";
-
-    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
+    const payoutMode = pathname.split("/")[1] === "payouts";
 
     const queryClient = new QueryClient();
+    const { t } = useTranslation();
 
-    var supportDialog = {
-        isActive: supportDialogIsActive,
-        setIsActive: supportDialogSetIsActive
-    };
+    const [currentPaymentMethod, setCurrentPaymentMethod] = useState(() => {
+        return JSON.parse(localStorage.getItem("CurrentPaymentMethod")) || null;
+    });
+    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState(() => {
+        return JSON.parse(localStorage.getItem("CurrentPaymentInstrument")) || null;
+    });
+    const [cardNumberLast4, setCardNumberLast4] = useState(() => {
+        return localStorage.getItem("last4") || null;
+    });
+    const [traderData, setTraderData] = useState(() => {
+        return localStorage.getItem("traderData") || null;
+    });
 
-    const { t, i18n } = useTranslation();
-
-    const [currentPaymentMethod, setCurrentPaymentMethod] = useState(null);
-    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState(null);
-
-    const [cardNumberLast4, setCardNumberLast4] = useCookie("last4", null);
-    const [traderData, setTraderData] = useCookie("traderData", null);
     const [BFData, setBFData] = useState(null);
-
     const [failUrlParams, setFailUrlParams] = useState("");
-
     const [fingerprint, setFingerprint] = useState(null);
     const [fingerprintReady, setFingerprintReady] = useState(false);
-
     let storedLang = getLanguage();
     const [lang, setLang] = useState(storedLang);
 
@@ -92,69 +81,86 @@ export const AppProvider = ({ children }) => {
         localStorage.setItem("language", lang);
     }, [lang]);
 
-    const getLangsForHeader = langs => {
-        langs = langs.filter(item => {
-            return item !== lang;
-        });
-        return langs;
-    };
-
-    let langs = getLangsForHeader(navigator.languages);
-
-    var fingerprintConfig; /* = {
-        headers: {
-            "X-Fingerprint": fingerprint,
-            "Accept-Language": [lang, ...langs].toString()
-        }
-    }; */
+    useEffect(() => {
+        localStorage.setItem("CurrentPaymentMethod", JSON.stringify(currentPaymentMethod));
+    }, [currentPaymentMethod]);
 
     useEffect(() => {
-        fingerprintConfig = {
-            headers: {
-                "X-Fingerprint": fingerprint,
-                "Accept-Language": [lang, ...langs].toString()
-            }
-        };
+        localStorage.setItem("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
+    }, [currentPaymentInstrument]);
 
-        console.log("fingerprintConfig: ", fingerprintConfig);
-    }, [, fingerprint, /* customerId, */ lang]);
+    /* useEffect(() => {
+        localStorage.setItem("last4", cardNumberLast4);
+    }, [cardNumberLast4]);
+
+    useEffect(() => {
+        localStorage.setItem("traderData", traderData);
+    }, [traderData]); */
 
     useEffect(() => {
         let fp = `${getBrowserFingerprint({
             hardwareOnly: true,
-            enableScreen: false /* , enableWebgl: true */
+            enableScreen: false
         })}`;
         setFingerprint(fp);
-
         setFingerprintReady(true);
     }, []);
 
-    useEffect(() => {
-        setCookie("CurrentPaymentMethod", JSON.stringify(currentPaymentMethod));
-    }, [currentPaymentMethod]);
-
-    useEffect(() => {
-        setCookie("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
-    }, [currentPaymentInstrument]);
-
-    const resetCookies = () => {
+    /* const resetStorage = () => {
         setCardNumberLast4(null);
         setTraderData(null);
-    };
+        localStorage.removeItem("last4");
+        localStorage.removeItem("traderData");
+    }; */
 
     const getCurrencySymbol = code => {
-        if (CurrencyLibrary.hasOwnProperty(code)) {
+        if (Object.hasOwn(CurrencyLibrary, code)) {
             return CurrencyLibrary[code].symbol_native;
         }
         return code;
     };
+
+    const paymentEcomPage = useCallback(() => {
+        const data = BFData?.payment ? BFData?.payment : BFData?.payout;
+        console.log(data?.status);
+
+        switch (data?.status) {
+            case "paymentAwaitingStart":
+                return c.PAGE_MAIN;
+            case "paymentMethodSelecting":
+                return c.PAGE_PAYMENT_METHODS;
+            case "payoutBankSelecting":
+                return c.PAGE_PAYMENT_INSTRUMENT;
+            case "paymentPayerDataEntrу":
+                return c.PAGE_PAYER_DATA;
+            case "paymentPayeeSearching":
+                return c.PAGE_PAYEE_SEARCH;
+            case "paymentAwaitingTransfer":
+                if (data?.method?.name === "ecom") return c.PAGE_PAYER_DATA;
+                return c.PAGE_PAY;
+            case "paymentAwaitingConfirmationByPayee":
+                return c.PAGE_PAYEE_DATA;
+            // case "paymentConfirmedByPayer":
+            //     return c.PAGE_PAYEE_DATA;
+            case "paymentExecuted":
+                return c.PAGE_SUCCESS;
+            case "paymentError":
+                return c.PAGE_PAYOUT_NOT_FOUND;
+            default:
+                return "";
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [BFData?.payment?.status, BFData?.payout?.status]);
 
     return (
         <QueryClientProvider client={queryClient}>
             <AppContext.Provider
                 value={{
                     navigate,
-                    supportDialog,
+                    supportDialog: {
+                        isActive: supportDialogIsActive,
+                        setIsActive: supportDialogSetIsActive
+                    },
                     currentPaymentMethod,
                     setCurrentPaymentMethod,
                     currentPaymentInstrument,
@@ -163,10 +169,16 @@ export const AppProvider = ({ children }) => {
                     setCardNumberLast4,
                     traderData,
                     setTraderData,
-                    resetCookies,
+                    // resetStorage,
                     t,
-                    fingerprintConfig,
+                    fingerprintConfig: {
+                        headers: {
+                            "X-Fingerprint": fingerprint,
+                            "Accept-Language": [lang, ...navigator.languages].toString()
+                        }
+                    },
                     getCurrencySymbol,
+                    paymentEcomPage,
                     fingerprintReady,
                     BFData,
                     setBFData,
@@ -177,7 +189,6 @@ export const AppProvider = ({ children }) => {
                     payoutMode
                 }}>
                 {children}
-
                 <CustomToastContainer />
             </AppContext.Provider>
         </QueryClientProvider>

@@ -9,7 +9,12 @@
     "Header": {},
     "Footer": {
         "protected": "Çeviri korunmaktadır.",
-        "details": "Detaylar"
+        "details": "Detaylar",
+        "cancelDialog": {
+            "title": "Отменить перевод и вернуться в магазин",
+            "text": "Transferi iptal edin ve mağazaya geri dönün",
+            "continue": "Çeviriye devam et"
+        }
     },
     "Main": {
         "header": "Sağlayıcımız aracılığıyla bakiye yükleme",
@@ -34,7 +39,17 @@
             "wholeAmount": "tam tutarı",
             "approveTransfer": "Transferi onayla",
             "openYourBankApp": "Banka uygulamanızı açın"
-        }
+        },
+        "steps_new": {
+            "one": "Telefon numarasını kopyalayın ve banka uygulamanıza gidin",
+            "two": "Kart numarasıyla transferi gerçekleştirin",
+            "onAmount": "miktara",
+            "pressButton": "Düğmeye basın",
+            "payed": "Ödendi"
+        },
+        "payed": "Ödendi",
+        "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
+        "agree": "Tamam, anladım"
     },
     "PayOut": {
         "payout": "Çekilmesi",
@@ -99,7 +114,19 @@
     "PayerData": {
         "enter4": "Son 4 haneyi girin",
         "yourPhone": "telefon numaranızın",
-        "yourCard": "kartınızın"
+        "yourCard": "kartınızın",
+        "cardNumber": "Kart Numarası",
+        "expirationDate": "Son Kullanma Tarihi",
+        "errors": {
+            "cardValidationError": "Kart numarası 16 haneli olmalıdır",
+            "expireDateError": "Son kullanma tarihi MM/YY formatında olmalıdır",
+            "expreDateRangeError": "Son kullanma tarihi gelecekte olmalıdır",
+            "cvvError": "CVV 3 haneli olmalıdır",
+            "paymentNotFound": "Bu ID ile ödeme bulunamadı",
+            "unknownError": "Bilinmeyen hata"
+        },
+        "getCard": "Kartınız kabul edildi, ödeme sayfasına geçmek için ödeme butonuna basın",
+        "pay": "Öde"
     },
     "PayeeData": {
         "waitConfirmation": "Sağlayıcı transferinizi kontrol ediyor",
@@ -108,7 +135,11 @@
     },
     "GeneralError": {
         "repeatOrder": "siparişi tekrarla",
-        "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın"
+        "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın",
+        "cancelPage": {
+            "cancel": "Ödemeyi iptal ettiniz",
+            "transactionCanceled": "İşlem başarıyla iptal edildi."
+        }
     },
     "PayError": {
         "payError": "Ödeme başarısız oldu",
@@ -124,7 +155,12 @@
     "PayeeCard": {
         "copy": "Kopyala",
         "copyed": "Kart numarası kopyalandı",
-        "copyedPhone": "Telefon numarası kopyalandı"
+        "copyedPhone": "Telefon numarası kopyalandı",
+        "copyedAmount": "Miktar kopyalandı",
+        "bankName": "Alıcının bankası",
+        "requisite": "Rekvizitler",
+        "amount": "Transfer tutarı",
+        "payee": "Alıcı"
     },
     "PayeeHint": {
         "hint": {
@@ -161,5 +197,9 @@
         "header": "Değerli kullanıcı!",
         "text": "Talep kimliğini kopyalayın ve destek sohbetine gönderin. Operatör durumu kontrol edecektir.",
         "chatButton": "Sohbete git"
+    },
+    "PayHeader": {
+        "transfer": "Transferi gerçekleştir",
+        "to": "için"
     }
 }

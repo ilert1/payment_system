@@ -1,209 +1,360 @@
 import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import PayoutSubmitModal from "../widgets/PayoutSubmitModal";
 
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { CardNumberLast4 } from "../widgets/CardNumberLast4";
 
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { CardNumberForm } from "../widgets/CardNumberForm.jsx";
+import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
+
+import { toast } from "react-toastify";
+import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../ui/Loader.jsx";
+
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
-  const {
-    navigate,
-    setCardNumberLast4,
-    cardNumberLast4,
-    BFData,
-    currentPaymentMethod,
-    fingerprintConfig,
-    fingerprintReady,
-    t,
-  } = useContext(AppContext);
-  // useUrlInfoCheck(navigate);
+    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig } = useContext(AppContext);
 
-  //translation
-  const ns = { ns: ["Common", "PayerData"] };
+    //translation
+    const ns = { ns: ["Common", "PayerData", "PayOut"] };
 
-  const nav = navigate();
+    usePaymentPage({ absolutePath: false });
 
-  const [isComplete, setIsComplete] = useState(false);
-  const [payoutMode, setPayoutMode] = useState(false);
-  const [showPayoutSubmit, setShowPayoutSubmit] = useState(false);
-  const [buttonFocused, setButtonFocused] = useState(false);
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
 
-  const [enabled_startPayIN, setEnabled_startPayIN] = useState(false);
-  const [need_startPayIN, setNeed_startPayIN] = useState(false);
-  const [enabled_confirmPayIN, setEnabled_confirmPayIN] = useState(false);
+    const [isComplete, setIsComplete] = useState(false);
+    const [ecom, setEcom] = useState(BFData?.[dest]?.method?.name === "ecom");
 
-  const onComplete = (numbers) => {
-    setIsComplete(true);
-    setButtonFocused(true);
-    setCardNumberLast4(numbers);
-  };
+    const [waitTransfer, setWaitTransfer] = useState(BFData?.[dest]?.status === "paymentAwaitingTransfer");
+    const [redirect_url, setRedirect_url] = useState("");
 
-  useEffect(() => {
-    if (window.location.pathname.includes("/payouts")) {
-      setPayoutMode(true);
-    }
+    const [buttonFocused, setButtonFocused] = useState(false);
 
-    if (currentPaymentMethod?.bank) {
-      setEnabled_startPayIN(true);
-      setNeed_startPayIN(true);
-    } else {
-      setNeed_startPayIN(false);
-    }
-  }, []);
+    const [nextEnabled, setNextEnabled] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
 
-  const { data: data_startPayIN, isFetching: isFetching_startPayIN } = useQuery(
-    {
-      queryKey: ["startPayIN"],
-      enabled: enabled_startPayIN && fingerprintReady,
-      refetchOnWindowFocus: false,
-      queryFn: async () => {
-        console.log("startPayIN");
-        let payload = BFData;
-        const { trn } = payload;
-        payload = {
-          message: {
-            payment: {
-              bank: currentPaymentMethod?.bank,
-              trn: trn,
-              type: currentPaymentMethod?.payment_type, //"card2card",
-              // wf: wf
-            },
-          },
-        };
+    const onComplete = numbers => {
+        setIsComplete(true);
+        setButtonFocused(true);
+        setCardNumberLast4(numbers);
+    };
 
-        console.log("startPayIN payload:");
-        console.log(payload);
+    const {
+        cardNumber,
+        expiryDate,
+        cvv,
+        errors,
+        register,
+        setCardNumber,
+        setExpiryDate,
+        onSubmit,
+        handleCardNumberInputChange,
+        handleExpiryInputChange,
+        handleExpiryKeyDown,
+        handleCvvInputChange
+    } = useGetCardNumberFormData(t, ns);
 
-        // const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/startPayIN`, payload, fingerprintConfig);
+    const handleSubmit = async () => {
+        setIsPressed(true);
 
-        //response mock
-        const data = {
-          success: true,
-        };
+        let payload = {};
+        switch (BFData?.[dest]?.method?.name) {
+            case "ecom":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    card_number: cardNumber.replace(/\s+/g, ""),
+                                    card_lifetime_month: `${expiryDate.slice(0, 2)}`,
+                                    card_lifetime_year: `${expiryDate.slice(3)}`,
+                                    card_cvc: cvv
+                                }
+                            }
+                        }
+                    }
+                };
+                break;
 
-        console.log("startPayIN response:");
-        console.log(data);
+            case "sbp":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    phone: cardNumber
+                                }
+                            }
+                        }
+                    }
+                };
+                break;
 
-        nav(`../${c.PAGE_PAYER_DATA}`, { replace: true });
-        return data;
-      },
-    }
-  );
+            case "card2card":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    card: cardNumber
+                                }
+                            }
+                        }
+                    }
+                };
+                break;
 
-  const { data: data_confirmPayIN, isFetching: isFetching_confirmPayIN } =
-    useQuery({
-      queryKey: ["confirmPayIN"],
-      enabled: enabled_confirmPayIN && fingerprintReady,
-      refetchOnWindowFocus: false,
-      queryFn: async () => {
-        console.log("confirmPayIN");
-        let payload = BFData;
-        const { trn, wf } = payload;
-        payload = {
-          message: {
-            payment:
-              currentPaymentMethod?.payment_type != "sbp"
-                ? {
-                    trn: trn,
-                    customerCardLastDigits: cardNumberLast4,
-                  }
-                : {
-                    trn: trn,
-                    customerPhoneLastDigits: cardNumberLast4,
-                  },
-          },
-        };
-        console.log("confirmPayIN payload:");
-        console.log(payload);
-
-        /* const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/confirmPayIN`,
-                payload,
-                fingerprintConfig
-            ); */
-
-        //response mock
-        const data = {
-          success: true,
-        };
-
-        console.log("confirmPayIN response:");
-        console.log(data);
-
-        if (data?.success) {
-          nav(`../${c.PAGE_PAYEE_SEARCH}`, { replace: true });
-        } else {
-          if (BFData?.fail_url) {
-            document.location.replace(BFData.fail_url);
-          } else {
-            nav(`../${c.PAGE_GENERAL_ERROR}`, { replace: true });
-          }
+            default:
+                break;
         }
-        return data;
-      },
+        console.log("payload");
+        console.log(payload);
+
+        const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
+        try {
+            const data = await axios.post(url, {
+                event: "paymentPayerDataEntered",
+                payload: payload
+            });
+
+            if (!data.data.success) {
+                console.log(data.data.error);
+            }
+        } catch (error) {
+            toast.error(error.message, { autoClose: 2000, closeButton: <></> });
+        }
+    };
+
+    const buttonCallback = () => {
+        setIsPressed(true);
+        handleSubmit();
+    };
+
+    const threeDSCallback = () => {
+        window.open(redirect_url, "_blank");
+    };
+
+    useEffect(() => {
+        setEcom(BFData?.[dest]?.method?.name === "ecom");
+    }, [BFData?.[dest]?.method?.name]);
+
+    useEffect(() => {
+        setWaitTransfer(BFData?.[dest]?.status === "paymentAwaitingTransfer");
+    }, [BFData?.[dest]?.status]);
+
+    useEffect(() => {
+        setRedirect_url(BFData?.[dest]?.method?.payee?.redirect_url);
+    }, [BFData?.[dest]?.method?.payee?.redirect_url]);
+
+    useEffect(() => {
+        console.log(`getPayment enabled:${ecom && waitTransfer}`);
+    }, [ecom, waitTransfer]);
+
+    const { isFetching } = useQuery({
+        queryKey: ["getPayment"],
+        // refetchInterval: 1000,
+        enabled: waitTransfer && ecom,
+        // refetchIntervalInBackground: true,
+        // retry: false,
+        refetchOnWindowFocus: false,
+        queryFn: async () => {
+            console.log(`getPayment: ${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`);
+            try {
+                const { data } = await axios
+                    .get(`${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`, fingerprintConfig)
+                    .catch(e => {
+                        console.log(e);
+                    });
+
+                /* const data = {
+                    success: true,
+                    payment: {
+                        id: "2564dbd3-dc17-4713-8bd2-41c70dd9ef48",
+                        amount: "992.00",
+                        currency: "AZN",
+                        method: {
+                            name: "ecom",
+                            display_name: "Банковский перевод",
+                            payer: {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        card_cvc: {
+                                            type: "string",
+                                            description: "Card security code",
+                                            format: ""
+                                        },
+                                        card_lifetime_month: {
+                                            type: "string",
+                                            description: "Card expiration date month",
+                                            format: ""
+                                        },
+                                        card_lifetime_year: {
+                                            type: "string",
+                                            description: "Card expiration date year",
+                                            format: ""
+                                        },
+                                        card_number: {
+                                            type: "string",
+                                            description: "Card number",
+                                            format: ""
+                                        }
+                                    }
+                                },
+                                required: ["card_number", "card_lifetime_month", "card_lifetime_year", "card_cvc"],
+                                data: {
+                                    card_cvc: "123",
+                                    card_lifetime_month: "11",
+                                    card_lifetime_year: "29",
+                                    card_number: "4169738851576482"
+                                }
+                            },
+                            payee: {
+                                schema: {
+                                    type: "",
+                                    properties: null
+                                },
+                                required: null,
+                                redirect_url:
+                                    "https://imap.inout-sarysu-az.icu/3ds-transaction?id=25135340&secret=a5289598b607ff1cd28f69c3cdf59bb3d02427be51d87c92dbe0f6ec1063953d"
+                            },
+                            context: {
+                                success_redirect_url: "https://merchant-side.com/success",
+                                error_redirect_url: "https://merchant-side.com/fail",
+                                cancel_redirect_url: "https://merchant-side.com/return"
+                            }
+                        },
+                        status: "paymentAwaitingTransfer",
+                        created_at: -62135596800
+                    }
+                }; */
+
+                console.log(data);
+                console.log("redirect_url");
+                console.log(data?.[dest]?.method?.payee?.redirect_url);
+
+                if (data) {
+                    if (data?.success) {
+                        //данные получены успешно
+                        setBFData(data);
+                    } else {
+                        //транзакция не подлежит оплате
+                        window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                    }
+                }
+                return data;
+            } catch (e) {
+                console.error(e.response.statusCode);
+                if (e.response.statusCode === 404) {
+                    window.location.replace(c.PAGE_PAYOUT_NOT_FOUND);
+                }
+            }
+        }
     });
 
-  const buttonCallback = () => {
-    if (payoutMode) {
-      setShowPayoutSubmit(true);
-    } else {
-      setEnabled_confirmPayIN(true);
-    }
-  };
-
-  return (
-    <div className="container">
-      <Header />
-
-      <div className="content">
-        <h1 className="grow">{`${t("enter4", ns)} ${
-          currentPaymentMethod?.payment_type == "sbp"
-            ? t("yourPhone", ns)
-            : t("yourCard", ns)
-        }`}</h1>
-        <CardNumberLast4
-          onComplete={onComplete}
-          showHidden={currentPaymentMethod?.payment_type != "sbp"}
-        />
-      </div>
-
-      {showPayoutSubmit && (
-        <PayoutSubmitModal
-          data={{
-            title: "Проверьте реквизиты!",
-            text: "Если вы не верно указали реквизиты, вы безвозвратно потеряте средства",
-            cardNumber: "1234 1234 1234 1234",
-            toggleText: "Реквизиты указаны верно",
-            primaryBtnText: "Продолжить",
-            primaryBtnCallback: () => {},
-            secondaryBtnText: "Исправить реквизиты",
-          }}
-          closeModal={() => setShowPayoutSubmit(false)}
-        />
-      )}
-
-      <Footer
-        buttonCaption={t("approve", ns)}
-        buttonCallback={buttonCallback}
-        nextPage={c.PAGE_PAYEE_SEARCH}
-        // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
-        nextEnabled={
-          !isFetching_confirmPayIN &&
-          (!need_startPayIN || (need_startPayIN && data_startPayIN)) &&
-          isComplete
-            ? true
-            : false
+    useEffect(() => {
+        if (waitTransfer) {
+            setIsPressed(false);
         }
-        approve={true}
-        focused={buttonFocused}
-      />
-    </div>
-  );
+    }, [waitTransfer]);
+
+    useEffect(() => {
+        /* console.log({
+            // cardNumber: cardNumber,
+            // expiryDate: expiryDate,
+            // cvv: cvv,
+            isComplete: isComplete,
+            // errors: errors,
+            ecom: ecom,
+            waitTransfer: waitTransfer,
+            isFetching: isFetching,
+            isPressed: isPressed
+        }); */
+        if (ecom) {
+            if (waitTransfer) {
+                setNextEnabled(true);
+            } else {
+                if (isPressed || isFetching) {
+                    setNextEnabled(false);
+                } else {
+                    setNextEnabled(
+                        !Object.keys(errors).length &&
+                            cardNumber.length === 19 &&
+                            cvv.length === 3 &&
+                            expiryDate.length === 5
+                    );
+                }
+            }
+        } else {
+            setNextEnabled(isComplete);
+        }
+        console.log(`nextEnabled: ${nextEnabled}`);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [cardNumber, expiryDate, cvv, isComplete, errors, ecom, waitTransfer, isFetching, isPressed]);
+
+    return (
+        <div className="container">
+            <Header />
+            <div className="content cardPage">
+                {ecom ? (
+                    !isFetching && !waitTransfer ? (
+                        <>
+                            <h1 className="grow">{t("enterYourCard", ns)}</h1>
+                            <CardNumberForm
+                                register={register}
+                                // handleSubmit={handleSubmit}
+                                errors={errors}
+                                cardNumber={cardNumber}
+                                setCardNumber={setCardNumber}
+                                expiryDate={expiryDate}
+                                setExpiryDate={setExpiryDate}
+                                onSubmit={onSubmit}
+                                handleCardNumberInputChange={handleCardNumberInputChange}
+                                handleExpiryInputChange={handleExpiryInputChange}
+                                handleExpiryKeyDown={handleExpiryKeyDown}
+                                handleCvvInputChange={handleCvvInputChange}
+                                cvv={cvv}
+                                disabled={isPressed || isFetching}
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <h1 className="grow">{t("getCard", ns)}</h1>
+                            {(isPressed || isFetching) && (
+                                <div className="loader-container">
+                                    <Loader />
+                                </div>
+                            )}
+                        </>
+                    )
+                ) : (
+                    <>
+                        <h1 className="grow">{`${t("enter4", ns)} ${
+                            BFData?.[dest]?.method?.name == "sbp" ? t("yourPhone", ns) : t("yourCard", ns)
+                        }`}</h1>
+                        <CardNumberLast4 onComplete={onComplete} showHidden={BFData?.[dest]?.method?.name != "sbp"} />
+                    </>
+                )}
+            </div>
+            {!isFetching && (
+                <Footer
+                    buttonCaption={!redirect_url ? t("approve", ns) : t("pay", ns)}
+                    buttonCallback={ecom && redirect_url ? threeDSCallback : ecom ? handleSubmit : buttonCallback}
+                    nextPage={c.PAGE_PAYEE_SEARCH}
+                    nextEnabled={nextEnabled}
+                    approve={true}
+                    focused={buttonFocused}
+                    // prevPage="/"
+                />
+            )}
+        </div>
+    );
 };
 
 export default PayerDataPage;

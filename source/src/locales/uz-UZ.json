@@ -9,7 +9,12 @@
     "Header": {},
     "Footer": {
         "protected": "Tarjima himoyalangan.",
-        "details": "Tafsilotlar"
+        "details": "Tafsilotlar",
+        "cancelDialog": {
+            "title": "Pul o'tkazmasini bekor qiling va do'konga qayting",
+            "text": "Agar siz pul o'tkazmasini bekor qilsangiz, avval yangi buyurtma yaratishingiz kerak bo'ladi.",
+            "continue": "Tarjimani davom ettiring"
+        }
     },
     "Main": {
         "header": "Bizning provayder orqali balansni to'ldirish",
@@ -34,7 +39,17 @@
             "wholeAmount": "to'liq miqdor",
             "approveTransfer": "O'tkazmani tasdiqlash",
             "openYourBankApp": "Bank ilovangizni oching"
-        }
+        },
+        "steps_new": {
+            "one": "Telefon raqamini nusxalab bank ilovasiga o'ting",
+            "two": "Kartaga o'tkazma qiling",
+            "onAmount": "miqdorda",
+            "pressButton": "Tugmani bosing",
+            "payed": "To'landi"
+        },
+        "payed": "To'landi",
+        "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
+        "agree": "Yaxshi, tushundim"
     },
     "PayOut": {
         "payout": "Olib qo'yish",
@@ -99,7 +114,19 @@
     "PayerData": {
         "enter4": "Oxirgi 4 raqamni kiriting",
         "yourPhone": "telefoningizning",
-        "yourCard": "karta raqamingizni"
+        "yourCard": "karta raqamingizni",
+        "cardNumber": "Karta Raqami",
+        "expirationDate": "Amal Qilish Muddati",
+        "errors": {
+            "cardValidationError": "Karta raqami 16 raqamdan iborat bo'lishi kerak",
+            "expireDateError": "Amal qilish muddati MM/YY formatida bo'lishi kerak",
+            "expreDateRangeError": "Amal qilish muddati kelajakda bo'lishi kerak",
+            "cvvError": "CVV 3 raqamdan iborat bo'lishi kerak",
+            "paymentNotFound": "Ushbu ID bilan to'lov topilmadi",
+            "unknownError": "Noma'lum xato"
+        },
+        "getCard": "Karta qabul qilindi, to'lov sahifasiga o'tish uchun to'lash tugmasini bosing",
+        "pay": "To'lash"
     },
     "PayeeData": {
         "waitConfirmation": "Provayder sizning o'tkazmangizni tekshiryapti",
@@ -108,7 +135,11 @@
     },
     "GeneralError": {
         "repeatOrder": "buyurtmani takrorlang",
-        "pleaseRepeatOrder": "Iltimos, buyurtmani takrorlang"
+        "pleaseRepeatOrder": "Iltimos, buyurtmani takrorlang",
+        "cancelPage": {
+            "cancel": "Siz to'lovni bekor qildingiz",
+            "transactionCanceled": "Bitim muvaffaqiyatli bekor qilindi."
+        }
     },
     "PayError": {
         "payError": "To'lov muvaffaqiyatsiz tugadi",
@@ -124,7 +155,12 @@
     "PayeeCard": {
         "copy": "Nusxalash",
         "copyed": "Karta raqami nusxalandi",
-        "copyedPhone": "Telefon raqami nusxalandi"
+        "copyedPhone": "Telefon raqami nusxalandi",
+        "copyedAmount": "Summasi nusxalandi",
+        "bankName": "Qabul qiluvchining banki",
+        "requisite": "Rekvizitlar",
+        "amount": "O'tkazma summasi",
+        "payee": "Qabul qiluvchi"
     },
     "PayeeHint": {
         "hint": {
@@ -161,5 +197,9 @@
         "header": "Hurmatli foydalanuvchi!",
         "text": "So'rov identifikatorini nusxalab, qo'llab-quvvatlash chatiga yuboring. Operator uning holatini tekshiradi.",
         "chatButton": "Chatga o'ting"
+    },
+    "PayHeader": {
+        "transfer": "Pul o'tkazing",
+        "to": "ga"
     }
 }
