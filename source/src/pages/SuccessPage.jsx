@@ -5,7 +5,7 @@ import Footer from "../widgets/Footer";
 // import Rating from "../widgets/Rating";
 
 // import { useLocation } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import AppContext from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
 
@@ -19,10 +19,6 @@ const SuccessPage = () => {
     const dest = payOutMode ? "payout" : "payment";
 
     const successUrl = BFData?.[dest]?.method?.context?.success_redirect_url;
-
-    useEffect(() => {
-        console.log("success_url: ", BFData);
-    }, []);
 
     usePaymentPage({ absolutePath: false });
     // resetStorage();
