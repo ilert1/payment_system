@@ -3004,38 +3004,38 @@ footer > .top:not(.big-footer-container) {
   opacity: 1;
 }
 
-.cardNumberForm {
+.card-number-form {
   background-color: #f5f5f5;
   width: 100%;
   margin: 25px;
   margin-top: 0;
   border-radius: 7.22px;
 }
-.cardNumberForm form {
+.card-number-form form {
   padding: 38px 26px 38px 26px;
 }
-.cardNumberForm__wrapper {
+.card-number-form__wrapper {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
-.cardNumberForm__bottom {
+.card-number-form__bottom {
   display: flex;
   gap: 34px;
   width: 80%;
 }
 @media (max-width: 540px) {
-  .cardNumberForm__bottom {
+  .card-number-form__bottom {
     flex-direction: column;
     gap: 18px;
   }
 }
 @media (max-width: 705px) {
-  .cardNumberForm__bottom {
+  .card-number-form__bottom {
     width: 100%;
   }
 }
-.cardNumberForm__item {
+.card-number-form__item {
   width: 100%;
   width: auto;
   display: flex;
@@ -3043,7 +3043,7 @@ footer > .top:not(.big-footer-container) {
   flex-direction: column;
   align-items: flex-start;
 }
-.cardNumberForm__label {
+.card-number-form__label {
   font-weight: 500;
   font-size: 20px;
   line-height: 133.5%;
@@ -3051,11 +3051,11 @@ footer > .top:not(.big-footer-container) {
   opacity: 50%;
 }
 @media (max-width: 520px) {
-  .cardNumberForm__label {
+  .card-number-form__label {
     font-size: 14px;
   }
 }
-.cardNumberForm__input {
+.card-number-form__input {
   width: 100%;
   padding: 0.8rem 0;
   background: #ffffff;
@@ -3065,15 +3065,20 @@ footer > .top:not(.big-footer-container) {
   font-size: 20px;
   font-weight: 500;
   line-height: 26.7px;
-  letter-spacing: 0.15em;
   box-sizing: border-box;
+  font-family: Inter;
+  color: #010f18;
+}
+.card-number-form__input.wide-spacing {
+  letter-spacing: 0.15em;
 }
 @media (max-width: 520px) {
-  .cardNumberForm__input {
+  .card-number-form__input {
     font-size: 14px;
+    line-height: 21.36px;
   }
 }
-.cardNumberForm__input::placeholder {
+.card-number-form__input::placeholder {
   font-size: 20px;
   font-weight: 500;
   line-height: 26.7px;
@@ -3081,24 +3086,26 @@ footer > .top:not(.big-footer-container) {
   color: rgb(1, 15, 24);
 }
 @media (max-width: 520px) {
-  .cardNumberForm__input::placeholder {
+  .card-number-form__input::placeholder {
     font-size: 14px;
+    line-height: 21.36px;
   }
 }
-.cardNumberForm__input-focus {
+.card-number-form__input-focus {
   border: 1px solid #6fc0f6;
 }
-.cardNumberForm .error-message {
+.card-number-form .error-message {
   font-size: 12px;
   color: rgb(177, 14, 14);
 }
 
-.cardPage {
-  justify-content: flex-start;
-  margin-top: 30px;
-}
-.cardPage h1 {
-  max-width: 350px;
-}
+/* .cardPage {
+    justify-content: flex-start;
+    margin-top: 30px;
+
+    h1 {
+        max-width: 350px;
+    }
+} */
 
 /*# sourceMappingURL=styles.css.map */

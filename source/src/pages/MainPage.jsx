@@ -55,11 +55,9 @@ const MainPage = () => {
             <Header />
 
             {contextData?.BFData?.[dest]?.method?.name ? (
-                <div className="container">
-                    <div className="content">
-                        <div className="loader-container">
-                            <Loader />
-                        </div>
+                <div className="content">
+                    <div className="loader-container">
+                        <Loader />
                     </div>
                 </div>
             ) : (

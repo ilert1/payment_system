@@ -124,7 +124,9 @@
             "cvvError": "CVV 3 haneli olmalıdır",
             "paymentNotFound": "Bu ID ile ödeme bulunamadı",
             "unknownError": "Bilinmeyen hata"
-        }
+        },
+        "getCard": "Kartınız kabul edildi, ödeme sayfasına geçmek için ödeme butonuna basın",
+        "pay": "Öde"
     },
     "PayeeData": {
         "waitConfirmation": "Sağlayıcı transferinizi kontrol ediyor",
@@ -133,7 +135,11 @@
     },
     "GeneralError": {
         "repeatOrder": "siparişi tekrarla",
-        "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın"
+        "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın",
+        "cancelPage": {
+            "cancel": "Ödemeyi iptal ettiniz",
+            "transactionCanceled": "İşlem başarıyla iptal edildi."
+        }
     },
     "PayError": {
         "payError": "Ödeme başarısız oldu",

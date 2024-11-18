@@ -125,7 +125,9 @@
             "cvvError": "CVV must contain 3 digits",
             "paymentNotFound": "Payment with this id was not found",
             "unknownError": "Unknown error"
-        }
+        },
+        "getCard": "Your card has been accepted, press pay to proceed to the payment page",
+        "pay": "Pay"
     },
     "PayeeData": {
         "waitConfirmation": "The provider is checking your transfer",
@@ -134,7 +136,11 @@
     },
     "GeneralError": {
         "repeatOrder": "repeat order",
-        "pleaseRepeatOrder": "Please repeat the order"
+        "pleaseRepeatOrder": "Please repeat the order",
+        "cancelPage": {
+            "cancel": "You canceled the payment",
+            "transactionCanceled": "The transaction was successfully canceled."
+        }
     },
     "PayError": {
         "payError": "Payment failed",

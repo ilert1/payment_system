@@ -124,7 +124,9 @@
             "cvvError": "CVV 3 raqamdan iborat bo'lishi kerak",
             "paymentNotFound": "Ushbu ID bilan to'lov topilmadi",
             "unknownError": "Noma'lum xato"
-        }
+        },
+        "getCard": "Karta qabul qilindi, to'lov sahifasiga o'tish uchun to'lash tugmasini bosing",
+        "pay": "To'lash"
     },
     "PayeeData": {
         "waitConfirmation": "Provayder sizning o'tkazmangizni tekshiryapti",
@@ -133,7 +135,11 @@
     },
     "GeneralError": {
         "repeatOrder": "buyurtmani takrorlang",
-        "pleaseRepeatOrder": "Iltimos, buyurtmani takrorlang"
+        "pleaseRepeatOrder": "Iltimos, buyurtmani takrorlang",
+        "cancelPage": {
+            "cancel": "Siz to'lovni bekor qildingiz",
+            "transactionCanceled": "Bitim muvaffaqiyatli bekor qilindi."
+        }
     },
     "PayError": {
         "payError": "To'lov muvaffaqiyatsiz tugadi",

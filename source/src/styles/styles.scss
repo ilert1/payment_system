@@ -3559,11 +3559,17 @@ footer {
         font-size: 20px;
         font-weight: 500;
         line-height: 26.7px;
-        letter-spacing: 0.15em;
         box-sizing: border-box;
+        font-family: Inter;
+        color: #010f18;
+
+        &.wide-spacing {
+            letter-spacing: 0.15em;
+        }
 
         @media (max-width: 520px) {
             font-size: 14px;
+            line-height: 21.36px;
         }
 
         &::placeholder {
@@ -3575,6 +3581,7 @@ footer {
 
             @media (max-width: 520px) {
                 font-size: 14px;
+                line-height: 21.36px;
             }
         }
 
@@ -3589,11 +3596,11 @@ footer {
     }
 }
 
-.cardPage {
+/* .cardPage {
     justify-content: flex-start;
     margin-top: 30px;
 
     h1 {
         max-width: 350px;
     }
-}
+} */

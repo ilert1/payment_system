@@ -125,7 +125,9 @@
             "cvvError": "CVV 3 цифрдан тұруы керек",
             "paymentNotFound": "Бұл ID-мен төлем табылмады",
             "unknownError": "Белгісіз қате"
-        }
+        },
+        "getCard": "Сіздің картаңыз қабылданды, төлем бетіне өту үшін төлеу батырмасын басыңыз",
+        "pay": "Төлеу"
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер сіздің аудармаңызды тексеруде",
@@ -134,7 +136,11 @@
     },
     "GeneralError": {
         "repeatOrder": "тапсырысты қайталау",
-        "pleaseRepeatOrder": "Тапсырысты қайталаңыз"
+        "pleaseRepeatOrder": "Тапсырысты қайталаңыз",
+        "cancelPage": {
+            "cancel": "Сіз төлемнен бас тарттыңыз ба",
+            "transactionCanceled": "Транзакция сәтті тоқтатылды."
+        }
     },
     "PayError": {
         "payError": "Төлем орындалмады",

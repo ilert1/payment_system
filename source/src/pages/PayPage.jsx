@@ -23,6 +23,7 @@ const PayPage = () => {
     const baseApiURL = import.meta.env.VITE_API_URL;
 
     const trader = BFData?.[dest]?.method?.payee?.data;
+    const ecom = BFData?.[dest]?.method?.name === "ecom";
     const [requisite, setRequisite] = useState(null);
 
     const buttonCallback = async () => {
@@ -100,13 +101,15 @@ const PayPage = () => {
                 </div>
             </div>
 
-            <Footer
-                buttonCaption={t("approveTransfer", ns)}
-                buttonCallback={buttonCallback}
-                nextPage={`../${c.PAGE_PAYEE_DATA}`}
-                // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
-                approve={true}
-            />
+            {!isFetching && (
+                <Footer
+                    buttonCaption={t("approveTransfer", ns)}
+                    buttonCallback={buttonCallback}
+                    nextPage={`../${c.PAGE_PAYEE_DATA}`}
+                    // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
+                    approve={true}
+                />
+            )}
         </div>
     );
 };

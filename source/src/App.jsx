@@ -71,6 +71,10 @@ const defaultPages = [
     {
         path: c.PAGE_GENERAL_ERROR, //"/general-error-page",
         element: <GeneralErrorPage />
+    },
+    {
+        path: c.PAGE_CANCEL, //"/cancel-page",
+        element: <GeneralErrorPage cancel={true} />
     }
 ];
 
@@ -209,17 +213,13 @@ const App = () => {
                         .catch(e => {
                             console.log(e);
                         });
-                    console.log(data);
 
                     /* const data = {
                         success: true,
                         payment: {
-                            id: "449bc546-e589-4aca-83fd-775099333842",
-                            amount: "10500.00",
+                            id: "2564dbd3-dc17-4713-8bd2-41c70dd9ef48",
+                            amount: "992.00",
                             currency: "AZN",
-                            status: "paymentAwaitingStart",
-                            //status: "paymentMethodSelecting",
-                            createdAt: 1726153942,
                             method: {
                                 name: "ecom",
                                 display_name: "Банковский перевод",
@@ -227,31 +227,59 @@ const App = () => {
                                     schema: {
                                         type: "object",
                                         properties: {
+                                            card_cvc: {
+                                                type: "string",
+                                                description: "Card security code",
+                                                format: ""
+                                            },
+                                            card_lifetime_month: {
+                                                type: "string",
+                                                description: "Card expiration date month",
+                                                format: ""
+                                            },
+                                            card_lifetime_year: {
+                                                type: "string",
+                                                description: "Card expiration date year",
+                                                format: ""
+                                            },
                                             card_number: {
                                                 type: "string",
-                                                description: "Card number"
-                                            },
-                                            card_expiration_date: {
-                                                type: "string",
-                                                description: "Card expiration date"
-                                            },
-                                            card_security_code: {
-                                                type: "string",
-                                                description: "Card security code"
+                                                description: "Card number",
+                                                format: ""
                                             }
-                                        },
-                                        required: ["card_number", "card_expiration_date", "card_security_code"]
+                                        }
+                                    },
+                                    required: ["card_number", "card_lifetime_month", "card_lifetime_year", "card_cvc"],
+                                    data: {
+                                        card_cvc: "123",
+                                        card_lifetime_month: "11",
+                                        card_lifetime_year: "29",
+                                        card_number: "4169738851576482"
                                     }
                                 },
-                                payee: null,
+                                payee: {
+                                    schema: {
+                                        type: "",
+                                        properties: null
+                                    },
+                                    required: null
+                                    // redirect_url:
+                                    //     "https://imap.inout-sarysu-az.icu/3ds-transaction?id=25135340&secret=a5289598b607ff1cd28f69c3cdf59bb3d02427be51d87c92dbe0f6ec1063953d"
+                                },
                                 context: {
-                                    success_redirect_url: "https://for.success.com",
-                                    error_redirect_url: "https://for.error.com",
-                                    "cancel_redirect_url ": "https://for.cancel.com"
+                                    success_redirect_url: "https://merchant-side.com/success",
+                                    error_redirect_url: "https://merchant-side.com/fail",
+                                    cancel_redirect_url: "https://merchant-side.com/return"
                                 }
-                            }
+                            },
+                            // status: "paymentAwaitingStart",
+                            status: "paymentPayerDataEntrу",
+                            // status: "paymentAwaitingTransfer",
+                            created_at: -62135596800
                         }
                     }; */
+
+                    console.log(data);
 
                     if (data) {
                         if (data?.success) {

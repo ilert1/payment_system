@@ -31,7 +31,7 @@ export const CardNumberForm = props => {
                             {...register("cardNumber")}
                             type="text"
                             id="cardNumber"
-                            className="card-number-form__input"
+                            className="card-number-form__input wide-spacing"
                             value={cardNumber}
                             onChange={handleCardNumberInputChange}
                             placeholder={`${t("cardNumber", ns)}:`}

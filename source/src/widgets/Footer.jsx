@@ -12,6 +12,7 @@ import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
 import ym from "react-yandex-metrika";
 import PayoutSubmitModal from "./PayoutSubmitModal";
+import SubmitModal from "./SubmitModal.jsx";
 
 const Footer = ({
     buttonCaption = "",
@@ -34,7 +35,7 @@ const Footer = ({
     const trader = BFData?.[dest]?.method?.payee?.data;
     const [requisite, setRequisite] = useState(null);
 
-    const returnUrl = BFData?.return_url;
+    const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
 
     // const currPayMethod = JSON.parse(currentPaymentMethod);
 
@@ -81,12 +82,12 @@ const Footer = ({
         primaryBtnText: t("cancel", ns),
         primaryBtnCallback: () => {
             if (import.meta.env.VITE_YMETRICS_COUNTER) {
-                ym("reachGoal", "cancel-button", { returnUrl: returnUrl });
+                ym("reachGoal", "cancel-button", { cancel_redirect_url: returnUrl });
             }
             if (cancelRequestIgnore) {
                 if (returnUrl) {
                     setIsLoading(true);
-                    window.location.href = returnUrl;
+                    window.location.replace(returnUrl);
                 } else {
                     navigate(c.PAGE_CANCEL, { replace: true });
                 }
@@ -200,15 +201,7 @@ const Footer = ({
                     </div>
                 </div>
             </footer>
-
-            {payOutMode && (
-                <PayoutSubmitModal
-                    show={dialogShow}
-                    setShow={setDialogShow}
-                    data={submitModalData}
-                    isLoading={isLoading}
-                />
-            )}
+            <SubmitModal show={dialogShow} setShow={setDialogShow} data={submitModalData} isLoading={isLoading} />
         </>
     );
 };

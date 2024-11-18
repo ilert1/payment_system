@@ -125,7 +125,9 @@
             "cvvError": "CVV должен содержать 3 цифры",
             "paymentNotFound": "Платеж с этим ID не найден",
             "unknownError": "Неизвестная ошибка"
-        }
+        },
+        "getCard": "Ваша карта принята, нажмите оплатить, чтобы перейти на страницу оплаты",
+        "pay": "Оплатить"
     },
     "PayeeData": {
         "waitConfirmation": "Провайдер проверяет ваш перевод",
@@ -134,7 +136,11 @@
     },
     "GeneralError": {
         "repeatOrder": "повторить заказ",
-        "pleaseRepeatOrder": "Пожалуйста, повторите заказ"
+        "pleaseRepeatOrder": "Пожалуйста, повторите заказ",
+        "cancelPage": {
+            "cancel": "Вы отменили платеж",
+            "transactionCanceled": "Транзакция была успешно отменена."
+        }
     },
     "PayError": {
         "payError": "Оплата не прошла",
