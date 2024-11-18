@@ -2,7 +2,7 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
 
@@ -12,6 +12,8 @@ const PayErrorPage = (notFound = false) => {
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
+
+    const failUrl = BFData?.[dest]?.method?.context?.error_redirect_url;
 
     //translation
     const ns = { ns: "PayError" };
@@ -38,10 +40,10 @@ const PayErrorPage = (notFound = false) => {
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}
-                // buttonCallback={!notFound && buttonCallback}
+                buttonCallback={() => window.location.replace(failUrl)}
                 // payeeCard={!notFound && true}
-                nextPage={BFData?.[dest]?.method?.context?.error_redirect_url}
-                nextEnabled={BFData?.[dest]?.method?.context?.error_redirect_url}
+                nextPage={failUrl}
+                nextEnabled={failUrl}
                 noIcon={true}
                 showCancelBtn={false}
             />

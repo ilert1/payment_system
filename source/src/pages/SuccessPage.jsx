@@ -18,6 +18,8 @@ const SuccessPage = () => {
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
+    const successUrl = BFData?.[dest]?.method?.context?.success_redirect_url;
+
     useEffect(() => {
         console.log("success_url: ", BFData);
     }, []);
@@ -54,15 +56,14 @@ const SuccessPage = () => {
                 </div>
             </div>
 
-            {BFData?.[dest]?.method?.context?.success_redirect_url && (
-                <Footer
-                    buttonCaption={t("returnBtn", ns)}
-                    nextPage={BFData?.[dest]?.method?.context?.success_redirect_url}
-                    nextEnabled={true}
-                    noIcon={true}
-                    showCancelBtn={false}
-                />
-            )}
+            <Footer
+                buttonCaption={t("returnBtn", ns)}
+                buttonCallback={() => window.location.replace(successUrl)}
+                nextPage={successUrl}
+                nextEnabled={successUrl}
+                noIcon={true}
+                showCancelBtn={false}
+            />
         </div>
     );
 };
