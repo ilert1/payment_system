@@ -141,7 +141,8 @@
             "cancel": "You canceled the payment",
             "transactionCanceled": "The transaction was successfully canceled."
         },
-        "returnBtn": "Go back to the site"
+        "returnBtn": "Go back to the site",
+        "timerText": "You will be automatically redirected via:"
     },
     "PayError": {
         "payError": "Payment failed",
@@ -149,12 +150,14 @@
         "notFound": "Payment not found",
         "pleaseRepeatOrSupport": "Please try again or contact support",
         "payed": "I have paid!",
-        "returnBtn": "Go back to the site"
+        "returnBtn": "Go back to the site",
+        "timerText": "You will be automatically redirected via:"
     },
     "Success": {
         "header": "Your balance has been replenished",
         "payoutHeader": "You have successfully withdrawn",
-        "returnBtn": "Go back to the site"
+        "returnBtn": "Go back to the site",
+        "timerText": "You will be automatically redirected via:"
     },
     "PayeeCard": {
         "copy": "Copy",

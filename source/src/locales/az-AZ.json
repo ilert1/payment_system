@@ -141,7 +141,8 @@
             "cancel": "Ödənişi ləğv etdiniz",
             "transactionCanceled": "Əməliyyat uğurla ləğv edildi."
         },
-        "returnBtn": "Veb saytına qayıt"
+        "returnBtn": "Veb saytına qayıt",
+        "timerText": "Avtomatik olaraq yönləndiriləcəksiniz:"
     },
     "PayError": {
         "payError": "Ödəniş uğursuz oldu",
@@ -149,12 +150,14 @@
         "notFound": "Ödəniş tapılmadı",
         "pleaseRepeatOrSupport": "Zəhmət olmasa bir daha cəhd edin və ya dəstək xidmətinə məlumat verin",
         "payed": "Mən ödəmişəm!",
-        "returnBtn": "Veb saytına qayıt"
+        "returnBtn": "Veb saytına qayıt",
+        "timerText": "Avtomatik olaraq yönləndiriləcəksiniz:"
     },
     "Success": {
         "header": "Balansınız artırıldı",
         "payoutHeader": "Uğurla çıxardınız",
-        "returnBtn": "Veb saytına qayıt"
+        "returnBtn": "Veb saytına qayıt",
+        "timerText": "Avtomatik olaraq yönləndiriləcəksiniz:"
     },
     "PayeeCard": {
         "copy": "Kopyala",

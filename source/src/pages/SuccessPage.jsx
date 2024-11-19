@@ -1,13 +1,10 @@
-// import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-// import SupportDialog from "../widgets/SupportDialog";
-// import Rating from "../widgets/Rating";
-
-// import { useLocation } from "react-router-dom";
+import Clock from "../assets/images/clock.svg";
 import { useContext } from "react";
 import AppContext from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
+import Timer from "../ui/Timer";
 
 const SuccessPage = () => {
     const { BFData, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
@@ -21,7 +18,6 @@ const SuccessPage = () => {
     const successUrl = BFData?.[dest]?.method?.context?.success_redirect_url;
 
     usePaymentPage({ absolutePath: false });
-    // resetStorage();
 
     return (
         <div className="container">
@@ -50,6 +46,21 @@ const SuccessPage = () => {
                         </p>
                     )}
                 </div>
+
+                {successUrl && (
+                    <>
+                        <p>{t("timerText", ns)}</p>
+                        <div className="deadline-container">
+                            <img src={Clock} alt="" />
+                            <Timer
+                                down={true}
+                                className="deadline-timer"
+                                secondsToDo={5}
+                                timerCallback={() => window.location.replace(successUrl)}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
 
             <Footer
