@@ -156,6 +156,7 @@
     "Success": {
         "header": "Balansınız artırıldı",
         "payoutHeader": "Uğurla çıxardınız",
+        "instructions": "Ödənilməmiş hissə hesabınıza qaytarılacaq və ya daha sonra yenidən cəhd edin.",
         "returnBtn": "Veb saytına qayıt",
         "timerText": "Avtomatik olaraq yönləndiriləcəksiniz:"
     },

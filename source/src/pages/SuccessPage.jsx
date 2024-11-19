@@ -34,9 +34,7 @@ const SuccessPage = () => {
                             </p>
                             <div className="instructions small">
                                 <ul>
-                                    <li>
-                                        Не выплаченная часть будет возвращена на ваш счет, либо повторите попытку позже.
-                                    </li>
+                                    <li>{t("instructions", ns)}</li>
                                 </ul>
                             </div>
                         </>
