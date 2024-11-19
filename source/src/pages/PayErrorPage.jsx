@@ -46,14 +46,6 @@ const PayErrorPage = (notFound = false) => {
                         </div>
                     </>
                 )}
-
-                <>
-                    <p>{t("timerText", ns)}</p>
-                    <div className="deadline-container">
-                        <img src={Clock} alt="" />
-                        <Timer down={true} className="deadline-timer" secondsToDo={5} />
-                    </div>
-                </>
             </div>
 
             <Footer
