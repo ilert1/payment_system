@@ -13,3 +13,4 @@ export const PAGE_PAYER_DATA = "payer-data-page";
 export const PAGE_PAYMENT_WAIT_CONFIRMATION = "payment-wait-confirmation";
 export const PAGE_SUCCESS = "success-page";
 export const PAGE_GENERAL_ERROR = "general-error-page";
+export const PAGE_CANCEL = "cancel-page";

@@ -5,19 +5,17 @@ import AppContext from "../AppContext";
 import ArrowRight from "../assets/images/arrow-right.svg";
 import ArrowLeft from "../assets/images/arrow-left.svg";
 import Check from "../assets/images/check.svg";
-import * as c from "../assets/constants.js";
 import BankIcon from "../assets/images/bank-icon.svg"; //Sberbank_Logo_2020.svg";
-
+import axios from "axios";
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
 import ym from "react-yandex-metrika";
-import PayoutSubmitModal from "./PayoutSubmitModal";
 import SubmitModal from "./SubmitModal.jsx";
+import { useQuery } from "@tanstack/react-query";
 
 const Footer = ({
     buttonCaption = "",
     nextPage = "",
-    //backButton = false,
     showCancelBtn = true,
     prevPage = "",
     nextEnabled = true,
@@ -28,8 +26,7 @@ const Footer = ({
     buttonCallback = null
 }) => {
     const navigate = useContext(AppContext).navigate();
-    // const { traderData, currentPaymentMethod, t, BFData } = useContext(AppContext);
-    const { BFData, t } = useContext(AppContext);
+    const { BFData, t, fingerprintReady, fingerprintConfig } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -37,15 +34,10 @@ const Footer = ({
     const [requisite, setRequisite] = useState(null);
 
     const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
-    // const failUrl = BFData?.[dest]?.context?.error_redirect_url;
-
-    // const currPayMethod = JSON.parse(currentPaymentMethod);
 
     const [dialogShow, setDialogShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    // const [enabled_cancel, setEnabled_cancel] = useState(false);
-
-    const cancelRequestIgnore = false;
+    const [enabled_cancel, setEnabled_cancel] = useState(false);
 
     //translation
     const ns = { ns: "Footer" };
@@ -78,46 +70,38 @@ const Footer = ({
     if (noIcon) buttonIcon = null;
     if (approve) buttonIcon = Check;
 
-    // const { isFetching: isFetching_cancel } = useQuery({
-    //     queryKey: ["cancel"],
-    //     enabled: enabled_cancel && fingerprintReady,
-    //     refetchOnWindowFocus: false,
-    //     queryFn: async () => {
-    //         console.log("cancel");
-    //         let payload = BFData;
-    //         const { id } = payload;
-    //         payload = {
-    //             message: {
-    //                 payment: {
-    //                     trn: id
-    //                 }
-    //             }
-    //         };
-    //         console.log("cancel payload:");
-    //         console.log(payload);
+    useQuery({
+        queryKey: ["cancel"],
+        enabled: enabled_cancel && fingerprintReady,
+        refetchOnWindowFocus: false,
+        queryFn: async () => {
+            try {
+                setIsLoading(true);
 
-    //         const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/cancel`, payload, fingerprintConfig);
-    //         console.log("cancel response:");
-    //         console.log(data);
+                const { data } = await axios.post(
+                    `${import.meta.env.VITE_API_URL}/cancel`,
+                    {
+                        message: {
+                            payment: {
+                                trn: BFData?.[dest]?.id
+                            }
+                        }
+                    },
+                    fingerprintConfig
+                );
 
-    //         if (data?.success) {
-    //             if (returnUrl) {
-    //                 window.location.replace = returnUrl;
-    //             } else {
-    //                 navigate(c.PAGE_CANCEL, { replace: true });
-    //             }
-    //         } else {
-    //             if (failUrl) {
-    //                 document.location.replace(failUrl);
-    //             } else {
-    //                 navigate(c.PAGE_GENERAL_ERROR, { replace: true });
-    //             }
-    //         }
-    //         setIsLoading(false);
+                console.log("cancel response:");
+                console.log(data);
 
-    //         return data;
-    //     }
-    // });
+                return data;
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setIsLoading(false);
+                setEnabled_cancel(false);
+            }
+        }
+    });
 
     const submitModalData = {
         title: t("cancelDialog.title", ns),
@@ -127,17 +111,8 @@ const Footer = ({
             if (import.meta.env.VITE_YMETRICS_COUNTER) {
                 ym("reachGoal", "cancel-button", { cancel_redirect_url: returnUrl });
             }
-            if (cancelRequestIgnore) {
-                if (returnUrl) {
-                    setIsLoading(true);
-                    window.location.replace(returnUrl);
-                } else {
-                    navigate(c.PAGE_CANCEL, { replace: true });
-                }
-            } else {
-                setIsLoading(true);
-                // setEnabled_cancel(true);
-            }
+
+            setEnabled_cancel(true);
         },
         secondaryBtnText: t("cancelDialog.continue", ns),
         secondaryBtnCallback: () => {
