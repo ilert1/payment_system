@@ -1,14 +1,14 @@
-import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-
-import { useContext, useEffect } from "react";
+import Clock from "../assets/images/clock.svg";
+import { useContext } from "react";
 import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
+import Timer from "../ui/Timer";
 
+// eslint-disable-next-line react/prop-types
 export const GeneralErrorPage = ({ cancel = false }) => {
     const { t, BFData } = useContext(AppContext);
-    // const { setIsActive } = useContext(AppContext).supportDialog;
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -18,14 +18,6 @@ export const GeneralErrorPage = ({ cancel = false }) => {
 
     //translation
     const ns = { ns: ["Common", "GeneralError"] };
-
-    // const buttonCallback = () => {
-    //     setIsActive(true);
-    // };
-
-    useEffect(() => {
-        console.log("fail_url: ", BFData);
-    }, []);
 
     return (
         <div className="container">
@@ -38,7 +30,23 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                 <div className="description low-mb low-mt">
                     <p>{t(cancel ? "cancelPage.transactionCanceled" : "repeatOrder", ns)}</p>
                 </div>
+
                 <img className="error-image" src={PlusCircle} alt="" />
+
+                {(failUrl || (cancelUrl && cancel)) && (
+                    <>
+                        <p>{t("timerText", ns)}</p>
+                        <div className="deadline-container">
+                            <img src={Clock} alt="" />
+                            <Timer
+                                down={true}
+                                className="deadline-timer"
+                                secondsToDo={5}
+                                timerCallback={() => window.location.replace(cancel ? cancelUrl : failUrl)}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
 
             <Footer

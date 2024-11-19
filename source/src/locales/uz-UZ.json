@@ -140,7 +140,8 @@
             "cancel": "Siz to'lovni bekor qildingiz",
             "transactionCanceled": "Bitim muvaffaqiyatli bekor qilindi."
         },
-        "returnBtn": "Saytga qaytish"
+        "returnBtn": "Saytga qaytish",
+        "timerText": "Siz avtomatik ravishda yo'naltirilasiz:"
     },
     "PayError": {
         "payError": "To'lov muvaffaqiyatsiz tugadi",
@@ -148,12 +149,15 @@
         "notFound": "To'lov topilmadi",
         "pleaseRepeatOrSupport": "Iltimos, yana bir bor urinib ko'ring yoki qo'llab-quvvatlash xizmatiga murojaat qiling",
         "payed": "Men to'ladim!",
-        "returnBtn": "Saytga qaytish"
+        "returnBtn": "Saytga qaytish",
+        "timerText": "Siz avtomatik ravishda yo'naltirilasiz:"
     },
     "Success": {
         "header": "Balansingiz to'ldirildi",
         "payoutHeader": "Siz muvaffaqiyatli chiqdingiz",
-        "returnBtn": "Saytga qaytish"
+        "instructions": "To'lanmagan qism sizning hisobingizga qaytariladi yoki keyinroq qayta urinib ko'ring.",
+        "returnBtn": "Saytga qaytish",
+        "timerText": "Siz avtomatik ravishda yo'naltirilasiz:"
     },
     "PayeeCard": {
         "copy": "Nusxalash",

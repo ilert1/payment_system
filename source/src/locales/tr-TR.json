@@ -140,7 +140,8 @@
             "cancel": "Ödemeyi iptal ettiniz",
             "transactionCanceled": "İşlem başarıyla iptal edildi."
         },
-        "returnBtn": "Siteye geri dön"
+        "returnBtn": "Siteye geri dön",
+        "timerText": "Aracılığıyla otomatik olarak yönlendirileceksiniz:"
     },
     "PayError": {
         "payError": "Ödeme başarısız oldu",
@@ -148,12 +149,15 @@
         "notFound": "Ödeme bulunamadı",
         "pleaseRepeatOrSupport": "Lütfen tekrar deneyin veya destek servisine bildirin",
         "payed": "Ödedim!",
-        "returnBtn": "Siteye geri dön"
+        "returnBtn": "Siteye geri dön",
+        "timerText": "Aracılığıyla otomatik olarak yönlendirileceksiniz:"
     },
     "Success": {
         "header": "Bakiyeniz yüklendi",
         "payoutHeader": "Başarılı bir şekilde çıkardınız",
-        "returnBtn": "Siteye geri dön"
+        "instructions": "Ödenmemiş kısım hesabınıza iade edilecek veya daha sonra tekrar deneyecektir.",
+        "returnBtn": "Siteye geri dön",
+        "timerText": "Aracılığıyla otomatik olarak yönlendirileceksiniz:"
     },
     "PayeeCard": {
         "copy": "Kopyala",

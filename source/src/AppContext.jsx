@@ -46,6 +46,7 @@ export const AppContext = createContext({
     payoutMode: null
 });
 
+// eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }) => {
     const navigate = useNavigate;
     const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
@@ -140,12 +141,13 @@ export const AppProvider = ({ children }) => {
                 return c.PAGE_PAY;
             case "paymentAwaitingConfirmationByPayee":
                 return c.PAGE_PAYEE_DATA;
-            // case "paymentConfirmedByPayer":
-            //     return c.PAGE_PAYEE_DATA;
             case "paymentExecuted":
                 return c.PAGE_SUCCESS;
             case "paymentError":
                 return "/" + c.PAGE_PAYMENT_NOT_FOUND;
+            case "Cancelled":
+            case "paymentCanceled":
+                return c.PAGE_CANCEL;
             default:
                 return "";
         }

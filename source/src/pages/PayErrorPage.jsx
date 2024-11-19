@@ -3,12 +3,13 @@ import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
 import { useContext } from "react";
+import Clock from "../assets/images/clock.svg";
 import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
+import Timer from "../ui/Timer";
 
 const PayErrorPage = (notFound = false) => {
-    const { t, BFData, failUrlParams } = useContext(AppContext);
-    // const { setIsActive } = useContext(AppContext).supportDialog;
+    const { t, BFData } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -17,12 +18,6 @@ const PayErrorPage = (notFound = false) => {
 
     //translation
     const ns = { ns: "PayError" };
-
-    // const buttonCallback = () => {
-    //     setIsActive(true);
-    // };
-
-    console.log(failUrlParams);
 
     return (
         <div className="container">
@@ -36,6 +31,21 @@ const PayErrorPage = (notFound = false) => {
                     {!notFound ? <p>{t("pleaseRepeatOrder", ns)}</p> : <p>{t("pleaseRepeatOrSupport", ns)}</p>}
                 </div>
                 <img className="error-image" src={PlusCircle} alt="" />
+
+                {failUrl && (
+                    <>
+                        <p>{t("timerText", ns)}</p>
+                        <div className="deadline-container">
+                            <img src={Clock} alt="" />
+                            <Timer
+                                down={true}
+                                className="deadline-timer"
+                                secondsToDo={5}
+                                timerCallback={() => window.location.replace(failUrl)}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
 
             <Footer
