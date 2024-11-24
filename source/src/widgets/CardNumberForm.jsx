@@ -65,7 +65,8 @@ export const CardNumberForm = props => {
                                 {...register("cvv")}
                                 onChange={handleCvvInputChange}
                                 value={cvv}
-                                type="text"
+                                type="password"
+                                autoComplete="new-password"
                                 id="cvv"
                                 className="card-number-form__input"
                                 placeholder="000"
