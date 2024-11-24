@@ -36,14 +36,14 @@ export const getLanguage = () => {
 
 var language = getLanguage();
 
-getLanguage;
+// getLanguage;
 
 i18n.use(initReactI18next) // passes i18n down to react-i18next
     .init({
         resources,
         lng: language, // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
         // lng: "ru-RU",
-        fallbackLng: "en-US",
+        fallbackLng: "ru-RU",
         // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
         // if you're using a language detector, do not define the lng option
 
