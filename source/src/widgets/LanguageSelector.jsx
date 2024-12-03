@@ -2,18 +2,18 @@ import { useMemo, useState } from "react";
 
 const LanguageSelector = ({ lang, setLang }) => {
     const [dropDown, setDropDown] = useState(false);
-    const langs = ["en-US", "az", "ky", "tg", "kk", "ru-RU", "tr", "uk", "uz"];
+    const langs = ["en", "az", "ky", "tg", "kk", "ru", "tr", "uk", "uz"];
     if (
         !langs.find(item => {
             return item.indexOf(lang) == 0;
         })
     ) {
-        lang = "en-US";
+        lang = "en";
     }
     const flags = useMemo(() => {
         let output = [];
         langs?.forEach(item => {
-            if (lang.substring(0, 2) != item.substring(0, 2)) {
+            if (lang.substring(0, 2) != item) {
                 output.push(
                     <div
                         key={`flagid_${item}`}
@@ -22,8 +22,8 @@ const LanguageSelector = ({ lang, setLang }) => {
                         onClick={() => {
                             setLang(item);
                         }}>
-                        <p className="lang-name">{item.substring(0, 2).toUpperCase()}</p>
-                        <img src={`/flags/${item.substring(0, 2)}.svg`} alt="" />
+                        <p className="lang-name">{item.toUpperCase()}</p>
+                        <img src={`/flags/${item}.svg`} alt="" />
                     </div>
                 );
             }
