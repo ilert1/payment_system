@@ -48,6 +48,14 @@
             "pressButton": "Press the button",
             "payed": "Paid"
         },
+        "steps_transgran": {
+            "one": "Copy the specified phone number",
+            "two": "Open your bank app",
+            "tbankTitle": "Instructions for payment via T-Bank",
+            "tbank": "Select SBP transfer|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
+            "sberbankTitle": "Instructions for payment via Sberbank",
+            "sberbank": "Select transfer by phone number/to another country|Select the country - Tajikistan|Go to the \"To card or account\" button|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment"
+        },
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
         "agree": "Okay, understood"

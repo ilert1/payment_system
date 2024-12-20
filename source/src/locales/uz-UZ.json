@@ -47,6 +47,14 @@
             "pressButton": "Tugmani bosing",
             "payed": "To'landi"
         },
+        "steps_transgran": {
+            "one": "Ko'rsatilgan telefon raqamini nusxalang",
+            "two": "Bank ilovangizni oching",
+            "tbankTitle": "T-Bank orqali toʻlov boʻyicha qoʻllanma",
+            "tbank": "SBP orqali pul o'tkazishni tanlang|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
+            "sberbankTitle": "Sberbank orqali toʻlov boʻyicha qoʻllanma",
+            "sberbank": "Telefon raqami bo'yicha/ boshqa davlatga pul o'tkazishni tanlang|Davlatni tanlang - Tojikiston|\"Karta yoki hisob\" tugmasiga o'ting|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing"
+        },
         "payed": "To'landi",
         "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
         "agree": "Yaxshi, tushundim"
