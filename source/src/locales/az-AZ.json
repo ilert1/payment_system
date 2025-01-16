@@ -48,6 +48,14 @@
             "pressButton": "Düyməyə basın",
             "payed": "Ödənilib"
         },
+        "steps_transgran": {
+            "one": "Göstərilən telefon nömrəsini kopyalayın",
+            "two": "Bankınızın tətbiqini açın",
+            "tbankTitle": "T-Bank vasitəsilə ödəmə üçün təlimat",
+            "tbank": "SBP ilə köçürmə seçin|Kopyalanmış telefon nömrəsini yapışdırın|Ödəniş formasında göstərilən bankı göstərin|Saytda göstərilən dəqiq məbləği daxil edin|Ödənişi tamamlamaq üçün düyməni basın",
+            "sberbankTitle": "Sberbank vasitəsilə ödəmə üçün təlimat",
+            "sberbank": "Telefon nömrəsinə/başqa ölkəyə köçürmə seçin|Ölkə seçin - Tacikistan|\"Kart və ya hesab\" düyməsinə keçin|Kopyalanmış telefon nömrəsini yapışdırın|Ödəniş formasında göstərilən bankı göstərin|Saytda göstərilən dəqiq məbləği daxil edin|Ödənişi tamamlamaq üçün düyməni basın"
+        },
         "payed": "Ödənilib",
         "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
         "agree": "Tamam, başa düşdüm"

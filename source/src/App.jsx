@@ -105,6 +105,10 @@ const router = createBrowserRouter([
         element: <PayErrorPage notFound={true} />
     },
     {
+        path: c.PAGE_GENERAL_ERROR,
+        element: <GeneralErrorPage />
+    },
+    {
         path: "*",
         element: <PayErrorPage notFound={true} />
     }

@@ -27,6 +27,8 @@ const PayPage = () => {
     const ecom = method?.name === "ecom";
     const [requisite, setRequisite] = useState(null);
 
+    const [activeAccordion, setActiveAccordion] = useState(null);
+
     const buttonCallback = async () => {
         const { data } = await axios
             .post(
@@ -74,33 +76,64 @@ const PayPage = () => {
                     bankName={method?.bank?.display_name}
                     isPhone={!!trader?.phone}
                 />
+                {(method?.bank ? method?.bank?.display_name : getBankName(trader?.bank)) == "Tawhidbank" ? (
+                    <div className="instructions_new transgran">
+                        <ul>
+                            <li>
+                                <span>1. </span>
+                                {t("steps_transgran.one", ns)}
+                            </li>
+                            <li>
+                                <span>2. </span>
+                                {t("steps_transgran.two", ns)}
+                            </li>
+                        </ul>
 
-                <div className="instructions_new">
-                    <ul>
-                        <li>
-                            <span>1. </span>
-                            {t("steps_new.one", ns)}
-                        </li>
-                        <li>
-                            <span>2. </span>
-                            {t("steps_new.two", ns)} <span>{method?.bank?.display_name}</span>{" "}
-                            {t("steps_new.onAmount", ns)}{" "}
-                            <span>
-                                {BFData?.[dest]?.amount}&nbsp;
-                                {getCurrencySymbol(BFData?.[dest]?.currency)}
-                            </span>
-                        </li>
-                        <li>
-                            <span>3. </span>
-                            {t("steps_new.pressButton", ns)}
-                            <span>
-                                {' "'}
-                                {t("steps_new.payed", ns)}
-                                {'"'}
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+                        <Instruction
+                            title={t("steps_transgran.tbankTitle", ns)}
+                            data={t("steps_transgran.tbank", ns)}
+                            start={2}
+                            i={1}
+                            active={activeAccordion}
+                            setActive={setActiveAccordion}
+                        />
+                        <Instruction
+                            title={t("steps_transgran.sberbankTitle", ns)}
+                            data={t("steps_transgran.sberbank", ns)}
+                            start={2}
+                            i={2}
+                            active={activeAccordion}
+                            setActive={setActiveAccordion}
+                        />
+                    </div>
+                ) : (
+                    <div className="instructions_new">
+                        <ul>
+                            <li>
+                                <span>1. </span>
+                                {t("steps_new.one", ns)}
+                            </li>
+                            <li>
+                                <span>2. </span>
+                                {t("steps_new.two", ns)} <span>{method?.bank?.display_name}</span>{" "}
+                                {t("steps_new.onAmount", ns)}{" "}
+                                <span>
+                                    {BFData?.[dest]?.amount}&nbsp;
+                                    {getCurrencySymbol(BFData?.[dest]?.currency)}
+                                </span>
+                            </li>
+                            <li>
+                                <span>3. </span>
+                                {t("steps_new.pressButton", ns)}
+                                <span>
+                                    {' "'}
+                                    {t("steps_new.payed", ns)}
+                                    {'"'}
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                )}
             </div>
 
             <Footer

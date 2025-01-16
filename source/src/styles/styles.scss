@@ -1988,6 +1988,87 @@ header {
                 line-height: 24px;
             }
         }
+
+        &.transgran {
+            row-gap: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px 0;
+
+            .title {
+                display: inline-flex;
+                column-gap: 4px;
+                user-select: none;
+
+                p {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 18.69px;
+
+                    cursor: pointer;
+                    color: #010f18;
+                    transition: color 0.3s ease-in-out;
+                    // opacity: 0.7;
+                }
+
+                button {
+                    cursor: pointer;
+                    border: none;
+                    background-color: transparent;
+
+                    .arrow {
+                        transition: rotate 0.3s ease-in-out;
+                    }
+                }
+            }
+
+            ul {
+                margin: 0;
+            }
+
+            .accordion-container ul {
+                margin: 0;
+                max-height: 0;
+                overflow-y: hidden;
+                transition: max-height 0.2s ease-out; // 0.3s;
+            }
+
+            ul,
+            li {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 18.69px;
+                row-gap: 0;
+
+                color: #010f18;
+                // opacity: 0.7;
+
+                span {
+                    color: #37a8f3;
+                    font-weight: 400;
+                }
+            }
+
+            .accordion-container {
+                &.active {
+                    .title {
+                        p {
+                            color: #37a8f3;
+                        }
+
+                        .arrow {
+                            rotate: 180deg;
+                        }
+                    }
+
+                    ul {
+                        max-height: 500px;
+                        transition: max-height 0.5s ease-out 0.2s;
+                    }
+                }
+            }
+        }
     }
 
     .loader-container {
