@@ -28,7 +28,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                     <h1>{t(cancel ? "cancelPage.cancel" : "error", ns)}</h1>
                 </div>
                 <div className="description low-mb low-mt">
-                    <p>{t(cancel ? "cancelPage.transactionCanceled" : "repeatOrder", ns)}</p>
+                    <p>{t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}</p>
                 </div>
 
                 <img className="error-image" src={PlusCircle} alt="" />
