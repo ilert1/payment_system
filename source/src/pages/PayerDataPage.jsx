@@ -202,17 +202,6 @@ const PayerDataPage = () => {
     }, [waitTransfer]);
 
     useEffect(() => {
-        /* console.log({
-            // cardNumber: cardNumber,
-            // expiryDate: expiryDate,
-            // cvv: cvv,
-            isComplete: isComplete,
-            // errors: errors,
-            ecom: ecom,
-            waitTransfer: waitTransfer,
-            isFetching: isFetching,
-            isPressed: isPressed
-        }); */
         if (ecom) {
             if (waitTransfer) {
                 setNextEnabled(true);
@@ -287,7 +276,6 @@ const PayerDataPage = () => {
                     nextEnabled={nextEnabled}
                     approve={true}
                     focused={buttonFocused}
-                    // prevPage="/"
                 />
             )}
         </div>

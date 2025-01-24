@@ -27,9 +27,6 @@ const PaymentInstrumentPage = () => {
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 
-    /* console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
-    console.log(`MODE: ${import.meta.env.MODE}`); */
-
     const { data, isFetching } = useQuery({
         queryKey: ["getPaymentInstruments"],
         refetchOnWindowFocus: false,
@@ -52,7 +49,7 @@ const PaymentInstrumentPage = () => {
             console.log(payload);
 
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/getPaymentMethods`, // todo: will change?
+                `${import.meta.env.VITE_API_URL}/getPaymentMethods`,
                 payload,
                 fingerprintConfig
             );

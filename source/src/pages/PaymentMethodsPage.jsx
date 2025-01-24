@@ -4,12 +4,10 @@ import Footer from "../widgets/Footer";
 
 import { useContext, useState } from "react";
 import { AppContext, base58 } from "../AppContext";
-// import { PayMethod } from "../widgets/PayInstrument.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.jsx";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
-// import { base58_to_binary, binary_to_base58 } from "base58-js";
 
 const PaymentMethodsPage = () => {
     const {
@@ -29,11 +27,6 @@ const PaymentMethodsPage = () => {
     const ns = { ns: ["Common", "PaymentInstrument"] };
 
     const [paymentMethods, setPaymentMethods] = useState(null);
-
-    /* console.log(`VITE_API_URL: ${import.meta.env.VITE_API_URL}`);
-    console.log(`MODE: ${import.meta.env.MODE}`);
-
-    console.log(BFData); */
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -71,14 +64,12 @@ const PaymentMethodsPage = () => {
         queryFn: async () => {
             console.log("payment-methods");
 
-            // try {
-            /* const { data } = await axios.get(
+            const { data } = await axios.get(
                 `${import.meta.env.VITE_API_URL}/${BFData?.blowfish_id}/payment-methods`,
                 fingerprintConfig
-            ); */
-            // .catch();
+            );
 
-            const data = {
+            /* const data = { //TODO: удалить мок
                 data: {
                     payment_methods: [
                         {
@@ -102,7 +93,8 @@ const PaymentMethodsPage = () => {
                         }
                     ]
                 }
-            };
+            }; */
+
             console.log("payment-methods response:");
             console.log(data);
 
@@ -110,35 +102,20 @@ const PaymentMethodsPage = () => {
             return data;
         },
         onError: e => {
+            //TODO: актуализировать обработчик при ошибке
             if (e?.status_code === 404 || e?.status_code === 500) {
                 let details = e.response?.error?.details;
                 let message = e.response?.error?.message;
 
-                //${c.PAGE_PAYMENT_NOT_FOUND}
                 redirectUrl = `${BFData?.fail_url}?blowfishId=${BFData?.blowfish_id}${
                     message ? `&message=${base58(message)}` : ""
                 }${details ? `&details=${base58(details)}` : ""}`;
-                // console.log(e);
-                // console.log(redirectUrl);
                 setFailUrlParams(redirectUrl);
                 location.href.replace(redirectUrl);
-                // navigate(redirectUrl, { replace: true });
-                // console.log("payment-methods error");
             }
         }
     });
 
-    /* useEffect(() => {
-        if (isError) {
-            location.href.replace(redirectUrl);
-        }
-    }, [isError]); */
-
-    /* const buttonCallback = () => {
-        setEnabled_startPayIN(true);
-    }; */
-
-    // console.log(currentPaymentMethod);
     console.log(BFData);
     console.log(
         currentPaymentMethod?.bank_name || currentPaymentMethod?.payment_type == "sbp"
@@ -155,12 +132,7 @@ const PaymentMethodsPage = () => {
                     <p className="amount">{BFData?.amount}</p>
                     <p className="currency">&nbsp;{getCurrencySymbol(BFData?.currency)}</p>
                 </div>
-                <PaymentMethodsList
-                    isFetching={isFetching}
-                    paymentMethods={paymentMethods}
-                    // currentPaymentMethod={currentPaymentMethod}
-                    // setCurrentPaymentMethod={setCurrentPaymentMethod}
-                />
+                <PaymentMethodsList isFetching={isFetching} paymentMethods={paymentMethods} />
             </div>
 
             <Footer
@@ -171,7 +143,6 @@ const PaymentMethodsPage = () => {
                         ? `/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`
                         : `/${BFData?.blowfish_id}/${c.PAGE_PAYMENT_INSTRUMENT}`
                 }
-                // prevPage={c.PAGE_MAIN}
                 nextEnabled={!isFetching && currentPaymentMethod != null ? true : false}
             />
         </div>

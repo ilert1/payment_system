@@ -16,7 +16,6 @@ const MainPage = () => {
     const contextData = useContext(AppContext);
     const { fingerprintConfig } = useContext(AppContext);
     const payOutMode = Boolean(contextData?.BFData?.payout);
-    // const ecomMode = contextData?.BFData?.payment?.method?.name === "ecom";
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 

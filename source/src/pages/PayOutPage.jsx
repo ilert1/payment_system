@@ -118,6 +118,7 @@ const PayOutPage = () => {
 
     useEffect(() => {
         if (isError) {
+            //TODO: локализовать тоаст
             toast(
                 <>
                     <p>Ошибка ответа сервера.</p>

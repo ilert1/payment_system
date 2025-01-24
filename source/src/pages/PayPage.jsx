@@ -140,7 +140,6 @@ const PayPage = () => {
                 buttonCaption={t("approveTransfer", ns)}
                 buttonCallback={buttonCallback}
                 nextPage={`../${c.PAGE_PAYEE_DATA}`}
-                // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
                 approve={true}
             />
         </div>
