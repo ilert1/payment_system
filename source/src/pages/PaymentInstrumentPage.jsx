@@ -76,8 +76,7 @@ const PaymentInstrumentPage = () => {
                     payment: {
                         bank: currentPaymentInstrument?.bank,
                         trn: trn,
-                        type: currentPaymentInstrument?.payment_type //"card2card",
-                        // wf: wf
+                        type: currentPaymentInstrument?.payment_type
                     }
                 }
             };

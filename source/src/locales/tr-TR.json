@@ -55,6 +55,12 @@
             "sberbankTitle": "Sberbank ile ödeme için talimat",
             "sberbank": "Telefon numarasına / başka ülkeye transfer seçin|Ülke seçin - Tacikistan|\"Kart veya hesap\" düğmesine tıklayın|Kopyalanan telefon numarasını yapıştırın|Ödeme formunda belirtilen bankı girin|Sitede belirtilen kesin tutarı girin|Ödeme yapmak için düğmeye basın"
         },
+        "steps_azn": {
+            "sberbank": "Belirtilen telefon numarasını kopyalayın|Sber uygulamasını açın|Telefon numarasıyla transfer işlevini seçin — \"başka bir ülkeye transfer\"|Ardından uygulamada hedef ülkeyi belirtin — Azerbaycan|Önceden kopyalanmış telefon numarasını yapıştırın|Mevcut \"E-wallet\" listesinden belirtilen bankı seçin|Sitede belirtilen kesin tutarı girin|Bilgileri kontrol edin ve \"Ödemeyi tamamla\" düğmesine basın"
+        },
+        "steps_iban": {
+            "iban": "Iban Numarasını Kopyalayın|Bankanızın uygulamasını açın|\"Para Gönder\" işlevini seçin|İleri > \"Başka Alıcıya Havale/EFT/FAST\" işlevini seçin|Alıcı Verileri Penceresinde > Önceden kopyaladığınız Iban'ı yapıştırın|Alıcının \"Soyadı Adını\" girin|Web sitesinde belirtilen tam tutarı girin|Verileri kontrol edin ve \"Onayla\" butonuna tıklayın"
+        },
         "payed": "Ödendi",
         "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
         "agree": "Tamam, anladım"

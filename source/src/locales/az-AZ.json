@@ -56,6 +56,12 @@
             "sberbankTitle": "Sberbank vasitəsilə ödəmə üçün təlimat",
             "sberbank": "Telefon nömrəsinə/başqa ölkəyə köçürmə seçin|Ölkə seçin - Tacikistan|\"Kart və ya hesab\" düyməsinə keçin|Kopyalanmış telefon nömrəsini yapışdırın|Ödəniş formasında göstərilən bankı göstərin|Saytda göstərilən dəqiq məbləği daxil edin|Ödənişi tamamlamaq üçün düyməni basın"
         },
+        "steps_azn": {
+            "sberbank": "Göstərilən telefon nömrəsini kopyalayın|Sber tətbiqini açın|Telefon nömrəsi ilə köçürmə funksiyasını seçin — \"başqa ölkəyə köçürmə\"|Sonra tətbiqdə təyinat ölkəsini seçin — Azərbaycan|Əvvəlcə kopyalanmış telefon nömrəsini daxil edin|Mövcud \"E-wallet\" siyahısından göstərilən bankı seçin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və \"Ödənişi tamamlamaq\" düyməsini basın"
+        },
+        "steps_iban": {
+            "iban": "Iban nömrəsini kopyalayın|Bank tətbiqinizi açın|«Pul Göndər» funksiyasını seçin|Davam et > «Başqa alıcıya köçürmə» funksiyasını seçin|«Alıcının məlumatları» pəncərəsinə > Əvvəlcə kopyalanmış Iban-ı daxil edin|Alıcının «Soyadı və Adı»nı daxil edin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və «Təsdiqləmək» düyməsini basın"
+        },
         "payed": "Ödənilib",
         "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
         "agree": "Tamam, başa düşdüm"

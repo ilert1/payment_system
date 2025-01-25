@@ -4,8 +4,6 @@ import Footer from "../widgets/Footer";
 
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
-import { CardNumberLast4 } from "../widgets/CardNumberLast4";
-
 import { ProgressSteper } from "../widgets/ProgressSteper";
 
 import { useQuery } from "@tanstack/react-query";
