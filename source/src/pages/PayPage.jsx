@@ -103,7 +103,7 @@ const PayPage = () => {
 
     useEffect(() => {
         setCaseName("");
-        if (BFData?.[dest]?.currency == "AZN") {
+        if (BFData?.[dest]?.currency == "AZN" && trader?.phone) {
             setCaseName(azn);
         }
         if (method?.bank?.name == "Tawhidbank") {
