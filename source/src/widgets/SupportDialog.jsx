@@ -65,7 +65,7 @@ const SupportDialog = () => {
                         if (import.meta.env.VITE_YMETRICS_COUNTER) {
                             ym("reachGoal", "dialog-button", { id: BFData?.[dest]?.id });
                         }
-                        open("https://t.me/MoneygateSupportBot", "_blank").focus();
+                        open(import.meta.env.VITE_SUPPORT_LINK, "_blank").focus();
                     }}>
                     {t("chatButton", ns)}
                 </button>
