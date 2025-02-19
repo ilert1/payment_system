@@ -146,7 +146,8 @@
     "PayeeData": {
         "waitConfirmation": "The provider is checking your transfer",
         "waitComment": "As soon as the provider confirms the transfer, we will replenish your balance",
-        "waitTime": "Usually takes up to 2 minutes"
+        "waitTime": "Usually takes up to 2 minutes",
+        "backToSite": "Return to site"
     },
     "GeneralError": {
         "repeatOrder": "repeat order",
