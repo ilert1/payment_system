@@ -59,16 +59,18 @@ const SupportDialog = () => {
                     <p className="dialog-header">{t("header", ns)}</p>
                     <p className="dialog-text">{t("text", ns)}</p>
                 </div>
-                <button
-                    className="dialog-button"
-                    onClick={() => {
-                        if (import.meta.env.VITE_YMETRICS_COUNTER) {
-                            ym("reachGoal", "dialog-button", { id: BFData?.[dest]?.id });
-                        }
-                        open("https://t.me/MoneygateSupportBot", "_blank").focus();
-                    }}>
-                    {t("chatButton", ns)}
-                </button>
+                {import.meta.env.VITE_SUPPORT_LINK && (
+                    <button
+                        className="dialog-button"
+                        onClick={() => {
+                            if (import.meta.env.VITE_YMETRICS_COUNTER) {
+                                ym("reachGoal", "dialog-button", { id: BFData?.[dest]?.id });
+                            }
+                            open(import.meta.env.VITE_SUPPORT_LINK, "_blank").focus();
+                        }}>
+                        {t("chatButton", ns)}
+                    </button>
+                )}
             </div>
         </div>
     );
