@@ -55,6 +55,12 @@
             "sberbankTitle": "Sberbank orqali toʻlov boʻyicha qoʻllanma",
             "sberbank": "Telefon raqami bo'yicha/ boshqa davlatga pul o'tkazishni tanlang|Davlatni tanlang - Tojikiston|\"Karta yoki hisob\" tugmasiga o'ting|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing"
         },
+        "steps_azn": {
+            "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|Sber ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — \"boshqa mamlakatga o'tkazma\"|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud \"E-wallet\" ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, \"To'lovni yakunlash\" tugmasini bosing"
+        },
+        "steps_iban": {
+            "iban": "Iban рақамини нусхаланг|Банк иловангизни очинг|«Пул юбориш» функциясини танланг|Кейин > «Бошқа қабул қилувчига ўтказма» функциясини танланг|«Қабул қилувчи маълумотлари» ойнасига > Аввал нусхаланган Iban рақамини киритинг|Қабул қилувчининг «Фамилияси ва Исми»ни киритинг|Сайтда кўрсатилган аниқ суммани киритинг|Маълумотларни текшириб, «Тасдиқлаш» тугмасини босинг"
+        },
         "payed": "To'landi",
         "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
         "agree": "Yaxshi, tushundim"

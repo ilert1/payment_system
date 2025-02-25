@@ -56,6 +56,12 @@
             "sberbankTitle": "Instructions for payment via Sberbank",
             "sberbank": "Select transfer by phone number/to another country|Select the country - Tajikistan|Go to the \"To card or account\" button|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment"
         },
+        "steps_azn": {
+            "sberbank": "Copy the specified phone number|Open the Sber app|Select the transfer by phone number function — \"transfer to another country\"|Then, in the app, specify the destination country — Azerbaijan|Paste the previously copied phone number|Select the specified bank from the available \"E-wallet\" list|Enter the exact amount specified on the website|Check the details and click the \"Complete payment\" button"
+        },
+        "steps_iban": {
+            "iban": "Copy the Iban Number|Open your bank app|Select the “Send Money” function|Next > Select the “Transfer to Another Recipient” function|In the “Recipient Details” window > Paste the previously copied Iban|Enter the recipient's “Last Name and First Name”|Enter the exact amount specified on the website|Check the details and click the “Confirm” button"
+        },
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
         "agree": "Okay, understood"

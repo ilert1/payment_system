@@ -10,6 +10,41 @@ import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import PayHeader from "../widgets/PayHeader.jsx";
 import PayeeData from "../widgets/PayeeData.jsx";
 
+const azn = "AZN";
+const tjs = "Tawhidbank";
+const iban = "iban";
+
+const InstructionItems = ({ start = 0, data = "" }) => {
+    return (
+        <ul>
+            {data.split("|").map((item, index) => (
+                <li key={index}>
+                    <span>{start + index + 1}. </span>
+                    {item}
+                </li>
+            ))}
+        </ul>
+    );
+};
+
+const Instruction = ({ title, data, start = 2, i, active = null, setActive = () => {} }) => {
+    const callback = () => {
+        if (active == i) setActive(null);
+        else setActive(i);
+    };
+    return (
+        <div className={`accordion-container ${active == i ? "active" : ""}`}>
+            <div className="title">
+                <p onClick={callback}>{title}</p>
+                <button onClick={callback}>
+                    <img className="arrow" src={ArrowDown} alt="" />
+                </button>
+            </div>
+            <InstructionItems start={start} data={data} />
+        </div>
+    );
+};
+
 const PayPage = () => {
     const { BFData, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
 
@@ -24,10 +59,12 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
-    const ecom = method?.name === "ecom";
     const [requisite, setRequisite] = useState(null);
 
     const [activeAccordion, setActiveAccordion] = useState(null);
+    // const [bankName, setBankName] = useState("");
+
+    const [caseName, setCaseName] = useState("");
 
     const buttonCallback = async () => {
         const { data } = await axios
@@ -60,6 +97,23 @@ const PayPage = () => {
         console.log(trader);
     }, [trader]);
 
+    /* useEffect(() => {
+        setBankName(method?.bank_name ? method?.bank_name : getBankName(trader?.bank));
+    }, [method?.bank_name, trader?.bank]); */
+
+    useEffect(() => {
+        setCaseName("");
+        if (BFData?.[dest]?.currency == "AZN" && trader?.phone) {
+            setCaseName(azn);
+        }
+        if (method?.bank?.name == "Tawhidbank") {
+            setCaseName(tjs);
+        }
+        if (trader?.iban) {
+            setCaseName(iban);
+        }
+    }, [BFData?.[dest]?.currency, bankName, trader]);
+
     return (
         <div className="container">
             <Header />
@@ -70,13 +124,7 @@ const PayPage = () => {
                     bankName={method?.bank?.display_name}
                 />
 
-                <PayeeData
-                    requisite={requisite}
-                    trader={trader}
-                    bankName={method?.bank?.display_name}
-                    isPhone={!!trader?.phone}
-                />
-                {(method?.bank ? method?.bank?.display_name : getBankName(trader?.bank)) == "Tawhidbank" ? (
+                {caseName == tjs && (
                     <div className="instructions_new transgran">
                         <ul>
                             <li>
@@ -106,20 +154,38 @@ const PayPage = () => {
                             setActive={setActiveAccordion}
                         />
                     </div>
-                ) : (
+                )}
+
+                {caseName == azn && (
+                    <>
+                        <div className="instructions_new transgran">
+                            <InstructionItems data={t("steps_azn.sberbank", ns)} start={0} />
+                        </div>
+                    </>
+                )}
+
+                {caseName == iban && (
+                    <>
+                        <div className="instructions_new transgran">
+                            <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
+                        </div>
+                    </>
+                )}
+
+                {!caseName && (
                     <div className="instructions_new">
                         <ul>
                             <li>
                                 <span>1. </span>
-                                {t("steps_new.one", ns)}
+                                {t(`steps_new.one${!!trader?.phone ? "Phone" : ""}`, ns)}
                             </li>
                             <li>
                                 <span>2. </span>
-                                {t("steps_new.two", ns)} <span>{method?.bank?.display_name}</span>{" "}
+                                {t(`steps_new.two${!!trader?.phone ? "Phone" : ""}`, ns)} <span>{bankName}</span>{" "}
                                 {t("steps_new.onAmount", ns)}{" "}
                                 <span>
-                                    {BFData?.[dest]?.amount}&nbsp;
-                                    {getCurrencySymbol(BFData?.[dest]?.currency)}
+                                    {stored?.amount}&nbsp;
+                                    {getCurrencySymbol(stored?.currency)}
                                 </span>
                             </li>
                             <li>
@@ -134,13 +200,19 @@ const PayPage = () => {
                         </ul>
                     </div>
                 )}
+
+                <PayeeData
+                    requisite={requisite}
+                    trader={trader}
+                    bankName={method?.bank?.display_name}
+                    isPhone={!!trader?.phone}
+                />
             </div>
 
             <Footer
                 buttonCaption={t("approveTransfer", ns)}
                 buttonCallback={buttonCallback}
                 nextPage={`../${c.PAGE_PAYEE_DATA}`}
-                // prevPage={c.PAGE_PAYMENT_INSTRUMENT}
                 approve={true}
             />
         </div>

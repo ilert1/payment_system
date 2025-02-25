@@ -4,8 +4,6 @@ import Footer from "../widgets/Footer";
 
 import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
-import { CardNumberLast4 } from "../widgets/CardNumberLast4";
-
 import { ProgressSteper } from "../widgets/ProgressSteper";
 
 import { useQuery } from "@tanstack/react-query";
@@ -54,7 +52,6 @@ const PayeeSearchPage = () => {
     const { data: data_TraderData, isFetching: isFetching_TraderData } = useQuery({
         queryKey: ["getTraderData"],
         enabled: fingerprintReady,
-        // enabled: step == 2,
         /* refetchInterval: 1000,
         refetchIntervalInBackground: true, */
         retry: false,
@@ -69,23 +66,12 @@ const PayeeSearchPage = () => {
             console.log("getTraderData payload:");
             console.log(payload);
 
-            /* const { data } = await axios.post(
+            const { data } = await axios.post(
                 `${import.meta.env.VITE_API_URL}/getTraderData`,
                 payload,
                 fingerprintConfig
-            ); */
+            );
 
-            //response mock
-            const data = {
-                success: true,
-                data: {
-                    bank: "alfa",
-                    card: "0000111156781111",
-                    cardholder: "Card Holder"
-                }
-            };
-
-            // console.log(data?.data);
             console.log("getTraderData response:");
             console.log(data);
 
@@ -117,7 +103,7 @@ const PayeeSearchPage = () => {
                 <ProgressSteper step={step} />
             </div>
 
-            <Footer buttonCaption={t("approve", ns)} /* prevPage={c.PAGE_PAYER_DATA} */ approve={true} />
+            <Footer buttonCaption={t("approve", ns)} approve={true} />
         </div>
     );
 };

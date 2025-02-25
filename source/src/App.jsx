@@ -123,12 +123,6 @@ const App = () => {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
     const notFound = pathname.indexOf("not-found") >= 0;
-    // const payMode = pathname.split("/")[1];
-
-    /* // если отсутствует - сразу редиректим
-    if (!blowfishId) {
-        window.location.replace(payMode === "payouts" ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND);
-    } */
 
     let storedCurrentPaymentMethod = localStorage.getItem("CurrentPaymentMethod");
     useEffect(() => {
@@ -172,7 +166,7 @@ const App = () => {
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
         refetchInterval: BFData?.[dest]?.status === "paymentAwaitingStart" ? 1000 : false,
-        enabled: Boolean(blowfishId) && !notFound, //Boolean(blowfishId),
+        enabled: Boolean(blowfishId) && !notFound,
         // refetchIntervalInBackground: true,
         // retry: false,
         refetchOnWindowFocus: false,
@@ -193,7 +187,7 @@ const App = () => {
                             //данные получены успешно
                             setBFData(data);
                         } else {
-                            //транзакция не подлежит оплате
+                            //транзакция не найдена или не подлежит оплате
                             window.location.replace(
                                 `/${payoutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`
                             );
@@ -207,30 +201,8 @@ const App = () => {
                     }
                 }
             }
-
-            //response mock
-            // const data = {
-            //     success: true,
-            //     data: {
-            //         id: "449bc546-e589-4aca-83fd-775099333842",
-            //         blowfish_id: "01355e23-0eb6-446e-a4cc-4d403f789ee8",
-            //         status: 1,
-            //         amount: "1000.20",
-            //         currency: "RUB",
-            //         fail_url: "https://google.com",
-            //         success_url: "",
-            //         created_at: 1719389044819,
-            //         die_at: 1719389944819
-            //     }
-            // };
-
-            // data = null;
         }
     });
-
-    /* useEffect(() => {
-        setIsFetching_Blowfish(isFetching_Blowfish);
-    }, [isFetching_Blowfish]);*/
 
     return (
         <>

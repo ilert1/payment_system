@@ -1,12 +1,9 @@
 import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import SupportDialog from "../widgets/SupportDialog";
-import Rating from "../widgets/Rating";
 import { Timer } from "../ui/Timer";
 
-import { useLocation } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 
 import Clock from "../assets/images/clock.svg";
@@ -38,8 +35,6 @@ const PaymentConfirmationPage = () => {
 
     //translation
     const ns = { ns: "PaymentConfirmation" };
-
-    // const location = useLocation();
 
     const [file, setFile] = useState(null);
     const handleChange = file => {
@@ -85,7 +80,6 @@ const PaymentConfirmationPage = () => {
             <Footer
                 buttonCaption={t("Common.approve")}
                 approve={true}
-                // prevPage={c.PAGE_PAY_ERROR}
                 nextPage={c.PAGE_PAYMENT_WAIT_CONFIRMATION}
                 nextEnabled={file}
             />

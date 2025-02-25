@@ -71,6 +71,7 @@ header {
     display: inline-flex;
     justify-content: space-between;
     gap: 14px;
+    flex-direction: row-reverse;
 
     .logo-container {
         display: flex;
@@ -1617,10 +1618,12 @@ header {
             .deadline-timer {
                 font-size: 26px;
                 line-height: 34px;
+                min-width: 80px;
 
                 @media (max-width: 520px) {
                     font-size: 18px;
                     line-height: 24px;
+                    min-width: 55px;
                 }
             }
 

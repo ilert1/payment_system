@@ -10,7 +10,7 @@ import Loader from "../ui/Loader.jsx";
 
 const PaymentWaitConfirmation = () => {
     const { navigate, t } = useContext(AppContext);
-    const { /* isActive,  */ setIsActive } = useContext(AppContext).supportDialog;
+    const { setIsActive } = useContext(AppContext).supportDialog;
 
     //translation
     const ns = { ns: "PaymentWaitConfirmation" };
@@ -21,10 +21,6 @@ const PaymentWaitConfirmation = () => {
     const onComplete = () => {
         setIsComplete(true);
         setButtonFocused(true);
-    };
-
-    const buttonCallback = () => {
-        setIsActive(true);
     };
 
     return (
