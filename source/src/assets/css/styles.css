@@ -67,6 +67,7 @@ header {
   display: inline-flex;
   justify-content: space-between;
   gap: 14px;
+  flex-direction: row-reverse;
 }
 header .logo-container {
   display: flex;

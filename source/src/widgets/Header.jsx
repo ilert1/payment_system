@@ -9,7 +9,7 @@ import LanguageSelector from "./LanguageSelector";
 import ym from "react-yandex-metrika";
 
 const Header = () => {
-    const { isActive, setIsActive } = useContext(AppContext).supportDialog;
+    // const { isActive, setIsActive } = useContext(AppContext).supportDialog;
     const { lang, setLang } = useContext(AppContext);
     const { t } = useContext(AppContext);
     //translation
@@ -18,7 +18,7 @@ const Header = () => {
     return (
         <>
             <header>
-                <div
+                {/* <div
                     className="support-container"
                     onClick={() => {
                         if (import.meta.env.VITE_YMETRICS_COUNTER) {
@@ -28,10 +28,10 @@ const Header = () => {
                     }}>
                     <img src={MessageSquare} alt="" />
                     {t("support", ns)}
-                </div>
+                </div> */}
                 <LanguageSelector lang={lang} setLang={setLang} />
             </header>
-            <SupportDialog />
+            {/* <SupportDialog /> */}
         </>
     );
 };
