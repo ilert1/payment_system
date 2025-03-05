@@ -99,7 +99,7 @@ const PayPage = () => {
 
     useEffect(() => {
         //TODO
-        setBankName(method?.bank?.name ? method?.bank?.name : getBankName(trader?.bank));
+        setBankName(method?.bank?.name ? method?.bank?.name : "" /* getBankName(trader?.bank) */);
     }, [method?.bank?.name, trader?.bank]);
 
     useEffect(() => {
