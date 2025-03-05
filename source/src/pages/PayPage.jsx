@@ -62,7 +62,7 @@ const PayPage = () => {
     const [requisite, setRequisite] = useState(null);
 
     const [activeAccordion, setActiveAccordion] = useState(null);
-    // const [bankName, setBankName] = useState("");
+    const [bankName, setBankName] = useState("");
 
     const [caseName, setCaseName] = useState("");
 
@@ -97,9 +97,10 @@ const PayPage = () => {
         console.log(trader);
     }, [trader]);
 
-    /* useEffect(() => {
-        setBankName(method?.bank_name ? method?.bank_name : getBankName(trader?.bank));
-    }, [method?.bank_name, trader?.bank]); */
+    useEffect(() => {
+        //TODO
+        setBankName(method?.bank?.name ? method?.bank?.name : getBankName(trader?.bank));
+    }, [method?.bank?.name, trader?.bank]);
 
     useEffect(() => {
         setCaseName("");
