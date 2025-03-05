@@ -16,6 +16,14 @@ const PayeeDataPage = () => {
 
     usePaymentPage({ absolutePath: false });
 
+    const redirect = url => {
+        document.location.replace(url);
+    };
+
+    const buttonCallback = () => {
+        redirect(BFData?.[dest]?.back_redirect_url);
+    };
+
     return (
         <div className="container">
             <Header />
@@ -37,7 +45,13 @@ const PayeeDataPage = () => {
                 </div>
             </div>
 
-            <Footer payeeCard={true} />
+            <Footer
+                buttonCallback={BFData?.[dest]?.back_redirect_url ? buttonCallback : () => {}}
+                buttonCaption={BFData?.[dest]?.back_redirect_url ? t("backToSite", ns) : ""}
+                nextPage={BFData?.[dest]?.back_redirect_url}
+                payeeCard={true}
+                showCancelBtn={false}
+            />
         </div>
     );
 };
