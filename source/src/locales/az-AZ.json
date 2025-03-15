@@ -223,6 +223,10 @@
     },
     "PayHeader": {
         "transfer": "Köçürmə edin",
+        "country": {
+            "tjs": "Tacikistana",
+            "azn": "Azərbaycana"
+        },
         "to": "üzrə"
     }
 }

@@ -223,6 +223,10 @@
     },
     "PayHeader": {
         "transfer": "Make a transfer of",
+        "country": {
+            "tjs": "to Tajikistan",
+            "azn": "to Azerbaijan"
+        },
         "to": "to"
     }
 }

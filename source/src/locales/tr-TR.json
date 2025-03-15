@@ -10,6 +10,7 @@
     "Footer": {
         "protected": "Çeviri korunmaktadır.",
         "details": "Detaylar",
+        "cancel": "Transferi iptal et",
         "cancelDialog": {
             "title": "Отменить перевод и вернуться в магазин",
             "text": "Transferi iptal edin ve mağazaya geri dönün",
@@ -222,6 +223,10 @@
     },
     "PayHeader": {
         "transfer": "Transferi gerçekleştir",
+        "country": {
+            "tjs": "Tacikistan'a",
+            "azn": "Azerbaycan'a"
+        },
         "to": "için"
     }
 }
