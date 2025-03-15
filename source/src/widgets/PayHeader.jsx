@@ -3,7 +3,7 @@ import AppContext from "../AppContext";
 import Timer from "../ui/Timer";
 import ClockOrange from "../assets/images/clock_orange.svg";
 
-const PayHeader = ({ amount, currency, bankName }) => {
+const PayHeader = ({ amount, currency, bankName, countryName }) => {
     const { t } = useContext(AppContext);
     const ns = { ns: "PayHeader" };
 
@@ -13,8 +13,14 @@ const PayHeader = ({ amount, currency, bankName }) => {
                 {t("transfer", ns)}{" "}
                 <span>
                     {amount}&nbsp;{currency}
-                </span>{" "}
-                {t("to", ns)} {bankName}
+                </span>
+                {countryName && <> {t(`country.${countryName}`, ns)}</>}
+                {bankName && (
+                    <>
+                        {" "}
+                        {t("to", ns)} {bankName}
+                    </>
+                )}
             </h1>
             <div className="deadline-container">
                 <img src={ClockOrange} alt="" />

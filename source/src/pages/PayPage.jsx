@@ -10,7 +10,7 @@ import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import PayHeader from "../widgets/PayHeader.jsx";
 import PayeeData from "../widgets/PayeeData.jsx";
 
-const azn = "AZN";
+const azn = "azn";
 const tjs = "Tawhidbank";
 const iban = "iban";
 
@@ -98,18 +98,35 @@ const PayPage = () => {
     }, [trader]);
 
     useEffect(() => {
-        //TODO
-        setBankName(method?.bank?.name ? method?.bank?.name : "" /* getBankName(trader?.bank) */);
+        setBankName(
+            method?.bank?.display_name ? method?.bank?.display_name : method?.bank?.name /* getBankName(trader?.bank) */
+        );
     }, [method?.bank?.name, trader?.bank]);
 
     useEffect(() => {
         setCaseName("");
-        if (BFData?.[dest]?.currency == "AZN" && trader?.phone) {
+        if (BFData?.[dest]?.currency?.toLowerCase() == azn && trader?.phone) {
             setCaseName(azn);
         }
-        if (method?.bank?.name == "Tawhidbank") {
+
+        console.log(`trader.bank: ${trader?.bank}`);
+        console.log(`bankName: ${bankName}`);
+        if (
+            bankName == "Tawhidbank" ||
+            [
+                "tawhid",
+                "tawhidbank",
+                "eshata",
+                "eskhata",
+                "spitamenbank",
+                "spitamen",
+                "dushanbe",
+                "amonatbonk"
+            ].includes(trader?.bank)
+        ) {
             setCaseName(tjs);
         }
+
         if (trader?.iban) {
             setCaseName(iban);
         }
@@ -123,6 +140,7 @@ const PayPage = () => {
                     amount={BFData?.[dest]?.amount}
                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                     bankName={method?.bank?.display_name}
+                    countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
                 />
 
                 {caseName == tjs && (
@@ -185,8 +203,8 @@ const PayPage = () => {
                                 {t(`steps_new.two${!!trader?.phone ? "Phone" : ""}`, ns)} <span>{bankName}</span>{" "}
                                 {t("steps_new.onAmount", ns)}{" "}
                                 <span>
-                                    {stored?.amount}&nbsp;
-                                    {getCurrencySymbol(stored?.currency)}
+                                    {BFData?.[dest]?.amount}&nbsp;
+                                    {getCurrencySymbol(BFData?.[dest]?.currency)}
                                 </span>
                             </li>
                             <li>

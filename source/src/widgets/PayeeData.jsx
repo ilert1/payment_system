@@ -14,14 +14,32 @@ const PayeeData = ({ requisite, trader, bankName, isPhone }) => {
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
+    const formatedRequisite = req => {
+        if (req) {
+            req = req.replace(/\s+/g, "");
+            if (isPhone) {
+                switch (caseName) {
+                    case "tjs":
+                        return req.replace(/^(\+\d{3})(\d{2})(\d{3})(\d{4})$/, "($1) $2 $3 $4");
+                    case "azn":
+                        return req.replace(/^(\+\d{3})(\d{2})(\d{3})(\d{4})$/, "($1) $2 $3 $4");
+                    default:
+                        return req.replace(/^(\+\d{1})(\d{3})(\d{3})(\d{4})$/, "($1) $2 $3 $4");
+                }
+            } else {
+                return req.replace(/(.{4})/g, "$1 ");
+            }
+        }
+    };
+
     return (
         <div className="payee-data">
             {bankName && <PayeeDataItem img={BankIcon} label={t("bankName", ns)} value={bankName} cl={"dark"} />}
             <PayeeDataItem
                 img={CardsIcon}
                 label={t("requisite", ns)}
-                value={requisite}
-                copyData={requisite}
+                value={formatedRequisite(requisite)}
+                copyData={requisite?.replace(/\s+/g, "")}
                 messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
             />
             <PayeeDataItem
