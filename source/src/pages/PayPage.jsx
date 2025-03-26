@@ -140,7 +140,7 @@ const PayPage = () => {
                     amount={BFData?.[dest]?.amount}
                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                     bankName={method?.bank?.display_name}
-                    countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                    countryName={["tjs" /* , "azn" */].includes(caseName) ? caseName : ""}
                 />
 
                 {caseName == tjs && (
@@ -175,13 +175,13 @@ const PayPage = () => {
                     </div>
                 )}
 
-                {caseName == azn && (
+                {/* {(caseName == azn) && (
                     <>
                         <div className="instructions_new transgran">
                             <InstructionItems data={t("steps_azn.sberbank", ns)} start={0} />
                         </div>
                     </>
-                )}
+                )} */}
 
                 {caseName == iban && (
                     <>
@@ -191,7 +191,7 @@ const PayPage = () => {
                     </>
                 )}
 
-                {!caseName && (
+                {(!caseName || caseName == azn || (caseName && !transgran && caseName !== iban)) && (
                     <div className="instructions_new">
                         <ul>
                             <li>
