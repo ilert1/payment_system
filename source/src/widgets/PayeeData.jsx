@@ -7,7 +7,7 @@ import DollarCircleIcon from "../assets/images/dollar-circle.svg";
 import User2Icon from "../assets/images/user2.svg";
 import PayeeDataItem from "./PayeeDataItem";
 
-const PayeeData = ({ requisite, trader, bankName, isPhone }) => {
+const PayeeData = ({ requisite, trader, bankName, isPhone, caseName }) => {
     const { BFData, getCurrencySymbol, t } = useContext(AppContext);
     const ns = { ns: "PayeeCard" };
 

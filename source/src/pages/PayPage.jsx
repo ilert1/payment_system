@@ -60,6 +60,7 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
+
     const [requisite, setRequisite] = useState(null);
 
     const [activeAccordion, setActiveAccordion] = useState(null);
@@ -89,6 +90,9 @@ const PayPage = () => {
         if (trader?.phone) {
             setRequisite(trader.phone);
         }
+        if (trader?.phone_number) {
+            setRequisite(trader.phone_number);
+        }
         if (trader?.account_number) {
             setRequisite(trader.account_number);
         }
@@ -106,7 +110,7 @@ const PayPage = () => {
 
     useEffect(() => {
         setCaseName("");
-        if (BFData?.[dest]?.currency?.toLowerCase() == azn && trader?.phone) {
+        if (BFData?.[dest]?.currency?.toLowerCase() == azn && (trader?.phone || trader?.phone_number)) {
             setCaseName(azn);
         }
 
@@ -233,7 +237,8 @@ const PayPage = () => {
                     requisite={requisite}
                     trader={trader}
                     bankName={method?.bank?.display_name}
-                    isPhone={!!trader?.phone}
+                    isPhone={!!trader?.phone || !!trader?.phone_number}
+                    caseName={caseName}
                 />
             </div>
 
