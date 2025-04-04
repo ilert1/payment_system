@@ -9,6 +9,7 @@ import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import PayHeader from "../widgets/PayHeader.jsx";
 import PayeeData from "../widgets/PayeeData.jsx";
+import ExternalPayInfo from "../widgets/ExternalPayInfo.jsx";
 
 const azn = "azn";
 const tjs = "Tawhidbank";
@@ -143,39 +144,45 @@ const PayPage = () => {
                     countryName={["tjs" /* , "azn" */].includes(caseName) ? caseName : ""}
                 />
 
-                {caseName == tjs && (
-                    <div className="instructions_new transgran">
-                        <ul>
-                            <li>
-                                <span>1. </span>
-                                {t("steps_transgran.one", ns)}
-                            </li>
-                            <li>
-                                <span>2. </span>
-                                {t("steps_transgran.two", ns)}
-                            </li>
-                        </ul>
+                {BFData?.[dest]?.meta?.external_payment_url &&
+                BFData?.[dest]?.method?.name &&
+                BFData?.[dest]?.method?.name === "m10" ? (
+                    <ExternalPayInfo url={BFData[dest].meta.external_payment_url} />
+                ) : (
+                    <>
+                        {caseName == tjs && (
+                            <div className="instructions_new transgran">
+                                <ul>
+                                    <li>
+                                        <span>1. </span>
+                                        {t("steps_transgran.one", ns)}
+                                    </li>
+                                    <li>
+                                        <span>2. </span>
+                                        {t("steps_transgran.two", ns)}
+                                    </li>
+                                </ul>
 
-                        <Instruction
-                            title={t("steps_transgran.tbankTitle", ns)}
-                            data={t("steps_transgran.tbank", ns)}
-                            start={2}
-                            i={1}
-                            active={activeAccordion}
-                            setActive={setActiveAccordion}
-                        />
-                        <Instruction
-                            title={t("steps_transgran.sberbankTitle", ns)}
-                            data={t("steps_transgran.sberbank", ns)}
-                            start={2}
-                            i={2}
-                            active={activeAccordion}
-                            setActive={setActiveAccordion}
-                        />
-                    </div>
-                )}
+                                <Instruction
+                                    title={t("steps_transgran.tbankTitle", ns)}
+                                    data={t("steps_transgran.tbank", ns)}
+                                    start={2}
+                                    i={1}
+                                    active={activeAccordion}
+                                    setActive={setActiveAccordion}
+                                />
+                                <Instruction
+                                    title={t("steps_transgran.sberbankTitle", ns)}
+                                    data={t("steps_transgran.sberbank", ns)}
+                                    start={2}
+                                    i={2}
+                                    active={activeAccordion}
+                                    setActive={setActiveAccordion}
+                                />
+                            </div>
+                        )}
 
-                {/* {(caseName == azn) && (
+                        {/* {(caseName == azn) && (
                     <>
                         <div className="instructions_new transgran">
                             <InstructionItems data={t("steps_azn.sberbank", ns)} start={0} />
@@ -183,49 +190,51 @@ const PayPage = () => {
                     </>
                 )} */}
 
-                {caseName == iban && (
-                    <>
-                        <div className="instructions_new transgran">
-                            <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
-                        </div>
+                        {caseName == iban && (
+                            <>
+                                <div className="instructions_new transgran">
+                                    <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
+                                </div>
+                            </>
+                        )}
+
+                        {(!caseName || caseName == azn || (caseName && !transgran && caseName !== iban)) && (
+                            <div className="instructions_new">
+                                <ul>
+                                    <li>
+                                        <span>1. </span>
+                                        {t(`steps_new.one${trader?.phone ? "Phone" : ""}`, ns)}
+                                    </li>
+                                    <li>
+                                        <span>2. </span>
+                                        {t(`steps_new.two${trader?.phone ? "Phone" : ""}`, ns)} <span>{bankName}</span>{" "}
+                                        {t("steps_new.onAmount", ns)}{" "}
+                                        <span>
+                                            {BFData?.[dest]?.amount}&nbsp;
+                                            {getCurrencySymbol(BFData?.[dest]?.currency)}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>3. </span>
+                                        {t("steps_new.pressButton", ns)}
+                                        <span>
+                                            {' "'}
+                                            {t("steps_new.payed", ns)}
+                                            {'"'}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        )}
+
+                        <PayeeData
+                            requisite={requisite}
+                            trader={trader}
+                            bankName={method?.bank?.display_name}
+                            isPhone={!!trader?.phone}
+                        />
                     </>
                 )}
-
-                {(!caseName || caseName == azn || (caseName && !transgran && caseName !== iban)) && (
-                    <div className="instructions_new">
-                        <ul>
-                            <li>
-                                <span>1. </span>
-                                {t(`steps_new.one${!!trader?.phone ? "Phone" : ""}`, ns)}
-                            </li>
-                            <li>
-                                <span>2. </span>
-                                {t(`steps_new.two${!!trader?.phone ? "Phone" : ""}`, ns)} <span>{bankName}</span>{" "}
-                                {t("steps_new.onAmount", ns)}{" "}
-                                <span>
-                                    {BFData?.[dest]?.amount}&nbsp;
-                                    {getCurrencySymbol(BFData?.[dest]?.currency)}
-                                </span>
-                            </li>
-                            <li>
-                                <span>3. </span>
-                                {t("steps_new.pressButton", ns)}
-                                <span>
-                                    {' "'}
-                                    {t("steps_new.payed", ns)}
-                                    {'"'}
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                )}
-
-                <PayeeData
-                    requisite={requisite}
-                    trader={trader}
-                    bankName={method?.bank?.display_name}
-                    isPhone={!!trader?.phone}
-                />
             </div>
 
             <Footer
