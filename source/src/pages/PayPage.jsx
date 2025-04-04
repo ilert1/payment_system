@@ -146,7 +146,7 @@ const PayPage = () => {
 
                 {BFData?.[dest]?.method?.payee?.redirect_url &&
                 BFData?.[dest]?.method?.name &&
-                BFData?.[dest]?.method?.name === "m10" ? (
+                BFData?.[dest]?.method?.name === "phone_number" ? (
                     <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
                 ) : (
                     <>
@@ -226,15 +226,15 @@ const PayPage = () => {
                                 </ul>
                             </div>
                         )}
-
-                        <PayeeData
-                            requisite={requisite}
-                            trader={trader}
-                            bankName={method?.bank?.display_name}
-                            isPhone={!!trader?.phone}
-                        />
                     </>
                 )}
+
+                <PayeeData
+                    requisite={requisite}
+                    trader={trader}
+                    bankName={method?.bank?.display_name}
+                    isPhone={!!trader?.phone}
+                />
             </div>
 
             <Footer
