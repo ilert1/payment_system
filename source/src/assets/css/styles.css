@@ -3170,13 +3170,8 @@ footer > .top:not(.big-footer-container) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  margin: 2rem 0;
-}
-@media (max-width: 540px) {
-  .external-pay-info {
-    gap: 1rem;
-  }
+  gap: 14px;
+  margin-top: 1rem;
 }
 .external-pay-info__description {
   max-width: 80%;
