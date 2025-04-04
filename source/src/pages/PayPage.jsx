@@ -144,10 +144,10 @@ const PayPage = () => {
                     countryName={["tjs" /* , "azn" */].includes(caseName) ? caseName : ""}
                 />
 
-                {BFData?.[dest]?.meta?.external_payment_url &&
+                {BFData?.[dest]?.method?.payee?.redirect_url &&
                 BFData?.[dest]?.method?.name &&
                 BFData?.[dest]?.method?.name === "m10" ? (
-                    <ExternalPayInfo url={BFData[dest].meta.external_payment_url} />
+                    <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
                 ) : (
                     <>
                         {caseName == tjs && (
