@@ -64,7 +64,9 @@
         },
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
-        "agree": "Okay, understood"
+        "agree": "Okay, understood",
+        "scanQrCode": "Scan the QR code with your phone's standard camera.",
+        "linkToApp": "Go to the app"
     },
     "PayOut": {
         "payout": "Withdrawal",

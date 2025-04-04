@@ -64,7 +64,9 @@
         },
         "payed": "Ödendi",
         "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
-        "agree": "Tamam, anladım"
+        "agree": "Tamam, anladım",
+        "scanQrCode": "QR kodunu telefonunuzun standart kamerasıyla tarayın.",
+        "linkToApp": "Uygulamaya git"
     },
     "PayOut": {
         "payout": "Çekilmesi",

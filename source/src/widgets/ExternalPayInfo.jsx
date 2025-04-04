@@ -1,9 +1,14 @@
+import { useContext } from "react";
 import QRCode from "react-qr-code";
+import AppContext from "../AppContext";
 
 const ExternalPayInfo = ({ url }) => {
+    const { t } = useContext(AppContext);
+    const ns = { ns: ["Pay"] };
+
     return (
         <div className="external-pay-info">
-            <p className="external-pay-info__description">Отсканируйте QR-код штатной камерой телефона.</p>
+            <p className="external-pay-info__description">{t("scanQrCode", ns)}</p>
 
             <div>
                 <QRCode
@@ -16,7 +21,7 @@ const ExternalPayInfo = ({ url }) => {
             </div>
 
             <a className="external-pay-info__link" href={url} target="_blank" rel="noopener noreferrer">
-                <span>Перейти в приложение</span>
+                <span>{t("linkToApp", ns)}</span>
 
                 <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

@@ -64,7 +64,9 @@
         },
         "payed": "To'landi",
         "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
-        "agree": "Yaxshi, tushundim"
+        "agree": "Yaxshi, tushundim",
+        "scanQrCode": "QR kodini telefonning standart kamerasi bilan skanerlang.",
+        "linkToApp": "Ilovaga o'ting"
     },
     "PayOut": {
         "payout": "Olib qo'yish",

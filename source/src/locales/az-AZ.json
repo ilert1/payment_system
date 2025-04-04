@@ -64,7 +64,9 @@
         },
         "payed": "Ödənilib",
         "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
-        "agree": "Tamam, başa düşdüm"
+        "agree": "Tamam, başa düşdüm",
+        "scanQrCode": "QR kodunu telefonunuzun stok kamerası ilə tarayın.",
+        "linkToApp": "Tətbiqə gedin"
     },
     "PayOut": {
         "payout": "Vəsaitlərin",
