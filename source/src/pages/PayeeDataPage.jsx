@@ -13,6 +13,8 @@ const PayeeDataPage = () => {
 
     //translation
     const ns = { ns: "PayeeData" };
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
 
     usePaymentPage({ absolutePath: false });
 
