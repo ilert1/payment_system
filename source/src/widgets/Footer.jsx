@@ -60,6 +60,9 @@ const Footer = ({
         if (trader?.account_number) {
             setRequisite(trader.account_number);
         }
+        if (trader?.phone_number) {
+            setRequisite(trader.phone_number);
+        }
         if (trader?.iban) {
             setRequisite(trader.iban);
         }
