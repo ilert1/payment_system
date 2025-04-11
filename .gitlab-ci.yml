@@ -28,6 +28,28 @@ build-develop:
     refs:
       - develop
 
+build-develop-k8s:
+  extends: .pre-build
+  variables:
+    ENVIRONMENT:   develop
+    IMAGE_TAG:     develop-k8s
+    APP_CONFIG:    ${BF_DEVELOP_K8S_APP_CONFIG}
+  only:
+    refs:
+      - develop
+
+#build-develop-argocd:
+#  extends: .pre-build-k8s
+#  variables:
+#    ENVIROMENT:       develop
+#    IMAGE_TAG:        develop-k8s
+#    DOCKERFILE_PATH:  ${DOCKERFILE_PATH}
+#    APP_CONFIG:       ${BF_DEVELOP_APP_CONFIG}
+#  only:
+#    refs:
+#      - develop
+
+
 build-master:
   extends: .pre-build
   variables:
