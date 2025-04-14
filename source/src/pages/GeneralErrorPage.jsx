@@ -19,6 +19,9 @@ export const GeneralErrorPage = ({ cancel = false }) => {
     //translation
     const ns = { ns: ["Common", "GeneralError"] };
 
+    /* console.log("cancelUrl", cancelUrl);
+    console.log("failUrl", failUrl); */
+
     return (
         <div className="container">
             <Header />
@@ -42,7 +45,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                                 down={true}
                                 className="deadline-timer"
                                 secondsToDo={5}
-                                timerCallback={() => window.location.replace(cancel ? cancelUrl : failUrl)}
+                                timerCallback={() => window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl)}
                             />
                         </div>
                     </>

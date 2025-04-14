@@ -13,6 +13,8 @@ import ym from "react-yandex-metrika";
 import SubmitModal from "./SubmitModal.jsx";
 import { useQuery } from "@tanstack/react-query";
 
+import * as c from "../assets/constants.js";
+
 const Footer = ({
     buttonCaption = "",
     nextPage = "",
@@ -95,6 +97,10 @@ const Footer = ({
 
                 console.log("cancel response:");
                 console.log(data);
+                if (data?.success) {
+                    navigate(`/${dest}s/${BFData?.[dest]?.id}/${c.PAGE_CANCEL}`, { replace: true });
+                }
+                return data;
             } catch (error) {
                 console.log(error);
             } finally {
