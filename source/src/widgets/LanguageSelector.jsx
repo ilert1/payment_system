@@ -4,8 +4,9 @@ const LanguageSelector = ({ lang, setLang }) => {
     const [dropDown, setDropDown] = useState(false);
     const langs = ["en", "az", "ky", "tg", "kk", "ru", "tr", "uk", "uz"];
     if (
+        lang &&
         !langs.find(item => {
-            return item.indexOf(lang) == 0;
+            return lang.indexOf(item) == 0;
         })
     ) {
         lang = "en";
