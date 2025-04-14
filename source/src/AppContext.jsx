@@ -144,7 +144,7 @@ export const AppProvider = ({ children }) => {
             case "paymentExecuted":
                 return c.PAGE_SUCCESS;
             case "paymentError":
-                return "/" + c.PAGE_PAYMENT_NOT_FOUND;
+                return c.PAGE_PAY_ERROR;
             case "Cancelled":
             case "paymentCanceled":
                 return c.PAGE_CANCEL;

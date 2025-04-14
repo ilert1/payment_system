@@ -7,7 +7,7 @@ import AppContext from "../AppContext";
 import PlusCircle from "../assets/images/plus-circle.svg";
 import Timer from "../ui/Timer";
 
-const PayErrorPage = (notFound = false) => {
+const PayErrorPage = ({ notFound = false }) => {
     const { t, BFData } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
