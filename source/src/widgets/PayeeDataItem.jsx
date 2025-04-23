@@ -4,7 +4,15 @@ import CopyIcon from "../assets/images/copy.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
 import ym from "react-yandex-metrika";
 
-const PayeeDataItem = ({ img = "", label = "", value = "", cl = "", copyData = "", messageOnCopy = "" }) => {
+const PayeeDataItem = ({
+    img = "",
+    onError = () => {},
+    label = "",
+    value = "",
+    cl = "",
+    copyData = "",
+    messageOnCopy = ""
+}) => {
     const [showPopup, setShowPopup] = useState(false);
 
     let popupTimeout = null;
@@ -23,7 +31,7 @@ const PayeeDataItem = ({ img = "", label = "", value = "", cl = "", copyData = "
     return (
         <div className={`payee-data-item ${cl}`}>
             <div className="icon-container">
-                <img src={img} alt="" />
+                <img src={img} onError={onError} alt="" />
             </div>
             <div className="text-container">
                 <label>{label}</label>

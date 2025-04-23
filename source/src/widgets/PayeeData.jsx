@@ -1,11 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useContext } from "react";
 import AppContext from "../AppContext";
-import BankIcon from "../assets/images/bank.svg";
 import CardsIcon from "../assets/images/cards.svg";
 import DollarCircleIcon from "../assets/images/dollar-circle.svg";
 import User2Icon from "../assets/images/user2.svg";
 import PayeeDataItem from "./PayeeDataItem";
+
+import DefaultBankIcon from "../assets/images/bank.svg";
+
+const bankIcon = bank => {
+    return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
+};
 
 const PayeeData = ({ requisite, trader, bankName, isPhone, caseName }) => {
     const { BFData, getCurrencySymbol, t } = useContext(AppContext);
@@ -34,7 +39,17 @@ const PayeeData = ({ requisite, trader, bankName, isPhone, caseName }) => {
 
     return (
         <div className="payee-data">
-            {bankName && <PayeeDataItem img={BankIcon} label={t("bankName", ns)} value={bankName} cl={"dark"} />}
+            {bankName && (
+                <PayeeDataItem
+                    img={bankIcon(trader?.bank_name)}
+                    onError={e => {
+                        e.target.src = DefaultBankIcon;
+                    }}
+                    label={t("bankName", ns)}
+                    value={bankName}
+                    cl={"dark"}
+                />
+            )}
             <PayeeDataItem
                 img={CardsIcon}
                 label={t("requisite", ns)}
