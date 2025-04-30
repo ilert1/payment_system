@@ -117,16 +117,18 @@ const PayPage = () => {
         console.log(`trader.bank: ${trader?.bank}`);
         console.log(`bankName: ${bankName}`);
         if (
-            bankName == "Tawhidbank" ||
             [
-                "tawhid",
                 "tawhidbank",
-                "eshata",
+                "tawhidbank-rub",
                 "eskhata",
+                "eskhata-rub",
                 "spitamenbank",
-                "spitamen",
+                "spitamenbank-rub",
                 "dushanbe",
-                "amonatbonk"
+                "dushanbe-tjs",
+                "amonatbonk",
+                "arvand",
+                "vasl"
             ].includes(trader?.bank)
         ) {
             setCaseName(tjs);
