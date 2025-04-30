@@ -50,6 +50,8 @@ const PayerDataPage = () => {
         expiryDate,
         cvv,
         errors,
+        cardHolder,
+        handleCardHolderChange,
         register,
         setCardNumber,
         setExpiryDate,
@@ -74,7 +76,8 @@ const PayerDataPage = () => {
                                     card_number: cardNumber.replace(/\s+/g, ""),
                                     card_lifetime_month: `${expiryDate.slice(0, 2)}`,
                                     card_lifetime_year: `${expiryDate.slice(3)}`,
-                                    card_cvc: cvv
+                                    card_cvc: cvv,
+                                    ...(cardHolder.trim() && { card_holder: cardHolder })
                                 }
                             }
                         }
@@ -246,6 +249,8 @@ const PayerDataPage = () => {
                                 handleExpiryKeyDown={handleExpiryKeyDown}
                                 handleCvvInputChange={handleCvvInputChange}
                                 cvv={cvv}
+                                cardHolder={cardHolder}
+                                handleCardHolderChange={handleCardHolderChange}
                                 disabled={isPressed || isFetching}
                             />
                         </>

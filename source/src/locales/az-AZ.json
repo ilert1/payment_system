@@ -134,12 +134,15 @@
         "yourCard": "kartınızın",
         "cardNumber": "Kart Nömrəsi",
         "expirationDate": "Etibarlılıq Müddəti",
+        "cardHolder": "Kart sahibi",
+        "nameLastname": "Soyad Ad",
         "errors": {
             "cardValidationError": "Kartın nömrəsi 16 rəqəm olmalıdır",
             "expireDateError": "Son istifadə tarixi MM/YY formatında daxil edilməlidir",
             "expreDateRangeError": "Son istifadə tarixi gələcəkdə olmalıdır",
             "cvvError": "CVV 3 rəqəmdən ibarət olmalıdır",
             "paymentNotFound": "Bu ID ilə ödəniş tapılmadı",
+            "cardHolderError": "Sahə Ad Soyad formatında olmalıdır",
             "unknownError": "Bilinməyən səhv"
         },
         "getCard": "Kartınız qəbul edildi, ödəniş səhifəsinə keçmək üçün ödəniş düyməsini basın",

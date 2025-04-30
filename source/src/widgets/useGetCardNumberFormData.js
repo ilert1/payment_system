@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -17,7 +17,11 @@ export const useGetCardNumberFormData = (t, ns) => {
                 const currentMonth = new Date().getMonth() + 1;
                 return year > currentYear || (year === currentYear && month >= currentMonth);
             }) */
-        cvv: z.string().length(3, t("errors.cvvError", ns))
+        cvv: z.string().length(3, t("errors.cvvError", ns)),
+        cardHolder: z
+            .string()
+            .regex(/^[a-zA-Zа-яА-Я]+\s[a-zA-Zа-яА-Я]+$/, t("errors.cardHolderError", ns))
+            .optional()
     });
 
     const {
@@ -33,6 +37,7 @@ export const useGetCardNumberFormData = (t, ns) => {
     const [cardNumber, setCardNumber] = useState("");
     const [expiryDate, setExpiryDate] = useState("");
     const [cvv, setCvv] = useState("");
+    const [cardHolder, setCardHolder] = useState("");
 
     const handleCardNumberInputChange = e => {
         clearErrors("cardNumber");
@@ -70,12 +75,27 @@ export const useGetCardNumberFormData = (t, ns) => {
         }
     };
 
+    const handleCardHolderChange = e => {
+        clearErrors("card_holder");
+        let value = e.target.value.replace(/[^a-zA-Zа-яА-Я\s]/g, "");
+
+        value = value.replace(/\s+/g, " ").replace(/^\s+/, "");
+
+        const words = value.split(" ");
+
+        if (words.length > 2) {
+            value = words.slice(0, 2).join(" ");
+        }
+
+        setCardHolder(value);
+    };
     return {
         cardFormSchema,
         cardNumber,
         expiryDate,
         cvv,
         errors,
+        cardHolder,
         register,
         handleSubmit,
         setCardNumber,
@@ -83,6 +103,7 @@ export const useGetCardNumberFormData = (t, ns) => {
         handleCardNumberInputChange,
         handleExpiryInputChange,
         handleExpiryKeyDown,
-        handleCvvInputChange
+        handleCvvInputChange,
+        handleCardHolderChange
     };
 };

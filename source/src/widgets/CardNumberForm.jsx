@@ -16,7 +16,9 @@ export const CardNumberForm = props => {
         handleExpiryKeyDown,
         handleCvvInputChange,
         cvv,
-        disabled
+        disabled,
+        cardHolder,
+        handleCardHolderChange
     } = props;
     const ns = { ns: ["PayerData"] };
 
@@ -74,6 +76,21 @@ export const CardNumberForm = props => {
                             />
                             {errors.cvv && <p className="error-message">{errors.cvv.message}</p>}
                         </div>
+                    </div>
+                    <div className="card-number-form__item">
+                        <label className="card-number-form__label" htmlFor="cardHolder">
+                            {t("cardHolder", ns)}
+                        </label>
+                        <input
+                            {...register("cardHolder")}
+                            type="text"
+                            id="cardHolder"
+                            className="card-number-form__input wide-spacing"
+                            value={cardHolder}
+                            onChange={handleCardHolderChange}
+                            placeholder={`${t("nameLastname", ns)}:`}
+                        />
+                        {errors.cardHolder && <p className="error-message">{errors.cardHolder.message}</p>}
                     </div>
                 </div>
             </form>

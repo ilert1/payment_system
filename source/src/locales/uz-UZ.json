@@ -134,12 +134,15 @@
         "yourCard": "karta raqamingizni",
         "cardNumber": "Karta Raqami",
         "expirationDate": "Amal Qilish Muddati",
+        "cardHolder": "Karta egasi",
+        "nameLastname": "Familiya Ism",
         "errors": {
             "cardValidationError": "Karta raqami 16 raqamdan iborat bo'lishi kerak",
             "expireDateError": "Amal qilish muddati MM/YY formatida bo'lishi kerak",
             "expreDateRangeError": "Amal qilish muddati kelajakda bo'lishi kerak",
             "cvvError": "CVV 3 raqamdan iborat bo'lishi kerak",
             "paymentNotFound": "Ushbu ID bilan to'lov topilmadi",
+            "cardHolderError": "Maydon Ism Familiya formatida bo‘lishi kerak",
             "unknownError": "Noma'lum xato"
         },
         "getCard": "Karta qabul qilindi, to'lov sahifasiga o'tish uchun to'lash tugmasini bosing",
