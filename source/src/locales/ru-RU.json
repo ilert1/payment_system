@@ -135,14 +135,14 @@
         "cardNumber": "Номер карты",
         "expirationDate": "Срок действия",
         "cardHolder": "Держатель карты",
-        "nameLastname": "Фамилия Имя",
+        "nameLastname": "CARD HOLDER",
         "errors": {
             "cardValidationError": "Номер карты должен содержать 16 цифр",
             "expireDateError": "Введите срок действия в формате MM/ГГ",
             "expreDateRangeError": "Срок действия должен быть в будущем",
             "cvvError": "CVV должен содержать 3 цифры",
             "paymentNotFound": "Платеж с этим ID не найден",
-            "cardHolderError": "Поле должно быть в формате ИМЯ ФАМИЛИЯ",
+            "cardHolderError": "Поле должно быть в формате ИМЯ ФАМИЛИЯ латиницей, например IVAN IVANOV",
             "unknownError": "Неизвестная ошибка"
         },
         "getCard": "Ваша карта принята, нажмите оплатить, чтобы перейти на страницу оплаты",

@@ -155,9 +155,9 @@ const PayerDataPage = () => {
         setRedirect_url(BFData?.[dest]?.method?.payee?.redirect_url);
     }, [BFData?.[dest]?.method?.payee?.redirect_url]);
 
-    useEffect(() => {
+    /* useEffect(() => {
         console.log(`getPayment enabled:${ecom && waitTransfer}`);
-    }, [ecom, waitTransfer]);
+    }, [ecom, waitTransfer]); */
 
     const { isFetching } = useQuery({
         queryKey: ["getPayment"],
@@ -212,20 +212,19 @@ const PayerDataPage = () => {
                 if (isPressed || isFetching) {
                     setNextEnabled(false);
                 } else {
-                    setNextEnabled(
-                        !Object.keys(errors).length &&
-                            cardNumber.length === 19 &&
-                            cvv.length === 3 &&
-                            expiryDate.length === 5
-                    );
+                    // const errorsCount = Object.keys(errors)?.length;
+                    const requiredCompleted = cardNumber.length === 19 && cvv.length === 3 && expiryDate.length === 5;
+                    const cardHolderOk = !cardHolder ? true : /^[a-zA-Z]+\s[a-zA-Z]+$/.test(cardHolder);
+
+                    setNextEnabled(requiredCompleted && cardHolderOk);
                 }
             }
         } else {
             setNextEnabled(isComplete);
         }
-        console.log(`nextEnabled: ${nextEnabled}`);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [cardNumber, expiryDate, cvv, isComplete, errors, ecom, waitTransfer, isFetching, isPressed]);
+    }, [, cardNumber, expiryDate, cvv, cardHolder, isComplete, errors, ecom, waitTransfer, isFetching, isPressed]);
 
     return (
         <div className="container">

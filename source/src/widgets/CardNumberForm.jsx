@@ -37,7 +37,7 @@ export const CardNumberForm = props => {
                             className="card-number-form__input wide-spacing"
                             value={cardNumber}
                             onChange={handleCardNumberInputChange}
-                            placeholder={`${t("cardNumber", ns)}:`}
+                            placeholder={`${t("cardNumber", ns)}`}
                         />
                         {errors.cardNumber && <p className="error-message">{errors.cardNumber.message}</p>}
                     </div>
@@ -79,16 +79,16 @@ export const CardNumberForm = props => {
                     </div>
                     <div className="card-number-form__item">
                         <label className="card-number-form__label" htmlFor="cardHolder">
-                            {t("cardHolder", ns)}
+                            {t("cardHolder", ns)}:
                         </label>
                         <input
-                            {...register("cardHolder")}
+                            {...register("cardHolder", { required: false })}
                             type="text"
                             id="cardHolder"
                             className="card-number-form__input wide-spacing"
                             value={cardHolder}
                             onChange={handleCardHolderChange}
-                            placeholder={`${t("nameLastname", ns)}:`}
+                            placeholder={`${t("nameLastname", ns)}`}
                         />
                         {errors.cardHolder && <p className="error-message">{errors.cardHolder.message}</p>}
                     </div>

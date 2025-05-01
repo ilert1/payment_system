@@ -11,12 +11,6 @@ export const useGetCardNumberFormData = (t, ns) => {
             .length(19, t("errors.cardValidationError", ns)),
 
         expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, t("errors.expireDateError", ns)),
-        /* .refine(value => {
-                const [month, year] = value.split("/").map(Number);
-                const currentYear = new Date().getFullYear() % 100;
-                const currentMonth = new Date().getMonth() + 1;
-                return year > currentYear || (year === currentYear && month >= currentMonth);
-            }) */
         cvv: z.string().length(3, t("errors.cvvError", ns)),
         cardHolder: z
             .string()
@@ -87,8 +81,9 @@ export const useGetCardNumberFormData = (t, ns) => {
             value = words.slice(0, 2).join(" ");
         }
 
-        setCardHolder(value);
+        setCardHolder(value?.toUpperCase());
     };
+
     return {
         cardFormSchema,
         cardNumber,

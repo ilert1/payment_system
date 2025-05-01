@@ -135,14 +135,14 @@
         "cardNumber": "Рақами Корти",
         "expirationDate": "Мӯҳлати Амал",
         "cardHolder": "Соҳибони корт",
-        "nameLastname": "Насаб Ном",
+        "nameLastname": "CARD HOLDER",
         "errors": {
             "cardValidationError": "Шумораи корт бояд 16 рақам бошад",
             "expireDateError": "Мӯҳлати истифода бояд дар формати MM/YY бошад",
             "expreDateRangeError": "Мӯҳлати истифода бояд дар оянда бошад",
             "cvvError": "CVV бояд аз 3 рақам иборат бошад",
             "paymentNotFound": "Платеж бо этим ID наёфт",
-            "cardHolderError": "Майдон бояд дар формати Ном Насаб бошад",
+            "cardHolderError": "Майдони ворид бояд дар формати НОМ НОМЗОД бо ҳарфҳои лотинӣ бошад",
             "unknownError": "Хатои номаълум"
         },
         "getCard": "Корти шумо қабул шуд, ба саҳифаи пардохт гузаштан тугмаи пардохтро пахш кунед",

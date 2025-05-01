@@ -135,14 +135,14 @@
         "cardNumber": "Card Number",
         "expirationDate": "Expiration Date",
         "cardHolder": "Card holder",
-        "nameLastname": "Lastname Firstname",
+        "nameLastname": "CARD HOLDER",
         "errors": {
             "cardValidationError": "Card number must contain 16 digits",
             "expireDateError": "Expiration date must be in MM/YY format",
             "expreDateRangeError": "Expiration date must be in the future",
             "cvvError": "CVV must contain 3 digits",
             "paymentNotFound": "Payment with this id was not found",
-            "cardHolderError": "Field must be in First Last format",
+            "cardHolderError": "Field must be in the format FIRSTNAME LASTNAME in Latin letters",
             "unknownError": "Unknown error"
         },
         "getCard": "Your card has been accepted, press pay to proceed to the payment page",

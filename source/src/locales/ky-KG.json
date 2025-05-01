@@ -135,14 +135,14 @@
         "cardNumber": "Карта Номери",
         "expirationDate": "Мөөнөтү Бүткөн Күні",
         "cardHolder": "Карта ээси",
-        "nameLastname": "Фамилия Аты",
+        "nameLastname": "CARD HOLDER",
         "errors": {
             "cardValidationError": "Картанын номери 16 сан болушу керек",
             "expireDateError": "Жарамдылык мөөнөтү MM/YY форматында болушу керек",
             "expreDateRangeError": "Жарамдылык мөөнөтү келечекте болушу керек",
             "cvvError": "CVV 3 сандан турушу керек",
             "paymentNotFound": "Бул ID менен төлөм табылбай калды",
-            "cardHolderError": "Талаа Аты Фамилиясы форматында болушу керек",
+            "cardHolderError": "Талаа АТЫ ЖӨНҮ латин арибинде форматта болушу керек",
             "unknownError": "Белгисиз каталар"
         },
         "getCard": "Сиздин карта кабыл алынды, төлөм барагына өтүү үчүн төлөө баскычын басыңыз",
