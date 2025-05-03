@@ -33,6 +33,7 @@ const PayerDataPage = () => {
 
     const [waitTransfer, setWaitTransfer] = useState(BFData?.[dest]?.status === "paymentAwaitingTransfer");
     const [redirect_url, setRedirect_url] = useState("");
+    const [cardHolderVisible, setCardHolderVisible] = useState(BFData?.[dest]?.method?.context?.provider == "BNNPay");
 
     const [buttonFocused, setButtonFocused] = useState(false);
 
@@ -155,6 +156,10 @@ const PayerDataPage = () => {
         setRedirect_url(BFData?.[dest]?.method?.payee?.redirect_url);
     }, [BFData?.[dest]?.method?.payee?.redirect_url]);
 
+    useEffect(() => {
+        setCardHolderVisible(BFData?.[dest]?.method?.context?.provider == "BNNPay");
+    }, [BFData?.[dest]?.method?.context?.provider]);
+
     /* useEffect(() => {
         console.log(`getPayment enabled:${ecom && waitTransfer}`);
     }, [ecom, waitTransfer]); */
@@ -214,9 +219,9 @@ const PayerDataPage = () => {
                 } else {
                     // const errorsCount = Object.keys(errors)?.length;
                     const requiredCompleted = cardNumber.length === 19 && cvv.length === 3 && expiryDate.length === 5;
-                    const cardHolderOk = !cardHolder ? true : /^[a-zA-Z]+\s[a-zA-Z]+$/.test(cardHolder);
+                    const cardHolderOk = /^[a-zA-Z]+\s[a-zA-Z]+$/.test(cardHolder);
 
-                    setNextEnabled(requiredCompleted && cardHolderOk);
+                    setNextEnabled(cardHolderVisible ? requiredCompleted && cardHolderOk : requiredCompleted);
                 }
             }
         } else {
@@ -251,6 +256,7 @@ const PayerDataPage = () => {
                                 cardHolder={cardHolder}
                                 handleCardHolderChange={handleCardHolderChange}
                                 disabled={isPressed || isFetching}
+                                cardHolderVisible={cardHolderVisible}
                             />
                         </>
                     ) : (
