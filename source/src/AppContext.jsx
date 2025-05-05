@@ -133,6 +133,7 @@ export const AppProvider = ({ children }) => {
             case "payoutBankSelecting":
                 return c.PAGE_PAYMENT_INSTRUMENT;
             case "paymentPayerDataEntrу":
+            case "paymentPayerDataEntered":
                 return c.PAGE_PAYER_DATA;
             case "paymentPayeeSearching":
                 return c.PAGE_PAYEE_SEARCH;
