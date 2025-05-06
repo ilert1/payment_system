@@ -12,7 +12,7 @@ import PayeeData from "../widgets/PayeeData.jsx";
 import ExternalPayInfo from "../widgets/ExternalPayInfo.jsx";
 
 const azn = "azn";
-const tjs = "Tawhidbank";
+const tjs = "tjs";
 const iban = "iban";
 
 const InstructionItems = ({ start = 0, data = "" }) => {
@@ -117,19 +117,7 @@ const PayPage = () => {
         console.log(`trader.bank: ${trader?.bank}`);
         console.log(`bankName: ${bankName}`);
         if (
-            [
-                "tawhidbank",
-                "tawhidbank-rub",
-                "eskhata",
-                "eskhata-rub",
-                "spitamenbank",
-                "spitamenbank-rub",
-                "dushanbe",
-                "dushanbe-tjs",
-                "amonatbonk",
-                "arvand",
-                "vasl"
-            ].includes(trader?.bank)
+            ["tawhidbank", "eskhata", "spitamenbank", "dushanbe", "amonatbonk", "arvand", "vasl"].includes(trader?.bank)
         ) {
             setCaseName(tjs);
         }
