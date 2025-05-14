@@ -15,6 +15,38 @@ const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
 
+const DefaultInstructionItems = ({ trader, bankName, BFData, t, currency }) => {
+    //translation
+    const ns = { ns: ["Common", "Pay"] };
+
+    return (
+        <ul>
+            <li>
+                <span>1. </span>
+                {t(`steps_new.one${trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}
+            </li>
+            <li>
+                <span>2. </span>
+                {t(`steps_new.two${!!trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}{" "}
+                <span>{bankName}</span> {t("steps_new.onAmount", ns)}{" "}
+                <span>
+                    {BFData?.[dest]?.amount}&nbsp;
+                    {currency}
+                </span>
+            </li>
+            <li>
+                <span>3. </span>
+                {t("steps_new.pressButton", ns)}
+                <span>
+                    {' "'}
+                    {t("steps_new.payed", ns)}
+                    {'"'}
+                </span>
+            </li>
+        </ul>
+    );
+};
+
 const InstructionItems = ({ start = 0, data = "" }) => {
     return (
         <ul>
@@ -28,7 +60,7 @@ const InstructionItems = ({ start = 0, data = "" }) => {
     );
 };
 
-const Instruction = ({ title, data, start = 2, i, active = null, setActive = () => {} }) => {
+const Instruction = ({ title, data, start = 2, i, active = null, setActive = () => {}, children }) => {
     const callback = () => {
         if (active == i) setActive(null);
         else setActive(i);
@@ -41,7 +73,7 @@ const Instruction = ({ title, data, start = 2, i, active = null, setActive = () 
                     <img className="arrow" src={ArrowDown} alt="" />
                 </button>
             </div>
-            <InstructionItems start={start} data={data} />
+            {children ? children : <InstructionItems start={start} data={data} />}
         </div>
     );
 };
@@ -60,6 +92,7 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
+    const transgran = ["tsbp", "tcard2card"].includes(method?.name);
 
     const [requisite, setRequisite] = useState(null);
 
@@ -103,27 +136,63 @@ const PayPage = () => {
     }, [trader]);
 
     useEffect(() => {
-        setBankName(
-            method?.bank?.display_name ? method?.bank?.display_name : method?.bank?.name /* getBankName(trader?.bank) */
-        );
+        setBankName(method?.bank?.display_name ? method?.bank?.display_name : method?.bank?.name);
     }, [method?.bank?.name, trader?.bank]);
 
     useEffect(() => {
         setCaseName("");
-        if (BFData?.[dest]?.currency?.toLowerCase() == azn && (trader?.phone || trader?.phone_number)) {
-            setCaseName(azn);
-        }
 
         console.log(`trader.bank: ${trader?.bank}`);
         console.log(`bankName: ${bankName}`);
+
         if (
-            ["tawhidbank", "eskhata", "spitamenbank", "dushanbe", "amonatbonk", "arvand", "vasl"].includes(trader?.bank)
+            [
+                "otherbankaz",
+                "mpay",
+                "kapitalbank",
+                "emanat",
+                "leobank",
+                "unibank",
+                "rabita",
+                "abb",
+                "birbank",
+                "atb",
+                "m10"
+            ].includes(trader?.bank)
+        ) {
+            setCaseName(azn);
+            console.log(`caseName: azn`);
+        }
+
+        if (
+            [
+                "tcell",
+                "babilon-m",
+                "megafon",
+                "kortimilli",
+                "sanduk",
+                "ibt",
+                "matin",
+                "arvand",
+                "favri.cbt",
+                "oriyonbonk",
+                "vasl",
+                "amonatbonk",
+                "eskhata",
+                "tawhidbank",
+                "spitamenbank",
+                "dushanbe",
+                "alif",
+                "humo"
+            ].includes(trader?.bank)
         ) {
             setCaseName(tjs);
+            console.log(`caseName: tjs`);
         }
 
         if (trader?.iban) {
             setCaseName(iban);
+            console.log(`caseName: iban`);
         }
     }, [BFData?.[dest]?.currency, bankName, trader]);
 
@@ -135,7 +204,7 @@ const PayPage = () => {
                     amount={BFData?.[dest]?.amount}
                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                     bankName={method?.bank?.display_name}
-                    countryName={["tjs" /* , "azn" */].includes(caseName) ? caseName : ""}
+                    countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
                 />
 
                 {BFData?.[dest]?.method?.payee?.redirect_url &&
@@ -144,46 +213,40 @@ const PayPage = () => {
                     <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
                 ) : (
                     <>
-                        {caseName == tjs && (
+                        {/* трансгран кейс для Таджикистана и Азербайджана */}
+                        {[tjs, azn].includes(caseName) && transgran && (
                             <div className="instructions_new transgran">
-                                <ul>
-                                    <li>
-                                        <span>1. </span>
-                                        {t("steps_transgran.one", ns)}
-                                    </li>
-                                    <li>
-                                        <span>2. </span>
-                                        {t("steps_transgran.two", ns)}
-                                    </li>
-                                </ul>
-
                                 <Instruction
-                                    title={t("steps_transgran.tbankTitle", ns)}
-                                    data={t("steps_transgran.tbank", ns)}
-                                    start={2}
+                                    title={t("steps_transgran_new.title.transgran", ns)}
+                                    data={t("steps_transgran_new.steps", ns)}
+                                    start={0}
                                     i={1}
                                     active={activeAccordion}
                                     setActive={setActiveAccordion}
                                 />
+
                                 <Instruction
-                                    title={t("steps_transgran.sberbankTitle", ns)}
-                                    data={t("steps_transgran.sberbank", ns)}
-                                    start={2}
+                                    title={`${t(`steps_transgran_new.title.local`, ns)}${
+                                        [tjs, azn].includes(caseName)
+                                            ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
+                                            : ""
+                                    }`}
                                     i={2}
                                     active={activeAccordion}
                                     setActive={setActiveAccordion}
-                                />
+                                    isDefault={true}>
+                                    <DefaultInstructionItems
+                                        trader={trader}
+                                        bankName={bankName}
+                                        BFData={BFData}
+                                        t={t}
+                                        currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                    />
+                                </Instruction>
                             </div>
                         )}
 
-                        {/* {(caseName == azn) && (
-                    <>
-                        <div className="instructions_new transgran">
-                            <InstructionItems data={t("steps_azn.sberbank", ns)} start={0} />
-                        </div>
-                    </>
-                )} */}
-
+                        {/*  кейс для iban  */}
                         {caseName == iban && (
                             <>
                                 <div className="instructions_new transgran">
@@ -192,32 +255,16 @@ const PayPage = () => {
                             </>
                         )}
 
-                        {(!caseName || caseName == azn || (caseName && !transgran && caseName !== iban)) && (
+                        {/*  стандартная инструкция, если не выполнены другие условия */}
+                        {(!caseName || (caseName && !transgran && caseName !== iban)) && (
                             <div className="instructions_new">
-                                <ul>
-                                    <li>
-                                        <span>1. </span>
-                                        {t(`steps_new.one${trader?.phone ? "Phone" : ""}`, ns)}
-                                    </li>
-                                    <li>
-                                        <span>2. </span>
-                                        {t(`steps_new.two${trader?.phone ? "Phone" : ""}`, ns)} <span>{bankName}</span>{" "}
-                                        {t("steps_new.onAmount", ns)}{" "}
-                                        <span>
-                                            {BFData?.[dest]?.amount}&nbsp;
-                                            {getCurrencySymbol(BFData?.[dest]?.currency)}
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span>3. </span>
-                                        {t("steps_new.pressButton", ns)}
-                                        <span>
-                                            {' "'}
-                                            {t("steps_new.payed", ns)}
-                                            {'"'}
-                                        </span>
-                                    </li>
-                                </ul>
+                                <DefaultInstructionItems
+                                    trader={trader}
+                                    bankName={bankName}
+                                    BFData={BFData}
+                                    t={t}
+                                    currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                />
                             </div>
                         )}
                     </>

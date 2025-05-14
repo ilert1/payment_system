@@ -62,6 +62,7 @@
         "steps_iban": {
             "iban": "Copy the Iban Number|Open your bank app|Select the “Send Money” function|Next > Select the “Transfer to Another Recipient” function|In the “Recipient Details” window > Paste the previously copied Iban|Enter the recipient's “Last Name and First Name”|Enter the exact amount specified on the website|Check the details and click the “Confirm” button"
         },
+        "steps_transgran_new": "Transfer to another country|Select country|Enter phone number|Select bank|Make payment",
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
         "agree": "Okay, understood",

@@ -62,6 +62,7 @@
         "steps_iban": {
             "iban": "Iban рақамини нусхаланг|Банк иловангизни очинг|«Пул юбориш» функциясини танланг|Кейин > «Бошқа қабул қилувчига ўтказма» функциясини танланг|«Қабул қилувчи маълумотлари» ойнасига > Аввал нусхаланган Iban рақамини киритинг|Қабул қилувчининг «Фамилияси ва Исми»ни киритинг|Сайтда кўрсатилган аниқ суммани киритинг|Маълумотларни текшириб, «Тасдиқлаш» тугмасини босинг"
         },
+        "steps_transgran_new": "Boshqa davlatga o‘tkazma|Davlatni tanlang|Telefon raqamini kiriting|Bankni tanlang|To‘lov qiling",
         "payed": "To'landi",
         "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
         "agree": "Yaxshi, tushundim",
