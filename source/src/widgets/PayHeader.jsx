@@ -3,7 +3,7 @@ import AppContext from "../AppContext";
 import Timer from "../ui/Timer";
 import ClockOrange from "../assets/images/clock_orange.svg";
 
-const PayHeader = ({ amount, currency, bankName, countryName }) => {
+const PayHeader = ({ amount, currency, bankName, countryName, transgran = false }) => {
     const { t } = useContext(AppContext);
     const ns = { ns: "PayHeader" };
 
@@ -14,7 +14,7 @@ const PayHeader = ({ amount, currency, bankName, countryName }) => {
                 <span>
                     {amount}&nbsp;{currency}
                 </span>
-                {countryName && <> {t(`country.${countryName}`, ns)}</>}
+                {countryName && transgran && <> {t(`country.${countryName}`, ns)}</>}
                 {bankName && (
                     <>
                         {" "}

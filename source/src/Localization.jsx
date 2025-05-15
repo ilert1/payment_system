@@ -34,6 +34,22 @@ export const getLanguage = () => {
     return language;
 };
 
+export const getLocalBankName = ({ display_name = {} }) => {
+    if (Object.keys(display_name)?.length) {
+        const fallbackName = Object.hasOwn(display_name?.["name-en"])
+            ? display_name?.["name-en"]
+            : display_name?.[Object.keys(display_name)?.[0]];
+        try {
+            const currentLang = getLanguage();
+            const currentLangExists = Object.hasOwn(display_name, currentLang);
+            return currentLangExists ? display_name?.[`name-${currentLang}`] : fallbackName;
+        } catch (e) {
+            return fallbackName;
+        }
+    }
+    return "";
+};
+
 var language = getLanguage();
 
 i18n.use(initReactI18next) // passes i18n down to react-i18next

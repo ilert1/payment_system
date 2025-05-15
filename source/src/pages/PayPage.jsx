@@ -10,6 +10,7 @@ import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import PayHeader from "../widgets/PayHeader.jsx";
 import PayeeData from "../widgets/PayeeData.jsx";
 import ExternalPayInfo from "../widgets/ExternalPayInfo.jsx";
+import { getLocalBankName } from "../Localization.jsx";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -136,13 +137,12 @@ const PayPage = () => {
     }, [trader]);
 
     useEffect(() => {
-        setBankName(method?.bank?.display_name ? method?.bank?.display_name : method?.bank?.name);
-    }, [method?.bank?.name, trader?.bank]);
+        setBankName(getLocalBankName(method?.bank?.display_name));
+    }, [method?.bank?.display_name]);
 
     useEffect(() => {
         setCaseName("");
 
-        console.log(`trader.bank: ${trader?.bank}`);
         console.log(`bankName: ${bankName}`);
 
         if (
@@ -158,7 +158,7 @@ const PayPage = () => {
                 "birbank",
                 "atb",
                 "m10"
-            ].includes(trader?.bank)
+            ].includes(trader?.bank_name)
         ) {
             setCaseName(azn);
             console.log(`caseName: azn`);
@@ -203,8 +203,9 @@ const PayPage = () => {
                 <PayHeader
                     amount={BFData?.[dest]?.amount}
                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                    bankName={method?.bank?.display_name}
+                    bankName={bankName}
                     countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                    transgran={transgran}
                 />
 
                 {BFData?.[dest]?.method?.payee?.redirect_url &&
@@ -273,7 +274,7 @@ const PayPage = () => {
                 <PayeeData
                     requisite={requisite}
                     trader={trader}
-                    bankName={method?.bank?.display_name}
+                    bankName={bankName}
                     isPhone={!!trader?.phone || !!trader?.phone_number}
                     caseName={caseName}
                 />
