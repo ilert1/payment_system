@@ -53,7 +53,7 @@ const PaymentConfirmationPage = () => {
                     <p className="confirmation-comment">Прикрепите подтверждение оплаты для проверки</p>
                     <div className="deadline-container">
                         <img src={Clock} alt="" />
-                        <Timer down={true} className="deadline-timer" secondsToDo={60 * 20} />
+                        <Timer down={true} className="deadline-timer" secondsToDo={60 * 15} />
                     </div>
                 </div>
 

@@ -24,7 +24,7 @@ const PayHeader = ({ amount, currency, bankName, countryName }) => {
             </h1>
             <div className="deadline-container">
                 <img src={ClockOrange} alt="" />
-                <Timer down={true} className="deadline-timer" secondsToDo={60 * 20} />
+                <Timer down={true} className="deadline-timer" secondsToDo={60 * 15} />
             </div>
         </div>
     );

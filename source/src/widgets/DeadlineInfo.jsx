@@ -11,7 +11,7 @@ export const DeadlineInfo = ({ bankName }) => {
             </div>
             <div className="deadline-container">
                 <img src={Clock} alt="" />
-                <Timer down={true} className="deadline-timer" secondsToDo={60 * 20} />
+                <Timer down={true} className="deadline-timer" secondsToDo={60 * 15} />
             </div>
         </div>
     );
