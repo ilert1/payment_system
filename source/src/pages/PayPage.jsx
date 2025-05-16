@@ -138,7 +138,7 @@ const PayPage = () => {
 
     useEffect(() => {
         setBankName(getLocalBankName(method?.bank?.display_name));
-    }, [method?.bank?.display_name]);
+    }, [, method?.bank?.display_name]);
 
     useEffect(() => {
         setCaseName("");

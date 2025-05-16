@@ -10,16 +10,14 @@ import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PaymentInstrumentPage = () => {
-    const { navigate, currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t } =
+    const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t } =
         useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
 
     const [paymentInstruments, setPaymentInstruments] = useState(null);
-    const [enabled_startPayIN, setEnabled_startPayIN] = useState(false);
-
-    const nav = navigate();
+    const [bankSelectedEnable, setBankSelectedEnable] = useState(false);
 
     usePaymentPage({ absolutePath: false });
 
@@ -33,89 +31,70 @@ const PaymentInstrumentPage = () => {
         retry: true,
         enabled: fingerprintReady,
         queryFn: async () => {
-            console.log("getPaymentInstruments");
-            let payload = BFData;
-            const { dir, prov, trn, wf, currency, merchantId } = payload;
-            payload = {
-                dir: dir,
-                prov: prov,
-                trn: trn,
-                wf: wf,
-                currency: currency,
-                merchantId: merchantId
+            console.log("send event: paymentPayerGetInstruments");
+            const payload = {
+                paymentId: BFData?.[dest]?.id,
+                event: "paymentPayerGetInstruments"
             };
 
-            console.log("getPaymentInstruments payload:");
+            console.log("paymentPayerGetInstruments payload:");
             console.log(payload);
 
             const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/getPaymentMethods`,
+                `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                 payload,
                 fingerprintConfig
             );
-            console.log("getPaymentInstruments response:");
+
+            console.log("paymentPayerGetInstruments response:");
             console.log(data);
             setPaymentInstruments(data?.data?.payment_instruments);
             return data;
         },
         onError: () => {
-            console.log("getPaymentInstruments error");
+            console.log("paymentPayerGetInstruments error");
         }
     });
 
-    const { data: data_startPayIN, isFetching: isFetching_startPayIN } = useQuery({
-        queryKey: ["startPayIN"],
-        enabled: enabled_startPayIN && fingerprintReady,
+    const { bankSelected_isFetching } = useQuery({
+        queryKey: ["paymentPayerSelectedInstrument"],
         refetchOnWindowFocus: false,
+        retry: true,
+        enabled: bankSelectedEnable && fingerprintReady,
         queryFn: async () => {
-            console.log("startPayIN");
-            let payload = BFData;
-            const { trn } = payload;
-            payload = {
-                message: {
-                    payment: {
-                        bank: currentPaymentInstrument?.bank,
-                        trn: trn,
-                        type: currentPaymentInstrument?.payment_type
-                    }
-                }
-            };
+            console.log("send event: paymentPayerSelectedInstrument");
+            if (currentPaymentInstrument?.bank) {
+                const payload = {
+                    bank: currentPaymentInstrument.bank,
+                    payment_type: currentPaymentInstrument.payment_type
+                };
 
-            console.log("startPayIN payload:");
-            console.log(payload);
+                console.log("paymentPayerSelectedInstrument payload:");
+                console.log(payload);
 
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/startPayIN`, payload, fingerprintConfig);
-
-            console.log("startPayIN response:");
-            console.log(data);
-
-            nav(c.PAGE_PAYER_DATA, { replace: true });
-            return data;
+                const { data } = await axios
+                    .post(
+                        `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                        {
+                            event: "paymentPayerSelectedInstrument",
+                            payload: payload
+                        },
+                        fingerprintConfig
+                    )
+                    .catch(e => {
+                        console.log(e);
+                    });
+                console.log(data);
+                return data;
+            }
+        },
+        onError: () => {
+            console.log("paymentBankSelected error");
         }
     });
 
     const buttonCallback = async () => {
-        setEnabled_startPayIN(true);
-
-        if (currentPaymentInstrument?.bank) {
-            const { data } = await axios
-                .post(
-                    `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
-                    {
-                        event: "paymentBankSelected",
-                        method: {
-                            bank: {
-                                name: currentPaymentInstrument.bank
-                            }
-                        }
-                    },
-                    fingerprintConfig
-                )
-                .catch(e => {
-                    console.log(e);
-                });
-            console.log(data);
-        }
+        setBankSelectedEnable(true);
     };
 
     return (
@@ -135,7 +114,7 @@ const PaymentInstrumentPage = () => {
                 buttonCallback={buttonCallback}
                 nextPage={`/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`}
                 // prevPage={c.PAGE_MAIN}
-                nextEnabled={!isFetching_startPayIN && currentPaymentInstrument != null ? true : false}
+                nextEnabled={!bankSelected_isFetching && currentPaymentInstrument != null ? true : false}
             />
         </div>
     );

@@ -127,11 +127,13 @@ export const AppProvider = ({ children }) => {
 
         switch (data?.status) {
             case "paymentAwaitingStart":
+            case "paymentAwaitingSelectInstrument":
                 return c.PAGE_MAIN;
-            case "paymentMethodSelecting":
-                return c.PAGE_PAYMENT_METHODS;
-            case "payoutBankSelecting":
-                return c.PAGE_PAYMENT_INSTRUMENT;
+            /* case "paymentMethodSelecting":
+                return c.PAGE_PAYMENT_METHODS; */
+            // case "payoutBankSelecting": //старая реализация
+            /* case "paymentPayerSelectingInstrument":
+                return c.PAGE_PAYMENT_INSTRUMENT; */
             case "paymentPayerDataEntrу":
             case "paymentPayerDataEntered":
                 return c.PAGE_PAYER_DATA;

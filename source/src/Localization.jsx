@@ -34,15 +34,15 @@ export const getLanguage = () => {
     return language;
 };
 
-export const getLocalBankName = ({ display_name = {} }) => {
+export const getLocalBankName = (display_name = {}) => {
     if (Object.keys(display_name)?.length) {
-        const fallbackName = Object.hasOwn(display_name?.["name-en"])
-            ? display_name?.["name-en"]
+        const fallbackName = Object.hasOwn(display_name?.["name_en"])
+            ? display_name?.["name_en"]
             : display_name?.[Object.keys(display_name)?.[0]];
         try {
             const currentLang = getLanguage();
-            const currentLangExists = Object.hasOwn(display_name, currentLang);
-            return currentLangExists ? display_name?.[`name-${currentLang}`] : fallbackName;
+            const currentLangExists = Object.hasOwn(display_name, `name_${currentLang}`);
+            return currentLangExists ? display_name?.[`name_${currentLang}`] : fallbackName;
         } catch (e) {
             return fallbackName;
         }
