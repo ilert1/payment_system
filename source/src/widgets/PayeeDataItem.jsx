@@ -11,7 +11,8 @@ const PayeeDataItem = ({
     value = "",
     cl = "",
     copyData = "",
-    messageOnCopy = ""
+    messageOnCopy = "",
+    comment = ""
 }) => {
     const [showPopup, setShowPopup] = useState(false);
 
@@ -36,6 +37,7 @@ const PayeeDataItem = ({
             <div className="text-container">
                 <label>{label}</label>
                 <h3 className="value">{value}</h3>
+                {comment && <label>{comment}</label>}
             </div>
             {copyData && (
                 <>

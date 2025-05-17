@@ -16,7 +16,7 @@ const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
 
-const DefaultInstructionItems = ({ trader, bankName, BFData, t, currency }) => {
+const DefaultInstructionItems = ({ trader, bankName, amount, t, currency }) => {
     //translation
     const ns = { ns: ["Common", "Pay"] };
 
@@ -31,7 +31,7 @@ const DefaultInstructionItems = ({ trader, bankName, BFData, t, currency }) => {
                 {t(`steps_new.two${!!trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}{" "}
                 <span>{bankName}</span> {t("steps_new.onAmount", ns)}{" "}
                 <span>
-                    {BFData?.[dest]?.amount}&nbsp;
+                    {amount}&nbsp;
                     {currency}
                 </span>
             </li>
@@ -239,7 +239,7 @@ const PayPage = () => {
                                     <DefaultInstructionItems
                                         trader={trader}
                                         bankName={bankName}
-                                        BFData={BFData}
+                                        amount={BFData?.[dest]?.amount}
                                         t={t}
                                         currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                                     />
@@ -262,7 +262,7 @@ const PayPage = () => {
                                 <DefaultInstructionItems
                                     trader={trader}
                                     bankName={bankName}
-                                    BFData={BFData}
+                                    amount={BFData?.[dest]?.amount}
                                     t={t}
                                     currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                                 />
@@ -277,6 +277,8 @@ const PayPage = () => {
                     bankName={bankName}
                     isPhone={!!trader?.phone || !!trader?.phone_number}
                     caseName={caseName}
+                    countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                    transgran={transgran}
                 />
             </div>
 

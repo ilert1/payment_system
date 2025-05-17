@@ -12,9 +12,9 @@ const bankIcon = bank => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
 };
 
-const PayeeData = ({ requisite, trader, bankName, isPhone, caseName }) => {
+const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, countryName }) => {
     const { BFData, getCurrencySymbol, t } = useContext(AppContext);
-    const ns = { ns: "PayeeCard" };
+    const ns = { ns: ["PayeeCard", "PayHeader"] };
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -56,6 +56,9 @@ const PayeeData = ({ requisite, trader, bankName, isPhone, caseName }) => {
                 value={formatedRequisite(requisite)}
                 copyData={requisite?.replace(/\s+/g, "")}
                 messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
+                comment={`${t("requisiteComment", ns)} ${
+                    transgran ? t("transgranComment", { country: t(`country.${countryName}`, ns), ...ns }) : ""
+                }`}
             />
             <PayeeDataItem
                 img={DollarCircleIcon}

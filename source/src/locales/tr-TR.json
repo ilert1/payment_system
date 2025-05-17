@@ -44,6 +44,8 @@
         "steps_new": {
             "one": "Telefon numarasını kopyalayın ve banka uygulamanıza gidin",
             "two": "Kart numarasıyla transferi gerçekleştirin",
+            "onePhone": "Telefon numarasını kopyalayın ve bank uygulamanıza geçin",
+            "twoPhone": "Telefon numarasıyla transfer yapın",
             "onAmount": "miktara",
             "pressButton": "Düğmeye basın",
             "payed": "Ödendi"
@@ -189,7 +191,9 @@
         "bankName": "Alıcının bankası",
         "requisite": "Rekvizitler",
         "amount": "Transfer tutarı",
-        "payee": "Alıcı"
+        "payee": "Alıcı",
+        "requisiteComment": "Ödeme lisanslı bir ödeme ortağı aracılığıyla yapılır.",
+        "transgranComment": "{{country}} ülkesine yapılan transfer korumalı bir sistemin parçasıdır."
     },
     "PayeeHint": {
         "hint": {

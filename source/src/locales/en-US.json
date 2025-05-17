@@ -44,6 +44,8 @@
         "steps_new": {
             "one": "Copy the phone number and go to your bank application",
             "two": "Make the transfer using the card number",
+            "onePhone": "Copy the phone number and go to your bank app",
+            "twoPhone": "Make a transfer using the phone number",
             "onAmount": "for the amount",
             "pressButton": "Press the button",
             "payed": "Paid"
@@ -189,7 +191,9 @@
         "bankName": "Recipient's bank",
         "requisite": "Requisites",
         "amount": "Transfer amount",
-        "payee": "Payee"
+        "payee": "Payee",
+        "requisiteComment": "Payment is made through a licensed payment partner.",
+        "transgranComment": "Transfer to {{country}} is part of a protected scheme."
     },
     "PayeeHint": {
         "hint": {

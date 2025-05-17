@@ -44,6 +44,8 @@
         "steps_new": {
             "one": "Telefon nömrəsini kopyalayın və bank tətbiqinizi açın",
             "two": "Kart nömrəsinə köçürmə edin",
+            "onePhone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin",
+            "twoPhone": "Telefon nömrəsi ilə köçürmə edin",
             "onAmount": "məbləğə",
             "pressButton": "Düyməyə basın",
             "payed": "Ödənilib"
@@ -189,7 +191,9 @@
         "bankName": "Alıcının bankı",
         "requisite": "Rekvizitlər",
         "amount": "Köçürmə məbləği",
-        "payee": "Alıcı"
+        "payee": "Alıcı",
+        "requisiteComment": "Ödəniş lisenziyalı ödəniş tərəfdaşı vasitəsilə həyata keçirilir.",
+        "transgranComment": "{{country}} ölkəsinə köçürmə — qorunan sxemin bir hissəsidir."
     },
     "PayeeHint": {
         "hint": {

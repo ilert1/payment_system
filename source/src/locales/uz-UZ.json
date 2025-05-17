@@ -44,6 +44,8 @@
         "steps_new": {
             "one": "Telefon raqamini nusxalab bank ilovasiga o'ting",
             "two": "Kartaga o'tkazma qiling",
+            "onePhone": "Telefon raqamini nusxalang va bankingiz ilovasiga o'ting",
+            "twoPhone": "Telefon raqami orqali pul o'tkazing",
             "onAmount": "miqdorda",
             "pressButton": "Tugmani bosing",
             "payed": "To'landi"
@@ -189,7 +191,9 @@
         "bankName": "Qabul qiluvchining banki",
         "requisite": "Rekvizitlar",
         "amount": "O'tkazma summasi",
-        "payee": "Qabul qiluvchi"
+        "payee": "Qabul qiluvchi",
+        "requisiteComment": "Toʻlov litsenziyaga ega toʻlov hamkori orqali amalga oshiriladi.",
+        "transgranComment": "{{country}} davlatiga oʻtkazma — himoyalangan tizimning bir qismidir."
     },
     "PayeeHint": {
         "hint": {

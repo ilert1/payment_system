@@ -188,6 +188,7 @@ const App = () => {
                             setBFData(data);
                         } else {
                             //транзакция не найдена или не подлежит оплате
+                            console.log(data?.error);
                             window.location.replace(
                                 `/${payoutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`
                             );
