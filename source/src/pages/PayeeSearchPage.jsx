@@ -9,11 +9,12 @@ import { ProgressSteper } from "../widgets/ProgressSteper";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayeeSearchPage = () => {
-    const { navigate, BFData, currentPaymentInstrument, t, getCurrencySymbol } = useContext(AppContext);
-
-    const nav = navigate();
+    const { BFData, currentPaymentInstrument, t, getCurrencySymbol } = useContext(AppContext);
 
     usePaymentPage({ absolutePath: false });
+
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
 
     //translation
     const ns = { ns: ["Common", "PayeeSearch"] };
@@ -43,8 +44,8 @@ const PayeeSearchPage = () => {
 
             <div className="content">
                 <h1 className="grow">
-                    {t("lookingFor", ns)} {BFData?.amount}&nbsp;
-                    {getCurrencySymbol(BFData?.currency)} {t("via", ns)} {currentPaymentInstrument?.bank_name}
+                    {t("lookingFor", ns)} {BFData?.[dest]?.amount}&nbsp;
+                    {getCurrencySymbol(BFData?.[dest]?.currency)} {t("via", ns)} {currentPaymentInstrument?.bank_name}
                 </h1>
                 <ProgressSteper step={step} />
             </div>
