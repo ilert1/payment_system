@@ -14,7 +14,7 @@ const bankIcon = bank => {
 
 const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, countryName }) => {
     const { BFData, getCurrencySymbol, t } = useContext(AppContext);
-    const ns = { ns: ["PayeeCard", "PayHeader"] };
+    const ns = { ns: ["PayeeCard", "PayHeader", "Pay"] };
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -57,7 +57,9 @@ const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, 
                 copyData={requisite?.replace(/\s+/g, "")}
                 messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
                 comment={`${t("requisiteComment", ns)} ${
-                    transgran ? t("transgranComment", { country: t(`country.${countryName}`, ns), ...ns }) : ""
+                    transgran
+                        ? t("transgranComment", { country: t(`steps_transgran_new.country.${countryName}`, ns), ...ns })
+                        : ""
                 }`}
             />
             <PayeeDataItem
