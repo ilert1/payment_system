@@ -1804,6 +1804,10 @@ header {
                         width: $size;
                         height: $size;
                     }
+
+                    &.logo {
+                        scale: 1.25;
+                    }
                 }
             }
 
@@ -1820,6 +1824,18 @@ header {
                     @media (max-width: 520px) {
                         font-size: 12px;
                         line-height: 16px;
+                    }
+                }
+
+                p {
+                    font-size: 14px;
+                    line-height: 18px;
+                    font-weight: 400;
+                    opacity: 0.35;
+
+                    @media (max-width: 520px) {
+                        font-size: 11px;
+                        line-height: 13px;
                     }
                 }
 

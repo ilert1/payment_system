@@ -44,10 +44,12 @@ const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, 
                     img={bankIcon(trader?.bank_name)}
                     onError={e => {
                         e.target.src = DefaultBankIcon;
+                        e.target.classList.remove("logo");
                     }}
                     label={t("bankName", ns)}
                     value={bankName}
                     cl={"dark"}
+                    imgCl={"logo"}
                 />
             )}
             <PayeeDataItem

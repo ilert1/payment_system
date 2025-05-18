@@ -1566,6 +1566,9 @@ header .language-selector .drop-down .flag-container:last-of-type {
     height: 20px;
   }
 }
+.content .payee-data .payee-data-item .icon-container img.logo {
+  scale: 1.25;
+}
 .content .payee-data .payee-data-item .text-container {
   flex-grow: 1;
   text-align: left;
@@ -1580,6 +1583,18 @@ header .language-selector .drop-down .flag-container:last-of-type {
   .content .payee-data .payee-data-item .text-container label {
     font-size: 12px;
     line-height: 16px;
+  }
+}
+.content .payee-data .payee-data-item .text-container p {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  opacity: 0.35;
+}
+@media (max-width: 520px) {
+  .content .payee-data .payee-data-item .text-container p {
+    font-size: 11px;
+    line-height: 13px;
   }
 }
 .content .payee-data .payee-data-item .text-container .value {

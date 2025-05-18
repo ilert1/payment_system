@@ -10,6 +10,7 @@ const PayeeDataItem = ({
     label = "",
     value = "",
     cl = "",
+    imgCl = "",
     copyData = "",
     messageOnCopy = "",
     comment = ""
@@ -32,12 +33,12 @@ const PayeeDataItem = ({
     return (
         <div className={`payee-data-item ${cl}`}>
             <div className="icon-container">
-                <img src={img} onError={onError} alt="" />
+                <img className={imgCl} src={img} onError={onError} alt="" />
             </div>
             <div className="text-container">
                 <label>{label}</label>
                 <h3 className="value">{value}</h3>
-                {comment && <label>{comment}</label>}
+                {comment && <p>{comment}</p>}
             </div>
             {copyData && (
                 <>
