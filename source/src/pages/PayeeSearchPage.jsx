@@ -6,22 +6,10 @@ import { useContext, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 import { ProgressSteper } from "../widgets/ProgressSteper";
 
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayeeSearchPage = () => {
-    const {
-        navigate,
-        BFData,
-        cardNumberLast4,
-        currentPaymentInstrument,
-        setTraderData,
-        fingerprintConfig,
-        fingerprintReady,
-        t,
-        getCurrencySymbol
-    } = useContext(AppContext);
+    const { navigate, BFData, currentPaymentInstrument, t, getCurrencySymbol } = useContext(AppContext);
 
     const nav = navigate();
 
@@ -48,48 +36,6 @@ const PayeeSearchPage = () => {
             }
         }, 1000);
     }, []);
-
-    const { data: data_TraderData, isFetching: isFetching_TraderData } = useQuery({
-        queryKey: ["getTraderData"],
-        enabled: fingerprintReady,
-        /* refetchInterval: 1000,
-        refetchIntervalInBackground: true, */
-        retry: false,
-        refetchOnWindowFocus: false,
-        queryFn: async () => {
-            console.log("getTraderData");
-            let payload = BFData;
-            const { trn } = payload;
-            payload = {
-                trn: trn
-            };
-            console.log("getTraderData payload:");
-            console.log(payload);
-
-            const { data } = await axios.post(
-                `${import.meta.env.VITE_API_URL}/getTraderData`,
-                payload,
-                fingerprintConfig
-            );
-
-            console.log("getTraderData response:");
-            console.log(data);
-
-            if (data?.success) {
-                if (data?.data?.card || data?.data?.phone) {
-                    setTraderData(JSON.stringify(data?.data));
-                    nav(`../${c.PAGE_PAY}`, { replace: true });
-                }
-            } else {
-                if (BFData?.fail_url) {
-                    window.location.replace(BFData.fail_url);
-                } else {
-                    nav(c.PAGE_GENERAL_ERROR, { replace: true });
-                }
-            }
-            return data;
-        }
-    });
 
     return (
         <div className="container">

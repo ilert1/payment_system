@@ -36,13 +36,6 @@ const MainPage = () => {
         console.log(data);
     };
 
-    useEffect(() => {
-        if (contextData?.BFData?.[dest]?.method?.name) {
-            buttonCallback();
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     usePaymentPage({ absolutePath: true });
 
     //translation
@@ -53,7 +46,7 @@ const MainPage = () => {
         <div className="container">
             <Header />
 
-            {contextData?.BFData?.[dest]?.method?.name ? (
+            {!contextData?.BFData?.[dest]?.method ? (
                 <div className="content">
                     <div className="loader-container">
                         <Loader />

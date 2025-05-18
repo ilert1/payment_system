@@ -17,7 +17,7 @@ const PaymentInstrumentPage = () => {
     const ns = { ns: ["Common", "PaymentInstrument"] };
 
     const [paymentInstruments, setPaymentInstruments] = useState(null);
-    const [bankSelectedEnable, setBankSelectedEnable] = useState(false);
+    const [instrumentSelectedEnable, setInstrumentSelectedEnable] = useState(false);
 
     usePaymentPage({ absolutePath: false });
 
@@ -56,11 +56,11 @@ const PaymentInstrumentPage = () => {
         }
     });
 
-    const { bankSelected_isFetching } = useQuery({
+    const { instrumentSelected_isFetching } = useQuery({
         queryKey: ["paymentPayerSelectedInstrument"],
         refetchOnWindowFocus: false,
         retry: true,
-        enabled: bankSelectedEnable && fingerprintReady,
+        enabled: instrumentSelectedEnable && fingerprintReady,
         queryFn: async () => {
             console.log("send event: paymentPayerSelectedInstrument");
             if (currentPaymentInstrument?.bank) {
@@ -76,6 +76,7 @@ const PaymentInstrumentPage = () => {
                     .post(
                         `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                         {
+                            paymentId: BFData?.[dest]?.id,
                             event: "paymentPayerSelectedInstrument",
                             payload: payload
                         },
@@ -94,7 +95,7 @@ const PaymentInstrumentPage = () => {
     });
 
     const buttonCallback = async () => {
-        setBankSelectedEnable(true);
+        setInstrumentSelectedEnable(true);
     };
 
     return (
@@ -113,8 +114,7 @@ const PaymentInstrumentPage = () => {
                 buttonCaption={t("next", ns)}
                 buttonCallback={buttonCallback}
                 nextPage={`/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`}
-                // prevPage={c.PAGE_MAIN}
-                nextEnabled={!bankSelected_isFetching && currentPaymentInstrument != null ? true : false}
+                nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument != null ? true : false}
             />
         </div>
     );

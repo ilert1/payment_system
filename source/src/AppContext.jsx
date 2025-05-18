@@ -43,7 +43,9 @@ export const AppContext = createContext({
     setFailUrlParams: null,
     lang: null,
     setLang: null,
-    payoutMode: null
+    payoutMode: null,
+    status: undefined,
+    setStatus: () => {}
 });
 
 // eslint-disable-next-line react/prop-types
@@ -77,6 +79,8 @@ export const AppProvider = ({ children }) => {
     let storedLang = getLanguage();
     const [lang, setLang] = useState(storedLang);
 
+    const [status, setStatus] = useState();
+
     useEffect(() => {
         i18n.changeLanguage(lang);
         localStorage.setItem("language", lang);
@@ -89,14 +93,6 @@ export const AppProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
     }, [currentPaymentInstrument]);
-
-    /* useEffect(() => {
-        localStorage.setItem("last4", cardNumberLast4);
-    }, [cardNumberLast4]);
-
-    useEffect(() => {
-        localStorage.setItem("traderData", traderData);
-    }, [traderData]); */
 
     useEffect(() => {
         let fp = `${getBrowserFingerprint({
@@ -123,17 +119,16 @@ export const AppProvider = ({ children }) => {
 
     const paymentEcomPage = useCallback(() => {
         const data = BFData?.payment ? BFData?.payment : BFData?.payout;
-        console.log(data?.status);
 
-        switch (data?.status) {
+        console.log("status:");
+        console.log(status);
+
+        switch (status) {
             case "paymentAwaitingStart":
-            case "paymentAwaitingSelectInstrument":
                 return c.PAGE_MAIN;
-            /* case "paymentMethodSelecting":
-                return c.PAGE_PAYMENT_METHODS; */
-            // case "payoutBankSelecting": //старая реализация
-            /* case "paymentPayerSelectingInstrument":
-                return c.PAGE_PAYMENT_INSTRUMENT; */
+            case "paymentAwaitingSelectInstrument":
+            case "paymentPayerSelectingInstrument":
+                return c.PAGE_PAYMENT_INSTRUMENT;
             case "paymentPayerDataEntrу":
             case "paymentPayerDataEntered":
                 return c.PAGE_PAYER_DATA;
@@ -155,7 +150,7 @@ export const AppProvider = ({ children }) => {
                 return "";
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [BFData?.payment?.status, BFData?.payout?.status]);
+    }, [status]);
 
     return (
         <QueryClientProvider client={queryClient}>
@@ -191,7 +186,9 @@ export const AppProvider = ({ children }) => {
                     setFailUrlParams,
                     lang,
                     setLang,
-                    payoutMode
+                    payoutMode,
+                    status,
+                    setStatus
                 }}>
                 {children}
                 <CustomToastContainer />

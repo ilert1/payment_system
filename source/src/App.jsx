@@ -23,6 +23,8 @@ import Loader from "./ui/Loader.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
+// import { produce } from "immer";
+
 const defaultPages = [
     {
         path: c.PAGE_PAYMENT_METHODS, // "/payment-methods",
@@ -115,7 +117,8 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, BFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode } = useContext(AppContext);
+    const { setBFData, BFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode, setStatus } =
+        useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -137,9 +140,7 @@ const App = () => {
 
     useEffect(() => {
         if (BFData?.payout?.id || BFData?.payment?.id) {
-            const mode = payOutMode ? "payout" : "payment";
-
-            const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[mode]?.id}/events`);
+            const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`);
 
             es.onopen = () => console.log(">>> Connection opened!");
 
@@ -150,13 +151,8 @@ const App = () => {
                     const resEventData = JSON.parse(e.data);
                     console.log("SSE: ", resEventData);
 
-                    const tempBFData = { ...BFData };
-                    tempBFData[mode].status = resEventData.data.status;
-
-                    setBFData(tempBFData);
-                } catch (error) {
-                    // continue
-                }
+                    setStatus(resEventData.data.status);
+                } catch (error) {}
             };
 
             return () => es.close();
@@ -165,18 +161,16 @@ const App = () => {
 
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
-        refetchInterval: BFData?.[dest]?.status === "paymentAwaitingStart" ? 1000 : false,
+        // refetchInterval: BFData?.[dest]?.status === "paymentAwaitingStart" ? 1000 : false,
         enabled: Boolean(blowfishId) && !notFound,
         // refetchIntervalInBackground: true,
         // retry: false,
         refetchOnWindowFocus: false,
         queryFn: async () => {
             if (blowfishId) {
-                let dest = payoutMode ? "payouts" : "payments";
-
                 try {
                     const { data } = await axios.get(
-                        `${import.meta.env.VITE_API_URL}/${dest}/${blowfishId}`,
+                        `${import.meta.env.VITE_API_URL}/${dest}s/${blowfishId}`,
                         fingerprintConfig
                     );
 
@@ -186,6 +180,10 @@ const App = () => {
                         if (data?.success) {
                             //данные получены успешно
                             setBFData(data);
+                            setStatus(data?.[dest]?.status);
+
+                            console.log("status");
+                            console.log(data?.[dest]?.status);
                         } else {
                             //транзакция не найдена или не подлежит оплате
                             console.log(data?.error);

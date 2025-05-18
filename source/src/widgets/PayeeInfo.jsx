@@ -4,23 +4,23 @@ import AppContext from "../AppContext";
 import UserIcon from "../assets/images/user.svg";
 import PayeeHint from "../ui/PayeeHint";
 
-export const PayeeInfo = ({ PayeeName, showPayeeData }) => {
-    const [showPopup, setShowPopup] = useState(false);
+export const PayeeInfo = ({ PayeeName, showPayeeData = false }) => {
+    // const [showPopup, setShowPopup] = useState(false);
 
-    const { t } = useContext(AppContext);
+    // const { t } = useContext(AppContext);
     //translation
-    const ns = { ns: "PayeeInfo" };
+    // const ns = { ns: "PayeeInfo" };
 
-    let popupTimeout = null;
+    // let popupTimeout = null;
 
-    const showPopupCallback = e => {
+    /* const showPopupCallback = e => {
         e.preventDefault();
         clearTimeout(popupTimeout);
 
         setShowPopup(!showPopup);
-    };
+    }; */
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (showPopup) {
             popupTimeout = setTimeout(() => {
                 setShowPopup(false);
@@ -29,7 +29,7 @@ export const PayeeInfo = ({ PayeeName, showPayeeData }) => {
         return () => {
             clearTimeout(popupTimeout);
         };
-    }, [showPopup]);
+    }, [showPopup]); */
 
     return (
         <div className="payee-info-container">

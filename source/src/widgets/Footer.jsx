@@ -33,6 +33,7 @@ const Footer = ({
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const trader = BFData?.[dest]?.method?.payee?.data;
+
     const [requisite, setRequisite] = useState(null);
 
     const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
@@ -137,7 +138,7 @@ const Footer = ({
                             {trader?.card_holder && (
                                 <PayeeInfo
                                     PayeeName={trader?.card_holder}
-                                    showPayeeData={trader?.card_number || trader?.iban || trader?.account_number}
+                                    // showPayeeData={trader?.card_number || trader?.iban || trader?.account_number}
                                 />
                             )}
                         </div>

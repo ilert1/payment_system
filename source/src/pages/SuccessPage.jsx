@@ -7,7 +7,7 @@ import usePaymentPage from "../hooks/usePaymentPage";
 import Timer from "../ui/Timer";
 
 const SuccessPage = () => {
-    const { BFData, t, getCurrencySymbol, payoutMode } = useContext(AppContext);
+    const { BFData, t, getCurrencySymbol, payoutMode, status } = useContext(AppContext);
 
     //translation
     const ns = { ns: "Success" };
@@ -26,7 +26,7 @@ const SuccessPage = () => {
             <div className="content">
                 <div className="header-container grow wide center">
                     <h1>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
-                    {BFData?.[dest]?.status && BFData?.[dest].status === "payoutPartiallyExecuted" ? (
+                    {status === "payoutPartiallyExecuted" ? (
                         <>
                             <p className="amount">
                                 + {BFData?.[dest]?.lots.reduce((accum, curVal) => accum + Number(curVal.amount), 0)}{" "}

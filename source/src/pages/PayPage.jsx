@@ -11,6 +11,8 @@ import PayHeader from "../widgets/PayHeader.jsx";
 import PayeeData from "../widgets/PayeeData.jsx";
 import ExternalPayInfo from "../widgets/ExternalPayInfo.jsx";
 import { getLocalBankName } from "../Localization.jsx";
+import Loader from "../ui/Loader.jsx";
+import { useQuery } from "@tanstack/react-query";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -80,7 +82,7 @@ const Instruction = ({ title, data, start = 2, i, active = null, setActive = () 
 };
 
 const PayPage = () => {
-    const { BFData, fingerprintConfig, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -93,6 +95,8 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
+    const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
+
     const transgran = ["tsbp", "tcard2card"].includes(method?.name);
 
     const [requisite, setRequisite] = useState(null);
@@ -116,6 +120,18 @@ const PayPage = () => {
             });
         console.log(data);
     };
+
+    useEffect(() => {
+        console.log(`trader`);
+        console.log(trader);
+
+        if (!trader) {
+            console.log("needRefreshBFData: true");
+            setNeedRefreshBFData(true);
+        } else {
+            setNeedRefreshBFData(false);
+        }
+    }, [, trader]);
 
     useEffect(() => {
         if (trader?.card_number) {
@@ -196,98 +212,149 @@ const PayPage = () => {
         }
     }, [BFData?.[dest]?.currency, bankName, trader]);
 
+    const { isFetching: isFetching_BFData } = useQuery({
+        queryKey: ["exist"],
+        // refetchInterval: BFData?.[dest]?.status === "paymentAwaitingStart" ? 1000 : false,
+        enabled: needRefreshBFData,
+        // refetchIntervalInBackground: true,
+        // retry: false,
+        refetchOnWindowFocus: false,
+        queryFn: async () => {
+            try {
+                const { data } = await axios.get(
+                    `${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`,
+                    fingerprintConfig
+                );
+                console.log(data);
+
+                if (data) {
+                    if (data?.success) {
+                        //данные получены успешно
+                        console.log("setBFData");
+                        console.log(data);
+
+                        setBFData(data);
+                    } else {
+                        //транзакция не найдена или не подлежит оплате
+                        console.log(data?.error);
+                        setNeedRefreshBFData(false);
+                        window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
+                    }
+                }
+                return data;
+            } catch (e) {
+                console.error(e.response.statusCode);
+                if (e.response.statusCode === 404) {
+                    window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
+                }
+            } finally {
+                setNeedRefreshBFData(false);
+            }
+        }
+    });
+
     return (
         <div className="container">
             <Header />
-            <div className="content">
-                <PayHeader
-                    amount={BFData?.[dest]?.amount}
-                    currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                    bankName={bankName}
-                    countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
-                    transgran={transgran}
-                />
+            {!trader || isFetching_BFData ? (
+                <div className="content">
+                    <div className="loader-container">
+                        <Loader />
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <div className="content">
+                        <PayHeader
+                            amount={BFData?.[dest]?.amount}
+                            currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                            bankName={bankName}
+                            countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                            transgran={transgran}
+                        />
 
-                {BFData?.[dest]?.method?.payee?.redirect_url &&
-                BFData?.[dest]?.method?.name &&
-                BFData?.[dest]?.method?.name === "phone_number" ? (
-                    <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
-                ) : (
-                    <>
-                        {/* трансгран кейс для Таджикистана и Азербайджана */}
-                        {[tjs, azn].includes(caseName) && transgran && (
-                            <div className="instructions_new transgran">
-                                <Instruction
-                                    title={t("steps_transgran_new.title.transgran", ns)}
-                                    data={t("steps_transgran_new.steps", ns)}
-                                    start={0}
-                                    i={1}
-                                    active={activeAccordion}
-                                    setActive={setActiveAccordion}
-                                />
-
-                                <Instruction
-                                    title={`${t(`steps_transgran_new.title.local`, ns)}${
-                                        [tjs, azn].includes(caseName)
-                                            ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
-                                            : ""
-                                    }`}
-                                    i={2}
-                                    active={activeAccordion}
-                                    setActive={setActiveAccordion}
-                                    isDefault={true}>
-                                    <DefaultInstructionItems
-                                        trader={trader}
-                                        bankName={bankName}
-                                        amount={BFData?.[dest]?.amount}
-                                        t={t}
-                                        currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                                    />
-                                </Instruction>
-                            </div>
-                        )}
-
-                        {/*  кейс для iban  */}
-                        {caseName == iban && (
+                        {BFData?.[dest]?.method?.payee?.redirect_url &&
+                        BFData?.[dest]?.method?.name &&
+                        BFData?.[dest]?.method?.name === "phone_number" ? (
+                            <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
+                        ) : (
                             <>
-                                <div className="instructions_new transgran">
-                                    <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
-                                </div>
+                                {/* трансгран кейс для Таджикистана и Азербайджана */}
+                                {[tjs, azn].includes(caseName) && transgran && (
+                                    <div className="instructions_new transgran">
+                                        <Instruction
+                                            title={t("steps_transgran_new.title.transgran", ns)}
+                                            data={t("steps_transgran_new.steps", ns)}
+                                            start={0}
+                                            i={1}
+                                            active={activeAccordion}
+                                            setActive={setActiveAccordion}
+                                        />
+
+                                        <Instruction
+                                            title={`${t(`steps_transgran_new.title.local`, ns)}${
+                                                [tjs, azn].includes(caseName)
+                                                    ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
+                                                    : ""
+                                            }`}
+                                            i={2}
+                                            active={activeAccordion}
+                                            setActive={setActiveAccordion}
+                                            isDefault={true}>
+                                            <DefaultInstructionItems
+                                                trader={trader}
+                                                bankName={bankName}
+                                                amount={BFData?.[dest]?.amount}
+                                                t={t}
+                                                currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                            />
+                                        </Instruction>
+                                    </div>
+                                )}
+
+                                {/*  кейс для iban  */}
+                                {caseName == iban && (
+                                    <>
+                                        <div className="instructions_new transgran">
+                                            <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
+                                        </div>
+                                    </>
+                                )}
+
+                                {/*  стандартная инструкция, если не выполнены другие условия */}
+                                {(!caseName || (caseName && !transgran && caseName !== iban)) && (
+                                    <div className="instructions_new">
+                                        <DefaultInstructionItems
+                                            trader={trader}
+                                            bankName={bankName}
+                                            amount={BFData?.[dest]?.amount}
+                                            t={t}
+                                            currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                        />
+                                    </div>
+                                )}
                             </>
                         )}
 
-                        {/*  стандартная инструкция, если не выполнены другие условия */}
-                        {(!caseName || (caseName && !transgran && caseName !== iban)) && (
-                            <div className="instructions_new">
-                                <DefaultInstructionItems
-                                    trader={trader}
-                                    bankName={bankName}
-                                    amount={BFData?.[dest]?.amount}
-                                    t={t}
-                                    currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                                />
-                            </div>
-                        )}
-                    </>
-                )}
+                        <PayeeData
+                            requisite={requisite}
+                            trader={trader}
+                            bankName={bankName}
+                            isPhone={!!trader?.phone || !!trader?.phone_number}
+                            caseName={caseName}
+                            countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                            transgran={transgran}
+                        />
+                    </div>
 
-                <PayeeData
-                    requisite={requisite}
-                    trader={trader}
-                    bankName={bankName}
-                    isPhone={!!trader?.phone || !!trader?.phone_number}
-                    caseName={caseName}
-                    countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
-                    transgran={transgran}
-                />
-            </div>
-
-            <Footer
-                buttonCaption={t("approveTransfer", ns)}
-                buttonCallback={buttonCallback}
-                nextPage={`../${c.PAGE_PAYEE_DATA}`}
-                approve={true}
-            />
+                    <Footer
+                        buttonCaption={t("approveTransfer", ns)}
+                        buttonCallback={buttonCallback}
+                        nextPage={`../${c.PAGE_PAYEE_DATA}`}
+                        approve={true}
+                    />
+                </>
+            )}
         </div>
     );
 };
