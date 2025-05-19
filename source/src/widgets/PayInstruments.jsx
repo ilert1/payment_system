@@ -5,6 +5,10 @@ import SearchPayMethod from "../ui/SearchPayMethod";
 import BankItem from "./BankItem";
 import { Loader } from "../ui/Loader";
 
+const bankIcon = bank => {
+    return bank ? `/banks/${bank}.svg` : "";
+};
+
 export const PayInstruments = ({ paymentInstruments, isFetching }) => {
     const { t, currentPaymentInstrument, setCurrentPaymentInstrument } = useContext(AppContext);
     //translation
@@ -35,10 +39,10 @@ export const PayInstruments = ({ paymentInstruments, isFetching }) => {
                             : false
                     }
                     onClick={() => onClick(item)}
+                    bankIcon={bankIcon(item.bank)}
                     bankName={`${item.bank_name} ${
                         item.payment_type != "card2card" ? `(${item.payment_type_name})` : ""
                     }`}
-                    /* lowLimit = {'500 ₽'} highLimit = {'1 000 000 ₽'} */
                 />
             );
         });

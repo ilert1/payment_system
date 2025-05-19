@@ -1163,6 +1163,10 @@ header {
                 }
 
                 img {
+                    $width: 24px;
+                    width: $width;
+                    height: $width;
+
                     @media (max-width: 520px) {
                         $width: 19px;
                         width: $width;

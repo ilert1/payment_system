@@ -1033,6 +1033,10 @@ header .language-selector .drop-down .flag-container:last-of-type {
     padding: 10px;
   }
 }
+.content .banks-list-container .banks-list .bank-item img {
+  width: 24px;
+  height: 24px;
+}
 @media (max-width: 520px) {
   .content .banks-list-container .banks-list .bank-item img {
     width: 19px;
