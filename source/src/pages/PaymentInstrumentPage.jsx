@@ -63,10 +63,10 @@ const PaymentInstrumentPage = () => {
         enabled: instrumentSelectedEnable && fingerprintReady,
         queryFn: async () => {
             console.log("send event: paymentPayerSelectedInstrument");
-            if (currentPaymentInstrument?.bank) {
+            if (currentPaymentInstrument?.data?.bank) {
                 const payload = {
-                    bank: currentPaymentInstrument.bank,
-                    payment_type: currentPaymentInstrument.payment_type
+                    bank: currentPaymentInstrument?.data?.bank,
+                    payment_type: currentPaymentInstrument?.data?.payment_type
                 };
 
                 console.log("paymentPayerSelectedInstrument payload:");
@@ -114,7 +114,7 @@ const PaymentInstrumentPage = () => {
                 buttonCaption={t("next", ns)}
                 buttonCallback={buttonCallback}
                 nextPage={`/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`}
-                nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument != null ? true : false}
+                nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false}
             />
         </div>
     );

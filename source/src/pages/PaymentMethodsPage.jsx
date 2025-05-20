@@ -11,7 +11,6 @@ import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PaymentMethodsPage = () => {
     const {
-        setCurrentPaymentMethod,
         currentPaymentMethod,
         getCurrencySymbol,
         fingerprintReady,

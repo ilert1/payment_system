@@ -13,6 +13,7 @@ import ExternalPayInfo from "../widgets/ExternalPayInfo.jsx";
 import { getLocalBankName } from "../Localization.jsx";
 import Loader from "../ui/Loader.jsx";
 import { useQuery } from "@tanstack/react-query";
+import ArrowDown from "../assets/images/chevron-down.svg";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -106,20 +107,34 @@ const PayPage = () => {
 
     const [caseName, setCaseName] = useState("");
 
-    const buttonCallback = async () => {
-        const { data } = await axios
-            .post(
-                `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
-                {
-                    event: "paymentPayerConfirm"
-                },
-                fingerprintConfig
-            )
-            .catch(e => {
-                console.log(e);
-            });
-        console.log(data);
-    };
+    const [buttonCallbackEnabled, setButtonCallbackEnabled] = useState(false);
+
+    const { isFetching: isFetching_ButtonCallback } = useQuery({
+        queryKey: ["buttonCallback"],
+        enabled: buttonCallbackEnabled,
+        refetchOnWindowFocus: false,
+        queryFn: async () => {
+            try {
+                const { data } = await axios
+                    .post(
+                        `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                        {
+                            event: "paymentPayerConfirm"
+                        },
+                        fingerprintConfig
+                    )
+                    .catch(e => {
+                        console.log(e);
+                    });
+                console.log(data);
+                return data;
+            } catch (e) {
+                console.log(data?.error);
+            } finally {
+                setButtonCallbackEnabled(false);
+            }
+        }
+    });
 
     useEffect(() => {
         console.log(`trader`);
@@ -271,6 +286,7 @@ const PayPage = () => {
                             bankName={bankName}
                             countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
                             transgran={transgran}
+                            timestamp={BFData?.[dest]?.created_at}
                         />
 
                         {BFData?.[dest]?.method?.payee?.redirect_url &&
@@ -349,8 +365,11 @@ const PayPage = () => {
 
                     <Footer
                         buttonCaption={t("approveTransfer", ns)}
-                        buttonCallback={buttonCallback}
+                        buttonCallback={() => {
+                            setButtonCallbackEnabled(true);
+                        }}
                         nextPage={`../${c.PAGE_PAYEE_DATA}`}
+                        nextEnabled={!isFetching_ButtonCallback}
                         approve={true}
                     />
                 </>

@@ -150,10 +150,10 @@ const PayOutPage = () => {
                             amount={BFData?.amount}
                             currency={getCurrencySymbol(BFData?.currency)}
                             payOut={true}
-                            bank={currentPaymentInstrument?.bank_name}
+                            bank={currentPaymentInstrument?.data?.bank_name}
                         />
 
-                        <DeadlineInfo bankName={currentPaymentInstrument?.bank_name} />
+                        <DeadlineInfo bankName={currentPaymentInstrument?.data?.bank_name} />
 
                         <PayoutBar payoutLots={BFData?.lots} sumAmount={Number(BFData?.amount)} awaiting={awaiting} />
 

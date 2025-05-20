@@ -10,12 +10,13 @@ const bankIcon = bank => {
 };
 
 export const PayInstruments = ({ paymentInstruments, isFetching }) => {
-    const { t, currentPaymentInstrument, setCurrentPaymentInstrument } = useContext(AppContext);
+    const { BFData, t, currentPaymentInstrument, setCurrentPaymentInstrument } = useContext(AppContext);
     //translation
     const ns = { ns: ["Common", "PayMethod"] };
 
     const onClick = item => {
-        setCurrentPaymentInstrument(item);
+        const dest = BFData?.payout ? "payout" : "payment";
+        setCurrentPaymentInstrument({ blowfishId: BFData?.[dest].id, data: item });
     };
 
     const [filterText, setFilterText] = useState("");
@@ -33,8 +34,8 @@ export const PayInstruments = ({ paymentInstruments, isFetching }) => {
                 <BankItem
                     key={`bank${i}`}
                     active={
-                        item.bank == currentPaymentInstrument?.bank &&
-                        item.payment_type == currentPaymentInstrument?.payment_type
+                        item.bank == currentPaymentInstrument?.data?.bank &&
+                        item.payment_type == currentPaymentInstrument?.data?.payment_type
                             ? true
                             : false
                     }

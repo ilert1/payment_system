@@ -64,7 +64,17 @@
         "steps_iban": {
             "iban": "Iban Numarasını Kopyalayın|Bankanızın uygulamasını açın|\"Para Gönder\" işlevini seçin|İleri > \"Başka Alıcıya Havale/EFT/FAST\" işlevini seçin|Alıcı Verileri Penceresinde > Önceden kopyaladığınız Iban'ı yapıştırın|Alıcının \"Soyadı Adını\" girin|Web sitesinde belirtilen tam tutarı girin|Verileri kontrol edin ve \"Onayla\" butonuna tıklayın"
         },
-        "steps_transgran_new": "Başka bir ülkeye transfer|Ülke seçin|Telefon numarasını girin|Banka seçin|Ödeme yapın",
+        "steps_transgran_new": {
+            "title": {
+                "transgran": "RF'den ödeme için talimat",
+                "local": "Ülke içi ödeme talimatı"
+            },
+            "steps": "Başka bir ülkeye transfer|Ülke seçin|Telefon numarasını girin|Banka seçin|Ödeme yapın",
+            "country": {
+                "tjs": "Tacikistan",
+                "azn": "Azerbaycan"
+            }
+        },
         "payed": "Ödendi",
         "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
         "agree": "Tamam, anladım",

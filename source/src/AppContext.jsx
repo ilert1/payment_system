@@ -24,15 +24,8 @@ export const AppContext = createContext({
         setIsActive: null
     },
     urlData: null,
-    currentPaymentMethod: null,
-    setCurrentPaymentMethod: null,
     currentPaymentInstrument: null,
     setCurrentPaymentInstrument: null,
-    cardNumberLast4: null,
-    setCardNumberLast4: null,
-    traderData: null,
-    setTraderData: null,
-    resetStorage: null,
     t: null,
     fingerprintConfig: null,
     getCurrencySymbol: null,
@@ -59,19 +52,6 @@ export const AppProvider = ({ children }) => {
     const queryClient = new QueryClient();
     const { t } = useTranslation();
 
-    const [currentPaymentMethod, setCurrentPaymentMethod] = useState(() => {
-        return JSON.parse(localStorage.getItem("CurrentPaymentMethod")) || null;
-    });
-    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState(() => {
-        return JSON.parse(localStorage.getItem("CurrentPaymentInstrument")) || null;
-    });
-    const [cardNumberLast4, setCardNumberLast4] = useState(() => {
-        return localStorage.getItem("last4") || null;
-    });
-    const [traderData, setTraderData] = useState(() => {
-        return localStorage.getItem("traderData") || null;
-    });
-
     const [BFData, setBFData] = useState(null);
     const [failUrlParams, setFailUrlParams] = useState("");
     const [fingerprint, setFingerprint] = useState(null);
@@ -86,12 +66,38 @@ export const AppProvider = ({ children }) => {
         localStorage.setItem("language", lang);
     }, [lang]);
 
-    useEffect(() => {
-        localStorage.setItem("CurrentPaymentMethod", JSON.stringify(currentPaymentMethod));
-    }, [currentPaymentMethod]);
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
+    const storedCurrentPaymentInstrument = JSON.parse(localStorage.getItem("CurrentPaymentInstrument"));
+
+    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState();
 
     useEffect(() => {
-        localStorage.setItem("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
+        if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;
+
+        if (storedCurrentPaymentInstrument.blowfishId !== BFData[dest].id) {
+            localStorage.removeItem("CurrentPaymentInstrument");
+            setCurrentPaymentInstrument(null);
+            return;
+        }
+
+        if (currentPaymentInstrument?.data) {
+            const instrument = {
+                blowfishId: BFData?.[dest]?.id,
+                data: currentPaymentInstrument?.data
+            };
+            localStorage.setItem("CurrentPaymentInstrument", JSON.stringify(instrument));
+            setCurrentPaymentInstrument(instrument);
+        } else {
+            setCurrentPaymentInstrument(storedCurrentPaymentInstrument);
+        }
+    }, [BFData?.[dest]?.id]);
+
+    useEffect(() => {
+        if (currentPaymentInstrument?.data) {
+            localStorage.setItem("CurrentPaymentInstrument", JSON.stringify(currentPaymentInstrument));
+        }
     }, [currentPaymentInstrument]);
 
     useEffect(() => {
@@ -102,13 +108,6 @@ export const AppProvider = ({ children }) => {
         setFingerprint(fp);
         setFingerprintReady(true);
     }, []);
-
-    /* const resetStorage = () => {
-        setCardNumberLast4(null);
-        setTraderData(null);
-        localStorage.removeItem("last4");
-        localStorage.removeItem("traderData");
-    }; */
 
     const getCurrencySymbol = code => {
         if (Object.hasOwn(CurrencyLibrary, code)) {
@@ -161,15 +160,8 @@ export const AppProvider = ({ children }) => {
                         isActive: supportDialogIsActive,
                         setIsActive: supportDialogSetIsActive
                     },
-                    currentPaymentMethod,
-                    setCurrentPaymentMethod,
                     currentPaymentInstrument,
                     setCurrentPaymentInstrument,
-                    cardNumberLast4,
-                    setCardNumberLast4,
-                    traderData,
-                    setTraderData,
-                    // resetStorage,
                     t,
                     fingerprintConfig: {
                         headers: {

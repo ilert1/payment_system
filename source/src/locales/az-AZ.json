@@ -64,7 +64,17 @@
         "steps_iban": {
             "iban": "Iban nömrəsini kopyalayın|Bank tətbiqinizi açın|«Pul Göndər» funksiyasını seçin|Davam et > «Başqa alıcıya köçürmə» funksiyasını seçin|«Alıcının məlumatları» pəncərəsinə > Əvvəlcə kopyalanmış Iban-ı daxil edin|Alıcının «Soyadı və Adı»nı daxil edin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və «Təsdiqləmək» düyməsini basın"
         },
-        "steps_transgran_new": "Başqa ölkəyə köçürmə|Ölkəni seçin|Telefon nömrəsini daxil edin|Bankı seçin|Ödəniş edin",
+        "steps_transgran_new": {
+            "title": {
+                "transgran": "Rusiya Federasiyasından ödəniş üçün təlimat",
+                "local": "Ölkə daxilində ödəniş üçün təlimat"
+            },
+            "steps": "Başqa ölkəyə köçürmə|Ölkəni seçin|Telefon nömrəsini daxil edin|Bankı seçin|Ödəniş edin",
+            "country": {
+                "tjs": "Tacikistan",
+                "azn": "Azərbaycan"
+            }
+        },
         "payed": "Ödənilib",
         "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
         "agree": "Tamam, başa düşdüm",

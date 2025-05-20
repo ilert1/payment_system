@@ -1,4 +1,4 @@
-import * as c from "../assets/constants.js";
+// import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
@@ -45,7 +45,8 @@ const PayeeSearchPage = () => {
             <div className="content">
                 <h1 className="grow">
                     {t("lookingFor", ns)} {BFData?.[dest]?.amount}&nbsp;
-                    {getCurrencySymbol(BFData?.[dest]?.currency)} {t("via", ns)} {currentPaymentInstrument?.bank_name}
+                    {getCurrencySymbol(BFData?.[dest]?.currency)} {t("via", ns)}{" "}
+                    {currentPaymentInstrument?.data?.bank_name}
                 </h1>
                 <ProgressSteper step={step} />
             </div>

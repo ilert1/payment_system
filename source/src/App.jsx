@@ -117,8 +117,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, BFData, setCurrentPaymentMethod, fingerprintConfig, payoutMode, setStatus } =
-        useContext(AppContext);
+    const { setBFData, BFData, fingerprintConfig, payoutMode, setStatus } = useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -126,13 +125,6 @@ const App = () => {
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     const blowfishId = uuidRegex.test(pathname.split("/")[2]) ? pathname.split("/")[2] : "";
     const notFound = pathname.indexOf("not-found") >= 0;
-
-    let storedCurrentPaymentMethod = localStorage.getItem("CurrentPaymentMethod");
-    useEffect(() => {
-        if (storedCurrentPaymentMethod) {
-            setCurrentPaymentMethod(JSON.parse(storedCurrentPaymentMethod));
-        }
-    }, []);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
