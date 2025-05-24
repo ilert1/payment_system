@@ -56,7 +56,9 @@
             "tbankTitle": "T-Bank ile ödeme için talimat",
             "tbank": "SBP ile transfer seçin|Kopyalanan telefon numarasını yapıştırın|Ödeme formunda belirtilen bankı girin|Sitede belirtilen kesin tutarı girin|Ödeme yapmak için düğmeye basın",
             "sberbankTitle": "Sberbank ile ödeme için talimat",
-            "sberbank": "Telefon numarasına / başka ülkeye transfer seçin|Ülke seçin - Tacikistan|\"Kart veya hesap\" düğmesine tıklayın|Kopyalanan telefon numarasını yapıştırın|Ödeme formunda belirtilen bankı girin|Sitede belirtilen kesin tutarı girin|Ödeme yapmak için düğmeye basın"
+            "sberbank": "Telefon numarasına / başka ülkeye transfer seçin|Ülke seçin - Tacikistan|\"Kart veya hesap\" düğmesine tıklayın|Kopyalanan telefon numarasını yapıştırın|Ödeme formunda belirtilen bankı girin|Sitede belirtilen kesin tutarı girin|Ödeme yapmak için düğmeye basın",
+            "vtbbankTitle": "VTB üzerinden ödeme talimatı",
+            "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “Tacikistan”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
         },
         "steps_azn": {
             "sberbank": "Belirtilen telefon numarasını kopyalayın|Sber uygulamasını açın|Telefon numarasıyla transfer işlevini seçin — \"başka bir ülkeye transfer\"|Ardından uygulamada hedef ülkeyi belirtin — Azerbaycan|Önceden kopyalanmış telefon numarasını yapıştırın|Mevcut \"E-wallet\" listesinden belirtilen bankı seçin|Sitede belirtilen kesin tutarı girin|Bilgileri kontrol edin ve \"Ödemeyi tamamla\" düğmesine basın"

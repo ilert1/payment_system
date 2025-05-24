@@ -19,18 +19,21 @@ const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
 
-const DefaultInstructionItems = ({ trader, bankName, amount, t, currency }) => {
+const DefaultInstructionItems = ({ trader, bankName, amount, t, currency, first_step = true, start = 0 }) => {
     //translation
     const ns = { ns: ["Common", "Pay"] };
+    const startFrom = first_step ? 1 : 0;
 
     return (
         <ul>
+            {first_step && (
+                <li>
+                    <span>{start + startFrom}. </span>
+                    {t(`steps_new.one${trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}
+                </li>
+            )}
             <li>
-                <span>1. </span>
-                {t(`steps_new.one${trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}
-            </li>
-            <li>
-                <span>2. </span>
+                <span>{start + startFrom + 1}. </span>
                 {t(`steps_new.two${!!trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}{" "}
                 <span>{bankName}</span> {t("steps_new.onAmount", ns)}{" "}
                 <span>
@@ -39,7 +42,7 @@ const DefaultInstructionItems = ({ trader, bankName, amount, t, currency }) => {
                 </span>
             </li>
             <li>
-                <span>3. </span>
+                <span>{start + startFrom + 2}. </span>
                 {t("steps_new.pressButton", ns)}
                 <span>
                     {' "'}
@@ -298,11 +301,37 @@ const PayPage = () => {
                                 {/* трансгран кейс для Таджикистана и Азербайджана */}
                                 {[tjs, azn].includes(caseName) && transgran && (
                                     <div className="instructions_new transgran">
+                                        <ul>
+                                            <li>
+                                                <span>1. </span>
+                                                {t("steps_transgran.one", ns)}
+                                            </li>
+                                            <li>
+                                                <span>2. </span>
+                                                {t("steps_transgran.two", ns)}
+                                            </li>
+                                        </ul>
                                         <Instruction
-                                            title={t("steps_transgran_new.title.transgran", ns)}
-                                            data={t("steps_transgran_new.steps", ns)}
-                                            start={0}
+                                            title={t("steps_transgran.tbankTitle", ns)}
+                                            data={t("steps_transgran.tbank", ns)}
+                                            start={2}
                                             i={1}
+                                            active={activeAccordion}
+                                            setActive={setActiveAccordion}
+                                        />
+                                        <Instruction
+                                            title={t("steps_transgran.sberbankTitle", ns)}
+                                            data={t("steps_transgran.sberbank", ns)}
+                                            start={2}
+                                            i={2}
+                                            active={activeAccordion}
+                                            setActive={setActiveAccordion}
+                                        />
+                                        <Instruction
+                                            title={t("steps_transgran.vtbbankTitle", ns)}
+                                            data={t("steps_transgran.vtbbank", ns)}
+                                            start={2}
+                                            i={3}
                                             active={activeAccordion}
                                             setActive={setActiveAccordion}
                                         />
@@ -313,7 +342,7 @@ const PayPage = () => {
                                                     ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
                                                     : ""
                                             }`}
-                                            i={2}
+                                            i={4}
                                             active={activeAccordion}
                                             setActive={setActiveAccordion}
                                             isDefault={true}>
@@ -323,6 +352,8 @@ const PayPage = () => {
                                                 amount={BFData?.[dest]?.amount}
                                                 t={t}
                                                 currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                                first_step={false}
+                                                start={2}
                                             />
                                         </Instruction>
                                     </div>

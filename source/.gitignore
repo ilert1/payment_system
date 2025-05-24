@@ -16,8 +16,9 @@ dist-ssr
 localisation_request.txt
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
+.vscode
+# .vscode/*
+# !.vscode/extensions.json
 .idea
 .DS_Store
 *.suo
