@@ -98,6 +98,7 @@ const Footer = ({
                 console.log("cancel response:");
                 console.log(data);
                 if (data?.success) {
+                    //TODO проверить, думаю этот редирект не нужен, так как выполняется смена статуса через SSE
                     navigate(`/${dest}s/${BFData?.[dest]?.id}/${c.PAGE_CANCEL}`, { replace: true });
                 }
                 return data;
@@ -115,9 +116,7 @@ const Footer = ({
         text: t("cancelDialog.text", ns),
         primaryBtnText: t("cancel", ns),
         primaryBtnCallback: () => {
-            if (import.meta.env.VITE_YMETRICS_COUNTER) {
-                ym("reachGoal", "cancel-button", { cancel_redirect_url: returnUrl });
-            }
+            ym("reachGoal", "cancel-button", { cancel_redirect_url: returnUrl });
 
             setEnabled_cancel(true);
         },
@@ -163,9 +162,7 @@ const Footer = ({
                                     if (buttonCallback) {
                                         buttonCallback();
                                     } else {
-                                        if (import.meta.env.VITE_YMETRICS_COUNTER) {
-                                            ym("reachGoal", "main-button", { caption: buttonCaption });
-                                        }
+                                        ym("reachGoal", "main-button", { caption: buttonCaption });
                                         navigate(nextPage, { replace: true });
                                     }
                                 }}>

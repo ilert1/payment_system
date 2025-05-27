@@ -12,7 +12,7 @@ import { binary_to_base58 } from "base58-js";
 
 import CustomToastContainer from "./ui/CustomToastContainer";
 
-import ym from "react-yandex-metrika";
+import {ym as yandexMetrika} from "react-yandex-metrika";
 
 var encoder = new TextEncoder();
 export const base58 = str => {
@@ -76,7 +76,11 @@ export const AppProvider = ({ children }) => {
 
     const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState();
 
-    
+    const ym = (...params) => {
+        if (import.meta.env.VITE_YMETRICS_COUNTER) {
+            yandexMetrika(...params)
+        }
+    }
 
     useEffect(() => {
         if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;

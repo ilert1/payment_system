@@ -19,8 +19,10 @@ export const GeneralErrorPage = ({ cancel = false }) => {
     //translation
     const ns = { ns: ["Common", "GeneralError"] };
 
-    /* console.log("cancelUrl", cancelUrl);
-    console.log("failUrl", failUrl); */
+    const returnCallback = () => {
+        ym("reachGoal", "fail-return-button", cancel ? { cancel_url: cancelUrl } : { fail_url: failUrl });
+        window.location.replace(cancel ? cancelUrl : failUrl);
+    };
 
     return (
         <div className="container">
@@ -54,7 +56,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}
-                buttonCallback={() => window.location.replace(cancel ? cancelUrl : failUrl)}
+                buttonCallback={returnCallback}
                 nextPage={cancel ? cancelUrl : failUrl}
                 nextEnabled={cancel ? cancelUrl : failUrl}
                 noIcon={true}

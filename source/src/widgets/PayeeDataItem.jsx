@@ -20,9 +20,7 @@ const PayeeDataItem = ({
     let popupTimeout = null;
 
     const showPopupCallback = () => {
-        if (import.meta.env.VITE_YMETRICS_COUNTER) {
-            ym("reachGoal", "copy", { label: label });
-        }
+        ym("reachGoal", "copy", { label: label });
         clearTimeout(popupTimeout);
         setShowPopup(true);
 

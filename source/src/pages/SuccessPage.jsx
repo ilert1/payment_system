@@ -19,6 +19,11 @@ const SuccessPage = () => {
 
     usePaymentPage({ absolutePath: false });
 
+    const successCallback = () => {
+        ym("reachGoal", "success-return-button", { success_url: successUrl });
+        window.location.replace(successUrl);
+    };
+
     return (
         <div className="container">
             <Header />
@@ -54,7 +59,7 @@ const SuccessPage = () => {
                                 down={true}
                                 className="deadline-timer"
                                 secondsToDo={5}
-                                timerCallback={() => window.location.replace(successUrl)}
+                                timerCallback={successCallback}
                             />
                         </div>
                     </>

@@ -71,6 +71,7 @@ const Instruction = ({ title, data, start = 2, i, active = null, setActive = () 
     const callback = () => {
         if (active == i) setActive(null);
         else setActive(i);
+        ym("reachGoal", "instruction-button", { title: title });
     };
     return (
         <div className={`accordion-container ${active == i ? "active" : ""}`}>
