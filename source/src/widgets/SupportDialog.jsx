@@ -5,10 +5,9 @@ import AlertTriangleBig from "../assets/images/alert-triangle-big.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import ym from "react-yandex-metrika";
 
 const SupportDialog = () => {
-    const { BFData, t } = useContext(AppContext);
+    const { BFData, t, ym } = useContext(AppContext);
     const { isActive, setIsActive } = useContext(AppContext).supportDialog;
     const [showPopup, setShowPopup] = useState(false);
 

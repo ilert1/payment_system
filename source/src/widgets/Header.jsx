@@ -6,7 +6,6 @@ import AppContext from "../AppContext";
 import MessageSquare from "../assets/images/message-square.svg";
 
 import LanguageSelector from "./LanguageSelector";
-import ym from "react-yandex-metrika";
 
 const Header = () => {
     // const { isActive, setIsActive } = useContext(AppContext).supportDialog;

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CopyIcon from "../assets/images/copy.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
-import ym from "react-yandex-metrika";
 
 const PayeeDataItem = ({
     img = "",
@@ -16,6 +15,7 @@ const PayeeDataItem = ({
     comment = ""
 }) => {
     const [showPopup, setShowPopup] = useState(false);
+    const { ym } = useContext(AppContext);
 
     let popupTimeout = null;
 

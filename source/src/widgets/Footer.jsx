@@ -9,7 +9,6 @@ import BankIcon from "../assets/images/bank-icon.svg"; //Sberbank_Logo_2020.svg"
 import axios from "axios";
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
-import ym from "react-yandex-metrika";
 import SubmitModal from "./SubmitModal.jsx";
 import { useQuery } from "@tanstack/react-query";
 
@@ -28,7 +27,7 @@ const Footer = ({
     buttonCallback = null
 }) => {
     const navigate = useContext(AppContext).navigate();
-    const { BFData, t, fingerprintReady, fingerprintConfig } = useContext(AppContext);
+    const { BFData, t, fingerprintReady, fingerprintConfig, ym } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";

@@ -12,6 +12,8 @@ import { binary_to_base58 } from "base58-js";
 
 import CustomToastContainer from "./ui/CustomToastContainer";
 
+import ym from "react-yandex-metrika";
+
 var encoder = new TextEncoder();
 export const base58 = str => {
     binary_to_base58(encoder.encode(str));
@@ -38,7 +40,8 @@ export const AppContext = createContext({
     setLang: null,
     payoutMode: null,
     status: undefined,
-    setStatus: () => {}
+    setStatus: () => {},
+    ym: () => {},
 });
 
 // eslint-disable-next-line react/prop-types
@@ -72,6 +75,8 @@ export const AppProvider = ({ children }) => {
     const storedCurrentPaymentInstrument = JSON.parse(localStorage.getItem("CurrentPaymentInstrument"));
 
     const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState();
+
+    
 
     useEffect(() => {
         if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;
@@ -180,7 +185,8 @@ export const AppProvider = ({ children }) => {
                     setLang,
                     payoutMode,
                     status,
-                    setStatus
+                    setStatus,
+                    ym
                 }}>
                 {children}
                 <CustomToastContainer />
