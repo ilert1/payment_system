@@ -18,7 +18,7 @@ import Loader from "../ui/Loader.jsx";
 const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
-    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig } = useContext(AppContext);
+    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig, ym } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
@@ -119,6 +119,8 @@ const PayerDataPage = () => {
         }
         console.log("payload");
         console.log(payload);
+
+        ym("reachGoal", "main-button", { caption: t("approve", ns) });
 
         const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
         try {

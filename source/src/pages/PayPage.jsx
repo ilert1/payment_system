@@ -68,6 +68,7 @@ const InstructionItems = ({ start = 0, data = "" }) => {
 };
 
 const Instruction = ({ title, data, start = 2, i, active = null, setActive = () => {}, children }) => {
+    const { ym } = useContext(AppContext);
     const callback = () => {
         if (active == i) setActive(null);
         else setActive(i);

@@ -10,7 +10,7 @@ import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PaymentInstrumentPage = () => {
-    const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t } =
+    const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t, ym } =
         useContext(AppContext);
 
     //translation
@@ -95,6 +95,7 @@ const PaymentInstrumentPage = () => {
     });
 
     const buttonCallback = async () => {
+        ym("reachGoal", "main-button", { caption: t("next", ns), payment_method: currentPaymentInstrument?.data });
         setInstrumentSelectedEnable(true);
     };
 

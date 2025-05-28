@@ -8,12 +8,16 @@ import PlusCircle from "../assets/images/plus-circle.svg";
 import Timer from "../ui/Timer";
 
 const PayErrorPage = ({ notFound = false }) => {
-    const { t, BFData } = useContext(AppContext);
+    const { t, BFData, ym } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
     const failUrl = BFData?.[dest]?.method?.context?.error_redirect_url;
+    const buttonCallback = () => {
+        ym("reachGoal", "fail-return-button", { fail_url: failUrl });
+        window.location.replace(failUrl);
+    };
 
     //translation
     const ns = { ns: "PayError" };
@@ -49,7 +53,7 @@ const PayErrorPage = ({ notFound = false }) => {
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}
-                buttonCallback={() => window.location.replace(failUrl)}
+                buttonCallback={buttonCallback}
                 nextPage={failUrl}
                 nextEnabled={failUrl}
                 noIcon={true}

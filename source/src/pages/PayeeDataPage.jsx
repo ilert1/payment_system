@@ -9,7 +9,7 @@ import { Timer } from "../ui/Timer";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayeeDataPage = () => {
-    const { BFData, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, t, getCurrencySymbol, ym } = useContext(AppContext);
 
     //translation
     const ns = { ns: "PayeeData" };
@@ -23,6 +23,7 @@ const PayeeDataPage = () => {
     };
 
     const buttonCallback = () => {
+        ym("reachGoal", "back-return-button", { back_redirect_url: BFData?.[dest]?.back_redirect_url });
         redirect(BFData?.[dest]?.back_redirect_url);
     };
 

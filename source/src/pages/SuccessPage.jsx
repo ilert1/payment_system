@@ -7,7 +7,7 @@ import usePaymentPage from "../hooks/usePaymentPage";
 import Timer from "../ui/Timer";
 
 const SuccessPage = () => {
-    const { BFData, t, getCurrencySymbol, payoutMode, status } = useContext(AppContext);
+    const { BFData, t, getCurrencySymbol, payoutMode, status, ym } = useContext(AppContext);
 
     //translation
     const ns = { ns: "Success" };
