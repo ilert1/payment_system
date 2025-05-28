@@ -117,7 +117,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, BFData, fingerprintConfig, payoutMode, setStatus } = useContext(AppContext);
+    const { setBFData, BFData, fingerprintConfig, payoutMode, setStatus, ym } = useContext(AppContext);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -131,7 +131,7 @@ const App = () => {
     const baseApiURL = import.meta.env.VITE_API_URL;
 
     useEffect(() => {
-        if (BFData?.payout?.id || BFData?.payment?.id) {
+        if (BFData?.[dest]?.id) {
             const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`);
 
             es.onopen = () => console.log(">>> Connection opened!");
@@ -149,7 +149,7 @@ const App = () => {
 
             return () => es.close();
         }
-    }, [BFData?.payout?.id, BFData?.payment?.id]);
+    }, [BFData?.[dest]?.id]);
 
     const { isFetching: isFetching_Blowfish } = useQuery({
         queryKey: ["exist"],
@@ -173,6 +173,9 @@ const App = () => {
                             //данные получены успешно
                             setBFData(data);
                             setStatus(data?.[dest]?.status);
+                            if (data?.[dest]?.method?.name === "ecom") {
+                                ym("reachGoal", "ecom-payer-data-page");
+                            }
 
                             console.log("status");
                             console.log(data?.[dest]?.status);

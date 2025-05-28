@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CopyIcon from "../assets/images/copy.svg";
 import CheckCircle from "../assets/images/check-circle.svg";
+import AppContext from "../AppContext";
 
 const PayeeDataItem = ({
     img = "",

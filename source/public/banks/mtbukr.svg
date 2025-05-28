@@ -1,0 +1,18 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xodm="http://www.corel.com/coreldraw/odm/2003" xml:space="preserve" width="15mm" height="15mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="190 0 480 400">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil1 {fill:#00B1EB}
+    .fil2 {fill:#06639B}
+    .fil3 {fill:#292B5B}
+    .fil0 {fill:#292B5B;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g id="Слой_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <path class="fil1" d="M192.59 322.05c0,24.96 20.6,45.99 45.74,45.68l102.74 0 56.03 -209.25c5.04,-19.75 22.94,-34.35 44.26,-34.35l224.5 0 0 -76.13c0,-25.13 -20.31,-45.52 -45.4,-45.67l-308.8 0c-21.32,0 -39.22,14.61 -44.27,34.35l-73.14 273.14c-1.09,4.06 -1.66,8.02 -1.66,12.23z"/>
+  <path class="fil2" d="M665.86 245.93l0 -121.8 -224.5 0c-21.32,0 -39.22,14.6 -44.26,34.35l-56.03 209.25 81.19 0 81.27 0 23.39 -87.45c5.04,-19.75 22.95,-34.35 44.26,-34.35l94.68 0z"/>
+  <path class="fil3" d="M665.86 245.93l-94.41 0 -0.27 0c-21.31,0 -39.22,14.6 -44.26,34.35l-23.39 87.45 40.53 0c25.36,0 50.78,0 76.12,0 25.23,0 45.68,-20.45 45.68,-45.67l0 -76.13z"/>
+ </g>
+<script xmlns=""/><link xmlns=""/></svg>

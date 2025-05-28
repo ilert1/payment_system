@@ -12,7 +12,7 @@ import { binary_to_base58 } from "base58-js";
 
 import CustomToastContainer from "./ui/CustomToastContainer";
 
-import {ym as yandexMetrika} from "react-yandex-metrika";
+import { ym as yandexMetrika } from "react-yandex-metrika";
 
 var encoder = new TextEncoder();
 export const base58 = str => {
@@ -41,7 +41,7 @@ export const AppContext = createContext({
     payoutMode: null,
     status: undefined,
     setStatus: () => {},
-    ym: () => {},
+    ym: () => {}
 });
 
 // eslint-disable-next-line react/prop-types
@@ -78,14 +78,14 @@ export const AppProvider = ({ children }) => {
 
     const ym = (...params) => {
         if (import.meta.env.VITE_YMETRICS_COUNTER) {
-            yandexMetrika(...params)
+            yandexMetrika(...params);
         }
-    }
+    };
 
     useEffect(() => {
         if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;
 
-        if (storedCurrentPaymentInstrument.blowfishId !== BFData[dest].id) {
+        if (storedCurrentPaymentInstrument.blowfishId !== BFData?.[dest]?.id) {
             localStorage.removeItem("CurrentPaymentInstrument");
             setCurrentPaymentInstrument(null);
             return;
@@ -126,8 +126,6 @@ export const AppProvider = ({ children }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
-        const data = BFData?.payment ? BFData?.payment : BFData?.payout;
-
         console.log("status:");
         console.log(status);
 
@@ -143,7 +141,10 @@ export const AppProvider = ({ children }) => {
             case "paymentPayeeSearching":
                 return c.PAGE_PAYEE_SEARCH;
             case "paymentAwaitingTransfer":
-                if (data?.method?.name === "ecom") return c.PAGE_PAYER_DATA;
+                /* if (BFData?.[dest]?.method?.name === "ecom") {
+                    ym("reachGoal", "ecom-payer-data-page");
+                    return c.PAGE_PAYER_DATA;
+                } */
                 return c.PAGE_PAY;
             case "paymentAwaitingConfirmationByPayee":
                 return c.PAGE_PAYEE_DATA;

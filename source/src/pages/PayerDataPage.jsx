@@ -121,6 +121,9 @@ const PayerDataPage = () => {
         console.log(payload);
 
         ym("reachGoal", "main-button", { caption: t("approve", ns) });
+        if (BFData?.[dest]?.method?.name == ecom) {
+            ym("reachGoal", "ecom-payer-data-entered");
+        }
 
         const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
         try {
@@ -143,6 +146,7 @@ const PayerDataPage = () => {
     };
 
     const threeDSCallback = () => {
+        ym("reachGoal", "external-redirect", { redirect_url: redirect_url });
         window.open(redirect_url, "_blank");
     };
 

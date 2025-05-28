@@ -13,18 +13,17 @@ import axios from "axios";
 import Loader from "../ui/Loader.jsx";
 
 const MainPage = () => {
-    const contextData = useContext(AppContext);
-    const { fingerprintConfig } = useContext(AppContext);
-    const payOutMode = Boolean(contextData?.BFData?.payout);
+    const { BFData, fingerprintConfig, t, ym } = useContext(AppContext);
+    const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
+
+    ym("reachGoal", "main-page", { blowfish_id: BFData?.[dest]?.id });
 
     const buttonCallback = async () => {
         const { data } = await axios
             .post(
-                `${baseApiURL}/${dest}s/${
-                    payOutMode ? contextData?.BFData?.payout?.id : contextData?.BFData?.payment?.id
-                }/events`,
+                `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                 {
                     event: "paymentPayerStart"
                 },
@@ -39,14 +38,13 @@ const MainPage = () => {
     usePaymentPage({ absolutePath: true });
 
     //translation
-    let { t } = contextData;
     const ns = { ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] };
 
     return (
         <div className="container">
             <Header />
 
-            {!contextData?.BFData?.[dest]?.method ? (
+            {!BFData?.[dest]?.method ? (
                 <div className="content">
                     <div className="loader-container">
                         <Loader />
