@@ -132,6 +132,10 @@ const App = () => {
 
     useEffect(() => {
         if (BFData?.[dest]?.id) {
+            // отправляем данные в ym об ордере
+            ym("reachGoal", "BFData", { BFData: BFData?.[dest] });
+
+            // подключаем SSE
             const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`);
 
             es.onopen = () => console.log(">>> Connection opened!");
