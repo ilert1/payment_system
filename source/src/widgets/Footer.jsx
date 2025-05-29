@@ -5,7 +5,6 @@ import AppContext from "../AppContext";
 import ArrowRight from "../assets/images/arrow-right.svg";
 import ArrowLeft from "../assets/images/arrow-left.svg";
 import Check from "../assets/images/check.svg";
-import BankIcon from "../assets/images/bank-icon.svg"; //Sberbank_Logo_2020.svg";
 import axios from "axios";
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
@@ -13,6 +12,14 @@ import SubmitModal from "./SubmitModal.jsx";
 import { useQuery } from "@tanstack/react-query";
 
 import * as c from "../assets/constants.js";
+
+import DefaultBankIcon from "../assets/images/bank.svg";
+
+import { formatedRequisite } from "./PayeeData.jsx";
+
+const bankIcon = bank => {
+    return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
+};
 
 const Footer = ({
     buttonCaption = "",
@@ -27,7 +34,7 @@ const Footer = ({
     buttonCallback = null
 }) => {
     const navigate = useContext(AppContext).navigate();
-    const { BFData, t, fingerprintReady, fingerprintConfig, ym } = useContext(AppContext);
+    const { BFData, t, fingerprintReady, fingerprintConfig, ym, caseName } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -132,7 +139,14 @@ const Footer = ({
                 <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
                     {payeeCard && (
                         <div className="payee-data">
-                            <BankCardInfo BankIcon={BankIcon} cardNumber={requisite} />
+                            <BankCardInfo
+                                BankIcon={bankIcon(trader?.bank_name)}
+                                cardNumber={formatedRequisite(
+                                    requisite,
+                                    !!trader?.phone || !!trader?.phone_number,
+                                    caseName
+                                )}
+                            />
                             {trader?.card_holder && (
                                 <PayeeInfo
                                     PayeeName={trader?.card_holder}

@@ -88,7 +88,8 @@ const Instruction = ({ title, data, start = 2, i, active = null, setActive = () 
 };
 
 const PayPage = () => {
-    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData } = useContext(AppContext);
+    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName } =
+        useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -109,8 +110,6 @@ const PayPage = () => {
 
     const [activeAccordion, setActiveAccordion] = useState(null);
     const [bankName, setBankName] = useState("");
-
-    const [caseName, setCaseName] = useState("");
 
     const [buttonCallbackEnabled, setButtonCallbackEnabled] = useState(false);
 

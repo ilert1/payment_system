@@ -12,30 +12,30 @@ const bankIcon = bank => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
 };
 
+export const formatedRequisite = (req, isPhone, caseName) => {
+    if (req) {
+        req = req.replace(/\s+/g, "");
+        if (isPhone) {
+            switch (caseName) {
+                case "tjs":
+                    return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
+                case "azn":
+                    return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
+                default:
+                    return req.replace(/^\+?(\d{1})(\d{3})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
+            }
+        } else {
+            return req.replace(/(.{4})/g, "$1 ");
+        }
+    }
+};
+
 const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, countryName }) => {
     const { BFData, getCurrencySymbol, t } = useContext(AppContext);
     const ns = { ns: ["PayeeCard", "PayHeader", "Pay"] };
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
-
-    const formatedRequisite = req => {
-        if (req) {
-            req = req.replace(/\s+/g, "");
-            if (isPhone) {
-                switch (caseName) {
-                    case "tjs":
-                        return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
-                    case "azn":
-                        return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
-                    default:
-                        return req.replace(/^\+?(\d{1})(\d{3})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
-                }
-            } else {
-                return req.replace(/(.{4})/g, "$1 ");
-            }
-        }
-    };
 
     return (
         <div className="payee-data">
@@ -55,7 +55,7 @@ const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, 
             <PayeeDataItem
                 img={CardsIcon}
                 label={t("requisite", ns)}
-                value={formatedRequisite(requisite)}
+                value={formatedRequisite(requisite, isPhone, caseName)}
                 copyData={requisite?.replace(/\s+/g, "")}
                 messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
                 comment={`${t("requisiteComment", ns)} ${

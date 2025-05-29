@@ -41,7 +41,9 @@ export const AppContext = createContext({
     payoutMode: null,
     status: undefined,
     setStatus: () => {},
-    ym: () => {}
+    ym: () => {},
+    caseName: "",
+    setCaseName: () => {}
 });
 
 // eslint-disable-next-line react/prop-types
@@ -63,6 +65,7 @@ export const AppProvider = ({ children }) => {
     const [lang, setLang] = useState(storedLang);
 
     const [status, setStatus] = useState();
+    const [caseName, setCaseName] = useState("");
 
     useEffect(() => {
         i18n.changeLanguage(lang);
@@ -191,7 +194,9 @@ export const AppProvider = ({ children }) => {
                     payoutMode,
                     status,
                     setStatus,
-                    ym
+                    ym,
+                    caseName,
+                    setCaseName
                 }}>
                 {children}
                 <CustomToastContainer />
