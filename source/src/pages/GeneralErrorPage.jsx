@@ -20,8 +20,8 @@ export const GeneralErrorPage = ({ cancel = false }) => {
     const ns = { ns: ["Common", "GeneralError"] };
 
     const returnCallback = () => {
-        ym("reachGoal", "fail-return-button", cancel ? { cancel_url: cancelUrl } : { fail_url: failUrl });
-        window.location.replace(cancel ? cancelUrl : failUrl);
+        ym("reachGoal", "fail-return-button", { cancel_url: cancelUrl, fail_url: failUrl });
+        window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl);
     };
 
     return (
@@ -57,8 +57,8 @@ export const GeneralErrorPage = ({ cancel = false }) => {
             <Footer
                 buttonCaption={t("returnBtn", ns)}
                 buttonCallback={returnCallback}
-                nextPage={cancel ? cancelUrl : failUrl}
-                nextEnabled={cancel ? cancelUrl : failUrl}
+                nextPage={cancel && cancelUrl ? cancelUrl : failUrl}
+                nextEnabled={cancel && cancelUrl ? cancelUrl : failUrl}
                 noIcon={true}
                 showCancelBtn={false}
             />
