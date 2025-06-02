@@ -13,7 +13,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import * as c from "../assets/constants.js";
 
-import DefaultBankIcon from "../assets/images/bank.svg";
+import DefaultBankIcon from "../assets/images/bank-icon.svg";
 
 import { formatedRequisite } from "./PayeeData.jsx";
 
@@ -141,6 +141,10 @@ const Footer = ({
                         <div className="payee-data">
                             <BankCardInfo
                                 BankIcon={bankIcon(trader?.bank_name)}
+                                onError={e => {
+                                    e.target.src = DefaultBankIcon;
+                                    e.target.classList.remove("logo");
+                                }}
                                 cardNumber={formatedRequisite(
                                     requisite,
                                     !!trader?.phone || !!trader?.phone_number,
