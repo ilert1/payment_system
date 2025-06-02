@@ -8,7 +8,7 @@ import Timer from "../ui/Timer";
 
 // eslint-disable-next-line react/prop-types
 export const GeneralErrorPage = ({ cancel = false }) => {
-    const { t, BFData } = useContext(AppContext);
+    const { t, BFData, ym } = useContext(AppContext);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
