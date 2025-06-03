@@ -114,7 +114,7 @@ const PaymentInstrumentPage = () => {
             <Footer
                 buttonCaption={t("next", ns)}
                 buttonCallback={buttonCallback}
-                nextPage={`/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`}
+                nextPage={`/${BFData?.[dest]?.id}/${c.PAGE_PAYER_DATA}`}
                 nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false}
             />
         </div>
