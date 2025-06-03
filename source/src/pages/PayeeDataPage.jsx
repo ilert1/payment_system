@@ -23,8 +23,10 @@ const PayeeDataPage = () => {
     };
 
     const buttonCallback = () => {
-        ym("reachGoal", "back-return-button", { back_redirect_url: BFData?.[dest]?.back_redirect_url });
-        redirect(BFData?.[dest]?.back_redirect_url);
+        ym("reachGoal", "back-return-button", {
+            back_redirect_url: BFData?.[dest]?.method?.context?.back_redirect_url
+        });
+        redirect(BFData?.[dest]?.method?.context?.back_redirect_url);
     };
 
     return (
@@ -49,9 +51,9 @@ const PayeeDataPage = () => {
             </div>
 
             <Footer
-                buttonCallback={BFData?.[dest]?.back_redirect_url ? buttonCallback : () => {}}
-                buttonCaption={BFData?.[dest]?.back_redirect_url ? t("backToSite", ns) : ""}
-                nextPage={BFData?.[dest]?.back_redirect_url}
+                buttonCallback={BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {}}
+                buttonCaption={BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : ""}
+                nextPage={BFData?.[dest]?.method?.context?.back_redirect_url}
                 payeeCard={true}
                 showCancelBtn={false}
             />
