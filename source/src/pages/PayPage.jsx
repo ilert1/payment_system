@@ -219,7 +219,7 @@ const PayPage = () => {
                 "dushanbe",
                 "alif",
                 "humo"
-            ].includes(trader?.bank)
+            ].includes(trader?.bank_name)
         ) {
             setCaseName(tjs);
             console.log(`caseName: tjs`);
