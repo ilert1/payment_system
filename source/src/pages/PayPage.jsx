@@ -88,7 +88,7 @@ const Instruction = ({ title, data, start = 2, i, active = null, setActive = () 
 };
 
 const PayPage = () => {
-    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName } =
+    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName, lang } =
         useContext(AppContext);
 
     //translation
@@ -172,8 +172,8 @@ const PayPage = () => {
     }, [trader]);
 
     useEffect(() => {
-        setBankName(getLocalBankName(method?.bank?.display_name));
-    }, [, method?.bank?.display_name]);
+        setBankName(getLocalBankName(method?.bank?.display_name, lang));
+    }, [, method?.bank?.display_name, lang]);
 
     useEffect(() => {
         setCaseName("");
