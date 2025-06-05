@@ -165,8 +165,8 @@ const PayPage = () => {
         if (trader?.account_number) {
             setRequisite(trader.account_number);
         }
-        if (trader?.iban) {
-            setRequisite(trader.iban);
+        if (trader?.iban_number) {
+            setRequisite(trader.iban_number);
         }
         console.log(trader);
     }, [trader]);
@@ -225,7 +225,7 @@ const PayPage = () => {
             console.log(`caseName: tjs`);
         }
 
-        if (trader?.iban) {
+        if (trader?.iban_number) {
             setCaseName(iban);
             console.log(`caseName: iban`);
         }

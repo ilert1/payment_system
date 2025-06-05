@@ -72,8 +72,8 @@ const Footer = ({
         if (trader?.phone_number) {
             setRequisite(trader.phone_number);
         }
-        if (trader?.iban) {
-            setRequisite(trader.iban);
+        if (trader?.iban_number) {
+            setRequisite(trader.iban_number);
         }
         console.log(trader);
     }, [trader]);
@@ -151,12 +151,7 @@ const Footer = ({
                                     caseName
                                 )}
                             />
-                            {trader?.card_holder && (
-                                <PayeeInfo
-                                    PayeeName={trader?.card_holder}
-                                    // showPayeeData={trader?.card_number || trader?.iban || trader?.account_number}
-                                />
-                            )}
+                            {trader?.card_holder && <PayeeInfo PayeeName={trader?.card_holder} />}
                         </div>
                     )}
                     <div className="buttons-container">
