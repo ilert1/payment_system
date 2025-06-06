@@ -36,7 +36,7 @@ export const getLanguage = () => {
 
 export const getLocalBankName = (display_name = {}, lang = null) => {
     if (Object.keys(display_name)?.length) {
-        const fallbackName = Object.hasOwn(display_name?.["name_en"])
+        const fallbackName = Object.hasOwn(display_name, "name_en")
             ? display_name?.["name_en"]
             : display_name?.[Object.keys(display_name)?.[0]];
         try {

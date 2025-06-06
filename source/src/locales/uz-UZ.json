@@ -78,6 +78,9 @@
                 "abh": "Abxaziya"
             }
         },
+        "steps_transgran_abh": {
+            "steps": "Telefon raqamini nusxa oling|Sber ilovasida 'to‘lash' tugmasini bosing|Boshqa davlatni va keyin {{country}} ni tanlang|Telefon raqamini joylashtiring|A-Mobile Hamyonini tanlang|{{amount}} summasini kiriting va 'Tasdiqlash' tugmasini bosing"
+        },
         "payed": "To'landi",
         "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
         "agree": "Yaxshi, tushundim",

@@ -383,27 +383,15 @@ const PayPage = () => {
                                 {/* трансгран кейс для Абхазия */}
                                 {[abh].includes(caseName) && transgran && (
                                     <div className="instructions_new transgran">
-                                        <ul>
-                                            <li>
-                                                <span>1. </span>
-                                                {t("steps_transgran.one", ns)}
-                                            </li>
-                                            <li>
-                                                <span>2. </span>
-                                                {t("steps_transgran.two", ns)}
-                                            </li>
-                                        </ul>
-
-                                        <Instruction
-                                            title={t("steps_transgran.sberbankTitle", ns)}
-                                            data={t("steps_transgran.sberbank", {
+                                        <InstructionItems
+                                            data={t("steps_transgran_abh.steps", {
                                                 country: t(`steps_transgran_new.country.${caseName}`, ns),
+                                                amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(
+                                                    BFData?.[dest]?.currency
+                                                )}`,
                                                 ...ns
                                             })}
-                                            start={2}
-                                            i={1}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
+                                            start={0}
                                         />
                                     </div>
                                 )}

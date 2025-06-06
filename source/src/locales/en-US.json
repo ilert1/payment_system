@@ -78,6 +78,9 @@
                 "abh": "Abkhazia"
             }
         },
+        "steps_transgran_abh": {
+            "steps": "Copy the phone number|In the Sber app, tap 'Transfer'|Select another country, then {{country}}|Paste the phone number|Select A-Mobile Wallet|Enter the amount {{amount}} and tap Approve"
+        },
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
         "agree": "Okay, understood",

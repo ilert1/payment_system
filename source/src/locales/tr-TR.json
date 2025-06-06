@@ -78,6 +78,9 @@
                 "abh": "Abhazya"
             }
         },
+        "steps_transgran_abh": {
+            "steps": "Telefon numarasını kopyalayın|Sber uygulamasında 'gönder' tuşuna basın|Başka bir ülkeye ve ardından {{country}}'yi seçin|Telefon numarasını yapıştırın|A-Mobile Cüzdan'ı seçin|{{amount}} tutarını girin ve 'Onayla' düğmesine basın"
+        },
         "payed": "Ödendi",
         "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
         "agree": "Tamam, anladım",
