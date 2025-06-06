@@ -321,14 +321,16 @@ const PayPage = () => {
                                                 {t("steps_transgran.two", ns)}
                                             </li>
                                         </ul>
-                                        <Instruction
-                                            title={t("steps_transgran.tbankTitle", ns)}
-                                            data={t("steps_transgran.tbank", ns)}
-                                            start={2}
-                                            i={1}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
+                                        {[tjs, azn].includes(caseName) && (
+                                            <Instruction
+                                                title={t("steps_transgran.tbankTitle", ns)}
+                                                data={t("steps_transgran.tbank", ns)}
+                                                start={2}
+                                                i={1}
+                                                active={activeAccordion}
+                                                setActive={setActiveAccordion}
+                                            />
+                                        )}
                                         <Instruction
                                             title={t("steps_transgran.sberbankTitle", ns)}
                                             data={t("steps_transgran.sberbank", ns)}
@@ -337,15 +339,16 @@ const PayPage = () => {
                                             active={activeAccordion}
                                             setActive={setActiveAccordion}
                                         />
-                                        <Instruction
-                                            title={t("steps_transgran.vtbbankTitle", ns)}
-                                            data={t("steps_transgran.vtbbank", ns)}
-                                            start={2}
-                                            i={3}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-
+                                        {[tjs, azn].includes(caseName) && (
+                                            <Instruction
+                                                title={t("steps_transgran.vtbbankTitle", ns)}
+                                                data={t("steps_transgran.vtbbank", ns)}
+                                                start={2}
+                                                i={3}
+                                                active={activeAccordion}
+                                                setActive={setActiveAccordion}
+                                            />
+                                        )}
                                         <Instruction
                                             title={`${t(`steps_transgran_new.title.local`, ns)}${
                                                 [tjs, azn, abh].includes(caseName)
