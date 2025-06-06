@@ -56,9 +56,9 @@
             "tbankTitle": "Instructions for payment via T-Bank",
             "tbank": "Select SBP transfer|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
             "sberbankTitle": "Instructions for payment via Sberbank",
-            "sberbank": "Select transfer by phone number/to another country|Select the country - Tajikistan|Go to the \"To card or account\" button|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
+            "sberbank": "Select transfer by phone number/to another country|Select the country - {{country}}|Go to the \"To card or account\" button|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
             "vtbbankTitle": "Instruction for payment via VTB",
-            "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose 'Tajikistan' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
+            "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
         "steps_azn": {
             "sberbank": "Copy the specified phone number|Open the Sber app|Select the transfer by phone number function — \"transfer to another country\"|Then, in the app, specify the destination country — Azerbaijan|Paste the previously copied phone number|Select the specified bank from the available \"E-wallet\" list|Enter the exact amount specified on the website|Check the details and click the \"Complete payment\" button"

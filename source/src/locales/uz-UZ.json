@@ -56,9 +56,9 @@
             "tbankTitle": "T-Bank orqali toʻlov boʻyicha qoʻllanma",
             "tbank": "SBP orqali pul o'tkazishni tanlang|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
             "sberbankTitle": "Sberbank orqali toʻlov boʻyicha qoʻllanma",
-            "sberbank": "Telefon raqami bo'yicha/ boshqa davlatga pul o'tkazishni tanlang|Davlatni tanlang - Tojikiston|\"Karta yoki hisob\" tugmasiga o'ting|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
+            "sberbank": "Telefon raqami bo'yicha/ boshqa davlatga pul o'tkazishni tanlang|Davlatni tanlang - {{country}}|\"Karta yoki hisob\" tugmasiga o'ting|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
             "vtbbankTitle": "VTB orqali toʻlov qilish boʻyicha qoʻllanma",
-            "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «Tojikiston» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
+            "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «{{country}}» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
         },
         "steps_azn": {
             "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|Sber ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — \"boshqa mamlakatga o'tkazma\"|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud \"E-wallet\" ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, \"To'lovni yakunlash\" tugmasini bosing"
