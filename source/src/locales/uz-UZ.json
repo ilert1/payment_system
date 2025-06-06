@@ -74,7 +74,8 @@
             "steps": "Boshqa davlatga oʻtkazma|Davlatni tanlang|Telefon raqamini kiriting|Bankni tanlang|Toʻlov qiling",
             "country": {
                 "tjs": "Tojikiston",
-                "azn": "Ozarbayjon"
+                "azn": "Ozarbayjon",
+                "abh": "Abxaziya"
             }
         },
         "payed": "To'landi",
@@ -247,7 +248,8 @@
         "transfer": "Pul o'tkazing",
         "country": {
             "tjs": "Tojikistonga",
-            "azn": "Ozarbayjonga"
+            "azn": "Ozarbayjonga",
+            "abh": "Abxaziyaga"
         },
         "to": "ga"
     }

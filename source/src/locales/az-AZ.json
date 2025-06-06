@@ -74,7 +74,8 @@
             "steps": "Başqa ölkəyə köçürmə|Ölkəni seçin|Telefon nömrəsini daxil edin|Bankı seçin|Ödəniş edin",
             "country": {
                 "tjs": "Tacikistan",
-                "azn": "Azərbaycan"
+                "azn": "Azərbaycan",
+                "abh": "Abxaziya"
             }
         },
         "payed": "Ödənilib",
@@ -247,7 +248,8 @@
         "transfer": "Köçürmə edin",
         "country": {
             "tjs": "Tacikistana",
-            "azn": "Azərbaycana"
+            "azn": "Azərbaycana",
+            "abh": "Abxaziyaya"
         },
         "to": "üzrə"
     }

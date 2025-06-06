@@ -74,7 +74,8 @@
             "steps": "Transfer to another country|Select country|Enter phone number|Select bank|Make payment",
             "country": {
                 "tjs": "Tajikistan",
-                "azn": "Azerbaijan"
+                "azn": "Azerbaijan",
+                "abh": "Abkhazia"
             }
         },
         "payed": "Paid",
@@ -247,7 +248,8 @@
         "transfer": "Make a transfer of",
         "country": {
             "tjs": "to Tajikistan",
-            "azn": "to Azerbaijan"
+            "azn": "to Azerbaijan",
+            "abh": "to Abkhazia"
         },
         "to": "to"
     }

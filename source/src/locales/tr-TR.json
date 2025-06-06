@@ -74,7 +74,8 @@
             "steps": "Başka bir ülkeye transfer|Ülke seçin|Telefon numarasını girin|Banka seçin|Ödeme yapın",
             "country": {
                 "tjs": "Tacikistan",
-                "azn": "Azerbaycan"
+                "azn": "Azerbaycan",
+                "abh": "Abhazya"
             }
         },
         "payed": "Ödendi",
@@ -247,7 +248,8 @@
         "transfer": "Transferi gerçekleştir",
         "country": {
             "tjs": "Tacikistan'a",
-            "azn": "Azerbaycan'a"
+            "azn": "Azerbaycan'a",
+            "abh": "Abhazya'ya"
         },
         "to": "için"
     }

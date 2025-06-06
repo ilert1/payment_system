@@ -18,6 +18,7 @@ import ArrowDown from "../assets/images/chevron-down.svg";
 const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
+const abh = "abh";
 
 const DefaultInstructionItems = ({ trader, bankName, amount, t, currency, first_step = true, start = 0 }) => {
     //translation
@@ -180,6 +181,7 @@ const PayPage = () => {
 
         console.log(`bankName: ${bankName}`);
 
+        //AZN case check
         if (
             [
                 "otherbankaz",
@@ -199,6 +201,7 @@ const PayPage = () => {
             console.log(`caseName: azn`);
         }
 
+        //TJS case check
         if (
             [
                 "tcell",
@@ -223,6 +226,12 @@ const PayPage = () => {
         ) {
             setCaseName(tjs);
             console.log(`caseName: tjs`);
+        }
+
+        //ABH case check
+        if (["a-mobile"].includes(trader?.bank_name)) {
+            setCaseName(abh);
+            console.log(`caseName: abh`);
         }
 
         if (trader?.iban_number) {
@@ -288,7 +297,7 @@ const PayPage = () => {
                             amount={BFData?.[dest]?.amount}
                             currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                             bankName={bankName}
-                            countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                            countryName={[tjs, azn, abh].includes(caseName) ? caseName : ""}
                             transgran={transgran}
                             timestamp={BFData?.[dest]?.created_at}
                         />
@@ -300,7 +309,7 @@ const PayPage = () => {
                         ) : (
                             <>
                                 {/* трансгран кейс для Таджикистана и Азербайджана */}
-                                {[tjs, azn].includes(caseName) && transgran && (
+                                {[tjs, azn, abh].includes(caseName) && transgran && (
                                     <div className="instructions_new transgran">
                                         <ul>
                                             <li>
@@ -339,7 +348,7 @@ const PayPage = () => {
 
                                         <Instruction
                                             title={`${t(`steps_transgran_new.title.local`, ns)}${
-                                                [tjs, azn].includes(caseName)
+                                                [tjs, azn, abh].includes(caseName)
                                                     ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
                                                     : ""
                                             }`}
@@ -390,7 +399,7 @@ const PayPage = () => {
                             bankName={bankName}
                             isPhone={!!trader?.phone || !!trader?.phone_number}
                             caseName={caseName}
-                            countryName={["tjs", "azn"].includes(caseName) ? caseName : ""}
+                            countryName={[tjs, azn, abh].includes(caseName) ? caseName : ""}
                             transgran={transgran}
                         />
                     </div>
