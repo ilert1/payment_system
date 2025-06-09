@@ -18,7 +18,7 @@ import Loader from "../ui/Loader.jsx";
 const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
-    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig, ym } = useContext(AppContext);
+    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig, status, ym } = useContext(AppContext);
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
@@ -31,7 +31,7 @@ const PayerDataPage = () => {
     const [isComplete, setIsComplete] = useState(false);
     const [ecom, setEcom] = useState(BFData?.[dest]?.method?.name === "ecom");
 
-    const [waitTransfer, setWaitTransfer] = useState(BFData?.[dest]?.status === "paymentAwaitingTransfer");
+    const [waitTransfer, setWaitTransfer] = useState(status === "paymentAwaitingTransfer");
     const [redirect_url, setRedirect_url] = useState("");
     const [cardHolderVisible, setCardHolderVisible] = useState(BFData?.[dest]?.method?.context?.provider == "BNNPay");
 
@@ -155,8 +155,8 @@ const PayerDataPage = () => {
     }, [BFData?.[dest]?.method?.name]);
 
     useEffect(() => {
-        setWaitTransfer(BFData?.[dest]?.status === "paymentAwaitingTransfer");
-    }, [BFData?.[dest]?.status]);
+        setWaitTransfer(status === "paymentAwaitingTransfer");
+    }, [status]);
 
     useEffect(() => {
         setRedirect_url(BFData?.[dest]?.method?.payee?.redirect_url);
@@ -166,16 +166,9 @@ const PayerDataPage = () => {
         setCardHolderVisible(BFData?.[dest]?.method?.context?.provider == "BNNPay");
     }, [BFData?.[dest]?.method?.context?.provider]);
 
-    /* useEffect(() => {
-        console.log(`getPayment enabled:${ecom && waitTransfer}`);
-    }, [ecom, waitTransfer]); */
-
     const { isFetching } = useQuery({
         queryKey: ["getPayment"],
-        // refetchInterval: 1000,
         enabled: waitTransfer && ecom,
-        // refetchIntervalInBackground: true,
-        // retry: false,
         refetchOnWindowFocus: false,
         queryFn: async () => {
             console.log(`getPayment: ${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`);

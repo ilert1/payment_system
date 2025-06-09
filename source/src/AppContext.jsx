@@ -132,6 +132,9 @@ export const AppProvider = ({ children }) => {
             case "paymentPayeeSearching":
                 return c.PAGE_PAYEE_SEARCH;
             case "paymentAwaitingTransfer":
+                if (BFData?.[dest]?.method?.name == "ecom") {
+                    return c.PAGE_PAYER_DATA;
+                }
                 return c.PAGE_PAY;
             case "paymentAwaitingConfirmationByPayee":
                 return c.PAGE_PAYEE_DATA;
