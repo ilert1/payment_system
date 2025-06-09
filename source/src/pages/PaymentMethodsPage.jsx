@@ -3,7 +3,7 @@ import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
 import { useContext, useState } from "react";
-import { AppContext, base58 } from "../AppContext";
+import { AppContext } from "../AppContext";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.jsx";
@@ -106,11 +106,11 @@ const PaymentMethodsPage = () => {
                 let details = e.response?.error?.details;
                 let message = e.response?.error?.message;
 
-                redirectUrl = `${BFData?.fail_url}?blowfishId=${BFData?.blowfish_id}${
+                /* redirectUrl = `${BFData?.fail_url}?blowfishId=${BFData?.blowfish_id}${
                     message ? `&message=${base58(message)}` : ""
                 }${details ? `&details=${base58(details)}` : ""}`;
                 setFailUrlParams(redirectUrl);
-                location.href.replace(redirectUrl);
+                location.href.replace(redirectUrl); */
             }
         }
     });

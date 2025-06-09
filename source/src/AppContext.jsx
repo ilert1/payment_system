@@ -8,16 +8,10 @@ import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
 import CurrencyLibrary from "./assets/library/Currency.json";
-import { binary_to_base58 } from "base58-js";
 
 import CustomToastContainer from "./ui/CustomToastContainer";
 
-import { ym as yandexMetrika, YMInitializer } from "react-yandex-metrika";
-
-var encoder = new TextEncoder();
-export const base58 = str => {
-    binary_to_base58(encoder.encode(str));
-};
+import ym, { YMInitializer } from "react-yandex-metrika";
 
 export const AppContext = createContext({
     navigate: null,
@@ -79,12 +73,6 @@ export const AppProvider = ({ children }) => {
 
     const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState();
 
-    const ym = (...params) => {
-        if (import.meta.env.VITE_YMETRICS_COUNTER) {
-            return () => yandexMetrika(...params);
-        }
-    };
-
     useEffect(() => {
         if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;
 
@@ -144,10 +132,6 @@ export const AppProvider = ({ children }) => {
             case "paymentPayeeSearching":
                 return c.PAGE_PAYEE_SEARCH;
             case "paymentAwaitingTransfer":
-                /* if (BFData?.[dest]?.method?.name === "ecom") {
-                    ym("reachGoal", "ecom-payer-data-page");
-                    return c.PAGE_PAYER_DATA;
-                } */
                 return c.PAGE_PAY;
             case "paymentAwaitingConfirmationByPayee":
                 return c.PAGE_PAYEE_DATA;
@@ -202,7 +186,7 @@ export const AppProvider = ({ children }) => {
                         payoutMode,
                         status,
                         setStatus,
-                        ym,
+                        ym: import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {},
                         caseName,
                         setCaseName
                     }}>
