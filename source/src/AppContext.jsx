@@ -12,7 +12,7 @@ import { binary_to_base58 } from "base58-js";
 
 import CustomToastContainer from "./ui/CustomToastContainer";
 
-import { ym as yandexMetrika } from "react-yandex-metrika";
+import { ym as yandexMetrika, YMInitializer } from "react-yandex-metrika";
 
 var encoder = new TextEncoder();
 export const base58 = str => {
@@ -81,7 +81,7 @@ export const AppProvider = ({ children }) => {
 
     const ym = (...params) => {
         if (import.meta.env.VITE_YMETRICS_COUNTER) {
-            yandexMetrika(...params);
+            return () => yandexMetrika(...params);
         }
     };
 
@@ -165,43 +165,52 @@ export const AppProvider = ({ children }) => {
     }, [status]);
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <AppContext.Provider
-                value={{
-                    navigate,
-                    supportDialog: {
-                        isActive: supportDialogIsActive,
-                        setIsActive: supportDialogSetIsActive
-                    },
-                    currentPaymentInstrument,
-                    setCurrentPaymentInstrument,
-                    t,
-                    fingerprintConfig: {
-                        headers: {
-                            "X-Fingerprint": fingerprint,
-                            "Accept-Language": [lang, ...navigator.languages].toString()
-                        }
-                    },
-                    getCurrencySymbol,
-                    paymentEcomPage,
-                    fingerprintReady,
-                    BFData,
-                    setBFData,
-                    failUrlParams,
-                    setFailUrlParams,
-                    lang,
-                    setLang,
-                    payoutMode,
-                    status,
-                    setStatus,
-                    ym,
-                    caseName,
-                    setCaseName
-                }}>
-                {children}
-                <CustomToastContainer />
-            </AppContext.Provider>
-        </QueryClientProvider>
+        <>
+            {import.meta.env.VITE_YMETRICS_COUNTER && (
+                <YMInitializer
+                    accounts={[Number(import.meta.env.VITE_YMETRICS_COUNTER)]}
+                    options={{ clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true }}
+                    version="2"
+                />
+            )}
+            <QueryClientProvider client={queryClient}>
+                <AppContext.Provider
+                    value={{
+                        navigate,
+                        supportDialog: {
+                            isActive: supportDialogIsActive,
+                            setIsActive: supportDialogSetIsActive
+                        },
+                        currentPaymentInstrument,
+                        setCurrentPaymentInstrument,
+                        t,
+                        fingerprintConfig: {
+                            headers: {
+                                "X-Fingerprint": fingerprint,
+                                "Accept-Language": [lang, ...navigator.languages].toString()
+                            }
+                        },
+                        getCurrencySymbol,
+                        paymentEcomPage,
+                        fingerprintReady,
+                        BFData,
+                        setBFData,
+                        failUrlParams,
+                        setFailUrlParams,
+                        lang,
+                        setLang,
+                        payoutMode,
+                        status,
+                        setStatus,
+                        ym,
+                        caseName,
+                        setCaseName
+                    }}>
+                    {children}
+                    <CustomToastContainer />
+                </AppContext.Provider>
+            </QueryClientProvider>
+        </>
     );
 };
 

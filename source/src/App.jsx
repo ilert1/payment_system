@@ -23,8 +23,6 @@ import Loader from "./ui/Loader.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
-// import { produce } from "immer";
-
 const defaultPages = [
     {
         path: c.PAGE_PAYMENT_METHODS, // "/payment-methods",
