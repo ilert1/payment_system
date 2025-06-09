@@ -9,6 +9,7 @@ services:
         VITE_API_URL: ${VITE_API_URL}
         VITE_SUPPORT_LINK: ${VITE_SUPPORT_LINK}
         VITE_DISPUT_CHAT: ${VITE_DISPUT_CHAT}
+        VITE_YMETRICS_COUNTER: ${VITE_YMETRICS_COUNTER}
     container_name: ${COMPOSE_PROJECT_NAME}
     hostname: ${COMPOSE_PROJECT_NAME}
     restart: unless-stopped
