@@ -6,4 +6,3 @@ services:
       - traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=https
       - traefik.http.routers.${COMPOSE_PROJECT_NAME}.service=pnp-frontend
       - traefik.http.services.${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=80
-      
