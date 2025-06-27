@@ -2,7 +2,8 @@ services:
   pnp-frontend:
     labels:
       - traefik.enable=true
-      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${PNP_FRONTEND_UI_URL}`)
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${PNP_FRONTEND_UI_URL}`) || Host(`${PNP_FRONTEND_UI_URL_2}`)
       - traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=https
       - traefik.http.routers.${COMPOSE_PROJECT_NAME}.service=pnp-frontend
       - traefik.http.services.${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=80
+      
