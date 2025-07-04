@@ -1,4 +1,4 @@
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
@@ -7,13 +7,13 @@ import AppContext from "../AppContext";
 import { CardNumberLast4 } from "../widgets/CardNumberLast4";
 
 import axios from "axios";
-import { CardNumberForm } from "../widgets/CardNumberForm.jsx";
+import { CardNumberForm } from "../widgets/CardNumberForm.tsx";
 import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
 
 import { toast } from "react-toastify";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../ui/Loader.jsx";
+import Loader from "../shared/ui/Loader.jsx";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 

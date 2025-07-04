@@ -1,16 +1,16 @@
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import Wallet from "../assets/images/wallet.png";
-import WalletPayout from "../assets/images/payOut/wallet.png";
+import Wallet from "../shared/assets/images/wallet.png";
+import WalletPayout from "../shared/assets/images/payOut/wallet.png";
 
 import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
 import { Outlet } from "react-router-dom";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import axios from "axios";
-import Loader from "../ui/Loader.jsx";
+import Loader from "../shared/ui/Loader.jsx";
 
 const MainPage = () => {
     const { BFData, fingerprintConfig, t, ym } = useContext(AppContext);

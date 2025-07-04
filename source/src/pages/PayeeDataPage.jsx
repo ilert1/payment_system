@@ -3,8 +3,8 @@ import Footer from "../widgets/Footer";
 
 import { useContext } from "react";
 import AppContext from "../AppContext";
-import { Loader } from "../ui/Loader";
-import { Timer } from "../ui/Timer";
+import { Loader } from "../shared/ui/Loader";
+import { Timer } from "../shared/ui/Timer";
 
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 

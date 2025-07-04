@@ -1,4 +1,4 @@
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
@@ -8,12 +8,12 @@ import AppContext from "../AppContext";
 import axios from "axios";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import PayHeader from "../widgets/PayHeader.jsx";
-import PayeeData from "../widgets/PayeeData.jsx";
-import ExternalPayInfo from "../widgets/ExternalPayInfo.jsx";
+import PayeeData from "../widgets/PayeeData.tsx";
+import ExternalPayInfo from "../widgets/ExternalPayInfo.tsx";
 import { getLocalBankName } from "../Localization.jsx";
-import Loader from "../ui/Loader.jsx";
+import Loader from "../shared/ui/Loader.jsx";
 import { useQuery } from "@tanstack/react-query";
-import ArrowDown from "../assets/images/chevron-down.svg";
+import ArrowDown from "../shared/assets/images/chevron-down.svg";
 
 const azn = "azn";
 const tjs = "tjs";

@@ -1,4 +1,4 @@
-import * as c from "./assets/constants.js";
+import * as c from "./shared/assets/constants.js";
 import { createContext, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,9 +7,9 @@ import i18n, { getLanguage } from "./Localization";
 import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
-import CurrencyLibrary from "./assets/library/Currency.json";
+import CurrencyLibrary from "./shared/assets/library/Currency.json";
 
-import CustomToastContainer from "./ui/CustomToastContainer";
+import CustomToastContainer from "./shared/ui/CustomToastContainer";
 
 import ym, { YMInitializer } from "react-yandex-metrika";
 

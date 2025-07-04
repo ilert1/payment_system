@@ -2,20 +2,20 @@
 import { useContext, useRef, useEffect, useState } from "react";
 import AppContext from "../AppContext";
 
-import ArrowRight from "../assets/images/arrow-right.svg";
-import ArrowLeft from "../assets/images/arrow-left.svg";
-import Check from "../assets/images/check.svg";
+import ArrowRight from "../shared/assets/images/arrow-right.svg";
+import ArrowLeft from "../shared/assets/images/arrow-left.svg";
+import Check from "../shared/assets/images/check.svg";
 import axios from "axios";
 import { PayeeInfo } from "./PayeeInfo";
 import { BankCardInfo } from "./BankCardInfo";
 import SubmitModal from "./SubmitModal.jsx";
 import { useQuery } from "@tanstack/react-query";
 
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 
-import DefaultBankIcon from "../assets/images/bank-icon.svg";
+import DefaultBankIcon from "../shared/assets/images/bank-icon.svg";
 
-import { formatedRequisite } from "./PayeeData.jsx";
+import { formatedRequisite } from "./PayeeData.tsx";
 
 const bankIcon = bank => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;

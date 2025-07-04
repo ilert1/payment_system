@@ -1,12 +1,12 @@
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
 import { useContext, useState } from "react";
 import AppContext from "../AppContext";
-import PlusCircle from "../assets/images/plus-circle.svg";
-import Timer from "../ui/Timer.jsx";
-import Loader from "../ui/Loader.jsx";
+import PlusCircle from "../shared/assets/images/plus-circle.svg";
+import Timer from "../shared/ui/Timer.jsx";
+import Loader from "../shared/ui/Loader.jsx";
 
 const PaymentWaitConfirmation = () => {
     const { navigate, t } = useContext(AppContext);

@@ -1,10 +1,10 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import Clock from "../assets/images/clock.svg";
+import Clock from "../shared/assets/images/clock.svg";
 import { useContext } from "react";
 import AppContext from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
-import Timer from "../ui/Timer";
+import Timer from "../shared/ui/Timer";
 
 const SuccessPage = () => {
     const { BFData, t, getCurrencySymbol, payoutMode, status, ym } = useContext(AppContext);

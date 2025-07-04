@@ -1,6 +1,6 @@
-import * as c from "./assets/constants.js";
-import "./assets/css/fonts.css";
-import "./assets/css/styles.css";
+import * as c from "./shared/assets/constants.js";
+import "./shared/assets/css/fonts.css";
+import "./shared/assets/css/styles.css";
 
 import PaymentInstrumentPage from "./pages/PaymentInstrumentPage";
 import PayerDataPage from "./pages/PayerDataPage";
@@ -18,8 +18,8 @@ import MainPage from "./pages/MainPage.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { useContext, useEffect } from "react";
-import AppContext from "./AppContext.jsx";
-import Loader from "./ui/Loader.jsx";
+import { AppContext } from "./AppContext.jsx";
+import Loader from "./shared/ui/Loader.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 

@@ -1,4 +1,4 @@
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 

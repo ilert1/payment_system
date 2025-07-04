@@ -1,10 +1,10 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import Clock from "../assets/images/clock.svg";
+import Clock from "../shared/assets/images/clock.svg";
 import { useContext } from "react";
 import AppContext from "../AppContext";
-import PlusCircle from "../assets/images/plus-circle.svg";
-import Timer from "../ui/Timer";
+import PlusCircle from "../shared/assets/images/plus-circle.svg";
+import Timer from "../shared/ui/Timer";
 
 // eslint-disable-next-line react/prop-types
 export const GeneralErrorPage = ({ cancel = false }) => {

@@ -1,14 +1,13 @@
-import * as c from "../assets/constants.js";
+import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import { Timer } from "../ui/Timer";
-
+import { Timer } from "../shared/ui/Timer";
 import { useContext, useState } from "react";
 import AppContext from "../AppContext";
 
-import Clock from "../assets/images/clock.svg";
-import FileIcon from "../assets/images/file.svg";
-import FilePdfIcon from "../assets/images/file-pdf.svg";
+import Clock from "../shared/assets/images/clock.svg";
+import FileIcon from "../shared/assets/images/file.svg";
+import FilePdfIcon from "../shared/assets/images/file-pdf.svg";
 
 import { FileUploader } from "react-drag-drop-files";
 

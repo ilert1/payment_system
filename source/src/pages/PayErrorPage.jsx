@@ -2,10 +2,10 @@ import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
 import { useContext } from "react";
-import Clock from "../assets/images/clock.svg";
+import Clock from "../shared/assets/images/clock.svg";
 import AppContext from "../AppContext";
-import PlusCircle from "../assets/images/plus-circle.svg";
-import Timer from "../ui/Timer";
+import PlusCircle from "../shared/assets/images/plus-circle.svg";
+import Timer from "../shared/ui/Timer";
 
 const PayErrorPage = ({ notFound = false }) => {
     const { t, BFData, ym } = useContext(AppContext);

@@ -1,4 +1,4 @@
-import { PAGE_MAIN } from "../assets/constants.js";
+import { PAGE_MAIN } from "../shared/assets/constants.js";
 import { useContext, useEffect } from "react";
 import AppContext from "../AppContext";
 import { useLocation } from "react-router-dom";
