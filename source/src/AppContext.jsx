@@ -15,10 +15,6 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 
 export const AppContext = createContext({
     navigate: null,
-    supportDialog: {
-        isActive: false,
-        setIsActive: null
-    },
     urlData: null,
     currentPaymentInstrument: null,
     setCurrentPaymentInstrument: null,
@@ -43,7 +39,6 @@ export const AppContext = createContext({
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }) => {
     const navigate = useNavigate;
-    const [supportDialogIsActive, supportDialogSetIsActive] = useState(false);
 
     const pathname = new URL(window.location.href).pathname;
     const payoutMode = pathname.split("/")[1] === "payouts";
@@ -164,10 +159,6 @@ export const AppProvider = ({ children }) => {
                 <AppContext.Provider
                     value={{
                         navigate,
-                        supportDialog: {
-                            isActive: supportDialogIsActive,
-                            setIsActive: supportDialogSetIsActive
-                        },
                         currentPaymentInstrument,
                         setCurrentPaymentInstrument,
                         t,

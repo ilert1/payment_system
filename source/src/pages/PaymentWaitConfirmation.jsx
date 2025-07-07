@@ -1,4 +1,3 @@
-import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
@@ -10,7 +9,6 @@ import Loader from "../shared/ui/Loader.jsx";
 
 const PaymentWaitConfirmation = () => {
     const { navigate, t } = useContext(AppContext);
-    const { setIsActive } = useContext(AppContext).supportDialog;
 
     //translation
     const ns = { ns: "PaymentWaitConfirmation" };
