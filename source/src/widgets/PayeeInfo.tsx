@@ -1,6 +1,3 @@
-import { useState, useEffect, useContext } from "react";
-import AppContext from "../AppContext";
-
 import UserIcon from "../shared/assets/images/user.svg?react";
 import PayeeHint from "../shared/ui/PayeeHint";
 

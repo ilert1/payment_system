@@ -1,12 +1,20 @@
 import { useMemo, useState } from "react";
 
-const LangVariants = { en: "en", az: "az", ky: "ky", tg: "tg", kk: "kk", ru: "ru", tr: "tr", uk: "uk", uz: "uz" };
-type LangType = keyof typeof LangVariants;
-
 interface LanguageSelectorProps {
-    lang: LangType;
-    setLang: (val: LangType) => void;
+    lang: string;
+    setLang: (val: string) => void;
 }
+const LangVariants: {
+    en: "en";
+    az: "az";
+    ky: "ky";
+    tg: "tg";
+    kk: "kk";
+    ru: "ru";
+    tr: "tr";
+    uk: "uk";
+    uz: "uz";
+};
 
 const LanguageSelector = (props: LanguageSelectorProps) => {
     const { lang = "en", setLang } = props;
@@ -17,7 +25,8 @@ const LanguageSelector = (props: LanguageSelectorProps) => {
         let output: any[] = [];
 
         Object.keys(LangVariants)?.forEach((item: string) => {
-            const langItem = item as LangType;
+            const langItem = item;
+
             if (lang.substring(0, 2) != langItem) {
                 output.push(
                     <div
@@ -43,7 +52,7 @@ const LanguageSelector = (props: LanguageSelectorProps) => {
                 setDropDown(!dropDown);
             }}>
             <div className="flag-container current-flag">
-                <img src={`/flags/${lang.substring(0, 2) as LangType}.svg`} alt={lang} />
+                <img src={`/flags/${lang.substring(0, 2)}.svg`} alt={lang} />
             </div>
             <div className={`drop-down ${dropDown ? "active" : ""}`}>{flags}</div>
         </div>

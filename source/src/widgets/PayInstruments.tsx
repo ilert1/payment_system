@@ -1,9 +1,10 @@
-import { useState, useContext } from "react";
-import AppContext from "../AppContext";
+import { useState } from "react";
+import { useAppContext } from "../AppContext";
 
 import SearchPayMethod from "../shared/ui/SearchPayMethod";
 import BankItem from "./BankItem";
 import { Loader } from "../shared/ui/Loader";
+import { useTranslation } from "react-i18next";
 
 const bankIcon = bank => {
     return bank ? `/banks/${bank}.svg` : "";
@@ -15,7 +16,9 @@ interface PayInstrumentsProps {
 }
 
 export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrumentsProps) => {
-    const { BFData, t, currentPaymentInstrument, setCurrentPaymentInstrument } = useContext(AppContext);
+    const { BFData, currentPaymentInstrument, setCurrentPaymentInstrument } = useAppContext();
+    const { t } = useTranslation();
+
     //translation
     const ns = { ns: ["Common", "PayMethod"] };
 

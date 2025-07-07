@@ -1,15 +1,15 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext } from "react";
 import Clock from "../shared/assets/images/clock.svg";
-import AppContext from "../AppContext";
 import PlusCircle from "../shared/assets/images/plus-circle.svg";
 import Timer from "../shared/ui/Timer";
+import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/AppContext";
 
 const PayErrorPage = ({ notFound = false }) => {
-    const { t, BFData, ym } = useContext(AppContext);
-
+    const { BFData, ym } = useAppContext();
+    const { t } = useTranslation();
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 

@@ -1,13 +1,12 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import Clock from "../shared/assets/images/clock.svg";
-import { useContext } from "react";
-import AppContext from "../AppContext";
+import Clock from "../shared/assets/images/clock.svg?react";
 import usePaymentPage from "../hooks/usePaymentPage";
 import Timer from "../shared/ui/Timer";
+import { useAppContext } from "../AppContext";
 
 const SuccessPage = () => {
-    const { BFData, t, getCurrencySymbol, payoutMode, status, ym } = useContext(AppContext);
+    const { BFData, t, getCurrencySymbol, payoutMode, status, ym } = useAppContext();
 
     //translation
     const ns = { ns: "Success" };
@@ -34,7 +33,11 @@ const SuccessPage = () => {
                     {status === "payoutPartiallyExecuted" ? (
                         <>
                             <p className="amount">
-                                + {BFData?.[dest]?.lots.reduce((accum, curVal) => accum + Number(curVal.amount), 0)}{" "}
+                                +{" "}
+                                {BFData?.[dest]?.lots.reduce(
+                                    (accum: number, curVal: { amount: any }) => accum + Number(curVal.amount),
+                                    0
+                                )}{" "}
                                 {getCurrencySymbol(BFData?.[dest]?.currency)}
                             </p>
                             <div className="instructions small">
@@ -54,7 +57,7 @@ const SuccessPage = () => {
                     <>
                         <p>{t("timerText", ns)}</p>
                         <div className="deadline-container">
-                            <img src={Clock} alt="" />
+                            <Clock />
                             <Timer
                                 down={true}
                                 className="deadline-timer"

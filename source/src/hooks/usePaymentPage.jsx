@@ -1,10 +1,10 @@
 import { PAGE_MAIN } from "../shared/assets/constants.js";
-import { useContext, useEffect } from "react";
-import AppContext from "../AppContext";
+import { useEffect } from "react";
+import { useAppContext } from "../AppContext";
 import { useLocation } from "react-router-dom";
 
 export default function usePaymentPage({ absolutePath = false }) {
-    const { paymentEcomPage, navigate, status } = useContext(AppContext);
+    const { paymentEcomPage, navigate, status } = useAppContext();
 
     const location = useLocation();
     const nav = navigate();

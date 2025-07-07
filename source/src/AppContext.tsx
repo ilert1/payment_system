@@ -1,59 +1,65 @@
 import * as c from "./shared/assets/constants.js";
-import { createContext, useState, useEffect, useCallback } from "react";
+import { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import i18n, { getLanguage } from "./Localization";
+import i18n, { getLanguage } from "./Localization.js";
 import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
 import CurrencyLibrary from "./shared/assets/library/Currency.json";
 
-import CustomToastContainer from "./shared/ui/CustomToastContainer";
+import CustomToastContainer from "./shared/ui/CustomToastContainer.js";
 
 import ym, { YMInitializer } from "react-yandex-metrika";
 
-export const AppContext = createContext({
-    navigate: null,
-    urlData: null,
-    currentPaymentInstrument: null,
-    setCurrentPaymentInstrument: null,
-    t: null,
-    fingerprintConfig: null,
-    getCurrencySymbol: null,
-    fingerprintReady: false,
-    BFData: null,
-    setBFData: () => {},
-    failUrlParams: null,
-    setFailUrlParams: null,
-    lang: null,
-    setLang: null,
-    payoutMode: null,
-    status: undefined,
-    setStatus: () => {},
-    ym: () => {},
-    caseName: "",
-    setCaseName: () => {}
-});
+export interface AppContextType {
+    navigate: ReturnType<typeof useNavigate> | null;
+    currentPaymentInstrument: any;
+    setCurrentPaymentInstrument: (value: any) => void;
+    t: (key: string, options?: any) => string;
+    fingerprintConfig: {
+        headers: {
+            "X-Fingerprint": string;
+            "Accept-Language": string;
+        };
+    };
+    getCurrencySymbol: (code: string) => string;
+    paymentEcomPage: () => string;
+    fingerprintReady: boolean;
+    BFData: any; // замените на тип BFDataType
+    setBFData: (data: any) => void;
+    failUrlParams: string;
+    setFailUrlParams: (value: string) => void;
+    lang: string;
+    setLang: (lang: string) => void;
+    payoutMode: boolean;
+    status: string | undefined;
+    setStatus: (status: string) => void;
+    ym: typeof ym | (() => void);
+    caseName: string;
+    setCaseName: (val: string) => void;
+}
+
+export const AppContext = createContext<AppContextType | null>(null);
 
 // eslint-disable-next-line react/prop-types
-export const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate;
 
     const pathname = new URL(window.location.href).pathname;
     const payoutMode = pathname.split("/")[1] === "payouts";
 
-    const queryClient = new QueryClient();
     const { t } = useTranslation();
 
-    const [BFData, setBFData] = useState(null);
+    const [BFData, setBFData] = useState<BFDataType | null>(null);
     const [failUrlParams, setFailUrlParams] = useState("");
-    const [fingerprint, setFingerprint] = useState(null);
+    const [fingerprint, setFingerprint] = useState("");
     const [fingerprintReady, setFingerprintReady] = useState(false);
     let storedLang = getLanguage();
+
     const [lang, setLang] = useState(storedLang);
 
-    const [status, setStatus] = useState();
+    const [status, setStatus] = useState("");
     const [caseName, setCaseName] = useState("");
 
     useEffect(() => {
@@ -64,7 +70,7 @@ export const AppProvider = ({ children }) => {
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
-    const storedCurrentPaymentInstrument = JSON.parse(localStorage.getItem("CurrentPaymentInstrument"));
+    const storedCurrentPaymentInstrument = JSON.parse(String(localStorage.getItem("CurrentPaymentInstrument")));
 
     const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState();
 
@@ -104,8 +110,8 @@ export const AppProvider = ({ children }) => {
         setFingerprintReady(true);
     }, []);
 
-    const getCurrencySymbol = code => {
-        if (Object.hasOwn(CurrencyLibrary, code)) {
+    const getCurrencySymbol = (code: string) => {
+        if (CurrencyLibrary.hasOwnProperty(code)) {
             return CurrencyLibrary[code].symbol_native;
         }
         return code;
@@ -155,41 +161,47 @@ export const AppProvider = ({ children }) => {
                     version="2"
                 />
             )}
-            <QueryClientProvider client={queryClient}>
-                <AppContext.Provider
-                    value={{
-                        navigate,
-                        currentPaymentInstrument,
-                        setCurrentPaymentInstrument,
-                        t,
-                        fingerprintConfig: {
-                            headers: {
-                                "X-Fingerprint": fingerprint,
-                                "Accept-Language": [lang, ...navigator.languages].toString()
-                            }
-                        },
-                        getCurrencySymbol,
-                        paymentEcomPage,
-                        fingerprintReady,
-                        BFData,
-                        setBFData,
-                        failUrlParams,
-                        setFailUrlParams,
-                        lang,
-                        setLang,
-                        payoutMode,
-                        status,
-                        setStatus,
-                        ym: import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {},
-                        caseName,
-                        setCaseName
-                    }}>
-                    {children}
-                    <CustomToastContainer />
-                </AppContext.Provider>
-            </QueryClientProvider>
+            <AppContext.Provider
+                value={{
+                    navigate,
+                    currentPaymentInstrument,
+                    setCurrentPaymentInstrument,
+                    t,
+                    fingerprintConfig: {
+                        headers: {
+                            "X-Fingerprint": fingerprint,
+                            "Accept-Language": [lang, ...navigator.languages].toString()
+                        }
+                    },
+                    getCurrencySymbol,
+                    paymentEcomPage,
+                    fingerprintReady,
+                    BFData,
+                    setBFData,
+                    failUrlParams,
+                    setFailUrlParams,
+                    lang,
+                    setLang,
+                    payoutMode,
+                    status,
+                    setStatus,
+                    ym: import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {},
+                    caseName,
+                    setCaseName
+                }}>
+                {children}
+                <CustomToastContainer />
+            </AppContext.Provider>
         </>
     );
 };
 
-export default AppContext;
+export const useAppContext = (): AppContextType => {
+    const ctx = useContext(AppContext);
+    if (!ctx) {
+        throw new Error("useAppContext must be used within AppProvider");
+    }
+    return ctx;
+};
+
+// export default AppContext;

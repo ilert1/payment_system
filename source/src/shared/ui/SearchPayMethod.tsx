@@ -1,12 +1,14 @@
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef } from "react";
 import { Input } from "./input/input";
-import { AppContext } from "@/AppContext";
 import { useTranslation } from "react-i18next";
 import Search from "../assets/images/search.svg?react";
 
 // import Search from "../assets/images/search.svg";
+interface SearchPayMethodProps {
+    setFilterText: (text: string) => void;
+}
 
-export const SearchPayMethod = ({ setFilterText }) => {
+export const SearchPayMethod = ({ setFilterText }: SearchPayMethodProps) => {
     const { t } = useTranslation();
     const ns = { ns: ["Common", "SearchPayMethod"] };
     const filterText = useRef<HTMLInputElement>(null);
@@ -14,7 +16,7 @@ export const SearchPayMethod = ({ setFilterText }) => {
     useEffect(() => {
         if (filterText.current) {
             filterText.current.addEventListener("input", () => {
-                setFilterText(filterText.current?.value);
+                setFilterText(filterText.current?.value || "");
             });
         }
     }, []);

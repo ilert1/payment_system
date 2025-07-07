@@ -5,19 +5,20 @@ interface BankItemProps {
     active: boolean;
     onClick: () => void;
     bankName: string;
-    BankIcon: SvgComponent;
+    bankIcon: string;
 }
 
 const BankItem = (props: BankItemProps) => {
-    const { active, onClick, bankName, BankIcon } = props;
-    const { isError, setIsError } = useState(false);
+    const { active, onClick, bankName, bankIcon } = props;
+    const [isError, setIsError] = useState(false);
 
     return (
         <div onClick={onClick} className={`bank-item ${active ? "active" : ""}`}>
             {isError ? (
                 <DefaultBankIcon />
             ) : (
-                <BankIcon
+                <img
+                    src={bankIcon}
                     onError={e => {
                         e.preventDefault();
                         setIsError(true);

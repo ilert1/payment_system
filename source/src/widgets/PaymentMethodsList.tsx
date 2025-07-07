@@ -1,5 +1,4 @@
-import { useEffect, useState, useContext } from "react";
-import AppContext from "../AppContext";
+import { useAppContext } from "../AppContext";
 
 import { Loader } from "../shared/ui/Loader";
 import MethodButton from "./MethodButton";
@@ -11,7 +10,7 @@ interface PaymentMethodsListProps {
 }
 
 export const PaymentMethodsList = ({ paymentMethods, isFetching }: PaymentMethodsListProps) => {
-    const { currentPaymentMethod, setCurrentPaymentMethod } = useContext(AppContext);
+    const { currentPaymentMethod, setCurrentPaymentMethod } = useAppContext();
     const { t } = useTranslation();
 
     //translation

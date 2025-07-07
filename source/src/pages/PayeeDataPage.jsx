@@ -1,15 +1,14 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext } from "react";
-import AppContext from "../AppContext";
 import { Loader } from "../shared/ui/Loader";
 import { Timer } from "../shared/ui/Timer";
 
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import { useAppContext } from "../AppContext";
 
 const PayeeDataPage = () => {
-    const { BFData, t, getCurrencySymbol, ym } = useContext(AppContext);
+    const { BFData, t, getCurrencySymbol, ym } = useAppContext();
 
     //translation
     const ns = { ns: "PayeeData" };

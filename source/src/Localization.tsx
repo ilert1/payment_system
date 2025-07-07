@@ -35,14 +35,16 @@ export const getLanguage = () => {
 };
 
 export const getLocalBankName = (display_name = {}, lang = null) => {
-    if (Object.keys(display_name)?.length) {
-        const fallbackName = Object.hasOwn(display_name, "name_en")
-            ? display_name?.["name_en"]
-            : display_name?.[Object.keys(display_name)?.[0]];
+    const d_name: Record<string, string> = display_name;
+
+    if (Object.keys(d_name)?.length) {
+        const fallbackName = d_name.hasOwnProperty("name_en")
+            ? d_name?.["name_en"]
+            : d_name?.[Object.keys(d_name)?.[0]];
         try {
             const currentLang = lang ? lang : getLanguage();
-            const currentLangExists = Object.hasOwn(display_name, `name_${currentLang}`);
-            return currentLangExists ? display_name?.[`name_${currentLang}`] : fallbackName;
+            const currentLangExists = d_name.hasOwnProperty(`name_${currentLang}`);
+            return currentLangExists ? d_name?.[`name_${currentLang}`] : fallbackName;
         } catch (e) {
             return fallbackName;
         }

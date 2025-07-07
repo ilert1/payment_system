@@ -1,46 +1,63 @@
 /* eslint-disable react/prop-types */
-import { useContext, useRef, useEffect, useState } from "react";
-import AppContext from "../AppContext";
+import { useRef, useEffect, useState } from "react";
+import { useAppContext } from "../AppContext";
 
-import ArrowRight from "../shared/assets/images/arrow-right.svg";
-import ArrowLeft from "../shared/assets/images/arrow-left.svg";
-import Check from "../shared/assets/images/check.svg";
+import ArrowRight from "../shared/assets/images/arrow-right.svg?react";
+import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
+import Check from "../shared/assets/images/check.svg?react";
 import axios from "axios";
-import { PayeeInfo } from "./PayeeInfo";
-import { BankCardInfo } from "./BankCardInfo";
-import SubmitModal from "./SubmitModal.jsx";
+import PayeeInfo from "./PayeeInfo";
+import BankCardInfo from "./BankCardInfo";
+import SubmitModal from "./SubmitModal";
 import { useQuery } from "@tanstack/react-query";
 
 import * as c from "../shared/assets/constants.js";
 
 import DefaultBankIcon from "../shared/assets/images/bank-icon.svg";
 
-import { formatedRequisite } from "./PayeeData.tsx";
+import { formatedRequisite } from "./PayeeData";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-const bankIcon = bank => {
+const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
 };
 
-const Footer = ({
-    buttonCaption = "",
-    nextPage = "",
-    showCancelBtn = true,
-    prevPage = "",
-    nextEnabled = true,
-    approve = false,
-    focused = false,
-    payeeCard = false,
-    noIcon = false,
-    buttonCallback = null
-}) => {
-    const navigate = useContext(AppContext).navigate();
-    const { BFData, t, fingerprintReady, fingerprintConfig, ym, caseName } = useContext(AppContext);
+interface FooterProps {
+    buttonCaption: string;
+    nextPage: string;
+    showCancelBtn: boolean;
+    prevPage: string;
+    nextEnabled: boolean;
+    approve: boolean;
+    focused: boolean;
+    payeeCard: boolean;
+    noIcon: boolean;
+    buttonCallback: () => void;
+}
 
+const Footer = (props: FooterProps) => {
+    const {
+        buttonCaption = "",
+        nextPage = "",
+        showCancelBtn = true,
+        prevPage = "",
+        nextEnabled = true,
+        approve = false,
+        focused = false,
+        payeeCard = false,
+        noIcon = false,
+        buttonCallback = () => {}
+    } = props;
+
+    const { BFData, fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
+    const navigate = useNavigate();
+    const { t } = useTranslation();
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const trader = BFData?.[dest]?.method?.payee?.data;
 
-    const [requisite, setRequisite] = useState(null);
+    const [requisite, setRequisite] = useState("");
 
     const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
 
@@ -51,11 +68,11 @@ const Footer = ({
     //translation
     const ns = { ns: "Footer" };
 
-    const mainButton = useRef();
+    const mainButton = useRef<HTMLButtonElement>(null);
 
     useEffect(() => {
         if (focused) {
-            mainButton.current.focus();
+            mainButton.current?.focus();
         }
     }, [focused]);
 
@@ -78,9 +95,9 @@ const Footer = ({
         console.log(trader);
     }, [trader]);
 
-    let buttonIcon = ArrowRight;
-    if (noIcon) buttonIcon = null;
-    if (approve) buttonIcon = Check;
+    let ButtonIcon: SvgComponent | null = ArrowRight;
+    if (noIcon) ButtonIcon = null;
+    if (approve) ButtonIcon = Check;
 
     useQuery({
         queryKey: ["cancel"],
@@ -140,16 +157,15 @@ const Footer = ({
                     {payeeCard && (
                         <div className="payee-data">
                             <BankCardInfo
-                                BankIcon={bankIcon(trader?.bank_name)}
+                                bankIcon={bankIcon(trader?.bank_name)}
                                 onError={e => {
                                     e.target.src = DefaultBankIcon;
                                     e.target.classList.remove("logo");
                                 }}
-                                cardNumber={formatedRequisite(
-                                    requisite,
-                                    !!trader?.phone || !!trader?.phone_number,
-                                    caseName
-                                )}
+                                cardNumber={
+                                    formatedRequisite(requisite, !!trader?.phone || !!trader?.phone_number, caseName) ??
+                                    ""
+                                }
                             />
                             {trader?.card_holder && <PayeeInfo PayeeName={trader?.card_holder} />}
                         </div>
@@ -162,7 +178,7 @@ const Footer = ({
                                 onClick={() => {
                                     navigate(prevPage, { replace: true });
                                 }}>
-                                <img src={ArrowLeft} alt="" />
+                                <ArrowLeft />
                             </button>
                         )}
 
@@ -180,7 +196,7 @@ const Footer = ({
                                     }
                                 }}>
                                 {buttonCaption}
-                                {buttonIcon && <img src={buttonIcon} alt="" />}
+                                {ButtonIcon && <ButtonIcon />}
                             </button>
                         )}
 

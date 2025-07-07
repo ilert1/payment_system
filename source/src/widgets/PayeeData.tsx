@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import AppContext from "../AppContext";
+import { useAppContext } from "../AppContext";
 import CardsIcon from "../shared/assets/images/cards.svg?react";
 import DollarCircleIcon from "../shared/assets/images/dollar-circle.svg?react";
 import User2Icon from "../shared/assets/images/user2.svg?react";
@@ -42,7 +41,7 @@ interface PayeeDataProps {
 }
 
 const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, countryName }: PayeeDataProps) => {
-    const { BFData, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, getCurrencySymbol } = useAppContext();
     const { t } = useTranslation();
     const ns = { ns: ["PayeeCard", "PayHeader", "Pay"] };
 

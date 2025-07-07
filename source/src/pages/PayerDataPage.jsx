@@ -2,8 +2,8 @@ import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
-import AppContext from "../AppContext";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../AppContext";
 import { CardNumberLast4 } from "../widgets/CardNumberLast4";
 
 import axios from "axios";
@@ -13,12 +13,12 @@ import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js
 import { toast } from "react-toastify";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../shared/ui/Loader.jsx";
+import Loader from "../shared/ui/Loader.tsx";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
-    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig, status, ym } = useContext(AppContext);
+    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig, status, ym } = useAppContext();
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };

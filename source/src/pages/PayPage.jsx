@@ -1,19 +1,19 @@
-import * as c from "../shared/assets/constants.js";
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import * as c from "@/shared/assets/constants.js";
+import Header from "@/widgets/Header";
+import Footer from "@/widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
-import AppContext from "../AppContext";
+import { useEffect, useState } from "react";
+import { useAppContext } from "@/AppContext";
 
 import axios from "axios";
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
-import PayHeader from "../widgets/PayHeader.jsx";
-import PayeeData from "../widgets/PayeeData.tsx";
-import ExternalPayInfo from "../widgets/ExternalPayInfo.tsx";
-import { getLocalBankName } from "../Localization.jsx";
-import Loader from "../shared/ui/Loader.jsx";
+import usePaymentPage from "@/hooks/usePaymentPage.jsx";
+import PayHeader from "@/widgets/PayHeader.tsx";
+import PayeeData from "@/widgets/PayeeData.tsx";
+import ExternalPayInfo from "@/widgets/ExternalPayInfo.tsx";
+import { getLocalBankName } from "@/Localization.tsx";
+import Loader from "@/shared/ui/Loader.tsx";
 import { useQuery } from "@tanstack/react-query";
-import ArrowDown from "../shared/assets/images/chevron-down.svg";
+import ArrowDown from "@/shared/assets/images/chevron-down.svg";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -69,7 +69,7 @@ const InstructionItems = ({ start = 0, data = "" }) => {
 };
 
 const Instruction = ({ title, data, start = 2, i, active = null, setActive = () => {}, children }) => {
-    const { ym } = useContext(AppContext);
+    const { ym } = useAppContext();
     const callback = () => {
         if (active == i) setActive(null);
         else setActive(i);
@@ -89,8 +89,7 @@ const Instruction = ({ title, data, start = 2, i, active = null, setActive = () 
 };
 
 const PayPage = () => {
-    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName, lang } =
-        useContext(AppContext);
+    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName, lang } = useAppContext();
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -254,14 +253,11 @@ const PayPage = () => {
                     `${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`,
                     fingerprintConfig
                 );
-                console.log(data);
 
                 if (data) {
                     if (data?.success) {
                         //данные получены успешно
                         console.log("setBFData");
-                        console.log(data);
-
                         setBFData(data);
                     } else {
                         //транзакция не найдена или не подлежит оплате

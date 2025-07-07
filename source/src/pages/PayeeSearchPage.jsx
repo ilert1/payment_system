@@ -2,14 +2,14 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
-import { useContext, useEffect, useState } from "react";
-import AppContext from "../AppContext";
+import { useEffect, useState } from "react";
+import { useAppContext } from "../AppContext";
 import { ProgressSteper } from "../widgets/ProgressSteper";
 
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 
 const PayeeSearchPage = () => {
-    const { BFData, currentPaymentInstrument, t, getCurrencySymbol } = useContext(AppContext);
+    const { BFData, currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();
 
     usePaymentPage({ absolutePath: false });
 

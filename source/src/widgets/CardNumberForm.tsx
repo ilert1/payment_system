@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-import { ChangeEventHandler, useContext } from "react";
-import AppContext from "../AppContext";
+import { ChangeEventHandle } from "react";
 import { useTranslation } from "react-i18next";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 

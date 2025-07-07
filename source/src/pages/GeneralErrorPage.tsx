@@ -1,15 +1,15 @@
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
-import Clock from "../shared/assets/images/clock.svg";
-import { useContext } from "react";
-import AppContext from "../AppContext";
-import PlusCircle from "../shared/assets/images/plus-circle.svg";
+import Clock from "../shared/assets/images/clock.svg?react";
+import PlusCircle from "../shared/assets/images/plus-circle.svg?react";
 import Timer from "../shared/ui/Timer";
+import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/AppContext";
 
 // eslint-disable-next-line react/prop-types
 export const GeneralErrorPage = ({ cancel = false }) => {
-    const { t, BFData, ym } = useContext(AppContext);
-
+    const { BFData, ym } = useAppContext();
+    const { t } = useTranslation();
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
@@ -37,6 +37,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                 </div>
 
                 <img className="error-image" src={PlusCircle} alt="" />
+                <PlusCircle />
 
                 {(failUrl || (cancelUrl && cancel)) && (
                     <>

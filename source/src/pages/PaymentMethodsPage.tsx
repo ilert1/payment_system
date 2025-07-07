@@ -2,8 +2,8 @@ import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header.jsx";
 import Footer from "../widgets/Footer.jsx";
 
-import { useContext, useState } from "react";
-import { AppContext } from "../AppContext.jsx";
+import { useState } from "react";
+import { useAppContext } from "../AppContext.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.js";
@@ -18,7 +18,7 @@ const PaymentMethodsPage = () => {
         t,
         BFData,
         setFailUrlParams
-    } = useContext(AppContext);
+    } = useAppContext();
 
     usePaymentPage({ absolutePath: false });
 

@@ -1,16 +1,15 @@
 interface BankCardInfoProps {
     cardNumber: string;
-    BankIcon: SvgComponent;
-    onError: () => void;
+    bankIcon: string;
+    onError: (e: any) => void;
 }
 
 export const BankCardInfo = (props: BankCardInfoProps) => {
-    const { BankIcon, cardNumber, onError } = props;
+    const { bankIcon, cardNumber, onError } = props;
 
     return (
         <div className="card-info">
-            {/* <img src={BankIcon} onError={onError} alt="" /> */}
-            <BankIcon onError={onError} />
+            <img src={bankIcon} onError={onError} alt="" />
             <p>{cardNumber}</p>
         </div>
     );

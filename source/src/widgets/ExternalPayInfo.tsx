@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import QRCode from "react-qr-code";
-import AppContext from "../AppContext";
 import { useTranslation } from "react-i18next";
 
 interface ExternalPayInfoProps {

@@ -1,17 +1,17 @@
-import * as c from "../shared/assets/constants.js";
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import * as c from "@/shared/assets/constants.js";
+import Header from "@/widgets/Header";
+import Footer from "@/widgets/Footer";
 
-import { useContext, useState } from "react";
-import AppContext from "../AppContext";
-import { PayInstruments } from "../widgets/PayInstruments.jsx";
+import { useState } from "react";
+import { useAppContext } from "@/AppContext";
+import { PayInstruments } from "@/widgets/PayInstruments.tsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import usePaymentPage from "@/hooks/usePaymentPage.jsx";
 
-const PaymentInstrumentPage = () => {
+export const PaymentInstrumentPage = () => {
     const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t, ym } =
-        useContext(AppContext);
+        useAppContext();
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
@@ -45,6 +45,8 @@ const PaymentInstrumentPage = () => {
                 payload,
                 fingerprintConfig
             );
+            console.log("PayInstruments data:");
+            console.log(data);
 
             console.log("paymentPayerGetInstruments response:");
             console.log(data);
@@ -120,5 +122,3 @@ const PaymentInstrumentPage = () => {
         </div>
     );
 };
-
-export default PaymentInstrumentPage;

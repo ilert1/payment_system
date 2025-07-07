@@ -5,15 +5,14 @@ import Footer from "../widgets/Footer";
 import Wallet from "../shared/assets/images/wallet.png";
 import WalletPayout from "../shared/assets/images/payOut/wallet.png";
 
-import { useContext, useEffect } from "react";
-import AppContext from "../AppContext";
+import { useAppContext } from "../AppContext";
 import { Outlet } from "react-router-dom";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import axios from "axios";
-import Loader from "../shared/ui/Loader.jsx";
+import Loader from "../shared/ui/Loader.tsx";
 
 const MainPage = () => {
-    const { BFData, fingerprintConfig, t, ym } = useContext(AppContext);
+    const { BFData, fingerprintConfig, t, ym } = useAppContext();
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;

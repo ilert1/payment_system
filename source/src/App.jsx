@@ -2,7 +2,7 @@ import * as c from "./shared/assets/constants.js";
 import "./shared/assets/css/fonts.css";
 import "./shared/assets/css/styles.css";
 
-import PaymentInstrumentPage from "./pages/PaymentInstrumentPage";
+import PaymentInstrumentPage from "./pages/PaymentInstrumentPage.js";
 import PayerDataPage from "./pages/PayerDataPage";
 import PayeeSearchPage from "./pages/PayeeSearchPage";
 import PayPage from "./pages/PayPage";
@@ -12,14 +12,14 @@ import PayErrorPage from "./pages/PayErrorPage";
 import GeneralErrorPage from "./pages/GeneralErrorPage";
 import PaymentConfirmationPage from "./pages/PaymentConfirmationPage";
 import PaymentWaitConfirmation from "./pages/PaymentWaitConfirmation";
-import PaymentMethodsPage from "./pages/PaymentMethodsPage.jsx";
+import PaymentMethodsPage from "./pages/PaymentMethodsPage.tsx";
 import MainPage from "./pages/MainPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useContext, useEffect } from "react";
-import { AppContext } from "./AppContext.jsx";
-import Loader from "./shared/ui/Loader.jsx";
+import { useEffect } from "react";
+import { useAppContext } from "./AppContext.tsx";
+import Loader from "./shared/ui/Loader.tsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
@@ -115,7 +115,8 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-    const { setBFData, BFData, fingerprintConfig, payoutMode, setStatus, ym } = useContext(AppContext);
+    const { setBFData, BFData, fingerprintConfig, payoutMode, setStatus, ym } = useAppContext();
+    console.log(payoutMode);
 
     // получаем BFID из URL
     let pathname = new URL(window.location.href).pathname;
@@ -125,6 +126,8 @@ const App = () => {
     const notFound = pathname.indexOf("not-found") >= 0;
 
     const payOutMode = Boolean(BFData?.payout);
+    console.log(payOutMode);
+
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 
@@ -178,6 +181,7 @@ const App = () => {
                             if (data?.[dest]?.method?.name === "ecom") {
                                 ym("reachGoal", "ecom-payer-data-page");
                             }
+                            console.log(data);
 
                             console.log("status");
                             console.log(data?.[dest]?.status);

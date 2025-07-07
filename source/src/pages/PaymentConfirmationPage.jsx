@@ -2,8 +2,8 @@ import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 import { Timer } from "../shared/ui/Timer";
-import { useContext, useState } from "react";
-import AppContext from "../AppContext";
+import { useState } from "react";
+import { useAppContext } from "../AppContext";
 
 import Clock from "../shared/assets/images/clock.svg";
 import FileIcon from "../shared/assets/images/file.svg";
@@ -30,7 +30,7 @@ const DropZoneContent = () => {
 };
 
 const PaymentConfirmationPage = () => {
-    const { navigate, t } = useContext(AppContext);
+    const { t } = useAppContext();
 
     //translation
     const ns = { ns: "PaymentConfirmation" };

@@ -1,25 +1,14 @@
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import Header from "@/widgets/Header";
+import Footer from "@/widgets/Footer";
 
-import { useContext, useState } from "react";
-import AppContext from "../AppContext";
-import PlusCircle from "../shared/assets/images/plus-circle.svg";
-import Timer from "../shared/ui/Timer.jsx";
-import Loader from "../shared/ui/Loader.jsx";
+import Timer from "@/shared/ui/Timer.tsx";
+import Loader from "@/shared/ui/Loader.tsx";
 
 const PaymentWaitConfirmation = () => {
-    const { navigate, t } = useContext(AppContext);
+    // const { navigate, t } = useAppContext();
 
     //translation
-    const ns = { ns: "PaymentWaitConfirmation" };
-
-    const [isComplete, setIsComplete] = useState(false);
-    const [buttonFocused, setButtonFocused] = useState(false);
-
-    const onComplete = () => {
-        setIsComplete(true);
-        setButtonFocused(true);
-    };
+    // const ns = { ns: "PaymentWaitConfirmation" };
 
     return (
         <div className="container">

@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AppContext } from "@/AppContext";
 import { useTranslation } from "react-i18next";
 
 export const PayeeHint = ({ showPopup, payeeData }) => {

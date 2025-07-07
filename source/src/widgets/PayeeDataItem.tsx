@@ -1,8 +1,8 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import CopyIcon from "../shared/assets/images/copy.svg?react";
 import CheckCircle from "../shared/assets/images/check-circle.svg?react";
-import AppContext from "../AppContext";
+import { useAppContext } from "../AppContext";
 
 interface PayeeDataItemProps {
     img: string | SvgComponent;
@@ -30,7 +30,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
     } = props;
 
     const [showPopup, setShowPopup] = useState(false);
-    const { ym } = useContext(AppContext);
+    const { ym } = useAppContext();
 
     let popupTimeout: number | undefined = undefined;
 
