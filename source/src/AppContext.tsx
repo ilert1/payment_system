@@ -203,5 +203,3 @@ export const useAppContext = (): AppContextType => {
     }
     return ctx;
 };
-
-// export default AppContext;

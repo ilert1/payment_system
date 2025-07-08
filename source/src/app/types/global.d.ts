@@ -57,6 +57,10 @@ declare global {
             method: {
                 name: string;
                 display_name: string;
+                bank: {
+                    name: string;
+                    display_name: Record<string, string>;
+                };
                 payer: {
                     schema: {
                         // TODO type ?
@@ -95,10 +99,14 @@ declare global {
                     };
                     required: null;
                     data: {
-                        bank_name: string;
-                        card_holder: string;
-                        card_number: string;
-                        direction_id: string;
+                        bank_name?: string;
+                        card_holder?: string;
+                        card_number?: string;
+                        direction_id?: string;
+                        phone?: string;
+                        phone_number?: string;
+                        account_number?: string;
+                        iban_number?: string;
                     };
                 };
                 context: {
@@ -123,6 +131,10 @@ declare global {
             method: {
                 name: string;
                 display_name: string;
+                bank: {
+                    name: string;
+                    display_name: Record<string, string>;
+                };
                 payer: {
                     schema: {
                         type: string;
@@ -159,10 +171,14 @@ declare global {
                     };
                     required: null;
                     data: {
-                        bank_name: string;
-                        card_holder: string;
-                        card_number: string;
-                        direction_id: string;
+                        bank_name?: string;
+                        card_holder?: string;
+                        card_number?: string;
+                        direction_id?: string;
+                        phone?: string;
+                        phone_number?: string;
+                        account_number?: string;
+                        iban_number?: string;
                     };
                 };
                 context: {

@@ -2,7 +2,7 @@ import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
 
 import { useEffect } from "react";
-import { useAppContext } from "@/AppContext";
+import { AppProvider, useAppContext } from "@/AppContext";
 import Loader from "@/shared/ui/Loader";
 import { ToastContainer } from "react-toastify";
 import { AppRouter } from "./providers/router";

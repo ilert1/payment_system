@@ -8,14 +8,13 @@ import axios from "axios";
 import usePaymentPage from "@/hooks/usePaymentPage.jsx";
 import PayHeader from "@/widgets/PayHeader";
 import PayeeData from "@/widgets/PayeeData";
-import ExternalPayInfo from "@/widgets/ExternalPayInfo";
 import { getLocalBankName } from "@/Localization";
 import Loader from "@/shared/ui/Loader";
 import { useQuery } from "@tanstack/react-query";
 import { AppRoutes } from "@/shared/const/router";
-import { Instruction } from "./Instruction";
-import { InstructionItems } from "./InstructionItems";
-import { DefaultInstructionItems } from "./DefaultInstructionItems";
+
+import { PaymentInstructions } from "./PaymentInstructions";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -23,7 +22,9 @@ const iban = "iban";
 const abh = "abh";
 
 const PayPage = () => {
-    const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName, lang } = useAppContext();
+    const { fingerprintConfig, t, getCurrencySymbol, caseName, setCaseName, lang } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
+    const setBfData = useBFStore(state => state.setBfData);
 
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -38,7 +39,7 @@ const PayPage = () => {
     const trader = method?.payee?.data;
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
-    const transgran = ["tsbp", "tcard2card"].includes(method?.name);
+    const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
 
     const [requisite, setRequisite] = useState<string | null>(null);
 
@@ -113,9 +114,10 @@ const PayPage = () => {
         setCaseName("");
 
         console.log(`bankName: ${bankName}`);
-
+        const traderBankName = trader?.bank_name;
         //AZN case check
         if (
+            traderBankName &&
             [
                 "otherbankaz",
                 "mpay",
@@ -128,7 +130,7 @@ const PayPage = () => {
                 "birbank",
                 "atb",
                 "m10"
-            ].includes(trader?.bank_name)
+            ].includes(traderBankName)
         ) {
             setCaseName(azn);
             console.log(`caseName: azn`);
@@ -136,6 +138,7 @@ const PayPage = () => {
 
         //TJS case check
         if (
+            traderBankName &&
             [
                 "tcell",
                 "babilon-m",
@@ -155,20 +158,20 @@ const PayPage = () => {
                 "dushanbe",
                 "alif",
                 "humo"
-            ].includes(trader?.bank_name)
+            ].includes(traderBankName)
         ) {
             setCaseName(tjs);
             console.log(`caseName: tjs`);
         }
 
         //ABH case check
-        if (["a-mobile"].includes(trader?.bank_name)) {
+        if (traderBankName && ["a-mobile"].includes(traderBankName)) {
             setCaseName(abh);
             setActiveAccordion(1);
             console.log(`caseName: abh`);
         }
 
-        if (trader?.iban_number) {
+        if (traderBankName && trader?.iban_number) {
             setCaseName(iban);
             console.log(`caseName: iban`);
         }
@@ -192,7 +195,7 @@ const PayPage = () => {
                     if (data?.success) {
                         //данные получены успешно
                         console.log("setBFData");
-                        setBFData(data);
+                        setBfData(data);
                     } else {
                         //транзакция не найдена или не подлежит оплате
                         console.log(data?.error);
@@ -229,129 +232,27 @@ const PayPage = () => {
                 <>
                     <div className="content">
                         <PayHeader
-                            amount={BFData?.[dest]?.amount}
-                            currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                            amount={BFData?.[dest]?.amount ?? ""}
+                            currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
                             bankName={bankName}
                             countryName={[tjs, azn, abh].includes(caseName) ? caseName : ""}
                             transgran={transgran}
-                            timestamp={BFData?.[dest]?.created_at}
+                            timestamp={BFData?.[dest]?.created_at ?? 0}
                         />
 
-                        {BFData?.[dest]?.method?.payee?.redirect_url &&
-                        BFData?.[dest]?.method?.name &&
-                        BFData?.[dest]?.method?.name === "phone_number" ? (
-                            <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
-                        ) : (
-                            <>
-                                {/* трансгран кейс для Таджикистана, Азербайджана */}
-                                {[tjs, azn].includes(caseName) && transgran && (
-                                    <div className="instructions_new transgran">
-                                        <ul>
-                                            <li>
-                                                <span>1. </span>
-                                                {t("steps_transgran.one", ns)}
-                                            </li>
-                                            <li>
-                                                <span>2. </span>
-                                                {t("steps_transgran.two", ns)}
-                                            </li>
-                                        </ul>
-
-                                        <Instruction
-                                            title={t("steps_transgran.tbankTitle", ns)}
-                                            data={t("steps_transgran.tbank", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                ...ns
-                                            })}
-                                            start={2}
-                                            i={1}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-                                        <Instruction
-                                            title={t("steps_transgran.sberbankTitle", ns)}
-                                            data={t("steps_transgran.sberbank", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                ...ns
-                                            })}
-                                            start={2}
-                                            i={2}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-                                        <Instruction
-                                            title={t("steps_transgran.vtbbankTitle", ns)}
-                                            data={t("steps_transgran.vtbbank", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                ...ns
-                                            })}
-                                            start={2}
-                                            i={3}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-
-                                        <Instruction
-                                            title={`${t(`steps_transgran_new.title.local`, ns)}${
-                                                [tjs, azn, abh].includes(caseName)
-                                                    ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
-                                                    : ""
-                                            }`}
-                                            i={4}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                            // isDefault={true}
-                                        >
-                                            <DefaultInstructionItems
-                                                trader={trader}
-                                                bankName={bankName}
-                                                amount={BFData?.[dest]?.amount}
-                                                currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                                                first_step={false}
-                                                start={2}
-                                            />
-                                        </Instruction>
-                                    </div>
-                                )}
-
-                                {/* трансгран кейс для Абхазия */}
-                                {[abh].includes(caseName) && transgran && (
-                                    <div className="instructions_new transgran">
-                                        <InstructionItems
-                                            data={t("steps_transgran_abh.steps", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(
-                                                    BFData?.[dest]?.currency
-                                                )}`,
-                                                ...ns
-                                            })}
-                                            start={0}
-                                        />
-                                    </div>
-                                )}
-
-                                {/*  кейс для iban  */}
-                                {caseName == iban && (
-                                    <>
-                                        <div className="instructions_new transgran">
-                                            <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
-                                        </div>
-                                    </>
-                                )}
-
-                                {/*  стандартная инструкция, если не выполнены другие условия */}
-                                {(!caseName || (caseName && !transgran && caseName !== iban)) && (
-                                    <div className="instructions_new">
-                                        <DefaultInstructionItems
-                                            trader={trader}
-                                            bankName={bankName}
-                                            amount={BFData?.[dest]?.amount}
-                                            currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                                        />
-                                    </div>
-                                )}
-                            </>
-                        )}
+                        <PaymentInstructions
+                            caseName={caseName}
+                            transgran={transgran}
+                            trader={trader}
+                            bankName={bankName}
+                            BFData={BFData}
+                            dest={dest}
+                            getCurrencySymbol={getCurrencySymbol}
+                            t={t}
+                            ns={ns}
+                            activeAccordion={activeAccordion}
+                            setActiveAccordion={setActiveAccordion}
+                        />
 
                         <PayeeData
                             requisite={requisite ?? ""}

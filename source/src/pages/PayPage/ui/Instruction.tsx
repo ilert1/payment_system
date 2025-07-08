@@ -31,7 +31,7 @@ export const Instruction = (props: InstructionProps) => {
                     <img className="arrow" src={ArrowDown} alt="" />
                 </button>
             </div>
-            {children ? children : <InstructionItems start={start} data={data} />}
+            {children ? children : <InstructionItems start={start} data={data ?? ""} />}
         </div>
     );
 };

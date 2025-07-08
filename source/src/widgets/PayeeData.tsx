@@ -32,7 +32,7 @@ export const formatedRequisite = (req: string, isPhone: boolean, caseName: strin
 
 interface PayeeDataProps {
     requisite: string;
-    trader: Trader;
+    trader?: Partial<Trader>;
     bankName: string;
     isPhone: boolean;
     caseName: string;
@@ -54,7 +54,7 @@ const PayeeData = (props: PayeeDataProps) => {
         <div className="payee-data">
             {bankName && (
                 <PayeeDataItem
-                    img={bankIcon(trader?.bank_name)}
+                    img={bankIcon(trader?.bank_name ?? "")}
                     onError={e => {
                         e.target.src = DefaultBankIcon;
                         e.target.classList.remove("logo");

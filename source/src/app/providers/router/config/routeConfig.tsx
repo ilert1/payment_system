@@ -2,7 +2,6 @@ import PaymentMethodsPage from "@/pages/PaymentMethodsPage";
 import PaymentInstrumentPage from "@/pages/PaymentInstrumentPage";
 import PayerDataPage from "@/pages/PayerDataPage";
 import PayeeSearchPage from "@/pages/PayeeSearchPage";
-import PayPage from "@/pages/PayPage";
 import PayeeDataPage from "@/pages/PayeeDataPage";
 import SuccessPage from "@/pages/SuccessPage";
 import PayErrorPage from "@/pages/PayErrorPage";
@@ -29,6 +28,7 @@ import PaymentConfirmationPage from "@/pages/PaymentConfirmationPage";
 import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
 import GeneralErrorPage from "@/pages/GeneralErrorPage";
 import MainPage from "@/pages/MainPage";
+import { PayPage } from "@/pages/PayPage";
 
 const commonRoutes: RouteProps[] = [
     { path: getRoutePaymentMethods(), element: <PaymentMethodsPage /> },
