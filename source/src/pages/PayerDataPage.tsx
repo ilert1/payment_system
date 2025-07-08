@@ -43,10 +43,10 @@ const PayerDataPage = () => {
     const [nextEnabled, setNextEnabled] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
 
-    const onComplete = numbers => {
+    const onComplete = (numbers: string) => {
         setIsComplete(true);
         setButtonFocused(true);
-        setCardNumberLast4(numbers);
+        // setCardNumberLast4(numbers);
     };
 
     const {
@@ -57,14 +57,11 @@ const PayerDataPage = () => {
         cardHolder,
         handleCardHolderChange,
         register,
-        setCardNumber,
-        setExpiryDate,
-        onSubmit,
         handleCardNumberInputChange,
         handleExpiryInputChange,
         handleExpiryKeyDown,
         handleCvvInputChange
-    } = useGetCardNumberFormData(t, ns);
+    } = useGetCardNumberFormData({ ns });
 
     const handleSubmit = async () => {
         setIsPressed(true);
@@ -192,7 +189,7 @@ const PayerDataPage = () => {
                 if (data) {
                     if (data?.success) {
                         //данные получены успешно
-                        setBFData(data);
+                        setBfData(data);
                     } else {
                         //транзакция не подлежит оплате
                         window.location.replace(
@@ -201,7 +198,7 @@ const PayerDataPage = () => {
                     }
                 }
                 return data;
-            } catch (e) {
+            } catch (e: any) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
                     window.location.replace(
@@ -287,7 +284,7 @@ const PayerDataPage = () => {
                 <Footer
                     buttonCaption={!redirect_url ? t("approve", ns) : t("pay", ns)}
                     buttonCallback={ecom && redirect_url ? threeDSCallback : ecom ? handleSubmit : buttonCallback}
-                    nextPage={AppRoutes.PAGE_PAYEE_SEARCH}
+                    nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
                     nextEnabled={nextEnabled}
                     approve={true}
                     focused={buttonFocused}

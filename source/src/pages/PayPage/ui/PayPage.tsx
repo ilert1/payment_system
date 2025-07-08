@@ -6,87 +6,21 @@ import { useAppContext } from "@/AppContext";
 
 import axios from "axios";
 import usePaymentPage from "@/hooks/usePaymentPage.jsx";
-import PayHeader from "@/widgets/PayHeader.tsx";
-import PayeeData from "@/widgets/PayeeData.tsx";
-import ExternalPayInfo from "@/widgets/ExternalPayInfo.tsx";
-import { getLocalBankName } from "@/Localization.tsx";
-import Loader from "@/shared/ui/Loader.tsx";
+import PayHeader from "@/widgets/PayHeader";
+import PayeeData from "@/widgets/PayeeData";
+import ExternalPayInfo from "@/widgets/ExternalPayInfo";
+import { getLocalBankName } from "@/Localization";
+import Loader from "@/shared/ui/Loader";
 import { useQuery } from "@tanstack/react-query";
-import ArrowDown from "@/shared/assets/images/chevron-down.svg";
 import { AppRoutes } from "@/shared/const/router";
+import { Instruction } from "./Instruction";
+import { InstructionItems } from "./InstructionItems";
+import { DefaultInstructionItems } from "./DefaultInstructionItems";
 
 const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
-
-const DefaultInstructionItems = ({ trader, bankName, amount, t, currency, first_step = true, start = 0 }) => {
-    //translation
-    const ns = { ns: ["Common", "Pay"] };
-    const startFrom = first_step ? 1 : 0;
-
-    return (
-        <ul>
-            {first_step && (
-                <li>
-                    <span>{start + startFrom}. </span>
-                    {t(`steps_new.one${trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}
-                </li>
-            )}
-            <li>
-                <span>{start + startFrom + 1}. </span>
-                {t(`steps_new.two${!!trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}{" "}
-                <span>{bankName}</span> {t("steps_new.onAmount", ns)}{" "}
-                <span>
-                    {amount}&nbsp;
-                    {currency}
-                </span>
-            </li>
-            <li>
-                <span>{start + startFrom + 2}. </span>
-                {t("steps_new.pressButton", ns)}
-                <span>
-                    {' "'}
-                    {t("steps_new.payed", ns)}
-                    {'"'}
-                </span>
-            </li>
-        </ul>
-    );
-};
-
-const InstructionItems = ({ start = 0, data = "" }) => {
-    return (
-        <ul>
-            {data.split("|").map((item, index) => (
-                <li key={index}>
-                    <span>{start + index + 1}. </span>
-                    {item}
-                </li>
-            ))}
-        </ul>
-    );
-};
-
-const Instruction = ({ title, data, start = 2, i, active = null, setActive = () => {}, children }) => {
-    const { ym } = useAppContext();
-    const callback = () => {
-        if (active == i) setActive(null);
-        else setActive(i);
-        ym("reachGoal", "instruction-button", { title: title });
-    };
-    return (
-        <div className={`accordion-container ${active == i ? "active" : ""}`}>
-            <div className="title">
-                <p onClick={callback}>{title}</p>
-                <button onClick={callback}>
-                    <img className="arrow" src={ArrowDown} alt="" />
-                </button>
-            </div>
-            {children ? children : <InstructionItems start={start} data={data} />}
-        </div>
-    );
-};
 
 const PayPage = () => {
     const { BFData, fingerprintConfig, t, getCurrencySymbol, setBFData, caseName, setCaseName, lang } = useAppContext();
@@ -106,9 +40,9 @@ const PayPage = () => {
 
     const transgran = ["tsbp", "tcard2card"].includes(method?.name);
 
-    const [requisite, setRequisite] = useState(null);
+    const [requisite, setRequisite] = useState<string | null>(null);
 
-    const [activeAccordion, setActiveAccordion] = useState(null);
+    const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
     const [bankName, setBankName] = useState("");
 
     const [buttonCallbackEnabled, setButtonCallbackEnabled] = useState(false);
@@ -269,7 +203,7 @@ const PayPage = () => {
                     }
                 }
                 return data;
-            } catch (e) {
+            } catch (e: any) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
                     window.location.replace(
@@ -366,12 +300,12 @@ const PayPage = () => {
                                             i={4}
                                             active={activeAccordion}
                                             setActive={setActiveAccordion}
-                                            isDefault={true}>
+                                            // isDefault={true}
+                                        >
                                             <DefaultInstructionItems
                                                 trader={trader}
                                                 bankName={bankName}
                                                 amount={BFData?.[dest]?.amount}
-                                                t={t}
                                                 currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                                                 first_step={false}
                                                 start={2}
@@ -412,7 +346,6 @@ const PayPage = () => {
                                             trader={trader}
                                             bankName={bankName}
                                             amount={BFData?.[dest]?.amount}
-                                            t={t}
                                             currency={getCurrencySymbol(BFData?.[dest]?.currency)}
                                         />
                                     </div>
@@ -421,7 +354,7 @@ const PayPage = () => {
                         )}
 
                         <PayeeData
-                            requisite={requisite}
+                            requisite={requisite ?? ""}
                             trader={trader}
                             bankName={bankName}
                             isPhone={!!trader?.phone || !!trader?.phone_number}
@@ -436,7 +369,7 @@ const PayPage = () => {
                         buttonCallback={() => {
                             setButtonCallbackEnabled(true);
                         }}
-                        nextPage={`../${AppRoutes.PAGE_PAYEE_DATA}`}
+                        nextPage={`../${AppRoutes.PAYEE_DATA_PAGE}`}
                         nextEnabled={!isFetching_ButtonCallback}
                         approve={true}
                     />

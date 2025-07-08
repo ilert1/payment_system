@@ -1,8 +1,8 @@
 import Header from "@/widgets/Header";
 import Footer from "@/widgets/Footer";
 
-import Timer from "@/shared/ui/Timer.tsx";
-import Loader from "@/shared/ui/Loader.tsx";
+import Timer from "@/shared/ui/Timer";
+import Loader from "@/shared/ui/Loader";
 
 const PaymentWaitConfirmation = () => {
     // const { navigate, t } = useAppContext();

@@ -6,14 +6,18 @@ import PlusCircle from "../shared/assets/images/plus-circle.svg";
 import Timer from "../shared/ui/Timer";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const PayErrorPage = ({ notFound = false }) => {
-    const { BFData, ym } = useAppContext();
+    const { ym } = useAppContext();
     const { t } = useTranslation();
+    const BFData = useBFStore(state => state.BFData);
+
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
-    const failUrl = BFData?.[dest]?.method?.context?.error_redirect_url;
+    const failUrl = BFData?.[dest]?.method?.context?.error_redirect_url ?? "";
+
     const buttonCallback = () => {
         ym("reachGoal", "fail-return-button", { fail_url: failUrl });
         window.location.replace(failUrl);
@@ -55,7 +59,7 @@ const PayErrorPage = ({ notFound = false }) => {
                 buttonCaption={t("returnBtn", ns)}
                 buttonCallback={buttonCallback}
                 nextPage={failUrl}
-                nextEnabled={failUrl}
+                nextEnabled={!!failUrl}
                 noIcon={true}
                 showCancelBtn={false}
             />

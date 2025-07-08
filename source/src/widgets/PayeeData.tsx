@@ -40,7 +40,9 @@ interface PayeeDataProps {
     countryName: string;
 }
 
-const PayeeData = ({ requisite, trader, bankName, isPhone, caseName, transgran, countryName }: PayeeDataProps) => {
+const PayeeData = (props: PayeeDataProps) => {
+    const { requisite, trader, bankName, isPhone, caseName, transgran, countryName } = props;
+
     const { BFData, getCurrencySymbol } = useAppContext();
     const { t } = useTranslation();
     const ns = { ns: ["PayeeCard", "PayHeader", "Pay"] };

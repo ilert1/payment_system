@@ -36,7 +36,8 @@ const PaymentConfirmationPage = () => {
     const ns = { ns: "PaymentConfirmation" };
 
     const [file, setFile] = useState(null);
-    const handleChange = file => {
+
+    const handleChange = (file: any) => {
         setFile(file);
     };
 
@@ -79,8 +80,8 @@ const PaymentConfirmationPage = () => {
             <Footer
                 buttonCaption={t("Common.approve")}
                 approve={true}
-                nextPage={AppRoutes.PAGE_PAYMENT_WAIT_CONFIRMATION}
-                nextEnabled={file}
+                nextPage={AppRoutes.PAYMENT_WAIT_CONFIRMATION}
+                nextEnabled={!!file}
             />
         </div>
     );

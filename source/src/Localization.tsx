@@ -34,7 +34,7 @@ export const getLanguage = () => {
     return language;
 };
 
-export const getLocalBankName = (display_name = {}, lang = null) => {
+export const getLocalBankName = (display_name = {}, lang: string | null = null) => {
     const d_name: Record<string, string> = display_name;
 
     if (Object.keys(d_name)?.length) {

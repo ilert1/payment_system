@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 
 interface CardNumberLast4Props {
-    onComplete: (val: string) => void;
+    onComplete?: (val: string) => void;
     showHidden: boolean;
 }
 
@@ -23,7 +23,7 @@ export const CardNumberLast4 = (props: CardNumberLast4Props) => {
                         for (let j = 0; j < items.length; j++) {
                             numbers.push(items[j].nodeValue);
                         }
-                        onComplete(numbers.join(""));
+                        onComplete?.(numbers.join(""));
                     } else {
                         // items[i + 1].focus();
                         (items[i + 1] as HTMLElement).focus();
