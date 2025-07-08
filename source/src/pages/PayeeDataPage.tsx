@@ -6,9 +6,11 @@ import { Timer } from "../shared/ui/Timer";
 
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import { useAppContext } from "../AppContext";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const PayeeDataPage = () => {
-    const { BFData, t, getCurrencySymbol, ym } = useAppContext();
+    const { t, getCurrencySymbol, ym } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
 
     //translation
     const ns = { ns: "PayeeData" };
@@ -17,7 +19,7 @@ const PayeeDataPage = () => {
 
     usePaymentPage({ absolutePath: false });
 
-    const redirect = url => {
+    const redirect = (url: string) => {
         document.location.replace(url);
     };
 
@@ -25,7 +27,7 @@ const PayeeDataPage = () => {
         ym("reachGoal", "back-return-button", {
             back_redirect_url: BFData?.[dest]?.method?.context?.back_redirect_url
         });
-        redirect(BFData?.[dest]?.method?.context?.back_redirect_url);
+        redirect(BFData?.[dest]?.method?.context?.back_redirect_url ?? "");
     };
 
     return (
@@ -35,8 +37,8 @@ const PayeeDataPage = () => {
             <div className="content">
                 <div className="header-container grow">
                     <h1>
-                        {t("waitConfirmation", ns)} {BFData?.amount}&nbsp;
-                        {getCurrencySymbol(BFData?.currency)}
+                        {t("waitConfirmation", ns)} {BFData?.[dest]?.amount}&nbsp;
+                        {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
                     </h1>
                 </div>
                 <div className="description low-mb low-mt">

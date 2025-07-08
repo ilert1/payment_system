@@ -1,4 +1,3 @@
-import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 import { Timer } from "../shared/ui/Timer";
@@ -10,6 +9,7 @@ import FileIcon from "../shared/assets/images/file.svg";
 import FilePdfIcon from "../shared/assets/images/file-pdf.svg";
 
 import { FileUploader } from "react-drag-drop-files";
+import { AppRoutes } from "@/shared/const/router";
 
 const DropZoneContent = () => {
     return (
@@ -79,7 +79,7 @@ const PaymentConfirmationPage = () => {
             <Footer
                 buttonCaption={t("Common.approve")}
                 approve={true}
-                nextPage={c.PAGE_PAYMENT_WAIT_CONFIRMATION}
+                nextPage={AppRoutes.PAGE_PAYMENT_WAIT_CONFIRMATION}
                 nextEnabled={file}
             />
         </div>

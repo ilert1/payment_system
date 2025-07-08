@@ -11,29 +11,28 @@ import BankCardInfo from "./BankCardInfo";
 import SubmitModal from "./SubmitModal";
 import { useQuery } from "@tanstack/react-query";
 
-import * as c from "../shared/assets/constants.js";
-
 import DefaultBankIcon from "../shared/assets/images/bank-icon.svg";
 
 import { formatedRequisite } from "./PayeeData";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { AppRoutes } from "@/shared/const/router";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
 };
 
 interface FooterProps {
-    buttonCaption: string;
-    nextPage: string;
-    showCancelBtn: boolean;
-    prevPage: string;
-    nextEnabled: boolean;
-    approve: boolean;
-    focused: boolean;
-    payeeCard: boolean;
-    noIcon: boolean;
-    buttonCallback: () => void;
+    buttonCaption?: string;
+    nextPage?: string;
+    showCancelBtn?: boolean;
+    prevPage?: string;
+    nextEnabled?: boolean;
+    approve?: boolean;
+    focused?: boolean;
+    payeeCard?: boolean;
+    noIcon?: boolean;
+    buttonCallback?: () => void;
 }
 
 const Footer = (props: FooterProps) => {
@@ -123,7 +122,7 @@ const Footer = (props: FooterProps) => {
                 console.log(data);
                 if (data?.success) {
                     //TODO проверить, думаю этот редирект не нужен, так как выполняется смена статуса через SSE
-                    navigate(`/${dest}s/${BFData?.[dest]?.id}/${c.PAGE_CANCEL}`, { replace: true });
+                    navigate(`/${dest}s/${BFData?.[dest]?.id}/${AppRoutes.CANCEL_PAGE}`, { replace: true });
                 }
                 return data;
             } catch (error) {

@@ -1,4 +1,3 @@
-import * as c from "../shared/assets/constants.js";
 import Header from "../widgets/Header.jsx";
 import Footer from "../widgets/Footer.jsx";
 
@@ -8,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.js";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import { AppRoutes } from "@/shared/const/router.js";
 
 const PaymentMethodsPage = () => {
     const {
@@ -139,8 +139,8 @@ const PaymentMethodsPage = () => {
                 buttonCallback={buttonCallback}
                 nextPage={
                     currentPaymentMethod?.bank_name || currentPaymentMethod?.payment_type == "sbp"
-                        ? `/${BFData?.blowfish_id}/${c.PAGE_PAYER_DATA}`
-                        : `/${BFData?.blowfish_id}/${c.PAGE_PAYMENT_INSTRUMENT}`
+                        ? `/${BFData?.blowfish_id}/${AppRoutes.PAYER_DATA_PAGE}`
+                        : `/${BFData?.blowfish_id}/${AppRoutes.PAYMENT_INSTRUMENT}`
                 }
                 nextEnabled={!isFetching && currentPaymentMethod != null ? true : false}
             />

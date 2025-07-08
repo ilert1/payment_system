@@ -1,15 +1,31 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { z } from "zod";
 
-export const useGetCardNumberFormData = (t, ns) => {
+interface UseGetCardNumberFormDataProps {
+    ns: {
+        ns: string[];
+    };
+}
+
+export type CardFormSchemaType = {
+    cardNumber: string;
+    expiryDate: string;
+    cvv: string;
+    cardHolder: string;
+};
+
+export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) => {
+    const { ns } = props;
+    const { t } = useTranslation();
+
     const cardFormSchema = z.object({
         cardNumber: z
             .string()
             .regex(/^\d{4} \d{4} \d{4} \d{4}$/, t("errors.cardValidationError", ns)) // проверяем формат с пробелами
             .length(19, t("errors.cardValidationError", ns)),
-
         expiryDate: z.string().regex(/^(0[1-9]|1[0-2])\/\d{2}$/, t("errors.expireDateError", ns)),
         cvv: z.string().length(3, t("errors.cvvError", ns)),
         cardHolder: z
@@ -23,7 +39,7 @@ export const useGetCardNumberFormData = (t, ns) => {
         handleSubmit,
         formState: { errors },
         clearErrors
-    } = useForm({
+    } = useForm<CardFormSchemaType>({
         resolver: zodResolver(cardFormSchema),
         mode: "onBlur"
     });
@@ -33,7 +49,7 @@ export const useGetCardNumberFormData = (t, ns) => {
     const [cvv, setCvv] = useState("");
     const [cardHolder, setCardHolder] = useState("");
 
-    const handleCardNumberInputChange = e => {
+    const handleCardNumberInputChange = (e: any) => {
         clearErrors("cardNumber");
         let value = e.target.value.replace(/\D/g, "");
 
@@ -42,13 +58,13 @@ export const useGetCardNumberFormData = (t, ns) => {
         setCardNumber(value.slice(0, 19));
     };
 
-    const handleCvvInputChange = e => {
+    const handleCvvInputChange = (e: any) => {
         clearErrors("cvv");
         let value = e.target.value.replace(/\D/g, "");
         setCvv(value.slice(0, 3));
     };
 
-    const handleExpiryInputChange = e => {
+    const handleExpiryInputChange = (e: any) => {
         clearErrors("expiryDate");
         let value = e.target.value.replace(/\D/g, "");
 
@@ -63,13 +79,13 @@ export const useGetCardNumberFormData = (t, ns) => {
         setExpiryDate(value.slice(0, 5));
     };
 
-    const handleExpiryKeyDown = e => {
+    const handleExpiryKeyDown = (e: any) => {
         if (e.key === "Backspace" && e.target.selectionStart === 3) {
             e.preventDefault();
         }
     };
 
-    const handleCardHolderChange = e => {
+    const handleCardHolderChange = (e: any) => {
         clearErrors("card_holder");
         let value = e.target.value.replace(/[^a-zA-Zа-яА-Я\s]/g, "");
 

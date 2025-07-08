@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
-import { ChangeEventHandle } from "react";
+import { ChangeEventHandler, KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { CardFormSchemaType } from "@/hooks/useGetCardNumberFormData";
 
 interface CardNumberFormProps {
     disabled: boolean;
@@ -16,27 +17,19 @@ interface CardNumberFormProps {
     handleExpiryInputChange: ChangeEventHandler<HTMLInputElement>;
     handleCvvInputChange: ChangeEventHandler<HTMLInputElement>;
     handleCardHolderChange: ChangeEventHandler<HTMLInputElement>;
-    // handleCardNumberInputChange: (val: string) => void;
-    // handleExpiryInputChange: (val: string) => void;
-    // handleCvvInputChange: (val: string) => void;
-    // handleCardHolderChange: (val: string) => void;
+    handleExpiryKeyDown: (e: KeyboardEvent) => void;
 
-    handleExpiryKeyDown: () => void;
-
-    // todo
-    errors: FieldErrors;
-    register: UseFormRegister<FieldValues>;
+    errors: FieldErrors<CardFormSchemaType>;
+    register: UseFormRegister<CardFormSchemaType>;
 }
 
 export const CardNumberForm = (props: CardNumberFormProps) => {
     const { t } = useTranslation();
     const {
         register,
-        // handleSubmit,
         errors,
         cardNumber,
         expiryDate,
-        // onSubmit,
         handleCardNumberInputChange,
         handleExpiryInputChange,
         handleExpiryKeyDown,
@@ -51,7 +44,10 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
     const ns = { ns: ["PayerData"] };
 
     return (
-        <div className="card-number-form" disabled={disabled}>
+        <div
+            className="card-number-form"
+            // disabled={disabled}
+        >
             <form>
                 <div className="card-number-form__wrapper">
                     <div className="card-number-form__item">

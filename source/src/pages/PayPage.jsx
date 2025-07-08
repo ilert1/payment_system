@@ -1,4 +1,3 @@
-import * as c from "@/shared/assets/constants.js";
 import Header from "@/widgets/Header";
 import Footer from "@/widgets/Footer";
 
@@ -14,6 +13,7 @@ import { getLocalBankName } from "@/Localization.tsx";
 import Loader from "@/shared/ui/Loader.tsx";
 import { useQuery } from "@tanstack/react-query";
 import ArrowDown from "@/shared/assets/images/chevron-down.svg";
+import { AppRoutes } from "@/shared/const/router";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -263,14 +263,18 @@ const PayPage = () => {
                         //транзакция не найдена или не подлежит оплате
                         console.log(data?.error);
                         setNeedRefreshBFData(false);
-                        window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
+                        window.location.replace(
+                            `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+                        );
                     }
                 }
                 return data;
             } catch (e) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
-                    window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
+                    window.location.replace(
+                        `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+                    );
                 }
             } finally {
                 setNeedRefreshBFData(false);
@@ -432,7 +436,7 @@ const PayPage = () => {
                         buttonCallback={() => {
                             setButtonCallbackEnabled(true);
                         }}
-                        nextPage={`../${c.PAGE_PAYEE_DATA}`}
+                        nextPage={`../${AppRoutes.PAGE_PAYEE_DATA}`}
                         nextEnabled={!isFetching_ButtonCallback}
                         approve={true}
                     />

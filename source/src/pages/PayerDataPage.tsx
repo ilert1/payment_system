@@ -1,24 +1,27 @@
-import * as c from "../shared/assets/constants.js";
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import Header from "@/widgets/Header";
+import Footer from "@/widgets/Footer";
 
 import { useEffect, useState } from "react";
-import { useAppContext } from "../AppContext";
-import { CardNumberLast4 } from "../widgets/CardNumberLast4";
+import { useAppContext } from "@/AppContext";
+import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
 
 import axios from "axios";
-import { CardNumberForm } from "../widgets/CardNumberForm.tsx";
-import { useGetCardNumberFormData } from "../widgets/useGetCardNumberFormData.js";
+import { CardNumberForm } from "@/widgets/CardNumberForm";
 
 import { toast } from "react-toastify";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../shared/ui/Loader.tsx";
+import Loader from "../shared/ui/Loader";
+import { useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData.js";
+import { AppRoutes } from "@/shared/const/router.js";
+import { useBFStore } from "@/shared/store/bfDataStore.js";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
 const PayerDataPage = () => {
-    const { setCardNumberLast4, BFData, setBFData, t, fingerprintConfig, status, ym } = useAppContext();
+    const { t, fingerprintConfig, status, ym } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
+    const setBfData = useBFStore(state => state.setBfData);
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
@@ -121,7 +124,7 @@ const PayerDataPage = () => {
         console.log(payload);
 
         ym("reachGoal", "main-button", { caption: t("approve", ns) });
-        if (BFData?.[dest]?.method?.name == ecom) {
+        if (BFData?.[dest]?.method?.name == "ecom") {
             ym("reachGoal", "ecom-payer-data-entered");
         }
 
@@ -135,7 +138,7 @@ const PayerDataPage = () => {
             if (!data.data.success) {
                 console.log(data.data.error);
             }
-        } catch (error) {
+        } catch (error: any) {
             toast.error(error.message, { autoClose: 2000, closeButton: <></> });
         }
     };
@@ -152,6 +155,7 @@ const PayerDataPage = () => {
 
     useEffect(() => {
         setEcom(BFData?.[dest]?.method?.name === "ecom");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [BFData?.[dest]?.method?.name]);
 
     useEffect(() => {
@@ -159,11 +163,13 @@ const PayerDataPage = () => {
     }, [status]);
 
     useEffect(() => {
-        setRedirect_url(BFData?.[dest]?.method?.payee?.redirect_url);
-    }, [BFData?.[dest]?.method?.payee?.redirect_url]);
+        setRedirect_url(BFData?.[dest]?.method?.context?.back_redirect_url ?? "");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [BFData?.[dest]?.method?.context?.back_redirect_url]);
 
     useEffect(() => {
         setCardHolderVisible(BFData?.[dest]?.method?.context?.provider == "BNNPay");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [BFData?.[dest]?.method?.context?.provider]);
 
     const { isFetching } = useQuery({
@@ -189,14 +195,18 @@ const PayerDataPage = () => {
                         setBFData(data);
                     } else {
                         //транзакция не подлежит оплате
-                        window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
+                        window.location.replace(
+                            `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+                        );
                     }
                 }
                 return data;
             } catch (e) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
-                    window.location.replace(`/${payOutMode ? c.PAGE_PAYOUT_NOT_FOUND : c.PAGE_PAYMENT_NOT_FOUND}`);
+                    window.location.replace(
+                        `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+                    );
                 }
             }
         }
@@ -228,7 +238,7 @@ const PayerDataPage = () => {
         }
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [, cardNumber, expiryDate, cvv, cardHolder, isComplete, errors, ecom, waitTransfer, isFetching, isPressed]);
+    }, [cardNumber, expiryDate, cvv, cardHolder, isComplete, errors, ecom, waitTransfer, isFetching, isPressed]);
 
     return (
         <div className="container">
@@ -240,13 +250,9 @@ const PayerDataPage = () => {
                             <h1 className="grow">{t("enterYourCard", ns)}</h1>
                             <CardNumberForm
                                 register={register}
-                                // handleSubmit={handleSubmit}
                                 errors={errors}
                                 cardNumber={cardNumber}
-                                setCardNumber={setCardNumber}
                                 expiryDate={expiryDate}
-                                setExpiryDate={setExpiryDate}
-                                onSubmit={onSubmit}
                                 handleCardNumberInputChange={handleCardNumberInputChange}
                                 handleExpiryInputChange={handleExpiryInputChange}
                                 handleExpiryKeyDown={handleExpiryKeyDown}
@@ -281,7 +287,7 @@ const PayerDataPage = () => {
                 <Footer
                     buttonCaption={!redirect_url ? t("approve", ns) : t("pay", ns)}
                     buttonCallback={ecom && redirect_url ? threeDSCallback : ecom ? handleSubmit : buttonCallback}
-                    nextPage={c.PAGE_PAYEE_SEARCH}
+                    nextPage={AppRoutes.PAGE_PAYEE_SEARCH}
                     nextEnabled={nextEnabled}
                     approve={true}
                     focused={buttonFocused}

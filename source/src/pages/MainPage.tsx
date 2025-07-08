@@ -1,18 +1,21 @@
-import * as c from "../shared/assets/constants.js";
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import Header from "../widgets/Header.js";
+import Footer from "../widgets/Footer.js";
 
 import Wallet from "../shared/assets/images/wallet.png";
 import WalletPayout from "../shared/assets/images/payOut/wallet.png";
 
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "../AppContext.js";
 import { Outlet } from "react-router-dom";
 import usePaymentPage from "../hooks/usePaymentPage.jsx";
 import axios from "axios";
-import Loader from "../shared/ui/Loader.tsx";
+import Loader from "@/shared/ui/Loader";
+import { useBFStore } from "@/shared/store/bfDataStore.js";
+import { AppRoutes } from "@/shared/const/router.js";
 
 const MainPage = () => {
-    const { BFData, fingerprintConfig, t, ym } = useAppContext();
+    const { fingerprintConfig, t, ym } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
+
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
@@ -20,7 +23,7 @@ const MainPage = () => {
     ym("reachGoal", "main-page", { blowfish_id: BFData?.[dest]?.id });
 
     const buttonCallback = async () => {
-        const { data } = await axios
+        const data = await axios
             .post(
                 `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                 {
@@ -79,7 +82,7 @@ const MainPage = () => {
 
                     <Footer
                         buttonCaption={t("continue", ns)}
-                        nextPage={c.PAGE_PAYMENT_METHODS}
+                        nextPage={AppRoutes.PAYMENT_METHODS}
                         buttonCallback={buttonCallback}
                     />
                 </>

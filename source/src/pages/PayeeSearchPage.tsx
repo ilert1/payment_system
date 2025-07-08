@@ -1,4 +1,3 @@
-// import * as c from "../assets/constants.js";
 import Header from "../widgets/Header";
 import Footer from "../widgets/Footer";
 
@@ -21,7 +20,7 @@ const PayeeSearchPage = () => {
 
     const [step, setStep] = useState(1);
 
-    let stepperInterval;
+    let stepperInterval: number | undefined = undefined;
     let stepperInterval_seconds = 0;
 
     useEffect(() => {

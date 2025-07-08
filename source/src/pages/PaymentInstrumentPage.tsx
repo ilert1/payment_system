@@ -1,4 +1,3 @@
-import * as c from "@/shared/assets/constants.js";
 import Header from "@/widgets/Header";
 import Footer from "@/widgets/Footer";
 
@@ -8,6 +7,7 @@ import { PayInstruments } from "@/widgets/PayInstruments";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import usePaymentPage from "@/hooks/usePaymentPage.jsx";
+import { AppRoutes } from "@/shared/const/router";
 
 const PaymentInstrumentPage = () => {
     const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t, ym } =
@@ -116,7 +116,7 @@ const PaymentInstrumentPage = () => {
             <Footer
                 buttonCaption={t("next", ns)}
                 buttonCallback={buttonCallback}
-                nextPage={`/${BFData?.[dest]?.id}/${c.PAGE_PAYER_DATA}`}
+                nextPage={`/${BFData?.[dest]?.id}/${AppRoutes.PAYER_DATA_PAGE}`}
                 nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false}
             />
         </div>

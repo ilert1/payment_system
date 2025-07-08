@@ -1,5 +1,3 @@
-/// <reference types="vite-plugin-svgr/client" />
-
 import { FunctionComponent, SVGProps } from "react";
 
 declare global {
@@ -111,6 +109,7 @@ declare global {
                     success_url?: string;
                     fail_url?: string;
                     return_url?: string;
+                    redirect_url?: string;
                     provider?: string;
                 };
             };
@@ -174,6 +173,7 @@ declare global {
                     success_url?: string;
                     fail_url?: string;
                     return_url?: string;
+                    redirect_url?: string;
                     provider?: string;
                 };
             };

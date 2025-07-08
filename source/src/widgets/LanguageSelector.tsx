@@ -4,16 +4,16 @@ interface LanguageSelectorProps {
     lang: string;
     setLang: (val: string) => void;
 }
-const LangVariants: {
-    en: "en";
-    az: "az";
-    ky: "ky";
-    tg: "tg";
-    kk: "kk";
-    ru: "ru";
-    tr: "tr";
-    uk: "uk";
-    uz: "uz";
+const LangVariants = {
+    en: "en",
+    az: "az",
+    ky: "ky",
+    tg: "tg",
+    kk: "kk",
+    ru: "ru",
+    tr: "tr",
+    uk: "uk",
+    uz: "uz"
 };
 
 const LanguageSelector = (props: LanguageSelectorProps) => {

@@ -1,80 +1,67 @@
-// import { MainPage } from "@/pages/MainPage";
-// import { AboutPage } from "@/pages/AboutPage";
-// import { ProfilePage } from "@/pages/ProfilePage";
-// import { ArticlesPage } from "@/pages/ArticlesPage";
-// import { ArticleDetailsPage } from "@/pages/ArticleDetailsPage";
-// import { ArticleEditPage } from "@/pages/ArticleEditPage";
-// import { AdminPanelPage } from "@/pages/AdminPanelPage";
-// import { UserRole } from "@/entities/User";
-// import { ForbiddenPage } from "@/pages/ForbiddenPage";
-// import { NotFoundPage } from "@/pages/NotFoundPage";
-// import {
-//     AppRoutes,
-//     getRouteAbout,
-//     getRouteAdmin,
-//     getRouteArticleCreate,
-//     getRouteArticleDetails,
-//     getRouteArticleEdit,
-//     getRouteForbidden,
-//     getRouteArticles,
-//     getRouteMain,
-//     getRouteProfile,
-//     getRouteSettings
-// } from "@/shared/const/router";
-// import { AppRoutesProps } from "@/shared/types/router";
-// import { SettingsPage } from "@/pages/SettingsPage";
+import PaymentMethodsPage from "@/pages/PaymentMethodsPage";
+import PaymentInstrumentPage from "@/pages/PaymentInstrumentPage";
+import PayerDataPage from "@/pages/PayerDataPage";
+import PayeeSearchPage from "@/pages/PayeeSearchPage";
+import PayPage from "@/pages/PayPage";
+import PayeeDataPage from "@/pages/PayeeDataPage";
+import SuccessPage from "@/pages/SuccessPage";
+import PayErrorPage from "@/pages/PayErrorPage";
+import {
+    getRoutePaymentMethods,
+    getRoutePaymentInstrument,
+    getRoutePayerDataPage,
+    getRoutePayeeSearchPage,
+    getRoutePayPage,
+    getRoutePayeeDataPage,
+    getRouteSuccessPage,
+    getRoutePayErrorPage,
+    getRoutePaymentConfirmationPage,
+    getRoutePaymentWaitConfirmation,
+    getRouteGeneralErrorPage,
+    getRouteCancelPage,
+    getRoutePaymentNotFound,
+    getRoutePayoutNotFound,
+    getRoutePaymentsBlowfishId,
+    getRoutePayoutsBlowfishId
+} from "@/shared/const/router";
+import { RouteProps } from "react-router-dom";
+import PaymentConfirmationPage from "@/pages/PaymentConfirmationPage";
+import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
+import GeneralErrorPage from "@/pages/GeneralErrorPage";
+import MainPage from "@/pages/MainPage";
 
-// export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
-//     [AppRoutes.MAIN]: {
-//         path: getRouteMain(),
-//         element: <MainPage />
-//     },
-//     [AppRoutes.SETTINGS]: {
-//         path: getRouteSettings(),
-//         element: <SettingsPage />
-//     },
-//     [AppRoutes.ABOUT]: {
-//         path: getRouteAbout(),
-//         element: <AboutPage />
-//     },
-//     [AppRoutes.PROFILE]: {
-//         path: getRouteProfile(":id"),
-//         element: <ProfilePage />,
-//         authOnly: true
-//     },
-//     [AppRoutes.ARTICLES]: {
-//         path: getRouteArticles(),
-//         element: <ArticlesPage />,
-//         authOnly: true
-//     },
-//     [AppRoutes.ARTICLE_DETAILS]: {
-//         path: getRouteArticleDetails(":id"),
-//         element: <ArticleDetailsPage />,
-//         authOnly: true
-//     },
-//     [AppRoutes.ARTICLE_CREATE]: {
-//         path: getRouteArticleCreate(),
-//         element: <ArticleEditPage />,
-//         authOnly: true
-//     },
-//     [AppRoutes.ARTICLE_EDIT]: {
-//         path: getRouteArticleEdit(":id"),
-//         element: <ArticleEditPage />,
-//         authOnly: true
-//     },
-//     [AppRoutes.ADMIN_PANEL]: {
-//         path: getRouteAdmin(),
-//         element: <AdminPanelPage />,
-//         authOnly: true,
-//         roles: [UserRole.MANAGER, UserRole.ADMIN]
-//     },
-//     [AppRoutes.FORBIDDEN]: {
-//         path: getRouteForbidden(),
-//         element: <ForbiddenPage />
-//     },
-//     // last
-//     [AppRoutes.NOT_FOUND]: {
-//         path: "*",
-//         element: <NotFoundPage />
-//     }
-// };
+const commonRoutes: RouteProps[] = [
+    { path: getRoutePaymentMethods(), element: <PaymentMethodsPage /> },
+    { path: getRoutePaymentInstrument(), element: <PaymentInstrumentPage /> },
+    { path: getRoutePayerDataPage(), element: <PayerDataPage /> },
+    { path: getRoutePayeeSearchPage(), element: <PayeeSearchPage /> },
+    { path: getRoutePayPage(), element: <PayPage /> },
+    { path: getRoutePayeeDataPage(), element: <PayeeDataPage /> },
+    { path: getRouteSuccessPage(), element: <SuccessPage /> },
+    { path: getRoutePayErrorPage(), element: <PayErrorPage /> },
+    { path: getRoutePaymentConfirmationPage(), element: <PaymentConfirmationPage /> },
+    { path: getRoutePaymentWaitConfirmation(), element: <PaymentWaitConfirmation /> },
+    { path: getRouteGeneralErrorPage(), element: <GeneralErrorPage /> },
+    { path: getRouteCancelPage(), element: <GeneralErrorPage cancel={true} /> }
+];
+
+export const routeConfig: Record<string, RouteProps> = {
+    [getRoutePaymentNotFound()]: { path: getRoutePaymentNotFound(), element: <PayErrorPage notFound /> },
+    [getRoutePayoutNotFound()]: { path: getRoutePayoutNotFound(), element: <PayErrorPage notFound /> },
+    ["*"]: { path: "*", element: <PayErrorPage notFound /> },
+
+    [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
+    [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
+
+    ...commonRoutes.reduce((acc, route) => {
+        acc[getRoutePaymentsBlowfishId() + route.path] = {
+            path: getRoutePaymentsBlowfishId() + route.path,
+            element: route.element
+        };
+        acc[getRoutePayoutsBlowfishId() + route.path] = {
+            path: getRoutePayoutsBlowfishId() + route.path,
+            element: route.element
+        };
+        return acc;
+    }, {} as Record<string, RouteProps>)
+};
