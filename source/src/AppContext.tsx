@@ -11,6 +11,8 @@ import CurrencyLibrary from "./shared/assets/library/Currency.json";
 import CustomToastContainer from "./shared/ui/CustomToastContainer.js";
 
 import ym, { YMInitializer } from "react-yandex-metrika";
+import { useBFStore } from "./shared/store/bfDataStore.js";
+import { AppRoutes } from "./shared/const/router.js";
 
 export interface AppContextType {
     navigate: ReturnType<typeof useNavigate> | null;
@@ -44,7 +46,10 @@ export const AppContext = createContext<AppContextType | null>(null);
 
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
+    const { init, loading } = useBFStore();
+
     const navigate = useNavigate;
+    const navigateLocal = useNavigate();
 
     const pathname = new URL(window.location.href).pathname;
     const payoutMode = pathname.split("/")[1] === "payouts";
@@ -108,6 +113,32 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         })}`;
         setFingerprint(fp);
         setFingerprintReady(true);
+    }, []);
+
+    useEffect(() => {
+        const pathname = new URL(window.location.href).pathname;
+        const blowfishId = pathname.split("/")[2];
+        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        console.log("testing uuid");
+
+        if (uuidRegex.test(blowfishId)) {
+            init({
+                id: blowfishId,
+                payoutMode,
+                fingerprintConfig: {
+                    headers: {
+                        "X-Fingerprint": fingerprint,
+                        "Accept-Language": [lang, ...navigator.languages].toString()
+                    }
+                },
+                ym
+            });
+        } else {
+            navigateLocal(`/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`, {
+                replace: true
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const getCurrencySymbol = (code: string) => {

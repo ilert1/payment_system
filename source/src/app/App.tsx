@@ -10,23 +10,23 @@ import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 
 const App = () => {
-    const { init, loading } = useBFStore();
-    const { fingerprintConfig, payoutMode, ym } = useAppContext();
+    const { loading } = useBFStore();
+    // const { fingerprintConfig, payoutMode, ym } = useAppContext();
 
-    useEffect(() => {
-        const pathname = new URL(window.location.href).pathname;
-        const blowfishId = pathname.split("/")[2];
-        const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    // useEffect(() => {
+    //     const pathname = new URL(window.location.href).pathname;
+    //     const blowfishId = pathname.split("/")[2];
+    //     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-        if (uuidRegex.test(blowfishId)) {
-            init({ id: blowfishId, payoutMode, fingerprintConfig, ym });
-        } else {
-            window.location.replace(
-                `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-            );
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    //     if (uuidRegex.test(blowfishId)) {
+    //         init({ id: blowfishId, payoutMode, fingerprintConfig, ym });
+    //     } else {
+    //         window.location.replace(
+    //             `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+    //         );
+    //     }
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     return (
         <>
