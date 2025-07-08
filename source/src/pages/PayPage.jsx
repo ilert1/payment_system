@@ -194,7 +194,8 @@ const PayPage = () => {
                 "abb",
                 "birbank",
                 "atb",
-                "m10"
+                "m10",
+                "bankofbaku"
             ].includes(trader?.bank_name)
         ) {
             setCaseName(azn);
