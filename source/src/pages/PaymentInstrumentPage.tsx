@@ -6,7 +6,7 @@ import { useAppContext } from "@/AppContext";
 import { PayInstruments } from "@/widgets/PayInstruments";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import usePaymentPage from "@/hooks/usePaymentPage.jsx";
+import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 
 const PaymentInstrumentPage = () => {
@@ -17,7 +17,7 @@ const PaymentInstrumentPage = () => {
     const ns = { ns: ["Common", "PaymentInstrument"] };
 
     // Stex piti lini paymentInstruments
-    const [paymentInstruments, setPaymentInstruments] = useState(null);
+    const [paymentInstruments, setPaymentInstruments] = useState<PaymentInstrument[] | null>(null);
 
     const [instrumentSelectedEnable, setInstrumentSelectedEnable] = useState(false);
 
@@ -51,14 +51,10 @@ const PaymentInstrumentPage = () => {
             console.log(data);
             setPaymentInstruments(data?.data?.payment_instruments);
             return data;
-        },
-
-        onError: () => {
-            console.log("paymentPayerGetInstruments error");
         }
     });
 
-    const { instrumentSelected_isFetching } = useQuery({
+    const { isLoading: instrumentSelected_isFetching } = useQuery({
         queryKey: ["paymentPayerSelectedInstrument"],
         refetchOnWindowFocus: false,
         retry: true,
@@ -90,9 +86,6 @@ const PaymentInstrumentPage = () => {
                 console.log(data);
                 return data;
             }
-        },
-        onError: () => {
-            console.log("paymentBankSelected error");
         }
     });
 
@@ -110,7 +103,7 @@ const PaymentInstrumentPage = () => {
                     <p className="amount">{BFData?.[dest]?.amount}</p>
                     <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency)}</p>
                 </div>
-                <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments} />
+                <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
             </div>
 
             <Footer

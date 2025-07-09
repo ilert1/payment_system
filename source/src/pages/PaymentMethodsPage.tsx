@@ -6,7 +6,7 @@ import { useAppContext } from "../AppContext.jsx";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.js";
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router.js";
 
 const PaymentMethodsPage = () => {

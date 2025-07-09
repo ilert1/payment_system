@@ -6,12 +6,12 @@ import BankItem from "./BankItem";
 import { Loader } from "../shared/ui/Loader";
 import { useTranslation } from "react-i18next";
 
-const bankIcon = bank => {
+const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : "";
 };
 
 interface PayInstrumentsProps {
-    paymentInstruments: any[];
+    paymentInstruments: PaymentInstrument[];
     isFetching: boolean;
 }
 
@@ -22,15 +22,15 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
     //translation
     const ns = { ns: ["Common", "PayMethod"] };
 
-    const onClick = item => {
+    const onClick = (item: PaymentInstrument) => {
         const dest = BFData?.payout ? "payout" : "payment";
         setCurrentPaymentInstrument({ blowfishId: BFData?.[dest].id, data: item });
     };
 
     const [filterText, setFilterText] = useState("");
 
-    const getInstruments = paymentInstruments => {
-        let instrumentList = [];
+    const getInstruments = (paymentInstruments: PaymentInstrument[]) => {
+        let instrumentList: JSX.Element[] = [];
 
         let filteredPaymentInstruments = paymentInstruments;
         if (filterText) {

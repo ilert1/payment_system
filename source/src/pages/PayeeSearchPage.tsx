@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "../AppContext";
 import { ProgressSteper } from "../widgets/ProgressSteper";
 
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import usePaymentPage from "../hooks/usePaymentPage";
 
 const PayeeSearchPage = () => {
     const { BFData, currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();

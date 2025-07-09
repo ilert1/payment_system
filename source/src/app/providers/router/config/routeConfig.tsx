@@ -1,6 +1,6 @@
 import PaymentMethodsPage from "@/pages/PaymentMethodsPage";
 import PaymentInstrumentPage from "@/pages/PaymentInstrumentPage";
-import PayerDataPage from "@/pages/PayerDataPage";
+import { PayerDataPage } from "@/pages/PayerDataPage";
 import PayeeSearchPage from "@/pages/PayeeSearchPage";
 import PayeeDataPage from "@/pages/PayeeDataPage";
 import SuccessPage from "@/pages/SuccessPage";

@@ -9,19 +9,23 @@ import axios from "axios";
 import { CardNumberForm } from "@/widgets/CardNumberForm";
 
 import { toast } from "react-toastify";
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import usePaymentPage from "@/hooks/usePaymentPage";
 import { useQuery } from "@tanstack/react-query";
-import Loader from "../shared/ui/Loader";
+import Loader from "@/shared/ui/Loader";
 import { useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData.js";
 import { AppRoutes } from "@/shared/const/router.js";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
-
-const baseUrl = import.meta.env.VITE_API_URL;
+import { useNavigate } from "react-router-dom";
+import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
 
 const PayerDataPage = () => {
     const { t, fingerprintConfig, status, ym } = useAppContext();
+    const navigate = useNavigate();
+
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
+
+    const { submitPayerData } = usePayerDataStore();
 
     //translation
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
@@ -43,12 +47,6 @@ const PayerDataPage = () => {
     const [nextEnabled, setNextEnabled] = useState(false);
     const [isPressed, setIsPressed] = useState(false);
 
-    const onComplete = (numbers: string) => {
-        setIsComplete(true);
-        setButtonFocused(true);
-        // setCardNumberLast4(numbers);
-    };
-
     const {
         cardNumber,
         expiryDate,
@@ -63,81 +61,24 @@ const PayerDataPage = () => {
         handleCvvInputChange
     } = useGetCardNumberFormData({ ns });
 
-    const handleSubmit = async () => {
-        setIsPressed(true);
+    const onComplete = (numbers: string) => {
+        setIsComplete(true);
+        setButtonFocused(true);
+        // setCardNumberLast4(numbers);
+    };
 
-        let payload = {};
-        switch (BFData?.[dest]?.method?.name) {
-            case "ecom":
-                payload = {
-                    payment: {
-                        method: {
-                            payer: {
-                                data: {
-                                    card_number: cardNumber.replace(/\s+/g, ""),
-                                    card_lifetime_month: `${expiryDate.slice(0, 2)}`,
-                                    card_lifetime_year: `${expiryDate.slice(3)}`,
-                                    card_cvc: cvv,
-                                    ...(cardHolder.trim() && { card_holder: cardHolder })
-                                }
-                            }
-                        }
-                    }
-                };
-                break;
-
-            case "sbp":
-                payload = {
-                    payment: {
-                        method: {
-                            payer: {
-                                data: {
-                                    phone: cardNumber
-                                }
-                            }
-                        }
-                    }
-                };
-                break;
-
-            case "card2card":
-                payload = {
-                    payment: {
-                        method: {
-                            payer: {
-                                data: {
-                                    card: cardNumber
-                                }
-                            }
-                        }
-                    }
-                };
-                break;
-
-            default:
-                break;
-        }
-        console.log("payload");
-        console.log(payload);
-
-        ym("reachGoal", "main-button", { caption: t("approve", ns) });
-        if (BFData?.[dest]?.method?.name == "ecom") {
-            ym("reachGoal", "ecom-payer-data-entered");
-        }
-
-        const url = `${baseUrl}/${dest}s/${BFData?.[dest]?.id}/events`;
-        try {
-            const data = await axios.post(url, {
-                event: "paymentPayerDataEntered",
-                payload: payload
-            });
-
-            if (!data.data.success) {
-                console.log(data.data.error);
-            }
-        } catch (error: any) {
-            toast.error(error.message, { autoClose: 2000, closeButton: <></> });
-        }
+    const handleSubmit = () => {
+        submitPayerData(
+            {
+                cardNumber,
+                expiryDate,
+                cvv,
+                cardHolder,
+                dest
+            },
+            BFData?.[dest]?.method?.name ?? "",
+            dest
+        );
     };
 
     const buttonCallback = () => {
@@ -173,38 +114,39 @@ const PayerDataPage = () => {
         queryKey: ["getPayment"],
         enabled: waitTransfer && ecom,
         refetchOnWindowFocus: false,
-        queryFn: async () => {
-            console.log(`getPayment: ${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`);
+        queryFn: async (): Promise<BFDataType | undefined> => {
+            const url = `${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`;
+            console.log(`getPayment: ${url}`);
+
             try {
-                const { data } = await axios
-                    .get(`${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}`, fingerprintConfig)
-                    .catch(e => {
-                        console.log(e);
-                    });
+                const response = await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        ...fingerprintConfig.headers
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 404) {
+                        navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
+                    }
+                    throw new Error(`Request failed with status ${response.status}`);
+                }
+
+                const data: BFDataType & { success?: boolean } = await response.json();
 
                 console.log(data);
-                console.log("redirect_url");
-                console.log(data?.[dest]?.method?.payee?.redirect_url);
+                console.log("redirect_url", data?.[dest]?.method?.payee?.redirect_url);
 
-                if (data) {
-                    if (data?.success) {
-                        //данные получены успешно
-                        setBfData(data);
-                    } else {
-                        //транзакция не подлежит оплате
-                        window.location.replace(
-                            `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-                        );
-                    }
+                if (data?.success) {
+                    setBfData(data);
+                    return data;
+                } else {
+                    navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
                 }
-                return data;
-            } catch (e: any) {
-                console.error(e.response.statusCode);
-                if (e.response.statusCode === 404) {
-                    window.location.replace(
-                        `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-                    );
-                }
+            } catch (error) {
+                console.error("Fetch error", error);
+                return undefined;
             }
         }
     });

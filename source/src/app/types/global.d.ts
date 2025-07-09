@@ -35,6 +35,15 @@ declare global {
         method_id: string;
     };
 
+    type PaymentInstrument = {
+        bank: string;
+        bank_name: string;
+        payment_type: string;
+        payment_type_name: string;
+        customer_schema: null;
+        required: null;
+    };
+
     // const LangVariants: {
     //     en: "en";
     //     az: "az";
@@ -50,7 +59,7 @@ declare global {
     // type LangType = keyof typeof LangVariants;
 
     type BFDataType = {
-        payout: {
+        payout?: {
             id: string;
             amount: string;
             currency: string;
@@ -63,7 +72,6 @@ declare global {
                 };
                 payer: {
                     schema: {
-                        // TODO type ?
                         type: string;
                         properties: {
                             card_holder: {
@@ -82,7 +90,6 @@ declare global {
                 };
                 payee: {
                     schema: {
-                        // TODO type?
                         type: string;
                         properties: {
                             card_holder: {
@@ -103,21 +110,14 @@ declare global {
                         card_holder?: string;
                         card_number?: string;
                         direction_id?: string;
-                        phone?: string;
-                        phone_number?: string;
-                        account_number?: string;
-                        iban_number?: string;
                     };
+                    redirect_url?: string;
                 };
                 context: {
                     success_redirect_url?: string;
                     error_redirect_url?: string;
                     cancel_redirect_url?: string;
                     back_redirect_url?: string;
-                    success_url?: string;
-                    fail_url?: string;
-                    return_url?: string;
-                    redirect_url?: string;
                     provider?: string;
                 };
             };
@@ -162,6 +162,16 @@ declare global {
                                 description: string;
                                 format: string;
                             };
+                            card_cvc: {
+                                type: string;
+                                description: string;
+                                format: string;
+                            };
+                            card_lifetime: {
+                                type: string;
+                                description: string;
+                                format: string;
+                            };
                             card_number: {
                                 type: string;
                                 description: string;
@@ -175,21 +185,14 @@ declare global {
                         card_holder?: string;
                         card_number?: string;
                         direction_id?: string;
-                        phone?: string;
-                        phone_number?: string;
-                        account_number?: string;
-                        iban_number?: string;
                     };
+                    redirect_url?: string;
                 };
                 context: {
                     success_redirect_url?: string;
                     error_redirect_url?: string;
                     cancel_redirect_url?: string;
                     back_redirect_url?: string;
-                    success_url?: string;
-                    fail_url?: string;
-                    return_url?: string;
-                    redirect_url?: string;
                     provider?: string;
                 };
             };

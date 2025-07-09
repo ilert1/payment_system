@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 
 import axios from "axios";
-import usePaymentPage from "@/hooks/usePaymentPage.jsx";
+import usePaymentPage from "@/hooks/usePaymentPage";
 import PayHeader from "@/widgets/PayHeader";
 import PayeeData from "@/widgets/PayeeData";
 import { getLocalBankName } from "@/Localization";

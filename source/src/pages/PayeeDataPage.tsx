@@ -4,7 +4,7 @@ import Footer from "../widgets/Footer";
 import { Loader } from "../shared/ui/Loader";
 import { Timer } from "../shared/ui/Timer";
 
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import usePaymentPage from "../hooks/usePaymentPage";
 import { useAppContext } from "../AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
 

@@ -6,7 +6,7 @@ import WalletPayout from "../shared/assets/images/payOut/wallet.png";
 
 import { useAppContext } from "../AppContext.js";
 import { Outlet } from "react-router-dom";
-import usePaymentPage from "../hooks/usePaymentPage.jsx";
+import usePaymentPage from "../hooks/usePaymentPage";
 import axios from "axios";
 import Loader from "@/shared/ui/Loader";
 import { useBFStore } from "@/shared/store/bfDataStore.js";

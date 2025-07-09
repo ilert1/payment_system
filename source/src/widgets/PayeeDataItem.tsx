@@ -5,7 +5,7 @@ import CheckCircle from "../shared/assets/images/check-circle.svg?react";
 import { useAppContext } from "../AppContext";
 
 interface PayeeDataItemProps {
-    img: string | SvgComponent;
+    Img: string | SvgComponent;
     onError?: (e: any) => void;
     label?: string;
     value?: string | undefined;
@@ -18,7 +18,7 @@ interface PayeeDataItemProps {
 
 const PayeeDataItem = (props: PayeeDataItemProps) => {
     const {
-        img = "",
+        Img = "",
         onError = () => {},
         label = "",
         value = "",
@@ -35,8 +35,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
     let popupTimeout: number | undefined = undefined;
 
     const showPopupCallback = () => {
-        // ym("reachGoal", "copy", { label: label });
-        ym();
+        ym("reachGoal", "copy", { label: label });
         clearTimeout(popupTimeout);
         setShowPopup(true);
 
@@ -48,7 +47,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
     return (
         <div className={`payee-data-item ${cl}`}>
             <div className="icon-container">
-                {typeof img === "string" ? <img className={imgCl} src={img} onError={onError} alt="" /> : img}
+                {typeof Img === "string" ? <img className={imgCl} src={Img} onError={onError} alt="" /> : <Img />}
             </div>
             <div className="text-container">
                 <label>{label}</label>
