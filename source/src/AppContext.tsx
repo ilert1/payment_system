@@ -75,7 +75,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const storedCurrentPaymentInstrument = JSON.parse(String(localStorage.getItem("CurrentPaymentInstrument")));
 
-    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState();
+    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState<PaymentInstrument | null>(null);
 
     useEffect(() => {
         if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;

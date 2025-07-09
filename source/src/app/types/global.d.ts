@@ -79,14 +79,31 @@ declare global {
                                 description: string;
                                 format: string;
                             };
-                            card_last_digits: {
+                            card_cvc: {
+                                type: string;
+                                description: string;
+                                format: string;
+                            };
+                            card_lifetime: {
+                                type: string;
+                                description: string;
+                                format: string;
+                            };
+                            card_number: {
                                 type: string;
                                 description: string;
                                 format: string;
                             };
                         };
                     };
-                    required: null;
+                    required: string[];
+                    data: {
+                        card_cvc: string;
+                        card_holder: string;
+                        card_lifetime_month: string;
+                        card_lifetime_year: string;
+                        card_number: string;
+                    };
                 };
                 payee: {
                     schema: {
@@ -104,7 +121,7 @@ declare global {
                             };
                         };
                     };
-                    required: null;
+                    required: string[];
                     data: {
                         bank_name?: string;
                         card_holder?: string;
@@ -165,7 +182,14 @@ declare global {
                             };
                         };
                     };
-                    required: null;
+                    required: string[];
+                    data: {
+                        card_cvc: string;
+                        card_holder: string;
+                        card_lifetime_month: string;
+                        card_lifetime_year: string;
+                        card_number: string;
+                    };
                 };
                 payee: {
                     schema: {
@@ -183,7 +207,7 @@ declare global {
                             };
                         };
                     };
-                    required: null;
+                    required: string[];
                     data: {
                         bank_name?: string;
                         card_holder?: string;
