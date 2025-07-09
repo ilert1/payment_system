@@ -1,6 +1,5 @@
 export enum AppRoutes {
     PAGE_MAIN = "/",
-    PAYMENT_METHODS = "payment-methods",
     PAYER_DATA_PAGE = "payer-data-page",
     PAYEE_SEARCH_PAGE = "payee-search-page",
     PAY_PAGE = "pay-page",
@@ -21,7 +20,6 @@ export enum AppRoutes {
     PAGE_PAYOUTS_BLOWFISH_ID = "payouts/:blowfishId"
 }
 
-export const getRoutePaymentMethods = () => "/payment-methods";
 export const getRoutePayerDataPage = () => "/payer-data-page";
 export const getRoutePayeeSearchPage = () => "/payee-search-page";
 export const getRoutePayPage = () => "/pay-page";
@@ -39,7 +37,6 @@ export const getRoutePaymentsBlowfishId = () => "/payments/:blowfishId";
 export const getRoutePayoutsBlowfishId = () => "/payouts/:blowfishId";
 
 export const AppRouteByPathPattern: Record<string, AppRoutes> = {
-    [getRoutePaymentMethods()]: AppRoutes.PAYMENT_METHODS,
     [getRoutePayerDataPage()]: AppRoutes.PAYER_DATA_PAGE,
     [getRoutePayeeSearchPage()]: AppRoutes.PAYEE_SEARCH_PAGE,
     [getRoutePayPage()]: AppRoutes.PAY_PAGE,

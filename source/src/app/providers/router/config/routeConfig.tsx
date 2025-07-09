@@ -1,4 +1,3 @@
-import PaymentMethodsPage from "@/pages/PaymentMethodsPage";
 import PaymentInstrumentPage from "@/pages/PaymentInstrumentPage";
 import { PayerDataPage } from "@/pages/PayerDataPage";
 import PayeeSearchPage from "@/pages/PayeeSearchPage";
@@ -31,7 +30,6 @@ import MainPage from "@/pages/MainPage";
 import { PayPage } from "@/pages/PayPage";
 
 const commonRoutes: RouteProps[] = [
-    { path: getRoutePaymentMethods(), element: <PaymentMethodsPage /> },
     { path: getRoutePaymentInstrument(), element: <PaymentInstrumentPage /> },
     { path: getRoutePayerDataPage(), element: <PayerDataPage /> },
     { path: getRoutePayeeSearchPage(), element: <PayeeSearchPage /> },
