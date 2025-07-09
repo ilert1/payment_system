@@ -17,6 +17,7 @@ import { formatedRequisite } from "./PayeeData";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AppRoutes } from "@/shared/const/router";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
@@ -49,7 +50,9 @@ const Footer = (props: FooterProps) => {
         buttonCallback = () => {}
     } = props;
 
-    const { BFData, fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
+    const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
+
     const navigate = useNavigate();
     const { t } = useTranslation();
     const payOutMode = Boolean(BFData?.payout);
@@ -58,7 +61,7 @@ const Footer = (props: FooterProps) => {
 
     const [requisite, setRequisite] = useState("");
 
-    const returnUrl = BFData?.[dest]?.context?.cancel_redirect_url;
+    const returnUrl = BFData?.[dest]?.method?.context?.cancel_redirect_url;
 
     const [dialogShow, setDialogShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -156,7 +159,7 @@ const Footer = (props: FooterProps) => {
                     {payeeCard && (
                         <div className="payee-data">
                             <BankCardInfo
-                                bankIcon={bankIcon(trader?.bank_name)}
+                                bankIcon={bankIcon(trader?.bank_name ?? "")}
                                 onError={e => {
                                     e.target.src = DefaultBankIcon;
                                     e.target.classList.remove("logo");

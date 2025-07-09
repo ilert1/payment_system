@@ -110,6 +110,10 @@ declare global {
                         card_holder?: string;
                         card_number?: string;
                         direction_id?: string;
+                        phone?: string;
+                        account_number?: string;
+                        phone_number?: string;
+                        iban_number?: string;
                     };
                     redirect_url?: string;
                 };
@@ -144,24 +148,6 @@ declare global {
                                 description: string;
                                 format: string;
                             };
-                            card_last_digits: {
-                                type: string;
-                                description: string;
-                                format: string;
-                            };
-                        };
-                    };
-                    required: null;
-                };
-                payee: {
-                    schema: {
-                        type: string;
-                        properties: {
-                            card_holder: {
-                                type: string;
-                                description: string;
-                                format: string;
-                            };
                             card_cvc: {
                                 type: string;
                                 description: string;
@@ -180,11 +166,33 @@ declare global {
                         };
                     };
                     required: null;
+                };
+                payee: {
+                    schema: {
+                        type: string;
+                        properties: {
+                            card_holder: {
+                                type: string;
+                                description: string;
+                                format: string;
+                            };
+                            card_number: {
+                                type: string;
+                                description: string;
+                                format: string;
+                            };
+                        };
+                    };
+                    required: null;
                     data: {
                         bank_name?: string;
                         card_holder?: string;
                         card_number?: string;
                         direction_id?: string;
+                        phone?: string;
+                        account_number?: string;
+                        phone_number?: string;
+                        iban_number?: string;
                     };
                     redirect_url?: string;
                 };

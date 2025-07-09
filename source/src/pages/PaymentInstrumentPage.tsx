@@ -8,10 +8,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const PaymentInstrumentPage = () => {
-    const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, BFData, t, ym } =
-        useAppContext();
+    const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, t, ym } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };

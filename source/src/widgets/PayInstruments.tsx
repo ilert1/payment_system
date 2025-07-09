@@ -5,6 +5,7 @@ import SearchPayMethod from "../shared/ui/SearchPayMethod";
 import BankItem from "./BankItem";
 import { Loader } from "../shared/ui/Loader";
 import { useTranslation } from "react-i18next";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : "";
@@ -16,7 +17,8 @@ interface PayInstrumentsProps {
 }
 
 export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrumentsProps) => {
-    const { BFData, currentPaymentInstrument, setCurrentPaymentInstrument } = useAppContext();
+    const { currentPaymentInstrument, setCurrentPaymentInstrument } = useAppContext();
+    const { BFData } = useBFStore();
     const { t } = useTranslation();
 
     //translation
@@ -24,7 +26,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
 
     const onClick = (item: PaymentInstrument) => {
         const dest = BFData?.payout ? "payout" : "payment";
-        setCurrentPaymentInstrument({ blowfishId: BFData?.[dest].id, data: item });
+        setCurrentPaymentInstrument({ blowfishId: BFData?.[dest]?.id, data: item });
     };
 
     const [filterText, setFilterText] = useState("");

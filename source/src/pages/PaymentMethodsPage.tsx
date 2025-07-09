@@ -1,3 +1,5 @@
+// TODO
+
 import Header from "../widgets/Header.jsx";
 import Footer from "../widgets/Footer.jsx";
 
@@ -8,6 +10,7 @@ import axios from "axios";
 import { PaymentMethodsList } from "../widgets/PaymentMethodsList.js";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router.js";
+import { useBFStore } from "@/shared/store/bfDataStore.js";
 
 const PaymentMethodsPage = () => {
     const {
@@ -16,9 +19,10 @@ const PaymentMethodsPage = () => {
         fingerprintReady,
         fingerprintConfig,
         t,
-        BFData,
+
         setFailUrlParams
     } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
 
     usePaymentPage({ absolutePath: false });
 

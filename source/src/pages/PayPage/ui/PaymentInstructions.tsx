@@ -3,14 +3,14 @@ import { Instruction } from "./Instruction";
 import { InstructionItems } from "./InstructionItems";
 import { DefaultInstructionItems } from "./DefaultInstructionItems";
 import ExternalPayInfo from "@/widgets/ExternalPayInfo";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 interface PaymentInstructionsProps {
     caseName: string;
     transgran: boolean;
     trader: any;
     bankName: string;
-    BFData: any;
-    dest: string;
+    dest: "payout" | "payment";
     getCurrencySymbol: (currency: string) => string;
     t: any;
     ns: any;
@@ -28,7 +28,6 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     transgran,
     trader,
     bankName,
-    BFData,
     dest,
     getCurrencySymbol,
     t,
@@ -36,6 +35,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     activeAccordion,
     setActiveAccordion
 }) => {
+    const BFData = useBFStore(state => state.BFData);
     // External pay info case
     if (BFData?.[dest]?.method?.payee?.redirect_url && BFData?.[dest]?.method?.name === "phone_number") {
         return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
@@ -99,8 +99,8 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                             <DefaultInstructionItems
                                 trader={trader}
                                 bankName={bankName}
-                                amount={BFData?.[dest]?.amount}
-                                currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                amount={BFData?.[dest]?.amount ?? ""}
+                                currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
                                 first_step={false}
                                 start={2}
                             />
@@ -118,7 +118,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                 <InstructionItems
                     data={t("steps_transgran_abh.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
-                        amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency)}`,
+                        amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
                         ...ns
                     })}
                     start={0}
@@ -142,8 +142,8 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
             <DefaultInstructionItems
                 trader={trader}
                 bankName={bankName}
-                amount={BFData?.[dest]?.amount}
-                currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                amount={BFData?.[dest]?.amount ?? ""}
+                currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
             />
         </div>
     );

@@ -7,6 +7,7 @@ import PayeeDataItem from "./PayeeDataItem";
 
 import DefaultBankIcon from "../shared/assets/images/bank.svg?react";
 import { useTranslation } from "react-i18next";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
@@ -43,7 +44,8 @@ interface PayeeDataProps {
 const PayeeData = (props: PayeeDataProps) => {
     const { requisite, trader, bankName, isPhone, caseName, transgran, countryName } = props;
 
-    const { BFData, getCurrencySymbol } = useAppContext();
+    const { getCurrencySymbol } = useAppContext();
+    const { BFData } = useBFStore();
     const { t } = useTranslation();
     const ns = { ns: ["PayeeCard", "PayHeader", "Pay"] };
 
@@ -54,7 +56,7 @@ const PayeeData = (props: PayeeDataProps) => {
         <div className="payee-data">
             {bankName && (
                 <PayeeDataItem
-                    img={bankIcon(trader?.bank_name ?? "")}
+                    Img={bankIcon(trader?.bank_name ?? "")}
                     onError={e => {
                         e.target.src = DefaultBankIcon;
                         e.target.classList.remove("logo");
@@ -66,7 +68,7 @@ const PayeeData = (props: PayeeDataProps) => {
                 />
             )}
             <PayeeDataItem
-                img={CardsIcon}
+                Img={CardsIcon}
                 label={t("requisite", ns)}
                 value={formatedRequisite(requisite, isPhone, caseName)}
                 copyData={requisite?.replace(/\s+/g, "")}
@@ -78,14 +80,14 @@ const PayeeData = (props: PayeeDataProps) => {
                 }`}
             />
             <PayeeDataItem
-                img={DollarCircleIcon}
+                Img={DollarCircleIcon}
                 label={t("amount", ns)}
-                value={`${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency)}`}
+                value={`${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`}
                 copyData={BFData?.[dest]?.amount}
                 messageOnCopy={t("copyedAmount", ns)}
             />
             {trader?.card_holder && (
-                <PayeeDataItem img={User2Icon} label={t("payee", ns)} value={trader?.card_holder} />
+                <PayeeDataItem Img={User2Icon} label={t("payee", ns)} value={trader?.card_holder} />
             )}
         </div>
     );

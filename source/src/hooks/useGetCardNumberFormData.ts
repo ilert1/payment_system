@@ -1,3 +1,4 @@
+import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -20,6 +21,7 @@ export type CardFormSchemaType = {
 export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) => {
     const { ns } = props;
     const { t } = useTranslation();
+    const { setCardNumber, setExpiryDate, setCvv, setCardHolder } = usePayerDataStore();
 
     const cardFormSchema = z.object({
         cardNumber: z
@@ -43,11 +45,6 @@ export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) =
         resolver: zodResolver(cardFormSchema),
         mode: "onBlur"
     });
-
-    const [cardNumber, setCardNumber] = useState("");
-    const [expiryDate, setExpiryDate] = useState("");
-    const [cvv, setCvv] = useState("");
-    const [cardHolder, setCardHolder] = useState("");
 
     const handleCardNumberInputChange = (e: any) => {
         clearErrors("cardNumber");
@@ -86,7 +83,7 @@ export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) =
     };
 
     const handleCardHolderChange = (e: any) => {
-        clearErrors("card_holder");
+        clearErrors("cardHolder");
         let value = e.target.value.replace(/[^a-zA-Zа-яА-Я\s]/g, "");
 
         value = value.replace(/\s+/g, " ").replace(/^\s+/, "");
@@ -102,15 +99,9 @@ export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) =
 
     return {
         cardFormSchema,
-        cardNumber,
-        expiryDate,
-        cvv,
         errors,
-        cardHolder,
         register,
         handleSubmit,
-        setCardNumber,
-        setExpiryDate,
         handleCardNumberInputChange,
         handleExpiryInputChange,
         handleExpiryKeyDown,

@@ -46,10 +46,6 @@ const commonRoutes: RouteProps[] = [
 ];
 
 export const routeConfig: Record<string, RouteProps> = {
-    [getRoutePaymentNotFound()]: { path: getRoutePaymentNotFound(), element: <PayErrorPage notFound /> },
-    [getRoutePayoutNotFound()]: { path: getRoutePayoutNotFound(), element: <PayErrorPage notFound /> },
-    ["*"]: { path: "*", element: <PayErrorPage notFound /> },
-
     [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
     [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
 
@@ -63,5 +59,9 @@ export const routeConfig: Record<string, RouteProps> = {
             element: route.element
         };
         return acc;
-    }, {} as Record<string, RouteProps>)
+    }, {} as Record<string, RouteProps>),
+
+    [getRoutePaymentNotFound()]: { path: getRoutePaymentNotFound(), element: <PayErrorPage notFound /> },
+    [getRoutePayoutNotFound()]: { path: getRoutePayoutNotFound(), element: <PayErrorPage notFound /> },
+    ["*"]: { path: "*", element: <PayErrorPage notFound /> }
 };

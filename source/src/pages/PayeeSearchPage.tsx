@@ -6,9 +6,11 @@ import { useAppContext } from "../AppContext";
 import { ProgressSteper } from "../widgets/ProgressSteper";
 
 import usePaymentPage from "../hooks/usePaymentPage";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const PayeeSearchPage = () => {
-    const { BFData, currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();
+    const { currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
 
     usePaymentPage({ absolutePath: false });
 
@@ -44,7 +46,7 @@ const PayeeSearchPage = () => {
             <div className="content">
                 <h1 className="grow">
                     {t("lookingFor", ns)} {BFData?.[dest]?.amount}&nbsp;
-                    {getCurrencySymbol(BFData?.[dest]?.currency)} {t("via", ns)}{" "}
+                    {getCurrencySymbol(BFData?.[dest]?.currency ?? "")} {t("via", ns)}{" "}
                     {currentPaymentInstrument?.data?.bank_name}
                 </h1>
                 <ProgressSteper step={step} />

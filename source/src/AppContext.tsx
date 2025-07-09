@@ -28,8 +28,6 @@ export interface AppContextType {
     getCurrencySymbol: (code: string) => string;
     paymentEcomPage: () => string;
     fingerprintReady: boolean;
-    BFData: any; // замените на тип BFDataType
-    setBFData: (data: any) => void;
     failUrlParams: string;
     setFailUrlParams: (value: string) => void;
     lang: string;
@@ -46,7 +44,7 @@ export const AppContext = createContext<AppContextType | null>(null);
 
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-    const { init, loading } = useBFStore();
+    const { init } = useBFStore();
 
     const navigate = useNavigate;
     const navigateLocal = useNavigate();
@@ -207,8 +205,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     getCurrencySymbol,
                     paymentEcomPage,
                     fingerprintReady,
-                    BFData,
-                    setBFData,
                     failUrlParams,
                     setFailUrlParams,
                     lang,

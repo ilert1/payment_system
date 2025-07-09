@@ -14,10 +14,28 @@ type PayerPayload = {
 };
 
 type PayerDataStore = {
+    cardNumber: string;
+    expiryDate: string;
+    cvv: string;
+    cardHolder: string;
+    setCardNumber: (value: string) => void;
+    setExpiryDate: (value: string) => void;
+    setCvv: (value: string) => void;
+    setCardHolder: (value: string) => void;
     submitPayerData: (data: PayerPayload, method: string, dest: "payout" | "payment") => Promise<void>;
 };
 
-export const usePayerDataStore = create<PayerDataStore>(() => ({
+export const usePayerDataStore = create<PayerDataStore>(set => ({
+    cardNumber: "",
+    expiryDate: "",
+    cvv: "",
+    cardHolder: "",
+
+    setCardNumber: value => set({ cardNumber: value }),
+    setExpiryDate: value => set({ expiryDate: value }),
+    setCvv: value => set({ cvv: value }),
+    setCardHolder: value => set({ cardHolder: value }),
+
     submitPayerData: async (form, method, dest) => {
         const { ym, t } = useAppContext();
         const BFData = useBFStore.getState().BFData;

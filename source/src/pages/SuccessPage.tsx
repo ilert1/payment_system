@@ -4,9 +4,11 @@ import Clock from "../shared/assets/images/clock.svg?react";
 import usePaymentPage from "../hooks/usePaymentPage";
 import Timer from "../shared/ui/Timer";
 import { useAppContext } from "../AppContext";
+import { useBFStore } from "@/shared/store/bfDataStore";
 
 const SuccessPage = () => {
-    const { BFData, t, getCurrencySymbol, payoutMode, status, ym } = useAppContext();
+    const { t, getCurrencySymbol, payoutMode, status, ym } = useAppContext();
+    const BFData = useBFStore(state => state.BFData);
 
     //translation
     const ns = { ns: "Success" };
@@ -14,7 +16,7 @@ const SuccessPage = () => {
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
-    const successUrl = BFData?.[dest]?.method?.context?.success_redirect_url;
+    const successUrl = BFData?.[dest]?.method?.context?.success_redirect_url ?? "";
 
     usePaymentPage({ absolutePath: false });
 
@@ -30,27 +32,9 @@ const SuccessPage = () => {
             <div className="content">
                 <div className="header-container grow wide center">
                     <h1>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
-                    {status === "payoutPartiallyExecuted" ? (
-                        <>
-                            <p className="amount">
-                                +{" "}
-                                {BFData?.[dest]?.lots.reduce(
-                                    (accum: number, curVal: { amount: any }) => accum + Number(curVal.amount),
-                                    0
-                                )}{" "}
-                                {getCurrencySymbol(BFData?.[dest]?.currency)}
-                            </p>
-                            <div className="instructions small">
-                                <ul>
-                                    <li>{t("instructions", ns)}</li>
-                                </ul>
-                            </div>
-                        </>
-                    ) : (
-                        <p className="amount">
-                            + {BFData?.[dest]?.amount} {getCurrencySymbol(BFData?.[dest]?.currency)}
-                        </p>
-                    )}
+                    <p className="amount">
+                        + {BFData?.[dest]?.amount} {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
+                    </p>
                 </div>
 
                 {successUrl && (
@@ -73,7 +57,7 @@ const SuccessPage = () => {
                 buttonCaption={t("returnBtn", ns)}
                 buttonCallback={() => window.location.replace(successUrl)}
                 nextPage={successUrl}
-                nextEnabled={successUrl}
+                nextEnabled={Boolean(successUrl)}
                 noIcon={true}
                 showCancelBtn={false}
             />

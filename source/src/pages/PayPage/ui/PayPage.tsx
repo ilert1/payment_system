@@ -245,7 +245,6 @@ const PayPage = () => {
                             transgran={transgran}
                             trader={trader}
                             bankName={bankName}
-                            BFData={BFData}
                             dest={dest}
                             getCurrencySymbol={getCurrencySymbol}
                             t={t}

@@ -2,46 +2,31 @@
 import { ChangeEventHandler, KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
-import { CardFormSchemaType } from "@/hooks/useGetCardNumberFormData";
+import { CardFormSchemaType, useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
+import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
 
 interface CardNumberFormProps {
     disabled: boolean;
     cardHolderVisible: boolean;
-
-    cardNumber: string;
-    expiryDate: string;
-    cvv: string;
-    cardHolder: string;
-
-    handleCardNumberInputChange: ChangeEventHandler<HTMLInputElement>;
-    handleExpiryInputChange: ChangeEventHandler<HTMLInputElement>;
-    handleCvvInputChange: ChangeEventHandler<HTMLInputElement>;
-    handleCardHolderChange: ChangeEventHandler<HTMLInputElement>;
-    handleExpiryKeyDown: (e: KeyboardEvent) => void;
-
-    errors: FieldErrors<CardFormSchemaType>;
-    register: UseFormRegister<CardFormSchemaType>;
 }
 
 export const CardNumberForm = (props: CardNumberFormProps) => {
+    const ns = { ns: ["Common", "PayerData", "PayOut"] };
+
     const { t } = useTranslation();
+    const { cardNumber, expiryDate, cvv, cardHolder } = usePayerDataStore();
+
     const {
         register,
         errors,
-        cardNumber,
-        expiryDate,
-        handleCardNumberInputChange,
-        handleExpiryInputChange,
-        handleExpiryKeyDown,
-        handleCvvInputChange,
-        cvv,
-        disabled,
-        cardHolder,
         handleCardHolderChange,
-        cardHolderVisible
-    } = props;
+        handleCvvInputChange,
+        handleExpiryKeyDown,
+        handleExpiryInputChange,
+        handleCardNumberInputChange
+    } = useGetCardNumberFormData({ ns });
 
-    const ns = { ns: ["PayerData"] };
+    const { disabled, cardHolderVisible } = props;
 
     return (
         <div
