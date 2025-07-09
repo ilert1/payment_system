@@ -13,7 +13,8 @@ import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumb
 import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 
 const PayerDataPage = () => {
-    const { t, status, ym } = useAppContext();
+    const { t, ym } = useAppContext();
+    const status = useBFStore(state => state.status);
     const navigate = useNavigate();
     usePaymentPage({ absolutePath: false });
 
@@ -67,7 +68,9 @@ const PayerDataPage = () => {
                 dest
             },
             BFData?.[dest]?.method?.name ?? "",
-            dest
+            dest,
+            ym,
+            t
         );
     };
 

@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { useAppContext } from "@/AppContext";
+import { useAppContext, YmType } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { submitPayerData } from "../services/SubmitPayerData";
 
@@ -22,7 +22,13 @@ type PayerDataStore = {
     setExpiryDate: (value: string) => void;
     setCvv: (value: string) => void;
     setCardHolder: (value: string) => void;
-    submitPayerData: (data: PayerPayload, method: string, dest: "payout" | "payment") => Promise<void>;
+    submitPayerData: (
+        data: PayerPayload,
+        method: string,
+        dest: "payout" | "payment",
+        ym: YmType,
+        t: any
+    ) => Promise<void>;
 };
 
 export const usePayerDataStore = create<PayerDataStore>(set => ({
@@ -36,8 +42,7 @@ export const usePayerDataStore = create<PayerDataStore>(set => ({
     setCvv: value => set({ cvv: value }),
     setCardHolder: value => set({ cardHolder: value }),
 
-    submitPayerData: async (form, method, dest) => {
-        const { ym, t } = useAppContext();
+    submitPayerData: async (form, method, dest, ym, t) => {
         const BFData = useBFStore.getState().BFData;
         const bfId = BFData?.[dest]?.id;
 

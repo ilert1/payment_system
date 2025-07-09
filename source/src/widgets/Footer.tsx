@@ -49,6 +49,7 @@ const Footer = (props: FooterProps) => {
         noIcon = false,
         buttonCallback = () => {}
     } = props;
+    console.log(buttonCallback);
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
@@ -151,8 +152,6 @@ const Footer = (props: FooterProps) => {
             setDialogShow(false);
         }
     };
-    console.log("Next page: ", nextPage);
-    console.log("Prev page: ", prevPage);
 
     return (
         <>

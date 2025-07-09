@@ -14,6 +14,8 @@ import ym, { YMInitializer } from "react-yandex-metrika";
 import { useBFStore } from "./shared/store/bfDataStore.js";
 import { AppRoutes } from "./shared/const/router.js";
 
+export type YmType = typeof ym | (() => void);
+
 export interface AppContextType {
     navigate: ReturnType<typeof useNavigate> | null;
     currentPaymentInstrument: any;
@@ -35,7 +37,7 @@ export interface AppContextType {
     payoutMode: boolean;
     status: string | undefined;
     setStatus: (status: string) => void;
-    ym: typeof ym | (() => void);
+    ym: YmType;
     caseName: string;
     setCaseName: (val: string) => void;
 }
@@ -44,8 +46,15 @@ export const AppContext = createContext<AppContextType | null>(null);
 
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
-    const { init } = useBFStore();
-    console.log("Ym", ym);
+    const { init, BFData, status, setStatus } = useBFStore();
+
+    const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
+
+    const safeYm = (...args: Parameters<typeof ym>) => {
+        if (typeof ymFunc === "function" && ymFunc.length > 0) {
+            ymFunc(...args);
+        }
+    };
 
     const navigate = useNavigate;
     const navigateLocal = useNavigate();
@@ -55,7 +64,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const { t } = useTranslation();
 
-    const [BFData, setBFData] = useState<BFDataType | null>(null);
     const [failUrlParams, setFailUrlParams] = useState("");
     const [fingerprint, setFingerprint] = useState("");
     const [fingerprintReady, setFingerprintReady] = useState(false);
@@ -63,7 +71,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [lang, setLang] = useState(storedLang);
 
-    const [status, setStatus] = useState("");
     const [caseName, setCaseName] = useState("");
 
     useEffect(() => {
@@ -118,8 +125,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const pathname = new URL(window.location.href).pathname;
+        console.log(pathname);
+
         const blowfishId = pathname.split("/")[2];
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+        console.log(blowfishId);
+
         console.log("testing uuid");
 
         if (uuidRegex.test(blowfishId)) {
@@ -132,7 +143,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                         "Accept-Language": [lang, ...navigator.languages].toString()
                     }
                 },
-                ym
+                ym: ymFunc
             });
         } else {
             navigateLocal(`/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`, {
@@ -215,7 +226,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     payoutMode,
                     status,
                     setStatus,
-                    ym: import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {},
+                    ym: safeYm,
                     caseName,
                     setCaseName
                 }}>

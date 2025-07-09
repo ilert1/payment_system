@@ -7,8 +7,9 @@ import { useAppContext } from "../AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
 
 const SuccessPage = () => {
-    const { t, getCurrencySymbol, payoutMode, status, ym } = useAppContext();
+    const { t, getCurrencySymbol, payoutMode, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const status = useBFStore(state => state.status);
 
     //translation
     const ns = { ns: "Success" };
