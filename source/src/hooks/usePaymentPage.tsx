@@ -14,6 +14,7 @@ export default function usePaymentPage({ absolutePath = false }) {
         const locationSplits = location.pathname.split("/");
 
         if (paymentPage) {
+            console.log("Changing location");
             if (
                 locationSplits.length > 1 &&
                 locationSplits.slice(0, -1).join("/") + "/" + paymentPage !== location.pathname

@@ -39,7 +39,7 @@ interface FooterProps {
 const Footer = (props: FooterProps) => {
     const {
         buttonCaption = "",
-        nextPage = "",
+        nextPage,
         showCancelBtn = true,
         prevPage = "",
         nextEnabled = true,
@@ -151,6 +151,8 @@ const Footer = (props: FooterProps) => {
             setDialogShow(false);
         }
     };
+    console.log("Next page: ", nextPage);
+    console.log("Prev page: ", prevPage);
 
     return (
         <>

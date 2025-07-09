@@ -218,6 +218,10 @@ const PayPage = () => {
             }
         }
     });
+    console.log("Payee data page", AppRoutes.PAYEE_DATA_PAGE);
+
+    const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
+    console.log(nextPage);
 
     return (
         <div className="container">
@@ -269,7 +273,7 @@ const PayPage = () => {
                         buttonCallback={() => {
                             setButtonCallbackEnabled(true);
                         }}
-                        nextPage={`../${AppRoutes.PAYEE_DATA_PAGE}`}
+                        nextPage={nextPage}
                         nextEnabled={!isFetching_ButtonCallback}
                         approve={true}
                     />

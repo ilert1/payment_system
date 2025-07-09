@@ -45,6 +45,7 @@ export const AppContext = createContext<AppContextType | null>(null);
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init } = useBFStore();
+    console.log("Ym", ym);
 
     const navigate = useNavigate;
     const navigateLocal = useNavigate();
@@ -75,7 +76,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const storedCurrentPaymentInstrument = JSON.parse(String(localStorage.getItem("CurrentPaymentInstrument")));
 
-    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState<PaymentInstrument | null>(null);
+    const [currentPaymentInstrument, setCurrentPaymentInstrument] = useState<{ blowfishId: string; data: any } | null>(
+        null
+    );
 
     useEffect(() => {
         if (!storedCurrentPaymentInstrument?.data || !BFData?.[dest]?.id) return;

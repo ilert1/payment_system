@@ -15,7 +15,7 @@ interface BFStore {
         id: string;
         payoutMode: boolean;
         fingerprintConfig: any;
-        ym: (...args: any[]) => void;
+        ym: (...args: any[]) => void | (() => void);
     }) => Promise<void>;
 
     setStatus: (status: string) => void;
@@ -32,18 +32,19 @@ export const useBFStore = create<BFStore>((set, get) => ({
     init: async ({ id, payoutMode, fingerprintConfig, ym }) => {
         const baseApiURL = import.meta.env.VITE_API_URL;
         const dest = payoutMode ? "payout" : "payment";
-
+        const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
         set({ loading: true, error: false });
 
         try {
             const { data } = await axios.get(`${baseApiURL}/${dest}s/${id}`, fingerprintConfig);
+            console.log(data);
 
-            if (!data?.success) {
-                window.location.replace(
-                    `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-                );
-                return;
-            }
+            // if (!data?.success) {
+            //     window.location.replace(
+            //         `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+            //     );
+            //     return;
+            // }
 
             set({ BFData: data, status: data?.[dest]?.status, blowfishId: id });
 
@@ -52,25 +53,12 @@ export const useBFStore = create<BFStore>((set, get) => ({
             if (data?.[dest]?.method?.name === "ecom") {
                 ym("reachGoal", "ecom-payer-data-page");
             }
-
-            // Подключаем SSE
-            const es = new EventSource(`${baseApiURL}/${dest}s/${data?.[dest]?.id}/events`);
-            es.onopen = () => console.log(">>> Connection opened!");
-            es.onerror = e => console.error("SSE error:", e);
-            es.onmessage = e => {
-                try {
-                    const eventData = JSON.parse(e.data);
-                    set({ status: eventData.data.status });
-                } catch {}
-            };
-
-            window.addEventListener("beforeunload", () => es.close());
         } catch (e: any) {
-            console.error(e);
+            console.log(e);
             set({ error: true });
-            window.location.replace(
-                `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-            );
+            // window.location.replace(
+            //     `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+            // );
         } finally {
             set({ loading: false });
         }

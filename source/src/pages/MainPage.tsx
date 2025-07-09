@@ -80,11 +80,7 @@ const MainPage = () => {
                         )}
                     </div>
 
-                    <Footer
-                        buttonCaption={t("continue", ns)}
-                        nextPage={AppRoutes.PAYMENT_METHODS}
-                        buttonCallback={buttonCallback}
-                    />
+                    <Footer buttonCaption={t("continue", ns)} nextPage={"true"} buttonCallback={buttonCallback} />
                 </>
             )}
 
