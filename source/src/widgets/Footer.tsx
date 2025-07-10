@@ -49,7 +49,6 @@ const Footer = (props: FooterProps) => {
         noIcon = false,
         buttonCallback = () => {}
     } = props;
-    console.log(buttonCallback);
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);

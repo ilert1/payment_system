@@ -57,7 +57,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const navigate = useNavigate;
-    const navigateLocal = useNavigate();
 
     const pathname = new URL(window.location.href).pathname;
     const payoutMode = pathname.split("/")[1] === "payouts";
@@ -146,9 +145,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 ym: ymFunc
             });
         } else {
-            navigateLocal(`/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`, {
-                replace: true
-            });
+            window.location.replace(
+                `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+            );
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

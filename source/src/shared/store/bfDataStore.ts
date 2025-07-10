@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import { AppRoutes } from "@/shared/const/router";
+import { YmType } from "@/AppContext";
 
 type StatusType = string;
 
@@ -37,12 +38,12 @@ export const useBFStore = create<BFStore>((set, get) => ({
             console.log(data.payment.method);
             console.log(data.payment.method.name);
 
-            // if (!data?.success) {
-            //     window.location.replace(
-            //         `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-            //     );
-            //     return;
-            // }
+            if (!data?.success) {
+                window.location.replace(
+                    `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+                );
+                return;
+            }
 
             set({ BFData: data, status: data?.[dest]?.status, blowfishId: id });
 
@@ -51,27 +52,12 @@ export const useBFStore = create<BFStore>((set, get) => ({
             if (data?.[dest]?.method?.name === "ecom") {
                 ym?.("reachGoal", "ecom-payer-data-page");
             }
-
-            // Подключаем SSE
-            const es = new EventSource(`${baseApiURL}/${dest}s/${data?.[dest]?.id}/events`);
-            console.log("ES there");
-
-            es.onopen = () => console.log(">>> Connection opened!");
-            es.onerror = e => console.error("SSE error:", e);
-            es.onmessage = e => {
-                try {
-                    const eventData = JSON.parse(e.data);
-                    set({ status: eventData.data.status });
-                } catch {}
-            };
-
-            window.addEventListener("beforeunload", () => es.close());
         } catch (e: any) {
             console.log(e);
             set({ error: true });
-            // window.location.replace(
-            //     `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-            // );
+            window.location.replace(
+                `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+            );
         } finally {
             set({ loading: false });
         }
