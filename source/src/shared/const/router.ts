@@ -21,8 +21,8 @@ export enum AppRoutes {
 }
 
 export const getRoutePayerDataPage = () => "/payer-data-page";
-export const getRoutePayeeSearchPage = () => "/payee-search-page";
 export const getRoutePayPage = () => "/pay-page";
+export const getRoutePayeeSearchPage = () => "/payee-search-page";
 export const getRoutePayeeDataPage = () => "/payee-data-page";
 export const getRouteSuccessPage = () => "/success-page";
 export const getRoutePayErrorPage = () => "/pay-error-page";

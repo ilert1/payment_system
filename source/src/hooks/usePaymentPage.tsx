@@ -14,6 +14,7 @@ export default function usePaymentPage({ absolutePath = false }) {
     useEffect(() => {
         const paymentPage = paymentEcomPage();
         const locationSplits = location.pathname.split("/");
+        console.log("PAYMENT PAGE ON usePaymentPage: ", paymentPage);
 
         if (paymentPage) {
             console.log("Changing location");
@@ -22,10 +23,15 @@ export default function usePaymentPage({ absolutePath = false }) {
                 locationSplits.slice(0, -1).join("/") + "/" + paymentPage !== location.pathname
             ) {
                 if (!location.pathname.includes(paymentPage) && paymentPage !== PAGE_MAIN) {
+                    console.log(
+                        "Navigating to: ",
+                        absolutePath || paymentPage.includes("/") ? paymentPage : "../" + paymentPage
+                    );
                     nav(absolutePath || paymentPage.includes("/") ? paymentPage : "../" + paymentPage, {
                         replace: true
                     });
                 } else if (paymentPage === PAGE_MAIN && locationSplits.length > 3 && locationSplits[3]) {
+                    console.log("Navigating to: ", "..");
                     nav("..", { replace: true });
                 }
             }

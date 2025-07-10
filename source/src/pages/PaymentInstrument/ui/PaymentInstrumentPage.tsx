@@ -19,8 +19,9 @@ const PaymentInstrumentPage = () => {
 
     // Stex piti lini paymentInstruments
     const [paymentInstruments, setPaymentInstruments] = useState<PaymentInstrument[] | null>(null);
-
     const [instrumentSelectedEnable, setInstrumentSelectedEnable] = useState(false);
+    console.log("FingerprintReady: ", fingerprintReady);
+    console.log("instrumentSelectedEnable: ", instrumentSelectedEnable);
 
     usePaymentPage({ absolutePath: false });
 
@@ -102,7 +103,7 @@ const PaymentInstrumentPage = () => {
                 <h1>{t("amount", ns)}</h1>
                 <div className="amount-container">
                     <p className="amount">{BFData?.[dest]?.amount}</p>
-                    <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency)}</p>
+                    <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>
                 </div>
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
             </div>

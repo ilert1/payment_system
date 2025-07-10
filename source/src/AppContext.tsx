@@ -157,8 +157,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
-        console.log("status:");
-        console.log(status);
+        console.log("Status changed AppContext, new status: ", status);
 
         switch (status) {
             case "paymentAwaitingStart":

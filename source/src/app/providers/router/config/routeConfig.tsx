@@ -1,4 +1,4 @@
-import PaymentInstrumentPage from "@/pages/PaymentInstrumentPage";
+import PaymentInstrumentPage from "@/pages/PaymentInstrument";
 import { PayerDataPage } from "@/pages/PayerDataPage";
 import PayeeSearchPage from "@/pages/PayeeSearchPage";
 import PayeeDataPage from "@/pages/PayeeDataPage";
@@ -43,6 +43,8 @@ const commonRoutes: RouteProps[] = [
 ];
 
 export const routeConfig: Record<string, RouteProps> = {
+    [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
+    [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
     ...commonRoutes.reduce((acc, route) => {
         acc[getRoutePaymentsBlowfishId() + route.path] = {
             path: getRoutePaymentsBlowfishId() + route.path,
@@ -54,8 +56,6 @@ export const routeConfig: Record<string, RouteProps> = {
         };
         return acc;
     }, {} as Record<string, RouteProps>),
-    [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
-    [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
 
     [getRoutePaymentNotFound()]: { path: getRoutePaymentNotFound(), element: <PayErrorPage notFound /> },
     [getRoutePayoutNotFound()]: { path: getRoutePayoutNotFound(), element: <PayErrorPage notFound /> },

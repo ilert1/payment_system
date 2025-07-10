@@ -1,1 +1,1 @@
-export { PaymentInstrumentPage } from "./ui/PaymentInstrumentPage";
+export { default } from "./ui/PaymentInstrumentPage";
