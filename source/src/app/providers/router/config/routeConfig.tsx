@@ -5,7 +5,6 @@ import PayeeDataPage from "@/pages/PayeeDataPage";
 import SuccessPage from "@/pages/SuccessPage";
 import PayErrorPage from "@/pages/PayErrorPage";
 import {
-    getRoutePaymentMethods,
     getRoutePaymentInstrument,
     getRoutePayerDataPage,
     getRoutePayeeSearchPage,
@@ -36,17 +35,14 @@ const commonRoutes: RouteProps[] = [
     { path: getRoutePayPage(), element: <PayPage /> },
     { path: getRoutePayeeDataPage(), element: <PayeeDataPage /> },
     { path: getRouteSuccessPage(), element: <SuccessPage /> },
-    { path: getRoutePayErrorPage(), element: <PayErrorPage /> },
     { path: getRoutePaymentConfirmationPage(), element: <PaymentConfirmationPage /> },
     { path: getRoutePaymentWaitConfirmation(), element: <PaymentWaitConfirmation /> },
+    { path: getRoutePayErrorPage(), element: <PayErrorPage /> },
     { path: getRouteGeneralErrorPage(), element: <GeneralErrorPage /> },
     { path: getRouteCancelPage(), element: <GeneralErrorPage cancel={true} /> }
 ];
 
 export const routeConfig: Record<string, RouteProps> = {
-    [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
-    [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
-
     ...commonRoutes.reduce((acc, route) => {
         acc[getRoutePaymentsBlowfishId() + route.path] = {
             path: getRoutePaymentsBlowfishId() + route.path,
@@ -58,6 +54,8 @@ export const routeConfig: Record<string, RouteProps> = {
         };
         return acc;
     }, {} as Record<string, RouteProps>),
+    [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
+    [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
 
     [getRoutePaymentNotFound()]: { path: getRoutePaymentNotFound(), element: <PayErrorPage notFound /> },
     [getRoutePayoutNotFound()]: { path: getRoutePayoutNotFound(), element: <PayErrorPage notFound /> },

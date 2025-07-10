@@ -4,6 +4,8 @@ import { routeConfig } from "../config/routeConfig";
 import Loader from "@/shared/ui/Loader";
 
 const AppRouter = () => {
+    console.log(routeConfig);
+
     const renderWithWrapper = useCallback((route: RouteProps) => {
         return (
             <Route

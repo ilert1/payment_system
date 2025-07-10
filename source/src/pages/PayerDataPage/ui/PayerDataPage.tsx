@@ -42,7 +42,7 @@ const PayerDataPage = () => {
     const context = method?.context;
 
     const isEcom = methodName === "ecom";
-    const redirectUrl = context?.back_redirect_url ?? "";
+    const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
     const showCardHolder = context?.provider === "BNNPay";
     const isSbp = methodName === "sbp";
 

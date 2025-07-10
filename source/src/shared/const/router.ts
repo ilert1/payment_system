@@ -30,7 +30,7 @@ export const getRoutePaymentConfirmationPage = () => "/payment-confirmation-page
 export const getRoutePaymentWaitConfirmation = () => "/payment-wait-confirmation";
 export const getRouteGeneralErrorPage = () => "/general-error-page";
 export const getRouteCancelPage = () => "/cancel-page";
-export const getRoutePaymentInstrument = () => "/payment-instrument";
+export const getRoutePaymentInstrument = () => "/payment-instrument-page";
 export const getRoutePaymentNotFound = () => "/payment-not-found";
 export const getRoutePayoutNotFound = () => "/payout-not-found";
 export const getRoutePaymentsBlowfishId = () => "/payments/:blowfishId";

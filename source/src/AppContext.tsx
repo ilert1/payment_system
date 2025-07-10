@@ -2,7 +2,7 @@ import * as c from "./shared/assets/constants.js";
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import i18n, { getLanguage } from "./Localization.js";
+import i18n, { getLanguage } from "./Localization";
 import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
@@ -30,8 +30,6 @@ export interface AppContextType {
     getCurrencySymbol: (code: string) => string;
     paymentEcomPage: () => string;
     fingerprintReady: boolean;
-    failUrlParams: string;
-    setFailUrlParams: (value: string) => void;
     lang: string;
     setLang: (lang: string) => void;
     payoutMode: boolean;
@@ -63,7 +61,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const { t } = useTranslation();
 
-    const [failUrlParams, setFailUrlParams] = useState("");
     const [fingerprint, setFingerprint] = useState("");
     const [fingerprintReady, setFingerprintReady] = useState(false);
     let storedLang = getLanguage();
@@ -218,8 +215,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     getCurrencySymbol,
                     paymentEcomPage,
                     fingerprintReady,
-                    failUrlParams,
-                    setFailUrlParams,
                     lang,
                     setLang,
                     payoutMode,

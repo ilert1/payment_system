@@ -9,7 +9,7 @@ export const usePaymentStore = create<PaymentStore>(set => ({
     setIsFetching: state => set({ isFetching: state }),
     fetchPaymentInit: async ({ dest, bfId, navigate, payOutMode }) => {
         const { fingerprintConfig } = useAppContext();
-        const setBfData = useBFStore(state => state.setBfData);
+        const setBfData = useBFStore.getState().setBfData;
 
         set({ isFetching: true });
 
