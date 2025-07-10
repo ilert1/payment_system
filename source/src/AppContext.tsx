@@ -1,4 +1,3 @@
-import * as c from "./shared/assets/constants.js";
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -155,29 +154,29 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const paymentEcomPage = useCallback(() => {
         switch (status) {
             case "paymentAwaitingStart":
-                return c.PAGE_MAIN;
+                return AppRoutes.PAGE_MAIN;
             case "paymentAwaitingSelectInstrument":
             case "paymentPayerSelectingInstrument":
-                return c.PAGE_PAYMENT_INSTRUMENT;
+                return AppRoutes.PAGE_PAYMENT_INSTRUMENT;
             case "paymentPayerDataEntrу":
             case "paymentPayerDataEntered":
-                return c.PAGE_PAYER_DATA;
+                return AppRoutes.PAYER_DATA_PAGE;
             case "paymentPayeeSearching":
-                return c.PAGE_PAYEE_SEARCH;
+                return AppRoutes.PAYEE_SEARCH_PAGE;
             case "paymentAwaitingTransfer":
                 if (BFData?.[dest]?.method?.name == "ecom") {
-                    return c.PAGE_PAYER_DATA;
+                    return AppRoutes.PAYER_DATA_PAGE;
                 }
-                return c.PAGE_PAY;
+                return AppRoutes.PAY_PAGE;
             case "paymentAwaitingConfirmationByPayee":
-                return c.PAGE_PAYEE_DATA;
+                return AppRoutes.PAYEE_DATA_PAGE;
             case "paymentExecuted":
-                return c.PAGE_SUCCESS;
+                return AppRoutes.SUCCESS_PAGE;
             case "paymentError":
-                return c.PAGE_PAY_ERROR;
+                return AppRoutes.PAY_ERROR_PAGE;
             case "Cancelled":
             case "paymentCanceled":
-                return c.PAGE_CANCEL;
+                return AppRoutes.CANCEL_PAGE;
             default:
                 return "";
         }
