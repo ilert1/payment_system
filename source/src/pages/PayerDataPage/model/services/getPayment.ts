@@ -11,8 +11,6 @@ export const getPayment = async ({
 }: GetPaymentParams): Promise<BFDataType | undefined> => {
     const url = `${import.meta.env.VITE_API_URL}/${dest}s/${bfId}`;
 
-    console.log(`getPayment: ${url}`);
-
     try {
         const response = await fetch(url, {
             method: "GET",
@@ -27,9 +25,6 @@ export const getPayment = async ({
         }
 
         const data: BFDataType & { success?: boolean } = await response.json();
-
-        console.log("Fetched data", data);
-        console.log("redirect_url", data?.[dest]?.method?.payee?.redirect_url);
 
         if (data?.success) {
             setBfData(data);

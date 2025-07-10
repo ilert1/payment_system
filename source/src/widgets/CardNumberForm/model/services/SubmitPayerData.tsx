@@ -97,7 +97,6 @@ export const submitPayerData = async ({
         const result = await res.json();
 
         if (!result.success) {
-            console.log(result.error);
             toast.error(result.error, { autoClose: 2000 });
         }
     } catch (error: any) {

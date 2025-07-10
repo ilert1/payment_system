@@ -4,60 +4,49 @@ import PayeeSearchPage from "@/pages/PayeeSearchPage";
 import PayeeDataPage from "@/pages/PayeeDataPage";
 import SuccessPage from "@/pages/SuccessPage";
 import PayErrorPage from "@/pages/PayErrorPage";
-import {
-    getRoutePaymentInstrument,
-    getRoutePayerDataPage,
-    getRoutePayeeSearchPage,
-    getRoutePayPage,
-    getRoutePayeeDataPage,
-    getRouteSuccessPage,
-    getRoutePayErrorPage,
-    getRoutePaymentConfirmationPage,
-    getRoutePaymentWaitConfirmation,
-    getRouteGeneralErrorPage,
-    getRouteCancelPage,
-    getRoutePaymentNotFound,
-    getRoutePayoutNotFound,
-    getRoutePaymentsBlowfishId,
-    getRoutePayoutsBlowfishId
-} from "@/shared/const/router";
-import { RouteProps } from "react-router-dom";
 import PaymentConfirmationPage from "@/pages/PaymentConfirmationPage";
 import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
 import GeneralErrorPage from "@/pages/GeneralErrorPage";
 import MainPage from "@/pages/MainPage";
 import { PayPage } from "@/pages/PayPage";
 
-const commonRoutes: RouteProps[] = [
-    { path: getRoutePaymentInstrument(), element: <PaymentInstrumentPage /> },
-    { path: getRoutePayerDataPage(), element: <PayerDataPage /> },
-    { path: getRoutePayeeSearchPage(), element: <PayeeSearchPage /> },
-    { path: getRoutePayPage(), element: <PayPage /> },
-    { path: getRoutePayeeDataPage(), element: <PayeeDataPage /> },
-    { path: getRouteSuccessPage(), element: <SuccessPage /> },
-    { path: getRoutePaymentConfirmationPage(), element: <PaymentConfirmationPage /> },
-    { path: getRoutePaymentWaitConfirmation(), element: <PaymentWaitConfirmation /> },
-    { path: getRoutePayErrorPage(), element: <PayErrorPage /> },
-    { path: getRouteGeneralErrorPage(), element: <GeneralErrorPage /> },
-    { path: getRouteCancelPage(), element: <GeneralErrorPage cancel={true} /> }
+import { RouteObject } from "react-router-dom";
+import { AppRoutes } from "@/shared/const/router";
+
+const defaultPages: RouteObject[] = [
+    { path: AppRoutes.PAGE_PAYMENT_INSTRUMENT, element: <PaymentInstrumentPage /> },
+    { path: AppRoutes.PAYER_DATA_PAGE, element: <PayerDataPage /> },
+    { path: AppRoutes.PAYEE_SEARCH_PAGE, element: <PayeeSearchPage /> },
+    { path: AppRoutes.PAY_PAGE, element: <PayPage /> },
+    { path: AppRoutes.PAYEE_DATA_PAGE, element: <PayeeDataPage /> },
+    { path: AppRoutes.SUCCESS_PAGE, element: <SuccessPage /> },
+    { path: AppRoutes.PAYMENT_CONFIRMATION_PAGE, element: <PaymentConfirmationPage /> },
+    { path: AppRoutes.PAYMENT_WAIT_CONFIRMATION, element: <PaymentWaitConfirmation /> },
+    { path: AppRoutes.PAY_ERROR_PAGE, element: <PayErrorPage /> },
+    { path: AppRoutes.GENERAL_ERROR_PAGE, element: <GeneralErrorPage /> },
+    { path: AppRoutes.CANCEL_PAGE, element: <GeneralErrorPage cancel={true} /> },
+    { index: true, element: <MainPage /> }
 ];
 
-export const routeConfig: Record<string, RouteProps> = {
-    [getRoutePaymentsBlowfishId()]: { path: getRoutePaymentsBlowfishId(), element: <MainPage /> },
-    [getRoutePayoutsBlowfishId()]: { path: getRoutePayoutsBlowfishId(), element: <MainPage /> },
-    ...commonRoutes.reduce((acc, route) => {
-        acc[getRoutePaymentsBlowfishId() + route.path] = {
-            path: getRoutePaymentsBlowfishId() + route.path,
-            element: route.element
-        };
-        acc[getRoutePayoutsBlowfishId() + route.path] = {
-            path: getRoutePayoutsBlowfishId() + route.path,
-            element: route.element
-        };
-        return acc;
-    }, {} as Record<string, RouteProps>),
-
-    [getRoutePaymentNotFound()]: { path: getRoutePaymentNotFound(), element: <PayErrorPage notFound /> },
-    [getRoutePayoutNotFound()]: { path: getRoutePayoutNotFound(), element: <PayErrorPage notFound /> },
-    ["*"]: { path: "*", element: <PayErrorPage notFound /> }
-};
+export const routes: RouteObject[] = [
+    {
+        path: AppRoutes.PAGE_PAYMENTS_BLOWFISH_ID,
+        children: defaultPages
+    },
+    {
+        path: AppRoutes.PAGE_PAYOUTS_BLOWFISH_ID,
+        children: defaultPages
+    },
+    {
+        path: AppRoutes.PAGE_PAYMENT_NOT_FOUND,
+        element: <PayErrorPage notFound />
+    },
+    {
+        path: AppRoutes.PAGE_PAYOUT_NOT_FOUND,
+        element: <PayErrorPage notFound />
+    },
+    {
+        path: "*",
+        element: <PayErrorPage notFound />
+    }
+];

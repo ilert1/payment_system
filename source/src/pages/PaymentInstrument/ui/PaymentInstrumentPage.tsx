@@ -20,8 +20,6 @@ const PaymentInstrumentPage = () => {
     // Stex piti lini paymentInstruments
     const [paymentInstruments, setPaymentInstruments] = useState<PaymentInstrument[] | null>(null);
     const [instrumentSelectedEnable, setInstrumentSelectedEnable] = useState(false);
-    console.log("FingerprintReady: ", fingerprintReady);
-    console.log("instrumentSelectedEnable: ", instrumentSelectedEnable);
 
     usePaymentPage({ absolutePath: false });
 
@@ -40,9 +38,6 @@ const PaymentInstrumentPage = () => {
                 paymentId: BFData?.[dest]?.id,
                 event: "paymentPayerGetInstruments"
             };
-
-            console.log("paymentPayerGetInstruments payload:");
-            console.log(payload);
 
             const { data } = await axios.post(
                 `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,

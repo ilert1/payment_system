@@ -8,7 +8,7 @@ import axios from "axios";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import PayHeader from "@/widgets/PayHeader";
 import PayeeData from "@/widgets/PayeeData";
-import { getLocalBankName } from "@/Localization";
+import { getLocalBankName } from "@/shared/config/i18n/Localization";
 import Loader from "@/shared/ui/Loader";
 import { useQuery } from "@tanstack/react-query";
 import { AppRoutes } from "@/shared/const/router";
@@ -218,10 +218,7 @@ const PayPage = () => {
             }
         }
     });
-    console.log("Payee data page", AppRoutes.PAYEE_DATA_PAGE);
-
     const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
-    console.log(nextPage);
 
     return (
         <div className="container">

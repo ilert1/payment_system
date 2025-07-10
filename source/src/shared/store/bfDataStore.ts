@@ -33,10 +33,6 @@ export const useBFStore = create<BFStore>((set, get) => ({
 
         try {
             const { data } = await axios.get(`${baseApiURL}/${dest}s/${id}`, fingerprintConfig);
-            console.log(data);
-            console.log(data.payment);
-            console.log(data.payment.method);
-            console.log(data.payment.method.name);
 
             if (!data?.success) {
                 window.location.replace(
@@ -53,7 +49,6 @@ export const useBFStore = create<BFStore>((set, get) => ({
                 ym?.("reachGoal", "ecom-payer-data-page");
             }
         } catch (e: any) {
-            console.log(e);
             set({ error: true });
             window.location.replace(
                 `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`

@@ -1,22 +1,10 @@
-import React, { memo, Suspense, useCallback } from "react";
-import { Route, RouteProps, Routes } from "react-router-dom";
-import { routeConfig } from "../config/routeConfig";
-import Loader from "@/shared/ui/Loader";
+import { useRoutes } from "react-router-dom";
+import { memo } from "react";
+import { routes } from "../config/routeConfig";
 
 const AppRouter = () => {
-    console.log(routeConfig);
-
-    const renderWithWrapper = useCallback((route: RouteProps) => {
-        return (
-            <Route
-                key={route.path}
-                path={route.path}
-                element={<Suspense fallback={<Loader />}>{route.element}</Suspense>}
-            />
-        );
-    }, []);
-
-    return <Routes>{Object.values(routeConfig).map(renderWithWrapper)}</Routes>;
+    const element = useRoutes(routes);
+    return element;
 };
 
 export default memo(AppRouter);

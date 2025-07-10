@@ -1,15 +1,17 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+// import Backend from "i18next-http-backend";
 
-import translationRU from "./locales/ru-RU.json";
-import translationEN from "./locales/en-US.json";
-import translationAZ from "./locales/az-AZ.json";
-import translationKZ from "./locales/kk-KZ.json";
-import translationKG from "./locales/ky-KG.json";
-import translationTJ from "./locales/tg-TJ.json";
-import translationTR from "./locales/tr-TR.json";
-import translationUA from "./locales/uk-UA.json";
-import translationUZ from "./locales/uz-UZ.json";
+// TODO Избавиться от этих уродливых импортов
+import translationRU from "@/../public/locales/ru-RU.json";
+import translationEN from "@/../public/locales/en-US.json";
+import translationAZ from "@/../public/locales/az-AZ.json";
+import translationKZ from "@/../public/locales/kk-KZ.json";
+import translationKG from "@/../public/locales/ky-KG.json";
+import translationTJ from "@/../public/locales/tg-TJ.json";
+import translationTR from "@/../public/locales/tr-TR.json";
+import translationUA from "@/../public/locales/uk-UA.json";
+import translationUZ from "@/../public/locales/uz-UZ.json";
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -54,7 +56,9 @@ export const getLocalBankName = (display_name = {}, lang: string | null = null) 
 
 var language = getLanguage();
 
-i18n.use(initReactI18next) // passes i18n down to react-i18next
+i18n.use(initReactI18next)
+    // .use(Backend)
+    // passes i18n down to react-i18next
     .init({
         resources,
         lng: language, // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
@@ -65,6 +69,9 @@ i18n.use(initReactI18next) // passes i18n down to react-i18next
         interpolation: {
             escapeValue: false // react already safes from xss
         }
+        // backend: {
+        //     loadPath: "/locales/{{lng}}/{{ns}}.json"
+        // }
     });
 
 export default i18n;

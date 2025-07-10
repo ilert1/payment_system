@@ -35,21 +35,3 @@ export const getRoutePaymentNotFound = () => "/payment-not-found";
 export const getRoutePayoutNotFound = () => "/payout-not-found";
 export const getRoutePaymentsBlowfishId = () => "/payments/:blowfishId";
 export const getRoutePayoutsBlowfishId = () => "/payouts/:blowfishId";
-
-export const AppRouteByPathPattern: Record<string, AppRoutes> = {
-    [getRoutePayerDataPage()]: AppRoutes.PAYER_DATA_PAGE,
-    [getRoutePayeeSearchPage()]: AppRoutes.PAYEE_SEARCH_PAGE,
-    [getRoutePayPage()]: AppRoutes.PAY_PAGE,
-    [getRoutePayeeDataPage()]: AppRoutes.PAYEE_DATA_PAGE,
-    [getRouteSuccessPage()]: AppRoutes.SUCCESS_PAGE,
-    [getRoutePayErrorPage()]: AppRoutes.PAY_ERROR_PAGE,
-    [getRoutePaymentConfirmationPage()]: AppRoutes.PAYMENT_CONFIRMATION_PAGE,
-    [getRoutePaymentWaitConfirmation()]: AppRoutes.PAYMENT_WAIT_CONFIRMATION,
-    [getRouteGeneralErrorPage()]: AppRoutes.GENERAL_ERROR_PAGE,
-    [getRouteCancelPage()]: AppRoutes.CANCEL_PAGE,
-    [getRoutePaymentInstrument()]: AppRoutes.PAYMENT_INSTRUMENT,
-    [getRoutePaymentNotFound()]: AppRoutes.PAGE_PAYMENT_NOT_FOUND,
-    [getRoutePayoutNotFound()]: AppRoutes.PAGE_PAYOUT_NOT_FOUND,
-    [getRoutePaymentsBlowfishId()]: AppRoutes.PAGE_PAYMENTS_BLOWFISH_ID,
-    [getRoutePayoutsBlowfishId()]: AppRoutes.PAGE_PAYOUTS_BLOWFISH_ID
-};

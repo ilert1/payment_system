@@ -2,7 +2,7 @@ import * as c from "./shared/assets/constants.js";
 import { createContext, useState, useEffect, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import i18n, { getLanguage } from "./Localization";
+import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
 import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
@@ -121,13 +121,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const pathname = new URL(window.location.href).pathname;
-        console.log(pathname);
 
         const blowfishId = pathname.split("/")[2];
         const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-        console.log(blowfishId);
-
-        console.log("testing uuid");
 
         if (uuidRegex.test(blowfishId)) {
             init({
@@ -157,8 +153,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
-        console.log("Status changed AppContext, new status: ", status);
-
         switch (status) {
             case "paymentAwaitingStart":
                 return c.PAGE_MAIN;
