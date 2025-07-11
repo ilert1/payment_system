@@ -30,20 +30,20 @@ const defaultPages: RouteObject[] = [
 
 export const routes: RouteObject[] = [
     {
-        path: AppRoutes.PAGE_PAYMENTS_BLOWFISH_ID,
-        children: defaultPages
-    },
-    {
-        path: AppRoutes.PAGE_PAYOUTS_BLOWFISH_ID,
-        children: defaultPages
-    },
-    {
         path: AppRoutes.PAGE_PAYMENT_NOT_FOUND,
         element: <PayErrorPage notFound />
     },
     {
         path: AppRoutes.PAGE_PAYOUT_NOT_FOUND,
         element: <PayErrorPage notFound />
+    },
+    {
+        path: AppRoutes.PAGE_PAYMENTS_BLOWFISH_ID,
+        children: defaultPages
+    },
+    {
+        path: AppRoutes.PAGE_PAYOUTS_BLOWFISH_ID,
+        children: defaultPages
     },
     {
         path: "*",

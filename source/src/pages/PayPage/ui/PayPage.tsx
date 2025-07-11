@@ -15,6 +15,7 @@ import { AppRoutes } from "@/shared/const/router";
 
 import { PaymentInstructions } from "./PaymentInstructions";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { useNavigate } from "react-router-dom";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -25,7 +26,7 @@ const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, setCaseName, lang } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
-
+    const nav = useNavigate();
     //translation
     const ns = { ns: ["Common", "Pay"] };
 
@@ -200,18 +201,14 @@ const PayPage = () => {
                         //транзакция не найдена или не подлежит оплате
                         console.log(data?.error);
                         setNeedRefreshBFData(false);
-                        window.location.replace(
-                            `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-                        );
+                        nav(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
                     }
                 }
                 return data;
             } catch (e: any) {
                 console.error(e.response.statusCode);
                 if (e.response.statusCode === 404) {
-                    window.location.replace(
-                        `/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-                    );
+                    nav(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
                 }
             } finally {
                 setNeedRefreshBFData(false);

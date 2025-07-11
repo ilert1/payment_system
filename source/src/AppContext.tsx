@@ -137,9 +137,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 ym: ymFunc
             });
         } else {
-            window.location.replace(
-                `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
-            );
+            if (
+                !pathname.includes(AppRoutes.PAGE_PAYMENT_NOT_FOUND) &&
+                !pathname.includes(AppRoutes.PAGE_PAYOUT_NOT_FOUND)
+            ) {
+                window.location.replace(
+                    `/${payoutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`
+                );
+            }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

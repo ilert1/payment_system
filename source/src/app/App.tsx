@@ -2,12 +2,12 @@ import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
 
 import { useEffect } from "react";
-import { AppProvider, useAppContext } from "@/AppContext";
+import { useAppContext } from "@/AppContext";
 import Loader from "@/shared/ui/Loader";
 import { ToastContainer } from "react-toastify";
 import { AppRouter } from "./providers/router";
-import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
 const baseApiURL = import.meta.env.VITE_API_URL;
 
 const App = () => {
