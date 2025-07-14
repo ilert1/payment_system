@@ -20,7 +20,7 @@ const PayeeDataPage = () => {
     usePaymentPage({ absolutePath: false });
 
     const redirect = (url: string) => {
-        document.location.replace(url);
+        window.location.replace(url);
     };
 
     const buttonCallback = () => {

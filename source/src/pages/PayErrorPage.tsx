@@ -7,13 +7,11 @@ import Timer from "../shared/ui/Timer";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { useNavigate } from "react-router-dom";
 
 const PayErrorPage = ({ notFound = false }) => {
     const { ym } = useAppContext();
     const { t } = useTranslation();
     const BFData = useBFStore(state => state.BFData);
-    const nav = useNavigate();
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -22,7 +20,7 @@ const PayErrorPage = ({ notFound = false }) => {
 
     const buttonCallback = () => {
         ym("reachGoal", "fail-return-button", { fail_url: failUrl });
-        if (failUrl) nav(failUrl);
+        if (failUrl) window.location.replace(failUrl);
     };
 
     //translation
@@ -50,7 +48,7 @@ const PayErrorPage = ({ notFound = false }) => {
                                 down={true}
                                 className="deadline-timer"
                                 secondsToDo={5}
-                                timerCallback={() => nav(failUrl)}
+                                timerCallback={() => window.location.replace(failUrl)}
                             />
                         </div>
                     </>

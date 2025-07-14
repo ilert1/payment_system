@@ -6,13 +6,11 @@ import Timer from "../shared/ui/Timer";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export const GeneralErrorPage = ({ cancel = false }) => {
     const { ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
-    const nav = useNavigate();
 
     const { t } = useTranslation();
     const payOutMode = Boolean(BFData?.payout);
@@ -25,7 +23,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
 
     const returnCallback = () => {
         ym("reachGoal", "fail-return-button", { cancel_url: cancelUrl, fail_url: failUrl });
-        nav(cancel && cancelUrl ? cancelUrl : failUrl);
+        window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl);
     };
 
     return (
@@ -51,7 +49,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                                 down={true}
                                 className="deadline-timer"
                                 secondsToDo={5}
-                                timerCallback={() => nav(cancel && cancelUrl ? cancelUrl : failUrl)}
+                                timerCallback={() => window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl)}
                             />
                         </div>
                     </>

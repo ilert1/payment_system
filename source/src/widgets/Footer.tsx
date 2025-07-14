@@ -178,7 +178,7 @@ const Footer = (props: FooterProps) => {
                                 id="back-button"
                                 className={`button back-button${nextPage == "" ? " grow" : ""}`}
                                 onClick={() => {
-                                    navigate(prevPage, { replace: true });
+                                    window.location.replace(prevPage);
                                 }}>
                                 <ArrowLeft />
                             </button>
@@ -194,7 +194,7 @@ const Footer = (props: FooterProps) => {
                                         buttonCallback();
                                     } else {
                                         ym("reachGoal", "main-button", { caption: buttonCaption });
-                                        navigate(nextPage, { replace: true });
+                                        window.location.replace(nextPage);
                                     }
                                 }}>
                                 {buttonCaption}

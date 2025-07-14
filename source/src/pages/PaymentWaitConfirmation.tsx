@@ -5,11 +5,6 @@ import Timer from "@/shared/ui/Timer";
 import Loader from "@/shared/ui/Loader";
 
 const PaymentWaitConfirmation = () => {
-    // const { navigate, t } = useAppContext();
-
-    //translation
-    // const ns = { ns: "PaymentWaitConfirmation" };
-
     return (
         <div className="container">
             <Header />

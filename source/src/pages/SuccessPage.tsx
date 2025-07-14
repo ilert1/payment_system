@@ -5,13 +5,11 @@ import usePaymentPage from "../hooks/usePaymentPage";
 import Timer from "../shared/ui/Timer";
 import { useAppContext } from "../AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { useNavigate } from "react-router-dom";
 
 const SuccessPage = () => {
     const { t, getCurrencySymbol, payoutMode, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
     // const status = useBFStore(state => state.status);
-    const nav = useNavigate();
     //translation
     const ns = { ns: "Success" };
 
@@ -24,7 +22,7 @@ const SuccessPage = () => {
 
     const successCallback = () => {
         ym("reachGoal", "success-return-button", { success_url: successUrl });
-        nav(successUrl);
+        window.location.replace(successUrl);
     };
 
     return (
@@ -57,7 +55,7 @@ const SuccessPage = () => {
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}
-                buttonCallback={() => nav(successUrl)}
+                buttonCallback={() => window.location.replace(successUrl)}
                 nextPage={successUrl}
                 nextEnabled={Boolean(successUrl)}
                 noIcon={true}
