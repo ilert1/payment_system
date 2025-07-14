@@ -173,16 +173,16 @@ const Footer = (props: FooterProps) => {
                         </div>
                     )}
                     <div className="buttons-container">
-                        {prevPage && (
+                        {/* {prevPage && (
                             <button
                                 id="back-button"
                                 className={`button back-button${nextPage == "" ? " grow" : ""}`}
                                 onClick={() => {
-                                    window.location.replace(prevPage);
+                                    navigate(prevPage, { replace: true });
                                 }}>
                                 <ArrowLeft />
                             </button>
-                        )}
+                        )} */}
 
                         {nextPage && (
                             <button
