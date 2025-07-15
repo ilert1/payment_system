@@ -110,17 +110,12 @@ const Footer = (props: FooterProps) => {
                 setIsLoading(true);
 
                 const { data } = await axios.post(
-                    `${import.meta.env.VITE_API_URL}/cancel`,
+                    `${import.meta.env.VITE_API_URL}/${dest}s/${BFData?.[dest]?.id}/events`,
                     {
-                        message: {
-                            payment: {
-                                trn: BFData?.[dest]?.id
-                            }
-                        }
+                        event: "paymentCancel"
                     },
                     fingerprintConfig
                 );
-
                 console.log("cancel response:");
                 console.log(data);
                 if (data?.success) {
