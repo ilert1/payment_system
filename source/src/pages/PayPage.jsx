@@ -310,7 +310,7 @@ const PayPage = () => {
                             <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />
                         ) : (
                             <>
-                                {/* трансгран кейс для Таджикистана, Азербайджана */}
+                                {/* трансгран кейсы для Таджикистана, Азербайджана по tsbp */}
                                 {[tjs, azn].includes(caseName) &&
                                     BFData?.[dest]?.method?.name == "tsbp" /* transgran */ && (
                                         <div className="instructions_new transgran">
@@ -382,16 +382,14 @@ const PayPage = () => {
                                         </div>
                                     )}
 
+                                {/* трансгран кейс для Таджикистана по tcard2card */}
                                 {[tjs].includes(caseName) && BFData?.[dest]?.method?.name == "tcard2card" && (
                                     <div className="instructions_new transgran">
-                                        <Instruction
-                                            title={t("steps_transgran_tcard2card.tbankTitle", ns)}
-                                            data={t("steps_transgran_tcard2card.tbank", ns)}
-                                            start={0}
-                                            i={0}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
+                                        <div className="title">
+                                            <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
+                                        </div>
+
+                                        <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} start={0} />
                                     </div>
                                 )}
 
