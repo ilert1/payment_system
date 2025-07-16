@@ -311,73 +311,87 @@ const PayPage = () => {
                         ) : (
                             <>
                                 {/* трансгран кейс для Таджикистана, Азербайджана */}
-                                {[tjs, azn].includes(caseName) && transgran && (
-                                    <div className="instructions_new transgran">
-                                        <ul>
-                                            <li>
-                                                <span>1. </span>
-                                                {t("steps_transgran.one", ns)}
-                                            </li>
-                                            <li>
-                                                <span>2. </span>
-                                                {t("steps_transgran.two", ns)}
-                                            </li>
-                                        </ul>
+                                {[tjs, azn].includes(caseName) &&
+                                    BFData?.[dest]?.method?.name == "tsbp" /* transgran */ && (
+                                        <div className="instructions_new transgran">
+                                            <ul>
+                                                <li>
+                                                    <span>1. </span>
+                                                    {t("steps_transgran.one", ns)}
+                                                </li>
+                                                <li>
+                                                    <span>2. </span>
+                                                    {t("steps_transgran.two", ns)}
+                                                </li>
+                                            </ul>
 
-                                        <Instruction
-                                            title={t("steps_transgran.tbankTitle", ns)}
-                                            data={t("steps_transgran.tbank", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                ...ns
-                                            })}
-                                            start={2}
-                                            i={1}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-                                        <Instruction
-                                            title={t("steps_transgran.sberbankTitle", ns)}
-                                            data={t("steps_transgran.sberbank", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                ...ns
-                                            })}
-                                            start={2}
-                                            i={2}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-                                        <Instruction
-                                            title={t("steps_transgran.vtbbankTitle", ns)}
-                                            data={t("steps_transgran.vtbbank", {
-                                                country: t(`steps_transgran_new.country.${caseName}`, ns),
-                                                ...ns
-                                            })}
-                                            start={2}
-                                            i={3}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                        />
-
-                                        <Instruction
-                                            title={`${t(`steps_transgran_new.title.local`, ns)}${
-                                                [tjs, azn, abh].includes(caseName)
-                                                    ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
-                                                    : ""
-                                            }`}
-                                            i={4}
-                                            active={activeAccordion}
-                                            setActive={setActiveAccordion}
-                                            isDefault={true}>
-                                            <DefaultInstructionItems
-                                                trader={trader}
-                                                bankName={bankName}
-                                                amount={BFData?.[dest]?.amount}
-                                                t={t}
-                                                currency={getCurrencySymbol(BFData?.[dest]?.currency)}
-                                                first_step={false}
+                                            <Instruction
+                                                title={t("steps_transgran.tbankTitle", ns)}
+                                                data={t("steps_transgran.tbank", {
+                                                    country: t(`steps_transgran_new.country.${caseName}`, ns),
+                                                    ...ns
+                                                })}
                                                 start={2}
+                                                i={1}
+                                                active={activeAccordion}
+                                                setActive={setActiveAccordion}
                                             />
-                                        </Instruction>
+                                            <Instruction
+                                                title={t("steps_transgran.sberbankTitle", ns)}
+                                                data={t("steps_transgran.sberbank", {
+                                                    country: t(`steps_transgran_new.country.${caseName}`, ns),
+                                                    ...ns
+                                                })}
+                                                start={2}
+                                                i={2}
+                                                active={activeAccordion}
+                                                setActive={setActiveAccordion}
+                                            />
+                                            <Instruction
+                                                title={t("steps_transgran.vtbbankTitle", ns)}
+                                                data={t("steps_transgran.vtbbank", {
+                                                    country: t(`steps_transgran_new.country.${caseName}`, ns),
+                                                    ...ns
+                                                })}
+                                                start={2}
+                                                i={3}
+                                                active={activeAccordion}
+                                                setActive={setActiveAccordion}
+                                            />
+
+                                            <Instruction
+                                                title={`${t(`steps_transgran_new.title.local`, ns)}${
+                                                    [tjs, azn, abh].includes(caseName)
+                                                        ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
+                                                        : ""
+                                                }`}
+                                                i={4}
+                                                active={activeAccordion}
+                                                setActive={setActiveAccordion}
+                                                isDefault={true}>
+                                                <DefaultInstructionItems
+                                                    trader={trader}
+                                                    bankName={bankName}
+                                                    amount={BFData?.[dest]?.amount}
+                                                    t={t}
+                                                    currency={getCurrencySymbol(BFData?.[dest]?.currency)}
+                                                    first_step={false}
+                                                    start={2}
+                                                />
+                                            </Instruction>
+                                        </div>
+                                    )}
+
+                                {[tjs].includes(caseName) && BFData?.[dest]?.method?.name == "tcard2card" && (
+                                    <div className="instructions_new transgran">
+                                        <Instruction
+                                            title={t("steps_transgran_tcard2card.tbankTitle", ns)}
+                                            data={t("steps_transgran_tcard2card.tbank", ns)}
+                                            start={0}
+                                            i={0}
+                                            active={activeAccordion}
+                                            setActive={setActiveAccordion}
+                                        />
                                     </div>
                                 )}
 
