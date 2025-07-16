@@ -42,7 +42,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     }
 
     // Transgran tsbp cases for tjs/azn
-    if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name == "tsbp" /* transgran */) {
+    if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
             <div className="instructions_new transgran">
                 <ul>
@@ -111,11 +111,13 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
         );
     }
 
-    {
-        /* трансгран кейс для Таджикистана по tcard2card */
-    }
-    {
-        [tjs].includes(caseName) && BFData?.[dest]?.method?.name == "tcard2card" && (
+    console.log("caseName", caseName);
+    console.log("BFData?.[dest]?.method?.name", BFData?.[dest]?.method?.name);
+
+    /* трансгран кейс для Таджикистана по tcard2card */
+
+    if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
+        return (
             <div className="instructions_new transgran">
                 <div className="title">
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
