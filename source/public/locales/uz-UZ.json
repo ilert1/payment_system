@@ -60,6 +60,10 @@
             "vtbbankTitle": "VTB orqali toʻlov qilish boʻyicha qoʻllanma",
             "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «{{country}}» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
         },
+        "steps_transgran_tcard2card": {
+            "tbankTitle": "T-Bank orqali to‘lov yo‘riqnoma",
+            "tbank": "Bank ilovasini oching (T-Bank)|(To‘lash) tugmasini bosing|(Karta raqami orqali o‘tkazma) bo‘limini tanlang|Ko‘rsatilgan karta raqamini joylashtiring|Arizada ko‘rsatilgan summa kiriting|(O‘tkazish) tugmasini bosing"
+        },
         "steps_azn": {
             "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|Sber ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — \"boshqa mamlakatga o'tkazma\"|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud \"E-wallet\" ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, \"To'lovni yakunlash\" tugmasini bosing"
         },
