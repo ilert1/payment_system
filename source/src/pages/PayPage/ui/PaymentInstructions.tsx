@@ -41,8 +41,8 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
         return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
     }
 
-    // Transgran cases for tjs/azn
-    if ([tjs, azn].includes(caseName) && transgran) {
+    // Transgran tsbp cases for tjs/azn
+    if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name == "tsbp" /* transgran */) {
         return (
             <div className="instructions_new transgran">
                 <ul>
@@ -107,6 +107,21 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         </Instruction>
                     );
                 })()}
+            </div>
+        );
+    }
+
+    {
+        /* трансгран кейс для Таджикистана по tcard2card */
+    }
+    {
+        [tjs].includes(caseName) && BFData?.[dest]?.method?.name == "tcard2card" && (
+            <div className="instructions_new transgran">
+                <div className="title">
+                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
+                </div>
+
+                <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} start={0} />
             </div>
         );
     }
