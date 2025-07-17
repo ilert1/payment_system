@@ -17,13 +17,10 @@ export const formatedRequisite = (req: string, isPhone: boolean, caseName: strin
     if (req) {
         req = req.replace(/\s+/g, "");
         if (isPhone) {
-            switch (caseName) {
-                case "tjs":
-                    return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
-                case "azn":
-                    return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
-                default:
-                    return req.replace(/^\+?(\d{1})(\d{3})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
+            if (caseName === "tjs" || caseName === "azn") {
+                return req.replace(/^\+?(\d{3})(\d{2})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
+            } else {
+                return req.replace(/^\+?(\d{1})(\d{3})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
             }
         } else {
             return req.replace(/(.{4})/g, "$1 ");

@@ -2,9 +2,12 @@
 import { useRef, useEffect, useState } from "react";
 import { useAppContext } from "../AppContext";
 
-import ArrowRight from "../shared/assets/images/arrow-right.svg?react";
+import ArrowRight from "../shared/assets/images/arrow-right.svg";
+// import ArrowRight from "../shared/assets/images/arrow-right.svg?react";
 import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
-import Check from "../shared/assets/images/check.svg?react";
+// import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
+import Check from "../shared/assets/images/check.svg";
+// import Check from "../shared/assets/images/check.svg?react";
 import axios from "axios";
 import PayeeInfo from "./PayeeInfo";
 import BankCardInfo from "./BankCardInfo";
@@ -97,7 +100,7 @@ const Footer = (props: FooterProps) => {
         console.log(trader);
     }, [trader]);
 
-    let ButtonIcon: SvgComponent | null = ArrowRight;
+    let ButtonIcon: string | null = ArrowRight;
     if (noIcon) ButtonIcon = null;
     if (approve) ButtonIcon = Check;
 
@@ -193,7 +196,8 @@ const Footer = (props: FooterProps) => {
                                     }
                                 }}>
                                 {buttonCaption}
-                                {ButtonIcon && <ButtonIcon />}
+                                {/* {ButtonIcon && <ButtonIcon className="" />} */}
+                                {ButtonIcon && <img src={ButtonIcon} alt="" />}
                             </button>
                         )}
 

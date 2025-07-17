@@ -25,8 +25,8 @@ const PayHeader = (props: PayHeaderProps) => {
             <h1>
                 {t("transfer", ns)}{" "}
                 <span>
-                    {amount}&nbsp;{currency}
-                </span>{" "}
+                    {amount}&nbsp;{currency}&nbsp;
+                </span>
                 {countryName && transgran && <> {t(`country.${countryName}`, ns)}</>}
                 {bankName && (
                     <>
