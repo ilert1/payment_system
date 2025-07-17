@@ -3,15 +3,15 @@ import { initReactI18next } from "react-i18next";
 // import Backend from "i18next-http-backend";
 
 // TODO Избавиться от этих уродливых импортов
-import translationRU from "@/../public/locales/ru-RU.json";
-import translationEN from "@/../public/locales/en-US.json";
-import translationAZ from "@/../public/locales/az-AZ.json";
-import translationKZ from "@/../public/locales/kk-KZ.json";
-import translationKG from "@/../public/locales/ky-KG.json";
-import translationTJ from "@/../public/locales/tg-TJ.json";
-import translationTR from "@/../public/locales/tr-TR.json";
-import translationUA from "@/../public/locales/uk-UA.json";
-import translationUZ from "@/../public/locales/uz-UZ.json";
+import translationRU from "@/shared/assets/locales/ru-RU.json";
+import translationEN from "@/shared/assets/locales/en-US.json";
+import translationAZ from "@/shared/assets/locales/az-AZ.json";
+import translationKZ from "@/shared/assets/locales/kk-KZ.json";
+import translationKG from "@/shared/assets/locales/ky-KG.json";
+import translationTJ from "@/shared/assets/locales/tg-TJ.json";
+import translationTR from "@/shared/assets/locales/tr-TR.json";
+import translationUA from "@/shared/assets/locales/uk-UA.json";
+import translationUZ from "@/shared/assets/locales/uz-UZ.json";
 
 // the translations
 // (tip move them in a JSON file and import them,
