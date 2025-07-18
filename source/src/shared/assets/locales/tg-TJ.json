@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Интиқолро тасдиқ кунед",
         "withoutComments": "Бе шарҳ ба интиқол",
+        "selectFile": "Чекро зам кун",
+        "changeCheck": "Чекро иваз кунед",
+
         "steps": {
             "open": "Кушодан",
             "transfer": "Интиқол",

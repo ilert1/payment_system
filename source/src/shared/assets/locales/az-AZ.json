@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Köçürməni təsdiqlə",
         "withoutComments": "Köçürməyə şərh yazılmadan",
+        "selectFile": "Çeki əlavə et",
+        "changeCheck": "Çeki dəyişdir",
+
         "steps": {
             "open": "Aç",
             "transfer": "Köçür",

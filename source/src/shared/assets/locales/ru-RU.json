@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Подтвердить перевод",
         "withoutComments": "Без комментариев к переводу",
+        "selectFile": "Прикрепить чек",
+        "changeCheck": "Заменить ЧЕК",
+
         "steps": {
             "open": "Откройте",
             "transfer": "Переведите",

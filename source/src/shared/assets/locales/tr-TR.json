@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Transferi onayla",
         "withoutComments": "Transfer için yorum yapmadan",
+        "selectFile": "Makbuzu ekle",
+        "changeCheck": "Çeki değiştir",
+
         "steps": {
             "open": "Aç",
             "transfer": "Transfer et",

@@ -34,6 +34,8 @@
     "Pay": {
         "approveTransfer": "O'tkazmani tasdiqlash",
         "withoutComments": "O'tkazmaga izohsiz",
+        "selectFile": "Chekni biriktirish",
+        "changeCheck": "Chekni almashtirish",
         "steps": {
             "open": "Ochish",
             "transfer": "O'tkazish",

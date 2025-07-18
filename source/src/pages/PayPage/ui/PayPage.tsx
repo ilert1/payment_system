@@ -16,6 +16,9 @@ import { AppRoutes } from "@/shared/const/router";
 import { PaymentInstructions } from "./PaymentInstructions";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { useNavigate } from "react-router-dom";
+import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
+import { useFilePicker } from "use-file-picker";
+import { toast } from "react-toastify";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -43,6 +46,7 @@ const PayPage = () => {
     const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
 
     const [requisite, setRequisite] = useState<string | null>(null);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
     const [bankName, setBankName] = useState("");
@@ -218,6 +222,18 @@ const PayPage = () => {
     });
     const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
 
+    const { openFilePicker, loading } = useFilePicker({
+        accept: [".png", ".jpg", ".jpeg", ".webp", ".pdf"],
+        multiple: false,
+        readAs: "DataURL",
+        onFilesSuccessfullySelected: files => {
+            setSelectedFile(files.plainFiles[0]);
+        },
+        onFilesRejected: () => {
+            setSelectedFile(null);
+        }
+    });
+
     return (
         <div className="container">
             <Header />
@@ -262,12 +278,25 @@ const PayPage = () => {
                             transgran={transgran}
                         />
                     </div>
+                    {selectedFile && (
+                        <FilePicker
+                            value={selectedFile}
+                            onChange={setSelectedFile}
+                            openFilePicker={openFilePicker}
+                            loading={loading}
+                            label={t("changeCheck", ns)}
+                        />
+                    )}
 
                     <Footer
-                        buttonCaption={t("approveTransfer", ns)}
-                        buttonCallback={() => {
-                            setButtonCallbackEnabled(true);
-                        }}
+                        buttonCaption={selectedFile ? t("approveTransfer", ns) : t("selectFile", ns)}
+                        buttonCallback={
+                            selectedFile
+                                ? () => {
+                                      setButtonCallbackEnabled(true);
+                                  }
+                                : () => openFilePicker()
+                        }
                         nextPage={nextPage}
                         nextEnabled={!isFetching_ButtonCallback}
                         approve={true}

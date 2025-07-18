@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Підтвердити переказ",
         "withoutComments": "Без коментарів до переказу",
+        "selectFile": "Прикріпити чек",
+        "changeCheck": "Замінити чек",
+
         "steps": {
             "open": "Відкрити",
             "transfer": "Переказати",

@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Аударманы бекіту",
         "withoutComments": "Аудармаға түсініктемесіз",
+        "selectFile": "Чекті тіркеу",
+        "changeCheck": "Чекті ауыстыру",
+
         "steps": {
             "open": "Ашу",
             "transfer": "Аудару",
