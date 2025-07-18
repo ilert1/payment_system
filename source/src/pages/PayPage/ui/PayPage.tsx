@@ -58,12 +58,30 @@ const PayPage = () => {
         enabled: buttonCallbackEnabled,
         refetchOnWindowFocus: false,
         queryFn: async () => {
+            const fileToBase64 = (file: File | null): Promise<string> => {
+                if (file)
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result as string);
+                        reader.onerror = reject;
+                    });
+                return new Promise((resolve, reject) => resolve(""));
+            };
+            const base64Data = await fileToBase64(selectedFile ?? null);
+            const pureBase64 = base64Data.split(",")[1];
+
             try {
                 const { data } = await axios
                     .post(
                         `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                         {
-                            event: "paymentPayerConfirm"
+                            event: "paymentPayerConfirm",
+                            attachment: {
+                                type: "confirm",
+                                format: selectedFile?.type,
+                                data: pureBase64
+                            }
                         },
                         fingerprintConfig
                     )
