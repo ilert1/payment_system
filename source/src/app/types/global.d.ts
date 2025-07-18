@@ -140,6 +140,7 @@ declare global {
                     cancel_redirect_url?: string;
                     back_redirect_url?: string;
                     provider?: string;
+                    confirm_type?: string;
                 };
             };
             status: string;
@@ -225,7 +226,9 @@ declare global {
                     error_redirect_url?: string;
                     cancel_redirect_url?: string;
                     back_redirect_url?: string;
+
                     provider?: string;
+                    confirm_type?: string;
                 };
             };
             status: string;

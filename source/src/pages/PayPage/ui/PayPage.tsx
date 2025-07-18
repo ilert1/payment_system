@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import { useFilePicker } from "use-file-picker";
 import { toast } from "react-toastify";
+import fileTypeChecker from "file-type-checker";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -41,6 +42,7 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
+    const isConfirmTypeFile = method?.context?.confirm_type === "file";
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
     const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
@@ -68,8 +70,11 @@ const PayPage = () => {
                     });
                 return new Promise((resolve, reject) => resolve(""));
             };
-            const base64Data = await fileToBase64(selectedFile ?? null);
-            const pureBase64 = base64Data.split(",")[1];
+            let pureBase64: string | null = null;
+            if (isConfirmTypeFile) {
+                const base64Data = await fileToBase64(selectedFile ?? null);
+                pureBase64 = base64Data.split(",")[1];
+            }
 
             try {
                 const { data } = await axios
@@ -77,11 +82,15 @@ const PayPage = () => {
                         `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                         {
                             event: "paymentPayerConfirm",
-                            attachment: {
-                                type: "confirm",
-                                format: selectedFile?.type,
-                                data: pureBase64
-                            }
+                            ...(isConfirmTypeFile
+                                ? {
+                                      attachment: {
+                                          type: "confirm",
+                                          format: selectedFile?.type,
+                                          data: pureBase64
+                                      }
+                                  }
+                                : {})
                         },
                         fingerprintConfig
                     )
@@ -238,14 +247,35 @@ const PayPage = () => {
             }
         }
     });
+
     const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
 
     const { openFilePicker, loading } = useFilePicker({
         accept: [".png", ".jpg", ".jpeg", ".webp", ".pdf"],
         multiple: false,
         readAs: "DataURL",
-        onFilesSuccessfullySelected: files => {
-            setSelectedFile(files.plainFiles[0]);
+        onFilesSuccessfullySelected: async files => {
+            const file = files.plainFiles[0];
+            const reader = new FileReader();
+            const types = ["jpeg", "png", "gif", "webp"];
+            // Тут можно более простую проверку сделать, как сделано в FilePicker
+
+            reader.onload = () => {
+                if (file.size > 5 * 1024 * 1024) {
+                    setSelectedFile(null);
+                    toast.error("File size exceeds 5MB");
+                    return;
+                }
+                const isImage = fileTypeChecker.validateFileType(reader.result as ArrayBuffer, types);
+                const isPdf = fileTypeChecker.validateFileType(reader.result as ArrayBuffer, ["pdf"]);
+                if (!(isImage || isPdf)) {
+                    setSelectedFile(null);
+                    toast.error("Invalid file type");
+                    return;
+                }
+                setSelectedFile(file);
+            };
+            reader.readAsArrayBuffer(file);
         },
         onFilesRejected: () => {
             setSelectedFile(null);
@@ -307,9 +337,19 @@ const PayPage = () => {
                     )}
 
                     <Footer
-                        buttonCaption={selectedFile ? t("approveTransfer", ns) : t("selectFile", ns)}
+                        buttonCaption={
+                            isConfirmTypeFile
+                                ? t("approveTransfer", ns)
+                                : selectedFile
+                                ? t("approveTransfer", ns)
+                                : t("selectFile", ns)
+                        }
                         buttonCallback={
-                            selectedFile
+                            isConfirmTypeFile
+                                ? () => {
+                                      setButtonCallbackEnabled(true);
+                                  }
+                                : selectedFile
                                 ? () => {
                                       setButtonCallbackEnabled(true);
                                   }
