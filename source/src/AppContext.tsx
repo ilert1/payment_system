@@ -169,7 +169,10 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             case "paymentPayeeSearching":
                 return AppRoutes.PAYEE_SEARCH_PAGE;
             case "paymentAwaitingTransfer":
-                if (BFData?.[dest]?.method?.name == "ecom") {
+                if (BFData?.[dest]?.method?.name === "ecom_platform_all") {
+                    return AppRoutes.PAGE_THREE_DS;
+                }
+                if (BFData?.[dest]?.method?.name == "ecom" || BFData?.[dest]?.method?.name === "ecom_platform_card") {
                     return AppRoutes.PAYER_DATA_PAGE;
                 }
                 return AppRoutes.PAY_PAGE;

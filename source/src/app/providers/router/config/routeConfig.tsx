@@ -9,7 +9,7 @@ import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
 import GeneralErrorPage from "@/pages/GeneralErrorPage";
 import MainPage from "@/pages/MainPage";
 import { PayPage } from "@/pages/PayPage";
-
+import { ThreeDSPage } from "@/pages/ThreeDSPage";
 import { RouteObject } from "react-router-dom";
 import { AppRoutes } from "@/shared/const/router";
 
@@ -25,6 +25,7 @@ const defaultPages: RouteObject[] = [
     { path: AppRoutes.PAY_ERROR_PAGE, element: <PayErrorPage /> },
     { path: AppRoutes.GENERAL_ERROR_PAGE, element: <GeneralErrorPage /> },
     { path: AppRoutes.CANCEL_PAGE, element: <GeneralErrorPage cancel={true} /> },
+    { path: AppRoutes.PAGE_THREE_DS, element: <ThreeDSPage /> },
     { index: true, element: <MainPage /> }
 ];
 

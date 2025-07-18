@@ -17,7 +17,9 @@ export enum AppRoutes {
     PAGE_PAY_ERROR = "payment-fault",
     PAGE_OUT_PAY = "pay-out-page",
     PAGE_PAYMENTS_BLOWFISH_ID = "payments/:blowfishId",
-    PAGE_PAYOUTS_BLOWFISH_ID = "payouts/:blowfishId"
+    PAGE_PAYOUTS_BLOWFISH_ID = "payouts/:blowfishId",
+
+    PAGE_THREE_DS = "three-ds"
 }
 
 export const getRoutePayerDataPage = () => "/payer-data-page";
@@ -35,3 +37,5 @@ export const getRoutePaymentNotFound = () => "/payment-not-found";
 export const getRoutePayoutNotFound = () => "/payout-not-found";
 export const getRoutePaymentsBlowfishId = () => "/payments/:blowfishId";
 export const getRoutePayoutsBlowfishId = () => "/payouts/:blowfishId";
+
+export const getRouteThreeDS = () => "/three-ds";

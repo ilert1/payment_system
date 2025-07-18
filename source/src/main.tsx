@@ -4,6 +4,7 @@ import App from "./app/App";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AppProvider } from "./AppContext";
 import { BrowserRouter } from "react-router-dom";
+import "./shared/config/i18n/Localization";
 
 const rootElement = document.getElementById("root");
 

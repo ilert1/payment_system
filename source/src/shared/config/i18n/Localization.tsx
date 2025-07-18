@@ -1,39 +1,39 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-// import Backend from "i18next-http-backend";
+import Backend from "i18next-http-backend";
 
 // TODO Избавиться от этих уродливых импортов
-import translationRU from "@/../public/locales/ru-RU.json";
-import translationEN from "@/../public/locales/en-US.json";
-import translationAZ from "@/../public/locales/az-AZ.json";
-import translationKZ from "@/../public/locales/kk-KZ.json";
-import translationKG from "@/../public/locales/ky-KG.json";
-import translationTJ from "@/../public/locales/tg-TJ.json";
-import translationTR from "@/../public/locales/tr-TR.json";
-import translationUA from "@/../public/locales/uk-UA.json";
-import translationUZ from "@/../public/locales/uz-UZ.json";
+// import translationRU from "@/locales/ru-RU.json";
+// import translationEN from "@/locales/en-US.json";
+// import translationAZ from "@/locales/az-AZ.json";
+// import translationKZ from "@/locales/kk-KZ.json";
+// import translationKG from "@/locales/ky-KG.json";
+// import translationTJ from "@/locales/tg-TJ.json";
+// import translationTR from "@/locales/tr-TR.json";
+// import translationUA from "@/locales/uk-UA.json";
+// import translationUZ from "@/locales/uz-UZ.json";
 
-// the translations
-// (tip move them in a JSON file and import them,
-// or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
+// // the translations
+// // (tip move them in a JSON file and import them,
+// // or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
-    ru: translationRU,
-    en: translationEN,
-    az: translationAZ,
-    kk: translationKZ,
-    ky: translationKG,
-    tg: translationTJ,
-    tr: translationTR,
-    uk: translationUA,
-    uz: translationUZ
+    ru: "ru-RU",
+    en: "en-US",
+    az: "az-AZ",
+    kk: "kk-KZ",
+    ky: "ky-KG",
+    tg: "tg-TJ",
+    tr: "tr-TR",
+    uk: "uk-UA",
+    uz: "uz-UZ"
 };
 
 export const getLanguage = () => {
     let language = navigator.language;
     let storedLang = localStorage.getItem("language");
     language = storedLang ? storedLang : language;
-    localStorage.setItem("language", language);
-    return language;
+    localStorage.setItem("language", resources[language as keyof typeof resources]);
+    return resources[language as keyof typeof resources];
 };
 
 export const getLocalBankName = (display_name = {}, lang: string | null = null) => {
@@ -55,14 +55,22 @@ export const getLocalBankName = (display_name = {}, lang: string | null = null) 
 };
 
 var language = getLanguage();
+console.log(language);
+// console.log(resources[language as keyof typeof resources]);
 
 i18n.use(initReactI18next)
-    // .use(Backend)
+    .use(Backend)
     // passes i18n down to react-i18next
     .init({
-        resources,
+        // resources,
         lng: language, // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-        fallbackLng: "en",
+        fallbackLng: "en-US",
+        backend: {
+            loadPath: "/locales/{{lng}}/{{ns}}.json"
+        },
+        debug: true,
+        // "Common"
+        ns: ["ThreeDsPage"],
         // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
         // if you're using a language detector, do not define the lng option
 

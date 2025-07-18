@@ -5,15 +5,15 @@ interface LanguageSelectorProps {
     setLang: (val: string) => void;
 }
 const LangVariants = {
-    en: "en",
-    az: "az",
-    ky: "ky",
-    tg: "tg",
-    kk: "kk",
-    ru: "ru",
-    tr: "tr",
-    uk: "uk",
-    uz: "uz"
+    en: "en-US",
+    az: "az-AZ",
+    ky: "ky-KG",
+    tg: "tg-TJ",
+    kk: "kk-KZ",
+    ru: "ru-RU",
+    tr: "tr-TR",
+    uk: "uk-UA",
+    uz: "uz-UZ"
 };
 
 const LanguageSelector = (props: LanguageSelectorProps) => {
@@ -26,6 +26,7 @@ const LanguageSelector = (props: LanguageSelectorProps) => {
 
         Object.keys(LangVariants)?.forEach((item: string) => {
             const langItem = item;
+            console.log(langItem);
 
             if (lang.substring(0, 2) != langItem) {
                 output.push(
