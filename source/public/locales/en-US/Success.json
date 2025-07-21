@@ -1,0 +1,7 @@
+{
+    "header": "Your balance has been replenished",
+    "payoutHeader": "You have successfully withdrawn",
+    "instructions": "The unpaid portion will be refunded to your account, or try again later.",
+    "returnBtn": "Go back to the site",
+    "timerText": "You will be automatically redirected via:"
+}

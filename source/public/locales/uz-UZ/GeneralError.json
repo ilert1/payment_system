@@ -1,0 +1,10 @@
+{
+    "repeatOrder": "buyurtmani takrorlang",
+    "pleaseRepeatOrder": "Iltimos, buyurtmani takrorlang",
+    "cancelPage": {
+        "cancel": "Siz to'lovni bekor qildingiz",
+        "transactionCanceled": "Bitim muvaffaqiyatli bekor qilindi."
+    },
+    "returnBtn": "Saytga qaytish",
+    "timerText": "Siz avtomatik ravishda yo'naltirilasiz:"
+}

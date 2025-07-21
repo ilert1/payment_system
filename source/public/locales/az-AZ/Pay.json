@@ -1,0 +1,56 @@
+{
+    "approveTransfer": "Köçürməni təsdiqlə",
+    "withoutComments": "Köçürməyə şərh yazılmadan",
+    "steps": {
+        "open": "Aç",
+        "transfer": "Köçür",
+        "wholeAmount": "bütün məbləği",
+        "approveTransfer": "Köçürməni təsdiqlə",
+        "openYourBankApp": "Bank tətbiqinizi açın"
+    },
+    "steps_new": {
+        "one": "Telefon nömrəsini kopyalayın və bank tətbiqinizi açın",
+        "two": "Kart nömrəsinə köçürmə edin",
+        "onePhone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin",
+        "twoPhone": "Telefon nömrəsi ilə köçürmə edin",
+        "onAmount": "məbləğə",
+        "pressButton": "Düyməyə basın",
+        "payed": "Ödənilib"
+    },
+    "steps_transgran": {
+        "one": "Göstərilən telefon nömrəsini kopyalayın",
+        "two": "Bankınızın tətbiqini açın",
+        "tbankTitle": "T-Bank vasitəsilə ödəmə üçün təlimat",
+        "tbank": "SBP ilə köçürmə seçin|Kopyalanmış telefon nömrəsini yapışdırın|Ödəniş formasında göstərilən bankı göstərin|Saytda göstərilən dəqiq məbləği daxil edin|Ödənişi tamamlamaq üçün düyməni basın",
+        "sberbankTitle": "Sberbank vasitəsilə ödəmə üçün təlimat",
+        "sberbank": "Telefon nömrəsinə/başqa ölkəyə köçürmə seçin|Ölkə seçin - {{country}}|\"Kart və ya hesab\" düyməsinə keçin|Kopyalanmış telefon nömrəsini yapışdırın|Ödəniş formasında göstərilən bankı göstərin|Saytda göstərilən dəqiq məbləği daxil edin|Ödənişi tamamlamaq üçün düyməni basın",
+        "vtbbankTitle": "VTB vasitəsilə ödəniş təlimatı",
+        "vtbbank": "“Ödənişlər” bölməsini açın|“Başqa ölkəyə” seçin|Siyahıdan “{{country}}”ı seçin|“Telefon nömrəsi ilə köçürmə” seçin|Siyahıdan yuxarıda göstərilən bankı seçin|Yuxarıda göstərilən telefon nömrəsini daxil edin|“Köçürmək” düyməsini basın"
+    },
+    "steps_azn": {
+        "sberbank": "Göstərilən telefon nömrəsini kopyalayın|Sber tətbiqini açın|Telefon nömrəsi ilə köçürmə funksiyasını seçin — \"başqa ölkəyə köçürmə\"|Sonra tətbiqdə təyinat ölkəsini seçin — Azərbaycan|Əvvəlcə kopyalanmış telefon nömrəsini daxil edin|Mövcud \"E-wallet\" siyahısından göstərilən bankı seçin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və \"Ödənişi tamamlamaq\" düyməsini basın"
+    },
+    "steps_iban": {
+        "iban": "Iban nömrəsini kopyalayın|Bank tətbiqinizi açın|«Pul Göndər» funksiyasını seçin|Davam et > «Başqa alıcıya köçürmə» funksiyasını seçin|«Alıcının məlumatları» pəncərəsinə > Əvvəlcə kopyalanmış Iban-ı daxil edin|Alıcının «Soyadı və Adı»nı daxil edin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və «Təsdiqləmək» düyməsini basın"
+    },
+    "steps_transgran_new": {
+        "title": {
+            "transgran": "Rusiya Federasiyasından ödəniş üçün təlimat",
+            "local": "Ölkə daxilində ödəniş üçün təlimat"
+        },
+        "steps": "Başqa ölkəyə köçürmə|Ölkəni seçin|Telefon nömrəsini daxil edin|Bankı seçin|Ödəniş edin",
+        "country": {
+            "tjs": "Tacikistan",
+            "azn": "Azərbaycan",
+            "abh": "Abxaziya"
+        }
+    },
+    "steps_transgran_abh": {
+        "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində 'köçürmək' düyməsini sıxın|Başqa ölkəyə və sonra {{country}} seçin|Telefon nömrəsini yapışdırın|A-Mobile Cüzdan seçin|{{amount}} məbləğini daxil edin və 'Təsdiqlə' düyməsini basın"
+    },
+    "payed": "Ödənilib",
+    "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
+    "agree": "Tamam, başa düşdüm",
+    "scanQrCode": "QR kodunu telefonunuzun stok kamerası ilə tarayın.",
+    "linkToApp": "Tətbiqə gedin"
+}

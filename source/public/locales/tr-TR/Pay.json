@@ -1,0 +1,56 @@
+{
+    "approveTransfer": "Transferi onayla",
+    "withoutComments": "Transfer için yorum yapmadan",
+    "steps": {
+        "open": "Aç",
+        "transfer": "Transfer et",
+        "wholeAmount": "tam tutarı",
+        "approveTransfer": "Transferi onayla",
+        "openYourBankApp": "Banka uygulamanızı açın"
+    },
+    "steps_new": {
+        "one": "Telefon numarasını kopyalayın ve banka uygulamanıza gidin",
+        "two": "Kart numarasıyla transferi gerçekleştirin",
+        "onePhone": "Telefon numarasını kopyalayın ve bank uygulamanıza geçin",
+        "twoPhone": "Telefon numarasıyla transfer yapın",
+        "onAmount": "miktara",
+        "pressButton": "Düğmeye basın",
+        "payed": "Ödendi"
+    },
+    "steps_transgran": {
+        "one": "Belirtilen telefon numarasını kopyalayın",
+        "two": "Banka uygulamanızı açın",
+        "tbankTitle": "T-Bank ile ödeme için talimat",
+        "tbank": "SBP ile transfer seçin|Kopyalanan telefon numarasını yapıştırın|Ödeme formunda belirtilen bankı girin|Sitede belirtilen kesin tutarı girin|Ödeme yapmak için düğmeye basın",
+        "sberbankTitle": "Sberbank ile ödeme için talimat",
+        "sberbank": "Telefon numarasına / başka ülkeye transfer seçin|Ülke seçin - {{country}}|\"Kart veya hesap\" düğmesine tıklayın|Kopyalanan telefon numarasını yapıştırın|Ödeme formunda belirtilen bankı girin|Sitede belirtilen kesin tutarı girin|Ödeme yapmak için düğmeye basın",
+        "vtbbankTitle": "VTB üzerinden ödeme talimatı",
+        "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “{{country}}”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
+    },
+    "steps_azn": {
+        "sberbank": "Belirtilen telefon numarasını kopyalayın|Sber uygulamasını açın|Telefon numarasıyla transfer işlevini seçin — \"başka bir ülkeye transfer\"|Ardından uygulamada hedef ülkeyi belirtin — Azerbaycan|Önceden kopyalanmış telefon numarasını yapıştırın|Mevcut \"E-wallet\" listesinden belirtilen bankı seçin|Sitede belirtilen kesin tutarı girin|Bilgileri kontrol edin ve \"Ödemeyi tamamla\" düğmesine basın"
+    },
+    "steps_iban": {
+        "iban": "Iban Numarasını Kopyalayın|Bankanızın uygulamasını açın|\"Para Gönder\" işlevini seçin|İleri > \"Başka Alıcıya Havale/EFT/FAST\" işlevini seçin|Alıcı Verileri Penceresinde > Önceden kopyaladığınız Iban'ı yapıştırın|Alıcının \"Soyadı Adını\" girin|Web sitesinde belirtilen tam tutarı girin|Verileri kontrol edin ve \"Onayla\" butonuna tıklayın"
+    },
+    "steps_transgran_new": {
+        "title": {
+            "transgran": "RF'den ödeme için talimat",
+            "local": "Ülke içi ödeme talimatı"
+        },
+        "steps": "Başka bir ülkeye transfer|Ülke seçin|Telefon numarasını girin|Banka seçin|Ödeme yapın",
+        "country": {
+            "tjs": "Tacikistan",
+            "azn": "Azerbaycan",
+            "abh": "Abhazya"
+        }
+    },
+    "steps_transgran_abh": {
+        "steps": "Telefon numarasını kopyalayın|Sber uygulamasında 'gönder' tuşuna basın|Başka bir ülkeye ve ardından {{country}}'yi seçin|Telefon numarasını yapıştırın|A-Mobile Cüzdan'ı seçin|{{amount}} tutarını girin ve 'Onayla' düğmesine basın"
+    },
+    "payed": "Ödendi",
+    "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
+    "agree": "Tamam, anladım",
+    "scanQrCode": "QR kodunu telefonunuzun standart kamerasıyla tarayın.",
+    "linkToApp": "Uygulamaya git"
+}

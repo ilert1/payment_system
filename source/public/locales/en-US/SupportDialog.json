@@ -1,0 +1,7 @@
+{
+    "copy": "Copy",
+    "copyed": "Identifier copied",
+    "header": "Dear user!",
+    "text": "Copy the request identifier and send it to the support chat. The operator will check its status.",
+    "chatButton": "Go to chat"
+}

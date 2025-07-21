@@ -1,0 +1,60 @@
+{
+    "payout": "Withdrawal",
+    "header": "Withdrawal via our provider",
+    "description": {
+        "part1": "Enter your details for the transfer",
+        "part2": "Once the provider confirms the transfer, you will receive your funds."
+    },
+    "approvePayout": "Approve transfer",
+    "discardPayout": "Transfer not received",
+    "payoutMethod": "Select withdrawal method",
+    "payoutAmount": "Withdrawal amount",
+    "withoutComments": "Without comments to the transfer",
+    "steps": {
+        "open": "Open",
+        "checkIncomingTransferSum": "Check the incoming transfer amount",
+        "approveTransfer": "Approve transfer",
+        "openYourBankApp": "Open your bank app"
+    },
+    "enterYourCard": "Enter your card details",
+    "enterYourPhone": "Enter your phone number",
+    "checkYourRequisites": "Check your details!",
+    "wrongRequisites": "If you enter the wrong details, you will irrevocably lose your funds",
+    "requisitesIsCorrect": "Details are correct",
+    "correctRequisites": "Correct details",
+    "waitForTransferConfirmation": "Wait for transfer confirmation",
+    "transferConfirmed": "Operator confirmed the transfer",
+    "lookingForOperator": "Searching for an operator",
+    "transferInAmount": "Transfer in the amount of",
+    "transferReceived": "received",
+    "approveTransferText": "If the transfer was received, toggle the switch and press the continue button.",
+    "approveReceivedCheckbox": "Transfer was made",
+    "appreveButtonText": "Yes, transfer was made",
+    "notYet": "Not yet",
+    "dontCloseWindow": "Do not close the payment window!",
+    "dontCloseSteps": {
+        "one": "Your account will be topped up with several payments, each of which must be confirmed",
+        "two": "Press the confirm button",
+        "three": "Wait for the successful top-up screen",
+        "gotIt": "Got it"
+    },
+    "dispute": {
+        "dispute": "Dispute",
+        "operator": "Operator",
+        "moderator": "Moderator",
+        "opened": "opened",
+        "closed": "closed",
+        "video": "Video",
+        "photo": "Photo",
+        "writeMessage": "Write a message...",
+        "success": "Dispute closed in your favor",
+        "successText": "You will be assigned a new operator for payment of part of the withdrawal.",
+        "fail": "Dispute closed in operator's favor",
+        "failText": "You will be redirected to the next payment step.",
+        "notification": {
+            "title": "Please be more careful during the next transfer check.",
+            "text": "After the second dispute closed in favor of the operator, we will be forced to restrict your access to withdrawals.",
+            "ok": "Okay"
+        }
+    }
+}

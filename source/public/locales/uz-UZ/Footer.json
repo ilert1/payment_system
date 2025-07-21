@@ -1,0 +1,10 @@
+{
+    "protected": "Tarjima himoyalangan.",
+    "details": "Tafsilotlar",
+    "cancel": "Tarjimani bekor qilish",
+    "cancelDialog": {
+        "title": "Pul o'tkazmasini bekor qiling va do'konga qayting",
+        "text": "Agar siz pul o'tkazmasini bekor qilsangiz, avval yangi buyurtma yaratishingiz kerak bo'ladi.",
+        "continue": "Tarjimani davom ettiring"
+    }
+}

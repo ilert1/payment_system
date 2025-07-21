@@ -1,0 +1,12 @@
+{
+    "copy": "Kopyala",
+    "copyed": "Kart numarası kopyalandı",
+    "copyedPhone": "Telefon numarası kopyalandı",
+    "copyedAmount": "Miktar kopyalandı",
+    "bankName": "Alıcının bankası",
+    "requisite": "Rekvizitler",
+    "amount": "Transfer tutarı",
+    "payee": "Alıcı",
+    "requisiteComment": "Ödeme lisanslı bir ödeme ortağı aracılığıyla yapılır.",
+    "transgranComment": "{{country}} ülkesine yapılan transfer korumalı bir sistemin parçasıdır."
+}

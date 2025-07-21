@@ -1,0 +1,12 @@
+{
+    "copy": "Copy",
+    "copyed": "Card number copied",
+    "copyedPhone": "Phone number copied",
+    "copyedAmount": "Amount copied",
+    "bankName": "Recipient's bank",
+    "requisite": "Requisites",
+    "amount": "Transfer amount",
+    "payee": "Payee",
+    "requisiteComment": "Payment is made through a licensed payment partner.",
+    "transgranComment": "Transfer to {{country}} is part of a protected scheme."
+}

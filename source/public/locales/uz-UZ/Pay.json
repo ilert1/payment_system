@@ -1,0 +1,56 @@
+{
+    "approveTransfer": "O'tkazmani tasdiqlash",
+    "withoutComments": "O'tkazmaga izohsiz",
+    "steps": {
+        "open": "Ochish",
+        "transfer": "O'tkazish",
+        "wholeAmount": "to'liq miqdor",
+        "approveTransfer": "O'tkazmani tasdiqlash",
+        "openYourBankApp": "Bank ilovangizni oching"
+    },
+    "steps_new": {
+        "one": "Telefon raqamini nusxalab bank ilovasiga o'ting",
+        "two": "Kartaga o'tkazma qiling",
+        "onePhone": "Telefon raqamini nusxalang va bankingiz ilovasiga o'ting",
+        "twoPhone": "Telefon raqami orqali pul o'tkazing",
+        "onAmount": "miqdorda",
+        "pressButton": "Tugmani bosing",
+        "payed": "To'landi"
+    },
+    "steps_transgran": {
+        "one": "Ko'rsatilgan telefon raqamini nusxalang",
+        "two": "Bank ilovangizni oching",
+        "tbankTitle": "T-Bank orqali toʻlov boʻyicha qoʻllanma",
+        "tbank": "SBP orqali pul o'tkazishni tanlang|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
+        "sberbankTitle": "Sberbank orqali toʻlov boʻyicha qoʻllanma",
+        "sberbank": "Telefon raqami bo'yicha/ boshqa davlatga pul o'tkazishni tanlang|Davlatni tanlang - {{country}}|\"Karta yoki hisob\" tugmasiga o'ting|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
+        "vtbbankTitle": "VTB orqali toʻlov qilish boʻyicha qoʻllanma",
+        "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «{{country}}» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
+    },
+    "steps_azn": {
+        "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|Sber ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — \"boshqa mamlakatga o'tkazma\"|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud \"E-wallet\" ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, \"To'lovni yakunlash\" tugmasini bosing"
+    },
+    "steps_iban": {
+        "iban": "Iban рақамини нусхаланг|Банк иловангизни очинг|«Пул юбориш» функциясини танланг|Кейин > «Бошқа қабул қилувчига ўтказма» функциясини танланг|«Қабул қилувчи маълумотлари» ойнасига > Аввал нусхаланган Iban рақамини киритинг|Қабул қилувчининг «Фамилияси ва Исми»ни киритинг|Сайтда кўрсатилган аниқ суммани киритинг|Маълумотларни текшириб, «Тасдиқлаш» тугмасини босинг"
+    },
+    "steps_transgran_new": {
+        "title": {
+            "transgran": "Rossiya Federatsiyasidan toʻlov boʻyicha yoʻriqnoma",
+            "local": "Mamlakat ichidagi toʻlov boʻyicha yoʻriqnoma"
+        },
+        "steps": "Boshqa davlatga oʻtkazma|Davlatni tanlang|Telefon raqamini kiriting|Bankni tanlang|Toʻlov qiling",
+        "country": {
+            "tjs": "Tojikiston",
+            "azn": "Ozarbayjon",
+            "abh": "Abxaziya"
+        }
+    },
+    "steps_transgran_abh": {
+        "steps": "Telefon raqamini nusxa oling|Sber ilovasida 'to‘lash' tugmasini bosing|Boshqa davlatni va keyin {{country}} ni tanlang|Telefon raqamini joylashtiring|A-Mobile Hamyonini tanlang|{{amount}} summasini kiriting va 'Tasdiqlash' tugmasini bosing"
+    },
+    "payed": "To'landi",
+    "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
+    "agree": "Yaxshi, tushundim",
+    "scanQrCode": "QR kodini telefonning standart kamerasi bilan skanerlang.",
+    "linkToApp": "Ilovaga o'ting"
+}

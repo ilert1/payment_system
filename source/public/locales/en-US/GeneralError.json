@@ -1,0 +1,10 @@
+{
+    "repeatOrder": "repeat order",
+    "pleaseRepeatOrder": "Please repeat the order",
+    "cancelPage": {
+        "cancel": "You canceled the payment",
+        "transactionCanceled": "The transaction was successfully canceled."
+    },
+    "returnBtn": "Go back to the site",
+    "timerText": "You will be automatically redirected via:"
+}

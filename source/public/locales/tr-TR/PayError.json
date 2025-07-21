@@ -1,0 +1,9 @@
+{
+    "payError": "Ödeme başarısız oldu",
+    "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın",
+    "notFound": "Ödeme bulunamadı",
+    "pleaseRepeatOrSupport": "Lütfen tekrar deneyin veya destek servisine bildirin",
+    "payed": "Ödedim!",
+    "returnBtn": "Siteye geri dön",
+    "timerText": "Aracılığıyla otomatik olarak yönlendirileceksiniz:"
+}

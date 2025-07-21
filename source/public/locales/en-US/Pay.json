@@ -1,0 +1,56 @@
+{
+    "approveTransfer": "Approve transfer",
+    "withoutComments": "Without comments to the transfer",
+    "steps": {
+        "open": "Open",
+        "transfer": "Transfer",
+        "wholeAmount": "in one amount",
+        "approveTransfer": "Approve transfer",
+        "openYourBankApp": "Open your bank app"
+    },
+    "steps_new": {
+        "one": "Copy the phone number and go to your bank application",
+        "two": "Make the transfer using the card number",
+        "onePhone": "Copy the phone number and go to your bank app",
+        "twoPhone": "Make a transfer using the phone number",
+        "onAmount": "for the amount",
+        "pressButton": "Press the button",
+        "payed": "Paid"
+    },
+    "steps_transgran": {
+        "one": "Copy the specified phone number",
+        "two": "Open your bank app",
+        "tbankTitle": "Instructions for payment via T-Bank",
+        "tbank": "Select SBP transfer|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
+        "sberbankTitle": "Instructions for payment via Sberbank",
+        "sberbank": "Select transfer by phone number/to another country|Select the country - {{country}}|Go to the \"To card or account\" button|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
+        "vtbbankTitle": "Instruction for payment via VTB",
+        "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
+    },
+    "steps_azn": {
+        "sberbank": "Copy the specified phone number|Open the Sber app|Select the transfer by phone number function — \"transfer to another country\"|Then, in the app, specify the destination country — Azerbaijan|Paste the previously copied phone number|Select the specified bank from the available \"E-wallet\" list|Enter the exact amount specified on the website|Check the details and click the \"Complete payment\" button"
+    },
+    "steps_iban": {
+        "iban": "Copy the Iban Number|Open your bank app|Select the “Send Money” function|Next > Select the “Transfer to Another Recipient” function|In the “Recipient Details” window > Paste the previously copied Iban|Enter the recipient's “Last Name and First Name”|Enter the exact amount specified on the website|Check the details and click the “Confirm” button"
+    },
+    "steps_transgran_new": {
+        "title": {
+            "transgran": "Instruction for payment from the Russian Federation",
+            "local": "Instruction for local payment"
+        },
+        "steps": "Transfer to another country|Select country|Enter phone number|Select bank|Make payment",
+        "country": {
+            "tjs": "Tajikistan",
+            "azn": "Azerbaijan",
+            "abh": "Abkhazia"
+        }
+    },
+    "steps_transgran_abh": {
+        "steps": "Copy the phone number|In the Sber app, tap 'Transfer'|Select another country, then {{country}}|Paste the phone number|Select A-Mobile Wallet|Enter the amount {{amount}} and tap Approve"
+    },
+    "payed": "Paid",
+    "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
+    "agree": "Okay, understood",
+    "scanQrCode": "Scan the QR code with your phone's standard camera.",
+    "linkToApp": "Go to the app"
+}

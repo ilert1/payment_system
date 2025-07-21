@@ -1,0 +1,20 @@
+{
+    "enter4": "Son 4 haneyi girin",
+    "yourPhone": "telefon numaranızın",
+    "yourCard": "kartınızın",
+    "cardNumber": "Kart Numarası",
+    "expirationDate": "Son Kullanma Tarihi",
+    "cardHolder": "Kart sahibi",
+    "nameLastname": "CARD HOLDER",
+    "errors": {
+        "cardValidationError": "Kart numarası 16 haneli olmalıdır",
+        "expireDateError": "Son kullanma tarihi MM/YY formatında olmalıdır",
+        "expreDateRangeError": "Son kullanma tarihi gelecekte olmalıdır",
+        "cvvError": "CVV 3 haneli olmalıdır",
+        "paymentNotFound": "Bu ID ile ödeme bulunamadı",
+        "cardHolderError": "Alan AD SOYAD Latin harfleriyle formatında olmalıdır",
+        "unknownError": "Bilinmeyen hata"
+    },
+    "getCard": "Kartınız kabul edildi, ödeme sayfasına geçmek için ödeme butonuna basın",
+    "pay": "Öde"
+}

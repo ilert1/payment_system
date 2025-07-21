@@ -1,0 +1,60 @@
+{
+    "payout": "Vəsaitlərin",
+    "header": "Vəsaitlərin bizim provayder vasitəsilə çıxarılması",
+    "description": {
+        "part1": "Köçürmə üçün məlumatlarınızı daxil edin",
+        "part2": "Provayder köçürməni təsdiqlədikdən sonra, siz vəsaitlərinizi alacaqsınız."
+    },
+    "approvePayout": "Köçürməni təsdiqlə",
+    "discardPayout": "Köçürmə alınmadı",
+    "payoutMethod": "Çıxarış metodunu seçin",
+    "payoutAmount": "Çıxarış məbləği",
+    "withoutComments": "Köçürməyə şərh yazılmadan",
+    "steps": {
+        "open": "Aç",
+        "checkIncomingTransferSum": "Gələn köçürmə məbləğini yoxlayın",
+        "approveTransfer": "Köçürməni təsdiqlə",
+        "openYourBankApp": "Bank tətbiqinizi açın"
+    },
+    "enterYourCard": "Kart məlumatlarınızı daxil edin",
+    "enterYourPhone": "Telefon nömrənizi daxil edin",
+    "checkYourRequisites": "Məlumatlarınızı yoxlayın!",
+    "wrongRequisites": "Əgər məlumatları yanlış daxil etsəniz, vəsaitləri geri qaytarmaq mümkün olmayacaq",
+    "requisitesIsCorrect": "Məlumatlar düzgündür",
+    "correctRequisites": "Məlumatları düzəltmək",
+    "waitForTransferConfirmation": "Köçürmənin təsdiqini gözləyin",
+    "transferConfirmed": "Operator köçürməni təsdiqlədi",
+    "lookingForOperator": "Operator axtarışı",
+    "transferInAmount": "Məbləğdə köçürmə",
+    "transferReceived": "gəldi",
+    "approveTransferText": "Əgər köçürmə gəlibsə, keçidi aktiv edin və davam düyməsinə basın.",
+    "approveReceivedCheckbox": "Köçürmə edildi",
+    "appreveButtonText": "Bəli, köçürmə edildi",
+    "notYet": "Hələ yox",
+    "dontCloseWindow": "Ödəniş pəncərəsini bağlamayın!",
+    "dontCloseSteps": {
+        "one": "Hesabınız bir neçə ödənişlə dolacaq və hər biri təsdiqlənməlidir",
+        "two": "Təsdiq düyməsini basın",
+        "three": "Uğurlu doldurma ekranını gözləyin",
+        "gotIt": "Başa düşdüm"
+    },
+    "dispute": {
+        "dispute": "Mübahisə",
+        "operator": "Operator",
+        "moderator": "Moderator",
+        "opened": "açıqdır",
+        "closed": "bağlıdır",
+        "video": "Video",
+        "photo": "Foto",
+        "writeMessage": "Mesaj yazın...",
+        "success": "Mübahisə sizin xeyrinizə bağlandı",
+        "successText": "Sizə yeni çıxarış operatoru təklif olunacaq.",
+        "fail": "Mübahisə operatorun xeyrinə bağlandı",
+        "failText": "Siz ödənişin növbəti mərhələsinə yönləndiriləcəksiniz.",
+        "notification": {
+            "title": "Zəhmət olmasa növbəti köçürmə yoxlamasında diqqətli olun.",
+            "text": "Operatorun lehinə ikinci dəfə mübahisə bağlandıqdan sonra çıxarışa girişinizi məhdudlaşdırmağa məcbur olacağıq.",
+            "ok": "Yaxşı"
+        }
+    }
+}

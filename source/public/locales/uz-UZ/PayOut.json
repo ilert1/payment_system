@@ -1,0 +1,60 @@
+{
+    "payout": "Olib qo'yish",
+    "header": "Bizning provayder orqali mablag'larni chiqarish",
+    "description": {
+        "part1": "O'tkazma uchun ma'lumotlaringizni kiriting",
+        "part2": "Provayder o'tkazmani tasdiqlaganidan so'ng, mablag'ingizni olasiz."
+    },
+    "approvePayout": "O'tkazmani tasdiqlash",
+    "discardPayout": "O'tkazma kelmadi",
+    "payoutMethod": "Chiqim usulini tanlang",
+    "payoutAmount": "Chiqim miqdori",
+    "withoutComments": "O'tkazmaga izohsiz",
+    "steps": {
+        "open": "Ochish",
+        "checkIncomingTransferSum": "Kelgan o'tkazma summasini tekshiring",
+        "approveTransfer": "O'tkazmani tasdiqlash",
+        "openYourBankApp": "Bank ilovangizni oching"
+    },
+    "enterYourCard": "Karta ma'lumotlaringizni kiriting",
+    "enterYourPhone": "Telefon raqamingizni kiriting",
+    "checkYourRequisites": "Rekvizitlaringizni tekshiring!",
+    "wrongRequisites": "Agar ma'lumotlarni noto'g'ri kiritsangiz, mablag'ni qaytarib olish imkonsiz bo'ladi",
+    "requisitesIsCorrect": "Rekvizitlar to'g'ri ko'rsatilgan",
+    "correctRequisites": "Rekvizitlarni tuzatish",
+    "waitForTransferConfirmation": "O'tkazmani tasdiqlashni kuting",
+    "transferConfirmed": "Operator o'tkazmani tasdiqladi",
+    "lookingForOperator": "Operator qidirilmoqda",
+    "transferInAmount": "Miqdorda o'tkazma",
+    "transferReceived": "olindi",
+    "approveTransferText": "Agar o'tkazma kelgan bo'lsa, o'tish tugmasini yoqing va davom etish tugmasini bosing.",
+    "approveReceivedCheckbox": "O'tkazma amalga oshirildi",
+    "appreveButtonText": "Ha, o'tkazma amalga oshirildi",
+    "notYet": "Hali yo'q",
+    "dontCloseWindow": "To'lov oynasini yopmang!",
+    "dontCloseSteps": {
+        "one": "Hisobingiz bir necha to'lovlar bilan to'ldiriladi va har biri tasdiqlanishi kerak",
+        "two": "Tasdiqlash tugmasini bosing",
+        "three": "Muvaffaqiyatli to'ldirish ekranini kuting",
+        "gotIt": "Tushunarli"
+    },
+    "dispute": {
+        "dispute": "Bahs",
+        "operator": "Operator",
+        "moderator": "Moderator",
+        "opened": "ochiq",
+        "closed": "yopiq",
+        "video": "Video",
+        "photo": "Foto",
+        "writeMessage": "Xabar yozing...",
+        "success": "Bahs sizning foydangizga yopildi",
+        "successText": "Sizga chiqim uchun yangi operator tayinlanadi.",
+        "fail": "Bahs operator foydasiga yopildi",
+        "failText": "Siz to'lovning keyingi bosqichiga yo'naltirilasiz.",
+        "notification": {
+            "title": "Iltimos, keyingi o'tkazma tekshiruvida diqqatli bo'ling.",
+            "text": "Ikkinchi marta operator foydasiga bahs yopilgandan so'ng, chiqimga kirishingizni cheklashga majbur bo'lamiz.",
+            "ok": "Mayli"
+        }
+    }
+}
