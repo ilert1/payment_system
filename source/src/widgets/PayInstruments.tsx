@@ -36,7 +36,9 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
 
         let filteredPaymentInstruments = paymentInstruments;
         if (filterText) {
-            filteredPaymentInstruments = paymentInstruments.filter(item => item?.bank_name.includes(filterText));
+            filteredPaymentInstruments = paymentInstruments.filter(item =>
+                item?.bank_name.toLowerCase().includes(filterText.toLowerCase())
+            );
         }
 
         filteredPaymentInstruments?.map((item, i) => {

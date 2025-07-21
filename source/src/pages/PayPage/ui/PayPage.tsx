@@ -16,6 +16,10 @@ import { AppRoutes } from "@/shared/const/router";
 import { PaymentInstructions } from "./PaymentInstructions";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { useNavigate } from "react-router-dom";
+import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
+import { useFilePicker } from "use-file-picker";
+import { toast } from "react-toastify";
+import fileTypeChecker from "file-type-checker";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -38,11 +42,13 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
+    const isConfirmTypeFile = method?.context?.confirm_type === "file";
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
     const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
 
     const [requisite, setRequisite] = useState<string | null>(null);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
     const [bankName, setBankName] = useState("");
@@ -54,12 +60,39 @@ const PayPage = () => {
         enabled: buttonCallbackEnabled,
         refetchOnWindowFocus: false,
         queryFn: async () => {
+            const fileToBase64 = (file: File | null): Promise<string> => {
+                if (file)
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onload = () => resolve(reader.result as string);
+                        reader.onerror = reject;
+                    });
+                return new Promise((resolve, reject) => resolve(""));
+            };
+            let pureBase64: string | null = null;
+            if (isConfirmTypeFile) {
+                const base64Data = await fileToBase64(selectedFile ?? null);
+                pureBase64 = base64Data.split(",")[1];
+            }
+
             try {
                 const { data } = await axios
                     .post(
                         `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                         {
-                            event: "paymentPayerConfirm"
+                            event: "paymentPayerConfirm",
+                            ...(isConfirmTypeFile
+                                ? {
+                                      payload: {
+                                          attachment: {
+                                              type: "confirm",
+                                              format: selectedFile?.type,
+                                              data: pureBase64
+                                          }
+                                      }
+                                  }
+                                : {})
                         },
                         fingerprintConfig
                     )
@@ -130,7 +163,8 @@ const PayPage = () => {
                 "abb",
                 "birbank",
                 "atb",
-                "m10"
+                "m10",
+                "bankofbaku"
             ].includes(traderBankName)
         ) {
             setCaseName(azn);
@@ -215,7 +249,33 @@ const PayPage = () => {
             }
         }
     });
+
     const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
+
+    const { openFilePicker, loading } = useFilePicker({
+        accept: [".png", ".jpg", ".jpeg", ".webp", ".pdf"],
+        multiple: false,
+        readAs: "DataURL",
+        onFilesSuccessfullySelected: async files => {
+            const file = files.plainFiles[0];
+            if (file.size > 3 * 1024 * 1024) {
+                setSelectedFile(null);
+                toast.error("File size exceeds 5MB");
+                return;
+            }
+
+            if (!file.type.startsWith("image/") || !file.type.includes("pdf")) {
+                setSelectedFile(null);
+                toast.error("Invalid file type");
+                return;
+            }
+
+            setSelectedFile(file);
+        },
+        onFilesRejected: () => {
+            setSelectedFile(null);
+        }
+    });
 
     return (
         <div className="container">
@@ -261,12 +321,35 @@ const PayPage = () => {
                             transgran={transgran}
                         />
                     </div>
+                    {selectedFile && (
+                        <FilePicker
+                            value={selectedFile}
+                            onChange={setSelectedFile}
+                            openFilePicker={openFilePicker}
+                            loading={loading}
+                            label={t("changeCheck", ns)}
+                        />
+                    )}
 
                     <Footer
-                        buttonCaption={t("approveTransfer", ns)}
-                        buttonCallback={() => {
-                            setButtonCallbackEnabled(true);
-                        }}
+                        buttonCaption={
+                            isConfirmTypeFile
+                                ? t("approveTransfer", ns)
+                                : selectedFile
+                                ? t("approveTransfer", ns)
+                                : t("selectFile", ns)
+                        }
+                        buttonCallback={
+                            isConfirmTypeFile
+                                ? () => {
+                                      setButtonCallbackEnabled(true);
+                                  }
+                                : selectedFile
+                                ? () => {
+                                      setButtonCallbackEnabled(true);
+                                  }
+                                : () => openFilePicker()
+                        }
                         nextPage={nextPage}
                         nextEnabled={!isFetching_ButtonCallback}
                         approve={true}

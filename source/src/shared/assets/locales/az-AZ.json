@@ -34,6 +34,9 @@
     "Pay": {
         "approveTransfer": "Köçürməni təsdiqlə",
         "withoutComments": "Köçürməyə şərh yazılmadan",
+        "selectFile": "Çeki əlavə et",
+        "changeCheck": "Çeki dəyişdir",
+
         "steps": {
             "open": "Aç",
             "transfer": "Köçür",
@@ -59,6 +62,15 @@
             "sberbank": "Telefon nömrəsinə/başqa ölkəyə köçürmə seçin|Ölkə seçin - {{country}}|\"Kart və ya hesab\" düyməsinə keçin|Kopyalanmış telefon nömrəsini yapışdırın|Ödəniş formasında göstərilən bankı göstərin|Saytda göstərilən dəqiq məbləği daxil edin|Ödənişi tamamlamaq üçün düyməni basın",
             "vtbbankTitle": "VTB vasitəsilə ödəniş təlimatı",
             "vtbbank": "“Ödənişlər” bölməsini açın|“Başqa ölkəyə” seçin|Siyahıdan “{{country}}”ı seçin|“Telefon nömrəsi ilə köçürmə” seçin|Siyahıdan yuxarıda göstərilən bankı seçin|Yuxarıda göstərilən telefon nömrəsini daxil edin|“Köçürmək” düyməsini basın"
+        },
+        "steps_with_check": {
+            "tbankTitle": "T-Bank Təlimatı",
+            "steps": "Bank tətbiqini açın (T-bank)|(Ödə) düyməsini basın|(Kart nömrəsi ilə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini daxil edin|Tətbiqdə göstərilən məbləği daxil edin|(Köçür) düyməsini basın"
+        },
+
+        "steps_transgran_tcard2card": {
+            "tbankTitle": "T-Bank vasitəsilə ödəniş təlimatı",
+            "tbank": "Bank tətbiqini açın (T-Bank)|(Ödə) düyməsini basın|(Kart nömrəsinə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini yapışdırın|Məbləği müraciətdə göstərildiyi kimi daxil edin|(Köçürmək) düyməsini basın"
         },
         "steps_azn": {
             "sberbank": "Göstərilən telefon nömrəsini kopyalayın|Sber tətbiqini açın|Telefon nömrəsi ilə köçürmə funksiyasını seçin — \"başqa ölkəyə köçürmə\"|Sonra tətbiqdə təyinat ölkəsini seçin — Azərbaycan|Əvvəlcə kopyalanmış telefon nömrəsini daxil edin|Mövcud \"E-wallet\" siyahısından göstərilən bankı seçin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və \"Ödənişi tamamlamaq\" düyməsini basın"

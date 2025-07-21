@@ -16,6 +16,7 @@
     "axios": "^1.6.8",
     "convert-string": "^0.1.0",
     "dotenv": "^16.4.5",
+    "file-type-checker": "^1.1.4",
     "get-browser-fingerprint": "^3.2.3",
     "i18next": "^23.11.5",
     "i18next-http-backend": "^3.0.2",
@@ -32,6 +33,7 @@
     "react-toastify": "^10.0.6",
     "react-use-cookie": "^1.5.0",
     "react-yandex-metrika": "^2.6.0",
+    "use-file-picker": "^2.1.4",
     "vite-plugin-svgr": "^4.3.0",
     "zod": "^3.23.8",
     "zustand": "^5.0.6"

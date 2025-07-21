@@ -36,13 +36,14 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     setActiveAccordion
 }) => {
     const BFData = useBFStore(state => state.BFData);
+    const isConfirmTypeFile = BFData?.[dest]?.method?.context?.confirm_type === "file";
     // External pay info case
     if (BFData?.[dest]?.method?.payee?.redirect_url && BFData?.[dest]?.method?.name === "phone_number") {
         return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
     }
 
-    // Transgran cases for tjs/azn
-    if ([tjs, azn].includes(caseName) && transgran) {
+    // Transgran tsbp cases for tjs/azn
+    if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
             <div className="instructions_new transgran">
                 <ul>
@@ -107,6 +108,35 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         </Instruction>
                     );
                 })()}
+            </div>
+        );
+    }
+
+    console.log("caseName", caseName);
+    console.log("BFData?.[dest]?.method?.name", BFData?.[dest]?.method?.name);
+
+    if (isConfirmTypeFile) {
+        return (
+            <div className="instructions_new transgran">
+                <div className="title">
+                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
+                </div>
+
+                <InstructionItems data={t("steps_with_check.steps", ns)} start={0} />
+            </div>
+        );
+    }
+
+    /* трансгран кейс для Таджикистана по tcard2card */
+
+    if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
+        return (
+            <div className="instructions_new transgran">
+                <div className="title">
+                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
+                </div>
+
+                <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} start={0} />
             </div>
         );
     }
