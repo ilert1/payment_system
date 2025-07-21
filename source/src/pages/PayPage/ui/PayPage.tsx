@@ -43,6 +43,8 @@ const PayPage = () => {
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
     const isConfirmTypeFile = method?.context?.confirm_type === "file";
+    console.log("confirm_type: ", method?.context?.confirm_type);
+
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
     const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
@@ -258,13 +260,16 @@ const PayPage = () => {
         readAs: "DataURL",
         onFilesSuccessfullySelected: async files => {
             const file = files.plainFiles[0];
+
+            console.log("file", file);
+
             if (file.size > 3 * 1024 * 1024) {
                 setSelectedFile(null);
-                toast.error("File size exceeds 5MB");
+                toast.error("File size exceeds 3MB");
                 return;
             }
 
-            if (!file.type.startsWith("image/") || !file.type.includes("pdf")) {
+            if (!(file.type.startsWith("image/") || file.type.includes("pdf"))) {
                 setSelectedFile(null);
                 toast.error("Invalid file type");
                 return;
@@ -333,14 +338,14 @@ const PayPage = () => {
 
                     <Footer
                         buttonCaption={
-                            isConfirmTypeFile
+                            !isConfirmTypeFile
                                 ? t("approveTransfer", ns)
                                 : selectedFile
                                 ? t("approveTransfer", ns)
                                 : t("selectFile", ns)
                         }
                         buttonCallback={
-                            isConfirmTypeFile
+                            !isConfirmTypeFile
                                 ? () => {
                                       setButtonCallbackEnabled(true);
                                   }
