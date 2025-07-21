@@ -84,10 +84,12 @@ const PayPage = () => {
                             event: "paymentPayerConfirm",
                             ...(isConfirmTypeFile
                                 ? {
-                                      attachment: {
-                                          type: "confirm",
-                                          format: selectedFile?.type,
-                                          data: pureBase64
+                                      payload: {
+                                          attachment: {
+                                              type: "confirm",
+                                              format: selectedFile?.type,
+                                              data: pureBase64
+                                          }
                                       }
                                   }
                                 : {})
@@ -256,26 +258,19 @@ const PayPage = () => {
         readAs: "DataURL",
         onFilesSuccessfullySelected: async files => {
             const file = files.plainFiles[0];
-            const reader = new FileReader();
-            const types = ["jpeg", "png", "gif", "webp"];
-            // Тут можно более простую проверку сделать, как сделано в FilePicker
+            if (file.size > 3 * 1024 * 1024) {
+                setSelectedFile(null);
+                toast.error("File size exceeds 5MB");
+                return;
+            }
 
-            reader.onload = () => {
-                if (file.size > 5 * 1024 * 1024) {
-                    setSelectedFile(null);
-                    toast.error("File size exceeds 5MB");
-                    return;
-                }
-                const isImage = fileTypeChecker.validateFileType(reader.result as ArrayBuffer, types);
-                const isPdf = fileTypeChecker.validateFileType(reader.result as ArrayBuffer, ["pdf"]);
-                if (!(isImage || isPdf)) {
-                    setSelectedFile(null);
-                    toast.error("Invalid file type");
-                    return;
-                }
-                setSelectedFile(file);
-            };
-            reader.readAsArrayBuffer(file);
+            if (!file.type.startsWith("image/") || !file.type.includes("pdf")) {
+                setSelectedFile(null);
+                toast.error("Invalid file type");
+                return;
+            }
+
+            setSelectedFile(file);
         },
         onFilesRejected: () => {
             setSelectedFile(null);

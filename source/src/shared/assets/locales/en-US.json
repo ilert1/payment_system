@@ -62,6 +62,11 @@
             "vtbbankTitle": "Instruction for payment via VTB",
             "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
+        "steps_with_check": {
+            "tbankTitle": "T-bank Instructions",
+            "steps": "Open the bank app (T-bank)|Press the (pay) button|Select the section (transfer by card number)|Paste the provided card number|Enter the amount exactly as in the request|Press the (transfer) button"
+        },
+
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank Payment Instruction",
             "tbank": "Open the bank app (T-Bank)|Tap the (Pay) button|Select the (Transfer by card number) section|Paste the specified card number|Enter the transfer amount as in the request|Tap the (Transfer) button"
