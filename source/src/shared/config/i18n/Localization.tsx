@@ -70,7 +70,31 @@ i18n.use(initReactI18next)
         },
         debug: true,
         // "Common"
-        ns: ["ThreeDsPage"],
+        ns: [
+            "Common",
+            "Footer",
+            "GeneralError",
+            "Main",
+            "Pay",
+            "PayeeCard",
+            "PayeeData",
+            "PayeeHint",
+            "PayeeInfo",
+            "PayeeSearch",
+            "PayerData",
+            "PayError",
+            "PayHeader",
+            "PaymentInstrument",
+            "PayMethod",
+            "PayOut",
+            "PleasePay",
+            "ProgressSteper",
+            "Rating",
+            "SearchPayMethod",
+            "Success",
+            "SupportDialog",
+            "ThreeDsPage"
+        ],
         // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
         // if you're using a language detector, do not define the lng option
 
