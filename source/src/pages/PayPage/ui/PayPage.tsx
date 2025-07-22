@@ -255,7 +255,7 @@ const PayPage = () => {
     const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
 
     const { openFilePicker, loading } = useFilePicker({
-        accept: [".png", ".jpg", ".jpeg", ".webp", ".pdf"],
+        accept: [".png", ".jpg", ".jpeg", ".pdf"],
         multiple: false,
         readAs: "DataURL",
         onFilesSuccessfullySelected: async files => {
