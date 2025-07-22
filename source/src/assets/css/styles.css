@@ -725,6 +725,8 @@ header .language-selector .drop-down .flag-container:last-of-type {
   justify-content: center;
   align-items: center;
   padding: 13px 45px;
+  font-size: 16px !important;
+  font-weight: 500;
   border: none;
   border-radius: 5px;
   background: #fff;
