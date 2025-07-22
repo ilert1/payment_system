@@ -265,13 +265,13 @@ const PayPage = () => {
 
             if (file.size > 3 * 1024 * 1024) {
                 setSelectedFile(null);
-                toast.error("File size exceeds 3MB");
+                toast.error(t("check_load_errors.fileSize"));
                 return;
             }
 
             if (!(file.type.startsWith("image/") || file.type.includes("pdf"))) {
                 setSelectedFile(null);
-                toast.error("Invalid file type");
+                toast.error(t("check_load_errors.fileType"));
                 return;
             }
 
