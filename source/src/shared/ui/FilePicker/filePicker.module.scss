@@ -6,6 +6,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .container_selected {
     justify-content: center;
 }
@@ -44,4 +45,5 @@
     text-overflow: ellipsis;
     color: hsla(203, 92%, 5%, 1);
     font-size: 16px;
+    word-break: break-all;
 }
