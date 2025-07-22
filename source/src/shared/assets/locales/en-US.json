@@ -64,8 +64,10 @@
             "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
         "steps_with_check": {
-            "tbankTitle": "T-bank Instructions",
-            "steps": "Open the bank app (T-bank)|Press the (pay) button|Select the section (transfer by card number)|Paste the provided card number|Enter the amount exactly as in the request|Press the (transfer) button"
+            "tbankTitle": "T-Bank instruction",
+            "steps": "Copy {{requisite}} and go to your banking app|Make a transfer to the bank and amount specified in the form|Be sure to attach the payment receipt|Click the \"Confirm\" button",
+            "phoneNumber": "phone number",
+            "cardNumber": "card number"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank Payment Instruction",
@@ -96,7 +98,6 @@
             "fileSize": "File size exceeds 3MB",
             "fileType": "Only images and PDF files are allowed"
         },
-
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
         "agree": "Okay, understood",
