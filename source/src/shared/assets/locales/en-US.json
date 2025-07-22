@@ -34,6 +34,7 @@
     "Pay": {
         "approveTransfer": "Approve transfer",
         "withoutComments": "Without comments to the transfer",
+        "selectFile": "Select receipt",
         "changeCheck": "Replace receipt",
         "steps": {
             "open": "Open",
