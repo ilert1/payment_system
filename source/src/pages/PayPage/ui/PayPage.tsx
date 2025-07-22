@@ -265,13 +265,13 @@ const PayPage = () => {
 
             if (file.size > 3 * 1024 * 1024) {
                 setSelectedFile(null);
-                toast.error(t("check_load_errors.fileSize"));
+                toast.error(t("check_load_errors.fileSize", ns));
                 return;
             }
 
             if (!(file.type.startsWith("image/") || file.type.includes("pdf"))) {
                 setSelectedFile(null);
-                toast.error(t("check_load_errors.fileType"));
+                toast.error(t("check_load_errors.fileType", ns));
                 return;
             }
 
