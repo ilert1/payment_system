@@ -36,6 +36,8 @@
         "withoutComments": "Without comments to the transfer",
         "selectFile": "Select receipt",
         "changeCheck": "Replace receipt",
+        "selectFile": "Select file",
+
         "steps": {
             "open": "Open",
             "transfer": "Transfer",
