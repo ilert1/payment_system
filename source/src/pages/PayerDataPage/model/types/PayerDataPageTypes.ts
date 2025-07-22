@@ -6,6 +6,7 @@ export type PaymentStore = {
         bfId: string;
         navigate: (path: string) => void;
         payOutMode: boolean;
+        fingerprintConfig: FingerprintConfig;
     }) => Promise<BFDataType | undefined>;
 };
 

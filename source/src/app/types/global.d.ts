@@ -44,6 +44,13 @@ declare global {
         required: null;
     };
 
+    type FingerprintConfig = {
+        headers: {
+            "X-Fingerprint": string;
+            "Accept-Language": string;
+        };
+    };
+
     // const LangVariants: {
     //     en: "en";
     //     az: "az";
