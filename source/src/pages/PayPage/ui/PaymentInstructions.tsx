@@ -122,7 +122,13 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div>
 
-                <InstructionItems data={t("steps_with_check.steps", ns)} start={0} />
+                <InstructionItems
+                    data={t("steps_with_check.steps", {
+                        requisite: t(`steps_with_check.${trader?.phone_number ? "phoneNumber" : "cardNumber"}`, ns),
+                        ...ns
+                    })}
+                    start={0}
+                />
             </div>
         );
     }

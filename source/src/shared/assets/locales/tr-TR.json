@@ -36,7 +36,6 @@
         "withoutComments": "Transfer için yorum yapmadan",
         "selectFile": "Makbuzu ekle",
         "changeCheck": "Çeki değiştir",
-
         "steps": {
             "open": "Aç",
             "transfer": "Transfer et",
@@ -63,7 +62,12 @@
             "vtbbankTitle": "VTB üzerinden ödeme talimatı",
             "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “{{country}}”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
         },
-
+        "steps_with_check": {
+            "tbankTitle": "T-Bank talimatı",
+            "steps": "{{requisite}} kopyalayın ve bank uygulamanıza geçin|Formda belirtilen bankaya ve tutara transfer gerçekleştirin|Mutlaka ödeme makbuzunu ekleyin|\"Onayla\" butonuna basın",
+            "phoneNumber": "Telefon numarası",
+            "cardNumber": "Kart numarası"
+        },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank ile ödeme talimatı",
             "tbank": "Banka uygulamasını açın (T-Bank)|(Öde) düğmesine basın|(Kart numarasına havale) bölümünü seçin|Belirtilen kart numarasını yapıştırın|Başvurudaki gibi tutarı girin|(Gönder) düğmesine basın"
@@ -93,7 +97,6 @@
             "fileSize": "Dosya boyutu 3MB'yi aşıyor",
             "fileType": "Yalnızca resim ve PDF dosyalarına izin verilir"
         },
-
         "payed": "Ödendi",
         "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
         "agree": "Tamam, anladım",

@@ -36,7 +36,6 @@
         "withoutComments": "Köçürməyə şərh yazılmadan",
         "selectFile": "Çeki əlavə et",
         "changeCheck": "Çeki dəyişdir",
-
         "steps": {
             "open": "Aç",
             "transfer": "Köçür",
@@ -64,10 +63,11 @@
             "vtbbank": "“Ödənişlər” bölməsini açın|“Başqa ölkəyə” seçin|Siyahıdan “{{country}}”ı seçin|“Telefon nömrəsi ilə köçürmə” seçin|Siyahıdan yuxarıda göstərilən bankı seçin|Yuxarıda göstərilən telefon nömrəsini daxil edin|“Köçürmək” düyməsini basın"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank Təlimatı",
-            "steps": "Bank tətbiqini açın (T-bank)|(Ödə) düyməsini basın|(Kart nömrəsi ilə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini daxil edin|Tətbiqdə göstərilən məbləği daxil edin|(Köçür) düyməsini basın"
+            "tbankTitle": "T-Bank təlimatı",
+            "steps": "{{requisite}} kopyalayın və bank tətbiqinizə keçin|Formada göstərilən banka və məbləğə köçürmə edin|Ödəmə qəbzini mütləq əlavə edin|\"Təsdiqlə\" düyməsini klikləyin",
+            "phoneNumber": "telefon nömrəsi",
+            "cardNumber": "kart nömrəsi"
         },
-
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank vasitəsilə ödəniş təlimatı",
             "tbank": "Bank tətbiqini açın (T-Bank)|(Ödə) düyməsini basın|(Kart nömrəsinə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini yapışdırın|Məbləği müraciətdə göstərildiyi kimi daxil edin|(Köçürmək) düyməsini basın"
