@@ -79,32 +79,35 @@ const PayPage = () => {
             }
 
             try {
-                const { data } = await axios
-                    .post(
-                        `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
-                        {
-                            event: "paymentPayerConfirm",
-                            ...(isConfirmTypeFile
-                                ? {
-                                      payload: {
-                                          attachment: {
-                                              type: "confirm",
-                                              format: selectedFile?.type,
-                                              data: pureBase64
-                                          }
+                const { data } = await axios.post(
+                    `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
+                    {
+                        event: "paymentPayerConfirm",
+                        ...(isConfirmTypeFile
+                            ? {
+                                  payload: {
+                                      attachment: {
+                                          type: "confirm",
+                                          format: selectedFile?.type,
+                                          data: pureBase64
                                       }
                                   }
-                                : {})
-                        },
-                        fingerprintConfig
-                    )
-                    .catch(e => {
-                        console.log(e);
-                    });
-                console.log(data);
+                              }
+                            : {})
+                    },
+                    fingerprintConfig
+                );
+
+                if (!data.success) {
+                    throw new Error(data.error);
+                }
+
                 return data;
             } catch (e) {
-                console.log(data?.error);
+                toast.error(t("check_load_errors.generalError", ns), {
+                    closeButton: <></>,
+                    autoClose: 2000
+                });
             } finally {
                 setButtonCallbackEnabled(false);
             }

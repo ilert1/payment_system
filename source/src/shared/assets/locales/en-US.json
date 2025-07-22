@@ -96,6 +96,7 @@
             "steps": "Copy the phone number|In the Sber app, tap 'Transfer'|Select another country, then {{country}}|Paste the phone number|Select A-Mobile Wallet|Enter the amount {{amount}} and tap Approve"
         },
         "check_load_errors": {
+            "generalError": "An error occurred while sending data. Please try again",
             "fileSize": "File size exceeds 3MB",
             "fileType": "Only images and PDF files are allowed"
         },

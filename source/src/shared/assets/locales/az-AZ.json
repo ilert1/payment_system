@@ -94,6 +94,7 @@
             "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində 'köçürmək' düyməsini sıxın|Başqa ölkəyə və sonra {{country}} seçin|Telefon nömrəsini yapışdırın|A-Mobile Cüzdan seçin|{{amount}} məbləğini daxil edin və 'Təsdiqlə' düyməsini basın"
         },
         "check_load_errors": {
+            "generalError": "Məlumat göndərilərkən xəta baş verdi. Yenidən cəhd edin",
             "fileSize": "Faylın ölçüsü 3MB-dan çoxdur",
             "fileType": "Yalnız şəkillər və PDF fayllarına icazə verilir"
         },

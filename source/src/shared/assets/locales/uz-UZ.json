@@ -94,6 +94,7 @@
             "steps": "Telefon raqamini nusxa oling|Sber ilovasida 'to‘lash' tugmasini bosing|Boshqa davlatni va keyin {{country}} ni tanlang|Telefon raqamini joylashtiring|A-Mobile Hamyonini tanlang|{{amount}} summasini kiriting va 'Tasdiqlash' tugmasini bosing"
         },
         "check_load_errors": {
+            "generalError": "Maʼlumot yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko‘ring",
             "fileSize": "Fayl hajmi 3MB dan oshib ketgan",
             "fileType": "Faqat rasm va PDF fayllarga ruxsat beriladi"
         },
