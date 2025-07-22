@@ -76,6 +76,9 @@ i18n.use(initReactI18next)
 
         interpolation: {
             escapeValue: false // react already safes from xss
+        },
+        react: {
+            useSuspense: true
         }
         // backend: {
         //     loadPath: "/locales/{{lng}}/{{ns}}.json"

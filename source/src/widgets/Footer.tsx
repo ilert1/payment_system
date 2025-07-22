@@ -57,7 +57,7 @@ const Footer = (props: FooterProps) => {
     const BFData = useBFStore(state => state.BFData);
 
     const navigate = useNavigate();
-    const { t } = useTranslation();
+    const { t } = useTranslation(["Footer"]);
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
     const trader = BFData?.[dest]?.method?.payee?.data;

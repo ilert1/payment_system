@@ -19,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import { useFilePicker } from "use-file-picker";
 import { toast } from "react-toastify";
-import fileTypeChecker from "file-type-checker";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -42,7 +41,7 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
-    const isConfirmTypeFile = method?.context?.confirm_type === "file";
+    const isConfirmTypeFile = !(method?.context?.confirm_type === "file");
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
     const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");

@@ -1,0 +1,141 @@
+input {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    opacity: 0.3;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 133%;
+    text-align: left;
+    outline: none;
+    flex-grow: 1;
+    box-sizing: border-box;
+    font-family: Inter;
+
+    &::placeholder {
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 26.7px;
+        opacity: 0.2;
+        color: var(--color-text);
+    }
+
+    @media (max-width: 520px) {
+        font-size: 14px;
+        line-height: 21.36px;
+
+        &::placeholder {
+            font-size: 14px;
+            line-height: 21.36px;
+        }
+    }
+}
+
+// .search-pay-method -> input
+input {
+    background: none;
+    border: none;
+    color: var(--color-text);
+    opacity: 0.3;
+
+    // font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 133%; // 26.7px;
+    text-align: left;
+
+    outline: none;
+    flex-grow: 1;
+
+    @media (max-width: 520px) {
+        font-size: 14px;
+        line-height: 21.36px;
+    }
+}
+
+//card-number-container ->
+.inputs {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 7px;
+
+    .card-input {
+        font-family: Inter; //inherit;
+        font-size: 42px;
+        // font-weight: 600;
+        line-height: 133%;
+        text-align: center;
+
+        background-color: white;
+        border: 1.44px solid transparent;
+        border-radius: 5px;
+
+        // width: 55px;
+        max-width: 55px;
+        width: 100%;
+
+        box-sizing: border-box;
+
+        color: #37a8f3;
+
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+        padding: 0;
+
+        @media (max-width: 520px) {
+            width: 38px;
+            font-size: 27px;
+            padding: 1px 0;
+        }
+
+        &:focus {
+            border: 1.44px solid #6fc0f6;
+        }
+    }
+}
+
+// card-number-form -> input
+// &__input {
+//     width: 100%;
+//     padding: 0.8rem 0;
+//     background: #ffffff;
+//     border-radius: 5px;
+//     border: none;
+//     padding: 14px;
+//     font-size: 20px;
+//     font-weight: 500;
+//     line-height: 26.7px;
+//     box-sizing: border-box;
+//     font-family: Inter;
+//     color: #010f18;
+//     outline: 1px solid #6fc0f600;
+//     transition: outline 0.3s ease;
+
+//     &.wide-spacing {
+//         letter-spacing: 0.15em;
+//     }
+
+//     @media (max-width: 520px) {
+//         font-size: 14px;
+//         line-height: 21.36px;
+//     }
+
+//     &::placeholder {
+//         font-size: 20px;
+//         font-weight: 500;
+//         line-height: 26.7px;
+//         opacity: 20%;
+//         color: rgba(1, 15, 24, 1);
+
+//         @media (max-width: 520px) {
+//             font-size: 14px;
+//             line-height: 21.36px;
+//         }
+//     }
+
+//     &:focus {
+//         outline: 1px solid #6fc0f6ff;
+//     }
+// }

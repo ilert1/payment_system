@@ -1,7 +1,7 @@
 import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useAppContext } from "@/AppContext";
 import Loader from "@/shared/ui/Loader";
 import { ToastContainer } from "react-toastify";
@@ -53,7 +53,9 @@ const App = () => {
                     </div>
                 </div>
             ) : (
-                <AppRouter />
+                <Suspense fallback={<div>Загрузка переводов...</div>}>
+                    <AppRouter />
+                </Suspense>
             )}
             <ToastContainer />
         </>

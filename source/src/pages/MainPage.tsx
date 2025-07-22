@@ -11,12 +11,15 @@ import axios from "axios";
 import Loader from "@/shared/ui/Loader";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
 import { AppRoutes } from "@/shared/const/router.js";
+import { useTranslation } from "react-i18next";
 
 const MainPage = () => {
-    const { fingerprintConfig, t, ym } = useAppContext();
+    const { fingerprintConfig, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
-
     const payOutMode = Boolean(BFData?.payout);
+    const ns = { ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] };
+    const { t } = useTranslation(payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"]);
+
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 
@@ -40,7 +43,6 @@ const MainPage = () => {
     usePaymentPage({ absolutePath: true });
 
     //translation
-    const ns = { ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] };
 
     return (
         <div className="container">

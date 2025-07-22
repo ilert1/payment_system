@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useCallback, useContext } from "react";
+import { createContext, useState, useEffect, useCallback, useContext, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 
 import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
@@ -69,7 +69,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const [caseName, setCaseName] = useState("");
 
     useEffect(() => {
-        i18n.changeLanguage(lang);
+        startTransition(() => {
+            i18n.changeLanguage(lang);
+        });
         localStorage.setItem("language", lang);
     }, [lang]);
 
