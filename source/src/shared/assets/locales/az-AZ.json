@@ -93,6 +93,10 @@
         "steps_transgran_abh": {
             "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində 'köçürmək' düyməsini sıxın|Başqa ölkəyə və sonra {{country}} seçin|Telefon nömrəsini yapışdırın|A-Mobile Cüzdan seçin|{{amount}} məbləğini daxil edin və 'Təsdiqlə' düyməsini basın"
         },
+        "check_load_errors": {
+            "fileSize": "Faylın ölçüsü 3MB-dan çoxdur",
+            "fileType": "Yalnız şəkillər və PDF fayllarına icazə verilir"
+        },
         "payed": "Ödənilib",
         "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
         "agree": "Tamam, başa düşdüm",
