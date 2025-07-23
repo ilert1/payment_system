@@ -32,10 +32,10 @@
         "via": "orqali"
     },
     "Pay": {
-        "approveTransfer": "O'tkazmani tasdiqlash",
-        "withoutComments": "O'tkazmaga izohsiz",
-        "selectFile": "Chekni biriktirish",
-        "changeCheck": "Chekni almashtirish",
+        "approveTransfer": "O‘tkazmani tasdiqlash",
+        "withoutComments": "O‘tkazmaga izohsiz",
+        "selectFile": "Chekni biriktiring",
+        "changeCheck": "CHEK-ni almashtiring",
         "steps": {
             "open": "Ochish",
             "transfer": "O'tkazish",
@@ -64,9 +64,9 @@
         },
         "steps_with_check": {
             "tbankTitle": "T-Bank bo‘yicha ko‘rsatma",
-            "steps": "{{requisite}} ni nusxalang va bank ilovasiga o‘ting|Shaklda ko‘rsatilgan bank va summaga pul o‘tkazing|To‘lov chekini ilova qilishni unutmang|\"Tasdiqlash\" tugmasini bosing",
-            "phoneNumber": "Telefon raqami",
-            "cardNumber": "Karta raqami"
+            "steps": "{{requisite}} ni nusxalang va T-Bank ilovasiga o‘ting|Formada ko‘rsatilgan bank va summaga pul o‘tkazing|To‘lov chekini albatta biriktiring|\"O‘tkazmani tasdiqlash\" tugmasini bosing",
+            "phoneNumber": "telefon raqami",
+            "cardNumber": "karta raqami"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank orqali to‘lov yo‘riqnoma",

@@ -34,8 +34,8 @@
     "Pay": {
         "approveTransfer": "Transferi onayla",
         "withoutComments": "Transfer için yorum yapmadan",
-        "selectFile": "Makbuzu ekle",
-        "changeCheck": "Çeki değiştir",
+        "selectFile": "Makbuz ekle",
+        "changeCheck": "Makbuzu değiştir",
         "steps": {
             "open": "Aç",
             "transfer": "Transfer et",
@@ -63,8 +63,8 @@
             "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “{{country}}”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank talimatı",
-            "steps": "{{requisite}} kopyalayın ve bank uygulamanıza geçin|Formda belirtilen bankaya ve tutara transfer gerçekleştirin|Mutlaka ödeme makbuzunu ekleyin|\"Onayla\" butonuna basın",
+            "tbankTitle": "T-Bank Talimatı",
+            "steps": "{{requisite}} kopyalayın ve T-Bank uygulamasını açın|Formda belirtilen bankaya ve tutara transfer yapın|Makbuzunuzu mutlaka ekleyin|“Transferi onayla” butonuna tıklayın",
             "phoneNumber": "Telefon numarası",
             "cardNumber": "Kart numarası"
         },

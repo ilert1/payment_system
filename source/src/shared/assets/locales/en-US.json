@@ -34,10 +34,8 @@
     "Pay": {
         "approveTransfer": "Approve transfer",
         "withoutComments": "Without comments to the transfer",
-        "selectFile": "Select receipt",
+        "selectFile": "Attach receipt",
         "changeCheck": "Replace receipt",
-        "selectFile": "Select file",
-
         "steps": {
             "open": "Open",
             "transfer": "Transfer",
@@ -65,10 +63,10 @@
             "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank instruction",
-            "steps": "Copy {{requisite}} and go to your banking app|Make a transfer to the bank and amount specified in the form|Be sure to attach the payment receipt|Click the \"Confirm\" button",
-            "phoneNumber": "phone number",
-            "cardNumber": "card number"
+            "tbankTitle": "T-Bank Instruction",
+            "steps": "Copy {{requisite}} and open the T-Bank app|Make the transfer to the bank and amount shown on the form|Be sure to attach the receipt of payment|Press the “Approve transfer” button",
+            "phoneNumber": "Phone number",
+            "cardNumber": "Card number"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank Payment Instruction",
