@@ -4,6 +4,9 @@ import { useTranslation } from "react-i18next";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { CardFormSchemaType, useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
 import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
+import styles from "./CardNumberForm.module.scss";
+import { classNames } from "@/shared/lib/classNames";
+import { Input } from "@/shared/ui/input/input";
 
 interface CardNumberFormProps {
     disabled: boolean;
@@ -30,77 +33,74 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
 
     return (
         <div
-            className="card-number-form"
+            className={styles.form}
             // disabled={disabled}
         >
             <form>
-                <div className="card-number-form__wrapper">
-                    <div className="card-number-form__item">
-                        <label className="card-number-form__label" htmlFor="cardNumber">
+                <div className={styles.wrapper}>
+                    <div className={styles.item}>
+                        <label className={styles.label} htmlFor="cardNumber">
                             {t("cardNumber", ns)}:
                         </label>
-                        <input
+                        <Input
                             {...register("cardNumber")}
-                            type="text"
                             id="cardNumber"
-                            className="card-number-form__input wide-spacing"
+                            className={classNames(styles.input, {}, [styles.wideSpacing])}
                             value={cardNumber}
                             onChange={handleCardNumberInputChange}
                             placeholder={`${t("cardNumber", ns)}`}
                         />
-                        {errors.cardNumber && <p className="error-message">{errors.cardNumber.message}</p>}
+                        {errors.cardNumber && <p className={styles.error_message}>{errors.cardNumber.message}</p>}
                     </div>
-                    <div className="card-number-form__bottom">
-                        <div className="card-number-form__item">
-                            <label className="card-number-form__label" htmlFor="expiryDate">
+                    <div className={styles.bottom}>
+                        <div className={styles.item}>
+                            <label className={styles.label} htmlFor="expiryDate">
                                 {t("expirationDate", ns)}:
                             </label>
-                            <input
+                            <Input
                                 {...register("expiryDate")}
-                                type="text"
                                 id="expiryDate"
-                                className="card-number-form__input"
+                                className={styles.input}
                                 value={expiryDate}
                                 onChange={handleExpiryInputChange}
                                 onKeyDown={handleExpiryKeyDown}
                                 maxLength={5}
                                 placeholder="MM/YY"
                             />
-                            {errors.expiryDate && <p className="error-message">{errors.expiryDate.message}</p>}
+                            {errors.expiryDate && <p className={styles.error_message}>{errors.expiryDate.message}</p>}
                         </div>
-                        <div className="card-number-form__item">
-                            <label className="card-number-form__label" htmlFor="cvv">
+                        <div className={styles.item}>
+                            <label className={styles.label} htmlFor="cvv">
                                 CVV:
                             </label>
-                            <input
+                            <Input
                                 {...register("cvv")}
                                 onChange={handleCvvInputChange}
                                 value={cvv}
                                 type="password"
                                 autoComplete="new-password"
                                 id="cvv"
-                                className="card-number-form__input"
+                                className={styles.input}
                                 placeholder="000"
                                 maxLength={3}
                             />
-                            {errors.cvv && <p className="error-message">{errors.cvv.message}</p>}
+                            {errors.cvv && <p className={styles.error_message}>{errors.cvv.message}</p>}
                         </div>
                     </div>
                     {cardHolderVisible && (
-                        <div className="card-number-form__item">
-                            <label className="card-number-form__label" htmlFor="cardHolder">
+                        <div className={styles.item}>
+                            <label className={styles.label} htmlFor="cardHolder">
                                 {t("cardHolder", ns)}:
                             </label>
-                            <input
+                            <Input
                                 {...register("cardHolder", { required: false })}
-                                type="text"
                                 id="cardHolder"
-                                className="card-number-form__input wide-spacing"
+                                className={classNames(styles.input, {}, [styles.wideSpacing])}
                                 value={cardHolder}
                                 onChange={handleCardHolderChange}
                                 placeholder={`${t("nameLastname", ns)}`}
                             />
-                            {errors.cardHolder && <p className="error-message">{errors.cardHolder.message}</p>}
+                            {errors.cardHolder && <p className={styles.error_message}>{errors.cardHolder.message}</p>}
                         </div>
                     )}
                 </div>

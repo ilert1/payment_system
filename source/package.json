@@ -14,6 +14,7 @@
     "@hookform/resolvers": "^3.9.1",
     "@tanstack/react-query": "^5.29.2",
     "axios": "^1.6.8",
+    "class-variance-authority": "^0.7.1",
     "convert-string": "^0.1.0",
     "dotenv": "^16.4.5",
     "file-type-checker": "^1.1.4",
@@ -39,6 +40,7 @@
     "zustand": "^5.0.6"
   },
   "devDependencies": {
+    "@types/node": "^24.1.0",
     "@types/react": "^18.2.66",
     "@types/react-copy-to-clipboard": "^5.0.7",
     "@types/react-dom": "^18.2.22",
@@ -48,6 +50,6 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "sass": "^1.86.3",
-    "vite": "^5.2.0"
+    "vite": "^5.4.19"
   }
 }

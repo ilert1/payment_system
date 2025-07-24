@@ -1,0 +1,28 @@
+.input {
+    font-size: 42px;
+    text-align: center;
+
+    border: 1.44px solid transparent;
+    border-radius: 5px;
+
+    max-width: 55px;
+    width: 100%;
+
+    color: #37a8f3;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    padding: 0;
+
+    @media (max-width: 520px) {
+        width: 38px;
+        font-size: 27px;
+        padding: 1px 0;
+    }
+
+    &:focus {
+        border: 1.44px solid #6fc0f6;
+    }
+}
