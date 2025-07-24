@@ -40,10 +40,6 @@ export const CardNumberLast4 = (props: CardNumberLast4Props) => {
         <div className="card-number-container">
             {showHidden ? <p>**** **** ****</p> : ""}
             <div ref={inputs} className="inputs">
-                {/* <input type="text" className="card-input" maxLength={1} inputMode="numeric" />
-                <input type="text" className="card-input" maxLength={1} inputMode="numeric" />
-                <input type="text" className="card-input" maxLength={1} inputMode="numeric" />
-                <input type="text" className="card-input" maxLength={1} inputMode="numeric" /> */}
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />

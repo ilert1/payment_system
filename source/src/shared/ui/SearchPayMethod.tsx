@@ -25,7 +25,6 @@ export const SearchPayMethod = ({ setFilterText }: SearchPayMethodProps) => {
         <div className="search-pay-method">
             {/* <img src={Search} alt="" /> */}
             <Search />
-            {/* <input ref={filterText} type="text" placeholder={t("transferMethod", ns)} /> */}
             <Input ref={filterText} placeholder={t("transferMethod", ns)} />
         </div>
     );

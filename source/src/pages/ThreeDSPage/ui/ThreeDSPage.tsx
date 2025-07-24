@@ -12,46 +12,29 @@ export const ThreeDSPage = () => {
         <div className="container">
             <Header />
             <div className="content cardPage">
-                <ThreeDsForm />
                 <>
-                    <h1 className="grow">{t("title")}</h1>
-                    {/* <CardNumberForm disabled={isPressed || isFetching} cardHolderVisible={showCardHolder} /> */}
+                    <h1
+                        className="grow"
+                        style={{
+                            marginBottom: "20px"
+                        }}>
+                        {t("title")}
+                        {/* {"Введите код подтверждения вашего банка"} */}
+                    </h1>
                 </>
-                {/* {isEcom ? (
-                    !isFetching && !waitTransfer ? (
-                        <>
-                            <h1 className="grow">{t("enterYourCard", ns)}</h1>
-                            <CardNumberForm disabled={isPressed || isFetching} cardHolderVisible={showCardHolder} />
-                        </>
-                    ) : (
-                        <>
-                            <h1 className="grow">{t("getCard", ns)}</h1>
-                            {(isPressed || isFetching) && (
-                                <div className="loader-container">
-                                    <Loader />
-                                </div>
-                            )}
-                        </>
-                    )
-                ) : (
-                    <>
-                        <h1 className="grow">{`${t("enter4", ns)} ${
-                            isSbp ? t("yourPhone", ns) : t("yourCard", ns)
-                        }`}</h1>
-                        <CardNumberLast4 onComplete={onComplete} showHidden={!isSbp} />
-                    </>
-                )} */}
+                <ThreeDsForm />
             </div>
-            {/* {!isFetching && (
-                <Footer
-                    buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
-                    buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
-                    nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                    nextEnabled={nextEnabled}
-                    approve={true}
-                    focused={buttonFocused}
-                />
-            )} */}
+
+            <Footer
+                // buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
+                buttonCaption={"Continue"}
+                // buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
+                buttonCallback={() => {}}
+                nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
+                nextEnabled={true}
+                approve={true}
+                focused={true}
+            />
         </div>
     );
 };

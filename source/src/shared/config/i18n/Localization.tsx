@@ -66,7 +66,11 @@ i18n.use(initReactI18next)
         lng: language, // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
         fallbackLng: "en-US",
         backend: {
-            loadPath: "/locales/{{lng}}/{{ns}}.json"
+            // loadPath: "/locales/{{lng}}/{{ns}}.json"
+            loadPath: (lngs: string[], namespaces: string[]) => {
+                const lang = lngs[0];
+                return `/locales/${lang}/${namespaces[0]}.json`;
+            }
         },
         debug: true,
         // "Common"

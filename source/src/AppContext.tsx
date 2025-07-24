@@ -164,7 +164,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 return AppRoutes.PAGE_MAIN;
             case "paymentAwaitingSelectInstrument":
             case "paymentPayerSelectingInstrument":
-                return AppRoutes.PAGE_PAYMENT_INSTRUMENT;
+                // TODO: ВНИМАНИЕ, МОК! ПОТОМ НУЖНО УДАЛИТЬ
+                return AppRoutes.PAGE_THREE_DS;
+            // return AppRoutes.PAGE_PAYMENT_INSTRUMENT;
             case "paymentPayerDataEntrу":
             case "paymentPayerDataEntered":
                 return AppRoutes.PAYER_DATA_PAGE;

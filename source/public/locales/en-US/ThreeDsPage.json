@@ -1,4 +1,12 @@
 {
     "title": "Enter 3ds code",
-    "threeDSForm": {}
+    "threeDSForm": {
+        "fields": {
+            "threeDsCode": ""
+        },
+        "errors": {
+            "length": "",
+            "regex": ""
+        }
+    }
 }

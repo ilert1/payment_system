@@ -1,5 +1,5 @@
 import "@/shared/assets/css/fonts.css";
-import "@/shared/assets/css/styles.css";
+import "@/assets/css/styles.css";
 
 import { Suspense, useEffect } from "react";
 import { useAppContext } from "@/AppContext";

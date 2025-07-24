@@ -2,10 +2,8 @@
     background: none;
     border: none;
     color: var(--color-text);
-    opacity: 0.3;
-    font-size: 20px;
+    // opacity: 0.3;
     font-weight: 400;
-    line-height: 133%;
     text-align: left;
     outline: none;
     flex-grow: 1;
@@ -15,30 +13,45 @@
     &:focus {
         outline: 1px solid #6fc0f6ff;
     }
+}
+
+.bgwhite {
+    background-color: white !important;
+}
+
+@mixin textSize($size, $lineHeight) {
+    font-size: $size;
+    line-height: $lineHeight;
 
     &::placeholder {
-        font-size: 20px;
+        font-size: $size;
+        line-height: $lineHeight;
         font-weight: 500;
-        line-height: 26.7px;
         opacity: 0.2;
         color: var(--color-text);
-        @media (max-width: 520px) {
-            font-size: 14px;
-            line-height: 21.36px;
-        }
-    }
-
-    @media (max-width: 520px) {
-        font-size: 14px;
-        line-height: 21.36px;
-
-        &::placeholder {
-            font-size: 14px;
-            line-height: 21.36px;
-        }
     }
 }
 
-.bg-white {
-    background-color: white;
+.textSm {
+    @include textSize(20px, 133%);
+
+    @media (max-width: 520px) {
+        @include textSize(14px, 21.36px);
+    }
+}
+
+.textMd {
+    @include textSize(20px, 133%);
+
+    @media (max-width: 520px) {
+        @include textSize(14px, 21.36px);
+    }
+}
+
+.textLg {
+    @include textSize(28px, 133%);
+
+    @media (max-width: 520px) {
+        @include textSize(16px, 26.6px);
+    }
 }

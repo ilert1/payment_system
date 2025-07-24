@@ -44,20 +44,6 @@ declare global {
         required: null;
     };
 
-    // const LangVariants: {
-    //     en: "en";
-    //     az: "az";
-    //     ky: "ky";
-    //     tg: "tg";
-    //     kk: "kk";
-    //     ru: "ru";
-    //     tr: "tr";
-    //     uk: "uk";
-    //     uz: "uz";
-    // };
-
-    // type LangType = keyof typeof LangVariants;
-
     type BFDataType = {
         payout?: {
             id: string;
