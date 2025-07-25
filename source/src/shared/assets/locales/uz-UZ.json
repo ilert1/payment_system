@@ -63,10 +63,9 @@
             "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «{{country}}» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank bo‘yicha ko‘rsatma",
-            "steps": "{{requisite}} ni nusxalang va T-Bank ilovasiga o‘ting|Formada ko‘rsatilgan bank va summaga pul o‘tkazing|To‘lov chekini albatta biriktiring|\"O‘tkazmani tasdiqlash\" tugmasini bosing",
-            "phoneNumber": "telefon raqami",
-            "cardNumber": "karta raqami"
+            "steps": "{{requisite}} ni nusxa oling va bank ilovasiga o‘ting|{{bankName}} bankiga {{requisite}} raqamiga {{amount}} summasida pul o‘tkazing|To‘lov chekini albatta biriktiring|“O‘tkazmani tasdiqlash” tugmasini bosing",
+            "phoneNumber": "Telefon raqami",
+            "cardNumber": "Karta raqami"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank orqali to‘lov yo‘riqnoma",

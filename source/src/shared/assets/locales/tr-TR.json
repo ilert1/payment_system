@@ -63,8 +63,7 @@
             "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “{{country}}”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank Talimatı",
-            "steps": "{{requisite}} kopyalayın ve T-Bank uygulamasını açın|Formda belirtilen bankaya ve tutara transfer yapın|Makbuzunuzu mutlaka ekleyin|“Transferi onayla” butonuna tıklayın",
+            "steps": "{{requisite}} bilgisini kopyalayın ve bankanızın uygulamasını açın|{{bankName}} bankasına {{requisite}} alıcısına {{amount}} tutarında havale yapın|Ödeme makbuzunu mutlaka ekleyin|“Transferi Onayla” butonuna basın",
             "phoneNumber": "Telefon numarası",
             "cardNumber": "Kart numarası"
         },

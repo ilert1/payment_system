@@ -116,15 +116,19 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     console.log("BFData?.[dest]?.method?.name", BFData?.[dest]?.method?.name);
 
     if (isConfirmTypeFile) {
+        console.log(bankName);
+
         return (
             <div className="instructions_new transgran">
-                <div className="title">
+                {/* <div className="title">
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
-                </div>
+                </div> */}
 
                 <InstructionItems
                     data={t("steps_with_check.steps", {
                         requisite: t(`steps_with_check.${trader?.phone_number ? "phoneNumber" : "cardNumber"}`, ns),
+                        bankName: bankName,
+                        amount: `${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
                         ...ns
                     })}
                     start={0}

@@ -63,8 +63,7 @@
             "vtbbank": "“Ödənişlər” bölməsini açın|“Başqa ölkəyə” seçin|Siyahıdan “{{country}}”ı seçin|“Telefon nömrəsi ilə köçürmə” seçin|Siyahıdan yuxarıda göstərilən bankı seçin|Yuxarıda göstərilən telefon nömrəsini daxil edin|“Köçürmək” düyməsini basın"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank üçün Təlimat",
-            "steps": "{{requisite}} kopyalayın və T-Bank tətbiqinə keçin|Formada göstərilən banka və məbləğə köçürmə edin|Mütləq çek əlavə edin|“Ödənişi təsdiqlə” düyməsini klikləyin",
+            "steps": "{{requisite}} məlumatını kopyalayın və bank tətbiqinizə keçin|{{bankName}} bankına {{requisite}} məlumatı üzrə {{amount}} məbləğində köçürmə edin|Ödəmə çeki mütləq əlavə olunmalıdır|“Köçürməni təsdiqlə” düyməsinə basın",
             "phoneNumber": "Telefon nömrəsi",
             "cardNumber": "Kart nömrəsi"
         },
