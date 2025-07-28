@@ -7,8 +7,7 @@ import { ThreeDsFormStore } from "../types/threeDSFormTypes";
 export const useThreeDSFormStore = create<ThreeDsFormStore>(set => ({
     isFetching: false,
     setIsFetching: state => set({ isFetching: state }),
-    submitForm: async ({ formData, navigate }) => {
-        const { fingerprintConfig } = useAppContext();
+    submitForm: async ({ formData, navigate, fingerprintConfig }) => {
         const setBfData = useBFStore.getState().setBfData;
 
         const bfData = useBFStore.getState().BFData;
@@ -19,7 +18,7 @@ export const useThreeDSFormStore = create<ThreeDsFormStore>(set => ({
 
         const res = await submitForm({
             formData,
-            fingerprintHeaders: fingerprintConfig.headers,
+            fingerprintHeaders: fingerprintConfig,
             setBfData,
             dest,
             bfId: bfData?.[dest]?.id ?? "",

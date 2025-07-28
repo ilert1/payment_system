@@ -24,4 +24,5 @@ export interface SubmitFormParams {
 export interface SubmitFormSliceParams {
     formData: ThreeDsFormValues;
     navigate: NavigateFunction;
+    fingerprintConfig: HeadersInit;
 }

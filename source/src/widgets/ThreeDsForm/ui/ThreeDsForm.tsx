@@ -10,8 +10,11 @@ import Footer from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
 import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import { useNavigate } from "react-router-dom";
+import { useAppContext } from "@/AppContext";
+import { useEffect } from "react";
 
 export const ThreeDsForm = () => {
+    const { fingerprintConfig } = useAppContext();
     const { t } = useTranslation("ThreeDsPage");
     const { isFetching, submitForm } = useThreeDSFormStore();
     const navigate = useNavigate();
@@ -35,11 +38,14 @@ export const ThreeDsForm = () => {
 
     const onSubmit = (data: ThreeDsFormValues) => {
         try {
-            submitForm({ formData: data, navigate });
+            submitForm({ formData: data, navigate, fingerprintConfig: fingerprintConfig.headers });
         } catch (error) {
             toast.error("Something went wrong");
         }
     };
+    useEffect(() => {
+        console.log(threeDSForm.formState.errors.threeDsCode);
+    }, [threeDSForm.formState.errors]);
 
     return (
         <>
@@ -57,6 +63,12 @@ export const ThreeDsForm = () => {
                         <Controller
                             name="threeDsCode"
                             control={threeDSForm.control}
+                            rules={{
+                                required: true,
+                                minLength: 1,
+                                maxLength: 10,
+                                pattern: /^[a-zA-Z0-9]*$/
+                            }}
                             render={({ field }) => (
                                 <Input
                                     {...field}
@@ -87,9 +99,9 @@ export const ThreeDsForm = () => {
             </div>
             <Footer
                 buttonCaption={t("continue")}
-                buttonCallback={() => onSubmit(threeDSForm.getValues())}
+                buttonCallback={threeDSForm.handleSubmit(onSubmit)}
                 nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                nextEnabled={!isFetching}
+                nextEnabled={!threeDSForm.formState.isValid && !isFetching}
                 approve={true}
                 focused={true}
             />
