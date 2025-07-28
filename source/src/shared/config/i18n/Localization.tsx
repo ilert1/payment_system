@@ -32,8 +32,8 @@ export const getLanguage = () => {
     let language = navigator.language;
     let storedLang = localStorage.getItem("language");
     language = storedLang ? storedLang : language;
-    localStorage.setItem("language", resources[language as keyof typeof resources]);
-    return resources[language as keyof typeof resources];
+    localStorage.setItem("language", language);
+    return language;
 };
 
 export const getLocalBankName = (display_name = {}, lang: string | null = null) => {
@@ -55,8 +55,6 @@ export const getLocalBankName = (display_name = {}, lang: string | null = null) 
 };
 
 var language = getLanguage();
-console.log(language);
-// console.log(resources[language as keyof typeof resources]);
 
 i18n.use(initReactI18next)
     .use(Backend)
@@ -68,11 +66,13 @@ i18n.use(initReactI18next)
         backend: {
             // loadPath: "/locales/{{lng}}/{{ns}}.json"
             loadPath: (lngs: string[], namespaces: string[]) => {
-                const lang = lngs[0];
+                const lang = resources[lngs[0] as keyof typeof resources];
+                console.log(namespaces);
+
                 return `/locales/${lang}/${namespaces[0]}.json`;
             }
         },
-        debug: true,
+        // debug: true,
         // "Common"
         ns: [
             "Common",

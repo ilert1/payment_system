@@ -1,3 +1,14 @@
 {
-    "title": "Enter 3ds code"
+    "title": "Bankınızın təsdiq kodunu daxil edin",
+    "threeDSForm": {
+        "fields": {
+            "threeDsCode": "Təsdiq kodu:",
+            "threeDsCodePlaceholder": "Təsdiq kodu"
+        },
+        "errors": {
+            "generalError": "Yalnız latın hərfləri və rəqəmlərlə 10 simvola qədər daxil edin",
+            "regex": "Kod yalnız latın hərfləri və rəqəmlərdən ibarət olmalıdır (boşluq və işarələrsiz)"
+        }
+    },
+    "continue": "Davam et"
 }

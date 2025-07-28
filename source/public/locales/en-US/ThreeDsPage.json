@@ -1,12 +1,14 @@
 {
-    "title": "Enter 3ds code",
+    "title": "Enter your bank's confirmation code",
     "threeDSForm": {
         "fields": {
-            "threeDsCode": ""
+            "threeDsCode": "Confirmation code:",
+            "threeDsCodePlaceholder": "Confirmation code"
         },
         "errors": {
-            "length": "",
-            "regex": ""
+            "generalError": "Enter up to 10 characters using only Latin letters and digits",
+            "regex": "The code must contain only Latin letters and digits (no spaces or symbols)"
         }
-    }
+    },
+    "continue": "Continue"
 }
