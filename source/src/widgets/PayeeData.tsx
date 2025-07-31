@@ -64,18 +64,23 @@ const PayeeData = (props: PayeeDataProps) => {
                     imgCl={"logo"}
                 />
             )}
-            <PayeeDataItem
-                Img={CardsIcon}
-                label={t("requisite", ns)}
-                value={formatedRequisite(requisite, isPhone, caseName)}
-                copyData={requisite?.replace(/\s+/g, "")}
-                messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
-                comment={`${t("requisiteComment", ns)} ${
-                    transgran
-                        ? t("transgranComment", { country: t(`steps_transgran_new.country.${countryName}`, ns), ...ns })
-                        : ""
-                }`}
-            />
+            {requisite && (
+                <PayeeDataItem
+                    Img={CardsIcon}
+                    label={t("requisite", ns)}
+                    value={formatedRequisite(requisite, isPhone, caseName)}
+                    copyData={requisite?.replace(/\s+/g, "")}
+                    messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
+                    comment={`${t("requisiteComment", ns)} ${
+                        transgran
+                            ? t("transgranComment", {
+                                  country: t(`steps_transgran_new.country.${countryName}`, ns),
+                                  ...ns
+                              })
+                            : ""
+                    }`}
+                />
+            )}
             <PayeeDataItem
                 Img={DollarCircleIcon}
                 label={t("amount", ns)}

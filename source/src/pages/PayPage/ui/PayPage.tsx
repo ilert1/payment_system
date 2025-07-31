@@ -133,7 +133,7 @@ const PayPage = () => {
         if (trader?.phone) {
             setRequisite(trader.phone);
         }
-        if (trader?.phone_number) {
+        if (trader?.phone_number && BFData?.[dest]?.currency !== "RUB") {
             setRequisite(trader.phone_number);
         }
         if (trader?.account_number) {

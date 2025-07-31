@@ -37,6 +37,7 @@ interface FooterProps {
     payeeCard?: boolean;
     noIcon?: boolean;
     buttonCallback?: () => void;
+    hideRequisite?: boolean;
 }
 
 const Footer = (props: FooterProps) => {
@@ -50,7 +51,8 @@ const Footer = (props: FooterProps) => {
         focused = false,
         payeeCard = false,
         noIcon = false,
-        buttonCallback = () => {}
+        buttonCallback = () => {},
+        hideRequisite = false
     } = props;
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
@@ -156,17 +158,22 @@ const Footer = (props: FooterProps) => {
                 <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
                     {payeeCard && (
                         <div className="payee-data">
-                            <BankCardInfo
-                                bankIcon={bankIcon(trader?.bank_name ?? "")}
-                                onError={e => {
-                                    e.target.src = DefaultBankIcon;
-                                    e.target.classList.remove("logo");
-                                }}
-                                cardNumber={
-                                    formatedRequisite(requisite, !!trader?.phone || !!trader?.phone_number, caseName) ??
-                                    ""
-                                }
-                            />
+                            {!hideRequisite && (
+                                <BankCardInfo
+                                    bankIcon={bankIcon(trader?.bank_name ?? "")}
+                                    onError={e => {
+                                        e.target.src = DefaultBankIcon;
+                                        e.target.classList.remove("logo");
+                                    }}
+                                    cardNumber={
+                                        formatedRequisite(
+                                            requisite,
+                                            !!trader?.phone || !!trader?.phone_number,
+                                            caseName
+                                        ) ?? ""
+                                    }
+                                />
+                            )}
                             {trader?.card_holder && <PayeeInfo PayeeName={trader?.card_holder} />}
                         </div>
                     )}
