@@ -46,68 +46,13 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
             <div className="instructions_new transgran">
-                <ul>
-                    <li>
-                        <span>1. </span>
-                        {t("steps_transgran.one", ns)}
-                    </li>
-                    <li>
-                        <span>2. </span>
-                        {t("steps_transgran.two", ns)}
-                    </li>
-                </ul>
-                <Instruction
-                    title={t("steps_transgran.tbankTitle", ns)}
-                    data={t("steps_transgran.tbank", {
+                <InstructionItems
+                    data={t("steps_transgran_simple.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
                         ...ns
                     })}
-                    start={2}
-                    i={1}
-                    active={activeAccordion}
-                    setActive={setActiveAccordion}
+                    start={0}
                 />
-                <Instruction
-                    title={t("steps_transgran.sberbankTitle", ns)}
-                    data={t("steps_transgran.sberbank", {
-                        country: t(`steps_transgran_new.country.${caseName}`, ns),
-                        ...ns
-                    })}
-                    start={2}
-                    i={2}
-                    active={activeAccordion}
-                    setActive={setActiveAccordion}
-                />
-                <Instruction
-                    title={t("steps_transgran.vtbbankTitle", ns)}
-                    data={t("steps_transgran.vtbbank", {
-                        country: t(`steps_transgran_new.country.${caseName}`, ns),
-                        ...ns
-                    })}
-                    start={2}
-                    i={3}
-                    active={activeAccordion}
-                    setActive={setActiveAccordion}
-                />
-                {(() => {
-                    const localTitle =
-                        t("steps_transgran_new.title.local", ns) +
-                        ([tjs, azn, abh].includes(caseName)
-                            ? ` (${t(`steps_transgran_new.country.${caseName}`, ns)})`
-                            : "");
-                    return (
-                        <Instruction title={localTitle} i={4} active={activeAccordion} setActive={setActiveAccordion}>
-                            <DefaultInstructionItems
-                                trader={trader}
-                                bankName={bankName}
-                                amount={BFData?.[dest]?.amount ?? ""}
-                                currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
-                                first_step={false}
-                                start={2}
-                            />
-                        </Instruction>
-                    );
-                })()}
             </div>
         );
     }

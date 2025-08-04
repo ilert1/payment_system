@@ -52,6 +52,9 @@
             "pressButton": "Düğmeye basın",
             "payed": "Ödendi"
         },
+        "steps_transgran_simple": {
+            "steps": "Sberbank uygulamasını açın|“Mobil ödeme” seçeneğini seçin|“{{country}}” ülkesini seçin|Başvuruda belirtilen telefon numarasını girin|Tutarı yazın ve “Öde” düğmesine basın"
+        },
         "steps_transgran": {
             "one": "Belirtilen telefon numarasını kopyalayın",
             "two": "Banka uygulamanızı açın",

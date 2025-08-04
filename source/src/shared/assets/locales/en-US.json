@@ -52,6 +52,9 @@
             "pressButton": "Press the button",
             "payed": "Paid"
         },
+        "steps_transgran_simple": {
+            "steps": "Open the Sberbank app|Select 'Mobile payment'|Select the country '{{country}}'|Enter the phone number as specified in the application|Enter the amount and press 'Pay'"
+        },
         "steps_transgran": {
             "one": "Copy the specified phone number",
             "two": "Open your bank app",

@@ -52,6 +52,9 @@
             "pressButton": "Tugmani bosing",
             "payed": "To'landi"
         },
+        "steps_transgran_simple": {
+            "steps": "Sberbank ilovasini oching|“Mobil to‘lov” bo‘limini tanlang|“{{country}}” davlatini tanlang|Arizada ko‘rsatilgan telefon raqamini kiriting|Summani kiriting va “To‘lash” tugmasini bosing"
+        },
         "steps_transgran": {
             "one": "Ko'rsatilgan telefon raqamini nusxalang",
             "two": "Bank ilovangizni oching",

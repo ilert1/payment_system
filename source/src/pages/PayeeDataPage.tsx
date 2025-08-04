@@ -58,7 +58,9 @@ const PayeeDataPage = () => {
                 payeeCard={true}
                 showCancelBtn={false}
                 hideRequisite={
-                    BFData?.[dest]?.method?.payee?.data?.phone_number && BFData?.[dest]?.currency === "RUB"
+                    BFData?.[dest]?.method?.payee?.data?.phone_number &&
+                    BFData?.[dest]?.currency === "RUB" &&
+                    BFData?.[dest]?.method?.payee?.redirect_url
                         ? true
                         : false
                 }
