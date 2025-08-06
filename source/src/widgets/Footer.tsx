@@ -74,15 +74,7 @@ const Footer = (props: FooterProps) => {
     const [isLoading, setIsLoading] = useState(false);
     const [enabled_cancel, setEnabled_cancel] = useState(false);
 
-    const [unicPopupShow, setUnicPopupShow] = useState(false);
-
-    useEffect(() => {
-        if (isUnicalization && BFData?.[dest]?.status === "paymentAwaitingTransfer") {
-            setUnicPopupShow(true);
-        } else {
-            setUnicPopupShow(false);
-        }
-    }, [BFData?.[dest]?.status, isUnicalization]);
+    const [unicPopupShow, setUnicPopupShow] = useState(isUnicalization);
 
     useEffect(() => {
         if (isUnicalization && unicPopupShow) {
