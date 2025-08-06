@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useAppContext } from "@/AppContext";
 import AlertTriangleBig from "../shared/assets/images/alert-triangle-big.svg?react";
+import LanguageSelector from "./LanguageSelector";
 
 interface SubmitModalProps {
     show: boolean;
@@ -19,6 +21,7 @@ interface SubmitModalProps {
 
 const SubmitModal = (props: SubmitModalProps) => {
     const { show, setShow, data, isLoading } = props;
+    const { lang, setLang } = useAppContext();
 
     return (
         <div className={`overlay ${show ? "active" : ""}`} onClick={data.closeCallback ? data.closeCallback : () => {}}>
@@ -29,6 +32,7 @@ const SubmitModal = (props: SubmitModalProps) => {
                 className="dialog">
                 <div className="payout-dialog">
                     <div className="payout-dialog__block">
+                        <LanguageSelector lang={lang} setLang={setLang} />
                         <AlertTriangleBig className="alert-triangle" />
                         <h3 className="payout-dialog__title">{data.title}</h3>
                         <p className="payout-dialog__text">{data.text}</p>
