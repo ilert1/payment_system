@@ -2559,7 +2559,6 @@ footer > .top:not(.big-footer-container) {
   max-width: 480px;
   background: white;
   z-index: 1000;
-  min-height: 70%;
   transition: translate 0.5s ease, opacity 0.3s ease;
   translate: 0 50px;
   opacity: 0;
@@ -2705,13 +2704,19 @@ footer > .top:not(.big-footer-container) {
 }
 .overlay .dialog .payout-dialog__text {
   font-weight: 400;
-  font-size: 30px;
-  line-height: 40px;
+  /* font-size: 30px;
+  line-height: 40px; */
+  font-size: 20px;
+  line-height: 30px;
+  text-align: justify;
 }
 @media (max-width: 520px) {
   .overlay .dialog .payout-dialog__text {
+    /* font-size: 16px;
+    line-height: 21px; */
     font-size: 16px;
-    line-height: 21px;
+    line-height: 22px;
+    text-align: justify;
   }
 }
 .overlay .dialog .payout-dialog__buttons-block {

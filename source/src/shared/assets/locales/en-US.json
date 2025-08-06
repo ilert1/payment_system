@@ -15,6 +15,11 @@
             "title": "Cancel the transfer and return to the store",
             "text": "If you cancel the transfer, you will have to create a new order first.",
             "continue": "Continue the transfer"
+        },
+        "unicPopup": {
+            "title": "Attention!",
+            "text": "There are no suitable details for the requested payment. Please make a transfer for the specified amount. The funds will be credited to your deposit.",
+            "continue": "Got it"
         }
     },
     "Main": {

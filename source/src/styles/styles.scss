@@ -3024,7 +3024,7 @@ footer {
         background: white;
 
         z-index: 1000;
-        min-height: 70%;
+        // min-height: 70%;
 
         transition: translate 0.5s ease, opacity 0.3s ease;
         translate: 0 50px;
@@ -3185,12 +3185,18 @@ footer {
 
             &__text {
                 font-weight: 400;
-                font-size: 30px;
-                line-height: 40px;
+                /* font-size: 30px;
+                line-height: 40px; */
+                font-size: 20px;
+                line-height: 30px;
+                text-align: justify;
 
                 @media (max-width: 520px) {
+                    /* font-size: 16px;
+                    line-height: 21px; */
                     font-size: 16px;
-                    line-height: 21px;
+                    line-height: 22px;
+                    text-align: justify;
                 }
             }
 

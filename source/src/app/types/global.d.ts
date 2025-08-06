@@ -69,6 +69,7 @@ declare global {
         payout?: {
             id: string;
             amount: string;
+            original_amount: string;
             currency: string;
             method: {
                 name: string;
@@ -156,6 +157,7 @@ declare global {
         payment: {
             id: string;
             amount: string;
+            original_amount: string;
             currency: string;
             method: {
                 name: string;

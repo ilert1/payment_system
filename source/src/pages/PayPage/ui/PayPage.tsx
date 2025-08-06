@@ -45,6 +45,9 @@ const PayPage = () => {
     const isConfirmTypeFile = method?.context?.confirm_type === "file";
     console.log("confirm_type: ", method?.context?.confirm_type);
 
+    //Критерий уникализации суммы
+    const isUnicalization = BFData?.[dest]?.original_amount !== BFData?.[dest]?.amount;
+
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
     const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
@@ -394,6 +397,7 @@ const PayPage = () => {
                         nextPage={nextPage}
                         nextEnabled={!isFetching_ButtonCallback}
                         approve={true}
+                        isUnicalization={isUnicalization}
                     />
                 </>
             )}

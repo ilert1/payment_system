@@ -15,6 +15,11 @@
             "title": "Köçürməni ləğv edin və mağazaya qayıdın",
             "text": "Köçürməni ləğv etsəniz, əvvəlcə yeni bir sifariş yaratmalı olacaqsınız.",
             "continue": "Tərcüməyə davam edin"
+        },
+        "unicPopup": {
+            "title": "Diqqət yetirin!",
+            "text": "Sorğulanan ödəniş üçün uyğun rekvizitlər mövcud deyil. Zəhmət olmasa, göstərilən məbləği köçürün. Vəsait depozitinizə köçürüləcək.",
+            "continue": "Başa düşdüm"
         }
     },
     "Main": {

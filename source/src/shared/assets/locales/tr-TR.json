@@ -15,6 +15,11 @@
             "title": "Отменить перевод и вернуться в магазин",
             "text": "Transferi iptal edin ve mağazaya geri dönün",
             "continue": "Çeviriye devam et"
+        },
+        "unicPopup": {
+            "title": "Dikkat!",
+            "text": "Talep edilen ödeme için uygun hesap bilgileri yok. Lütfen belirtilen tutarı transfer edin. Tutar depozit hesabınıza aktarılacaktır.",
+            "continue": "Anladım"
         }
     },
     "Main": {
