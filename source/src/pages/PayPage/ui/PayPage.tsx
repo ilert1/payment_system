@@ -177,7 +177,8 @@ const PayPage = () => {
                 "akart",
                 "xalqbank",
                 "abbbank",
-                "expressbank"
+                "expressbank",
+                "express24"
             ].includes(traderBankName)
         ) {
             setCaseName(azn);
