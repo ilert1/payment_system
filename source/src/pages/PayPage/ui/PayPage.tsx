@@ -27,7 +27,7 @@ const iban = "iban";
 const abh = "abh";
 
 const PayPage = () => {
-    const { fingerprintConfig, t, getCurrencySymbol, caseName, setCaseName, lang } = useAppContext();
+    const { fingerprintConfig, t, getCurrencySymbol, caseName, setCaseName, lang, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
     const nav = useNavigate();
@@ -277,14 +277,38 @@ const PayPage = () => {
             if (file.size > 3 * 1024 * 1024) {
                 setSelectedFile(null);
                 toast.error(t("check_load_errors.fileSize", ns));
+                ym("reachGoal", "file-rejected", {
+                    reason: "size",
+                    file: {
+                        name: file?.name,
+                        size: file?.size,
+                        type: file?.type
+                    }
+                });
                 return;
             }
 
             if (!(file.type.startsWith("image/") || file.type.includes("pdf"))) {
                 setSelectedFile(null);
                 toast.error(t("check_load_errors.fileType", ns));
+                ym("reachGoal", "file-rejected", {
+                    reason: "type",
+                    file: {
+                        name: file?.name,
+                        size: file?.size,
+                        type: file?.type
+                    }
+                });
                 return;
             }
+
+            ym("reachGoal", "file-selected", {
+                file: {
+                    name: file?.name,
+                    size: file?.size,
+                    type: file?.type
+                }
+            });
 
             setSelectedFile(file);
         },
