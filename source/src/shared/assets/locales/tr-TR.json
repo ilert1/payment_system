@@ -58,7 +58,8 @@
             "payed": "Ödendi"
         },
         "steps_transgran_simple": {
-            "steps": "Sberbank uygulamasını açın|“Mobil ödeme” seçeneğini seçin|“{{country}}” ülkesini seçin|Başvuruda belirtilen telefon numarasını girin|Tutarı yazın ve “Öde” düğmesine basın"
+            "tbankTitle": "T-bank talimatı",
+            "steps": "Banka uygulamasını açın|Düğmeye basın (telefon numarasına transfer)|Ülke koduna dokunun ve {{country}} ({{code}}) seçin|Belirtilen telefon numarasını girin|Banka listesinden formda belirtilen bankayı seçin|Tutarı girin ve (transfer) düğmesine basın"
         },
         "steps_transgran": {
             "one": "Belirtilen telefon numarasını kopyalayın",

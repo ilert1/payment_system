@@ -46,9 +46,13 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
             <div className="instructions_new transgran">
+                <div className="title">
+                    <p>{t("steps_transgran_simple.tbankTitle", ns)}</p>
+                </div>
                 <InstructionItems
                     data={t("steps_transgran_simple.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
+                        code: caseName === tjs ? "+992" : "+994",
                         ...ns
                     })}
                     start={0}

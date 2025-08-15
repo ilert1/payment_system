@@ -58,7 +58,8 @@
             "payed": "To'landi"
         },
         "steps_transgran_simple": {
-            "steps": "Sberbank ilovasini oching|“Mobil to‘lov” bo‘limini tanlang|“{{country}}” davlatini tanlang|Arizada ko‘rsatilgan telefon raqamini kiriting|Summani kiriting va “To‘lash” tugmasini bosing"
+            "tbankTitle": "T-bank yo‘riqnoma",
+            "steps": "Bank ilovasini oching|Tugmani bosing (telefon raqamiga o‘tkazish)|Mamlakat kodiga bosing va {{country}} ({{code}}) ni tanlang|Ko‘rsatilgan telefon raqamini kiriting|Banklar ro‘yxatidan shaklda ko‘rsatilgan bankni tanlang|Summani kiriting va (o‘tkazish) tugmasini bosing"
         },
         "steps_transgran": {
             "one": "Ko'rsatilgan telefon raqamini nusxalang",

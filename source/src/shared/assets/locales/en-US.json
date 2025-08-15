@@ -58,7 +58,8 @@
             "payed": "Paid"
         },
         "steps_transgran_simple": {
-            "steps": "Open the Sberbank app|Select 'Mobile payment'|Select the country '{{country}}'|Enter the phone number as specified in the application|Enter the amount and press 'Pay'"
+            "tbankTitle": "T-bank instructions",
+            "steps": "Open the banking app|Press the button (transfer to phone number)|Tap the country code and select {{country}} ({{code}})|Enter the specified phone number|From the bank list, select the bank as shown in the form|Enter the amount and press the (transfer) button"
         },
         "steps_transgran": {
             "one": "Copy the specified phone number",
