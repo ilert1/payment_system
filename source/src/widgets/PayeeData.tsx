@@ -5,7 +5,7 @@ import DollarCircleIcon from "../shared/assets/images/dollar-circle.svg?react";
 import User2Icon from "../shared/assets/images/user2.svg?react";
 import PayeeDataItem from "./PayeeDataItem";
 
-import DefaultBankIcon from "../shared/assets/images/bank.svg?react";
+import DefaultBankIcon from "../shared/assets/images/bank.svg";
 import { useTranslation } from "react-i18next";
 import { useBFStore } from "@/shared/store/bfDataStore";
 
