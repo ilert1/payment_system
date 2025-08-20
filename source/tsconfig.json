@@ -137,5 +137,12 @@
             "lib": ["es2015"]
         }
     },
-    "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/app/types/global.d.ts", "./src/app/types/vite-env.d.ts"]
+    "include": [
+        "./src/**/*.ts",
+        "./src/**/*.tsx",
+        "./src/app/types/global.d.ts",
+        "./src/app/types/vite-env.d.ts",
+        "src/**/*.test.ts",
+        "src/**/*.test.tsx"
+    ]
 }
