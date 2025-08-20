@@ -45,10 +45,11 @@ const PayPage = () => {
     const isConfirmTypeFile = method?.context?.confirm_type === "file";
     console.log("confirm_type: ", method?.context?.confirm_type);
 
-    //Критерий уникализации суммы (на всякий случай сделал проверку на наличие original_amount, мало ли будут кейсы без него, чтобы не показался popup)
-    const isUnicalization = BFData?.[dest]?.original_amount
-        ? BFData?.[dest]?.original_amount !== BFData?.[dest]?.amount
-        : false;
+    //Критерий уникализации суммы (на всякий случай сделал проверку на наличие original_amount, мало ли будут кейсы без него или он будет нулевой, чтобы не показался popup)
+    const isUnicalization =
+        BFData?.[dest]?.original_amount && BFData?.[dest]?.original_amount !== "0"
+            ? BFData?.[dest]?.original_amount !== BFData?.[dest]?.amount
+            : false;
 
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
