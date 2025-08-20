@@ -1,5 +1,5 @@
 import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import { Footer } from "../widgets/Footer";
 
 import { Loader } from "../shared/ui/Loader";
 import { Timer } from "../shared/ui/Timer";

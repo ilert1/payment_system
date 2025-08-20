@@ -1,26 +1,23 @@
 /* eslint-disable react/prop-types */
-import { useRef, useEffect, useState } from "react";
-import { useAppContext } from "../AppContext";
-
-import ArrowRight from "../shared/assets/images/arrow-right.svg";
-// import ArrowRight from "../shared/assets/images/arrow-right.svg?react";
-import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
-// import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
-import Check from "../shared/assets/images/check.svg";
+import { useQuery } from "@tanstack/react-query";
 // import Check from "../shared/assets/images/check.svg?react";
 import axios, { isCancel } from "axios";
-import PayeeInfo from "./PayeeInfo";
-import BankCardInfo from "./BankCardInfo";
-import SubmitModal from "./SubmitModal";
-import { useQuery } from "@tanstack/react-query";
-
-import DefaultBankIcon from "../shared/assets/images/bank-icon.svg";
-
-import { formatedRequisite } from "./PayeeData";
-import { useNavigate } from "react-router-dom";
+import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { useAppContext } from "@/AppContext";
+// import ArrowRight from "../shared/assets/images/arrow-right.svg?react";
+import ArrowLeft from "@/shared/assets/images/arrow-left.svg?react";
+import ArrowRight from "@/shared/assets/images/arrow-right.svg";
+import DefaultBankIcon from "@/shared/assets/images/bank-icon.svg";
+// import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
+import Check from "@/shared/assets/images/check.svg";
 import { AppRoutes } from "@/shared/const/router";
+import { formatedRequisite } from "@/shared/lib/formattedRequisite";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import BankCardInfo from "@/widgets/BankCardInfo";
+import PayeeInfo from "@/widgets/PayeeInfo";
+import SubmitModal from "@/widgets/SubmitModal";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
@@ -41,7 +38,7 @@ interface FooterProps {
     isUnicalization?: boolean;
 }
 
-const Footer = (props: FooterProps) => {
+export const Footer = (props: FooterProps) => {
     const {
         buttonCaption = "",
         nextPage,
@@ -258,5 +255,3 @@ const Footer = (props: FooterProps) => {
         </>
     );
 };
-
-export default Footer;

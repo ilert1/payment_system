@@ -1,14 +1,13 @@
-import Header from "@/widgets/Header";
-import Footer from "@/widgets/Footer";
-
-import { useState } from "react";
-import { useAppContext } from "@/AppContext";
-import { PayInstruments } from "@/widgets/PayInstruments";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState } from "react";
+import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Footer } from "@/widgets/Footer";
+import Header from "@/widgets/Header";
+import { PayInstruments } from "@/widgets/PayInstruments";
 
 const PaymentInstrumentPage = () => {
     const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, t, ym } = useAppContext();

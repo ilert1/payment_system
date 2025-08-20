@@ -1,5 +1,5 @@
 import Header from "@/widgets/Header";
-import Footer from "@/widgets/Footer";
+import { Footer } from "@/widgets/Footer";
 import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
