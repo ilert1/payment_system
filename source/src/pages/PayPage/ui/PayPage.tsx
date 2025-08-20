@@ -19,7 +19,6 @@ import { useNavigate } from "react-router-dom";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import { useFilePicker } from "use-file-picker";
 import { toast } from "react-toastify";
-import fileTypeChecker from "file-type-checker";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -153,83 +152,6 @@ const PayPage = () => {
         }
         console.log(trader);
     }, [trader]);
-
-    useEffect(() => {
-        setBankName(getLocalBankName(method?.bank?.display_name, lang));
-    }, [, method?.bank?.display_name, lang]);
-
-    useEffect(() => {
-        setCaseName("");
-
-        console.log(`bankName: ${bankName}`);
-        const traderBankName = trader?.bank_name;
-        //AZN case check
-        if (
-            traderBankName &&
-            [
-                "otherbankaz",
-                "mpay",
-                "kapitalbank",
-                "emanat",
-                "leobank",
-                "unibank",
-                "rabita",
-                "abb",
-                "birbank",
-                "atb",
-                "m10",
-                "bankofbaku",
-                "akart",
-                "xalqbank",
-                "abbbank",
-                "expressbank",
-                "express24"
-            ].includes(traderBankName)
-        ) {
-            setCaseName(azn);
-            console.log(`caseName: azn`);
-        }
-
-        //TJS case check
-        if (
-            traderBankName &&
-            [
-                "tcell",
-                "babilon-m",
-                "megafon",
-                "kortimilli",
-                "sanduk",
-                "ibt",
-                "matin",
-                "arvand",
-                "favri.cbt",
-                "oriyonbonk",
-                "vasl",
-                "amonatbonk",
-                "eskhata",
-                "tawhidbank",
-                "spitamenbank",
-                "dushanbe",
-                "alif",
-                "humo"
-            ].includes(traderBankName)
-        ) {
-            setCaseName(tjs);
-            console.log(`caseName: tjs`);
-        }
-
-        //ABH case check
-        if (traderBankName && ["a-mobile"].includes(traderBankName)) {
-            setCaseName(abh);
-            setActiveAccordion(1);
-            console.log(`caseName: abh`);
-        }
-
-        if (traderBankName && trader?.iban_number) {
-            setCaseName(iban);
-            console.log(`caseName: iban`);
-        }
-    }, [BFData?.[dest]?.currency, bankName, trader]);
 
     const { isFetching: isFetching_BFData } = useQuery({
         queryKey: ["exist"],
