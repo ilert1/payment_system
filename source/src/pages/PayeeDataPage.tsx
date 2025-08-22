@@ -12,6 +12,8 @@ const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
 
+    ym("reachGoal", "payee-data-page");
+
     //translation
     const ns = { ns: "PayeeData" };
     const payOutMode = Boolean(BFData?.payout);

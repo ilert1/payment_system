@@ -50,13 +50,15 @@ const abh = "abh";
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
     const [bankName, setBankName] = useState("");
 
     const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
 
     const safeYm = (...args: Parameters<typeof ym>) => {
-        if (typeof ymFunc === "function") {
-            console.log("ym", ...args);
+        if (typeof ymFunc === "function" && BFData?.[dest]?.id) {
             ymFunc(...args);
         }
     };
@@ -80,9 +82,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         i18n.changeLanguage(lang);
         localStorage.setItem("language", lang);
     }, [lang]);
-
-    const payOutMode = Boolean(BFData?.payout);
-    const dest = payOutMode ? "payout" : "payment";
 
     const storedCurrentPaymentInstrument = JSON.parse(String(localStorage.getItem("CurrentPaymentInstrument")));
 

@@ -26,6 +26,7 @@ const abh = "abh";
 
 const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();
+    ym("reachGoal", "pay-page");
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
     const nav = useNavigate();

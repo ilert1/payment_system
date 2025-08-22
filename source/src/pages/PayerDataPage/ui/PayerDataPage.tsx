@@ -14,6 +14,8 @@ import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 
 const PayerDataPage = () => {
     const { t, ym, fingerprintConfig } = useAppContext();
+    ym("reachGoal", "payer-data-page");
+
     const status = useBFStore(state => state.status);
     const navigate = useNavigate();
     usePaymentPage({ absolutePath: false });

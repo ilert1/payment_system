@@ -26,6 +26,8 @@ export const GeneralErrorPage = ({ cancel = false }) => {
         window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl);
     };
 
+    ym("reachGoal", cancel ? "cancel-page" : "general-error-page");
+
     return (
         <div className="container">
             <Header />

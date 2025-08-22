@@ -39,7 +39,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
     const showPopupCallback = (value: string) => {
         console.log(`copyed: ${value}`);
 
-        ym("reachGoal", "copy", { labelCole: labelCode, label: label, value: value || "" });
+        ym("reachGoal", "copy", { labelCode: labelCode, label: label, value: value || "" });
         clearTimeout(popupTimeout);
         setShowPopup(true);
 
