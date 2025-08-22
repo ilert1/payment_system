@@ -37,6 +37,7 @@ export interface AppContextType {
     ym: YmType;
     caseName: string;
     setCaseName: (val: string) => void;
+    bankName: string;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -54,7 +55,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
 
     const safeYm = (...args: Parameters<typeof ym>) => {
-        if (typeof ymFunc === "function" && ymFunc.length > 0) {
+        if (typeof ymFunc === "function") {
+            console.log("ym", ...args);
             ymFunc(...args);
         }
     };
@@ -257,18 +259,18 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 "humo"
             ].includes(traderBankName)
         ) {
-            setCaseName("tjs");
+            setCaseName(tjs);
             console.log(`caseName: tjs`);
         }
 
         //ABH case check
         if (traderBankName && ["a-mobile"].includes(traderBankName)) {
-            setCaseName("abh");
+            setCaseName(abh);
             console.log(`caseName: abh`);
         }
 
         if (traderBankName && trader?.iban_number) {
-            setCaseName("iban");
+            setCaseName(iban);
             console.log(`caseName: iban`);
         }
     }, [BFData?.[dest]?.currency, bankName, trader]);
@@ -304,7 +306,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     setStatus,
                     ym: safeYm,
                     caseName,
-                    setCaseName
+                    setCaseName,
+                    bankName
                 }}>
                 {children}
                 <CustomToastContainer />

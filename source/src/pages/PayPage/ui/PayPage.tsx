@@ -8,7 +8,6 @@ import axios from "axios";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import PayHeader from "@/widgets/PayHeader";
 import PayeeData from "@/widgets/PayeeData";
-import { getLocalBankName } from "@/shared/config/i18n/Localization";
 import Loader from "@/shared/ui/Loader";
 import { useQuery } from "@tanstack/react-query";
 import { AppRoutes } from "@/shared/const/router";
@@ -26,7 +25,7 @@ const iban = "iban";
 const abh = "abh";
 
 const PayPage = () => {
-    const { fingerprintConfig, t, getCurrencySymbol, caseName, setCaseName, lang, ym } = useAppContext();
+    const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
     const nav = useNavigate();
@@ -58,7 +57,6 @@ const PayPage = () => {
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
     const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
-    const [bankName, setBankName] = useState("");
 
     const [buttonCallbackEnabled, setButtonCallbackEnabled] = useState(false);
 

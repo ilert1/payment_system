@@ -68,6 +68,7 @@ const PayeeData = (props: PayeeDataProps) => {
                 <PayeeDataItem
                     Img={CardsIcon}
                     label={t("requisite", ns)}
+                    labelCode="requisite"
                     value={formatedRequisite(requisite, isPhone, caseName)}
                     copyData={requisite?.replace(/\s+/g, "")}
                     messageOnCopy={isPhone ? t("copyedPhone", ns) : t("copyed", ns)}
@@ -84,6 +85,7 @@ const PayeeData = (props: PayeeDataProps) => {
             <PayeeDataItem
                 Img={DollarCircleIcon}
                 label={t("amount", ns)}
+                labelCode="amount"
                 value={`${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`}
                 copyData={BFData?.[dest]?.amount}
                 messageOnCopy={t("copyedAmount", ns)}

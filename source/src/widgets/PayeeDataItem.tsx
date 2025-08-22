@@ -14,6 +14,7 @@ interface PayeeDataItemProps {
     copyData?: string;
     messageOnCopy?: string;
     comment?: string;
+    labelCode?: string;
 }
 
 const PayeeDataItem = (props: PayeeDataItemProps) => {
@@ -26,7 +27,8 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
         imgCl = "",
         copyData = "",
         messageOnCopy = "",
-        comment = ""
+        comment = "",
+        labelCode = "" // чтобы в метриках отслеживать название поля минуя локализацию
     } = props;
 
     const [showPopup, setShowPopup] = useState(false);
@@ -37,7 +39,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
     const showPopupCallback = (value: string) => {
         console.log(`copyed: ${value}`);
 
-        ym("reachGoal", "copy", { label: label, value: value || "" });
+        ym("reachGoal", "copy", { labelCole: labelCode, label: label, value: value || "" });
         clearTimeout(popupTimeout);
         setShowPopup(true);
 
