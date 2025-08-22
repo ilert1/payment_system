@@ -31,7 +31,7 @@ const SuccessPage = () => {
 
             <div className="content">
                 <div className="header-container grow wide center">
-                    <h1>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
+                    <h1 style={{ textAlign: "center" }}>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
                     <p className="amount">
                         + {BFData?.[dest]?.amount} {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
                     </p>
