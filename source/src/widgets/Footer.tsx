@@ -8,7 +8,7 @@ import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
 // import ArrowLeft from "../shared/assets/images/arrow-left.svg?react";
 import Check from "../shared/assets/images/check.svg";
 // import Check from "../shared/assets/images/check.svg?react";
-import axios from "axios";
+import axios, { isCancel } from "axios";
 import PayeeInfo from "./PayeeInfo";
 import BankCardInfo from "./BankCardInfo";
 import SubmitModal from "./SubmitModal";
@@ -37,6 +37,8 @@ interface FooterProps {
     payeeCard?: boolean;
     noIcon?: boolean;
     buttonCallback?: () => void;
+    hideRequisite?: boolean;
+    isUnicalization?: boolean;
 }
 
 const Footer = (props: FooterProps) => {
@@ -50,7 +52,9 @@ const Footer = (props: FooterProps) => {
         focused = false,
         payeeCard = false,
         noIcon = false,
-        buttonCallback = () => {}
+        buttonCallback = () => {},
+        hideRequisite = false,
+        isUnicalization = false
     } = props;
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
@@ -69,6 +73,17 @@ const Footer = (props: FooterProps) => {
     const [dialogShow, setDialogShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [enabled_cancel, setEnabled_cancel] = useState(false);
+
+    const [unicPopupShow, setUnicPopupShow] = useState(isUnicalization);
+
+    useEffect(() => {
+        if (isUnicalization && unicPopupShow) {
+            ym("reachGoal", "unic-popup", {
+                amount: BFData?.[dest]?.amount,
+                original_amount: BFData?.[dest]?.original_amount
+            });
+        }
+    }, [unicPopupShow]);
 
     //translation
     const ns = { ns: "Footer" };
@@ -135,19 +150,38 @@ const Footer = (props: FooterProps) => {
         }
     });
 
-    const submitModalData = {
+    const cancelModalData = {
         title: t("cancelDialog.title", ns),
         text: t("cancelDialog.text", ns),
         primaryBtnText: t("cancel", ns),
         primaryBtnCallback: () => {
             ym("reachGoal", "cancel-button", { cancel_redirect_url: returnUrl });
-
             setEnabled_cancel(true);
         },
         secondaryBtnText: t("cancelDialog.continue", ns),
         secondaryBtnCallback: () => {
             setDialogShow(false);
+        },
+        isCancel: true,
+        closeCallback: () => {
+            setDialogShow(false);
         }
+    };
+
+    const unicPopupBtnCallback = () => {
+        ym("reachGoal", "unic-popup-button", {
+            amount: BFData?.[dest]?.amount,
+            original_amount: BFData?.[dest]?.original_amount
+        });
+        setUnicPopupShow(false);
+    };
+
+    const unicPopupModalData = {
+        title: t("unicPopup.title", ns),
+        text: t("unicPopup.text", ns),
+        primaryBtnCallback: unicPopupBtnCallback,
+        primaryBtnText: t("unicPopup.continue", ns),
+        closeCallback: unicPopupBtnCallback
     };
 
     return (
@@ -156,17 +190,22 @@ const Footer = (props: FooterProps) => {
                 <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
                     {payeeCard && (
                         <div className="payee-data">
-                            <BankCardInfo
-                                bankIcon={bankIcon(trader?.bank_name ?? "")}
-                                onError={e => {
-                                    e.target.src = DefaultBankIcon;
-                                    e.target.classList.remove("logo");
-                                }}
-                                cardNumber={
-                                    formatedRequisite(requisite, !!trader?.phone || !!trader?.phone_number, caseName) ??
-                                    ""
-                                }
-                            />
+                            {!hideRequisite && (
+                                <BankCardInfo
+                                    bankIcon={bankIcon(trader?.bank_name ?? "")}
+                                    onError={e => {
+                                        e.target.src = DefaultBankIcon;
+                                        e.target.classList.remove("logo");
+                                    }}
+                                    cardNumber={
+                                        formatedRequisite(
+                                            requisite,
+                                            !!trader?.phone || !!trader?.phone_number,
+                                            caseName
+                                        ) ?? ""
+                                    }
+                                />
+                            )}
                             {trader?.card_holder && <PayeeInfo PayeeName={trader?.card_holder} />}
                         </div>
                     )}
@@ -208,13 +247,14 @@ const Footer = (props: FooterProps) => {
                                 onClick={() => {
                                     setDialogShow(true);
                                 }}>
-                                {submitModalData?.primaryBtnText}
+                                {cancelModalData?.primaryBtnText}
                             </button>
                         )}
                     </div>
                 </div>
             </footer>
-            <SubmitModal show={dialogShow} setShow={setDialogShow} data={submitModalData} isLoading={isLoading} />
+            <SubmitModal show={dialogShow} setShow={setDialogShow} data={cancelModalData} isLoading={isLoading} />
+            <SubmitModal show={unicPopupShow} setShow={setUnicPopupShow} data={unicPopupModalData} isLoading={false} />
         </>
     );
 };

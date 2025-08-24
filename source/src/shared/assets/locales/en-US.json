@@ -15,6 +15,11 @@
             "title": "Cancel the transfer and return to the store",
             "text": "If you cancel the transfer, you will have to create a new order first.",
             "continue": "Continue the transfer"
+        },
+        "unicPopup": {
+            "title": "Attention!",
+            "text": "There are no suitable details for the requested payment. Please make a transfer for the specified amount. The funds will be credited to your deposit.",
+            "continue": "Got it"
         }
     },
     "Main": {
@@ -34,8 +39,8 @@
     "Pay": {
         "approveTransfer": "Approve transfer",
         "withoutComments": "Without comments to the transfer",
+        "selectFile": "Attach receipt",
         "changeCheck": "Replace receipt",
-
         "steps": {
             "open": "Open",
             "transfer": "Transfer",
@@ -52,6 +57,10 @@
             "pressButton": "Press the button",
             "payed": "Paid"
         },
+        "steps_transgran_simple": {
+            "tbankTitle": "T-bank instructions",
+            "steps": "Open the banking app|Press the button (transfer to phone number)|Tap the country code and select {{country}} ({{code}})|Enter the specified phone number|From the bank list, select the bank as shown in the form|Enter the amount and press the (transfer) button"
+        },
         "steps_transgran": {
             "one": "Copy the specified phone number",
             "two": "Open your bank app",
@@ -63,10 +72,10 @@
             "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
         "steps_with_check": {
-            "tbankTitle": "T-bank Instructions",
-            "steps": "Open the bank app (T-bank)|Press the (pay) button|Select the section (transfer by card number)|Paste the provided card number|Enter the amount exactly as in the request|Press the (transfer) button"
+            "steps": "Copy {{requisite}} and open your banking app|Make a transfer to {{requisite}} in {{bankName}} for the amount of {{amount}}|Be sure to attach the payment receipt|Click the “Confirm Transfer” button",
+            "phoneNumber": "phone number",
+            "cardNumber": "card number"
         },
-
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank Payment Instruction",
             "tbank": "Open the bank app (T-Bank)|Tap the (Pay) button|Select the (Transfer by card number) section|Paste the specified card number|Enter the transfer amount as in the request|Tap the (Transfer) button"
@@ -91,6 +100,11 @@
         },
         "steps_transgran_abh": {
             "steps": "Copy the phone number|In the Sber app, tap 'Transfer'|Select another country, then {{country}}|Paste the phone number|Select A-Mobile Wallet|Enter the amount {{amount}} and tap Approve"
+        },
+        "check_load_errors": {
+            "generalError": "An error occurred while sending data. Please try again",
+            "fileSize": "File size exceeds 3MB",
+            "fileType": "Only images and PDF files are allowed"
         },
         "payed": "Paid",
         "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",

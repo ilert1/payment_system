@@ -73,6 +73,67 @@ header {
     gap: 14px;
     flex-direction: row-reverse;
 
+    .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        margin-right: auto;
+
+        border-radius: 7px;
+
+        background-color: #e7f5fe;
+        padding: 18px 21px;
+
+        object-fit: contain;
+
+        @media (max-width: 520px) {
+            width: 68px;
+            padding: 12.5px 6.5px;
+        }
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .support-container {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 7px;
+
+        border: 1.44px solid #37a8f333;
+        border-radius: 100px;
+
+        padding: 21px 20px;
+
+        font-size: 16px;
+        font-weight: 400;
+
+        color: #0e001a80;
+
+        cursor: pointer;
+
+        /* img{
+            width: 21px;
+            height: 23px;
+        } */
+
+        @media (max-width: 520px) {
+            border-radius: 36px;
+            padding: 15px;
+            border-width: 1px;
+            font-size: 12px;
+
+            img {
+                width: 15px;
+                height: 16px;
+            }
+        }
+    }
+
     .language-selector {
         display: flex;
         align-items: center;
@@ -229,6 +290,8 @@ header {
         justify-content: center;
         align-items: center;
         padding: 13px 45px;
+        font-size: 16px !important;
+        font-weight: 500;
         border: none;
         border-radius: 5px;
         background: #fff;
@@ -2386,7 +2449,7 @@ footer {
         background: white;
 
         z-index: 1000;
-        min-height: 70%;
+        // min-height: 70%;
 
         transition: translate 0.5s ease, opacity 0.3s ease;
         translate: 0 50px;
@@ -2520,6 +2583,10 @@ footer {
                 flex-direction: column;
                 justify-content: space-between;
                 gap: 21px;
+
+                .language-selector {
+                    align-self: end;
+                }
             }
 
             &__title {
@@ -2547,12 +2614,18 @@ footer {
 
             &__text {
                 font-weight: 400;
-                font-size: 30px;
-                line-height: 40px;
+                /* font-size: 30px;
+                line-height: 40px; */
+                font-size: 20px;
+                line-height: 30px;
+                text-align: justify;
 
                 @media (max-width: 520px) {
+                    /* font-size: 16px;
+                    line-height: 21px; */
                     font-size: 16px;
-                    line-height: 21px;
+                    line-height: 22px;
+                    text-align: justify;
                 }
             }
 

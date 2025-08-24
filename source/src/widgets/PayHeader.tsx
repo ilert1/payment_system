@@ -30,6 +30,7 @@ const PayHeader = (props: PayHeaderProps) => {
                 {countryName && transgran && <> {t(`country.${countryName}`, ns)}</>}
                 {bankName && (
                     <>
+                        {" "}
                         {t("to", ns)} {bankName}
                     </>
                 )}

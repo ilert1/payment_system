@@ -12,6 +12,8 @@ const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
 
+    ym("reachGoal", "payee-data-page");
+
     //translation
     const ns = { ns: "PayeeData" };
     const payOutMode = Boolean(BFData?.payout);
@@ -57,6 +59,13 @@ const PayeeDataPage = () => {
                 nextPage={BFData?.[dest]?.method?.context?.back_redirect_url}
                 payeeCard={true}
                 showCancelBtn={false}
+                hideRequisite={
+                    BFData?.[dest]?.method?.payee?.data?.phone_number &&
+                    BFData?.[dest]?.currency === "RUB" &&
+                    BFData?.[dest]?.method?.payee?.redirect_url
+                        ? true
+                        : false
+                }
             />
         </div>
     );

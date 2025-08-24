@@ -15,6 +15,11 @@
             "title": "Отменить перевод и вернуться в магазин",
             "text": "Transferi iptal edin ve mağazaya geri dönün",
             "continue": "Çeviriye devam et"
+        },
+        "unicPopup": {
+            "title": "Dikkat!",
+            "text": "Talep edilen ödeme için uygun hesap bilgileri yok. Lütfen belirtilen tutarı transfer edin. Tutar depozit hesabınıza aktarılacaktır.",
+            "continue": "Anladım"
         }
     },
     "Main": {
@@ -34,9 +39,8 @@
     "Pay": {
         "approveTransfer": "Transferi onayla",
         "withoutComments": "Transfer için yorum yapmadan",
-        "selectFile": "Makbuzu ekle",
-        "changeCheck": "Çeki değiştir",
-
+        "selectFile": "Makbuz ekle",
+        "changeCheck": "Makbuzu değiştir",
         "steps": {
             "open": "Aç",
             "transfer": "Transfer et",
@@ -53,6 +57,10 @@
             "pressButton": "Düğmeye basın",
             "payed": "Ödendi"
         },
+        "steps_transgran_simple": {
+            "tbankTitle": "T-bank talimatı",
+            "steps": "Banka uygulamasını açın|Düğmeye basın (telefon numarasına transfer)|Ülke koduna dokunun ve {{country}} ({{code}}) seçin|Belirtilen telefon numarasını girin|Banka listesinden formda belirtilen bankayı seçin|Tutarı girin ve (transfer) düğmesine basın"
+        },
         "steps_transgran": {
             "one": "Belirtilen telefon numarasını kopyalayın",
             "two": "Banka uygulamanızı açın",
@@ -63,7 +71,11 @@
             "vtbbankTitle": "VTB üzerinden ödeme talimatı",
             "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “{{country}}”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
         },
-
+        "steps_with_check": {
+            "steps": "{{requisite}} bilgisini kopyalayın ve bankanızın uygulamasını açın|{{bankName}} bankasına {{requisite}} alıcısına {{amount}} tutarında havale yapın|Ödeme makbuzunu mutlaka ekleyin|“Transferi Onayla” butonuna basın",
+            "phoneNumber": "Telefon numarası",
+            "cardNumber": "Kart numarası"
+        },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank ile ödeme talimatı",
             "tbank": "Banka uygulamasını açın (T-Bank)|(Öde) düğmesine basın|(Kart numarasına havale) bölümünü seçin|Belirtilen kart numarasını yapıştırın|Başvurudaki gibi tutarı girin|(Gönder) düğmesine basın"
@@ -88,6 +100,11 @@
         },
         "steps_transgran_abh": {
             "steps": "Telefon numarasını kopyalayın|Sber uygulamasında 'gönder' tuşuna basın|Başka bir ülkeye ve ardından {{country}}'yi seçin|Telefon numarasını yapıştırın|A-Mobile Cüzdan'ı seçin|{{amount}} tutarını girin ve 'Onayla' düğmesine basın"
+        },
+        "check_load_errors": {
+            "generalError": "Veri gönderilirken bir hata oluştu. Lütfen tekrar deneyin",
+            "fileSize": "Dosya boyutu 3MB'yi aşıyor",
+            "fileType": "Yalnızca resim ve PDF dosyalarına izin verilir"
         },
         "payed": "Ödendi",
         "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",

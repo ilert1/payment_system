@@ -15,6 +15,11 @@
             "title": "Köçürməni ləğv edin və mağazaya qayıdın",
             "text": "Köçürməni ləğv etsəniz, əvvəlcə yeni bir sifariş yaratmalı olacaqsınız.",
             "continue": "Tərcüməyə davam edin"
+        },
+        "unicPopup": {
+            "title": "Diqqət yetirin!",
+            "text": "Sorğulanan ödəniş üçün uyğun rekvizitlər mövcud deyil. Zəhmət olmasa, göstərilən məbləği köçürün. Vəsait depozitinizə köçürüləcək.",
+            "continue": "Başa düşdüm"
         }
     },
     "Main": {
@@ -32,11 +37,10 @@
         "via": "vasitəsilə"
     },
     "Pay": {
-        "approveTransfer": "Köçürməni təsdiqlə",
+        "approveTransfer": "Ödənişi təsdiqlə",
         "withoutComments": "Köçürməyə şərh yazılmadan",
-        "selectFile": "Çeki əlavə et",
-        "changeCheck": "Çeki dəyişdir",
-
+        "selectFile": "Çek əlavə edin",
+        "changeCheck": "ÇEK-i dəyişdirin",
         "steps": {
             "open": "Aç",
             "transfer": "Köçür",
@@ -53,6 +57,10 @@
             "pressButton": "Düyməyə basın",
             "payed": "Ödənilib"
         },
+        "steps_transgran_simple": {
+            "tbankTitle": "T-bank təlimatı",
+            "steps": "Bank tətbiqini açın|Düyməni basın (telefon nömrəsinə köçürmək)|Ölkə koduna toxunun və {{country}} ({{code}}) seçin|Göstərilən telefon nömrəsini daxil edin|Banklar siyahısından formda göstərilən bankı seçin|Məbləği daxil edin və (köçürmək) düyməsini basın"
+        },
         "steps_transgran": {
             "one": "Göstərilən telefon nömrəsini kopyalayın",
             "two": "Bankınızın tətbiqini açın",
@@ -64,10 +72,10 @@
             "vtbbank": "“Ödənişlər” bölməsini açın|“Başqa ölkəyə” seçin|Siyahıdan “{{country}}”ı seçin|“Telefon nömrəsi ilə köçürmə” seçin|Siyahıdan yuxarıda göstərilən bankı seçin|Yuxarıda göstərilən telefon nömrəsini daxil edin|“Köçürmək” düyməsini basın"
         },
         "steps_with_check": {
-            "tbankTitle": "T-Bank Təlimatı",
-            "steps": "Bank tətbiqini açın (T-bank)|(Ödə) düyməsini basın|(Kart nömrəsi ilə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini daxil edin|Tətbiqdə göstərilən məbləği daxil edin|(Köçür) düyməsini basın"
+            "steps": "{{requisite}} məlumatını kopyalayın və bank tətbiqinizə keçin|{{bankName}} bankına {{requisite}} məlumatı üzrə {{amount}} məbləğində köçürmə edin|Ödəmə çeki mütləq əlavə olunmalıdır|“Köçürməni təsdiqlə” düyməsinə basın",
+            "phoneNumber": "Telefon nömrəsi",
+            "cardNumber": "Kart nömrəsi"
         },
-
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank vasitəsilə ödəniş təlimatı",
             "tbank": "Bank tətbiqini açın (T-Bank)|(Ödə) düyməsini basın|(Kart nömrəsinə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini yapışdırın|Məbləği müraciətdə göstərildiyi kimi daxil edin|(Köçürmək) düyməsini basın"
@@ -92,6 +100,11 @@
         },
         "steps_transgran_abh": {
             "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində 'köçürmək' düyməsini sıxın|Başqa ölkəyə və sonra {{country}} seçin|Telefon nömrəsini yapışdırın|A-Mobile Cüzdan seçin|{{amount}} məbləğini daxil edin və 'Təsdiqlə' düyməsini basın"
+        },
+        "check_load_errors": {
+            "generalError": "Məlumat göndərilərkən xəta baş verdi. Yenidən cəhd edin",
+            "fileSize": "Faylın ölçüsü 3MB-dan çoxdur",
+            "fileType": "Yalnız şəkillər və PDF fayllarına icazə verilir"
         },
         "payed": "Ödənilib",
         "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",

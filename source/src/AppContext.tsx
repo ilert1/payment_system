@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect, useCallback, useContext, startTransition } from "react";
 import { useNavigate } from "react-router-dom";
 
-import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
+import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { useTranslation } from "react-i18next";
 
 import getBrowserFingerprint from "get-browser-fingerprint";
@@ -37,18 +37,28 @@ export interface AppContextType {
     ym: YmType;
     caseName: string;
     setCaseName: (val: string) => void;
+    bankName: string;
 }
 
 export const AppContext = createContext<AppContextType | null>(null);
 
+const azn = "azn";
+const tjs = "tjs";
+const iban = "iban";
+const abh = "abh";
+
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
+    const payOutMode = Boolean(BFData?.payout);
+    const dest = payOutMode ? "payout" : "payment";
+
+    const [bankName, setBankName] = useState("");
 
     const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
 
     const safeYm = (...args: Parameters<typeof ym>) => {
-        if (typeof ymFunc === "function" && ymFunc.length > 0) {
+        if (typeof ymFunc === "function" && BFData?.[dest]?.id) {
             ymFunc(...args);
         }
     };
@@ -74,9 +84,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         });
         localStorage.setItem("language", lang);
     }, [lang]);
-
-    const payOutMode = Boolean(BFData?.payout);
-    const dest = payOutMode ? "payout" : "payment";
 
     const storedCurrentPaymentInstrument = JSON.parse(String(localStorage.getItem("CurrentPaymentInstrument")));
 
@@ -195,6 +202,85 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [status]);
 
+    const method = BFData?.[dest]?.method;
+    const trader = method?.payee?.data;
+
+    useEffect(() => {
+        setBankName(getLocalBankName(method?.bank?.display_name, lang));
+    }, [, method?.bank?.display_name, lang]);
+
+    useEffect(() => {
+        setCaseName("");
+
+        console.log(`bankName: ${bankName}`);
+        const traderBankName = trader?.bank_name;
+        //AZN case check
+        if (
+            traderBankName &&
+            [
+                "otherbankaz",
+                "mpay",
+                "kapitalbank",
+                "emanat",
+                "leobank",
+                "unibank",
+                "rabita",
+                "abb",
+                "birbank",
+                "atb",
+                "m10",
+                "bankofbaku",
+                "akart",
+                "xalqbank",
+                "abbbank",
+                "expressbank",
+                "express24"
+            ].includes(traderBankName)
+        ) {
+            setCaseName(azn);
+            console.log(`caseName: azn`);
+        }
+
+        //TJS case check
+        if (
+            traderBankName &&
+            [
+                "tcell",
+                "babilon-m",
+                "megafon",
+                "kortimilli",
+                "sanduk",
+                "ibt",
+                "matin",
+                "arvand",
+                "favri.cbt",
+                "oriyonbonk",
+                "vasl",
+                "amonatbonk",
+                "eskhata",
+                "tawhidbank",
+                "spitamenbank",
+                "dushanbe",
+                "alif",
+                "humo"
+            ].includes(traderBankName)
+        ) {
+            setCaseName(tjs);
+            console.log(`caseName: tjs`);
+        }
+
+        //ABH case check
+        if (traderBankName && ["a-mobile"].includes(traderBankName)) {
+            setCaseName(abh);
+            console.log(`caseName: abh`);
+        }
+
+        if (traderBankName && trader?.iban_number) {
+            setCaseName(iban);
+            console.log(`caseName: iban`);
+        }
+    }, [BFData?.[dest]?.currency, bankName, trader]);
+
     return (
         <>
             {import.meta.env.VITE_YMETRICS_COUNTER && (
@@ -226,7 +312,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     setStatus,
                     ym: safeYm,
                     caseName,
-                    setCaseName
+                    setCaseName,
+                    bankName
                 }}>
                 {children}
                 <CustomToastContainer />

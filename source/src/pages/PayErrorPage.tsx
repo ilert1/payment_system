@@ -10,6 +10,7 @@ import { useBFStore } from "@/shared/store/bfDataStore";
 
 const PayErrorPage = ({ notFound = false }) => {
     const { ym } = useAppContext();
+
     const { t } = useTranslation();
     const BFData = useBFStore(state => state.BFData);
 
@@ -17,6 +18,8 @@ const PayErrorPage = ({ notFound = false }) => {
     const dest = payOutMode ? "payout" : "payment";
 
     const failUrl = BFData?.[dest]?.method?.context?.error_redirect_url ?? "";
+
+    ym("reachGoal", notFound ? "payment-not-found" : "pay-error-page");
 
     const buttonCallback = () => {
         ym("reachGoal", "fail-return-button", { fail_url: failUrl });

@@ -7,8 +7,7 @@ import { PaymentStore } from "../types/PayerDataPageTypes";
 export const usePaymentStore = create<PaymentStore>(set => ({
     isFetching: false,
     setIsFetching: state => set({ isFetching: state }),
-    fetchPaymentInit: async ({ dest, bfId, navigate, payOutMode }) => {
-        const { fingerprintConfig } = useAppContext();
+    fetchPaymentInit: async ({ dest, bfId, navigate, payOutMode, fingerprintConfig }) => {
         const setBfData = useBFStore.getState().setBfData;
 
         set({ isFetching: true });

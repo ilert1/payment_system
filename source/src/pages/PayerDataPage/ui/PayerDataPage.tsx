@@ -13,7 +13,9 @@ import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumb
 import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 
 const PayerDataPage = () => {
-    const { t, ym } = useAppContext();
+    const { t, ym, fingerprintConfig } = useAppContext();
+    ym("reachGoal", "payer-data-page");
+
     const status = useBFStore(state => state.status);
     const navigate = useNavigate();
     usePaymentPage({ absolutePath: false });
@@ -43,6 +45,7 @@ const PayerDataPage = () => {
 
     const isEcom = methodName === "ecom";
     const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
+
     const showCardHolder = context?.provider === "BNNPay";
     const isSbp = methodName === "sbp";
 
@@ -92,7 +95,8 @@ const PayerDataPage = () => {
                 dest,
                 bfId,
                 navigate,
-                payOutMode
+                payOutMode,
+                fingerprintConfig
             });
         }
     }, [waitTransfer, isEcom, BFData?.[dest]?.id]);

@@ -14,6 +14,7 @@ interface PayeeDataItemProps {
     copyData?: string;
     messageOnCopy?: string;
     comment?: string;
+    labelCode?: string;
 }
 
 const PayeeDataItem = (props: PayeeDataItemProps) => {
@@ -26,7 +27,8 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
         imgCl = "",
         copyData = "",
         messageOnCopy = "",
-        comment = ""
+        comment = "",
+        labelCode = "" // чтобы в метриках отслеживать название поля минуя локализацию
     } = props;
 
     const [showPopup, setShowPopup] = useState(false);
@@ -34,8 +36,10 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
 
     let popupTimeout: number | undefined = undefined;
 
-    const showPopupCallback = () => {
-        ym("reachGoal", "copy", { label: label });
+    const showPopupCallback = (value: string) => {
+        console.log(`copyed: ${value}`);
+
+        ym("reachGoal", "copy", { labelCode: labelCode, label: label, value: value || "" });
         clearTimeout(popupTimeout);
         setShowPopup(true);
 
@@ -56,7 +60,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
             </div>
             {copyData && (
                 <>
-                    <CopyToClipboard text={copyData} onCopy={showPopupCallback}>
+                    <CopyToClipboard text={copyData} onCopy={() => showPopupCallback(copyData)}>
                         <button id="copy" className="copy">
                             {/* <img src={CopyIcon} alt="" /> */}
                             <CopyIcon />

@@ -44,10 +44,32 @@ declare global {
         required: null;
     };
 
+    type FingerprintConfig = {
+        headers: {
+            "X-Fingerprint": string;
+            "Accept-Language": string;
+        };
+    };
+
+    // const LangVariants: {
+    //     en: "en";
+    //     az: "az";
+    //     ky: "ky";
+    //     tg: "tg";
+    //     kk: "kk";
+    //     ru: "ru";
+    //     tr: "tr";
+    //     uk: "uk";
+    //     uz: "uz";
+    // };
+
+    // type LangType = keyof typeof LangVariants;
+
     type BFDataType = {
         payout?: {
             id: string;
             amount: string;
+            original_amount: string;
             currency: string;
             method: {
                 name: string;
@@ -135,6 +157,7 @@ declare global {
         payment: {
             id: string;
             amount: string;
+            original_amount: string;
             currency: string;
             method: {
                 name: string;

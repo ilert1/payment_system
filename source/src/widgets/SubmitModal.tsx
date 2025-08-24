@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useAppContext } from "@/AppContext";
 import AlertTriangleBig from "../shared/assets/images/alert-triangle-big.svg?react";
+import LanguageSelector from "./LanguageSelector";
 
 interface SubmitModalProps {
     show: boolean;
@@ -7,19 +9,22 @@ interface SubmitModalProps {
     data: {
         title: string;
         text: string;
-        primaryBtnText: string;
-        primaryBtnCallback: () => void;
-        secondaryBtnText: string;
-        secondaryBtnCallback: () => void;
+        primaryBtnText?: string;
+        primaryBtnCallback?: () => void;
+        secondaryBtnText?: string;
+        secondaryBtnCallback?: () => void;
+        isCancel?: boolean;
+        closeCallback?: () => void;
     };
     isLoading: boolean;
 }
 
 const SubmitModal = (props: SubmitModalProps) => {
     const { show, setShow, data, isLoading } = props;
+    const { lang, setLang } = useAppContext();
 
     return (
-        <div className={`overlay ${show ? "active" : ""}`} onClick={() => setShow(false)}>
+        <div className={`overlay ${show ? "active" : ""}`} onClick={data.closeCallback ? data.closeCallback : () => {}}>
             <div
                 onClick={e => {
                     e.stopPropagation();
@@ -27,6 +32,7 @@ const SubmitModal = (props: SubmitModalProps) => {
                 className="dialog">
                 <div className="payout-dialog">
                     <div className="payout-dialog__block">
+                        <LanguageSelector lang={lang} setLang={setLang} />
                         <AlertTriangleBig className="alert-triangle" />
                         <h3 className="payout-dialog__title">{data.title}</h3>
                         <p className="payout-dialog__text">{data.text}</p>
@@ -34,18 +40,24 @@ const SubmitModal = (props: SubmitModalProps) => {
 
                     <div className="payout-dialog__buttons-block">
                         <div className="payout-dialog__buttons-submit">
-                            <button
-                                onClick={data.primaryBtnCallback}
-                                className={"button cancel-button " + (isLoading ? "cancel-button__loading" : "")}
-                                disabled={false}>
-                                {!isLoading && data.primaryBtnText}&nbsp;
-                            </button>
-                            <button
-                                className="button outline-button"
-                                onClick={data.secondaryBtnCallback}
-                                disabled={isLoading}>
-                                {data.secondaryBtnText}
-                            </button>
+                            {data?.primaryBtnText && (
+                                <button
+                                    onClick={data.primaryBtnCallback}
+                                    className={`button ${data.isCancel ? "cancel-button" : "main-button"} ${
+                                        isLoading ? "cancel-button__loading" : ""
+                                    }`}
+                                    disabled={false}>
+                                    {!isLoading && data.primaryBtnText}&nbsp;
+                                </button>
+                            )}
+                            {data?.secondaryBtnText && (
+                                <button
+                                    className="button outline-button"
+                                    onClick={data.secondaryBtnCallback}
+                                    disabled={isLoading}>
+                                    {data.secondaryBtnText}
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>
