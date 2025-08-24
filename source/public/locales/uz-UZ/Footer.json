@@ -6,5 +6,10 @@
         "title": "Pul o'tkazmasini bekor qiling va do'konga qayting",
         "text": "Agar siz pul o'tkazmasini bekor qilsangiz, avval yangi buyurtma yaratishingiz kerak bo'ladi.",
         "continue": "Tarjimani davom ettiring"
+    },
+    "unicPopup": {
+        "title": "Diqqat qiling!",
+        "text": "So‘ralgan to‘lov uchun mos rekvizitlar mavjud emas. Iltimos, ko‘rsatilgan summani o‘tkazing. Mablag‘lar depozitingizga tushiriladi.",
+        "continue": "Tushundim"
     }
 }

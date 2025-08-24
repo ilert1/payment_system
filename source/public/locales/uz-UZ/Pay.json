@@ -1,6 +1,8 @@
 {
-    "approveTransfer": "O'tkazmani tasdiqlash",
-    "withoutComments": "O'tkazmaga izohsiz",
+    "approveTransfer": "O‘tkazmani tasdiqlash",
+    "withoutComments": "O‘tkazmaga izohsiz",
+    "selectFile": "Chekni biriktiring",
+    "changeCheck": "CHEK-ni almashtiring",
     "steps": {
         "open": "Ochish",
         "transfer": "O'tkazish",
@@ -17,6 +19,10 @@
         "pressButton": "Tugmani bosing",
         "payed": "To'landi"
     },
+    "steps_transgran_simple": {
+        "tbankTitle": "T-bank yo‘riqnoma",
+        "steps": "Bank ilovasini oching|Tugmani bosing (telefon raqamiga o‘tkazish)|Mamlakat kodiga bosing va {{country}} ({{code}}) ni tanlang|Ko‘rsatilgan telefon raqamini kiriting|Banklar ro‘yxatidan shaklda ko‘rsatilgan bankni tanlang|Summani kiriting va (o‘tkazish) tugmasini bosing"
+    },
     "steps_transgran": {
         "one": "Ko'rsatilgan telefon raqamini nusxalang",
         "two": "Bank ilovangizni oching",
@@ -26,6 +32,15 @@
         "sberbank": "Telefon raqami bo'yicha/ boshqa davlatga pul o'tkazishni tanlang|Davlatni tanlang - {{country}}|\"Karta yoki hisob\" tugmasiga o'ting|Nusxa ko'chirilgan telefon raqamini joylashtiring|To'lov formasida ko'rsatilgan bankni kiriting|Saytda ko'rsatilgan aniq summani kiriting|To'lovni yakunlash uchun tugmani bosing",
         "vtbbankTitle": "VTB orqali toʻlov qilish boʻyicha qoʻllanma",
         "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «{{country}}» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
+    },
+    "steps_with_check": {
+        "steps": "{{requisite}} ni nusxa oling va bank ilovasiga o‘ting|{{bankName}} bankiga {{requisite}} raqamiga {{amount}} summasida pul o‘tkazing|To‘lov chekini albatta biriktiring|“O‘tkazmani tasdiqlash” tugmasini bosing",
+        "phoneNumber": "Telefon raqami",
+        "cardNumber": "Karta raqami"
+    },
+    "steps_transgran_tcard2card": {
+        "tbankTitle": "T-Bank orqali to‘lov yo‘riqnoma",
+        "tbank": "Bank ilovasini oching (T-Bank)|(To‘lash) tugmasini bosing|(Karta raqami orqali o‘tkazma) bo‘limini tanlang|Ko‘rsatilgan karta raqamini joylashtiring|Arizada ko‘rsatilgan summa kiriting|(O‘tkazish) tugmasini bosing"
     },
     "steps_azn": {
         "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|Sber ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — \"boshqa mamlakatga o'tkazma\"|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud \"E-wallet\" ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, \"To'lovni yakunlash\" tugmasini bosing"
@@ -47,6 +62,11 @@
     },
     "steps_transgran_abh": {
         "steps": "Telefon raqamini nusxa oling|Sber ilovasida 'to‘lash' tugmasini bosing|Boshqa davlatni va keyin {{country}} ni tanlang|Telefon raqamini joylashtiring|A-Mobile Hamyonini tanlang|{{amount}} summasini kiriting va 'Tasdiqlash' tugmasini bosing"
+    },
+    "check_load_errors": {
+        "generalError": "Maʼlumot yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko‘ring",
+        "fileSize": "Fayl hajmi 3MB dan oshib ketgan",
+        "fileType": "Faqat rasm va PDF fayllarga ruxsat beriladi"
     },
     "payed": "To'landi",
     "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",

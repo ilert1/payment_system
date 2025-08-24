@@ -1,6 +1,8 @@
 {
     "approveTransfer": "Approve transfer",
     "withoutComments": "Without comments to the transfer",
+    "selectFile": "Attach receipt",
+    "changeCheck": "Replace receipt",
     "steps": {
         "open": "Open",
         "transfer": "Transfer",
@@ -17,6 +19,10 @@
         "pressButton": "Press the button",
         "payed": "Paid"
     },
+    "steps_transgran_simple": {
+        "tbankTitle": "T-bank instructions",
+        "steps": "Open the banking app|Press the button (transfer to phone number)|Tap the country code and select {{country}} ({{code}})|Enter the specified phone number|From the bank list, select the bank as shown in the form|Enter the amount and press the (transfer) button"
+    },
     "steps_transgran": {
         "one": "Copy the specified phone number",
         "two": "Open your bank app",
@@ -26,6 +32,11 @@
         "sberbank": "Select transfer by phone number/to another country|Select the country - {{country}}|Go to the \"To card or account\" button|Paste the copied phone number|Enter the bank specified in the payment form|Enter the exact amount specified on the website|Press the button to complete the payment",
         "vtbbankTitle": "Instruction for payment via VTB",
         "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
+    },
+    "steps_with_check": {
+        "steps": "Copy {{requisite}} and open your banking app|Make a transfer to {{requisite}} in {{bankName}} for the amount of {{amount}}|Be sure to attach the payment receipt|Click the “Confirm Transfer” button",
+        "phoneNumber": "phone number",
+        "cardNumber": "card number"
     },
     "steps_azn": {
         "sberbank": "Copy the specified phone number|Open the Sber app|Select the transfer by phone number function — \"transfer to another country\"|Then, in the app, specify the destination country — Azerbaijan|Paste the previously copied phone number|Select the specified bank from the available \"E-wallet\" list|Enter the exact amount specified on the website|Check the details and click the \"Complete payment\" button"
@@ -47,6 +58,11 @@
     },
     "steps_transgran_abh": {
         "steps": "Copy the phone number|In the Sber app, tap 'Transfer'|Select another country, then {{country}}|Paste the phone number|Select A-Mobile Wallet|Enter the amount {{amount}} and tap Approve"
+    },
+    "check_load_errors": {
+        "generalError": "An error occurred while sending data. Please try again",
+        "fileSize": "File size exceeds 3MB",
+        "fileType": "Only images and PDF files are allowed"
     },
     "payed": "Paid",
     "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
