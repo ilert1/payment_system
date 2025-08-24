@@ -29,6 +29,7 @@ const PayPage = () => {
     ym("reachGoal", "pay-page");
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
+    const setStatus = useBFStore(state => state.setStatus);
     const nav = useNavigate();
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -103,15 +104,21 @@ const PayPage = () => {
                 );
 
                 if (!data.success) {
+                    setNeedRefreshBFData(true);
                     throw new Error(data.error);
                 }
 
                 return data;
-            } catch (e) {
-                toast.error(t("check_load_errors.generalError", ns), {
-                    closeButton: <></>,
-                    autoClose: 2000
-                });
+            } catch (e: any) {
+                ym("reachGoal", "error-message", { error: e?.message });
+
+                if (!e?.message?.includes("inappropriate in current state")) {
+                    toast.error(t("check_load_errors.generalError", ns), {
+                        closeButton: <></>,
+                        autoClose: 2000
+                    });
+                }
+                return e;
             } finally {
                 setButtonCallbackEnabled(false);
             }
@@ -172,6 +179,9 @@ const PayPage = () => {
                         //данные получены успешно
                         console.log("setBFData");
                         setBfData(data);
+                        if (data?.[dest]?.status) {
+                            setStatus(data?.[dest]?.status);
+                        }
                     } else {
                         //транзакция не найдена или не подлежит оплате
                         console.log(data?.error);

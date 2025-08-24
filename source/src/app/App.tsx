@@ -33,12 +33,14 @@ const App = () => {
                 try {
                     const resEventData = JSON.parse(e.data);
                     console.log("SSE: ", resEventData);
-
+                    if (resEventData.data.status) {
+                        ym("reachGoal", "status-sse", { status: resEventData.data.status });
+                    }
                     setStatus(resEventData.data.status);
                 } catch (error) {}
             };
 
-            return () => es.close();
+            // return () => es.close();
         }
     }, [BFData?.[dest]?.id]);
 
