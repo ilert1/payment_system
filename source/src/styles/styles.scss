@@ -149,7 +149,10 @@ header {
 
     border-radius: 45px;
     background-color: #cfeafc00;
-    transition: border-radius 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+        border-radius 0.2s ease,
+        background-color 0.2s ease,
+        border-color 0.2s ease;
     border: 1.44px solid #37a8f333;
 
     @media (max-width: 520px) {
@@ -216,7 +219,9 @@ header {
 
         max-height: 0;
         opacity: 0;
-        transition: max-height 0.5s ease, opacity 0.2s ease;
+        transition:
+            max-height 0.5s ease,
+            opacity 0.2s ease;
 
         overflow-y: hidden;
 
@@ -660,7 +665,10 @@ header {
                 background: #e7f5fe;
                 cursor: pointer;
                 background-color: #37a8f3;
-                transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                transition:
+                    opacity 0.3s ease,
+                    background-color 0.3s ease,
+                    color 0.3s ease;
                 font-size: 20.2px;
                 font-weight: 500;
                 line-height: 133%;
@@ -787,9 +795,15 @@ header {
             font-size: 17px;
             line-height: 23px;
             border-radius: 5px;
-            box-shadow: 0px 1.34px 1.59px 0px #00000002, 0px 3.03px 3.62px 0px #00000004,
-                0px 5.28px 6.31px 0px #00000004, 0px 8.39px 10.02px 0px #00000005, 0px 12.94px 15.46px 0px #00000006,
-                0px 20.2px 24.12px 0px #00000007, 0px 33.53px 40.04px 0px #00000008, 0px 67px 80px 0px #0000000a;
+            box-shadow:
+                0px 1.34px 1.59px 0px #00000002,
+                0px 3.03px 3.62px 0px #00000004,
+                0px 5.28px 6.31px 0px #00000004,
+                0px 8.39px 10.02px 0px #00000005,
+                0px 12.94px 15.46px 0px #00000006,
+                0px 20.2px 24.12px 0px #00000007,
+                0px 33.53px 40.04px 0px #00000008,
+                0px 67px 80px 0px #0000000a;
 
             @media (max-width: 520px) {
                 font-size: 14px;
@@ -802,21 +816,6 @@ header {
                 padding: 0;
             }
         }
-    }
-
-    .toast__close-btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 13px 45px;
-        font-size: 16px !important;
-        font-weight: 500;
-        border: none;
-        border-radius: 5px;
-        background: #fff;
-        color: #010f18;
-        cursor: pointer;
-        font-family: Inter;
     }
 }
 
@@ -1380,7 +1379,9 @@ header {
 
                 border-radius: 50%;
                 background-color: #e7f5fe;
-                transition: color 0.5s ease, background-color 0.5s ease;
+                transition:
+                    color 0.5s ease,
+                    background-color 0.5s ease;
 
                 color: #010f1880;
 
@@ -2628,7 +2629,10 @@ footer {
 
     .main-button {
         background-color: #37a8f3;
-        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        transition:
+            opacity 0.3s ease,
+            background-color 0.3s ease,
+            color 0.3s ease;
 
         font-size: 20.2px;
         font-weight: 500;
@@ -2675,7 +2679,10 @@ footer {
 
     .cancel-button {
         background-color: #fbe5e5;
-        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        transition:
+            opacity 0.3s ease,
+            background-color 0.3s ease,
+            color 0.3s ease;
 
         font-size: 20.2px;
         font-weight: 500;
@@ -3026,7 +3033,9 @@ footer {
         z-index: 1000;
         // min-height: 70%;
 
-        transition: translate 0.5s ease, opacity 0.3s ease;
+        transition:
+            translate 0.5s ease,
+            opacity 0.3s ease;
         translate: 0 50px;
         opacity: 0;
 
@@ -3305,7 +3314,10 @@ footer {
             .main-button,
             .cancel-button {
                 background-color: #37a8f3;
-                transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                transition:
+                    opacity 0.3s ease,
+                    background-color 0.3s ease,
+                    color 0.3s ease;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 133%;
@@ -3359,7 +3371,10 @@ footer {
 
             .cancel-button {
                 background-color: #fbe5e5;
-                transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                transition:
+                    opacity 0.3s ease,
+                    background-color 0.3s ease,
+                    color 0.3s ease;
 
                 /* font-size: 20.2px;
                 font-weight: 500; */
@@ -3376,7 +3391,10 @@ footer {
 
             .main-button {
                 background-color: #37a8f3;
-                transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                transition:
+                    opacity 0.3s ease,
+                    background-color 0.3s ease,
+                    color 0.3s ease;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 133%;
@@ -3431,7 +3449,10 @@ footer {
             .outline-button {
                 background-color: transparent;
                 border: 2px solid #37a8f3;
-                transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                transition:
+                    opacity 0.3s ease,
+                    background-color 0.3s ease,
+                    color 0.3s ease;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 133%;
@@ -3548,7 +3569,10 @@ footer {
 
             .main-button {
                 background-color: #37a8f3;
-                transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+                transition:
+                    opacity 0.3s ease,
+                    background-color 0.3s ease,
+                    color 0.3s ease;
                 font-size: 20px;
                 font-weight: 500;
                 line-height: 133%;
@@ -3572,7 +3596,9 @@ footer {
             translate: 0;
             opacity: 1;
 
-            transition: translate 0.5s ease 0.2s, opacity 0.3s ease 0.2s;
+            transition:
+                translate 0.5s ease 0.2s,
+                opacity 0.3s ease 0.2s;
         }
     }
 }
@@ -3740,7 +3766,10 @@ footer {
         cursor: pointer;
         user-select: none;
         background-color: #37a8f3;
-        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+        transition:
+            opacity 0.3s ease,
+            background-color 0.3s ease,
+            color 0.3s ease;
         color: white;
         text-decoration: none;
 

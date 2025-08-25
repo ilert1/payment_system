@@ -22,14 +22,24 @@ const buttonVariants = cva("button", {
     }
 });
 
-export interface ButtonProps
-    extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-        VariantProps<typeof buttonVariants> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
     asChild?: boolean;
+    variant?: VariantProps<typeof buttonVariants>["variant"];
+    className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, disabled = false, variant = "primary" }) => (
-    <button onClick={onClick} disabled={disabled} className={`btn btn-${variant}`} data-testid="custom-button">
+export const Button: React.FC<ButtonProps> = ({
+    children,
+    onClick,
+    disabled = false,
+    variant = "default",
+    className
+}) => (
+    <button
+        onClick={onClick}
+        disabled={disabled}
+        className={buttonVariants({ variant, className })}
+        data-testid="custom-button">
         {children}
     </button>
 );

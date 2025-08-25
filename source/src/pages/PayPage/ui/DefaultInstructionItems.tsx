@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import styles from "./DefaultInstructionItems.module.scss";
 
 interface DefaultInstructionItemsProps {
     trader: Trader;
@@ -18,14 +19,14 @@ export const DefaultInstructionItems = (props: DefaultInstructionItemsProps) => 
     const startFrom = first_step ? 1 : 0;
 
     return (
-        <ul>
+        <ul className={styles.ul}>
             {first_step && (
-                <li>
+                <li className={styles.liAndSpan}>
                     <span>{start + startFrom}. </span>
                     {t(`steps_new.one${trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}
                 </li>
             )}
-            <li>
+            <li className={styles.liAndSpan}>
                 <span>{start + startFrom + 1}. </span>
                 {t(`steps_new.two${!!trader?.phone || trader?.phone_number ? "Phone" : ""}`, ns)}{" "}
                 <span>{bankName}</span> {t("steps_new.onAmount", ns)}{" "}
@@ -34,7 +35,7 @@ export const DefaultInstructionItems = (props: DefaultInstructionItemsProps) => 
                     {currency}
                 </span>
             </li>
-            <li>
+            <li className={styles.liAndSpan}>
                 <span>{start + startFrom + 2}. </span>
                 {t("steps_new.pressButton", ns)}
                 <span>

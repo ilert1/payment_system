@@ -1,6 +1,9 @@
 import { useAppContext } from "@/AppContext";
-import { InstructionItems } from "./InstructionItems";
 import ArrowDown from "@/shared/assets/images/chevron-down.svg";
+import { classNames } from "@/shared/lib/classNames";
+import { Button } from "@/shared/ui/Button/Button";
+import styles from "./Instruction.module.scss";
+import { InstructionItems } from "./InstructionItems";
 
 interface InstructionProps {
     title: string;
@@ -24,12 +27,15 @@ export const Instruction = (props: InstructionProps) => {
     };
 
     return (
-        <div className={`accordion-container ${active == i ? "active" : ""}`}>
-            <div className="title">
-                <p onClick={callback}>{title}</p>
-                <button onClick={callback}>
-                    <img className="arrow" src={ArrowDown} alt="" />
-                </button>
+        <div className={classNames(styles.accordionContainer, { [styles.active]: active == i })}>
+            <div className={styles.title}>
+                <p className={styles.p} onClick={callback}>
+                    {title}
+                </p>
+
+                <Button onClick={callback} variant="ghost" className={styles.btn}>
+                    <img className={styles.arrow} src={ArrowDown} alt="" />
+                </Button>
             </div>
             {children ? children : <InstructionItems start={start} data={data ?? ""} />}
         </div>

@@ -1,17 +1,13 @@
-import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-
-import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
-import { useTranslation } from "react-i18next";
-
 import getBrowserFingerprint from "get-browser-fingerprint";
-import CurrencyLibrary from "./shared/assets/library/Currency.json";
-
-import CustomToastContainer from "./shared/ui/CustomToastContainer.js";
-
+import { createContext, useState, useEffect, useCallback, useContext } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
-import { useBFStore } from "./shared/store/bfDataStore.js";
+import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
+import CurrencyLibrary from "./shared/assets/library/Currency.json";
+import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
+import { useBFStore } from "./shared/store/bfDataStore.js";
 
 export type YmType = typeof ym | (() => void);
 
