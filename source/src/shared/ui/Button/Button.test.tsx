@@ -1,7 +1,7 @@
-import React from "react";
+import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom";
+import React from "react";
 
 // Example component to test
 interface ButtonProps {
@@ -93,7 +93,6 @@ describe("Button Component - Async Tests", () => {
     });
 });
 
-// Example of testing with custom queries
 describe("Button Component - Custom Queries", () => {
     test("finds button by custom data-testid", () => {
         render(<Button>Test Button</Button>);
