@@ -55,7 +55,7 @@ const PayeeDataPage = () => {
                 buttonCallback={BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {}}
                 buttonCaption={BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : ""}
                 nextPage={BFData?.[dest]?.method?.context?.back_redirect_url}
-                payeeCard={true}
+                payeeCard={true && !!BFData?.[dest]?.method?.payee?.data}
                 showCancelBtn={false}
                 hideRequisite={
                     BFData?.[dest]?.method?.payee?.data?.phone_number &&
