@@ -111,6 +111,7 @@ export const Loading: Story = {
         variant: "default",
         children: "Loading...",
         className: "button__loading",
-        loading: true
+        loading: true,
+        style: { width: 100, height: 50 }
     }
 };

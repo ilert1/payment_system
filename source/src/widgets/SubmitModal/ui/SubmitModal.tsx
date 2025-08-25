@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useAppContext } from "@/AppContext";
-import AlertTriangleBig from "../shared/assets/images/alert-triangle-big.svg?react";
-import LanguageSelector from "@/widgets/LanguageSelector";
-import styles from "./SubmitModal.module.scss";
 import { classNames } from "@/shared/lib/classNames";
+import { Button } from "@/shared/ui/Button/Button";
+import LanguageSelector from "@/widgets/LanguageSelector";
+import AlertTriangleBig from "../shared/assets/images/alert-triangle-big.svg?react";
+import styles from "./SubmitModal.module.scss";
 
 interface SubmitModalProps {
     show: boolean;
@@ -45,22 +46,31 @@ export const SubmitModal = (props: SubmitModalProps) => {
                     <div className={styles.buttonsBlock}>
                         <div className={styles.buttonsSubmit}>
                             {data?.primaryBtnText && (
-                                <button
+                                // <button
+                                //     onClick={data.primaryBtnCallback}
+                                //     className={`button ${data.isCancel ? "cancel-button" : "main-button"} ${
+                                //         isLoading ? "cancel-button__loading" : ""
+                                //     }`}
+                                //     disabled={false}>
+                                //     {!isLoading && data.primaryBtnText}&nbsp;
+                                // </button>
+                                <Button
                                     onClick={data.primaryBtnCallback}
-                                    className={`button ${data.isCancel ? "cancel-button" : "main-button"} ${
-                                        isLoading ? "cancel-button__loading" : ""
-                                    }`}
-                                    disabled={false}>
-                                    {!isLoading && data.primaryBtnText}&nbsp;
-                                </button>
+                                    variant={data.isCancel ? "danger" : "default"}
+                                    loading={isLoading}>
+                                    {data.primaryBtnText}&nbsp
+                                </Button>
                             )}
                             {data?.secondaryBtnText && (
-                                <button
-                                    className="button outline-button"
-                                    onClick={data.secondaryBtnCallback}
-                                    disabled={isLoading}>
+                                // <button
+                                //     className="button outline-button"
+                                //     onClick={data.secondaryBtnCallback}
+                                //     disabled={isLoading}>
+                                //     {data.secondaryBtnText}
+                                // </button>
+                                <Button variant={"outline"} onClick={data.secondaryBtnCallback} disabled={isLoading}>
                                     {data.secondaryBtnText}
-                                </button>
+                                </Button>
                             )}
                         </div>
                     </div>
