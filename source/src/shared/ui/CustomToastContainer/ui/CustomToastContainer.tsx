@@ -1,10 +1,11 @@
 /* eslint-disable react/prop-types */
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import styles from "./CustomToastContainer.module.scss";
 
-const CloseButton = () => <button className="toast__close-btn">Окей</button>;
+const CloseButton = () => <button className={styles.toastCloseBtn}>Окей</button>;
 
-export default function CustomToastContainer() {
+export function CustomToastContainer() {
     return (
         <ToastContainer
             limit={3}

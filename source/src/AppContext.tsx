@@ -1,13 +1,13 @@
+import getBrowserFingerprint from "get-browser-fingerprint";
 import { createContext, useState, useEffect, useCallback, useContext, startTransition } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
-import { useTranslation } from "react-i18next";
 
-import getBrowserFingerprint from "get-browser-fingerprint";
 import CurrencyLibrary from "./shared/assets/library/Currency.json";
+import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
 
-import CustomToastContainer from "./shared/ui/CustomToastContainer.js";
 
 import ym, { YMInitializer } from "react-yandex-metrika";
 import { useBFStore } from "./shared/store/bfDataStore.js";

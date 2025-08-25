@@ -1,5 +1,5 @@
 import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
+import { Footer } from "../widgets/Footer";
 
 import Clock from "../shared/assets/images/clock.svg";
 import PlusCircle from "../shared/assets/images/plus-circle.svg";

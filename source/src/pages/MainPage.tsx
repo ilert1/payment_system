@@ -1,5 +1,5 @@
 import Header from "../widgets/Header.js";
-import Footer from "../widgets/Footer.js";
+import { Footer } from "../widgets/Footer";
 
 import Wallet from "../shared/assets/images/wallet.png";
 import WalletPayout from "../shared/assets/images/payOut/wallet.png";

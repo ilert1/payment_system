@@ -138,10 +138,17 @@
         }
     },
     "include": [
+        
         "./src/**/*.ts",
+       
         "./src/**/*.tsx",
+       
         "./src/app/types/global.d.ts",
+       
         "./src/app/types/vite-env.d.ts",
         "vite-plugin-svgr/client"
+    ,
+        "src/**/*.test.ts",
+        "src/**/*.test.tsx"
     ]
 }

@@ -1,23 +1,22 @@
-import Header from "@/widgets/Header";
-import Footer from "@/widgets/Footer";
-
-import { useEffect, useState } from "react";
-import { useAppContext } from "@/AppContext";
-
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import fileTypeChecker from "file-type-checker";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useFilePicker } from "use-file-picker";
+import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
+
+import { AppRoutes } from "@/shared/const/router";
+import { useBFStore } from "@/shared/store/bfDataStore";
+import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
+import Loader from "@/shared/ui/Loader";
+import { Footer } from "@/widgets/Footer";
+import Header from "@/widgets/Header";
 import PayHeader from "@/widgets/PayHeader";
 import PayeeData from "@/widgets/PayeeData";
-import Loader from "@/shared/ui/Loader";
-import { useQuery } from "@tanstack/react-query";
-import { AppRoutes } from "@/shared/const/router";
-
 import { PaymentInstructions } from "./PaymentInstructions";
-import { useBFStore } from "@/shared/store/bfDataStore";
-import { useNavigate } from "react-router-dom";
-import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
-import { useFilePicker } from "use-file-picker";
-import { toast } from "react-toastify";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -304,8 +303,8 @@ const PayPage = () => {
                             !isConfirmTypeFile
                                 ? t("approveTransfer", ns)
                                 : selectedFile
-                                ? t("approveTransfer", ns)
-                                : t("selectFile", ns)
+                                  ? t("approveTransfer", ns)
+                                  : t("selectFile", ns)
                         }
                         buttonCallback={
                             !isConfirmTypeFile
@@ -313,10 +312,10 @@ const PayPage = () => {
                                       setButtonCallbackEnabled(true);
                                   }
                                 : selectedFile
-                                ? () => {
-                                      setButtonCallbackEnabled(true);
-                                  }
-                                : () => openFilePicker()
+                                  ? () => {
+                                        setButtonCallbackEnabled(true);
+                                    }
+                                  : () => openFilePicker()
                         }
                         nextPage={nextPage}
                         nextEnabled={!isFetching_ButtonCallback}

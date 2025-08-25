@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useAppContext } from "../AppContext";
-
-import SearchPayMethod from "../shared/ui/SearchPayMethod";
-import BankItem from "./BankItem";
-import { Loader } from "../shared/ui/Loader";
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Loader } from "@/shared/ui/Loader";
+import SearchPayMethod from "@/shared/ui/SearchPayMethod";
+import { BankItem } from "../../BankItem";
+import styles from "./PayInstrument.module.scss";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : "";
@@ -70,11 +70,11 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
                 <h2>{t("payMethod", ns)}</h2>
                 <SearchPayMethod setFilterText={setFilterText} />
             </div>
-            <div className="banks-list-container">
+            <div className={styles.banks_list_container}>
                 {instruments?.length ? (
-                    <div className="banks-list">{instruments}</div>
+                    <div className={styles.banks_list}>{instruments}</div>
                 ) : (
-                    <div className="banks-list">
+                    <div className={styles.banks_list}>
                         {isFetching ? (
                             <div className="loader-container">
                                 <Loader />
