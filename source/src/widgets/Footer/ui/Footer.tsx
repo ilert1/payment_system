@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios, { isCancel } from "axios";
 import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "@/AppContext";
 import ArrowLeft from "@/shared/assets/images/arrow-left.svg?react";
 import ArrowRight from "@/shared/assets/images/arrow-right.svg";
@@ -12,9 +13,8 @@ import { AppRoutes } from "@/shared/const/router";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import BankCardInfo from "@/widgets/BankCardInfo";
-import PayeeInfo from "@/widgets/PayeeInfo";
+import { PayeeInfo } from "@/widgets/PayeeInfo";
 import { SubmitModal } from "@/widgets/SubmitModal";
-import { useNavigate } from "react-router-dom";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;

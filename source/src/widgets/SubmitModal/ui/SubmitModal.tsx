@@ -38,7 +38,7 @@ export const SubmitModal = (props: SubmitModalProps) => {
                 <div className={styles.payoutDialog}>
                     <div className={styles.payoutDialogBlock}>
                         <LanguageSelector lang={lang} setLang={setLang} />
-                        <AlertTriangleBig className="alert-triangle" />
+                        <AlertTriangleBig className={styles.alertTriangle} />
                         <h3 className={styles.title}>{data.title}</h3>
                         <p className={styles.text}>{data.text}</p>
                     </div>
@@ -46,29 +46,21 @@ export const SubmitModal = (props: SubmitModalProps) => {
                     <div className={styles.buttonsBlock}>
                         <div className={styles.buttonsSubmit}>
                             {data?.primaryBtnText && (
-                                // <button
-                                //     onClick={data.primaryBtnCallback}
-                                //     className={`button ${data.isCancel ? "cancel-button" : "main-button"} ${
-                                //         isLoading ? "cancel-button__loading" : ""
-                                //     }`}
-                                //     disabled={false}>
-                                //     {!isLoading && data.primaryBtnText}&nbsp;
-                                // </button>
                                 <Button
                                     onClick={data.primaryBtnCallback}
                                     variant={data.isCancel ? "danger" : "default"}
-                                    loading={isLoading}>
+                                    loading={isLoading}
+                                    size={"lg"}
+                                    className={data.isCancel ? styles.cancelButton : styles.button}>
                                     {data.primaryBtnText}&nbsp
                                 </Button>
                             )}
                             {data?.secondaryBtnText && (
-                                // <button
-                                //     className="button outline-button"
-                                //     onClick={data.secondaryBtnCallback}
-                                //     disabled={isLoading}>
-                                //     {data.secondaryBtnText}
-                                // </button>
-                                <Button variant={"outline"} onClick={data.secondaryBtnCallback} disabled={isLoading}>
+                                <Button
+                                    size={"lg"}
+                                    variant={"outline"}
+                                    onClick={data.secondaryBtnCallback}
+                                    disabled={isLoading}>
                                     {data.secondaryBtnText}
                                 </Button>
                             )}

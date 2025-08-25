@@ -1,12 +1,12 @@
-import UserIcon from "../shared/assets/images/user.svg?react";
-import PayeeHint from "../shared/ui/PayeeHint";
+import UserIcon from "@/shared/assets/images/user.svg?react";
+import PayeeHint from "@/shared/ui/PayeeHint";
 
 interface PayeeInfoProps {
     PayeeName: string;
     showPayeeData?: boolean;
 }
 
-const PayeeInfo = (props: PayeeInfoProps) => {
+export const PayeeInfo = (props: PayeeInfoProps) => {
     const { PayeeName, showPayeeData = false } = props;
     // const [showPopup, setShowPopup] = useState(false);
 
@@ -50,5 +50,3 @@ const PayeeInfo = (props: PayeeInfoProps) => {
         </div>
     );
 };
-
-export default PayeeInfo;
