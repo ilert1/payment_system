@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import CopyIcon from "../shared/assets/images/copy.svg?react";
-import CheckCircle from "../shared/assets/images/check-circle.svg?react";
-import { useAppContext } from "../AppContext";
+import CopyIcon from "@/shared/assets/images/copy.svg?react";
+import CheckCircle from "@/shared/assets/images/check-circle.svg?react";
+import { useAppContext } from "@/AppContext";
+import styles from "./PayeeDataItem.module.scss";
+import { classNames } from "@/shared/lib/classNames";
 
 interface PayeeDataItemProps {
     Img: string | SvgComponent;
@@ -17,7 +19,7 @@ interface PayeeDataItemProps {
     labelCode?: string;
 }
 
-const PayeeDataItem = (props: PayeeDataItemProps) => {
+export const PayeeDataItem = (props: PayeeDataItemProps) => {
     const {
         Img = "",
         onError = () => {},
@@ -34,7 +36,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
     const [showPopup, setShowPopup] = useState(false);
     const { ym } = useAppContext();
 
-    let popupTimeout: number | undefined = undefined;
+    let popupTimeout: NodeJS.Timeout | undefined = undefined;
 
     const showPopupCallback = (value: string) => {
         console.log(`copyed: ${value}`);
@@ -66,7 +68,7 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
                             <CopyIcon />
                         </button>
                     </CopyToClipboard>
-                    <div id="copy-popup" className={`popup ${showPopup ? "active" : ""}`}>
+                    <div id="copy-popup" className={classNames(styles.popup, { [styles.active]: showPopup })}>
                         {messageOnCopy}
                         {/* <img src={CheckCircle} alt="" /> */}
                         <CheckCircle />
@@ -76,5 +78,3 @@ const PayeeDataItem = (props: PayeeDataItemProps) => {
         </div>
     );
 };
-
-export default PayeeDataItem;

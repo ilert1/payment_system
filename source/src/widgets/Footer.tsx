@@ -11,7 +11,6 @@ import Check from "../shared/assets/images/check.svg";
 import axios, { isCancel } from "axios";
 import PayeeInfo from "./PayeeInfo";
 import BankCardInfo from "./BankCardInfo";
-import SubmitModal from "./SubmitModal";
 import { useQuery } from "@tanstack/react-query";
 
 import DefaultBankIcon from "../shared/assets/images/bank-icon.svg";
@@ -21,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { SubmitModal } from "./SubmitModal";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;

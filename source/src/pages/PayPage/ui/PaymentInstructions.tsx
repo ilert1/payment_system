@@ -2,8 +2,8 @@ import React from "react";
 import { Instruction } from "./Instruction";
 import { InstructionItems } from "./InstructionItems";
 import { DefaultInstructionItems } from "./DefaultInstructionItems";
-import ExternalPayInfo from "@/widgets/ExternalPayInfo";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { ExternalPayInfo } from "@/widgets/ExternalPayInfo";
 
 interface PaymentInstructionsProps {
     caseName: string;

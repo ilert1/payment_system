@@ -41,6 +41,11 @@ export default defineConfig(({ mode }) => {
         css: {
             modules: {
                 generateScopedName: mode === "development" ? "[path][name]__[local]--[hash:base64:5]" : "[hash:base64]"
+            },
+            preprocessorOptions: {
+                scss: {
+                    api: "modern-compiler"
+                }
             }
         },
         base: "/",

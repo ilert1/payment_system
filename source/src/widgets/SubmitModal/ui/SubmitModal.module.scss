@@ -1,0 +1,424 @@
+.dialog {
+    cursor: auto;
+
+    z-index: 1000;
+    translate: 0 50px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    max-width: 480px;
+    padding: 35px;
+    padding-bottom: 45px;
+    border-radius: 5px;
+
+    opacity: 0;
+    background: white;
+
+    transition: translate 0.5s ease, opacity 0.3s ease;
+
+    // TODO: Redundant, should remove it
+    & > img {
+        user-select: none;
+
+        align-self: center;
+
+        width: 186px;
+        margin-bottom: 10px;
+
+        -webkit-user-drag: none;
+
+        @media (width <= 520px) {
+            width: 134px;
+        }
+    }
+
+    @media (width <= 520px) {
+        padding: 24px;
+    }
+}
+
+.alertTriangle {
+    user-select: none;
+
+    align-self: center;
+
+    width: 186px;
+    margin-bottom: 10px;
+
+    -webkit-user-drag: none;
+
+    @media (width <= 520px) {
+        width: 134px;
+    }
+}
+
+.overlay {
+    pointer-events: none;
+
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center center;
+
+    box-sizing: border-box;
+    height: 100vh;
+    padding: 15px;
+
+    opacity: 0;
+    background: #00173380;
+    backdrop-filter: blur(30px);
+
+    transition: opacity 0.5s ease;
+}
+
+.overlayActive {
+    pointer-events: all;
+    opacity: 1;
+
+    .dialog {
+        translate: 0;
+        opacity: 1;
+        transition: translate 0.5s ease 0.2s, opacity 0.3s ease 0.2s;
+    }
+}
+
+.payoutDialog {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 65px;
+    justify-content: space-between;
+
+    text-align: left;
+
+    .toggle-switch {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__slider {
+            cursor: pointer;
+
+            position: relative;
+
+            width: 57px;
+            height: 33px;
+            border-radius: 100px;
+
+            background-color: #f00;
+
+            transition: background-color 0.3s ease;
+
+            &--checked {
+                background-color: #e7f5fe;
+            }
+
+            @media (width <= 520px) {
+                width: 41px;
+                height: 23px;
+            }
+        }
+
+        &__thumb {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+
+            background-color: white;
+
+            transition: transform 0.3s ease;
+
+            @media (width <= 520px) {
+                top: 2px;
+                left: 2px;
+                width: 19px;
+                height: 19px;
+            }
+        }
+
+        &__label {
+            margin-left: 10px;
+            font-size: 20px;
+            line-height: 27px;
+
+            @media (width <= 520px) {
+                font-size: 14px;
+                line-height: 18px;
+            }
+        }
+    }
+
+    .toggle-switch__slider--checked .toggle-switch__thumb {
+        transform: translateX(25px);
+        background-color: #37a8f3;
+
+        @media (width <= 520px) {
+            transform: translateX(18px);
+        }
+    }
+
+    .button {
+        cursor: pointer;
+
+        display: inline-flex;
+        flex-wrap: nowrap;
+        gap: 14.43px;
+        align-items: center;
+        justify-content: center;
+
+        padding: 28px;
+        border: none;
+        border-radius: 5px;
+
+        background: #e7f5fe;
+    }
+
+    .main-button,
+    .cancel-button {
+        flex-grow: 1;
+
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 133%;
+        color: white;
+
+        background-color: #37a8f3;
+
+        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+        &__loading {
+            pointer-events: none;
+            position: relative;
+
+            &::after {
+                content: "";
+
+                position: absolute;
+                inset: 0;
+
+                width: 16px;
+                height: 16px;
+                margin: auto;
+                border: 4px solid transparent;
+                border-top-color: #fff;
+                border-radius: 50%;
+
+                animation: button-loading-spinner 1s ease infinite;
+            }
+
+            @keyframes button-loading-spinner {
+                from {
+                    transform: rotate(0turn);
+                }
+
+                to {
+                    transform: rotate(1turn);
+                }
+            }
+        }
+
+        &:disabled {
+            pointer-events: none;
+            color: #010f18;
+            opacity: 0.3;
+            background-color: #bebebe; // 4d;
+        }
+
+        @media (width <= 520px) {
+            padding: 20px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+    }
+
+    .cancel-button {
+        // cursor: pointer;
+
+        flex-grow: 1;
+
+        width: 100%;
+
+        /* font-size: 20.2px;
+        font-weight: 500; */
+        // line-height: 26.97px;
+        line-height: 133%;
+        color: #ea4444;
+
+        background-color: #fbe5e5;
+
+        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .main-button {
+        flex-grow: 1;
+
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 133%;
+        color: white;
+
+        background-color: #37a8f3;
+
+        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+        &__loading {
+            pointer-events: none;
+            position: relative;
+
+            &::after {
+                content: "";
+
+                position: absolute;
+                inset: 0;
+
+                width: 16px;
+                height: 16px;
+                margin: auto;
+                border: 4px solid transparent;
+                border-top-color: #fff;
+                border-radius: 50%;
+
+                animation: button-loading-spinner 1s ease infinite;
+            }
+
+            @keyframes button-loading-spinner {
+                from {
+                    transform: rotate(0turn);
+                }
+
+                to {
+                    transform: rotate(1turn);
+                }
+            }
+        }
+
+        &:disabled {
+            pointer-events: none;
+            color: #010f18;
+            opacity: 0.3;
+            background-color: #bebebe; // 4d;
+        }
+
+        @media (width <= 520px) {
+            padding: 20px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+    }
+
+    .outline-button {
+        flex-grow: 1;
+
+        border: 2px solid #37a8f3;
+
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 133%;
+        color: #37a8f3;
+
+        background-color: transparent;
+
+        transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+        &:disabled {
+            pointer-events: none;
+            border-color: #bebebe; // 4d;
+            color: #010f18;
+            opacity: 0.3;
+        }
+
+        @media (width <= 520px) {
+            padding: 20px 10px;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+    }
+
+    @media (width <= 520px) {
+        gap: 65px;
+    }
+}
+
+.payoutDialogBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    justify-content: space-between;
+
+    .language-selector {
+        align-self: end;
+    }
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 43px;
+
+    @media (width <= 520px) {
+        font-size: 24px;
+        line-height: 32px;
+    }
+}
+
+.cardNumber {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #37a8f3;
+
+    @media (width <= 520px) {
+        font-size: 22px;
+        line-height: 29px;
+    }
+}
+
+.text {
+    /* font-size: 30px;
+    line-height: 40px; */
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: justify;
+
+    @media (width <= 520px) {
+        /* font-size: 16px;
+        line-height: 21px; */
+        font-size: 16px;
+        line-height: 22px;
+        text-align: justify;
+    }
+}
+
+.buttonsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+
+    @media (width <= 520px) {
+        gap: 31px;
+    }
+}
+
+.buttonsSubmit {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+
+    @media (width <= 520px) {
+        gap: 10px;
+    }
+}

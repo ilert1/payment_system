@@ -26,3 +26,6 @@ localisation_request.txt
 *.njsproj
 *.sln
 *.sw?
+
+*storybook.log
+storybook-static
