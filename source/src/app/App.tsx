@@ -7,7 +7,7 @@ import Loader from "@/shared/ui/Loader";
 import { ToastContainer } from "react-toastify";
 import { AppRouter } from "./providers/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
+// import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
 const baseApiURL = import.meta.env.VITE_API_URL;
 
 const App = () => {
@@ -25,9 +25,15 @@ const App = () => {
             // подключаем SSE
             const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`);
 
-            es.onopen = () => console.log(">>> Connection opened!");
+            es.onopen = () => {
+                console.log(">>> Connection opened!");
+                ym("reachGoal", "sse-ok");
+            };
 
-            es.onerror = e => console.log("ERROR!", e);
+            es.onerror = e => {
+                console.error("ERROR!", e);
+                ym("reachGoal", "sse-error", { error: e });
+            };
 
             es.onmessage = async e => {
                 try {
