@@ -1,4 +1,4 @@
-import Header from "@/widgets/Header";
+import { Header } from "@/widgets/Header";
 import { ThreeDsForm } from "@/widgets/ThreeDsForm";
 
 export const ThreeDSPage = () => {

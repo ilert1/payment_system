@@ -1,23 +1,25 @@
 import { cva, VariantProps } from "class-variance-authority";
+import React from "react";
 import styles from "./Button.module.scss";
 
 const buttonVariants = cva(styles.button, {
     variants: {
         variant: {
-            default: styles["btn--primary"],
-            secondary: styles["btn--secondary"],
-            outline: styles["btn--outline"],
-            danger: styles["btn--danger"],
-            dangerSolid: styles["btn--danger-solid"],
-            ghost: styles["btn--ghost"]
+            default: styles.btnPrimary,
+            secondary: styles.btnSecondary,
+            outline: styles.btnOutline,
+            danger: styles.btnDanger,
+            dangerSolid: styles.btnDangerSolid,
+            ghost: styles.btnGhost,
+            ghostDanger: styles.btnGhostDanger
         },
         size: {
-            sm: styles["btn--small"],
-            lg: styles["btn--large"],
-            xl: styles["btn--xl"]
+            sm: styles.btnSmall,
+            lg: styles.btnLarge,
+            xl: styles.btnXl
         },
         loading: {
-            true: styles["button__loading"]
+            true: styles.button__loading
         }
     },
     defaultVariants: {
@@ -33,22 +35,22 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Var
     loading?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({
-    children,
-    onClick,
-    disabled = false,
-    loading = false,
-    variant = "default",
-    size = "sm",
-    className,
-    ...props
-}) => (
-    <button
-        onClick={onClick}
-        disabled={disabled || loading}
-        className={buttonVariants({ variant, size, loading, className })}
-        data-testid="custom-button"
-        {...props}>
-        {loading ? null : children}
-    </button>
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+    (
+        { children, onClick, disabled = false, loading = false, variant = "default", size = "sm", className, ...props },
+        ref
+    ) => {
+        return (
+            <button
+                ref={ref}
+                onClick={onClick}
+                disabled={disabled || loading}
+                className={buttonVariants({ variant, size, loading, className })}
+                data-testid="custom-button"
+                {...props}>
+                {loading ? null : children}
+            </button>
+        );
+    }
 );
+Button.displayName = "Button";

@@ -1,17 +1,17 @@
-import { Input } from "@/shared/ui/input/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { z } from "zod";
-import styles from "./ThreeDsForm.module.scss";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { z } from "zod";
+import { useAppContext } from "@/AppContext";
 import { AppRoutes } from "@/shared/const/router";
-import Footer from "@/widgets/Footer";
+import { Input } from "@/shared/ui/input/input";
+import { Footer } from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
 import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
-import { useNavigate } from "react-router-dom";
-import { useAppContext } from "@/AppContext";
-import { useEffect } from "react";
+import styles from "./ThreeDsForm.module.scss";
 
 export const ThreeDsForm = () => {
     const { fingerprintConfig } = useAppContext();

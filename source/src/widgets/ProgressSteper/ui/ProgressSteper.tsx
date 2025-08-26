@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-
-import { Timer } from "../shared/ui/Timer";
+import { classNames } from "@/shared/lib/classNames";
+import { Timer } from "@/shared/ui/Timer";
+import styles from "./ProgressSteper.module.scss";
 
 interface ProgressSteperProps {
     step: number;
@@ -33,20 +34,18 @@ export const ProgressSteper = ({ step }: ProgressSteperProps) => {
     }, [step]);
 
     return (
-        <div className="progress-container">
-            <div className="progress-steps">
-                <div className={`step ${step >= 1 ? " active" : ""}`}>1</div>
-                <div className={`step ${step >= 2 ? " active" : ""}`}>2</div>
-                <div className={`step ${step >= 3 ? " active" : ""}`}>3</div>
+        <div className={styles.progressContainer}>
+            <div className={styles.progressSteps}>
+                <div className={classNames(styles.step, { [styles.active]: step >= 1 })}>1</div>
+                <div className={classNames(styles.step, { [styles.active]: step >= 2 })}>2</div>
+                <div className={classNames(styles.step, { [styles.active]: step >= 3 })}>3</div>
             </div>
-            <div className="status">
-                <div className="top">
+            <div className={styles.status}>
+                <div className={styles.top}>
                     <Timer />
-                    <p id="status-text" className="status-text">
-                        {statusText}
-                    </p>
+                    <p className={styles.statusText}>{statusText}</p>
                 </div>
-                <p className="status-comment">{t("comment", ns)}</p>
+                <p className={styles.statusComment}>{t("comment", ns)}</p>
             </div>
         </div>
     );

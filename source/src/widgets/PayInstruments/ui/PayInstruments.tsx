@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Loader } from "@/shared/ui/Loader";
-import SearchPayMethod from "@/shared/ui/SearchPayMethod";
-import { BankItem } from "../../BankItem";
+import SearchPayMethod from "@/shared/ui/SearchPayMethod/SearchPayMethod";
+import { BankItem } from "@/widgets/BankItem";
 import styles from "./PayInstrument.module.scss";
 
 const bankIcon = (bank: string) => {
@@ -66,15 +66,15 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
 
     return (
         <>
-            <div className="pay-method">
-                <h2>{t("payMethod", ns)}</h2>
+            <div className={styles.payMethod}>
+                <h2 className={styles.h2}>{t("payMethod", ns)}</h2>
                 <SearchPayMethod setFilterText={setFilterText} />
             </div>
-            <div className={styles.banks_list_container}>
+            <div className={styles.banksListContainer}>
                 {instruments?.length ? (
-                    <div className={styles.banks_list}>{instruments}</div>
+                    <div className={styles.banksList}>{instruments}</div>
                 ) : (
-                    <div className={styles.banks_list}>
+                    <div className={styles.banksList}>
                         {isFetching ? (
                             <div className="loader-container">
                                 <Loader />

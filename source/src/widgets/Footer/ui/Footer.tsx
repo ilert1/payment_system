@@ -10,11 +10,14 @@ import ArrowRight from "@/shared/assets/images/arrow-right.svg";
 import DefaultBankIcon from "@/shared/assets/images/bank-icon.svg";
 import Check from "@/shared/assets/images/check.svg";
 import { AppRoutes } from "@/shared/const/router";
+import { classNames } from "@/shared/lib/classNames";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import BankCardInfo from "@/widgets/BankCardInfo";
+import { Button } from "@/shared/ui/Button/Button";
+import { BankCardInfo } from "@/widgets/BankCardInfo";
 import { PayeeInfo } from "@/widgets/PayeeInfo";
 import { SubmitModal } from "@/widgets/SubmitModal";
+import styles from "./Footer.module.scss";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
@@ -180,10 +183,14 @@ export const Footer = (props: FooterProps) => {
 
     return (
         <>
-            <footer>
-                <div className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}>
+            <footer className={styles.footer}>
+                <div
+                    //  className={`top${(prevPage || nextPage) && payeeCard ? " big-footer-container" : ""}`}
+                    className={classNames(styles.top, {
+                        [styles.bigFooterContainer]: (prevPage || nextPage) && payeeCard
+                    })}>
                     {payeeCard && (
-                        <div className="payee-data">
+                        <div className={styles.payeeData}>
                             {!hideRequisite && (
                                 <BankCardInfo
                                     bankIcon={bankIcon(trader?.bank_name ?? "")}
@@ -203,7 +210,7 @@ export const Footer = (props: FooterProps) => {
                             {trader?.card_holder && <PayeeInfo PayeeName={trader?.card_holder} />}
                         </div>
                     )}
-                    <div className="buttons-container">
+                    <div className={styles.buttonsContainer}>
                         {/* {prevPage && (
                             <button
                                 id="back-button"
@@ -216,10 +223,11 @@ export const Footer = (props: FooterProps) => {
                         )} */}
 
                         {nextPage && (
-                            <button
+                            <Button
                                 id="main-button"
+                                className={styles.mainButton}
                                 ref={mainButton}
-                                className={`button main-button ${!nextEnabled ? "disabled" : ""}`}
+                                disabled={!nextEnabled}
                                 onClick={() => {
                                     if (buttonCallback) {
                                         buttonCallback();
@@ -229,20 +237,20 @@ export const Footer = (props: FooterProps) => {
                                     }
                                 }}>
                                 {buttonCaption}
-                                {/* {ButtonIcon && <ButtonIcon className="" />} */}
                                 {ButtonIcon && <img src={ButtonIcon} alt="" />}
-                            </button>
+                            </Button>
                         )}
 
                         {showCancelBtn && (
-                            <button
+                            <Button
                                 id="cancel-button"
-                                className={`button cancel-button no-bg`}
+                                className={styles.cancelButton}
+                                variant={"ghostDanger"}
                                 onClick={() => {
                                     setDialogShow(true);
                                 }}>
                                 {cancelModalData?.primaryBtnText}
-                            </button>
+                            </Button>
                         )}
                     </div>
                 </div>

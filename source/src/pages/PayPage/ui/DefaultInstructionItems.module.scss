@@ -1,16 +1,15 @@
 .ul {
     display: flex;
     flex-direction: column;
-    box-sizing: border-box;
+    gap: 7px;
 
+    box-sizing: border-box;
     width: 100%;
     padding: 0;
 
     list-style-type: none;
 
-    gap: 7px;
-
-    @media (max-width: 520px) {
+    @media (width <= 520px) {
         gap: 5px;
     }
 }

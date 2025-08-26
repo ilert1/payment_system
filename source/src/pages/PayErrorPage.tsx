@@ -1,12 +1,11 @@
-import Header from "../widgets/Header";
-import { Footer } from "../widgets/Footer";
-
-import Clock from "../shared/assets/images/clock.svg";
-import PlusCircle from "../shared/assets/images/plus-circle.svg";
-import Timer from "../shared/ui/Timer";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
+import Clock from "@/shared/assets/images/clock.svg";
+import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import Timer from "@/shared/ui/Timer";
+import { Footer } from "@/widgets/Footer";
+import { Header } from "@/widgets/Header";
 
 const PayErrorPage = ({ notFound = false }) => {
     const { ym } = useAppContext();

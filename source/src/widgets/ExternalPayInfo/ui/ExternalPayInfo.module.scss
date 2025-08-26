@@ -2,9 +2,10 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    gap: 14px;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+
     margin-top: 1rem;
 }
 
@@ -13,23 +14,31 @@
 }
 
 .link {
+    cursor: pointer;
+    user-select: none;
+
     display: inline-flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
     flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+
     padding: 12px 24px;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
-    user-select: none;
-    background-color: #37a8f3;
-    transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
     color: white;
     text-decoration: none;
 
-    @media (max-width: 520px) {
-        padding: 0.5rem 1rem;
+    background-color: #37a8f3;
+
+    transition:
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+
+    @media (width <= 520px) {
         align-self: stretch;
+        padding: 0.5rem 1rem;
     }
 }

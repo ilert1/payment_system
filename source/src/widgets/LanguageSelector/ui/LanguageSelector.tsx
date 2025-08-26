@@ -1,4 +1,6 @@
 import { useMemo, useState } from "react";
+import { classNames } from "@/shared/lib/classNames";
+import styles from "./LanguageSelector.module.scss";
 
 interface LanguageSelectorProps {
     lang: string;
@@ -16,7 +18,7 @@ const LangVariants = {
     uz: "uz-UZ"
 };
 
-const LanguageSelector = (props: LanguageSelectorProps) => {
+export const LanguageSelector = (props: LanguageSelectorProps) => {
     const { lang = "en", setLang } = props;
 
     const [dropDown, setDropDown] = useState(false);
@@ -32,12 +34,12 @@ const LanguageSelector = (props: LanguageSelectorProps) => {
                 output.push(
                     <div
                         key={`flagid_${langItem}`}
-                        className="flag-container"
+                        className={classNames(styles.flagContainer)}
                         data-lang={langItem}
                         onClick={() => {
                             setLang(langItem);
                         }}>
-                        <p className="lang-name">{langItem.toUpperCase()}</p>
+                        <p>{langItem.toUpperCase()}</p>
                         <img src={`/flags/${langItem}.svg`} alt={langItem} />
                     </div>
                 );
@@ -48,16 +50,14 @@ const LanguageSelector = (props: LanguageSelectorProps) => {
 
     return (
         <div
-            className={`language-selector ${dropDown ? "active" : ""}`}
+            className={classNames(styles.languageSelector, { [styles.active]: dropDown })}
             onClick={() => {
                 setDropDown(!dropDown);
             }}>
-            <div className="flag-container current-flag">
+            <div className={styles.flagContainer}>
                 <img src={`/flags/${lang.substring(0, 2)}.svg`} alt={lang} />
             </div>
-            <div className={`drop-down ${dropDown ? "active" : ""}`}>{flags}</div>
+            <div className={classNames(styles.dropDown, { [styles.active]: dropDown })}>{flags}</div>
         </div>
     );
 };
-
-export default LanguageSelector;

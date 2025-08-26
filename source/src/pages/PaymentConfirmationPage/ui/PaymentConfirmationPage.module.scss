@@ -1,0 +1,57 @@
+.dropZoneText {
+    color: #6fc0f6;
+}
+
+.dropZoneProgressText {
+    display: none;
+    color: #37a8f3;
+}
+
+.dropZoneFile {
+    display: none;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+
+    color: #010f18;
+}
+
+.dropZoneFileLeft {
+    display: inline-flex;
+    gap: 15px;
+    align-items: center;
+
+    @media (width <= 520px) {
+        gap: 8px;
+
+        img {
+            $width: 41px;
+
+            width: $width;
+            height: $width;
+        }
+    }
+}
+
+.replaceFile {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.confirmationDeadlineInfo {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    justify-content: space-between;
+
+    width: 100%;
+    margin: 20px 0;
+
+    text-align: left;
+
+    @media (width <= 520px) {
+        margin: 15px 0;
+    }
+}

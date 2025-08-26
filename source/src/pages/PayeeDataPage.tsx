@@ -1,12 +1,10 @@
-import Header from "../widgets/Header";
-import { Footer } from "../widgets/Footer";
-
+import { useBFStore } from "@/shared/store/bfDataStore";
+import { useAppContext } from "../AppContext";
+import usePaymentPage from "../hooks/usePaymentPage";
 import { Loader } from "../shared/ui/Loader";
 import { Timer } from "../shared/ui/Timer";
-
-import usePaymentPage from "../hooks/usePaymentPage";
-import { useAppContext } from "../AppContext";
-import { useBFStore } from "@/shared/store/bfDataStore";
+import { Footer } from "../widgets/Footer";
+import { Header } from "../widgets/Header";
 
 const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();

@@ -1,16 +1,16 @@
-import PaymentInstrumentPage from "@/pages/PaymentInstrument";
-import { PayerDataPage } from "@/pages/PayerDataPage";
-import PayeeSearchPage from "@/pages/PayeeSearchPage";
-import PayeeDataPage from "@/pages/PayeeDataPage";
-import SuccessPage from "@/pages/SuccessPage";
-import PayErrorPage from "@/pages/PayErrorPage";
-import PaymentConfirmationPage from "@/pages/PaymentConfirmationPage";
-import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
-import GeneralErrorPage from "@/pages/GeneralErrorPage";
-import MainPage from "@/pages/MainPage";
-import { PayPage } from "@/pages/PayPage";
-import { ThreeDSPage } from "@/pages/ThreeDSPage";
 import { RouteObject } from "react-router-dom";
+import GeneralErrorPage from "@/pages/GeneralErrorPage";
+import { MainPage } from "@/pages/MainPage";
+import PayErrorPage from "@/pages/PayErrorPage";
+import { PayPage } from "@/pages/PayPage";
+import PayeeDataPage from "@/pages/PayeeDataPage";
+import PayeeSearchPage from "@/pages/PayeeSearchPage";
+import { PayerDataPage } from "@/pages/PayerDataPage";
+import { PaymentConfirmationPage } from "@/pages/PaymentConfirmationPage";
+import PaymentInstrumentPage from "@/pages/PaymentInstrument";
+import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
+import SuccessPage from "@/pages/SuccessPage";
+import { ThreeDSPage } from "@/pages/ThreeDSPage";
 import { AppRoutes } from "@/shared/const/router";
 
 const defaultPages: RouteObject[] = [

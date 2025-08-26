@@ -1,10 +1,10 @@
-import Header from "../widgets/Header";
-import { Footer } from "../widgets/Footer";
-import Clock from "../shared/assets/images/clock.svg?react";
-import usePaymentPage from "../hooks/usePaymentPage";
-import Timer from "../shared/ui/Timer";
-import { useAppContext } from "../AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { useAppContext } from "../AppContext";
+import usePaymentPage from "../hooks/usePaymentPage";
+import Clock from "../shared/assets/images/clock.svg?react";
+import Timer from "../shared/ui/Timer";
+import { Footer } from "../widgets/Footer";
+import { Header } from "../widgets/Header";
 
 const SuccessPage = () => {
     const { t, getCurrencySymbol, payoutMode, ym } = useAppContext();

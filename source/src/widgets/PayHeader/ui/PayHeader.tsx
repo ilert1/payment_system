@@ -1,6 +1,6 @@
-import Timer from "../shared/ui/Timer";
-import ClockOrange from "../shared/assets/images/clock_orange.svg?react";
 import { useTranslation } from "react-i18next";
+import ClockOrange from "@/shared/assets/images/clock_orange.svg?react";
+import Timer from "@/shared/ui/Timer";
 
 interface PayHeaderProps {
     amount: string;
@@ -11,7 +11,7 @@ interface PayHeaderProps {
     timestamp: number;
 }
 
-const PayHeader = (props: PayHeaderProps) => {
+export const PayHeader = (props: PayHeaderProps) => {
     const { amount, currency, bankName, countryName, transgran = false, timestamp = 0 } = props;
 
     const ns = { ns: "PayHeader" };
@@ -43,5 +43,3 @@ const PayHeader = (props: PayHeaderProps) => {
         </div>
     );
 };
-
-export default PayHeader;

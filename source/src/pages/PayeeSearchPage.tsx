@@ -1,12 +1,10 @@
-import Header from "../widgets/Header";
-import { Footer } from "../widgets/Footer";
-
 import { useEffect, useState } from "react";
-import { useAppContext } from "../AppContext";
-import { ProgressSteper } from "../widgets/ProgressSteper";
-
-import usePaymentPage from "../hooks/usePaymentPage";
+import { useAppContext } from "@/AppContext";
+import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Footer } from "@/widgets/Footer";
+import { Header } from "@/widgets/Header";
+import { ProgressSteper } from "@/widgets/ProgressSteper";
 
 const PayeeSearchPage = () => {
     const { currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();
@@ -22,7 +20,7 @@ const PayeeSearchPage = () => {
 
     const [step, setStep] = useState(1);
 
-    let stepperInterval: number | undefined = undefined;
+    let stepperInterval: NodeJS.Timeout | undefined = undefined;
     let stepperInterval_seconds = 0;
 
     useEffect(() => {

@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Input } from "@/shared/ui/input/input";
 import styles from "./CardNumberLast4.module.scss";
+
 interface CardNumberLast4Props {
     onComplete?: (val: string) => void;
     showHidden: boolean;
@@ -37,9 +38,9 @@ export const CardNumberLast4 = (props: CardNumberLast4Props) => {
     }, []);
 
     return (
-        <div className="card-number-container">
-            {showHidden ? <p>**** **** ****</p> : ""}
-            <div ref={inputs} className="inputs">
+        <div className={styles.cardNumberContainer}>
+            {showHidden ? <p className={styles.p}>**** **** ****</p> : ""}
+            <div ref={inputs} className={styles.inputs}>
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />

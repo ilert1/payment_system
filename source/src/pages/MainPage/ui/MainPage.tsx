@@ -1,19 +1,19 @@
-import Header from "../widgets/Header.js";
-import { Footer } from "../widgets/Footer";
-
-import Wallet from "../shared/assets/images/wallet.png";
-import WalletPayout from "../shared/assets/images/payOut/wallet.png";
-
-import { useAppContext } from "../AppContext.js";
-import { Outlet } from "react-router-dom";
-import usePaymentPage from "../hooks/usePaymentPage";
 import axios from "axios";
-import Loader from "@/shared/ui/Loader";
-import { useBFStore } from "@/shared/store/bfDataStore.js";
-import { AppRoutes } from "@/shared/const/router.js";
 import { useTranslation } from "react-i18next";
+import { Outlet } from "react-router-dom";
+import { useAppContext } from "@/AppContext";
+import usePaymentPage from "@/hooks/usePaymentPage";
+import WalletPayout from "@/shared/assets/images/payOut/wallet.png";
+import Wallet from "@/shared/assets/images/wallet.png";
+import { AppRoutes } from "@/shared/const/router";
+import { classNames } from "@/shared/lib/classNames";
+import { useBFStore } from "@/shared/store/bfDataStore";
+import Loader from "@/shared/ui/Loader";
+import { Footer } from "@/widgets/Footer";
+import { Header } from "@/widgets/Header";
+import styles from "./MainPage.module.scss";
 
-const MainPage = () => {
+export const MainPage = () => {
     const { fingerprintConfig, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
     const payOutMode = Boolean(BFData?.payout);
@@ -60,7 +60,7 @@ const MainPage = () => {
                         {!payOutMode ? (
                             <>
                                 <h1>{t("header", ns)}</h1>
-                                <div className="wallet-image-container">
+                                <div className={styles.walletImageContainer}>
                                     <img src={Wallet} alt="" />
                                 </div>
                                 <div className="description grow">
@@ -71,7 +71,7 @@ const MainPage = () => {
                         ) : (
                             <>
                                 <h1>{t("header", ns)}</h1>
-                                <div className="wallet-image-container margins">
+                                <div className={classNames(styles.walletImageContainer, {}, [styles.margins])}>
                                     <img src={WalletPayout} alt="" />
                                 </div>
                                 <div className="description grow">
@@ -90,5 +90,3 @@ const MainPage = () => {
         </div>
     );
 };
-
-export default MainPage;

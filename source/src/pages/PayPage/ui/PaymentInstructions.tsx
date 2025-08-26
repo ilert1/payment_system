@@ -1,7 +1,7 @@
 import React from "react";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import ExternalPayInfo from "@/widgets/ExternalPayInfo";
+import { ExternalPayInfo } from "@/widgets/ExternalPayInfo";
 import { DefaultInstructionItems } from "./DefaultInstructionItems";
 import { Instruction } from "./Instruction/Instruction";
 import { InstructionItems } from "./Instruction/InstructionItems";
@@ -47,7 +47,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // Transgran tsbp cases for tjs/azn
     if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
-            <div className={classNames(styles.instructions_new, {}, [styles.transgran])}>
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <div className="title">
                     <p>{t("steps_transgran_simple.tbankTitle", ns)}</p>
                 </div>
@@ -70,7 +70,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
         console.log(bankName);
 
         return (
-            <div className={classNames(styles.instructions_new, {}, [styles.transgran])}>
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 {/* <div className="title">
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div> */}
@@ -92,7 +92,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
     if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
         return (
-            <div className={classNames(styles.instructions_new, {}, [styles.transgran])}>
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <div className="title">
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div>
@@ -105,7 +105,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // Transgran for Abkhazia
     if ([abh].includes(caseName) && transgran) {
         return (
-            <div className={classNames(styles.instructions_new, {}, [styles.transgran])}>
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <InstructionItems
                     data={t("steps_transgran_abh.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
@@ -121,7 +121,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // IBAN case
     if (caseName === iban) {
         return (
-            <div className={classNames(styles.instructions_new, {}, [styles.transgran])}>
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
             </div>
         );
@@ -129,7 +129,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
     // Default case
     return (
-        <div className={styles.instructions_new}>
+        <div className={styles.instructionsNew}>
             <DefaultInstructionItems
                 trader={trader}
                 bankName={bankName}

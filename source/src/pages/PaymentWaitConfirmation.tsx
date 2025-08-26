@@ -1,8 +1,7 @@
-import Header from "@/widgets/Header";
-import { Footer } from "@/widgets/Footer";
-
-import Timer from "@/shared/ui/Timer";
 import Loader from "@/shared/ui/Loader";
+import Timer from "@/shared/ui/Timer";
+import { Footer } from "@/widgets/Footer";
+import { Header } from "@/widgets/Header";
 
 const PaymentWaitConfirmation = () => {
     return (

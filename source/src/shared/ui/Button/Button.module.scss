@@ -1,19 +1,23 @@
 /* Базовый стиль */
 .button {
+    cursor: pointer;
+    user-select: none;
+
     display: inline-flex;
-    justify-content: center;
-    align-items: center;
+    flex-grow: 1;
     flex-wrap: nowrap;
     gap: 14px;
+    align-items: center;
+    justify-content: center;
+
     padding: 28px;
     border: none;
     border-radius: 5px;
-    background: #e7f5fe;
+
     font-weight: 500;
     line-height: 133%;
-    cursor: pointer;
-    user-select: none;
-    flex-grow: 1;
+
+    background: #e7f5fe;
 
     transition:
         opacity 0.3s ease,
@@ -25,22 +29,11 @@
         height: 27px;
     }
 
-    @media (max-width: 520px) {
-        font-size: 14px;
-        padding: 20px 10px;
-        border-radius: 3px;
-
-        img {
-            width: 19px;
-            height: 19px;
-        }
-    }
-
     &:disabled {
-        background-color: #bebebe;
-        opacity: 0.3;
         pointer-events: none;
         color: #010f18;
+        opacity: 0.3;
+        background-color: #bebebe;
 
         img {
             filter: invert(1);
@@ -53,18 +46,29 @@
 
         &::after {
             content: "";
+
             position: absolute;
+            inset: 0;
+
             width: 16px;
             height: 16px;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
             margin: auto;
             border: 4px solid transparent;
-            border-top-color: currentColor;
+            border-top-color: currentcolor;
             border-radius: 50%;
+
             animation: button-loading-spinner 1s ease infinite;
+        }
+    }
+
+    @media (width <= 520px) {
+        padding: 20px 10px;
+        border-radius: 3px;
+        font-size: 14px;
+
+        img {
+            width: 19px;
+            height: 19px;
         }
     }
 }
@@ -73,67 +77,77 @@
     from {
         transform: rotate(0turn);
     }
+
     to {
         transform: rotate(1turn);
     }
 }
 
 /* Варианты */
-.btn--primary {
+.btnPrimary {
+    font-size: 20px;
+    color: #fff;
     background-color: #37a8f3;
-    color: #fff;
-    font-size: 20px;
 }
 
-.btn--danger {
-    background-color: #fbe5e5;
+.btnDanger {
+    font-size: 20px;
     color: #ea4444;
-    font-size: 20px;
+    background-color: #fbe5e5;
 }
 
-.btn--danger-solid {
-    background-color: #ea4444;
+.btnDangerSolid {
+    font-size: 20px;
     color: #fff;
-    font-size: 20px;
+    background-color: #ea4444;
 }
 
-.btn--outline {
-    background-color: transparent;
+.btnOutline {
     border: 2px solid #37a8f3;
-    color: #37a8f3;
     font-size: 20px;
+    color: #37a8f3;
+    background-color: transparent;
 }
 
-.btn--ghost {
-    background-color: transparent;
-    color: #37a8f3;
+.btnGhost {
+    width: auto;
+
     font-size: 17px;
     line-height: 17px;
-    width: auto;
+    color: #37a8f3;
+
+    background-color: transparent;
 
     &:disabled {
         color: #bebebe;
     }
 }
 
-.btn--secondary {
-    background-color: #d9d9d9;
-    color: #000;
+.btnSecondary {
     font-size: 20px;
+    color: #000;
+    background-color: #d9d9d9;
 }
 
 /* Размеры */
-.btn--small {
+.btnSmall {
     padding: 10px 16px;
     font-size: 14px;
 }
 
-.btn--large {
+.btnLarge {
     padding: 20px 24px;
     font-size: 18px;
 }
 
-.btn--xl {
+.btnXl {
     padding: 28px 32px;
     font-size: 20px;
+}
+
+.btnGhostDanger {
+    font-size: 17px;
+    line-height: 17px;
+    color: #ea4444;
+    background-color: transparent;
 }

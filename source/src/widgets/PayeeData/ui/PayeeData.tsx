@@ -1,13 +1,14 @@
 /* eslint-disable react/prop-types */
 import { useTranslation } from "react-i18next";
+import { useAppContext } from "@/AppContext";
 import DefaultBankIcon from "@/shared/assets/images/bank.svg";
+import CardsIcon from "@/shared/assets/images/cards.svg?react";
+import DollarCircleIcon from "@/shared/assets/images/dollar-circle.svg?react";
+import User2Icon from "@/shared/assets/images/user2.svg?react";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { useAppContext } from "../AppContext";
-import CardsIcon from "../shared/assets/images/cards.svg?react";
-import DollarCircleIcon from "../shared/assets/images/dollar-circle.svg?react";
-import User2Icon from "../shared/assets/images/user2.svg?react";
-import { PayeeDataItem } from "./PayeeDataItem";
+import { PayeeDataItem } from "@/widgets/PayeeDataItem";
+import styles from "./PayeeData.module.scss";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
@@ -23,7 +24,7 @@ interface PayeeDataProps {
     countryName: string;
 }
 
-const PayeeData = (props: PayeeDataProps) => {
+export const PayeeData = (props: PayeeDataProps) => {
     const { requisite, trader, bankName, isPhone, caseName, transgran, countryName } = props;
 
     const { getCurrencySymbol } = useAppContext();
@@ -35,7 +36,7 @@ const PayeeData = (props: PayeeDataProps) => {
     const dest = payOutMode ? "payout" : "payment";
 
     return (
-        <div className="payee-data">
+        <div className={styles.payeeData}>
             {bankName && (
                 <PayeeDataItem
                     Img={bankIcon(trader?.bank_name ?? "")}
@@ -81,5 +82,3 @@ const PayeeData = (props: PayeeDataProps) => {
         </div>
     );
 };
-
-export default PayeeData;

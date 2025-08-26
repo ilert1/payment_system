@@ -1,0 +1,63 @@
+.hint {
+    pointer-events: none;
+    user-select: none;
+
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    translate: -50%;
+
+    box-sizing: border-box;
+    width: 60vw;
+    max-width: min(372px, 80vw);
+    padding: 20px;
+    border-radius: 5px;
+
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 133%;
+    color: #e7f5fe;
+    text-align: left;
+
+    opacity: 0;
+    background-color: #095a90;
+
+    transition: opacity 0.5s ease;
+
+    &::before {
+        $width: 42px;
+
+        content: "";
+
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        translate: -50%;
+
+        width: $width;
+        height: $width;
+
+        background-image: url("../images/hint-pointer.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        @media (width <= 520px) {
+            $width: 29px;
+
+            bottom: -15px;
+            width: $width;
+            height: $width;
+        }
+    }
+
+    &.active {
+        pointer-events: all;
+        opacity: 1;
+    }
+
+    @media (width <= 520px) {
+        bottom: 30px;
+        padding: 10px;
+        font-size: 14px;
+    }
+}

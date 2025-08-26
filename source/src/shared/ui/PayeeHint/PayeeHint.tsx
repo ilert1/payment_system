@@ -1,4 +1,6 @@
 import { useTranslation } from "react-i18next";
+import { classNames } from "@/shared/lib/classNames";
+import styles from "./PayeeHint.module.scss";
 
 export const PayeeHint = ({ showPopup, payeeData }) => {
     const { t } = useTranslation();
@@ -6,7 +8,7 @@ export const PayeeHint = ({ showPopup, payeeData }) => {
     const ns = { ns: "PayeeHint" };
 
     return (
-        <div id="payee-hint" className={`hint ${showPopup ? "active" : ""}`}>
+        <div id="payee-hint" className={classNames(styles.hint, { [styles.active]: showPopup })}>
             {payeeData}
             <br></br>
             <br></br>

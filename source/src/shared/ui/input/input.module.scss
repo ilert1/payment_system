@@ -1,14 +1,16 @@
 .input {
-    background: none;
+    flex-grow: 1;
+
+    box-sizing: border-box;
     border: none;
-    color: var(--color-text);
+
     // opacity: 0.3;
     font-weight: 400;
+    color: var(--color-text);
     text-align: left;
+
+    background: none;
     outline: none;
-    flex-grow: 1;
-    box-sizing: border-box;
-    font-family: Inter;
 
     &:focus {
         outline: 1px solid #6fc0f6ff;
@@ -19,39 +21,40 @@
     background-color: white !important;
 }
 
-@mixin textSize($size, $lineHeight) {
+@mixin text-size($size, $lineHeight) {
     font-size: $size;
     line-height: $lineHeight;
 
     &::placeholder {
         font-size: $size;
-        line-height: $lineHeight;
         font-weight: 500;
-        opacity: 0.2;
+        line-height: $lineHeight;
         color: var(--color-text);
+
+        opacity: 0.2;
     }
 }
 
 .textSm {
-    @include textSize(20px, 133%);
+    @include text-size(20px, 133%);
 
-    @media (max-width: 520px) {
-        @include textSize(14px, 21.36px);
+    @media (width <= 520px) {
+        @include text-size(14px, 21.36px);
     }
 }
 
 .textMd {
-    @include textSize(20px, 133%);
+    @include text-size(20px, 133%);
 
-    @media (max-width: 520px) {
-        @include textSize(14px, 21.36px);
+    @media (width <= 520px) {
+        @include text-size(14px, 21.36px);
     }
 }
 
 .textLg {
-    @include textSize(28px, 133%);
+    @include text-size(28px, 133%);
 
-    @media (max-width: 520px) {
-        @include textSize(16px, 26.6px);
+    @media (width <= 520px) {
+        @include text-size(16px, 26.6px);
     }
 }

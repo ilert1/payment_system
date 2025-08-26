@@ -1,3 +1,5 @@
+import styles from "./BankCardInfo.module.scss";
+
 interface BankCardInfoProps {
     cardNumber: string;
     bankIcon: string;
@@ -8,11 +10,9 @@ export const BankCardInfo = (props: BankCardInfoProps) => {
     const { bankIcon, cardNumber, onError } = props;
 
     return (
-        <div className="card-info">
-            <img src={bankIcon} onError={onError} alt="" />
+        <div className={styles.cardInfo}>
+            <img src={bankIcon} onError={onError} alt="" className={styles.img} />
             <p>{cardNumber}</p>
         </div>
     );
 };
-
-export default BankCardInfo;

@@ -1,15 +1,15 @@
-import Header from "@/widgets/Header";
-import { Footer } from "@/widgets/Footer";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "@/AppContext";
-import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
-import { CardNumberForm } from "@/widgets/CardNumberForm";
 import usePaymentPage from "@/hooks/usePaymentPage";
-import Loader from "@/shared/ui/Loader";
 import { AppRoutes } from "@/shared/const/router.js";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
-import { useNavigate } from "react-router-dom";
+import Loader from "@/shared/ui/Loader";
+import { CardNumberForm } from "@/widgets/CardNumberForm";
 import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
+import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
+import { Footer } from "@/widgets/Footer";
+import { Header } from "@/widgets/Header";
 import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 
 const PayerDataPage = () => {

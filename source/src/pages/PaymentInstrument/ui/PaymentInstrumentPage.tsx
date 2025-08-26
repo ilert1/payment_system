@@ -6,8 +6,9 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Footer } from "@/widgets/Footer";
-import Header from "@/widgets/Header";
+import { Header } from "@/widgets/Header";
 import { PayInstruments } from "@/widgets/PayInstruments";
+import styles from "./PaymentInstrumentPage.module.scss";
 
 const PaymentInstrumentPage = () => {
     const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, t, ym } = useAppContext();
@@ -95,8 +96,8 @@ const PaymentInstrumentPage = () => {
             <Header />
             <div className="content">
                 <h1>{t("amount", ns)}</h1>
-                <div className="amount-container">
-                    <p className="amount">{BFData?.[dest]?.amount}</p>
+                <div className={styles.amountContainer}>
+                    <p className={styles.amount}>{BFData?.[dest]?.amount}</p>
                     <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>
                 </div>
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />

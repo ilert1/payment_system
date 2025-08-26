@@ -2,7 +2,7 @@
 import { useAppContext } from "@/AppContext";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
-import LanguageSelector from "@/widgets/LanguageSelector";
+import { LanguageSelector } from "@/widgets/LanguageSelector";
 import AlertTriangleBig from "../shared/assets/images/alert-triangle-big.svg?react";
 import styles from "./SubmitModal.module.scss";
 
@@ -60,7 +60,8 @@ export const SubmitModal = (props: SubmitModalProps) => {
                                     size={"lg"}
                                     variant={"outline"}
                                     onClick={data.secondaryBtnCallback}
-                                    disabled={isLoading}>
+                                    disabled={isLoading}
+                                    className={styles.button}>
                                     {data.secondaryBtnText}
                                 </Button>
                             )}

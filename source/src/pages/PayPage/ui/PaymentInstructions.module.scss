@@ -1,25 +1,25 @@
-.instructions_new {
+.instructionsNew {
+    box-sizing: border-box;
     width: 100%;
 
-    font-family: Inter;
     font-size: 21px;
     font-weight: 400;
     line-height: 133%;
     text-align: left;
-    box-sizing: border-box;
 
-    @media (max-width: 520px) {
-        font-size: 15px;
-        flex-grow: 0.5;
+    @media (width <= 520px) {
         display: flex;
+        flex-grow: 0.5;
         align-items: flex-end;
+        font-size: 15px;
     }
 }
 
 .transgran {
-    row-gap: 8px;
     display: flex;
     flex-direction: column;
+    row-gap: 8px;
     align-items: flex-start;
+
     padding: 10px 0;
 }

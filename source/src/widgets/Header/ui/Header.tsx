@@ -1,8 +1,7 @@
-import { useAppContext } from "../AppContext";
+import { useAppContext } from "@/AppContext";
+import { LanguageSelector } from "@/widgets/LanguageSelector";
 
-import LanguageSelector from "./LanguageSelector";
-
-const Header = () => {
+export const Header = () => {
     const { lang, setLang } = useAppContext();
 
     return (
@@ -13,5 +12,3 @@ const Header = () => {
         </>
     );
 };
-
-export default Header;

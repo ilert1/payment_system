@@ -1,5 +1,6 @@
 import UserIcon from "@/shared/assets/images/user.svg?react";
-import PayeeHint from "@/shared/ui/PayeeHint";
+import PayeeHint from "@/shared/ui/PayeeHint/PayeeHint";
+import styles from "./PayeeInfo.module.scss";
 
 interface PayeeInfoProps {
     PayeeName: string;
@@ -35,7 +36,7 @@ export const PayeeInfo = (props: PayeeInfoProps) => {
     }, [showPopup]); */
 
     return (
-        <div className="payee-info-container">
+        <div className={styles.payeeInfoContainer}>
             {/* <img src={UserIcon} alt="" /> */}
             <UserIcon />
             <p className="payee-name">{PayeeName}</p>

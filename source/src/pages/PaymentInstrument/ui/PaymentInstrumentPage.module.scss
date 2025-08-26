@@ -1,0 +1,51 @@
+.amountContainer {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    justify-content: center;
+
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: solid 1px rgb(1 15 24 / 20%);
+
+    color: #37a8f3;
+
+    background: none;
+
+    p {
+        align-items: baseline;
+
+        font-size: 26px;
+        font-weight: 400;
+        line-height: 133%;
+        color: #37a8f3;
+
+        @media (width <= 520px) {
+            font-size: 18px;
+        }
+    }
+
+    @media (width <= 520px) {
+        padding-bottom: 10px;
+    }
+}
+
+.amount {
+    min-width: 1ch;
+    border: none;
+
+    font-family: inherit;
+    font-size: 46px;
+    font-weight: 600;
+    line-height: 130%;
+    color: #37a8f3;
+    text-align: right;
+    white-space: nowrap;
+
+    background: none;
+    outline: none;
+
+    @media (width <= 520px) {
+        font-size: 32px;
+    }
+}

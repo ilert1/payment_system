@@ -7,15 +7,14 @@ import { toast } from "react-toastify";
 import { useFilePicker } from "use-file-picker";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
-
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import Loader from "@/shared/ui/Loader";
 import { Footer } from "@/widgets/Footer";
-import Header from "@/widgets/Header";
-import PayHeader from "@/widgets/PayHeader";
-import PayeeData from "@/widgets/PayeeData";
+import { Header } from "@/widgets/Header";
+import { PayHeader } from "@/widgets/PayHeader";
+import { PayeeData } from "@/widgets/PayeeData";
 import { PaymentInstructions } from "./PaymentInstructions";
 
 const azn = "azn";

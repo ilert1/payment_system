@@ -1,7 +1,8 @@
 import { useEffect, useRef } from "react";
-import { Input } from "./input/input";
 import { useTranslation } from "react-i18next";
 import Search from "../assets/images/search.svg?react";
+import { Input } from "../input/input";
+import styles from "./SearchPayMethod.module.scss";
 
 // import Search from "../assets/images/search.svg";
 interface SearchPayMethodProps {
@@ -22,7 +23,7 @@ export const SearchPayMethod = ({ setFilterText }: SearchPayMethodProps) => {
     }, []);
 
     return (
-        <div className="search-pay-method">
+        <div className={styles.searchPayMethod}>
             {/* <img src={Search} alt="" /> */}
             <Search />
             <Input ref={filterText} placeholder={t("transferMethod", ns)} />
