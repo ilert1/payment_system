@@ -10,11 +10,13 @@ import usePaymentPage from "../hooks/usePaymentPage";
 import axios from "axios";
 import Loader from "@/shared/ui/Loader";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
-import { AppRoutes } from "@/shared/const/router.js";
+// import { AppRoutes } from "@/shared/const/router.js";
+import { toast } from "react-toastify";
 
 const MainPage = () => {
     const { fingerprintConfig, t, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setStatus = useBFStore(state => state.setStatus);
 
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
@@ -31,9 +33,26 @@ const MainPage = () => {
                 },
                 fingerprintConfig
             )
+            .then(res => {
+                const data = res.data;
+                if (!data.success) {
+                    if (data?.error == "8001") {
+                        if (data?.state) setStatus(data.state);
+                    } else {
+                        throw new Error(data?.error_details ? data.error_details : data?.error);
+                    }
+                }
+            })
             .catch(e => {
-                console.log(e);
+                ym("reachGoal", "error-message", { error: e?.message });
+
+                toast.error(t("check_load_errors.generalError", ns), {
+                    closeButton: <></>,
+                    autoClose: 2000
+                });
+                return e;
             });
+
         console.log(data);
     };
 

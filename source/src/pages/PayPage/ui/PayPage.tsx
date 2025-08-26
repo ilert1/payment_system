@@ -104,20 +104,21 @@ const PayPage = () => {
                 );
 
                 if (!data.success) {
-                    setNeedRefreshBFData(true);
-                    throw new Error(data.error);
+                    if (data?.error == "8001") {
+                        if (data?.state) setStatus(data.state);
+                    } else {
+                        throw new Error(data?.error_details ? data.error_details : data?.error);
+                    }
                 }
 
                 return data;
             } catch (e: any) {
                 ym("reachGoal", "error-message", { error: e?.message });
 
-                if (!e?.message?.includes("inappropriate in current state")) {
-                    toast.error(t("check_load_errors.generalError", ns), {
-                        closeButton: <></>,
-                        autoClose: 2000
-                    });
-                }
+                toast.error(t("check_load_errors.generalError", ns), {
+                    closeButton: <></>,
+                    autoClose: 2000
+                });
                 return e;
             } finally {
                 setButtonCallbackEnabled(false);

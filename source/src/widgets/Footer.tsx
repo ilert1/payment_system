@@ -21,6 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { toast } from "react-toastify";
 
 const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
@@ -59,6 +60,7 @@ const Footer = (props: FooterProps) => {
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setStatus = useBFStore(state => state.setStatus);
 
     const navigate = useNavigate();
     const { t } = useTranslation();
@@ -86,7 +88,7 @@ const Footer = (props: FooterProps) => {
     }, [unicPopupShow]);
 
     //translation
-    const ns = { ns: "Footer" };
+    const ns = { ns: ["Footer", "Pay", "Common"] };
 
     const mainButton = useRef<HTMLButtonElement>(null);
 
@@ -134,15 +136,29 @@ const Footer = (props: FooterProps) => {
                     },
                     fingerprintConfig
                 );
+
                 console.log("cancel response:");
                 console.log(data);
                 if (data?.success) {
                     //TODO проверить, думаю этот редирект не нужен, так как выполняется смена статуса через SSE
                     navigate(`/${dest}s/${BFData?.[dest]?.id}/${AppRoutes.CANCEL_PAGE}`, { replace: true });
+                } else {
+                    if (data?.error == "8001") {
+                        if (data?.state) setStatus(data.state);
+                    } else {
+                        throw new Error(data?.error_details ? data.error_details : data?.error);
+                    }
                 }
                 return data;
-            } catch (error) {
-                console.log(error);
+            } catch (e: any) {
+                console.error(e?.message);
+                ym("reachGoal", "error-message", { error: e?.message });
+
+                toast.error(t("check_load_errors.generalError", ns), {
+                    closeButton: <></>,
+                    autoClose: 2000
+                });
+                return e;
             } finally {
                 setIsLoading(false);
                 setEnabled_cancel(false);
