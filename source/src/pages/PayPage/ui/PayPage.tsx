@@ -286,8 +286,8 @@ const PayPage = () => {
                             getCurrencySymbol={getCurrencySymbol}
                             t={t}
                             ns={ns}
-                            activeAccordion={activeAccordion}
-                            setActiveAccordion={setActiveAccordion}
+                            // activeAccordion={activeAccordion}
+                            // setActiveAccordion={setActiveAccordion}
                         />
 
                         <PayeeData

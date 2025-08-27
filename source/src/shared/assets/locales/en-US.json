@@ -41,12 +41,9 @@
         "withoutComments": "Without comments to the transfer",
         "selectFile": "Attach receipt",
         "changeCheck": "Replace receipt",
-        "steps": {
-            "open": "Open",
-            "transfer": "Transfer",
-            "wholeAmount": "in one amount",
-            "approveTransfer": "Approve transfer",
-            "openYourBankApp": "Open your bank app"
+        "default_steps": {
+            "steps_card": "Copy the card number and open your banking app|Make a transfer in {{bankName}} by card number for the amount of {{amount}}|Press the {{buttonName}} button",
+            "steps_phone": "Copy the phone number and open your banking app|Make a transfer in {{bankName}} by phone number for the amount of {{amount}}|Press the {{buttonName}} button"
         },
         "steps_new": {
             "one": "Copy the phone number and go to your bank application",

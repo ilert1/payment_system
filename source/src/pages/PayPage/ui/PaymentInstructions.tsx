@@ -1,7 +1,7 @@
 import React from "react";
-import { Instruction } from "./Instruction";
+// import { Instruction } from "./Instruction";
 import { InstructionItems } from "./InstructionItems";
-import { DefaultInstructionItems } from "./DefaultInstructionItems";
+// import { DefaultInstructionItems } from "./DefaultInstructionItems";
 import ExternalPayInfo from "@/widgets/ExternalPayInfo";
 import { useBFStore } from "@/shared/store/bfDataStore";
 
@@ -14,8 +14,8 @@ interface PaymentInstructionsProps {
     getCurrencySymbol: (currency: string) => string;
     t: any;
     ns: any;
-    activeAccordion: number | null;
-    setActiveAccordion: (i: number | null) => void;
+    /* activeAccordion: number | null;
+    setActiveAccordion: (i: number | null) => void; */
 }
 
 const azn = "azn";
@@ -31,9 +31,9 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     dest,
     getCurrencySymbol,
     t,
-    ns,
-    activeAccordion,
-    setActiveAccordion
+    ns
+    /* activeAccordion,
+    setActiveAccordion */
 }) => {
     const BFData = useBFStore(state => state.BFData);
     const isConfirmTypeFile = BFData?.[dest]?.method?.context?.confirm_type === "file";
@@ -128,11 +128,14 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // Default case
     return (
         <div className="instructions_new">
-            <DefaultInstructionItems
-                trader={trader}
-                bankName={bankName}
-                amount={BFData?.[dest]?.amount ?? ""}
-                currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
+            <InstructionItems
+                data={t(`default_steps.${trader?.phone || trader?.phone_number ? "steps_card" : "steps_phone"}`, {
+                    amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                    bankName: bankName,
+                    buttonName: t("approveTransfer", ns),
+                    ...ns
+                })}
+                start={0}
             />
         </div>
     );

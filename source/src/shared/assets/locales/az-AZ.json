@@ -41,12 +41,9 @@
         "withoutComments": "Köçürməyə şərh yazılmadan",
         "selectFile": "Çek əlavə edin",
         "changeCheck": "ÇEK-i dəyişdirin",
-        "steps": {
-            "open": "Aç",
-            "transfer": "Köçür",
-            "wholeAmount": "bütün məbləği",
-            "approveTransfer": "Köçürməni təsdiqlə",
-            "openYourBankApp": "Bank tətbiqinizi açın"
+        "default_steps": {
+            "steps_card": "Kart nömrəsini kopyalayın və bank tətbiqinizə keçin|{{bankName}}-də kart nömrəsi üzrə {{amount}} məbləğində köçürmə edin|{{buttonName}} düyməsini basın",
+            "steps_phone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin|{{bankName}}-də telefon nömrəsi üzrə {{amount}} məbləğində köçürmə edin|{{buttonName}} düyməsini basın"
         },
         "steps_new": {
             "one": "Telefon nömrəsini kopyalayın və bank tətbiqinizi açın",

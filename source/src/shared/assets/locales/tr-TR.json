@@ -41,12 +41,9 @@
         "withoutComments": "Transfer için yorum yapmadan",
         "selectFile": "Makbuz ekle",
         "changeCheck": "Makbuzu değiştir",
-        "steps": {
-            "open": "Aç",
-            "transfer": "Transfer et",
-            "wholeAmount": "tam tutarı",
-            "approveTransfer": "Transferi onayla",
-            "openYourBankApp": "Banka uygulamanızı açın"
+        "default_steps": {
+            "steps_card": "Kart numarasını kopyalayın ve banka uygulamanıza geçin|{{bankName}}’de kart numarasıyla {{amount}} tutarında transfer yapın|{{buttonName}} düğmesine basın",
+            "steps_phone": "Telefon numarasını kopyalayın ve banka uygulamanıza geçin|{{bankName}}’de telefon numarasıyla {{amount}} tutarında transfer yapın|{{buttonName}} düğmesine basın"
         },
         "steps_new": {
             "one": "Telefon numarasını kopyalayın ve banka uygulamanıza gidin",

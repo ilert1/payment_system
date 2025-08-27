@@ -41,12 +41,9 @@
         "withoutComments": "O‘tkazmaga izohsiz",
         "selectFile": "Chekni biriktiring",
         "changeCheck": "CHEK-ni almashtiring",
-        "steps": {
-            "open": "Ochish",
-            "transfer": "O'tkazish",
-            "wholeAmount": "to'liq miqdor",
-            "approveTransfer": "O'tkazmani tasdiqlash",
-            "openYourBankApp": "Bank ilovangizni oching"
+        "default_steps": {
+            "steps_card": "Karta raqamini nusxa oling va bank ilovangizni oching|{{bankName}} ichida karta raqami orqali {{amount}} miqdorida o‘tkazma qiling|{{buttonName}} tugmasini bosing",
+            "steps_phone": "Telefon raqamini nusxa oling va bank ilovangizni oching|{{bankName}} ichida telefon raqami orqali {{amount}} miqdorida o‘tkazma qiling|{{buttonName}} tugmasini bosing"
         },
         "steps_new": {
             "one": "Telefon raqamini nusxalab bank ilovasiga o'ting",
