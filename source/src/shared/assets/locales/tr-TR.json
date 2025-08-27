@@ -45,15 +45,6 @@
             "steps_card": "Kart numarasını kopyalayın ve banka uygulamanıza geçin|{{bankName}}’de kart numarasıyla {{amount}} tutarında transfer yapın|{{buttonName}} düğmesine basın",
             "steps_phone": "Telefon numarasını kopyalayın ve banka uygulamanıza geçin|{{bankName}}’de telefon numarasıyla {{amount}} tutarında transfer yapın|{{buttonName}} düğmesine basın"
         },
-        "steps_new": {
-            "one": "Telefon numarasını kopyalayın ve banka uygulamanıza gidin",
-            "two": "Kart numarasıyla transferi gerçekleştirin",
-            "onePhone": "Telefon numarasını kopyalayın ve bank uygulamanıza geçin",
-            "twoPhone": "Telefon numarasıyla transfer yapın",
-            "onAmount": "miktara",
-            "pressButton": "Düğmeye basın",
-            "payed": "Ödendi"
-        },
         "steps_transgran_simple": {
             "tbankTitle": "T-bank talimatı",
             "steps": "Banka uygulamasını açın|Düğmeye basın (telefon numarasına transfer)|Ülke koduna dokunun ve {{country}} ({{code}}) seçin|Belirtilen telefon numarasını girin|Banka listesinden formda belirtilen bankayı seçin|Tutarı girin ve (transfer) düğmesine basın"
@@ -69,7 +60,7 @@
             "vtbbank": "“Ödemeler” bölümünü açın|“Başka bir ülkeye” seçin|Listeden “{{country}}”ı seçin|“Telefon numarası ile transfer” seçin|Listeden yukarıda belirtilen bankı seçin|Yukarıda belirtilen telefon numarasını girin|“Gönder” düğmesine basın"
         },
         "steps_with_check": {
-            "steps": "{{requisite}} bilgisini kopyalayın ve bankanızın uygulamasını açın|{{bankName}} bankasına {{requisite}} alıcısına {{amount}} tutarında havale yapın|Ödeme makbuzunu mutlaka ekleyin|“Transferi Onayla” butonuna basın",
+            "steps": "{{requisite}} bilgisini kopyalayın ve bankanızın uygulamasını açın|{{bankName}} bankasına {{requisite}} alıcısına {{amount}} tutarında havale yapın|Ödeme makbuzunu mutlaka ekleyin|“{{buttonName}}” butonuna basın",
             "phoneNumber": "Telefon numarası",
             "cardNumber": "Kart numarası"
         },

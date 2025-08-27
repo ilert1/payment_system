@@ -45,15 +45,6 @@
             "steps_card": "Copy the card number and open your banking app|Make a transfer in {{bankName}} by card number for the amount of {{amount}}|Press the {{buttonName}} button",
             "steps_phone": "Copy the phone number and open your banking app|Make a transfer in {{bankName}} by phone number for the amount of {{amount}}|Press the {{buttonName}} button"
         },
-        "steps_new": {
-            "one": "Copy the phone number and go to your bank application",
-            "two": "Make the transfer using the card number",
-            "onePhone": "Copy the phone number and go to your bank app",
-            "twoPhone": "Make a transfer using the phone number",
-            "onAmount": "for the amount",
-            "pressButton": "Press the button",
-            "payed": "Paid"
-        },
         "steps_transgran_simple": {
             "tbankTitle": "T-bank instructions",
             "steps": "Open the banking app|Press the button (transfer to phone number)|Tap the country code and select {{country}} ({{code}})|Enter the specified phone number|From the bank list, select the bank as shown in the form|Enter the amount and press the (transfer) button"
@@ -69,7 +60,7 @@
             "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
         "steps_with_check": {
-            "steps": "Copy {{requisite}} and open your banking app|Make a transfer to {{requisite}} in {{bankName}} for the amount of {{amount}}|Be sure to attach the payment receipt|Click the “Confirm Transfer” button",
+            "steps": "Copy {{requisite}} and open your banking app|Make a transfer to {{requisite}} in {{bankName}} for the amount of {{amount}}|Be sure to attach the payment receipt|Click the “{{buttonName}}” button",
             "phoneNumber": "phone number",
             "cardNumber": "card number"
         },

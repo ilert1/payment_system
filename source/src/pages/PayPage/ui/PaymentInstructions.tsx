@@ -78,6 +78,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         requisite: t(`steps_with_check.${trader?.phone_number ? "phoneNumber" : "cardNumber"}`, ns),
                         bankName: bankName,
                         amount: `${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                        buttonName: t("approveTransfer", ns),
                         ...ns
                     })}
                     start={0}
