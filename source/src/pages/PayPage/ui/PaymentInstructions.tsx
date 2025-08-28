@@ -1,7 +1,7 @@
 import React from "react";
-import { Instruction } from "./Instruction";
+// import { Instruction } from "./Instruction";
 import { InstructionItems } from "./InstructionItems";
-import { DefaultInstructionItems } from "./DefaultInstructionItems";
+// import { DefaultInstructionItems } from "./DefaultInstructionItems";
 import ExternalPayInfo from "@/widgets/ExternalPayInfo";
 import { useBFStore } from "@/shared/store/bfDataStore";
 
@@ -14,8 +14,8 @@ interface PaymentInstructionsProps {
     getCurrencySymbol: (currency: string) => string;
     t: any;
     ns: any;
-    activeAccordion: number | null;
-    setActiveAccordion: (i: number | null) => void;
+    /* activeAccordion: number | null;
+    setActiveAccordion: (i: number | null) => void; */
 }
 
 const azn = "azn";
@@ -31,9 +31,9 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     dest,
     getCurrencySymbol,
     t,
-    ns,
-    activeAccordion,
-    setActiveAccordion
+    ns
+    /* activeAccordion,
+    setActiveAccordion */
 }) => {
     const BFData = useBFStore(state => state.BFData);
     const isConfirmTypeFile = BFData?.[dest]?.method?.context?.confirm_type === "file";
@@ -55,7 +55,6 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         code: caseName === tjs ? "+992" : "+994",
                         ...ns
                     })}
-                    start={0}
                 />
             </div>
         );
@@ -75,12 +74,15 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
                 <InstructionItems
                     data={t("steps_with_check.steps", {
-                        requisite: t(`steps_with_check.${trader?.phone_number ? "phoneNumber" : "cardNumber"}`, ns),
+                        requisite: t(
+                            `steps_with_check.${trader?.phone || trader?.phone_number ? "phoneNumber" : "cardNumber"}`,
+                            ns
+                        ),
                         bankName: bankName,
                         amount: `${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                        buttonName: t("approveTransfer", ns),
                         ...ns
                     })}
-                    start={0}
                 />
             </div>
         );
@@ -95,7 +97,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div>
 
-                <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} start={0} />
+                <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} />
             </div>
         );
     }
@@ -110,7 +112,6 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
                         ...ns
                     })}
-                    start={0}
                 />
             </div>
         );
@@ -128,11 +129,13 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // Default case
     return (
         <div className="instructions_new">
-            <DefaultInstructionItems
-                trader={trader}
-                bankName={bankName}
-                amount={BFData?.[dest]?.amount ?? ""}
-                currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
+            <InstructionItems
+                data={t(`default_steps.${trader?.phone || trader?.phone_number ? "steps_phone" : "steps_card"}`, {
+                    amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                    bankName: bankName,
+                    buttonName: t("approveTransfer", ns),
+                    ...ns
+                })}
             />
         </div>
     );

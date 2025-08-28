@@ -41,25 +41,13 @@
         "withoutComments": "O‘tkazmaga izohsiz",
         "selectFile": "Chekni biriktiring",
         "changeCheck": "CHEK-ni almashtiring",
-        "steps": {
-            "open": "Ochish",
-            "transfer": "O'tkazish",
-            "wholeAmount": "to'liq miqdor",
-            "approveTransfer": "O'tkazmani tasdiqlash",
-            "openYourBankApp": "Bank ilovangizni oching"
-        },
-        "steps_new": {
-            "one": "Telefon raqamini nusxalab bank ilovasiga o'ting",
-            "two": "Kartaga o'tkazma qiling",
-            "onePhone": "Telefon raqamini nusxalang va bankingiz ilovasiga o'ting",
-            "twoPhone": "Telefon raqami orqali pul o'tkazing",
-            "onAmount": "miqdorda",
-            "pressButton": "Tugmani bosing",
-            "payed": "To'landi"
+        "default_steps": {
+            "steps_card": "Karta raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida karta raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing",
+            "steps_phone": "Telefon raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida telefon raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing"
         },
         "steps_transgran_simple": {
             "tbankTitle": "T-bank yo‘riqnoma",
-            "steps": "Bank ilovasini oching|Tugmani bosing (telefon raqamiga o‘tkazish)|Mamlakat kodiga bosing va {{country}} ({{code}}) ni tanlang|Ko‘rsatilgan telefon raqamini kiriting|Banklar ro‘yxatidan shaklda ko‘rsatilgan bankni tanlang|Summani kiriting va (o‘tkazish) tugmasini bosing"
+            "steps": "Bank ilovasini oching|Tugmani bosing (<s>telefon raqamiga o‘tkazish</s>)|Mamlakat kodiga bosing va <s>{{country}} ({{code}})</s> ni tanlang|Ko‘rsatilgan telefon raqamini kiriting|Banklar ro‘yxatidan shaklda ko‘rsatilgan bankni tanlang|Summani kiriting va (<s>o‘tkazish</s>) tugmasini bosing"
         },
         "steps_transgran": {
             "one": "Ko'rsatilgan telefon raqamini nusxalang",
@@ -72,19 +60,19 @@
             "vtbbank": "«Toʻlovlar» boʻlimini oching|«Boshqa mamlakatga» tanlang|Roʻyxatdan «{{country}}» ni tanlang|«Telefon raqami orqali oʻtkazma» tanlang|Roʻyxatdan yuqorida koʻrsatilgan bankni tanlang|Yuqorida koʻrsatilgan telefon raqamini kiriting|«Oʻtkazish» tugmasini bosing"
         },
         "steps_with_check": {
-            "steps": "{{requisite}} ni nusxa oling va bank ilovasiga o‘ting|{{bankName}} bankiga {{requisite}} raqamiga {{amount}} summasida pul o‘tkazing|To‘lov chekini albatta biriktiring|“O‘tkazmani tasdiqlash” tugmasini bosing",
+            "steps": "{{requisite}} ni nusxa oling va bank ilovasiga o‘ting|<s>{{bankName}}</s> bankiga {{requisite}} raqamiga <s>{{amount}}</s> summasida pul o‘tkazing|To‘lov chekini albatta biriktiring|<s>“{{buttonName}}”</s> tugmasini bosing",
             "phoneNumber": "Telefon raqami",
             "cardNumber": "Karta raqami"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank orqali to‘lov yo‘riqnoma",
-            "tbank": "Bank ilovasini oching (T-Bank)|(To‘lash) tugmasini bosing|(Karta raqami orqali o‘tkazma) bo‘limini tanlang|Ko‘rsatilgan karta raqamini joylashtiring|Arizada ko‘rsatilgan summa kiriting|(O‘tkazish) tugmasini bosing"
+            "tbank": "Bank ilovasini oching (<s>T-Bank</s>)|(<s>To‘lash</s>) tugmasini bosing|(<s>Karta raqami orqali o‘tkazma</s>) bo‘limini tanlang|Ko‘rsatilgan karta raqamini joylashtiring|Arizada ko‘rsatilgan summa kiriting|(<s>O‘tkazish</s>) tugmasini bosing"
         },
         "steps_azn": {
-            "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|Sber ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — \"boshqa mamlakatga o'tkazma\"|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud \"E-wallet\" ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, \"To'lovni yakunlash\" tugmasini bosing"
+            "sberbank": "Ko'rsatilgan telefon raqamini nusxalang|<s>Sber</s> ilovasini oching|Telefon raqami orqali pul o'tkazish funksiyasini tanlang — <s>\"boshqa mamlakatga o'tkazma\"</s>|Keyin ilovada manzil mamlakatni belgilang — Ozarbayjon|Avval nusxalangan telefon raqamini kiriting|Mavjud <s>\"E-wallet\"</s> ro'yxatidan ko'rsatilgan bankni tanlang|Saytda ko'rsatilgan aniq summani kiriting|Ma'lumotlarni tekshirib, <s>\"To'lovni yakunlash\"</s> tugmasini bosing"
         },
         "steps_iban": {
-            "iban": "Iban рақамини нусхаланг|Банк иловангизни очинг|«Пул юбориш» функциясини танланг|Кейин > «Бошқа қабул қилувчига ўтказма» функциясини танланг|«Қабул қилувчи маълумотлари» ойнасига > Аввал нусхаланган Iban рақамини киритинг|Қабул қилувчининг «Фамилияси ва Исми»ни киритинг|Сайтда кўрсатилган аниқ суммани киритинг|Маълумотларни текшириб, «Тасдиқлаш» тугмасини босинг"
+            "iban": "Iban рақамини нусхаланг|Банк иловангизни очинг|<s>\"Пул юбориш\"</s> функциясини танланг|Кейин > <s>\"Бошқа қабул қилувчига ўтказма\"</s> функциясини танланг|<s>\"Қабул қилувчи маълумотлари\"</s> ойнасига > Аввал нусхаланган Iban рақамини киритинг|Қабул қилувчининг <s>\"Фамилияси ва Исми\"</s>ни киритинг|Сайтда кўрсатилган аниқ суммани киритинг|Маълумотларни текшириб, <s>\"Тасдиқлаш\"</s> тугмасини босинг"
         },
         "steps_transgran_new": {
             "title": {

@@ -41,25 +41,13 @@
         "withoutComments": "Without comments to the transfer",
         "selectFile": "Attach receipt",
         "changeCheck": "Replace receipt",
-        "steps": {
-            "open": "Open",
-            "transfer": "Transfer",
-            "wholeAmount": "in one amount",
-            "approveTransfer": "Approve transfer",
-            "openYourBankApp": "Open your bank app"
-        },
-        "steps_new": {
-            "one": "Copy the phone number and go to your bank application",
-            "two": "Make the transfer using the card number",
-            "onePhone": "Copy the phone number and go to your bank app",
-            "twoPhone": "Make a transfer using the phone number",
-            "onAmount": "for the amount",
-            "pressButton": "Press the button",
-            "payed": "Paid"
+        "default_steps": {
+            "steps_card": "Copy the card number and open your banking app|Make a transfer in <s>{{bankName}}</s> by card number for the amount of <s>{{amount}}</s>|Press the <s>“{{buttonName}}”</s> button",
+            "steps_phone": "Copy the phone number and open your banking app|Make a transfer in <s>{{bankName}}</s> by phone number for the amount of <s>{{amount}}</s>|Press the <s>“{{buttonName}}”</s> button"
         },
         "steps_transgran_simple": {
             "tbankTitle": "T-bank instructions",
-            "steps": "Open the banking app|Press the button (transfer to phone number)|Tap the country code and select {{country}} ({{code}})|Enter the specified phone number|From the bank list, select the bank as shown in the form|Enter the amount and press the (transfer) button"
+            "steps": "Open the banking app|Press the button (<s>transfer to phone number</s>)|Tap the country code and select <s>{{country}} ({{code}})</s>|Enter the specified phone number|From the bank list, select the bank as shown in the form|Enter the amount and press the (<s>transfer</s>) button"
         },
         "steps_transgran": {
             "one": "Copy the specified phone number",
@@ -72,19 +60,19 @@
             "vtbbank": "Open the 'Payments' section|Select 'To another country'|Choose '{{country}}' from the list|Select 'Transfer by phone number'|Choose the bank from the list as indicated above|Enter the phone number as indicated above|Press the 'Transfer' button"
         },
         "steps_with_check": {
-            "steps": "Copy {{requisite}} and open your banking app|Make a transfer to {{requisite}} in {{bankName}} for the amount of {{amount}}|Be sure to attach the payment receipt|Click the “Confirm Transfer” button",
+            "steps": "Copy {{requisite}} and open your banking app|Make a transfer to {{requisite}} in <s>{{bankName}}</s> for the amount of <s>{{amount}}</s>|Be sure to attach the payment receipt|Click the <s>“{{buttonName}}”</s> button",
             "phoneNumber": "phone number",
             "cardNumber": "card number"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank Payment Instruction",
-            "tbank": "Open the bank app (T-Bank)|Tap the (Pay) button|Select the (Transfer by card number) section|Paste the specified card number|Enter the transfer amount as in the request|Tap the (Transfer) button"
+            "tbank": "Open the bank app (<s>T-Bank</s>)|Tap the (<s>Pay</s>) button|Select the (<s>Transfer by card number</s>) section|Paste the specified card number|Enter the transfer amount as in the request|Tap the (<s>Transfer</s>) button"
         },
         "steps_azn": {
-            "sberbank": "Copy the specified phone number|Open the Sber app|Select the transfer by phone number function — \"transfer to another country\"|Then, in the app, specify the destination country — Azerbaijan|Paste the previously copied phone number|Select the specified bank from the available \"E-wallet\" list|Enter the exact amount specified on the website|Check the details and click the \"Complete payment\" button"
+            "sberbank": "Copy the specified phone number|Open the <s>Sber</s> app|Select the transfer by phone number function — <s>\"transfer to another country\"</s>|Then, in the app, specify the destination country — Azerbaijan|Paste the previously copied phone number|Select the specified bank from the available <s>\"E-wallet\"</s> list|Enter the exact amount specified on the website|Check the details and click the <s>\"Complete payment\"</s> button"
         },
         "steps_iban": {
-            "iban": "Copy the Iban Number|Open your bank app|Select the “Send Money” function|Next > Select the “Transfer to Another Recipient” function|In the “Recipient Details” window > Paste the previously copied Iban|Enter the recipient's “Last Name and First Name”|Enter the exact amount specified on the website|Check the details and click the “Confirm” button"
+            "iban": "Copy the Iban Number|Open your bank app|Select the <s>\"Send Money\"</s> function|Next > Select the <s>\"Transfer to Another Recipient\"</s> function|In the <s>\"Recipient Details\"</s> window > Paste the previously copied Iban|Enter the recipient's <s>\"Last Name and First Name\"</s>|Enter the exact amount specified on the website|Check the details and click the <s>\"Confirm\"</s> button"
         },
         "steps_transgran_new": {
             "title": {
@@ -99,7 +87,7 @@
             }
         },
         "steps_transgran_abh": {
-            "steps": "Copy the phone number|In the Sber app, tap 'Transfer'|Select another country, then {{country}}|Paste the phone number|Select A-Mobile Wallet|Enter the amount {{amount}} and tap Approve"
+            "steps": "Copy the phone number|In the Sber app, tap <s>'Transfer'</s>|Select another country, then <s>{{country}}</s>|Paste the phone number|Select <s>A-Mobile Wallet</s>|Enter the amount <s>{{amount}}</s> and tap <s>Approve</s>"
         },
         "check_load_errors": {
             "generalError": "An error occurred while sending data. Please try again",

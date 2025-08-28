@@ -1,7 +1,28 @@
 interface InstructionItemsProps {
-    start: number;
+    start?: number;
     data: string;
 }
+
+const parseWithSpan = (str: string) => {
+    const parts = str.split(/(<s>|<\/s>)/g);
+    let inside = false;
+
+    return parts.map((part, i) => {
+        if (part.startsWith("<s")) {
+            inside = true;
+            return null;
+        }
+        if (part === "</s>") {
+            inside = false;
+            return null;
+        }
+        return inside ? <span key={i}>{part}</span> : part;
+    });
+};
+
+const LocalizedHtml = ({ text }: { text: string }) => {
+    return <>{parseWithSpan(text)}</>;
+};
 
 export const InstructionItems = (props: InstructionItemsProps) => {
     const { start = 0, data = "" } = props;
@@ -10,7 +31,7 @@ export const InstructionItems = (props: InstructionItemsProps) => {
             {data.split("|").map((item, index) => (
                 <li key={index}>
                     <span>{start + index + 1}. </span>
-                    {item}
+                    <LocalizedHtml text={item} />
                 </li>
             ))}
         </ul>
