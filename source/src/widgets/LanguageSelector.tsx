@@ -1,3 +1,4 @@
+import { useAppContext } from "@/AppContext";
 import { useMemo, useState } from "react";
 
 interface LanguageSelectorProps {
@@ -17,6 +18,8 @@ const LangVariants = {
 };
 
 const LanguageSelector = (props: LanguageSelectorProps) => {
+    const { ym } = useAppContext();
+
     const { lang = "en", setLang } = props;
 
     const [dropDown, setDropDown] = useState(false);
@@ -34,6 +37,8 @@ const LanguageSelector = (props: LanguageSelectorProps) => {
                         className="flag-container"
                         data-lang={langItem}
                         onClick={() => {
+                            console.log(`selected lang: ${langItem}`);
+                            ym("reachGoal", "lang-select", { selectedLang: langItem });
                             setLang(langItem);
                         }}>
                         <p className="lang-name">{langItem.toUpperCase()}</p>
