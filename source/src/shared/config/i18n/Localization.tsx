@@ -12,6 +12,7 @@ import translationTJ from "@/shared/assets/locales/tg-TJ.json";
 import translationTR from "@/shared/assets/locales/tr-TR.json";
 import translationUA from "@/shared/assets/locales/uk-UA.json";
 import translationUZ from "@/shared/assets/locales/uz-UZ.json";
+import translationES from "@/shared/assets/locales/es-ES.json";
 
 // the translations
 // (tip move them in a JSON file and import them,
@@ -25,7 +26,8 @@ const resources = {
     tg: translationTJ,
     tr: translationTR,
     uk: translationUA,
-    uz: translationUZ
+    uz: translationUZ,
+    es: translationES
 };
 
 export const getLanguage = () => {

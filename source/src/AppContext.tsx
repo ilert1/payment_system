@@ -80,6 +80,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const [caseName, setCaseName] = useState("");
 
     useEffect(() => {
+        console.log("lang", lang);
+
         i18n.changeLanguage(lang);
         localStorage.setItem("language", lang);
     }, [lang]);
