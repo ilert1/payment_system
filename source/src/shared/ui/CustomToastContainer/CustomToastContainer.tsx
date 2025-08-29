@@ -22,6 +22,7 @@ export function CustomToastContainer() {
             theme="light"
             transition={Slide}
             closeButton={CloseButton}
+            data-testid="custom-toast-container"
         />
     );
 }

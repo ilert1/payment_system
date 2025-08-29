@@ -11,6 +11,7 @@ import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import styles from "./MainPage.module.scss";
 
 export const MainPage = () => {
@@ -45,9 +46,7 @@ export const MainPage = () => {
     //translation
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             {!BFData?.[dest]?.method ? (
                 <div className="content">
                     <div className="loader-container">
@@ -87,6 +86,6 @@ export const MainPage = () => {
             )}
 
             <Outlet />
-        </div>
+        </Page>
     );
 };

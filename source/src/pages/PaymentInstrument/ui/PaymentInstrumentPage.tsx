@@ -6,7 +6,7 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import { PayInstruments } from "@/widgets/PayInstruments";
 import styles from "./PaymentInstrumentPage.module.scss";
 
@@ -92,8 +92,7 @@ const PaymentInstrumentPage = () => {
     };
 
     return (
-        <div className="container">
-            <Header />
+        <Page>
             <div className="content">
                 <h1>{t("amount", ns)}</h1>
                 <div className={styles.amountContainer}>
@@ -109,7 +108,7 @@ const PaymentInstrumentPage = () => {
                 nextPage={`/${BFData?.[dest]?.id}/${AppRoutes.PAYER_DATA_PAGE}`}
                 nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false}
             />
-        </div>
+        </Page>
     );
 };
 

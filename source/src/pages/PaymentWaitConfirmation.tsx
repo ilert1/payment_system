@@ -1,13 +1,11 @@
 import Loader from "@/shared/ui/Loader";
 import Timer from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 
 const PaymentWaitConfirmation = () => {
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <div className="header-container grow">
                     <h1>Прикрепленный файл на проверке</h1>
@@ -23,7 +21,7 @@ const PaymentWaitConfirmation = () => {
             </div>
 
             <Footer />
-        </div>
+        </Page>
     );
 };
 

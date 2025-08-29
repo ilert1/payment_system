@@ -1,10 +1,10 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
 import { Loader } from "../shared/ui/Loader";
 import { Timer } from "../shared/ui/Timer";
 import { Footer } from "../widgets/Footer";
-import { Header } from "../widgets/Header";
 
 const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();
@@ -31,9 +31,7 @@ const PayeeDataPage = () => {
     };
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <div className="header-container grow">
                     <h1>
@@ -65,7 +63,7 @@ const PayeeDataPage = () => {
                         : false
                 }
             />
-        </div>
+        </Page>
     );
 };
 

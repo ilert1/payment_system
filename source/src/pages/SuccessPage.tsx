@@ -1,10 +1,10 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
 import Clock from "../shared/assets/images/clock.svg?react";
 import Timer from "../shared/ui/Timer";
 import { Footer } from "../widgets/Footer";
-import { Header } from "../widgets/Header";
 
 const SuccessPage = () => {
     const { t, getCurrencySymbol, payoutMode, ym } = useAppContext();
@@ -27,9 +27,7 @@ const SuccessPage = () => {
     };
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <div className="header-container grow wide center">
                     <h1 style={{ textAlign: "center" }}>{t(payoutMode ? "payoutHeader" : "header", ns)}</h1>
@@ -62,7 +60,7 @@ const SuccessPage = () => {
                 noIcon={true}
                 showCancelBtn={false}
             />
-        </div>
+        </Page>
     );
 };
 

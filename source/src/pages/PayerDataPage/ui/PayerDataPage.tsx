@@ -10,6 +10,7 @@ import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumb
 import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 
 const PayerDataPage = () => {
@@ -108,8 +109,7 @@ const PayerDataPage = () => {
     }, [waitTransfer]);
 
     return (
-        <div className="container">
-            <Header />
+        <Page>
             <div className="content cardPage">
                 {isEcom ? (
                     !isFetching && !waitTransfer ? (
@@ -146,7 +146,7 @@ const PayerDataPage = () => {
                     focused={buttonFocused}
                 />
             )}
-        </div>
+        </Page>
     );
 };
 

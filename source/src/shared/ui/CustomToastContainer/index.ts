@@ -1,1 +1,1 @@
-export { CustomToastContainer } from "./ui/CustomToastContainer";
+export { CustomToastContainer } from "./CustomToastContainer";

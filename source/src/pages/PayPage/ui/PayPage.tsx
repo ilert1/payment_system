@@ -12,7 +12,7 @@ import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import Loader from "@/shared/ui/Loader";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import { PayHeader } from "@/widgets/PayHeader";
 import { PayeeData } from "@/widgets/PayeeData";
 import { PaymentInstructions } from "./PaymentInstructions";
@@ -244,8 +244,7 @@ const PayPage = () => {
     });
 
     return (
-        <div className="container">
-            <Header />
+        <Page>
             {!trader || isFetching_BFData ? (
                 <div className="content">
                     <div className="loader-container">
@@ -323,7 +322,7 @@ const PayPage = () => {
                     />
                 </>
             )}
-        </div>
+        </Page>
     );
 };
 

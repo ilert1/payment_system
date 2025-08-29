@@ -7,7 +7,7 @@ import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
 import { Timer } from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import styles from "./PaymentConfirmationPage.module.scss";
 
 const DropZoneContent = () => {
@@ -42,9 +42,7 @@ export const PaymentConfirmationPage = () => {
     const fileTypes = ["JPG", "PNG", "GIF"];
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <h1 className="grow">Подтверждение оплаты</h1>
                 <div className={styles.confirmationDeadlineInfo}>
@@ -81,6 +79,6 @@ export const PaymentConfirmationPage = () => {
                 nextPage={AppRoutes.PAYMENT_WAIT_CONFIRMATION}
                 nextEnabled={!!file}
             />
-        </div>
+        </Page>
     );
 };

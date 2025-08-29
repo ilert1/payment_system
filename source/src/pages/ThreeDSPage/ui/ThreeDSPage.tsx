@@ -1,11 +1,11 @@
 import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import { ThreeDsForm } from "@/widgets/ThreeDsForm";
 
 export const ThreeDSPage = () => {
     return (
-        <div className="container">
-            <Header />
+        <Page>
             <ThreeDsForm />
-        </div>
+        </Page>
     );
 };

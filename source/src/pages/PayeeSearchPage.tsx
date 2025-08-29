@@ -3,7 +3,7 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import { ProgressSteper } from "@/widgets/ProgressSteper";
 
 const PayeeSearchPage = () => {
@@ -38,9 +38,7 @@ const PayeeSearchPage = () => {
     }, []);
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <h1 className="grow">
                     {t("lookingFor", ns)} {BFData?.[dest]?.amount}&nbsp;
@@ -51,7 +49,7 @@ const PayeeSearchPage = () => {
             </div>
 
             <Footer buttonCaption={t("approve", ns)} approve={true} />
-        </div>
+        </Page>
     );
 };
 

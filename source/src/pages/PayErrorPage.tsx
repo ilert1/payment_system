@@ -5,7 +5,7 @@ import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Timer from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 
 const PayErrorPage = ({ notFound = false }) => {
     const { ym } = useAppContext();
@@ -29,9 +29,7 @@ const PayErrorPage = ({ notFound = false }) => {
     const ns = { ns: "PayError" };
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <div className="header-container grow">
                     {!notFound ? <h1>{t("payError", ns)}</h1> : <h1>{t("notFound", ns)}</h1>}
@@ -65,7 +63,7 @@ const PayErrorPage = ({ notFound = false }) => {
                 noIcon={true}
                 showCancelBtn={false}
             />
-        </div>
+        </Page>
     );
 };
 

@@ -11,6 +11,9 @@ const config: Config = {
     transform: {
         "^.+\\.(ts|tsx)$": "ts-jest"
     },
+    moduleNameMapper: {
+        "\\.(css|scss)$": "identity-obj-proxy"
+    },
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     testMatch: ["<rootDir>/src/**/*.test.(ts|tsx|js)", "<rootDir>/src/**/*.test.(ts|tsx|js)"],
     collectCoverageFrom: ["src/**/*.(ts|tsx)", "!src/**/*.d.ts", "!src/index.tsx", "!src/serviceWorker.ts"]
