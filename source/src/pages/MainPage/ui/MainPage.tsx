@@ -17,6 +17,8 @@ import styles from "./MainPage.module.scss";
 export const MainPage = () => {
     const { fingerprintConfig, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setStatus = useBFStore(state => state.setStatus);
+
     const payOutMode = Boolean(BFData?.payout);
     const ns = { ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] };
     const { t } = useTranslation(payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"]);
@@ -35,9 +37,26 @@ export const MainPage = () => {
                 },
                 fingerprintConfig
             )
+            .then(res => {
+                const data = res.data;
+                if (!data.success) {
+                    if (data?.error == "8001") {
+                        if (data?.state) setStatus(data.state);
+                    } else {
+                        throw new Error(data?.error_details ? data.error_details : data?.error);
+                    }
+                }
+            })
             .catch(e => {
-                console.log(e);
+                ym("reachGoal", "error-message", { error: e?.message });
+
+                toast.error(t("check_load_errors.generalError", ns), {
+                    closeButton: <></>,
+                    autoClose: 2000
+                });
+                return e;
             });
+
         console.log(data);
     };
 

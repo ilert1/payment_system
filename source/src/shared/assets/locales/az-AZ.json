@@ -41,25 +41,13 @@
         "withoutComments": "Köçürməyə şərh yazılmadan",
         "selectFile": "Çek əlavə edin",
         "changeCheck": "ÇEK-i dəyişdirin",
-        "steps": {
-            "open": "Aç",
-            "transfer": "Köçür",
-            "wholeAmount": "bütün məbləği",
-            "approveTransfer": "Köçürməni təsdiqlə",
-            "openYourBankApp": "Bank tətbiqinizi açın"
-        },
-        "steps_new": {
-            "one": "Telefon nömrəsini kopyalayın və bank tətbiqinizi açın",
-            "two": "Kart nömrəsinə köçürmə edin",
-            "onePhone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin",
-            "twoPhone": "Telefon nömrəsi ilə köçürmə edin",
-            "onAmount": "məbləğə",
-            "pressButton": "Düyməyə basın",
-            "payed": "Ödənilib"
+        "default_steps": {
+            "steps_card": "Kart nömrəsini kopyalayın və bank tətbiqinizə keçin|<s>{{bankName}}</s>-də kart nömrəsi üzrə <s>{{amount}}</s> məbləğində köçürmə edin|<s>“{{buttonName}}”</s> düyməsini basın",
+            "steps_phone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin|<s>{{bankName}}</s>-də telefon nömrəsi üzrə <s>{{amount}}</s> məbləğində köçürmə edin|<s>“{{buttonName}}”</s> düyməsini basın"
         },
         "steps_transgran_simple": {
             "tbankTitle": "T-bank təlimatı",
-            "steps": "Bank tətbiqini açın|Düyməni basın (telefon nömrəsinə köçürmək)|Ölkə koduna toxunun və {{country}} ({{code}}) seçin|Göstərilən telefon nömrəsini daxil edin|Banklar siyahısından formda göstərilən bankı seçin|Məbləği daxil edin və (köçürmək) düyməsini basın"
+            "steps": "Bank tətbiqini açın|Düyməni basın (<s>telefon nömrəsinə köçürmək</s>)|Ölkə koduna toxunun və <s>{{country}} ({{code}})</s> seçin|Göstərilən telefon nömrəsini daxil edin|Banklar siyahısından formda göstərilən bankı seçin|Məbləği daxil edin və (<s>köçürmək</s>) düyməsini basın"
         },
         "steps_transgran": {
             "one": "Göstərilən telefon nömrəsini kopyalayın",
@@ -72,19 +60,19 @@
             "vtbbank": "“Ödənişlər” bölməsini açın|“Başqa ölkəyə” seçin|Siyahıdan “{{country}}”ı seçin|“Telefon nömrəsi ilə köçürmə” seçin|Siyahıdan yuxarıda göstərilən bankı seçin|Yuxarıda göstərilən telefon nömrəsini daxil edin|“Köçürmək” düyməsini basın"
         },
         "steps_with_check": {
-            "steps": "{{requisite}} məlumatını kopyalayın və bank tətbiqinizə keçin|{{bankName}} bankına {{requisite}} məlumatı üzrə {{amount}} məbləğində köçürmə edin|Ödəmə çeki mütləq əlavə olunmalıdır|“Köçürməni təsdiqlə” düyməsinə basın",
+            "steps": "{{requisite}} məlumatını kopyalayın və bank tətbiqinizə keçin|<s>{{bankName}}</s> bankına {{requisite}} məlumatı üzrə <s>{{amount}}</s> məbləğində köçürmə edin|Ödəmə çeki mütləq əlavə olunmalıdır|<s>“{{buttonName}}”</s> düyməsinə basın",
             "phoneNumber": "Telefon nömrəsi",
             "cardNumber": "Kart nömrəsi"
         },
         "steps_transgran_tcard2card": {
             "tbankTitle": "T-Bank vasitəsilə ödəniş təlimatı",
-            "tbank": "Bank tətbiqini açın (T-Bank)|(Ödə) düyməsini basın|(Kart nömrəsinə köçürmə) bölməsini seçin|Göstərilən kart nömrəsini yapışdırın|Məbləği müraciətdə göstərildiyi kimi daxil edin|(Köçürmək) düyməsini basın"
+            "tbank": "Bank tətbiqini açın (<s>T-Bank</s>)|(<s>Ödə</s>) düyməsini basın|(<s>Kart nömrəsinə köçürmə</s>) bölməsini seçin|Göstərilən kart nömrəsini yapışdırın|Məbləği müraciətdə göstərildiyi kimi daxil edin|(<s>Köçürmək</s>) düyməsini basın"
         },
         "steps_azn": {
-            "sberbank": "Göstərilən telefon nömrəsini kopyalayın|Sber tətbiqini açın|Telefon nömrəsi ilə köçürmə funksiyasını seçin — \"başqa ölkəyə köçürmə\"|Sonra tətbiqdə təyinat ölkəsini seçin — Azərbaycan|Əvvəlcə kopyalanmış telefon nömrəsini daxil edin|Mövcud \"E-wallet\" siyahısından göstərilən bankı seçin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və \"Ödənişi tamamlamaq\" düyməsini basın"
+            "sberbank": "Göstərilən telefon nömrəsini kopyalayın|<s>Sber</s> tətbiqini açın|Telefon nömrəsi ilə köçürmə funksiyasını seçin — <s>\"başqa ölkəyə köçürmə\"</s>|Sonra tətbiqdə təyinat ölkəsini seçin — Azərbaycan|Əvvəlcə kopyalanmış telefon nömrəsini daxil edin|Mövcud <s>\"E-wallet\"</s> siyahısından göstərilən bankı seçin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və <s>\"Ödənişi tamamlamaq\"</s> düyməsini basın"
         },
         "steps_iban": {
-            "iban": "Iban nömrəsini kopyalayın|Bank tətbiqinizi açın|«Pul Göndər» funksiyasını seçin|Davam et > «Başqa alıcıya köçürmə» funksiyasını seçin|«Alıcının məlumatları» pəncərəsinə > Əvvəlcə kopyalanmış Iban-ı daxil edin|Alıcının «Soyadı və Adı»nı daxil edin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və «Təsdiqləmək» düyməsini basın"
+            "iban": "Iban nömrəsini kopyalayın|Bank tətbiqinizi açın|<s>\"Pul Göndər\"</s> funksiyasını seçin|Davam et > <s>\"Başqa alıcıya köçürmə\"</s> funksiyasını seçin|«Alıcının məlumatları» pəncərəsinə > Əvvəlcə kopyalanmış Iban-ı daxil edin|Alıcının <s>\"Soyadı və Adı\"</s>nı daxil edin|Saytda göstərilən dəqiq məbləği daxil edin|Məlumatları yoxlayın və <s>\"Təsdiqləmək\"</s> düyməsini basın"
         },
         "steps_transgran_new": {
             "title": {
@@ -99,7 +87,7 @@
             }
         },
         "steps_transgran_abh": {
-            "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində 'köçürmək' düyməsini sıxın|Başqa ölkəyə və sonra {{country}} seçin|Telefon nömrəsini yapışdırın|A-Mobile Cüzdan seçin|{{amount}} məbləğini daxil edin və 'Təsdiqlə' düyməsini basın"
+            "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində <s>'köçürmək'</s> düyməsini sıxın|Başqa ölkəyə və sonra <s>{{country}}</s> seçin|Telefon nömrəsini yapışdırın|<s>A-Mobile Cüzdan</s> seçin|<s>{{amount}}</s> məbləğini daxil edin və <s>'Təsdiqlə'</s> düyməsini basın"
         },
         "check_load_errors": {
             "generalError": "Məlumat göndərilərkən xəta baş verdi. Yenidən cəhd edin",

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useAppContext } from "@/AppContext";
 import { classNames } from "@/shared/lib/classNames";
 import styles from "./LanguageSelector.module.scss";
 
@@ -18,7 +19,9 @@ const LangVariants = {
     uz: "uz-UZ"
 };
 
-export const LanguageSelector = (props: LanguageSelectorProps) => {
+const LanguageSelector = (props: LanguageSelectorProps) => {
+    const { ym } = useAppContext();
+
     const { lang = "en", setLang } = props;
 
     const [dropDown, setDropDown] = useState(false);
@@ -37,6 +40,8 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
                         className={classNames(styles.flagContainer)}
                         data-lang={langItem}
                         onClick={() => {
+                            console.log(`selected lang: ${langItem}`);
+                            ym("reachGoal", "lang-select", { selectedLang: langItem });
                             setLang(langItem);
                         }}>
                         <p>{langItem.toUpperCase()}</p>

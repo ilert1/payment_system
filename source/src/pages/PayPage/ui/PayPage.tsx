@@ -27,6 +27,7 @@ const PayPage = () => {
     ym("reachGoal", "pay-page");
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
+    const setStatus = useBFStore(state => state.setStatus);
     const nav = useNavigate();
     //translation
     const ns = { ns: ["Common", "Pay"] };
@@ -101,15 +102,22 @@ const PayPage = () => {
                 );
 
                 if (!data.success) {
-                    throw new Error(data.error);
+                    if (data?.error == "8001") {
+                        if (data?.state) setStatus(data.state);
+                    } else {
+                        throw new Error(data?.error_details ? data.error_details : data?.error);
+                    }
                 }
 
                 return data;
-            } catch (e) {
+            } catch (e: any) {
+                ym("reachGoal", "error-message", { error: e?.message });
+
                 toast.error(t("check_load_errors.generalError", ns), {
                     closeButton: <></>,
                     autoClose: 2000
                 });
+                return e;
             } finally {
                 setButtonCallbackEnabled(false);
             }
@@ -170,6 +178,9 @@ const PayPage = () => {
                         //данные получены успешно
                         console.log("setBFData");
                         setBfData(data);
+                        if (data?.[dest]?.status) {
+                            setStatus(data?.[dest]?.status);
+                        }
                     } else {
                         //транзакция не найдена или не подлежит оплате
                         console.log(data?.error);
@@ -272,8 +283,8 @@ const PayPage = () => {
                             getCurrencySymbol={getCurrencySymbol}
                             t={t}
                             ns={ns}
-                            activeAccordion={activeAccordion}
-                            setActiveAccordion={setActiveAccordion}
+                            // activeAccordion={activeAccordion}
+                            // setActiveAccordion={setActiveAccordion}
                         />
 
                         <PayeeData

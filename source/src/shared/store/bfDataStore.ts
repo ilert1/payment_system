@@ -41,7 +41,16 @@ export const useBFStore = create<BFStore>((set, get) => ({
                 return;
             }
 
-            set({ BFData: data, status: data?.[dest]?.status, blowfishId: id });
+            //блок для быстрой подстановки нужных данных
+            /* let tmpData = structuredClone(data);
+            tmpData[dest].method.payee.data.bank_name = "a-mobile";
+            tmpData[dest].method.name = "tsbp"; */
+
+            set({
+                BFData: data, //подставить tmpData для тестов
+                status: data?.[dest]?.status,
+                blowfishId: id
+            });
 
             ym?.("reachGoal", "BFData", { BFData: data?.[dest] });
 

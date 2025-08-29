@@ -26,20 +26,28 @@ const App = () => {
             // подключаем SSE
             const es = new EventSource(`${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`);
 
-            es.onopen = () => console.log(">>> Connection opened!");
+            es.onopen = () => {
+                console.log(">>> Connection opened!");
+                ym("reachGoal", "sse-ok");
+            };
 
-            es.onerror = e => console.log("ERROR!", e);
+            es.onerror = e => {
+                console.error("ERROR!", e);
+                ym("reachGoal", "sse-error", { error: e });
+            };
 
             es.onmessage = async e => {
                 try {
                     const resEventData = JSON.parse(e.data);
                     console.log("SSE: ", resEventData);
-
+                    if (resEventData.data.status) {
+                        ym("reachGoal", "status-sse", { status: resEventData.data.status });
+                    }
                     setStatus(resEventData.data.status);
                 } catch (error) {}
             };
 
-            return () => es.close();
+            // return () => es.close();
         }
     }, [BFData?.[dest]?.id]);
 
