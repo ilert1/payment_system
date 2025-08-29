@@ -89,6 +89,9 @@
         "steps_transgran_abh": {
             "steps": "Telefon nömrəsini kopyalayın|Sber tətbiqində <s>'köçürmək'</s> düyməsini sıxın|Başqa ölkəyə və sonra <s>{{country}}</s> seçin|Telefon nömrəsini yapışdırın|<s>A-Mobile Cüzdan</s> seçin|<s>{{amount}}</s> məbləğini daxil edin və <s>'Təsdiqlə'</s> düyməsini basın"
         },
+        "steps_ars": {
+            "steps": "CVU / CBU nömrəsini kopyalayın|Alıcının adını kopyalayın (əgər lazım olsa)|Bank tətbiqinizi açın|<s>{{amount}}</s> məbləğində köçürmə edin|<s>“{{buttonName}}”</s> düyməsini basın"
+        },
         "check_load_errors": {
             "generalError": "Məlumat göndərilərkən xəta baş verdi. Yenidən cəhd edin",
             "fileSize": "Faylın ölçüsü 3MB-dan çoxdur",

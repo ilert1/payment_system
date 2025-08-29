@@ -23,6 +23,9 @@ export const formatedRequisite = (req: string, isPhone: boolean, caseName: strin
                 return req.replace(/^\+?(\d{1})(\d{3})(\d{3})(\d{4})$/, "+$1 ($2) $3 $4");
             }
         } else {
+            if (caseName === "ars") {
+                return req;
+            }
             return req.replace(/(.{4})/g, "$1 ");
         }
     }
@@ -91,7 +94,12 @@ const PayeeData = (props: PayeeDataProps) => {
                 messageOnCopy={t("copyedAmount", ns)}
             />
             {trader?.card_holder && (
-                <PayeeDataItem Img={User2Icon} label={t("payee", ns)} value={trader?.card_holder} />
+                <PayeeDataItem
+                    Img={User2Icon}
+                    label={t("payee", ns)}
+                    value={trader?.card_holder}
+                    copyData={caseName === "ars" ? trader?.card_holder : ""}
+                />
             )}
         </div>
     );

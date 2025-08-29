@@ -22,6 +22,7 @@ const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
+const ars = "ars";
 
 export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     caseName,
@@ -121,7 +122,23 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     if (caseName === iban) {
         return (
             <div className="instructions_new transgran">
-                <InstructionItems data={t("steps_iban.iban", ns)} start={0} />
+                <InstructionItems data={t("steps_iban.iban", ns)} />
+            </div>
+        );
+    }
+
+    // ARS case
+    if (caseName === ars) {
+        return (
+            <div className="instructions_new transgran">
+                <InstructionItems
+                    data={t("steps_ars.steps", {
+                        amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                        bankName: bankName,
+                        buttonName: t("approveTransfer", ns),
+                        ...ns
+                    })}
+                />
             </div>
         );
     }

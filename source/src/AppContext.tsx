@@ -46,6 +46,7 @@ const azn = "azn";
 const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
+const ars = "ars";
 
 // eslint-disable-next-line react/prop-types
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
@@ -268,9 +269,16 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             console.log(`caseName: abh`);
         }
 
+        //IBAN case check
         if (traderBankName && trader?.iban_number) {
             setCaseName(iban);
             console.log(`caseName: iban`);
+        }
+
+        //ARS case check
+        if (BFData?.[dest]?.currency && BFData?.[dest]?.currency === "ARS") {
+            setCaseName(ars);
+            console.log(`caseName: ars`);
         }
     }, [BFData?.[dest]?.currency, bankName, trader]);
 
