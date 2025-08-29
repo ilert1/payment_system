@@ -19,7 +19,7 @@ const LangVariants = {
     uz: "uz-UZ"
 };
 
-const LanguageSelector = (props: LanguageSelectorProps) => {
+export const LanguageSelector = (props: LanguageSelectorProps) => {
     const { ym } = useAppContext();
 
     const { lang = "en", setLang } = props;

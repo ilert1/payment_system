@@ -2,16 +2,12 @@ import getBrowserFingerprint from "get-browser-fingerprint";
 import { createContext, useState, useEffect, useCallback, useContext, startTransition } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-
-import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
-
-import CurrencyLibrary from "./shared/assets/library/Currency.json";
-import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
-
-
 import ym, { YMInitializer } from "react-yandex-metrika";
-import { useBFStore } from "./shared/store/bfDataStore.js";
+import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
+import CurrencyLibrary from "./shared/assets/library/Currency.json";
+import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
+import { useBFStore } from "./shared/store/bfDataStore.js";
 
 export type YmType = typeof ym | (() => void);
 
@@ -166,14 +162,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
+        console.log("STATUS: ", status);
         switch (status) {
             case "paymentAwaitingStart":
                 return AppRoutes.PAGE_MAIN;
             case "paymentAwaitingSelectInstrument":
-            case "paymentPayerSelectingInstrument":
-                // TODO: ВНИМАНИЕ, МОК! ПОТОМ НУЖНО УДАЛИТЬ
-                return AppRoutes.PAGE_THREE_DS;
-            // return AppRoutes.PAGE_PAYMENT_INSTRUMENT;
+                return AppRoutes.PAGE_PAYMENT_INSTRUMENT;
             case "paymentPayerDataEntrу":
             case "paymentPayerDataEntered":
                 return AppRoutes.PAYER_DATA_PAGE;

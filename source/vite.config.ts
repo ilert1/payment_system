@@ -1,30 +1,12 @@
-// import { defineConfig } from "vite";
-// import react from "@vitejs/plugin-react";
-// import svgr from "vite-plugin-svgr";
-
-// const isDev = import.meta.env.ENVIRONMENT === "local";
-
-// // https://vitejs.dev/config/
-// export default defineConfig({
-//     plugins: [react(), svgr({ exportAsDefault: true })],
-//     server: {
-//         host: true
-//     },
-//     css: {
-//         modules: {
-//             generateScopedName: "[path][name]__[local]--[hash:base64:5]"
-//         }
-//     },
-//     base: "/",
-//     resolve: {
-//         alias: [{ find: "@", replacement: "/src" }]
-//     }
-// });
-import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import svgr from "vite-plugin-svgr";
 import path from "path";
+import { fileURLToPath } from "url";
+import { defineConfig } from "vite";
+import svgr from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 export default defineConfig(({ mode }) => {
     return {
         plugins: [
@@ -33,7 +15,8 @@ export default defineConfig(({ mode }) => {
                 svgrOptions: {
                     namedExport: "default"
                 }
-            })
+            }),
+            tsconfigPaths()
         ],
         server: {
             host: true
@@ -48,14 +31,11 @@ export default defineConfig(({ mode }) => {
                 }
             }
         },
-        base: "/",
+        base: "./",
         resolve: {
-            alias: [
-                {
-                    find: "@",
-                    replacement: path.resolve(__dirname, "src")
-                }
-            ]
+            alias: {
+                "@": path.resolve(__dirname, "src")
+            }
         }
     };
 });

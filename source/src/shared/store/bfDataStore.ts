@@ -1,7 +1,7 @@
-import { create } from "zustand";
 import axios from "axios";
-import { AppRoutes } from "@/shared/const/router";
+import { create } from "zustand";
 import { YmType } from "@/AppContext";
+import { AppRoutes } from "../const/router";
 
 type StatusType = string;
 

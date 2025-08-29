@@ -44,7 +44,7 @@ const PayerDataPage = () => {
     const methodName = method?.name;
     const context = method?.context;
 
-    const isEcom = methodName === "ecom";
+    const isEcom = methodName?.includes("ecom");
     const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
 
     const showCardHolder = context?.provider === "BNNPay";
@@ -85,6 +85,7 @@ const PayerDataPage = () => {
 
     const threeDSCallback = () => {
         ym("reachGoal", "external-redirect", { redirect_url: redirectUrl });
+
         window.open(redirectUrl, "_blank");
     };
 
@@ -107,6 +108,10 @@ const PayerDataPage = () => {
             setIsPressed(false);
         }
     }, [waitTransfer]);
+
+    console.log(BFData?.[dest]);
+    console.log(isEcom);
+    console.log("redirectUrl: ", redirectUrl);
 
     return (
         <Page>

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useAppContext } from "@/AppContext";
+import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?react";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
 import { LanguageSelector } from "@/widgets/LanguageSelector";
-import AlertTriangleBig from "../shared/assets/images/alert-triangle-big.svg?react";
 import styles from "./SubmitModal.module.scss";
 
 interface SubmitModalProps {
