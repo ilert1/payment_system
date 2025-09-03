@@ -3,7 +3,6 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,8 +14,7 @@ export default defineConfig(({ mode }) => {
                 svgrOptions: {
                     namedExport: "default"
                 }
-            }),
-            tsconfigPaths()
+            })
         ],
         server: {
             host: true

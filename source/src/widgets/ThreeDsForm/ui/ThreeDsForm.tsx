@@ -43,6 +43,7 @@ export const ThreeDsForm = () => {
             toast.error("Something went wrong");
         }
     };
+
     useEffect(() => {
         console.log(threeDSForm.formState.errors.threeDsCode);
     }, [threeDSForm.formState.errors]);
@@ -57,7 +58,8 @@ export const ThreeDsForm = () => {
                     }}>
                     {t("title")}
                 </h1>
-                <form onSubmit={threeDSForm.handleSubmit(onSubmit)} className={styles.form}>
+                {/* onSubmit={threeDSForm.handleSubmit(onSubmit)} */}
+                <form className={styles.form}>
                     <div className={styles.item}>
                         <label className={styles.label}>{t("threeDSForm.fields.threeDsCode")}</label>
                         <Controller
@@ -84,7 +86,7 @@ export const ThreeDsForm = () => {
                                         }
                                         threeDSForm.setValue(
                                             "threeDsCode",
-                                            e.target.value.replace(/[^a-zA-Z0-9]/g, "")
+                                            e.target.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 10)
                                         );
                                     }}
                                     className={styles.input}
@@ -101,7 +103,7 @@ export const ThreeDsForm = () => {
                 buttonCaption={t("continue")}
                 buttonCallback={threeDSForm.handleSubmit(onSubmit)}
                 nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                nextEnabled={!threeDSForm.formState.isValid && !isFetching}
+                nextEnabled={threeDSForm.formState.isValid && !isFetching}
                 approve={true}
                 focused={true}
             />

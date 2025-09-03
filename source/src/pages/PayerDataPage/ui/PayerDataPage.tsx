@@ -144,7 +144,11 @@ const PayerDataPage = () => {
             {!isFetching && (
                 <Footer
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
-                    buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
+                    buttonCallback={
+                        // methodName === "ecom_platform_all" ? handleSubmit : isEcom ? handleSubmit : buttonCallback
+                        buttonCallback
+                    }
+                    // buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
                     nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
                     nextEnabled={nextEnabled}
                     approve={true}

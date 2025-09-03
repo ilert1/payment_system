@@ -1,17 +1,20 @@
 .form {
-    max-width: 600px;
-    width: 100%;
-    background-color: hsla(0, 0%, 96%, 1);
     display: flex;
     align-items: center;
+
+    width: 100%;
+    max-width: 600px;
+
+    background-color: hsl(0deg 0% 96% / 100%);
 }
 
 .item {
+    display: flex;
+    flex-direction: column;
+
     width: 100%;
     max-width: 600px;
     padding: 38px 26px;
-    display: flex;
-    flex-direction: column;
 }
 
 .input {
@@ -20,24 +23,27 @@
     padding: 0 14px;
     border-radius: 5px;
 
-    @media (max-width: 520px) {
+    @media (width <= 520px) {
         height: 65px;
     }
 }
 
 .label {
-    text-align: left;
     margin-bottom: 10px;
-    font-weight: 500;
+
     font-size: 20px;
+    font-weight: 500;
     line-height: 134%;
+    color: hsl(203deg 92% 5% / 100%);
+    text-align: left;
     letter-spacing: 0%;
-    color: hsla(203, 92%, 5%, 1);
-    opacity: 50%;
+
+    opacity: 0.5;
 }
 
 .helperText {
-    text-align: left;
     font-size: 11px;
+    color: red;
+    text-align: left;
     opacity: 0.5;
 }

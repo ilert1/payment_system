@@ -1,6 +1,6 @@
-import { useBFStore } from "@/shared/store/bfDataStore";
-import { useAppContext } from "@/AppContext";
 import { create } from "zustand";
+import { useAppContext } from "@/AppContext";
+import { useBFStore } from "@/shared/store/bfDataStore";
 import { submitForm } from "../services/submitForm";
 import { ThreeDsFormStore } from "../types/threeDSFormTypes";
 
@@ -15,6 +15,8 @@ export const useThreeDSFormStore = create<ThreeDsFormStore>(set => ({
         const dest = payOutMode ? "payout" : "payment";
 
         set({ isFetching: true });
+
+        console.log("Submitting");
 
         const res = await submitForm({
             formData,
