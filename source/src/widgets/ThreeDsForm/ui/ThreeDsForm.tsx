@@ -90,12 +90,13 @@ export const ThreeDsForm = () => {
                                     placeholder={t("threeDSForm.fields.threeDsCodePlaceholder")}
                                     onChange={e => {
                                         if (e.target.value.length > 0 && !e.target.value.match(/[a-zA-Z0-9]/)) {
-                                            toast.error(t("threeDSForm.errors.regex"), {
-                                                autoClose: 2000,
-                                                position: "top-center"
+                                            threeDSForm.setError("threeDsCode", {
+                                                type: "pattern",
+                                                message: t("threeDSForm.errors.regex")
                                             });
                                             return;
                                         }
+                                        threeDSForm.clearErrors();
                                         threeDSForm.setValue(
                                             "threeDsCode",
                                             e.target.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 10)
@@ -106,7 +107,7 @@ export const ThreeDsForm = () => {
                             )}
                         />
                         {threeDSForm.formState.errors.threeDsCode && (
-                            <span className={styles.helperText}>{t("threeDSForm.errors.generalError")}</span>
+                            <span className={styles.errorMessage}>{t("threeDSForm.errors.generalError")}</span>
                         )}
                     </div>
                 </form>

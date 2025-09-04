@@ -41,9 +41,12 @@
     opacity: 0.5;
 }
 
-.helperText {
-    font-size: 11px;
-    color: red;
+.errorMessage {
+    width: 100%;
+    margin-top: 4px;
+
+    font-size: 12px !important;
+    color: rgb(177 14 14) !important;
     text-align: left;
-    opacity: 0.5;
+    overflow-wrap: break-word;
 }

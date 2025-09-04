@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { ChangeEventHandler, KeyboardEvent } from "react";
-import { useTranslation } from "react-i18next";
 import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import { CardFormSchemaType, useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
-import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
-import styles from "./CardNumberForm.module.scss";
 import { classNames } from "@/shared/lib/classNames";
 import { Input } from "@/shared/ui/input/input";
+import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
+import styles from "./CardNumberForm.module.scss";
 
 interface CardNumberFormProps {
     disabled: boolean;
@@ -50,7 +50,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                             onChange={handleCardNumberInputChange}
                             placeholder={`${t("cardNumber", ns)}`}
                         />
-                        {errors.cardNumber && <p className={styles.error_message}>{errors.cardNumber.message}</p>}
+                        {errors.cardNumber && <p className={styles.errorMessage}>{errors.cardNumber.message}</p>}
                     </div>
                     <div className={styles.bottom}>
                         <div className={styles.item}>
@@ -67,7 +67,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 maxLength={5}
                                 placeholder="MM/YY"
                             />
-                            {errors.expiryDate && <p className={styles.error_message}>{errors.expiryDate.message}</p>}
+                            {errors.expiryDate && <p className={styles.errorMessage}>{errors.expiryDate.message}</p>}
                         </div>
                         <div className={styles.item}>
                             <label className={styles.label} htmlFor="cvv">
@@ -84,7 +84,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 placeholder="000"
                                 maxLength={3}
                             />
-                            {errors.cvv && <p className={styles.error_message}>{errors.cvv.message}</p>}
+                            {errors.cvv && <p className={styles.errorMessage}>{errors.cvv.message}</p>}
                         </div>
                     </div>
                     {cardHolderVisible && (
@@ -100,7 +100,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 onChange={handleCardHolderChange}
                                 placeholder={`${t("nameLastname", ns)}`}
                             />
-                            {errors.cardHolder && <p className={styles.error_message}>{errors.cardHolder.message}</p>}
+                            {errors.cardHolder && <p className={styles.errorMessage}>{errors.cardHolder.message}</p>}
                         </div>
                     )}
                 </div>
