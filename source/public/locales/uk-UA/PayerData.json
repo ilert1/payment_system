@@ -1,0 +1,20 @@
+{
+    "enter4": "Введіть останні 4 цифри",
+    "yourPhone": "вашого телефону",
+    "yourCard": "вашої картки",
+    "cardNumber": "Номер Карти",
+    "expirationDate": "Термін Дії",
+    "cardHolder": "Власник картки",
+    "nameLastname": "CARD HOLDER",
+    "errors": {
+        "cardValidationError": "Номер картки має містити 16 цифр",
+        "expireDateError": "Термін придатності має бути у форматі MM/YY",
+        "expreDateRangeError": "Термін придатності має бути в майбутньому",
+        "cvvError": "CVV має містити 3 цифри",
+        "paymentNotFound": "Платіж з цим ID не знайдено",
+        "cardHolderError": "Поле має бути у форматі ІМ’Я ПРІЗВИЩЕ латиницею",
+        "unknownError": "Невідома помилка"
+    },
+    "getCard": "Ваша карта прийнята, натисніть оплатити, щоб перейти на сторінку оплати",
+    "pay": "Оплатити"
+}

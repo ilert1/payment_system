@@ -1,0 +1,9 @@
+{
+    "payError": "Payment failed",
+    "pleaseRepeatOrder": "Please repeat the order",
+    "notFound": "Payment not found",
+    "pleaseRepeatOrSupport": "Please try again or contact support",
+    "payed": "I have paid!",
+    "returnBtn": "Go back to the site",
+    "timerText": "You will be automatically redirected via:"
+}

@@ -1,12 +1,10 @@
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
-
+import { useBFStore } from "@/shared/store/bfDataStore";
+import { Page } from "@/widgets/Page";
+import { useAppContext } from "../AppContext";
+import usePaymentPage from "../hooks/usePaymentPage";
 import { Loader } from "../shared/ui/Loader";
 import { Timer } from "../shared/ui/Timer";
-
-import usePaymentPage from "../hooks/usePaymentPage";
-import { useAppContext } from "../AppContext";
-import { useBFStore } from "@/shared/store/bfDataStore";
+import { Footer } from "../widgets/Footer";
 
 const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();
@@ -33,9 +31,7 @@ const PayeeDataPage = () => {
     };
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <div className="header-container grow">
                     <h1>
@@ -57,7 +53,7 @@ const PayeeDataPage = () => {
                 buttonCallback={BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {}}
                 buttonCaption={BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : ""}
                 nextPage={BFData?.[dest]?.method?.context?.back_redirect_url}
-                payeeCard={true}
+                payeeCard={true && !!BFData?.[dest]?.method?.payee?.data}
                 showCancelBtn={false}
                 hideRequisite={
                     BFData?.[dest]?.method?.payee?.data?.phone_number &&
@@ -67,7 +63,7 @@ const PayeeDataPage = () => {
                         : false
                 }
             />
-        </div>
+        </Page>
     );
 };
 

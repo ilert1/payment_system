@@ -7,5 +7,14 @@
     "semi": true,
     "trailingComma": "none",
     "arrowParens": "avoid",
-    "endOfLine": "auto"
+    "endOfLine": "auto",
+    "importOrder": [
+        "<THIRD_PARTY_MODULES>",
+        "^@/(.*)$",
+        "^../(.*)",
+        "^./(.*)"
+    ],
+    "plugins": [
+        "@trivago/prettier-plugin-sort-imports"
+    ]
 }

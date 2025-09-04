@@ -1,0 +1,20 @@
+{
+    "enter4": "Son 4 rəqəmi daxil edin",
+    "yourPhone": "telefonunuzun",
+    "yourCard": "kartınızın",
+    "cardNumber": "Kart Nömrəsi",
+    "expirationDate": "Etibarlılıq Müddəti",
+    "cardHolder": "Kart sahibi",
+    "nameLastname": "CARD HOLDER",
+    "errors": {
+        "cardValidationError": "Kartın nömrəsi 16 rəqəm olmalıdır",
+        "expireDateError": "Son istifadə tarixi MM/YY formatında daxil edilməlidir",
+        "expreDateRangeError": "Son istifadə tarixi gələcəkdə olmalıdır",
+        "cvvError": "CVV 3 rəqəmdən ibarət olmalıdır",
+        "paymentNotFound": "Bu ID ilə ödəniş tapılmadı",
+        "cardHolderError": "Sahə AD SOYAD latın əlifbası ilə formatda olmalıdır",
+        "unknownError": "Bilinməyən səhv"
+    },
+    "getCard": "Kartınız qəbul edildi, ödəniş səhifəsinə keçmək üçün ödəniş düyməsini basın",
+    "pay": "Ödə"
+}

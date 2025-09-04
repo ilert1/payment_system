@@ -1,0 +1,9 @@
+{
+    "transfer": "Make a transfer of",
+    "country": {
+        "tjs": "to Tajikistan",
+        "azn": "to Azerbaijan",
+        "abh": "to Abkhazia"
+    },
+    "to": "to"
+}

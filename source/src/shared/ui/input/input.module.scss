@@ -1,0 +1,60 @@
+.input {
+    flex-grow: 1;
+
+    box-sizing: border-box;
+    border: none;
+
+    // opacity: 0.3;
+    font-weight: 400;
+    color: var(--color-text);
+    text-align: left;
+
+    background: none;
+    outline: none;
+
+    &:focus {
+        outline: 1px solid #6fc0f6ff;
+    }
+}
+
+.bgwhite {
+    background-color: white !important;
+}
+
+@mixin text-size($size, $lineHeight) {
+    font-size: $size;
+    line-height: $lineHeight;
+
+    &::placeholder {
+        font-size: $size;
+        font-weight: 500;
+        line-height: $lineHeight;
+        color: var(--color-text);
+
+        opacity: 0.2;
+    }
+}
+
+.textSm {
+    @include text-size(20px, 133%);
+
+    @media (width <= 520px) {
+        @include text-size(14px, 21.36px);
+    }
+}
+
+.textMd {
+    @include text-size(20px, 133%);
+
+    @media (width <= 520px) {
+        @include text-size(14px, 21.36px);
+    }
+}
+
+.textLg {
+    @include text-size(28px, 133%);
+
+    @media (width <= 520px) {
+        @include text-size(16px, 26.6px);
+    }
+}

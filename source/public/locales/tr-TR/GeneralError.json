@@ -1,0 +1,10 @@
+{
+    "repeatOrder": "siparişi tekrarla",
+    "pleaseRepeatOrder": "Lütfen siparişi tekrarlayın",
+    "cancelPage": {
+        "cancel": "Ödemeyi iptal ettiniz",
+        "transactionCanceled": "İşlem başarıyla iptal edildi."
+    },
+    "returnBtn": "Siteye geri dön",
+    "timerText": "Aracılığıyla otomatik olarak yönlendirileceksiniz:"
+}

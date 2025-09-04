@@ -1,13 +1,14 @@
+import { Suspense, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import { useAppContext } from "@/AppContext";
 import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
-
-import { useEffect } from "react";
-import { useAppContext } from "@/AppContext";
-import Loader from "@/shared/ui/Loader";
-import { ToastContainer } from "react-toastify";
-import { AppRouter } from "./providers/router";
+import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
-// import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
+import Loader from "@/shared/ui/Loader";
+import { Page } from "@/widgets/Page";
+import { AppRouter } from "./providers/router";
+
 const baseApiURL = import.meta.env.VITE_API_URL;
 
 const App = () => {
@@ -53,15 +54,17 @@ const App = () => {
     return (
         <>
             {loading ? (
-                <div className="container">
+                <Page header={false}>
                     <div className="content">
                         <div className="loader-container">
                             <Loader />
                         </div>
                     </div>
-                </div>
+                </Page>
             ) : (
-                <AppRouter />
+                <Suspense fallback={<div>Загрузка переводов...</div>}>
+                    <AppRouter />
+                </Suspense>
             )}
             <ToastContainer />
         </>

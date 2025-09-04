@@ -29,53 +29,53 @@ export const submitPayerData = async ({
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
 
     let payload: any = {};
-
-    switch (method) {
-        case "ecom":
-            payload = {
-                payment: {
-                    method: {
-                        payer: {
-                            data: {
-                                card_number: form.cardNumber.replace(/\s+/g, ""),
-                                card_lifetime_month: `${form.expiryDate.slice(0, 2)}`,
-                                card_lifetime_year: `${form.expiryDate.slice(3)}`,
-                                card_cvc: form.cvv,
-                                ...(form.cardHolder.trim() && { card_holder: form.cardHolder })
-                            }
+    if (method.includes("ecom")) {
+        payload = {
+            payment: {
+                method: {
+                    payer: {
+                        data: {
+                            card_number: form.cardNumber.replace(/\s+/g, ""),
+                            card_lifetime_month: `${form.expiryDate.slice(0, 2)}`,
+                            card_lifetime_year: `${form.expiryDate.slice(3)}`,
+                            card_cvc: form.cvv,
+                            ...(form.cardHolder.trim() && { card_holder: form.cardHolder })
                         }
                     }
                 }
-            };
-            break;
-        case "sbp":
-            payload = {
-                payment: {
-                    method: {
-                        payer: {
-                            data: {
-                                phone: form.cardNumber
+            }
+        };
+    } else {
+        switch (method) {
+            case "sbp":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    phone: form.cardNumber
+                                }
                             }
                         }
                     }
-                }
-            };
-            break;
-        case "card2card":
-            payload = {
-                payment: {
-                    method: {
-                        payer: {
-                            data: {
-                                card: form.cardNumber
+                };
+                break;
+            case "card2card":
+                payload = {
+                    payment: {
+                        method: {
+                            payer: {
+                                data: {
+                                    card: form.cardNumber
+                                }
                             }
                         }
                     }
-                }
-            };
-            break;
-        default:
-            return;
+                };
+                break;
+            default:
+                return;
+        }
     }
 
     ym("reachGoal", "main-button", { caption: t("approve", ns) });

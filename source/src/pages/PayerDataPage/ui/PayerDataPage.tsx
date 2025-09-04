@@ -1,15 +1,16 @@
-import Header from "@/widgets/Header";
-import Footer from "@/widgets/Footer";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAppContext } from "@/AppContext";
-import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
-import { CardNumberForm } from "@/widgets/CardNumberForm";
 import usePaymentPage from "@/hooks/usePaymentPage";
-import Loader from "@/shared/ui/Loader";
 import { AppRoutes } from "@/shared/const/router.js";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
-import { useNavigate } from "react-router-dom";
+import Loader from "@/shared/ui/Loader";
+import { CardNumberForm } from "@/widgets/CardNumberForm";
 import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
+import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
+import { Footer } from "@/widgets/Footer";
+import { Header } from "@/widgets/Header";
+import { Page } from "@/widgets/Page";
 import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 
 const PayerDataPage = () => {
@@ -43,7 +44,7 @@ const PayerDataPage = () => {
     const methodName = method?.name;
     const context = method?.context;
 
-    const isEcom = methodName === "ecom";
+    const isEcom = methodName?.includes("ecom");
     const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
 
     const showCardHolder = context?.provider === "BNNPay";
@@ -84,6 +85,7 @@ const PayerDataPage = () => {
 
     const threeDSCallback = () => {
         ym("reachGoal", "external-redirect", { redirect_url: redirectUrl });
+
         window.open(redirectUrl, "_blank");
     };
 
@@ -107,9 +109,12 @@ const PayerDataPage = () => {
         }
     }, [waitTransfer]);
 
+    console.log(BFData?.[dest]);
+    console.log(isEcom);
+    console.log("redirectUrl: ", redirectUrl);
+
     return (
-        <div className="container">
-            <Header />
+        <Page>
             <div className="content cardPage">
                 {isEcom ? (
                     !isFetching && !waitTransfer ? (
@@ -139,14 +144,18 @@ const PayerDataPage = () => {
             {!isFetching && (
                 <Footer
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
-                    buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
+                    buttonCallback={
+                        // methodName === "ecom_platform_all" ? handleSubmit : isEcom ? handleSubmit : buttonCallback
+                        buttonCallback
+                    }
+                    // buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
                     nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
                     nextEnabled={nextEnabled}
                     approve={true}
                     focused={buttonFocused}
                 />
             )}
-        </div>
+        </Page>
     );
 };
 

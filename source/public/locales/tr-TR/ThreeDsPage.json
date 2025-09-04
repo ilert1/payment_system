@@ -1,0 +1,14 @@
+{
+    "title": "Bankanızın onay kodunu girin",
+    "threeDSForm": {
+        "fields": {
+            "threeDsCode": "Onay kodu:",
+            "threeDsCodePlaceholder": "Onay kodu"
+        },
+        "errors": {
+            "generalError": "Yalnızca Latin harfleri ve rakamlarla en fazla 10 karakter girin",
+            "regex": "Kod yalnızca Latin harfleri ve rakamlardan oluşmalıdır (boşluk veya sembol olmadan)"
+        }
+    },
+    "continue": "Devam et"
+}

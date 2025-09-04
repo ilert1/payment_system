@@ -1,0 +1,14 @@
+{
+    "title": "Bankingizning tasdiqlash kodini kiriting",
+    "threeDSForm": {
+        "fields": {
+            "threeDsCode": "Tasdiqlash kodi:",
+            "threeDsCodePlaceholder": "Tasdiqlash kodi"
+        },
+        "errors": {
+            "generalError": "Faqat lotin harflari va raqamlardan foydalanib 10 ta belgigacha kiriting",
+            "regex": "Kod faqat lotin harflari va raqamlardan iborat bo‘lishi kerak (bo‘sh joylarsiz yoki belgilarsiz)"
+        }
+    },
+    "continue": "Davom etish"
+}

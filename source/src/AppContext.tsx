@@ -1,17 +1,13 @@
-import { createContext, useState, useEffect, useCallback, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-
-import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
-import { useTranslation } from "react-i18next";
-
 import getBrowserFingerprint from "get-browser-fingerprint";
-import CurrencyLibrary from "./shared/assets/library/Currency.json";
-
-import CustomToastContainer from "./shared/ui/CustomToastContainer.js";
-
+import { createContext, useState, useEffect, useCallback, useContext, startTransition } from "react";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
-import { useBFStore } from "./shared/store/bfDataStore.js";
+import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
+import CurrencyLibrary from "./shared/assets/library/Currency.json";
+import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
+import { useBFStore } from "./shared/store/bfDataStore.js";
 
 export type YmType = typeof ym | (() => void);
 
@@ -80,9 +76,9 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const [caseName, setCaseName] = useState("");
 
     useEffect(() => {
-        console.log("lang", lang);
-
-        i18n.changeLanguage(lang);
+        startTransition(() => {
+            i18n.changeLanguage(lang);
+        });
         localStorage.setItem("language", lang);
     }, [lang]);
 
@@ -167,11 +163,11 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     const paymentEcomPage = useCallback(() => {
+        console.log("STATUS: ", status);
         switch (status) {
             case "paymentAwaitingStart":
                 return AppRoutes.PAGE_MAIN;
             case "paymentAwaitingSelectInstrument":
-            case "paymentPayerSelectingInstrument":
                 return AppRoutes.PAGE_PAYMENT_INSTRUMENT;
             case "paymentPayerDataEntrу":
             case "paymentPayerDataEntered":
@@ -179,7 +175,10 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             case "paymentPayeeSearching":
                 return AppRoutes.PAYEE_SEARCH_PAGE;
             case "paymentAwaitingTransfer":
-                if (BFData?.[dest]?.method?.name == "ecom") {
+                if (BFData?.[dest]?.method?.name === "ecom_platform_all") {
+                    return AppRoutes.PAGE_THREE_DS;
+                }
+                if (BFData?.[dest]?.method?.name == "ecom" || BFData?.[dest]?.method?.name === "ecom_platform_card") {
                     return AppRoutes.PAYER_DATA_PAGE;
                 }
                 return AppRoutes.PAY_PAGE;

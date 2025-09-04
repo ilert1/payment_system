@@ -1,9 +1,10 @@
-import { useFilePicker } from "use-file-picker";
-import FileImageIcon from "@/shared/assets/images/image.svg?react";
-import PdfFileIcon from "@/shared/assets/images/file-pdf.svg?react";
 import React from "react";
-import styles from "./filePicker.module.scss";
+import { useFilePicker } from "use-file-picker";
+import PdfFileIcon from "@/shared/assets/images/file-pdf.svg?react";
+import FileImageIcon from "@/shared/assets/images/image.svg?react";
 import { classNames } from "@/shared/lib/classNames";
+import { Button } from "../Button/Button";
+import styles from "./filePicker.module.scss";
 
 interface FilePickerProps {
     value: File | null;
@@ -44,14 +45,15 @@ export const FilePicker: React.FC<FilePickerProps> = ({
                 </div>
             )}
 
-            <button
+            <Button
                 onClick={() => openFilePicker()}
+                variant={"ghost"}
                 disabled={disabled}
-                className={classNames(styles.file_picker_button, {
+                className={classNames(styles.file_picker_Button, {
                     [styles.selected]: !value
                 })}>
                 {label}
-            </button>
+            </Button>
         </div>
     );
 };

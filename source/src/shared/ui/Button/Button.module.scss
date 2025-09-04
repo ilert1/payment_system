@@ -1,0 +1,153 @@
+/* Базовый стиль */
+.button {
+    cursor: pointer;
+    user-select: none;
+
+    display: inline-flex;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px;
+    border: none;
+    border-radius: 5px;
+
+    font-weight: 500;
+    line-height: 133%;
+
+    background: #e7f5fe;
+
+    transition:
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+
+    img {
+        width: 27px;
+        height: 27px;
+    }
+
+    &:disabled {
+        pointer-events: none;
+        color: #010f18;
+        opacity: 0.3;
+        background-color: #bebebe;
+
+        img {
+            filter: invert(1);
+        }
+    }
+
+    &__loading {
+        pointer-events: none;
+        position: relative;
+
+        &::after {
+            content: "";
+
+            position: absolute;
+            inset: 0;
+
+            width: 16px;
+            height: 16px;
+            margin: auto;
+            border: 4px solid transparent;
+            border-top-color: currentcolor;
+            border-radius: 50%;
+
+            animation: button-loading-spinner 1s ease infinite;
+        }
+    }
+
+    @media (width <= 520px) {
+        padding: 20px 10px;
+        border-radius: 3px;
+        font-size: 14px;
+
+        img {
+            width: 19px;
+            height: 19px;
+        }
+    }
+}
+
+@keyframes button-loading-spinner {
+    from {
+        transform: rotate(0turn);
+    }
+
+    to {
+        transform: rotate(1turn);
+    }
+}
+
+/* Варианты */
+.btnPrimary {
+    font-size: 20px;
+    color: #fff;
+    background-color: #37a8f3;
+}
+
+.btnDanger {
+    font-size: 20px;
+    color: #ea4444;
+    background-color: #fbe5e5;
+}
+
+.btnDangerSolid {
+    font-size: 20px;
+    color: #fff;
+    background-color: #ea4444;
+}
+
+.btnOutline {
+    border: 2px solid #37a8f3;
+    font-size: 20px;
+    color: #37a8f3;
+    background-color: transparent;
+}
+
+.btnGhost {
+    width: auto;
+
+    font-size: 17px;
+    line-height: 17px;
+    color: #37a8f3;
+
+    background-color: transparent;
+
+    &:disabled {
+        color: #bebebe;
+    }
+}
+
+.btnSecondary {
+    font-size: 20px;
+    color: #000;
+    background-color: #d9d9d9;
+}
+
+/* Размеры */
+.btnSmall {
+    padding: 10px 16px;
+    font-size: 14px;
+}
+
+.btnLarge {
+    padding: 20px 24px;
+    font-size: 18px;
+}
+
+.btnXl {
+    padding: 28px 32px;
+    font-size: 20px;
+}
+
+.btnGhostDanger {
+    font-size: 17px;
+    line-height: 17px;
+    color: #ea4444;
+    background-color: transparent;
+}

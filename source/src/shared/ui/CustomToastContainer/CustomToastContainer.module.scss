@@ -1,0 +1,17 @@
+.toastCloseBtn {
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 45px;
+    border: none;
+    border-radius: 5px;
+
+    font-size: 16px !important;
+    font-weight: 500;
+    color: #010f18;
+
+    background: #fff;
+}

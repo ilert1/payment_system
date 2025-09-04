@@ -1,0 +1,44 @@
+.payHeader {
+    display: inline-flex;
+    flex-grow: 0.3;
+    gap: 7.33px;
+    place-content: center space-between;
+    align-items: center;
+
+    width: 100%;
+    border-bottom: solid #00000014 2px;
+
+    @media (width <= 520px) {
+        gap: 4px;
+    }
+}
+
+.img {
+    $width: 34px;
+
+    width: $width;
+    height: $width;
+
+    @media (width <= 520px) {
+        $width: 24px;
+
+        width: $width;
+        height: $width;
+    }
+}
+
+.h1 {
+    font-size: 32px;
+    line-height: 43px;
+    text-align: left;
+    text-wrap: balance;
+
+    @media (width <= 520px) {
+        font-size: 22px;
+        line-height: 29px;
+    }
+}
+
+.span {
+    color: #37a8f3;
+}

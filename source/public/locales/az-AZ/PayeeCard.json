@@ -1,0 +1,12 @@
+{
+    "copy": "Kopyala",
+    "copyed": "Kart nömrəsi kopyalandı",
+    "copyedPhone": "Telefon nömrəsi kopyalandı",
+    "copyedAmount": "Məbləğ kopyalandı",
+    "bankName": "Alıcının bankı",
+    "requisite": "Rekvizitlər",
+    "amount": "Köçürmə məbləği",
+    "payee": "Alıcı",
+    "requisiteComment": "Ödəniş lisenziyalı ödəniş tərəfdaşı vasitəsilə həyata keçirilir.",
+    "transgranComment": "{{country}} ölkəsinə köçürmə — qorunan sxemin bir hissəsidir."
+}

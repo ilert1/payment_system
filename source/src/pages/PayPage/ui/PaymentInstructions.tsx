@@ -1,9 +1,10 @@
 import React from "react";
-// import { Instruction } from "./Instruction";
-import { InstructionItems } from "./InstructionItems";
-// import { DefaultInstructionItems } from "./DefaultInstructionItems";
-import ExternalPayInfo from "@/widgets/ExternalPayInfo";
+import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { ExternalPayInfo } from "@/widgets/ExternalPayInfo";
+// import { Instruction } from "./Instruction/Instruction";
+import { InstructionItems } from "./Instruction/InstructionItems";
+import styles from "./PaymentInstructions.module.scss";
 
 interface PaymentInstructionsProps {
     caseName: string;
@@ -46,7 +47,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // Transgran tsbp cases for tjs/azn
     if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
-            <div className="instructions_new transgran">
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <div className="title">
                     <p>{t("steps_transgran_simple.tbankTitle", ns)}</p>
                 </div>
@@ -68,7 +69,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
         console.log(bankName);
 
         return (
-            <div className="instructions_new transgran">
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 {/* <div className="title">
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div> */}
@@ -93,7 +94,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
     if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
         return (
-            <div className="instructions_new transgran">
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <div className="title">
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div>
@@ -106,7 +107,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // Transgran for Abkhazia
     if ([abh].includes(caseName) && transgran) {
         return (
-            <div className="instructions_new transgran">
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <InstructionItems
                     data={t("steps_transgran_abh.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
@@ -121,7 +122,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // IBAN case
     if (caseName === iban) {
         return (
-            <div className="instructions_new transgran">
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <InstructionItems data={t("steps_iban.iban", ns)} />
             </div>
         );
@@ -130,7 +131,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // ARS case
     if (caseName === ars) {
         return (
-            <div className="instructions_new transgran">
+            <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <InstructionItems
                     data={t("steps_ars.steps", {
                         amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
@@ -145,7 +146,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
     // Default case
     return (
-        <div className="instructions_new">
+        <div className={styles.instructionsNew}>
             <InstructionItems
                 data={t(`default_steps.${trader?.phone || trader?.phone_number ? "steps_phone" : "steps_card"}`, {
                     amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,

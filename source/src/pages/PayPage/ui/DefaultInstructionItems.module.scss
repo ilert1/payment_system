@@ -1,0 +1,25 @@
+.ul {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0;
+
+    list-style-type: none;
+
+    @media (width <= 520px) {
+        gap: 5px;
+    }
+}
+
+.li {
+    font-weight: 600;
+    line-height: 24px;
+}
+
+span {
+    font-weight: inherit;
+    line-height: inherit;
+}

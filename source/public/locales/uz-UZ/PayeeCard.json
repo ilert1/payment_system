@@ -1,0 +1,12 @@
+{
+    "copy": "Nusxalash",
+    "copyed": "Karta raqami nusxalandi",
+    "copyedPhone": "Telefon raqami nusxalandi",
+    "copyedAmount": "Summasi nusxalandi",
+    "bankName": "Qabul qiluvchining banki",
+    "requisite": "Rekvizitlar",
+    "amount": "O'tkazma summasi",
+    "payee": "Qabul qiluvchi",
+    "requisiteComment": "Toʻlov litsenziyaga ega toʻlov hamkori orqali amalga oshiriladi.",
+    "transgranComment": "{{country}} davlatiga oʻtkazma — himoyalangan tizimning bir qismidir."
+}

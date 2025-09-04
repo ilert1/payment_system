@@ -1,11 +1,11 @@
-import Header from "../widgets/Header";
-import Footer from "../widgets/Footer";
-import Clock from "../shared/assets/images/clock.svg?react";
-import PlusCircle from "@/shared/assets/images/plus-circle.svg";
-import Timer from "../shared/ui/Timer";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
+import Clock from "@/shared/assets/images/clock.svg";
+import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import Timer from "@/shared/ui/Timer";
+import { Footer } from "@/widgets/Footer";
+import { Page } from "@/widgets/Page";
 
 // eslint-disable-next-line react/prop-types
 export const GeneralErrorPage = ({ cancel = false }) => {
@@ -29,9 +29,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
     ym("reachGoal", cancel ? "cancel-page" : "general-error-page");
 
     return (
-        <div className="container">
-            <Header />
-
+        <Page>
             <div className="content">
                 <div className="header-container grow">
                     <h1>{t(cancel ? "cancelPage.cancel" : "error", ns)}</h1>
@@ -66,7 +64,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                 noIcon={true}
                 showCancelBtn={false}
             />
-        </div>
+        </Page>
     );
 };
 

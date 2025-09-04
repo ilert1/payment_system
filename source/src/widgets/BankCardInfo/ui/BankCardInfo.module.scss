@@ -1,0 +1,28 @@
+.cardInfo {
+    display: inline-flex;
+    gap: 15px;
+    align-items: center;
+
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 133%;
+
+    @media (width <= 520px) {
+        gap: 10px;
+        font-size: 16px;
+    }
+}
+
+.img {
+    $width: 34px;
+
+    width: $width;
+    height: $width;
+
+    @media (width <= 520px) {
+        $width: 24px;
+
+        width: $width;
+        height: $width;
+    }
+}

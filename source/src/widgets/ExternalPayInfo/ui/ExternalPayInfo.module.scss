@@ -1,0 +1,44 @@
+.externalPayInfo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 1rem;
+}
+
+.description {
+    max-width: 80%;
+}
+
+.link {
+    cursor: pointer;
+    user-select: none;
+
+    display: inline-flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+
+    color: white;
+    text-decoration: none;
+
+    background-color: #37a8f3;
+
+    transition:
+        opacity 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
+
+    @media (width <= 520px) {
+        align-self: stretch;
+        padding: 0.5rem 1rem;
+    }
+}
