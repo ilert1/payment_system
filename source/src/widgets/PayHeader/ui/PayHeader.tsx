@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ClockOrange from "@/shared/assets/images/clock_orange.svg?react";
+import { classNames } from "@/shared/lib/classNames";
 import Timer from "@/shared/ui/Timer";
 import styles from "./PayHeader.module.scss";
 
@@ -36,10 +37,14 @@ export const PayHeader = (props: PayHeaderProps) => {
                     </>
                 )}
             </h1>
-            <div className="deadline-container">
+            <div className={classNames(styles.deadlineContainer, {}, ["deadline-container"])}>
                 {/* <img src={ClockOrange} alt="" /> */}
-                <ClockOrange className={styles.img} />
-                <Timer down={true} className="deadline-timer" secondsToDo={timeLeft > 0 ? timeLeft : 0} />
+                <ClockOrange className="img" />
+                <Timer
+                    down={true}
+                    className={classNames(styles.deadlineTimer, {}, ["deadline-timer"])}
+                    secondsToDo={timeLeft > 0 ? timeLeft : 0}
+                />
             </div>
         </div>
     );
