@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,7 @@ export const ThreeDsForm = () => {
     const { t } = useTranslation("ThreeDsPage");
     const { isFetching, submitForm } = useThreeDSFormStore();
     const navigate = useNavigate();
+    const [buttonEnabled, setButtonEnabled] = useState(false);
 
     const ThreeDsFormSchema = z.object({
         threeDsCode: z
@@ -33,7 +34,8 @@ export const ThreeDsForm = () => {
         resolver: zodResolver(ThreeDsFormSchema),
         defaultValues: {
             threeDsCode: ""
-        }
+        },
+        mode: "all"
     });
 
     const onSubmit = (data: ThreeDsFormValues) => {
@@ -47,6 +49,16 @@ export const ThreeDsForm = () => {
     useEffect(() => {
         console.log(threeDSForm.formState.errors.threeDsCode);
     }, [threeDSForm.formState.errors]);
+
+    const val = threeDSForm.watch("threeDsCode");
+
+    useEffect(() => {
+        if (val.length > 0) {
+            setButtonEnabled(true);
+        } else {
+            setButtonEnabled(false);
+        }
+    }, [val]);
 
     return (
         <>
@@ -103,7 +115,7 @@ export const ThreeDsForm = () => {
                 buttonCaption={t("continue")}
                 buttonCallback={threeDSForm.handleSubmit(onSubmit)}
                 nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                nextEnabled={threeDSForm.formState.isValid && !isFetching}
+                nextEnabled={buttonEnabled && !isFetching}
                 approve={true}
                 focused={true}
             />

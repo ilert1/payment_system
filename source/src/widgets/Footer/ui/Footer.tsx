@@ -240,6 +240,7 @@ export const Footer = (props: FooterProps) => {
 
                         {nextPage && (
                             <Button
+                                size="lg"
                                 id="main-button"
                                 className={styles.mainButton}
                                 ref={mainButton}
