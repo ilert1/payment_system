@@ -1,0 +1,27 @@
+.ul {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0;
+    list-style-type: none;
+    gap: 7px;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+
+    @media (width <= 520px) {
+        gap: 5px;
+    }
+
+    /* .li {
+        font-weight: 600;
+        line-height: 24px;
+    } */
+
+    span {
+        /* font-weight: inherit;
+        line-height: inherit; */
+        font-weight: 600;
+        line-height: 24px;
+    }
+}

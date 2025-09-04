@@ -1,4 +1,4 @@
-import styles from "./Instruction.module.scss";
+import styles from "./InstructionItems.module.scss";
 
 interface InstructionItemsProps {
     start?: number;
@@ -29,10 +29,10 @@ const LocalizedHtml = ({ text }: { text: string }) => {
 export const InstructionItems = (props: InstructionItemsProps) => {
     const { start = 0, data = "" } = props;
     return (
-        <ul>
+        <ul className={styles.ul}>
             {data.split("|").map((item, index) => (
-                <li key={index}>
-                    <span>{start + index + 1}. </span>
+                <li className={styles.li} key={index}>
+                    <span className={styles.span}>{start + index + 1}. </span>
                     <LocalizedHtml text={item} />
                 </li>
             ))}
