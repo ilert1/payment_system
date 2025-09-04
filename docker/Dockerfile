@@ -1,5 +1,5 @@
 # build
-FROM node:18.2.0-alpine as build
+FROM node:20.19.0-alpine as build
 WORKDIR /app
 
 ARG VITE_API_URL
