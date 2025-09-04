@@ -15,7 +15,7 @@ export const submitForm = async ({
     try {
         const response = await fetch(url, {
             method: "POST",
-            headers: fingerprintHeaders,
+            headers: { ...fingerprintHeaders, "Content-Type": "application/json" },
             body: JSON.stringify({
                 event: "paymentPayerConfirm",
                 payload: {
