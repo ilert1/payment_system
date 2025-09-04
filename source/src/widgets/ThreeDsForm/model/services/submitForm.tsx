@@ -10,7 +10,7 @@ export const submitForm = async ({
     navigate,
     payOutMode
 }: SubmitFormParams): Promise<BFDataType | undefined> => {
-    const url = `${import.meta.env.VITE_API_URL}/${dest}s/${bfId}/event`;
+    const url = `${import.meta.env.VITE_API_URL}/${dest}s/${bfId}/events`;
 
     try {
         const response = await fetch(url, {
