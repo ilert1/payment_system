@@ -8,7 +8,7 @@ export const useThreeDSFormStore = create<ThreeDsFormStore>(set => ({
     isFetching: false,
     setIsFetching: state => set({ isFetching: state }),
     submitForm: async ({ formData, navigate, fingerprintConfig }) => {
-        const setBfData = useBFStore.getState().setBfData;
+        const setStatus = useBFStore.getState().setStatus;
 
         const bfData = useBFStore.getState().BFData;
         const payOutMode = Boolean(bfData?.payout);
@@ -21,7 +21,7 @@ export const useThreeDSFormStore = create<ThreeDsFormStore>(set => ({
         const res = await submitForm({
             formData,
             fingerprintHeaders: fingerprintConfig,
-            setBfData,
+            setStatus,
             dest,
             bfId: bfData?.[dest]?.id ?? "",
             navigate,
