@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import { useAppContext } from "@/AppContext";
+import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader";
 import { Input } from "@/shared/ui/input/input";
 import { Footer } from "@/widgets/Footer";
+import { Page } from "@/widgets/Page";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
 import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import styles from "./ThreeDsForm.module.scss";
@@ -35,10 +37,10 @@ export const ThreeDsForm = () => {
 
     const threeDSForm = useForm<ThreeDsFormValues>({
         resolver: zodResolver(ThreeDsFormSchema),
+        mode: "all",
         defaultValues: {
             threeDsCode: ""
-        },
-        mode: "all"
+        }
     });
 
     const onSubmit = (data: ThreeDsFormValues) => {
@@ -63,8 +65,16 @@ export const ThreeDsForm = () => {
         }
     }, [val]);
 
+    usePaymentPage({ absolutePath: false });
+
     if (status === "paymentAwaitingConfirmationByPayee") {
-        return <Loader />;
+        return (
+            <div className="content">
+                <div className="loader-container">
+                    <Loader />
+                </div>
+            </div>
+        );
     }
 
     return (

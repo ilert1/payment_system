@@ -34,7 +34,8 @@ export const submitForm = async ({
         const data: BFDataType & { success?: boolean } = await response.json();
 
         if (data?.success) {
-            setBfData(data);
+            console.log("Three ds form submit data: ", data);
+
             return data;
         } else {
             navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
