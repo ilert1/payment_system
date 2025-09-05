@@ -1,0 +1,9 @@
+{
+    "payError": "El pago no se completó",
+    "pleaseRepeatOrder": "Por favor, repita el pedido",
+    "notFound": "Pago no encontrado",
+    "pleaseRepeatOrSupport": "Inténtelo de nuevo o contacte con soporte",
+    "payed": "¡Ya he pagado!",
+    "returnBtn": "Volver al sitio",
+    "timerText": "Será redirigido automáticamente en:"
+}

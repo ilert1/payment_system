@@ -1,0 +1,60 @@
+{
+    "payout": "Retiro",
+    "header": "Retiro de fondos a través de nuestro proveedor",
+    "description": {
+        "part1": "Indique sus datos bancarios para la transferencia",
+        "part2": "Tan pronto como el proveedor confirme la transferencia, recibirá sus fondos."
+    },
+    "approvePayout": "Confirmar retiro",
+    "discardPayout": "La transferencia no llegó",
+    "payoutMethod": "Método de retiro",
+    "payoutAmount": "Monto del retiro",
+    "withoutComments": "Sin comentarios en la transferencia",
+    "steps": {
+        "open": "Abrir",
+        "checkIncomingTransferSum": "Verifique el monto de la transferencia entrante",
+        "approveTransfer": "Confirme la transferencia",
+        "openYourBankApp": "Abra la aplicación de su banco"
+    },
+    "enterYourCard": "Ingrese los datos de su tarjeta",
+    "enterYourPhone": "Ingrese su número de teléfono",
+    "checkYourRequisites": "¡Verifique los datos!",
+    "wrongRequisites": "Si indicó mal los datos, perderá los fondos de manera irreversible",
+    "requisitesIsCorrect": "Los datos son correctos",
+    "correctRequisites": "Corregir datos",
+    "waitForTransferConfirmation": "Espere la confirmación de la transferencia",
+    "transferConfirmed": "El operador confirmó la transferencia",
+    "lookingForOperator": "Buscando operador",
+    "transferInAmount": "Transferencia por el monto de",
+    "transferReceived": "recibida",
+    "approveTransferText": "Si la transferencia llegó, active el interruptor y pulse el botón para continuar.",
+    "approveReceivedCheckbox": "La transferencia fue realizada",
+    "appreveButtonText": "Sí, la transferencia fue realizada",
+    "notYet": "Aún no",
+    "dontCloseWindow": "¡No cierre la ventana de pago!",
+    "dontCloseSteps": {
+        "one": "Su cuenta se recargará con varios pagos, cada uno debe ser confirmado",
+        "two": "Pulse el botón de confirmación",
+        "three": "Espere la pantalla de recarga exitosa",
+        "gotIt": "Entendido"
+    },
+    "dispute": {
+        "dispute": "Disputa",
+        "operator": "Operador",
+        "moderator": "Moderador",
+        "opened": "abierta",
+        "closed": "cerrada",
+        "video": "Vídeo",
+        "photo": "Foto",
+        "writeMessage": "Escribir mensaje...",
+        "success": "La disputa fue cerrada a su favor",
+        "successText": "Se le asignará un nuevo operador para el pago de la parte restante.",
+        "fail": "La disputa fue cerrada a favor del operador",
+        "failText": "Será redirigido al siguiente paso de pago.",
+        "notification": {
+            "title": "Por favor, tenga más cuidado en la próxima verificación de transferencia.",
+            "text": "Después de la segunda disputa cerrada a favor del operador, nos veremos obligados a limitar su acceso al retiro de fondos.",
+            "ok": "Vale"
+        }
+    }
+}

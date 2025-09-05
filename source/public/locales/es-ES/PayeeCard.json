@@ -1,0 +1,12 @@
+{
+    "copy": "Copiar",
+    "copyed": "Número de tarjeta copiado",
+    "copyedPhone": "Número de teléfono copiado",
+    "copyedAmount": "Monto copiado",
+    "bankName": "Banco del beneficiario",
+    "requisite": "Datos bancarios",
+    "amount": "Monto de la transferencia",
+    "payee": "Beneficiario",
+    "requisiteComment": "El pago se realiza a través de un socio de pagos autorizado.",
+    "transgranComment": "La transferencia a {{country}} es parte de un esquema protegido."
+}

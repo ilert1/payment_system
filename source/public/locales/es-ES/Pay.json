@@ -1,0 +1,67 @@
+{
+    "approveTransfer": "Confirmar transferencia",
+    "withoutComments": "Sin comentarios en la transferencia",
+    "selectFile": "Adjuntar recibo",
+    "changeCheck": "Reemplazar RECIBO",
+    "default_steps": {
+        "steps_card": "Copie el número de la tarjeta y abra la aplicación de su banco|Realice la transferencia al número de tarjeta en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>",
+        "steps_phone": "Copie el número de teléfono y abra la aplicación de su banco|Realice la transferencia al número de teléfono en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>"
+    },
+    "steps_transgran_simple": {
+        "tbankTitle": "Instrucción T-Bank",
+        "steps": "Abra la aplicación del banco|Pulse el botón (<s>transferir por teléfono</s>)|Pulse en el código de país y elija <s>{{country}} ({{code}})</s>|Pegue el número de teléfono indicado|En la lista de bancos elija el que se indica en el formulario|Introduzca el monto y pulse el botón (<s>transferir</s>)"
+    },
+    "steps_transgran": {
+        "one": "Copie el número de teléfono indicado",
+        "two": "Abra la aplicación de su banco",
+        "tbankTitle": "Instrucción para el pago a través de T-Bank",
+        "tbank": "Seleccione transferencia por SBP|Pegue el número de teléfono copiado|Indique el banco que aparece en el formulario de pago|Introduzca el monto exacto indicado en el sitio web|Pulse el botón realizar pago",
+        "sberbankTitle": "Instrucción para el pago a través de Sberbank",
+        "sberbank": "Seleccione transferencia por número de teléfono / a otro país|Seleccione el país - {{country}}|Pulse en \"A tarjeta o cuenta\"|Pegue el número de teléfono copiado|Indique el banco que aparece en el formulario de pago|Introduzca el monto exacto indicado en el sitio web|Pulse el botón realizar pago",
+        "vtbbankTitle": "Instrucción para el pago a través de VTB",
+        "vtbbank": "Abra la sección «Pagos»|Seleccione «A otro país»|De la lista seleccione «{{country}}»|Seleccione «transferencia por número de teléfono»|Elija de la lista el banco indicado|Ingrese el número de teléfono indicado|Pulse el botón transferir"
+    },
+    "steps_with_check": {
+        "steps": "Copie {{requisite}} y abra la aplicación de su banco|Realice la transferencia a {{requisite}} en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Adjunte obligatoriamente el recibo de pago|Pulse el botón <s>“{{buttonName}}”</s>",
+        "phoneNumber": "número de teléfono",
+        "cardNumber": "número de tarjeta"
+    },
+    "steps_transgran_tcard2card": {
+        "tbankTitle": "Instrucción T-Bank",
+        "tbank": "Abra la aplicación del banco (<s>T-Bank</s>)|Pulse el botón (<s>pagar</s>)|Seleccione la sección (<s>transferencia por número de tarjeta</s>)|Pegue el número de tarjeta indicado|Indique el monto de la transferencia según la solicitud|Pulse el botón (<s>transferir</s>)"
+    },
+    "steps_azn": {
+        "sberbank": "Copie el número de teléfono indicado|Abra la aplicación <s>Sber</s>|Seleccione la función de transferencia por número de teléfono — <s>\"transferencia a otro país\"</s>|Luego en la aplicación seleccione el país de destino — <s>Azerbaiyán</s>|Pegue el número de teléfono copiado|Seleccione el banco indicado en la lista de <s>\"E-wallet\"</s> disponibles|Introduzca el monto exacto indicado en el sitio web|Revise los datos y pulse el botón <s>\"Realizar pago\"</s>"
+    },
+    "steps_iban": {
+        "iban": "Copie el número IBAN|Abra la aplicación de su banco|Seleccione la función <s>\"Enviar dinero\"</s>|Luego > Seleccione la función <s>\"Transferencia a otro beneficiario\"</s>|En la ventana <s>Datos del beneficiario</s> > Pegue el IBAN copiado|Pegue el <s>\"Nombre y Apellido\"</s> del beneficiario|Introduzca el monto exacto indicado en el sitio web|Revise los datos y pulse el botón <s>\"Confirmar\"</s>"
+    },
+    "steps_transgran_new": {
+        "title": {
+            "transgran": "Instrucción para pago desde Rusia",
+            "local": "Instrucción para pago dentro del país"
+        },
+        "steps": "Transferencia a otro país|Seleccionar país|Ingresar número de teléfono|Seleccionar banco|Pagar",
+        "country": {
+            "tjs": "Tayikistán",
+            "azn": "Azerbaiyán",
+            "abh": "Abjasia"
+        }
+    },
+    "steps_transgran_abh": {
+        "steps": "Copie el número de teléfono|En la aplicación Sber pulse <s>transferir</s>|Seleccione a otro país, luego <s>{{country}}</s>|Pegue el número de teléfono|Seleccione <s>A-Mobile Wallet</s>|Ingrese el monto <s>{{amount}}</s> y pulse <s>Confirmar</s>"
+    },
+    "steps_ars": {
+        "steps": "Copie el CVU / CBU|Copie el nombre del beneficiario (si es necesario)|Abra la aplicación de su banco|Realice la transferencia por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>"
+    },
+    "check_load_errors": {
+        "generalError": "Error al enviar los datos. Inténtelo de nuevo",
+        "fileSize": "El tamaño del archivo supera los 3MB",
+        "fileType": "Formato de archivo no permitido. Se admiten imágenes y PDF"
+    },
+    "payed": "Pagado",
+    "attention": "Realice la transferencia al banco y por el monto indicados en el formulario. De lo contrario, no garantizamos la acreditación.",
+    "agree": "Ok, entendido",
+    "scanQrCode": "Escanee el código QR con la cámara de su teléfono.",
+    "linkToApp": "Ir a la aplicación"
+}

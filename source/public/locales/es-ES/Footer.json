@@ -1,0 +1,15 @@
+{
+    "protected": "La traducción está protegida.",
+    "details": "Detalles",
+    "cancel": "Cancelar la transferencia",
+    "cancelDialog": {
+        "title": "Cancelar la transferencia y volver a la tienda",
+        "text": "Si cancela la transferencia, tendrá que crear una nueva orden desde el principio.",
+        "continue": "Continuar transferencia"
+    },
+    "unicPopup": {
+        "title": "¡Atención!",
+        "text": "No hay datos de pago adecuados para la transacción solicitada. Le pedimos que realice la transferencia por el monto indicado. Los fondos se acreditarán en su depósito.",
+        "continue": "Entendido"
+    }
+}

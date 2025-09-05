@@ -1,0 +1,6 @@
+{
+    "waitConfirmation": "El proveedor está verificando su transferencia",
+    "waitComment": "Tan pronto como el proveedor confirme la transferencia, recargaremos su saldo",
+    "waitTime": "Normalmente tarda hasta 2 minutos",
+    "backToSite": "Volver al sitio"
+}

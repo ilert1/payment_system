@@ -1,0 +1,7 @@
+{
+    "header": "Recarga de saldo a través de nuestro proveedor",
+    "description": {
+        "part1": "Realice una transferencia según los datos de nuestro proveedor (persona física).",
+        "part2": "Tan pronto como el proveedor reciba su dinero, recargaremos su saldo de inmediato."
+    }
+}

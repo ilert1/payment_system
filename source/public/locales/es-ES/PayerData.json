@@ -1,0 +1,20 @@
+{
+    "enter4": "Ingrese los últimos 4 dígitos",
+    "yourPhone": "De su teléfono",
+    "yourCard": "De su tarjeta",
+    "cardNumber": "Número de tarjeta",
+    "expirationDate": "Fecha de vencimiento",
+    "cardHolder": "Titular de la tarjeta",
+    "nameLastname": "CARD HOLDER",
+    "errors": {
+        "cardValidationError": "El número de tarjeta debe contener 16 dígitos",
+        "expireDateError": "Ingrese la fecha de vencimiento en formato MM/AA",
+        "expreDateRangeError": "La fecha de vencimiento debe ser futura",
+        "cvvError": "El CVV debe contener 3 dígitos",
+        "paymentNotFound": "No se encontró un pago con este ID",
+        "cardHolderError": "El campo debe estar en formato NOMBRE APELLIDO en latín, por ejemplo IVAN IVANOV",
+        "unknownError": "Error desconocido"
+    },
+    "getCard": "Su tarjeta ha sido aceptada, pulse pagar para ir a la página de pago",
+    "pay": "Pagar"
+}
