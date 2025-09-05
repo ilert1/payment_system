@@ -32,7 +32,6 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
 
         Object.keys(LangVariants)?.forEach((item: string) => {
             const langItem = item;
-            console.log(langItem);
 
             if (lang.substring(0, 2) != langItem) {
                 output.push(
