@@ -1,5 +1,4 @@
 import UserIcon from "@/shared/assets/images/user.svg?react";
-import PayeeHint from "@/shared/ui/PayeeHint/PayeeHint";
 import styles from "./PayeeInfo.module.scss";
 
 interface PayeeInfoProps {
