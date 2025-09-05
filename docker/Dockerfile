@@ -7,10 +7,22 @@ ARG VITE_SUPPORT_LINK
 ARG VITE_DISPUT_CHAT
 ARG VITE_YMETRICS_COUNTER
 
-COPY ./source ./
 
+COPY ./source/package.json ./source/package-lock.json ./
+
+RUN rm -rf node_modules package-lock.json
 RUN npm install
+
+RUN npm install @rollup/rollup-linux-arm64-musl --save-optional
+
+COPY ./source ./
 RUN npm run build
+
+
+#COPY ./source ./
+#RUN npm install
+#RUN npm run build
+
 
 
 # deploy
