@@ -165,6 +165,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const paymentEcomPage = useCallback(() => {
         console.log("STATUS: ", status);
         switch (status) {
+            case "paymentExecuted":
+                return AppRoutes.SUCCESS_PAGE;
             case "paymentAwaitingStart":
                 return AppRoutes.PAGE_MAIN;
             case "paymentAwaitingSelectInstrument":
@@ -184,8 +186,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 return AppRoutes.PAY_PAGE;
             case "paymentAwaitingConfirmationByPayee":
                 return AppRoutes.PAYEE_DATA_PAGE;
-            case "paymentExecuted":
-                return AppRoutes.SUCCESS_PAGE;
+
             case "paymentError":
                 return AppRoutes.PAY_ERROR_PAGE;
             case "Cancelled":

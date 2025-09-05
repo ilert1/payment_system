@@ -29,3 +29,4 @@ localisation_request.txt
 
 *storybook.log
 storybook-static
+coverage/

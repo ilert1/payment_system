@@ -57,7 +57,7 @@ i18n.use(initReactI18next)
             // loadPath: "/locales/{{lng}}/{{ns}}.json"
             loadPath: (lngs: string[], namespaces: string[]) => {
                 const lang = resources[lngs[0] as keyof typeof resources];
-                console.log(namespaces);
+                // console.log(namespaces);
 
                 return `/locales/${lang}/${namespaces[0]}.json`;
             }

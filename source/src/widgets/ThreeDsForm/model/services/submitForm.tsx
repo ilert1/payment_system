@@ -4,11 +4,11 @@ import { SubmitFormParams } from "../types/threeDSFormTypes";
 export const submitForm = async ({
     formData,
     fingerprintHeaders,
-    setBfData,
     dest,
     bfId,
     navigate,
-    payOutMode
+    payOutMode,
+    setStatus
 }: SubmitFormParams): Promise<BFDataType | undefined> => {
     const url = `${import.meta.env.VITE_API_URL}/${dest}s/${bfId}/events`;
 
@@ -31,12 +31,16 @@ export const submitForm = async ({
             throw new Error(`Request failed with status ${response.status}`);
         }
 
-        const data: BFDataType & { success?: boolean } = await response.json();
+        const data: BFDataType & { success?: boolean; error?: string; state?: string } = await response.json();
 
         if (data?.success) {
-            setBfData(data);
+            console.log("Three ds form submit data: ", data);
             return data;
         } else {
+            if (data?.error == "8001") {
+                if (data?.state) setStatus(data.state);
+                return;
+            }
             navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
             return undefined;
         }

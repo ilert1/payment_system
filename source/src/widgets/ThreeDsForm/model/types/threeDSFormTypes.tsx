@@ -14,7 +14,7 @@ export interface ThreeDsFormStore {
 export interface SubmitFormParams {
     formData: ThreeDsFormValues;
     fingerprintHeaders: HeadersInit;
-    setBfData: (data: BFDataType) => void;
+    setStatus: (data: string) => void;
     dest: string;
     bfId: string;
     navigate: NavigateFunction;
