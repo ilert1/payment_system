@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import Clock from "@/shared/assets/images/clock.svg";
+import Clock from "@/shared/assets/images/clock.svg?react";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Timer from "@/shared/ui/Timer";

@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import { z } from "zod";
 import { useAppContext } from "@/AppContext";
 import { AppRoutes } from "@/shared/const/router";
+import { useBFStore } from "@/shared/store/bfDataStore";
+import Loader from "@/shared/ui/Loader";
 import { Input } from "@/shared/ui/input/input";
 import { Footer } from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
@@ -14,6 +16,7 @@ import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import styles from "./ThreeDsForm.module.scss";
 
 export const ThreeDsForm = () => {
+    const status = useBFStore(state => state.status);
     const { fingerprintConfig } = useAppContext();
     const { t } = useTranslation("ThreeDsPage");
     const { isFetching, submitForm } = useThreeDSFormStore();
@@ -59,6 +62,10 @@ export const ThreeDsForm = () => {
             setButtonEnabled(false);
         }
     }, [val]);
+
+    if (status === "paymentAwaitingConfirmationByPayee") {
+        return <Loader />;
+    }
 
     return (
         <>

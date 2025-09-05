@@ -1,17 +1,16 @@
+import { useAppContext } from "@/AppContext";
+import usePaymentPage from "@/hooks/usePaymentPage";
+import Clock from "@/shared/assets/images/clock.svg?react";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import Timer from "@/shared/ui/Timer";
+import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { useAppContext } from "../AppContext";
-import usePaymentPage from "../hooks/usePaymentPage";
-import Clock from "../shared/assets/images/clock.svg?react";
-import Timer from "../shared/ui/Timer";
-import { Footer } from "../widgets/Footer";
 
 const SuccessPage = () => {
     const { t, getCurrencySymbol, payoutMode, ym } = useAppContext();
     ym("reachGoal", "success-page");
     const BFData = useBFStore(state => state.BFData);
-    // const status = useBFStore(state => state.status);
-    //translation
+
     const ns = { ns: "Success" };
 
     const payOutMode = Boolean(BFData?.payout);

@@ -52,7 +52,7 @@ export const SubmitModal = (props: SubmitModalProps) => {
                                     loading={isLoading}
                                     size={"lg"}
                                     className={data.isCancel ? styles.cancelButton : styles.button}>
-                                    {data.primaryBtnText}&nbsp
+                                    {data.primaryBtnText}&nbsp;
                                 </Button>
                             )}
                             {data?.secondaryBtnText && (

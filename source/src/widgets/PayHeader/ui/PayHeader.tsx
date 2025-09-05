@@ -39,7 +39,7 @@ export const PayHeader = (props: PayHeaderProps) => {
             </h1>
             <div className={classNames(styles.deadlineContainer, {}, ["deadline-container"])}>
                 {/* <img src={ClockOrange} alt="" /> */}
-                <ClockOrange className="img" />
+                <ClockOrange className={styles.img} />
                 <Timer
                     down={true}
                     className={classNames(styles.deadlineTimer, {}, ["deadline-timer"])}
