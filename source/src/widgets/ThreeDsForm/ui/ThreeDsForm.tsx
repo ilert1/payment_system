@@ -136,6 +136,7 @@ export const ThreeDsForm = () => {
                 nextEnabled={buttonEnabled && !isFetching}
                 approve={true}
                 focused={true}
+                showCancelBtn={false}
             />
         </>
     );
