@@ -1,8 +1,10 @@
+import { classNames } from "@/shared/lib/classNames";
 import styles from "./InstructionItems.module.scss";
 
 interface InstructionItemsProps {
     start?: number;
     data: string;
+    isActive?: boolean;
 }
 
 const parseWithSpan = (str: string) => {
@@ -27,9 +29,10 @@ const LocalizedHtml = ({ text }: { text: string }) => {
 };
 
 export const InstructionItems = (props: InstructionItemsProps) => {
-    const { start = 0, data = "" } = props;
+    const { start = 0, data = "", isActive = false } = props;
+
     return (
-        <ul className={styles.ul}>
+        <ul className={classNames(styles.ul, { [styles.active]: isActive })}>
             {data.split("|").map((item, index) => (
                 <li className={styles.li} key={index}>
                     <span className={styles.span}>{start + index + 1}. </span>

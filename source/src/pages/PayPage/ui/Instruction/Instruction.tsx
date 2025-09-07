@@ -25,19 +25,24 @@ export const Instruction = (props: InstructionProps) => {
         else setActive(i);
         ym("reachGoal", "instruction-button", { title: title });
     };
+    const isActive = active === i;
 
     return (
-        <div className={classNames(styles.accordionContainer, { [styles.active]: active == i })}>
+        <div className={classNames(styles.accordionContainer, { [styles.pActive]: isActive })}>
             <div className={styles.title}>
                 <p className={styles.p} onClick={callback}>
                     {title}
                 </p>
 
                 <Button onClick={callback} variant="ghost" className={styles.btn}>
-                    <img className={styles.arrow} src={ArrowDown} alt="" />
+                    <img
+                        className={classNames(styles.arrow, { [styles.arrowActive]: isActive })}
+                        src={ArrowDown}
+                        alt=""
+                    />
                 </Button>
             </div>
-            {children ? children : <InstructionItems start={start} data={data ?? ""} />}
+            {children ? children : <InstructionItems start={start} data={data ?? ""} isActive={isActive} />}
         </div>
     );
 };
