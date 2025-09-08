@@ -20,7 +20,13 @@ const parseWithSpan = (str: string) => {
             inside = false;
             return null;
         }
-        return inside ? <span key={i}>{part}</span> : part;
+        return inside ? (
+            <span className={styles.span} key={i}>
+                {part}
+            </span>
+        ) : (
+            part
+        );
     });
 };
 

@@ -6,7 +6,7 @@ import styles from "./Instruction.module.scss";
 import { InstructionItems } from "./InstructionItems";
 
 interface InstructionProps {
-    title: string;
+    title?: string;
     data?: string;
     start?: number;
     i: number;
@@ -25,6 +25,7 @@ export const Instruction = (props: InstructionProps) => {
         else setActive(i);
         ym("reachGoal", "instruction-button", { title: title });
     };
+
     const isActive = active === i;
 
     return (
