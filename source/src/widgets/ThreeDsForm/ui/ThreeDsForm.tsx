@@ -9,7 +9,8 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
+import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
 import { Footer } from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
@@ -69,9 +70,7 @@ export const ThreeDsForm = () => {
     if (status === "paymentAwaitingConfirmationByPayee") {
         return (
             <div className="content">
-                <div className="loader-container">
-                    <Loader />
-                </div>
+                <Loader />
             </div>
         );
     }
@@ -79,13 +78,8 @@ export const ThreeDsForm = () => {
     return (
         <>
             <div className="content cardPage">
-                <h1
-                    className="grow"
-                    style={{
-                        marginBottom: "20px"
-                    }}>
-                    {t("title")}
-                </h1>
+                <Text size="l" title={t("title")} grow className={styles.h1} />
+
                 {/* onSubmit={threeDSForm.handleSubmit(onSubmit)} */}
                 <form className={styles.form}>
                     <div className={styles.item}>

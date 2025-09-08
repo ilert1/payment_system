@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { Loader } from "@/shared/ui/Loader";
+import { Loader } from "@/shared/ui/Loader/Loader";
 import SearchPayMethod from "@/shared/ui/SearchPayMethod/SearchPayMethod";
+import { Text } from "@/shared/ui/Text/Text";
 import { BankItem } from "@/widgets/BankItem";
 import styles from "./PayInstrument.module.scss";
 
@@ -67,7 +68,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
     return (
         <>
             <div className={styles.payMethod}>
-                <h2 className={styles.h2}>{t("payMethod", ns)}</h2>
+                <Text className={styles.h2} size="m" title={t("payMethod", ns)} />
                 <SearchPayMethod setFilterText={setFilterText} />
             </div>
             <div className={styles.banksListContainer}>
@@ -75,13 +76,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
                     <div className={styles.banksList}>{instruments}</div>
                 ) : (
                     <div className={styles.banksList}>
-                        {isFetching ? (
-                            <div className="loader-container">
-                                <Loader />
-                            </div>
-                        ) : (
-                            <p className="empty center">{t("emptyList", ns)}</p>
-                        )}
+                        {isFetching ? <Loader /> : <p className="empty center">{t("emptyList", ns)}</p>}
                     </div>
                 )}
             </div>

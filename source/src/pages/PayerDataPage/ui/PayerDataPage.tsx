@@ -4,7 +4,8 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router.js";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
+import { Text } from "@/shared/ui/Text/Text";
 import { CardNumberForm } from "@/widgets/CardNumberForm";
 import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
 import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
@@ -115,24 +116,22 @@ const PayerDataPage = () => {
                 {isEcom ? (
                     !isFetching && !waitTransfer ? (
                         <>
-                            <h1 className="grow">{t("enterYourCard", ns)}</h1>
+                            <Text size="l" title={t("enterYourCard", ns)} grow />
                             <CardNumberForm disabled={isPressed || isFetching} cardHolderVisible={showCardHolder} />
                         </>
                     ) : (
                         <>
-                            <h1 className="grow">{t("getCard", ns)}</h1>
-                            {(isPressed || isFetching) && (
-                                <div className="loader-container">
-                                    <Loader />
-                                </div>
-                            )}
+                            <Text size="l" title={t("getCard", ns)} grow />
+                            {(isPressed || isFetching) && <Loader />}
                         </>
                     )
                 ) : (
                     <>
-                        <h1 className="grow">{`${t("enter4", ns)} ${
-                            isSbp ? t("yourPhone", ns) : t("yourCard", ns)
-                        }`}</h1>
+                        <Text
+                            size="l"
+                            title={`${t("enter4", ns)} ${isSbp ? t("yourPhone", ns) : t("yourCard", ns)}`}
+                            grow
+                        />
                         <CardNumberLast4 onComplete={onComplete} showHidden={!isSbp} />
                     </>
                 )}

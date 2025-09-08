@@ -1,5 +1,5 @@
-import Loader from "@/shared/ui/Loader";
-import Timer from "@/shared/ui/Timer";
+import Loader from "@/shared/ui/Loader/Loader";
+import { Text } from "@/shared/ui/Text/Text";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 
@@ -8,16 +8,12 @@ const PaymentWaitConfirmation = () => {
         <Page>
             <div className="content">
                 <div className="header-container grow">
-                    <h1>Прикрепленный файл на проверке</h1>
+                    <Text size="l" title={"Прикрепленный файл на проверке"} />
                 </div>
                 <div className="description low-mb low-mt">
                     <p>Как только провайдер подтвердит перевод, ваш счет пополнится</p>
                 </div>
-                <div className="loader-container">
-                    <Loader />
-                    <Timer />
-                    <p className="status-comment">Обычно проверка занимает до 20 минут</p>
-                </div>
+                <Loader timer={true} statusText={"Обычно проверка занимает до 20 минут"} />
             </div>
 
             <Footer />

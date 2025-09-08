@@ -253,60 +253,6 @@ button {
         }
     }
 
-    .loader-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
-        color: #010f18;
-
-        @keyframes spin {
-            from {
-                rotate: 0deg;
-            }
-
-            to {
-                rotate: 360deg;
-            }
-        }
-
-        .loader img {
-            animation: spin 3s linear infinite;
-        }
-
-        .timer {
-            margin-top: 14px;
-
-            font-family: Inter, sans-serif;
-            font-size: 31px;
-            font-weight: 600;
-            line-height: 133%;
-
-            @media (width <= 520px) {
-                margin-top: 10px;
-                font-size: 22px;
-            }
-        }
-
-        .status-comment {
-            margin-top: 21px;
-
-            // font-family: Inter;
-            font-size: 20px;
-            font-weight: 400;
-            line-height: 133%;
-            color: #010f18;
-
-            opacity: 0.5;
-
-            @media (width <= 520px) {
-                margin-top: 15px;
-                font-size: 14px;
-            }
-        }
-    }
-
     .error-image {
         margin-bottom: 35px;
 

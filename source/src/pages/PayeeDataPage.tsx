@@ -1,8 +1,9 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Text } from "@/shared/ui/Text/Text";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
-import { Loader } from "../shared/ui/Loader";
+import { Loader } from "../shared/ui/Loader/Loader";
 import { Timer } from "../shared/ui/Timer";
 import { Footer } from "../widgets/Footer";
 
@@ -34,19 +35,20 @@ const PayeeDataPage = () => {
         <Page>
             <div className="content">
                 <div className="header-container grow">
-                    <h1>
-                        {t("waitConfirmation", ns)} {BFData?.[dest]?.amount}&nbsp;
-                        {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
-                    </h1>
+                    <Text
+                        size="l"
+                        title={
+                            t("waitConfirmation", ns) +
+                            BFData?.[dest]?.amount +
+                            "\u00A0" +
+                            getCurrencySymbol(BFData?.[dest]?.currency ?? "")
+                        }
+                    />
                 </div>
                 <div className="description low-mb low-mt">
                     <p>{t("waitComment", ns)}</p>
                 </div>
-                <div className="loader-container">
-                    <Loader />
-                    <Timer />
-                    <p className="status-comment">{t("waitTime", ns)}</p>
-                </div>
+                <Loader timer={true} statusText={t("waitTime", ns)} />
             </div>
 
             <Footer

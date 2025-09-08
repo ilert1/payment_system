@@ -3,6 +3,7 @@ import { useAppContext } from "@/AppContext";
 import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?react";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
+import { Text } from "@/shared/ui/Text/Text";
 import { LanguageSelector } from "@/widgets/LanguageSelector";
 import styles from "./SubmitModal.module.scss";
 
@@ -39,7 +40,7 @@ export const SubmitModal = (props: SubmitModalProps) => {
                     <div className={styles.payoutDialogBlock}>
                         <LanguageSelector lang={lang} setLang={setLang} />
                         <AlertTriangleBig className={styles.alertTriangle} />
-                        <h3 className={styles.title}>{data.title}</h3>
+                        <Text size="l" title={data.title} />
                         <p className={styles.text}>{data.text}</p>
                     </div>
 

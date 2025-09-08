@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Text } from "@/shared/ui/Text/Text";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { ProgressSteper } from "@/widgets/ProgressSteper";
@@ -40,11 +41,18 @@ const PayeeSearchPage = () => {
     return (
         <Page>
             <div className="content">
-                <h1 className="grow">
-                    {t("lookingFor", ns)} {BFData?.[dest]?.amount}&nbsp;
-                    {getCurrencySymbol(BFData?.[dest]?.currency ?? "")} {t("via", ns)}{" "}
-                    {currentPaymentInstrument?.data?.bank_name}
-                </h1>
+                <Text
+                    size="l"
+                    title={
+                        t("lookingFor", ns) +
+                        BFData?.[dest]?.amount +
+                        "\u00A0" +
+                        getCurrencySymbol(BFData?.[dest]?.currency ?? "") +
+                        t("via", ns) +
+                        " " +
+                        currentPaymentInstrument?.data?.bank_name
+                    }
+                />
                 <ProgressSteper step={step} />
             </div>
 

@@ -3,6 +3,7 @@ import { useAppContext } from "@/AppContext";
 import Clock from "@/shared/assets/images/clock.svg?react";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Text } from "@/shared/ui/Text/Text";
 import Timer from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -32,7 +33,7 @@ export const GeneralErrorPage = ({ cancel = false }) => {
         <Page>
             <div className="content">
                 <div className="header-container grow">
-                    <h1>{t(cancel ? "cancelPage.cancel" : "error", ns)}</h1>
+                    <Text size="l" title={t(cancel ? "cancelPage.cancel" : "error", ns)} />
                 </div>
                 <div className="description low-mb low-mt">
                     <p>{t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}</p>

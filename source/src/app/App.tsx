@@ -5,7 +5,7 @@ import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
 // import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
 import { Page } from "@/widgets/Page";
 import { AppRouter } from "./providers/router";
 
@@ -56,9 +56,7 @@ const App = () => {
             {loading ? (
                 <Page header={false}>
                     <div className="content">
-                        <div className="loader-container">
-                            <Loader />
-                        </div>
+                        <Loader />
                     </div>
                 </Page>
             ) : (

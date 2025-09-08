@@ -9,7 +9,8 @@ import Wallet from "@/shared/assets/images/wallet.png";
 import { AppRoutes } from "@/shared/const/router";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
+import { Text } from "@/shared/ui/Text/Text";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
 import { Page } from "@/widgets/Page";
@@ -69,16 +70,14 @@ export const MainPage = () => {
         <Page>
             {!BFData?.[dest]?.method ? (
                 <div className="content">
-                    <div className="loader-container">
-                        <Loader />
-                    </div>
+                    <Loader />
                 </div>
             ) : (
                 <>
                     <div className="content">
                         {!payOutMode ? (
                             <>
-                                <h1>{t("header", ns)}</h1>
+                                <Text size="l" title={t("header", ns)} />
                                 <div className={styles.walletImageContainer}>
                                     <img src={Wallet} alt="" />
                                 </div>
@@ -89,7 +88,7 @@ export const MainPage = () => {
                             </>
                         ) : (
                             <>
-                                <h1>{t("header", ns)}</h1>
+                                <Text size="l" title={t("header", ns)} />
                                 <div className={classNames(styles.walletImageContainer, {}, [styles.margins])}>
                                     <img src={WalletPayout} alt="" />
                                 </div>

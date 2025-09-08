@@ -1,0 +1,52 @@
+.loaderContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    color: #010f18;
+}
+
+.img {
+    animation: spin 3s linear infinite;
+
+    @keyframes spin {
+        from {
+            rotate: 0deg;
+        }
+
+        to {
+            rotate: 360deg;
+        }
+    }
+}
+
+.timer {
+    margin-top: 14px;
+
+    font-family: Inter, sans-serif;
+    font-size: 31px;
+    font-weight: 600;
+    line-height: 133%;
+
+    @media (width <= 520px) {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+}
+
+.statusComment {
+    margin-top: 21px;
+
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    line-height: 133% !important;
+    color: #010f18 !important;
+
+    opacity: 0.5;
+
+    @media (width <= 520px) {
+        margin-top: 15px;
+        font-size: 14px;
+    }
+}

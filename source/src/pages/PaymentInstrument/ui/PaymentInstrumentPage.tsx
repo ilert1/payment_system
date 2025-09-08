@@ -5,6 +5,7 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Text } from "@/shared/ui/Text/Text";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { PayInstruments } from "@/widgets/PayInstruments";
@@ -94,7 +95,7 @@ const PaymentInstrumentPage = () => {
     return (
         <Page>
             <div className="content">
-                <h1>{t("amount", ns)}</h1>
+                <Text size="l" title={t("amount", ns)} grow />
                 <div className={styles.amountContainer}>
                     <p className={styles.amount}>{BFData?.[dest]?.amount}</p>
                     <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>

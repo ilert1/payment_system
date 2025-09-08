@@ -120,17 +120,6 @@
                 line-height: 13px;
             }
         }
-
-        .value {
-            font-size: 26px;
-            font-weight: 600;
-            line-height: 35px;
-
-            @media (width <= 520px) {
-                font-size: 18px;
-                line-height: 24px;
-            }
-        }
     }
 
     .copy {

@@ -157,13 +157,7 @@
 .h2 {
     margin-bottom: 12px;
 
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 133%; // 33.38px;
-    text-align: left;
-
     @media (width <= 520px) {
         margin-bottom: 8px;
-        font-size: 18px;
     }
 }

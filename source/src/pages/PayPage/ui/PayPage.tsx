@@ -10,7 +10,7 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { PayHeader } from "@/widgets/PayHeader";
@@ -257,9 +257,7 @@ const PayPage = () => {
         <Page>
             {!trader || isFetching_BFData ? (
                 <div className="content">
-                    <div className="loader-container">
-                        <Loader />
-                    </div>
+                    <Loader />
                 </div>
             ) : (
                 <>

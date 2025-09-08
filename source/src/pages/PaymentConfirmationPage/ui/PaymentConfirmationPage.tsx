@@ -5,6 +5,7 @@ import Clock from "@/shared/assets/images/clock.svg";
 import FilePdfIcon from "@/shared/assets/images/file-pdf.svg";
 import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
+import { Text } from "@/shared/ui/Text/Text";
 import { Timer } from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -44,7 +45,7 @@ export const PaymentConfirmationPage = () => {
     return (
         <Page>
             <div className="content">
-                <h1 className="grow">Подтверждение оплаты</h1>
+                <Text size="l" title={"Подтверждение оплаты"} grow />
                 <div className={styles.confirmationDeadlineInfo}>
                     <p className="confirmation-comment">Прикрепите подтверждение оплаты для проверки</p>
                     <div className="deadline-container">
