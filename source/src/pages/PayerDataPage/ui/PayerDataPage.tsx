@@ -146,7 +146,7 @@ const PayerDataPage = () => {
                     nextEnabled={!redirectUrl && isPlatformCard && waitTransfer ? false : nextEnabled}
                     approve={true}
                     focused={buttonFocused}
-                    showCancelBtn={status !== "paymentPayerDataEntrу"}
+                    showCancelBtn={status === "paymentPayerDataEntrу"}
                 />
             )}
         </Page>
