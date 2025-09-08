@@ -12,7 +12,6 @@ import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader";
 import { Input } from "@/shared/ui/input/input";
 import { Footer } from "@/widgets/Footer";
-import { Page } from "@/widgets/Page";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
 import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import styles from "./ThreeDsForm.module.scss";
