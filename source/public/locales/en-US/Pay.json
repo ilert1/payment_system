@@ -51,6 +51,9 @@
     "steps_transgran_abh": {
         "steps": "Copy the phone number|In the Sber app, tap <s>'Transfer'</s>|Select another country, then <s>{{country}}</s>|Paste the phone number|Select <s>A-Mobile Wallet</s>|Enter the amount <s>{{amount}}</s> and tap <s>Approve</s>"
     },
+    "steps_ars": {
+        "steps": "Copy the CVU / CBU|Copy the recipient's name (if necessary)|Open your banking app|Make a transfer for the amount of <s>{{amount}}</s>|Click the <s>“{{buttonName}}”</s> button"
+    },
     "check_load_errors": {
         "generalError": "An error occurred while sending data. Please try again",
         "fileSize": "File size exceeds 3MB",

@@ -51,6 +51,9 @@
     "steps_transgran_abh": {
         "steps": "Telefon raqamini nusxa oling|Sber ilovasida 'to‘lash' tugmasini bosing|Boshqa davlatni va keyin {{country}} ni tanlang|Telefon raqamini joylashtiring|A-Mobile Hamyonini tanlang|{{amount}} summasini kiriting va 'Tasdiqlash' tugmasini bosing"
     },
+    "steps_ars": {
+        "steps": "CVU / CBU raqamini nusxa oling|Oluvchining ismini nusxa oling (agar kerak bo‘lsa)|Bank ilovangizni oching|<s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing"
+    },
     "check_load_errors": {
         "generalError": "Maʼlumot yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko‘ring",
         "fileSize": "Fayl hajmi 3MB dan oshib ketgan",
