@@ -142,7 +142,7 @@ const PayerDataPage = () => {
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
                     buttonCallback={isEcom && redirectUrl ? redirectCallback : buttonCallback}
                     nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                    nextEnabled={nextEnabled}
+                    nextEnabled={!redirectUrl ? false : nextEnabled}
                     approve={true}
                     focused={buttonFocused}
                     showCancelBtn={!(methodName === "ecom_platform_card")}
