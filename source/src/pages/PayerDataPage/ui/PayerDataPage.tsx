@@ -83,7 +83,7 @@ const PayerDataPage = () => {
         handleSubmit();
     };
 
-    const threeDSCallback = () => {
+    const redirectCallback = () => {
         ym("reachGoal", "external-redirect", { redirect_url: redirectUrl });
 
         window.open(redirectUrl, "_blank");
@@ -108,10 +108,6 @@ const PayerDataPage = () => {
             setIsPressed(false);
         }
     }, [waitTransfer]);
-
-    console.log(BFData?.[dest]);
-    console.log(isEcom);
-    console.log("redirectUrl: ", redirectUrl);
 
     return (
         <Page>
@@ -144,15 +140,12 @@ const PayerDataPage = () => {
             {!isFetching && (
                 <Footer
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
-                    buttonCallback={
-                        // methodName === "ecom_platform_all" ? handleSubmit : isEcom ? handleSubmit : buttonCallback
-                        buttonCallback
-                    }
-                    // buttonCallback={isEcom && redirectUrl ? threeDSCallback : isEcom ? handleSubmit : buttonCallback}
+                    buttonCallback={isEcom && redirectUrl ? redirectCallback : buttonCallback}
                     nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                    nextEnabled={nextEnabled}
+                    nextEnabled={!redirectUrl ? false : nextEnabled}
                     approve={true}
                     focused={buttonFocused}
+                    showCancelBtn={!(methodName === "ecom_platform_card")}
                 />
             )}
         </Page>

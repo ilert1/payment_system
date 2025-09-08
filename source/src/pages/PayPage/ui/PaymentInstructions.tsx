@@ -57,6 +57,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         code: caseName === tjs ? "+992" : "+994",
                         ...ns
                     })}
+                    isActive={true}
                 />
             </div>
         );
@@ -85,6 +86,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         buttonName: t("approveTransfer", ns),
                         ...ns
                     })}
+                    isActive
                 />
             </div>
         );
@@ -99,7 +101,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                     <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
                 </div>
 
-                <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} />
+                <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} isActive />
             </div>
         );
     }
@@ -114,6 +116,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
                         ...ns
                     })}
+                    isActive
                 />
             </div>
         );
@@ -123,7 +126,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     if (caseName === iban) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                <InstructionItems data={t("steps_iban.iban", ns)} />
+                <InstructionItems data={t("steps_iban.iban", ns)} isActive />
             </div>
         );
     }
@@ -139,6 +142,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                         buttonName: t("approveTransfer", ns),
                         ...ns
                     })}
+                    isActive
                 />
             </div>
         );
@@ -154,6 +158,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
                     buttonName: t("approveTransfer", ns),
                     ...ns
                 })}
+                isActive
             />
         </div>
     );

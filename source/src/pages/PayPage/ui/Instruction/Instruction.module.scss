@@ -2,17 +2,22 @@
     user-select: none;
     display: inline-flex;
     column-gap: 4px;
+    align-items: center;
 }
 
 .p {
     cursor: pointer;
 
-    font-size: 14px;
+    font-size: 14px !important;
     font-weight: 400;
     line-height: 18.69px;
     color: #010f18;
 
     transition: color 0.3s ease-in-out;
+}
+
+.pActive {
+    color: #37a8f3;
 }
 
 .btn {
@@ -25,43 +30,6 @@
     transition: rotate 0.3s ease-in-out;
 }
 
-.accordionContainerUl {
-    overflow-y: hidden;
-    max-height: 0;
-    margin: 0;
-    transition: max-height 0.2s ease-out;
-}
-
-.accordionContainer {
-    ul,
-    li {
-        row-gap: 0;
-
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 18.69px;
-        color: #010f18;
-
-        span {
-            font-weight: 400;
-            color: #37a8f3;
-        }
-    }
-
-    &.active {
-        .title {
-            .p {
-                color: #37a8f3;
-            }
-
-            .arrow {
-                transform: rotate(180deg);
-            }
-        }
-
-        .accordionContainerUl {
-            max-height: 500px;
-            transition: max-height 0.5s ease-out 0.2s;
-        }
-    }
+.arrowActive {
+    transform: rotate(180deg);
 }

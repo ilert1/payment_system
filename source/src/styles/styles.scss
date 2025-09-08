@@ -323,8 +323,11 @@ button {
         display: inline-flex;
         gap: 8px;
         align-items: center;
+        width: 150px;
 
         .deadline-timer {
+            width: 100px;
+
             font-size: 32px;
             font-weight: 600;
             line-height: 133%;

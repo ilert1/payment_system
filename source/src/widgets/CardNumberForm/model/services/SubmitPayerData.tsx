@@ -15,6 +15,7 @@ interface SubmitPayerDataParams {
     baseUrl: string;
     t: (key: string, options?: any) => string;
     ym: (methodName: string, ...args: any[]) => void;
+    setStatus: (state: string) => void;
 }
 
 export const submitPayerData = async ({
@@ -24,7 +25,8 @@ export const submitPayerData = async ({
     bfId,
     baseUrl,
     t,
-    ym
+    ym,
+    setStatus
 }: SubmitPayerDataParams): Promise<void> => {
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
 
@@ -97,6 +99,10 @@ export const submitPayerData = async ({
         const result = await res.json();
 
         if (!result.success) {
+            if (result?.error == "8001") {
+                if (result?.state) setStatus(result.state);
+                return;
+            }
             toast.error(result.error, { autoClose: 2000 });
         }
     } catch (error: any) {
