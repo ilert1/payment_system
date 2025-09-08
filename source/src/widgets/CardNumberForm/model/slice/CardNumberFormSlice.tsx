@@ -44,6 +44,7 @@ export const usePayerDataStore = create<PayerDataStore>(set => ({
 
     submitPayerData: async (form, method, dest, ym, t) => {
         const BFData = useBFStore.getState().BFData;
+        const setStatus = useBFStore.getState().setStatus;
         const bfId = BFData?.[dest]?.id;
 
         if (!bfId) return;
@@ -55,7 +56,8 @@ export const usePayerDataStore = create<PayerDataStore>(set => ({
             bfId,
             baseUrl,
             t,
-            ym
+            ym,
+            setStatus
         });
     }
 }));
