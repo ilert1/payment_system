@@ -14,7 +14,7 @@ export const Loader = ({ timer, statusText }: LoaderProps) => {
                 <img src={LoaderIcon} alt="Loader" />
             </div>
             {timer && <Timer />}
-            {statusText && <p className="statusComment">{statusText}</p>}
+            {statusText && <p className={styles.statusComment}>{statusText}</p>}
         </div>
     );
 };

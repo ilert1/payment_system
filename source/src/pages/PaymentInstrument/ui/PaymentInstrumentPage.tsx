@@ -98,7 +98,7 @@ const PaymentInstrumentPage = () => {
                 <Text size="l" title={t("amount", ns)} grow />
                 <div className={styles.amountContainer}>
                     <p className={styles.amount}>{BFData?.[dest]?.amount}</p>
-                    <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>
+                    <p>&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>
                 </div>
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
             </div>

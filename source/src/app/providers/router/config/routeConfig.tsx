@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
-import GeneralErrorPage from "@/pages/GeneralErrorPage";
+import { GeneralErrorPage } from "@/pages/GeneralErrorPage";
 import { MainPage } from "@/pages/MainPage";
-import PayErrorPage from "@/pages/PayErrorPage";
+import { PayErrorPage } from "@/pages/PayErrorPage";
 import { PayPage } from "@/pages/PayPage";
 import PayeeDataPage from "@/pages/PayeeDataPage";
 import PayeeSearchPage from "@/pages/PayeeSearchPage";

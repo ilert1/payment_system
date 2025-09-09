@@ -1,10 +1,10 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Text } from "@/shared/ui/Text/Text";
+import { ContentDescription } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
 import { Loader } from "../shared/ui/Loader/Loader";
-import { Timer } from "../shared/ui/Timer";
 import { Footer } from "../widgets/Footer";
 
 const PayeeDataPage = () => {
@@ -45,9 +45,7 @@ const PayeeDataPage = () => {
                         }
                     />
                 </div>
-                <div className="description low-mb low-mt">
-                    <p>{t("waitComment", ns)}</p>
-                </div>
+                <ContentDescription text={t("waitComment", ns)} lowMb lowMt />
                 <Loader timer={true} statusText={t("waitTime", ns)} />
             </div>
 

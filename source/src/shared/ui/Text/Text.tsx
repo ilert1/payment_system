@@ -66,76 +66,136 @@ export const Text = memo((props: TextProps) => {
     );
 });
 
-// h3
-// PayeeDataItem.module Piti darna h2
-// .h3 {
-//     font-size: 25px;
+// .dropZoneText {
+//     color: #6fc0f6;
+// }
+
+// .amount {
+//     min-width: 1ch;
+//     border: none;
+
+//     font-family: inherit;
+//     font-size: 46px;
 //     font-weight: 600;
-//     line-height: 35px;
+//     line-height: 130%;
+//     color: #37a8f3;
+//     text-align: right;
+//     white-space: nowrap;
+
+//     background: none;
+//     outline: none;
 
 //     @media (width <= 520px) {
-//         font-size: 18px;
-//         line-height: 24px;
+//         font-size: 32px;
 //     }
 // }
 
-// h2
-// PayeeDataItem.module
-// .h2 {
-//     margin-bottom: 12px;
+// .p {
+//     cursor: pointer;
 
-//     font-size: 25px;
-//     font-weight: 600;
-//     line-height: 133%; // 33.38px;
+//     font-size: 14px !important;
+//     font-weight: 400;
+//     line-height: 18.69px;
+//     color: #010f18;
+
+//     transition: color 0.3s ease-in-out;
+// }
+
+// .statusComment {
+//     font-size: 20px;
+//     font-weight: 400;
+//     line-height: 133%;
+//     color: #010f18;
+
+//     opacity: 0.5;
+
+//     @media (width <= 520px) {
+//         font-size: 14px;
+//     }
+// }
+
+// .statusComment {
+//     margin-top: 21px;
+
+//     font-size: 20px !important;
+//     font-weight: 400 !important;
+//     line-height: 133% !important;
+//     color: #010f18 !important;
+
+//     opacity: 0.5;
+
+//     @media (width <= 520px) {
+//         margin-top: 15px;
+//         font-size: 14px;
+//     }
+// }
+
+// .errorMessage {
+//     width: 100%;
+
+//     font-size: 12px !important;
+//     color: rgb(177 14 14) !important;
 //     text-align: left;
-
-//     @media (width <= 520px) {
-//         margin-bottom: 8px;
-//         font-size: 18px;
-//     }
+//     overflow-wrap: break-word;
 // }
 
-// SubmitModal.module Piti darna h1
-// .h3 {
-//     font-size: 32px;
-//     font-weight: 600;
-//     line-height: 43px;
-
-//     @media (width <= 520px) {
-//         font-size: 24px;
-//         line-height: 32px;
-//     }
-// }
-
-// PayHeader.module
-// .h1 {
-//     font-size: 32px;
-//     line-height: 43px;
-//     text-align: left;
-//     text-wrap: balance;
-
-//     @media (width <= 520px) {
-//         font-size: 22px;
-//         line-height: 29px;
-//     }
-// }
-
-// Styles.scss
-// h1 {
-//     margin: 0;
-
-//     font-size: 32px;
+// .p {
+//     font-size: 31px;
 //     font-weight: 600;
 //     line-height: 133%;
 //     color: #010f18;
-//     text-wrap: balance;
+//     white-space: nowrap;
 
-//     &.grow {
-//         flex-grow: 0.3;
+//     opacity: 0.5;
+
+//     @media (width <= 650px) {
+//         font-size: clamp(18px, 3.5vw, 31px);
 //     }
 
 //     @media (width <= 520px) {
 //         font-size: 22px;
-//         line-height: 32px;
 //     }
+// }
+
+// .statusText {
+//     font-weight: 400;
+// }
+
+// .statusComment {
+//     font-size: 20px;
+//     font-weight: 400;
+//     line-height: 133%;
+//     color: #010f18;
+
+//     opacity: 0.5;
+
+//     @media (width <= 520px) {
+//         font-size: 14px;
+//     }
+// }
+
+// .text {
+//     /* font-size: 30px;
+//     line-height: 40px; */
+//     font-size: 20px;
+//     font-weight: 400;
+//     line-height: 30px;
+//     text-align: justify;
+
+//     @media (width <= 520px) {
+//         /* font-size: 16px;
+//         line-height: 21px; */
+//         font-size: 16px;
+//         line-height: 22px;
+//         text-align: justify;
+//     }
+// }
+
+// .errorMessage {
+//     width: 100%;
+
+//     font-size: 12px !important;
+//     color: rgb(177 14 14) !important;
+//     text-align: left;
+//     overflow-wrap: break-word;
 // }

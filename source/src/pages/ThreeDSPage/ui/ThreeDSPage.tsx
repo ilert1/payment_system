@@ -1,4 +1,3 @@
-import { Header } from "@/widgets/Header";
 import { Page } from "@/widgets/Page";
 import { ThreeDsForm } from "@/widgets/ThreeDsForm";
 

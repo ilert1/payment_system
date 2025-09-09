@@ -40,34 +40,3 @@
         filter: blur(45px);
     }
 }
-
-.description {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-
-    max-width: 416px;
-
-    // margin-bottom: 81px;
-    margin-bottom: 35px;
-
-    &.grow {
-        flex-grow: 0.5;
-    }
-
-    &.low-mb {
-        margin-bottom: 45px;
-
-        @media (width <= 520px) {
-            margin-bottom: 25px;
-        }
-    }
-
-    &.low-mt {
-        margin-top: 45px;
-
-        @media (width <= 520px) {
-            margin-top: 25px;
-        }
-    }
-}

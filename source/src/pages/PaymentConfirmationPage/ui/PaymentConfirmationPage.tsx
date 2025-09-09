@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { useAppContext } from "@/AppContext";
-import Clock from "@/shared/assets/images/clock.svg";
 import FilePdfIcon from "@/shared/assets/images/file-pdf.svg";
 import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
+import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
-import { Timer } from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./PaymentConfirmationPage.module.scss";
@@ -31,9 +30,6 @@ const DropZoneContent = () => {
 export const PaymentConfirmationPage = () => {
     const { t } = useAppContext();
 
-    //translation
-    const ns = { ns: "PaymentConfirmation" };
-
     const [file, setFile] = useState(null);
 
     const handleChange = (file: any) => {
@@ -47,11 +43,8 @@ export const PaymentConfirmationPage = () => {
             <div className="content">
                 <Text size="l" title={"Подтверждение оплаты"} grow />
                 <div className={styles.confirmationDeadlineInfo}>
-                    <p className="confirmation-comment">Прикрепите подтверждение оплаты для проверки</p>
-                    <div className="deadline-container">
-                        <img src={Clock} alt="" />
-                        <Timer down={true} className="deadline-timer" secondsToDo={60 * 15} />
-                    </div>
+                    <p>Прикрепите подтверждение оплаты для проверки</p>
+                    <DeadLineTimer timerSecondsTo={60 * 15} timerCallback={() => {}} />
                 </div>
 
                 <FileUploader

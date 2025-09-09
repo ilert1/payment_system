@@ -1,13 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import Clock from "@/shared/assets/images/clock.svg";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import Timer from "@/shared/ui/Timer";
+import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
+import { Text } from "@/shared/ui/Text/Text";
+import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
+import styles from "./PayErrorPage.module.scss";
 
-const PayErrorPage = ({ notFound = false }) => {
+export const PayErrorPage = ({ notFound = false }) => {
     const { ym } = useAppContext();
 
     const { t } = useTranslation();
@@ -25,32 +27,29 @@ const PayErrorPage = ({ notFound = false }) => {
         if (failUrl) window.location.replace(failUrl);
     };
 
-    //translation
     const ns = { ns: "PayError" };
 
     return (
         <Page>
             <div className="content">
                 <div className="header-container grow">
-                    {!notFound ? <h1>{t("payError", ns)}</h1> : <h1>{t("notFound", ns)}</h1>}
+                    {!notFound ? (
+                        <Text title={t("payError", ns)} size="l" />
+                    ) : (
+                        <Text title={t("notFound", ns)} size="l" />
+                    )}
                 </div>
-                <div className="description low-mb low-mt">
-                    {!notFound ? <p>{t("pleaseRepeatOrder", ns)}</p> : <p>{t("pleaseRepeatOrSupport", ns)}</p>}
-                </div>
-                <img className="error-image" src={PlusCircle} alt="" />
+                <ContentDescription
+                    text={!notFound ? t("pleaseRepeatOrder", ns) : t("pleaseRepeatOrSupport", ns)}
+                    lowMb
+                    lowMt
+                />
+                <img className={styles.errorImage} src={PlusCircle} alt="" />
 
                 {failUrl && (
                     <>
                         <p>{t("timerText", ns)}</p>
-                        <div className="deadline-container">
-                            <img src={Clock} alt="" />
-                            <Timer
-                                down={true}
-                                className="deadline-timer"
-                                secondsToDo={5}
-                                timerCallback={() => window.location.replace(failUrl)}
-                            />
-                        </div>
+                        <DeadLineTimer timerSecondsTo={5} timerCallback={() => window.location.replace(failUrl)} />
                     </>
                 )}
             </div>
@@ -66,5 +65,3 @@ const PayErrorPage = ({ notFound = false }) => {
         </Page>
     );
 };
-
-export default PayErrorPage;

@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
-import ClockOrange from "@/shared/assets/images/clock_orange.svg?react";
-import { classNames } from "@/shared/lib/classNames";
-import Timer from "@/shared/ui/Timer";
+import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./PayHeader.module.scss";
 
 interface PayHeaderProps {
@@ -24,28 +23,25 @@ export const PayHeader = (props: PayHeaderProps) => {
 
     return (
         <div className={styles.payHeader}>
-            <h1 className={styles.h1}>
-                {t("transfer", ns)}{" "}
-                <span className={styles.span}>
-                    {amount}&nbsp;{currency}&nbsp;
-                </span>
-                {countryName && transgran && <> {t(`country.${countryName}`, ns)}</>}
-                {bankName && (
+            <Text
+                size="l"
+                title={
                     <>
-                        {" "}
-                        {t("to", ns)} {bankName}
+                        {t("transfer", ns)}{" "}
+                        <span className={styles.span}>
+                            {amount}&nbsp;{currency}&nbsp;
+                        </span>
+                        {countryName && transgran && <> {t(`country.${countryName}`, ns)}</>}
+                        {bankName && (
+                            <>
+                                {" "}
+                                {t("to", ns)} {bankName}
+                            </>
+                        )}
                     </>
-                )}
-            </h1>
-            <div className={classNames(styles.deadlineContainer, {}, ["deadline-container"])}>
-                {/* <img src={ClockOrange} alt="" /> */}
-                <ClockOrange className={styles.img} />
-                <Timer
-                    down={true}
-                    className={classNames(styles.deadlineTimer, {}, ["deadline-timer"])}
-                    secondsToDo={timeLeft > 0 ? timeLeft : 0}
-                />
-            </div>
+                }
+            />
+            <DeadLineTimer timerSecondsTo={timeLeft > 0 ? timeLeft : 0} timerCallback={() => {}} />
         </div>
     );
 };

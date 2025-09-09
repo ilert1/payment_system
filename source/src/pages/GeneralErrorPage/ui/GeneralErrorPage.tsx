@@ -1,15 +1,20 @@
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import Clock from "@/shared/assets/images/clock.svg?react";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
-import Timer from "@/shared/ui/Timer";
+import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
+import styles from "./GeneralErrorPage.module.scss";
 
-// eslint-disable-next-line react/prop-types
-export const GeneralErrorPage = ({ cancel = false }) => {
+interface GeneralErrorPageProps {
+    cancel?: boolean;
+}
+
+export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
+    const { cancel } = props;
     const { ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
 
@@ -35,24 +40,21 @@ export const GeneralErrorPage = ({ cancel = false }) => {
                 <div className="header-container grow">
                     <Text size="l" title={t(cancel ? "cancelPage.cancel" : "error", ns)} />
                 </div>
-                <div className="description low-mb low-mt">
-                    <p>{t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}</p>
-                </div>
+                <ContentDescription
+                    text={t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}
+                    lowMb
+                    lowMt
+                />
 
-                <img className="error-image" src={PlusCircle} alt="" />
+                <img className={styles.errorImage} src={PlusCircle} alt="" />
 
                 {(failUrl || (cancelUrl && cancel)) && (
                     <>
                         <p>{t("timerText", ns)}</p>
-                        <div className="deadline-container">
-                            <Clock />
-                            <Timer
-                                down={true}
-                                className="deadline-timer"
-                                secondsToDo={5}
-                                timerCallback={() => window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl)}
-                            />
-                        </div>
+                        <DeadLineTimer
+                            timerSecondsTo={5}
+                            timerCallback={() => window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl)}
+                        />
                     </>
                 )}
             </div>
@@ -68,5 +70,3 @@ export const GeneralErrorPage = ({ cancel = false }) => {
         </Page>
     );
 };
-
-export default GeneralErrorPage;

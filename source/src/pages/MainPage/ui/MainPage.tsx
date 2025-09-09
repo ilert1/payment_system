@@ -6,13 +6,12 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import WalletPayout from "@/shared/assets/images/payOut/wallet.png";
 import Wallet from "@/shared/assets/images/wallet.png";
-import { AppRoutes } from "@/shared/const/router";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Text } from "@/shared/ui/Text/Text";
+import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
 import { Page } from "@/widgets/Page";
 import styles from "./MainPage.module.scss";
 
@@ -81,10 +80,15 @@ export const MainPage = () => {
                                 <div className={styles.walletImageContainer}>
                                     <img src={Wallet} alt="" />
                                 </div>
-                                <div className="description grow">
-                                    <p>{t("description.part1", ns)}</p>
-                                    <p>{t("description.part2", ns)}</p>
-                                </div>
+                                <ContentDescription
+                                    grow
+                                    text={
+                                        <>
+                                            <p>{t("description.part1", ns)}</p>
+                                            <p>{t("description.part2", ns)}</p>
+                                        </>
+                                    }
+                                />
                             </>
                         ) : (
                             <>
@@ -92,10 +96,15 @@ export const MainPage = () => {
                                 <div className={classNames(styles.walletImageContainer, {}, [styles.margins])}>
                                     <img src={WalletPayout} alt="" />
                                 </div>
-                                <div className="description grow">
-                                    <p>{t("description.part1", ns)}</p>
-                                    <p>{t("description.part2", ns)}</p>
-                                </div>
+                                <ContentDescription
+                                    grow
+                                    text={
+                                        <>
+                                            <p>{t("description.part1", ns)}</p>
+                                            <p>{t("description.part2", ns)}</p>
+                                        </>
+                                    }
+                                />
                             </>
                         )}
                     </div>

@@ -40,28 +40,6 @@ button {
     caret-color: #37a8f3;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    box-sizing: border-box;
-    width: 600px;
-    max-width: 100%;
-    min-height: 100dvh;
-    margin: 0 72px;
-    padding: 40px 0 20px;
-
-    @media (width <= 520px) {
-        gap: 20px;
-        justify-content: space-between;
-
-        max-height: unset;
-        margin: 0;
-        padding: 15px;
-    }
-}
-
 .Toastify {
     .Toastify__toast-container {
         top: 10px;
@@ -125,56 +103,6 @@ button {
     justify-content: center;
 
     margin-top: 29px;
-
-    .description {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-
-        max-width: 416px;
-
-        // margin-bottom: 81px;
-        margin-bottom: 35px;
-
-        &.grow {
-            flex-grow: 0.5;
-        }
-    }
-
-    .low-mb {
-        margin-bottom: 45px;
-
-        @media (width <= 520px) {
-            margin-bottom: 25px;
-        }
-    }
-
-    .low-mt {
-        margin-top: 45px;
-
-        @media (width <= 520px) {
-            margin-top: 25px;
-        }
-    }
-
-    h1 {
-        // line-height: 42.72px;
-        margin: 0;
-
-        font-size: 32px;
-        font-weight: 600;
-        line-height: 133%;
-        color: #010f18;
-        text-wrap: balance;
-
-        &.grow {
-            flex-grow: 0.3;
-        }
-
-        @media (width <= 520px) {
-            font-size: 22px;
-        }
-    }
 
     p {
         font-size: 20px;
@@ -246,56 +174,6 @@ button {
 
             img {
                 $width: 24px;
-
-                width: $width;
-                height: $width;
-            }
-        }
-    }
-
-    .error-image {
-        margin-bottom: 35px;
-
-        @media (width <= 520px) {
-            $width: 116px;
-
-            width: $width;
-            height: $width;
-            margin-bottom: 25px;
-        }
-    }
-
-    .deadline-container {
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-
-        .deadline-timer {
-            width: 100px;
-            padding-right: 10px;
-
-            font-size: 32px;
-            font-weight: 600;
-            line-height: 133%;
-            color: #37a8f3;
-
-            @media (width <= 520px) {
-                width: 70px;
-                font-size: 22px;
-            }
-        }
-
-        /* stylelint-disable-next-line no-descending-specificity */
-        img {
-            $width: 28px;
-
-            width: $width;
-            height: $width;
-        }
-
-        @media (width <= 520px) {
-            img {
-                $width: 20px;
 
                 width: $width;
                 height: $width;

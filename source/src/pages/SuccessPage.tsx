@@ -1,9 +1,8 @@
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
-import Clock from "@/shared/assets/images/clock.svg?react";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
-import Timer from "@/shared/ui/Timer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 
@@ -40,15 +39,7 @@ const SuccessPage = () => {
                 {successUrl && (
                     <>
                         <p>{t("timerText", ns)}</p>
-                        <div className="deadline-container">
-                            <Clock />
-                            <Timer
-                                down={true}
-                                className="deadline-timer"
-                                secondsToDo={5}
-                                timerCallback={successCallback}
-                            />
-                        </div>
+                        <DeadLineTimer timerSecondsTo={5} timerCallback={successCallback} />
                     </>
                 )}
             </div>
