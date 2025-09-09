@@ -45,10 +45,10 @@ const PayerDataPage = () => {
     const context = method?.context;
 
     const isEcom = methodName?.includes("ecom");
-    const isPlatformCard = methodName === "ecom_platform_card";
+    const isPlatformCard = methodName === "ecom_platform_card" || methodName === "ecom";
     const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
 
-    const showCardHolder = context?.provider === "BNNPay";
+    const showCardHolder = context?.provider === "BNNPay" || context?.provider === "FakeGoAdapter";
     const isSbp = methodName === "sbp";
 
     const nextEnabled = isEcom
@@ -143,10 +143,10 @@ const PayerDataPage = () => {
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
                     buttonCallback={isEcom && redirectUrl ? redirectCallback : buttonCallback}
                     nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                    nextEnabled={!redirectUrl && isPlatformCard ? false : nextEnabled}
+                    nextEnabled={!redirectUrl && isPlatformCard && waitTransfer ? false : nextEnabled}
                     approve={true}
                     focused={buttonFocused}
-                    showCancelBtn={!isPlatformCard}
+                    showCancelBtn={status === "paymentPayerDataEntrу"}
                 />
             )}
         </Page>
