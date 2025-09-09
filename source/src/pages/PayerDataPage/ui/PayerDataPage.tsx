@@ -48,7 +48,7 @@ const PayerDataPage = () => {
     const isPlatformCard = methodName === "ecom_platform_card" || methodName === "ecom";
     const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
 
-    const showCardHolder = context?.provider === "BNNPay";
+    const showCardHolder = context?.provider === "BNNPay" || context?.provider === "FakeGoAdapter";
     const isSbp = methodName === "sbp";
 
     const nextEnabled = isEcom
