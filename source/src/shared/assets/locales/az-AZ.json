@@ -193,8 +193,8 @@
         "repeatOrder": "sifarişi təkrarla",
         "pleaseRepeatOrder": "Xahiş edirik, sifarişi təkrarlayın",
         "cancelPage": {
-            "cancel": "Ödənişi ləğv etdiniz",
-            "transactionCanceled": "Əməliyyat uğurla ləğv edildi."
+            "cancel": "Ödəniş ləğv edildi",
+            "transactionCanceled": "Tranzaksiya uğurla ləğv edildi."
         },
         "returnBtn": "Veb saytına qayıt",
         "timerText": "Avtomatik olaraq yönləndiriləcəksiniz:"
