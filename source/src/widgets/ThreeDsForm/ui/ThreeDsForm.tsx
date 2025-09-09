@@ -24,6 +24,7 @@ export const ThreeDsForm = () => {
     const { isFetching, submitForm } = useThreeDSFormStore();
     const navigate = useNavigate();
     const [buttonEnabled, setButtonEnabled] = useState(false);
+    const [submitClicked, setSubmitClicked] = useState(false);
 
     const ThreeDsFormSchema = z.object({
         threeDsCode: z
@@ -44,10 +45,14 @@ export const ThreeDsForm = () => {
     });
 
     const onSubmit = (data: ThreeDsFormValues) => {
+        if (submitClicked) return;
+        setSubmitClicked(true);
         try {
             submitForm({ formData: data, navigate, fingerprintConfig: fingerprintConfig.headers });
         } catch (error) {
             toast.error("Something went wrong");
+        } finally {
+            setSubmitClicked(false);
         }
     };
 
@@ -94,6 +99,7 @@ export const ThreeDsForm = () => {
                         <Controller
                             name="threeDsCode"
                             control={threeDSForm.control}
+                            disabled={submitClicked}
                             rules={{
                                 required: true,
                                 minLength: 1,

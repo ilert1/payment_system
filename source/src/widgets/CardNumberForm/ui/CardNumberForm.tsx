@@ -32,10 +32,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
     const { disabled, cardHolderVisible } = props;
 
     return (
-        <div
-            className={styles.form}
-            // disabled={disabled}
-        >
+        <div className={styles.form}>
             <form>
                 <div className={styles.wrapper}>
                     <div className={styles.item}>
@@ -49,6 +46,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                             value={cardNumber}
                             onChange={handleCardNumberInputChange}
                             placeholder={`${t("cardNumber", ns)}`}
+                            disabled={disabled}
                         />
                         {errors.cardNumber && <p className={styles.errorMessage}>{errors.cardNumber.message}</p>}
                     </div>
@@ -66,6 +64,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 onKeyDown={handleExpiryKeyDown}
                                 maxLength={5}
                                 placeholder="MM/YY"
+                                disabled={disabled}
                             />
                             {errors.expiryDate && <p className={styles.errorMessage}>{errors.expiryDate.message}</p>}
                         </div>
@@ -83,6 +82,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 className={styles.input}
                                 placeholder="000"
                                 maxLength={3}
+                                disabled={disabled}
                             />
                             {errors.cvv && <p className={styles.errorMessage}>{errors.cvv.message}</p>}
                         </div>
@@ -99,6 +99,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 value={cardHolder}
                                 onChange={handleCardHolderChange}
                                 placeholder={`${t("nameLastname", ns)}`}
+                                disabled={disabled}
                             />
                             {errors.cardHolder && <p className={styles.errorMessage}>{errors.cardHolder.message}</p>}
                         </div>
