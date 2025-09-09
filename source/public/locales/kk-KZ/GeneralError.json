@@ -2,8 +2,8 @@
     "repeatOrder": "тапсырысты қайталау",
     "pleaseRepeatOrder": "Тапсырысты қайталаңыз",
     "cancelPage": {
-        "cancel": "Сіз төлемнен бас тарттыңыз ба",
-        "transactionCanceled": "Транзакция сәтті тоқтатылды."
+        "cancel": "Төлем жойылды",
+        "transactionCanceled": "Транзакция сәтті жойылды."
     },
     "returnBtn": "Сайтқа оралу",
     "timerText": "Сіз автоматты түрде қайта бағытталасыз:"
