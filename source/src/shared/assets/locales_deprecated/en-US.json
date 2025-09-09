@@ -193,7 +193,7 @@
         "repeatOrder": "repeat order",
         "pleaseRepeatOrder": "Please repeat the order",
         "cancelPage": {
-            "cancel": "You canceled the payment",
+            "cancel": "Payment canceled",
             "transactionCanceled": "The transaction was successfully canceled."
         },
         "returnBtn": "Go back to the site",

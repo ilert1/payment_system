@@ -2,7 +2,7 @@
     "repeatOrder": "repetir pedido",
     "pleaseRepeatOrder": "Por favor, repita el pedido",
     "cancelPage": {
-        "cancel": "Ha cancelado el pago",
+        "cancel": "Pago cancelado",
         "transactionCanceled": "La transacción fue cancelada con éxito."
     },
     "returnBtn": "Volver al sitio",

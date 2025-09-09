@@ -2,7 +2,7 @@
     "repeatOrder": "повторить заказ",
     "pleaseRepeatOrder": "Пожалуйста, повторите заказ",
     "cancelPage": {
-        "cancel": "Вы отменили платеж",
+        "cancel": "Платеж отменён",
         "transactionCanceled": "Транзакция была успешно отменена."
     },
     "returnBtn": "Вернуться на сайт",
