@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { ProgressSteper } from "@/widgets/ProgressSteper";

@@ -3,7 +3,7 @@ import { useAppContext } from "@/AppContext";
 import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?react";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import { LanguageSelector } from "@/widgets/LanguageSelector";
 import styles from "./SubmitModal.module.scss";
 

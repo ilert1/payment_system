@@ -10,8 +10,7 @@ export type TextSize = "m" | "l";
 
 interface TextProps {
     className?: string;
-    title?: string | ReactNode;
-    text?: string;
+    title: string | ReactNode;
     variant?: TextVariant;
     align?: TextAlign;
     size?: TextSize;
@@ -35,14 +34,13 @@ const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
 export const Text = memo((props: TextProps) => {
     const {
         className,
-        text,
         title,
         variant = "primary",
         align = "left",
         size = "m",
         bold,
         grow,
-        "data-testid": dataTestId = "Text"
+        "data-testid": dataTestId = "Header"
     } = props;
 
     const HeaderTag = mapSizeToHeaderTag[size];
@@ -56,11 +54,6 @@ export const Text = memo((props: TextProps) => {
                 <HeaderTag className={cls.title} data-testid={`${dataTestId}.Header`}>
                     {title}
                 </HeaderTag>
-            )}
-            {text && (
-                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
-                    {text}
-                </p>
             )}
         </div>
     );

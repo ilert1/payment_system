@@ -1,5 +1,5 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import { ContentDescription } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";

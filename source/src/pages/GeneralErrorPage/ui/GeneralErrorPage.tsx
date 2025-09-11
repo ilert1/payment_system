@@ -3,7 +3,7 @@ import { useAppContext } from "@/AppContext";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";

@@ -4,7 +4,7 @@ import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import SearchPayMethod from "@/shared/ui/SearchPayMethod/SearchPayMethod";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import { BankItem } from "@/widgets/BankItem";
 import styles from "./PayInstrument.module.scss";
 

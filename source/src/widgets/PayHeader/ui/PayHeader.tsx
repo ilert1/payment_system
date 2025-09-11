@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import styles from "./PayHeader.module.scss";
 
 interface PayHeaderProps {

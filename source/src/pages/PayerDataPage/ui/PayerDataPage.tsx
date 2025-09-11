@@ -5,7 +5,7 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router.js";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
 import Loader from "@/shared/ui/Loader/Loader";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import { CardNumberForm } from "@/widgets/CardNumberForm";
 import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
 import { CardNumberLast4 } from "@/widgets/CardNumberLast4";

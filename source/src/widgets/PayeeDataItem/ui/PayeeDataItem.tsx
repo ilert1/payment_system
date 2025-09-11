@@ -4,7 +4,7 @@ import { useAppContext } from "@/AppContext";
 import CheckCircle from "@/shared/assets/images/check-circle.svg?react";
 import CopyIcon from "@/shared/assets/images/copy.svg?react";
 import { classNames } from "@/shared/lib/classNames";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text/Heading";
 import styles from "./PayeeDataItem.module.scss";
 
 interface PayeeDataItemProps {
