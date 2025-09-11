@@ -2,7 +2,7 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 
@@ -29,7 +29,7 @@ const SuccessPage = () => {
         <Page>
             <div className="content">
                 <div className="header-container grow wide center">
-                    <Text align="center" size="l" title={t(payoutMode ? "payoutHeader" : "header", ns)} />
+                    <Heading align="center" size="l" title={t(payoutMode ? "payoutHeader" : "header", ns)} />
 
                     <p className="amount">
                         + {BFData?.[dest]?.amount} {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}

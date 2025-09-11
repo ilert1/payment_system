@@ -5,7 +5,7 @@ import FilePdfIcon from "@/shared/assets/images/file-pdf.svg";
 import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./PaymentConfirmationPage.module.scss";
@@ -41,7 +41,7 @@ export const PaymentConfirmationPage = () => {
     return (
         <Page>
             <div className="content">
-                <Text size="l" title={"Подтверждение оплаты"} grow />
+                <Heading size="l" title={"Подтверждение оплаты"} grow />
                 <div className={styles.confirmationDeadlineInfo}>
                     <p>Прикрепите подтверждение оплаты для проверки</p>
                     <DeadLineTimer timerSecondsTo={60 * 15} timerCallback={() => {}} />

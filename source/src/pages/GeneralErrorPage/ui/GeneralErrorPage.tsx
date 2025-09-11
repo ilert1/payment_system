@@ -3,7 +3,7 @@ import { useAppContext } from "@/AppContext";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -38,7 +38,7 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
         <Page>
             <div className="content">
                 <div className="header-container grow">
-                    <Text size="l" title={t(cancel ? "cancelPage.cancel" : "error", ns)} />
+                    <Heading size="l" title={t(cancel ? "cancelPage.cancel" : "error", ns)} />
                 </div>
                 <ContentDescription
                     text={t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}

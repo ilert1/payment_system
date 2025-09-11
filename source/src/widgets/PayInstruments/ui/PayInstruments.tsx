@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import SearchPayMethod from "@/shared/ui/SearchPayMethod/SearchPayMethod";
-import { Text } from "@/shared/ui/Text/Heading";
 import { BankItem } from "@/widgets/BankItem";
 import styles from "./PayInstrument.module.scss";
 
@@ -68,7 +68,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
     return (
         <>
             <div className={styles.payMethod}>
-                <Text className={styles.h2} size="m" title={t("payMethod", ns)} />
+                <Heading className={styles.h2} size="m" title={t("payMethod", ns)} />
                 <SearchPayMethod setFilterText={setFilterText} />
             </div>
             <div className={styles.banksListContainer}>

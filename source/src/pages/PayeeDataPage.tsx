@@ -1,5 +1,5 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import { ContentDescription } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
@@ -35,7 +35,7 @@ const PayeeDataPage = () => {
         <Page>
             <div className="content">
                 <div className="header-container grow">
-                    <Text
+                    <Heading
                         size="l"
                         title={
                             t("waitConfirmation", ns) +

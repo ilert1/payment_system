@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import styles from "./PayHeader.module.scss";
 
 interface PayHeaderProps {
@@ -23,7 +23,7 @@ export const PayHeader = (props: PayHeaderProps) => {
 
     return (
         <div className={styles.payHeader}>
-            <Text
+            <Heading
                 size="l"
                 title={
                     <>

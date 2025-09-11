@@ -1,63 +1,76 @@
-import { memo, ReactNode } from "react";
-import { classNames } from "@/shared/lib/classNames";
-import cls from "./Text.module.scss";
-
-export type TextVariant = "primary" | "error" | "accent";
-
-export type TextAlign = "right" | "left" | "center";
-
-export type TextSize = "m" | "l";
-
-interface TextProps {
-    className?: string;
-    title: string | ReactNode;
-    variant?: TextVariant;
-    align?: TextAlign;
-    size?: TextSize;
-    bold?: boolean;
-    grow?: boolean;
-    "data-testid"?: string;
+.title {
+    color: var(--text-redesigned);
 }
 
-type HeaderTagType = "h1" | "h2";
+.error {
+    .title {
+        color: var(--red-light);
+    }
+}
 
-const mapSizeToClass: Record<TextSize, string> = {
-    m: cls.size_m,
-    l: cls.size_l
-};
+.accent {
+    .title {
+        color: var(--accent-redesigned);
+    }
+}
 
-const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
-    m: "h2",
-    l: "h1"
-};
+.left {
+    text-align: left;
+}
 
-export const Text = memo((props: TextProps) => {
-    const {
-        className,
-        title,
-        variant = "primary",
-        align = "left",
-        size = "m",
-        bold,
-        grow,
-        "data-testid": dataTestId = "Header"
-    } = props;
+.right {
+    text-align: right;
+}
 
-    const HeaderTag = mapSizeToHeaderTag[size];
-    const sizeClass = mapSizeToClass[size];
+.center {
+    text-align: center;
+}
 
-    const additionalClasses = [className, cls[variant], cls[align], sizeClass];
+.size_m {
+    .title {
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 35px;
+        color: #010f18;
+        text-wrap: balance;
 
-    return (
-        <div className={classNames(cls.Text, { [cls.bold]: bold, [cls.grow]: grow }, additionalClasses)}>
-            {title && (
-                <HeaderTag className={cls.title} data-testid={`${dataTestId}.Header`}>
-                    {title}
-                </HeaderTag>
-            )}
-        </div>
-    );
-});
+        @media (width <= 520px) {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+}
+
+.size_l {
+    .title {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 133%;
+        color: #010f18;
+        text-wrap: balance;
+
+        &.grow {
+            flex-grow: 0.3;
+        }
+
+        @media (width <= 520px) {
+            font-size: 22px;
+            line-height: 32px;
+        }
+    }
+}
+
+.grow {
+    .title {
+        flex-grow: 0.3;
+    }
+}
+
+.bold {
+    .title {
+        font-weight: 700;
+    }
+}
 
 // .dropZoneText {
 //     color: #6fc0f6;
@@ -191,4 +204,16 @@ export const Text = memo((props: TextProps) => {
 //     color: rgb(177 14 14) !important;
 //     text-align: left;
 //     overflow-wrap: break-word;
+// }
+
+// p {
+//     font-size: 20px;
+//     font-weight: 400;
+//     line-height: 133%;
+//     color: #010f18;
+//     text-wrap: balance;
+
+//     @media (width <= 520px) {
+//         font-size: 14px;
+//     }
 // }

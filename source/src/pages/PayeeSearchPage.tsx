@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { ProgressSteper } from "@/widgets/ProgressSteper";
@@ -41,7 +41,7 @@ const PayeeSearchPage = () => {
     return (
         <Page>
             <div className="content">
-                <Text
+                <Heading
                     size="l"
                     title={
                         t("lookingFor", ns) +

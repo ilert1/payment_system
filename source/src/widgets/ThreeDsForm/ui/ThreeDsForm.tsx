@@ -9,8 +9,8 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import Loader from "@/shared/ui/Loader/Loader";
-import { Text } from "@/shared/ui/Text/Heading";
 import { Input } from "@/shared/ui/input/input";
 import { Footer } from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
@@ -89,7 +89,7 @@ export const ThreeDsForm = () => {
     return (
         <>
             <div className="content cardPage">
-                <Text size="l" title={t("title")} grow className={styles.h1} />
+                <Heading size="l" title={t("title")} grow className={styles.h1} />
 
                 {/* onSubmit={threeDSForm.handleSubmit(onSubmit)} */}
                 <form className={styles.form}>

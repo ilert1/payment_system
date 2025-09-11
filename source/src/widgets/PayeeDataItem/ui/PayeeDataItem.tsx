@@ -4,7 +4,7 @@ import { useAppContext } from "@/AppContext";
 import CheckCircle from "@/shared/assets/images/check-circle.svg?react";
 import CopyIcon from "@/shared/assets/images/copy.svg?react";
 import { classNames } from "@/shared/lib/classNames";
-import { Text } from "@/shared/ui/Text/Heading";
+import { Heading } from "@/shared/ui/Heading/Heading";
 import styles from "./PayeeDataItem.module.scss";
 
 interface PayeeDataItemProps {
@@ -58,7 +58,7 @@ export const PayeeDataItem = (props: PayeeDataItemProps) => {
             </div>
             <div className={styles.textContainer}>
                 <label>{label}</label>
-                <Text size="m" title={value} />
+                <Heading size="m" title={value} />
                 {comment && <p>{comment}</p>}
             </div>
             {copyData && (
