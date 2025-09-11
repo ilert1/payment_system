@@ -102,8 +102,9 @@ export const submitPayerData = async ({
             if (result?.error == "8001") {
                 if (result?.state) setStatus(result.state);
                 return;
+            } else {
+                toast.error(result?.error_details ? result.error_details : result?.error, { autoClose: 2000 });
             }
-            toast.error(result.error, { autoClose: 2000 });
         }
     } catch (error: any) {
         toast.error(error.message || "Unexpected error", {

@@ -31,7 +31,8 @@ export const submitForm = async ({
             throw new Error(`Request failed with status ${response.status}`);
         }
 
-        const data: BFDataType & { success?: boolean; error?: string; state?: string } = await response.json();
+        const data: BFDataType & { success?: boolean; error?: string; state?: string; error_details?: string } =
+            await response.json();
 
         if (data?.success) {
             console.log("Three ds form submit data: ", data);
@@ -40,12 +41,12 @@ export const submitForm = async ({
             if (data?.error == "8001") {
                 if (data?.state) setStatus(data.state);
                 return;
+            } else {
+                throw new Error(data?.error_details ? data.error_details : data?.error);
             }
-            navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
-            return undefined;
         }
     } catch (error) {
         console.error("Fetch error", error);
-        return undefined;
+        throw error;
     }
 };
