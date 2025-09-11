@@ -1,3 +1,4 @@
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./BankCardInfo.module.scss";
 
 interface BankCardInfoProps {
@@ -12,7 +13,7 @@ export const BankCardInfo = (props: BankCardInfoProps) => {
     return (
         <div className={styles.cardInfo}>
             <img src={bankIcon} onError={onError} alt="" className={styles.img} />
-            <p>{cardNumber}</p>
+            <Text text={cardNumber} />
         </div>
     );
 };

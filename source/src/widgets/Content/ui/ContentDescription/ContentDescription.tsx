@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { classNames } from "@/shared/lib/classNames";
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./ContentDescription.module.scss";
 
 interface ContentDescriptionProps {
@@ -20,7 +21,7 @@ export const ContentDescription = (props: ContentDescriptionProps) => {
 
     return (
         <div className={classNames(styles.description, modClasses)}>
-            {typeof text === "string" ? <p>{text}</p> : text}
+            {typeof text === "string" ? <Text text={text} /> : text}
         </div>
     );
 };

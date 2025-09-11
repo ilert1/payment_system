@@ -10,6 +10,7 @@ import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import Loader from "@/shared/ui/Loader/Loader";
+import { Text } from "@/shared/ui/Text/Text";
 import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -84,8 +85,8 @@ export const MainPage = () => {
                                     grow
                                     text={
                                         <>
-                                            <p>{t("description.part1", ns)}</p>
-                                            <p>{t("description.part2", ns)}</p>
+                                            <Text align="center" text={t("description.part1", ns)} />
+                                            <Text align="center" text={t("description.part2", ns)} />
                                         </>
                                     }
                                 />
@@ -100,8 +101,8 @@ export const MainPage = () => {
                                     grow
                                     text={
                                         <>
-                                            <p>{t("description.part1", ns)}</p>
-                                            <p>{t("description.part2", ns)}</p>
+                                            <Text align="center" text={t("description.part1", ns)} />
+                                            <Text align="center" text={t("description.part2", ns)} />
                                         </>
                                     }
                                 />

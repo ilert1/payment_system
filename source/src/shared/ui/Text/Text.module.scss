@@ -1,6 +1,12 @@
 // Text colors
 .text {
-    color: var(--color-text);
+    text-wrap: balance;
+}
+
+.textBody {
+    .text {
+        color: var(--color-text);
+    }
 }
 
 .primary {
@@ -18,6 +24,12 @@
 .error {
     .text {
         color: var(--color-error);
+    }
+}
+
+.muted {
+    .text {
+        color: var(--color-text-neutral-muted);
     }
 }
 
@@ -45,6 +57,12 @@
 .size_xxs {
     .text {
         font: var(--font-xxs);
+    }
+}
+
+.size_2xs {
+    .text {
+        font: var(--font-2xs);
     }
 }
 

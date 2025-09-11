@@ -5,8 +5,12 @@
     --font-line: 134%;
 
     // xxs
-    --font-size-xxs: 1.7rem;
+    --font-size-xxs: 1.4rem;
     --font-xxs: var(--font-size-xxs) / var(--font-line) var(--font-family-main);
+
+    // 2xs
+    --font-size-2xs: 1.7rem;
+    --font-2xs: var(--font-size-2xs) / var(--font-line) var(--font-family-main);
 
     // xs
     --font-size-xs: 2rem;

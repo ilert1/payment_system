@@ -37,16 +37,5 @@
 
 .statusComment {
     margin-top: 21px;
-
-    font-size: 20px !important;
-    font-weight: 400 !important;
-    line-height: 133% !important;
-    color: #010f18 !important;
-
     opacity: 0.5;
-
-    @media (width <= 520px) {
-        margin-top: 15px;
-        font-size: 14px;
-    }
 }

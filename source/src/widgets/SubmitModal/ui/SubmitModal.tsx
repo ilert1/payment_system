@@ -43,7 +43,6 @@ export const SubmitModal = (props: SubmitModalProps) => {
                         <AlertTriangleBig className={styles.alertTriangle} />
                         <Heading size="l" title={data.title} />
                         <Text align="justify" className={styles.text} text={data.text} />
-                        {/* <p className={styles.text}>{data.text}</p> */}
                     </div>
 
                     <div className={styles.buttonsBlock}>

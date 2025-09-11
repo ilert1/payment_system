@@ -1,6 +1,7 @@
 import { useState } from "react";
 import DefaultBankIcon from "@/shared/assets/images/bank-icon.svg?react";
 import { classNames } from "@/shared/lib/classNames";
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./BankItem.module.scss";
 
 interface BankItemProps {
@@ -31,7 +32,7 @@ export const BankItem = (props: BankItemProps) => {
                 />
             )}
 
-            <p className="bank-name">{bankName}</p>
+            <Text text={bankName} />
         </div>
     );
 };

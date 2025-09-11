@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
 import styles from "./CardNumberLast4.module.scss";
 
@@ -27,7 +28,6 @@ export const CardNumberLast4 = (props: CardNumberLast4Props) => {
                         }
                         onComplete?.(numbers.join(""));
                     } else {
-                        // items[i + 1].focus();
                         (items[i + 1] as HTMLElement).focus();
                     }
                 }
@@ -39,7 +39,7 @@ export const CardNumberLast4 = (props: CardNumberLast4Props) => {
 
     return (
         <div className={styles.cardNumberContainer}>
-            {showHidden ? <p className={styles.p}>**** **** ****</p> : ""}
+            {showHidden ? <Text className={styles.p} size="xl" weight="semiBold" text={"**** **** ****"} /> : ""}
             <div ref={inputs} className={styles.inputs}>
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />
                 <Input type="text" className={styles.input} bgWhite maxLength={1} inputMode="numeric" />

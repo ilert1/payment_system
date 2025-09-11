@@ -1,7 +1,9 @@
-import QRCode from "react-qr-code";
 import { useTranslation } from "react-i18next";
+import QRCode from "react-qr-code";
 import LinkToAppIcon from "@/shared/assets/images/link-to-app-icon.svg?react";
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./ExternalPayInfo.module.scss";
+
 interface ExternalPayInfoProps {
     url: string;
 }
@@ -14,7 +16,7 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
 
     return (
         <div className={styles.externalPayInfo}>
-            <p className={styles.description}>{t("scanQrCode", ns)}</p>
+            <Text text={t("scanQrCode", ns)} />
 
             <div>
                 <QRCode

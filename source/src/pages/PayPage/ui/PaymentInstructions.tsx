@@ -1,6 +1,7 @@
 import React from "react";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Text } from "@/shared/ui/Text/Text";
 import { ExternalPayInfo } from "@/widgets/ExternalPayInfo";
 // import { Instruction } from "./Instruction/Instruction";
 import { InstructionItems } from "./Instruction/InstructionItems";
@@ -48,9 +49,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                <div className="title">
-                    <p>{t("steps_transgran_simple.tbankTitle", ns)}</p>
-                </div>
+                <Text text={t("steps_transgran_simple.tbankTitle", ns)} />
                 <InstructionItems
                     data={t("steps_transgran_simple.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
@@ -71,10 +70,6 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                {/* <div className="title">
-                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
-                </div> */}
-
                 <InstructionItems
                     data={t("steps_with_check.steps", {
                         requisite: t(
@@ -97,9 +92,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                <div className="title">
-                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
-                </div>
+                <Text text={t("steps_transgran_tcard2card.tbankTitle", ns)} />
 
                 <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} isActive />
             </div>

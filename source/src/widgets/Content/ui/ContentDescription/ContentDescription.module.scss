@@ -5,18 +5,6 @@
 
     max-width: 416px;
     margin-bottom: 35px;
-
-    p {
-        font-size: 20px;
-        font-weight: 400;
-        line-height: 133%;
-        color: #010f18;
-        text-wrap: balance;
-
-        @media (width <= 520px) {
-            font-size: 14px;
-        }
-    }
 }
 
 .lowMb {

@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAppContext } from "@/AppContext";
-import ArrowLeft from "@/shared/assets/images/arrow-left.svg?react";
 import ArrowRight from "@/shared/assets/images/arrow-right.svg";
 import DefaultBankIcon from "@/shared/assets/images/bank-icon.svg";
 import Check from "@/shared/assets/images/check.svg";

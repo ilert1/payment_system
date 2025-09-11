@@ -6,6 +6,7 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Text } from "@/shared/ui/Text/Text";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { PayInstruments } from "@/widgets/PayInstruments";
@@ -97,8 +98,15 @@ const PaymentInstrumentPage = () => {
             <div className="content">
                 <Heading size="l" title={t("amount", ns)} grow />
                 <div className={styles.amountContainer}>
-                    <p className={styles.amount}>{BFData?.[dest]?.amount}</p>
-                    <p>&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>
+                    <Text align="right" variant="primary" size="xxl" weight="semiBold" text={BFData?.[dest]?.amount} />
+                    <Text
+                        text={
+                            <>
+                                &nbsp;
+                                {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
+                            </>
+                        }
+                    />
                 </div>
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
             </div>

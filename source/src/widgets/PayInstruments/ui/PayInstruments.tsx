@@ -5,6 +5,7 @@ import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Loader } from "@/shared/ui/Loader/Loader";
 import SearchPayMethod from "@/shared/ui/SearchPayMethod/SearchPayMethod";
+import { Text } from "@/shared/ui/Text/Text";
 import { BankItem } from "@/widgets/BankItem";
 import styles from "./PayInstrument.module.scss";
 
@@ -76,7 +77,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
                     <div className={styles.banksList}>{instruments}</div>
                 ) : (
                     <div className={styles.banksList}>
-                        {isFetching ? <Loader /> : <p className="empty center">{t("emptyList", ns)}</p>}
+                        {isFetching ? <Loader /> : <Text className={styles.p} text={t("emptyList", ns)} />}
                     </div>
                 )}
             </div>

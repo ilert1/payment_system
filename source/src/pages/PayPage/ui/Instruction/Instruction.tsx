@@ -2,6 +2,7 @@ import { useAppContext } from "@/AppContext";
 import ArrowDown from "@/shared/assets/images/chevron-down.svg";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./Instruction.module.scss";
 import { InstructionItems } from "./InstructionItems";
 
@@ -31,10 +32,13 @@ export const Instruction = (props: InstructionProps) => {
     return (
         <div className={classNames(styles.accordionContainer, { [styles.pActive]: isActive })}>
             <div className={styles.title}>
-                <p className={styles.p} onClick={callback}>
-                    {title}
-                </p>
-
+                <Text
+                    className={styles.p}
+                    onClick={callback}
+                    variant={isActive ? "primary" : "textBody"}
+                    size="2xs"
+                    text={title}
+                />
                 <Button onClick={callback} variant="ghost" className={styles.btn}>
                     <img
                         className={classNames(styles.arrow, { [styles.arrowActive]: isActive })}

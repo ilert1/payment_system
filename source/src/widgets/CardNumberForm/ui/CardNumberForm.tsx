@@ -1,9 +1,8 @@
 /* eslint-disable react/prop-types */
-import { ChangeEventHandler, KeyboardEvent } from "react";
-import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { CardFormSchemaType, useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
+import { useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
 import { classNames } from "@/shared/lib/classNames";
+import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
 import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
 import styles from "./CardNumberForm.module.scss";
@@ -48,7 +47,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                             placeholder={`${t("cardNumber", ns)}`}
                             disabled={disabled}
                         />
-                        {errors.cardNumber && <p className={styles.errorMessage}>{errors.cardNumber.message}</p>}
+                        {errors.cardNumber && <Text size="xxs" variant={"error"} text={errors.cardNumber.message} />}
                     </div>
                     <div className={styles.bottom}>
                         <div className={styles.item}>
@@ -66,7 +65,9 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 placeholder="MM/YY"
                                 disabled={disabled}
                             />
-                            {errors.expiryDate && <p className={styles.errorMessage}>{errors.expiryDate.message}</p>}
+                            {errors.expiryDate && (
+                                <Text size="xxs" variant={"error"} text={errors.expiryDate.message} />
+                            )}
                         </div>
                         <div className={styles.item}>
                             <label className={styles.label} htmlFor="cvv">
@@ -84,7 +85,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 maxLength={3}
                                 disabled={disabled}
                             />
-                            {errors.cvv && <p className={styles.errorMessage}>{errors.cvv.message}</p>}
+                            {errors.cvv && <Text size="xxs" variant={"error"} text={errors.cvv.message} />}
                         </div>
                     </div>
                     {cardHolderVisible && (
@@ -101,7 +102,9 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                                 placeholder={`${t("nameLastname", ns)}`}
                                 disabled={disabled}
                             />
-                            {errors.cardHolder && <p className={styles.errorMessage}>{errors.cardHolder.message}</p>}
+                            {errors.cardHolder && (
+                                <Text size="xxs" variant={"error"} text={errors.cardHolder.message} />
+                            )}
                         </div>
                     )}
                 </div>

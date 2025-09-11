@@ -1,4 +1,5 @@
 import LoaderIcon from "@/shared/assets/images/loader.svg";
+import { Text } from "../Text/Text";
 import Timer from "../Timer";
 import styles from "./Loader.module.scss";
 
@@ -14,7 +15,7 @@ export const Loader = ({ timer, statusText }: LoaderProps) => {
                 <img src={LoaderIcon} alt="Loader" />
             </div>
             {timer && <Timer />}
-            {statusText && <p className={styles.statusComment}>{statusText}</p>}
+            {statusText && <Text className={styles.statusComment} text={statusText} />}
         </div>
     );
 };

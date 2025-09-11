@@ -3,10 +3,11 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Text } from "@/shared/ui/Text/Text";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 
-const SuccessPage = () => {
+export const SuccessPage = () => {
     const { t, getCurrencySymbol, payoutMode, ym } = useAppContext();
     ym("reachGoal", "success-page");
     const BFData = useBFStore(state => state.BFData);
@@ -30,15 +31,12 @@ const SuccessPage = () => {
             <div className="content">
                 <div className="header-container grow wide center">
                     <Heading align="center" size="l" title={t(payoutMode ? "payoutHeader" : "header", ns)} />
-
-                    <p className="amount">
-                        + {BFData?.[dest]?.amount} {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
-                    </p>
+                    <Text text={`+ ${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`} />
                 </div>
 
                 {successUrl && (
                     <>
-                        <p>{t("timerText", ns)}</p>
+                        <Text text={t("timerText", ns)} />
                         <DeadLineTimer timerSecondsTo={5} timerCallback={successCallback} />
                     </>
                 )}
@@ -55,5 +53,3 @@ const SuccessPage = () => {
         </Page>
     );
 };
-
-export default SuccessPage;

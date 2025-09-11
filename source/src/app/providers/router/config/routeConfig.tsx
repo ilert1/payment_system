@@ -9,7 +9,7 @@ import { PayerDataPage } from "@/pages/PayerDataPage";
 import { PaymentConfirmationPage } from "@/pages/PaymentConfirmationPage";
 import PaymentInstrumentPage from "@/pages/PaymentInstrument";
 import PaymentWaitConfirmation from "@/pages/PaymentWaitConfirmation";
-import SuccessPage from "@/pages/SuccessPage";
+import { SuccessPage } from "@/pages/SuccessPage";
 import { ThreeDSPage } from "@/pages/ThreeDSPage";
 import { AppRoutes } from "@/shared/const/router";
 

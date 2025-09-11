@@ -4,6 +4,7 @@ import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Text } from "@/shared/ui/Text/Text";
 import { ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -50,7 +51,7 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
 
                 {(failUrl || (cancelUrl && cancel)) && (
                     <>
-                        <p>{t("timerText", ns)}</p>
+                        <Text text={t("timerText", ns)} />
                         <DeadLineTimer
                             timerSecondsTo={5}
                             timerCallback={() => window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl)}

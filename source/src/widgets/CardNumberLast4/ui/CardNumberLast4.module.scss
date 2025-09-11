@@ -21,21 +21,8 @@
 }
 
 .p {
-    font-size: 31px;
-    font-weight: 600;
-    line-height: 133%;
-    color: #010f18;
     white-space: nowrap;
-
     opacity: 0.5;
-
-    @media (width <= 650px) {
-        font-size: clamp(18px, 3.5vw, 31px);
-    }
-
-    @media (width <= 520px) {
-        font-size: 22px;
-    }
 }
 
 .inputs {
