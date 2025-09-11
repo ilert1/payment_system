@@ -76,7 +76,7 @@ export const MainPage = () => {
                     <div className="content">
                         {!payOutMode ? (
                             <>
-                                <Heading size="l" title={t("header", ns)} />
+                                <Heading align="center" size="l" title={t("header", ns)} />
                                 <div className={styles.walletImageContainer}>
                                     <img src={Wallet} alt="" />
                                 </div>
@@ -92,7 +92,7 @@ export const MainPage = () => {
                             </>
                         ) : (
                             <>
-                                <Heading size="l" title={t("header", ns)} />
+                                <Heading align="center" size="l" title={t("header", ns)} />
                                 <div className={classNames(styles.walletImageContainer, {}, [styles.margins])}>
                                     <img src={WalletPayout} alt="" />
                                 </div>

@@ -1,5 +1,5 @@
+import LoaderIcon from "@/shared/assets/images/loader.svg";
 import Timer from "../Timer";
-import LoaderIcon from "../assets/images/loader.svg";
 import styles from "./Loader.module.scss";
 
 interface LoaderProps {
