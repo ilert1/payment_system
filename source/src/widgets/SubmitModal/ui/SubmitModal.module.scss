@@ -130,23 +130,6 @@
     }
 }
 
-.text {
-    /* font-size: 30px;
-    line-height: 40px; */
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
-    text-align: justify;
-
-    @media (width <= 520px) {
-        /* font-size: 16px;
-        line-height: 21px; */
-        font-size: 16px;
-        line-height: 22px;
-        text-align: justify;
-    }
-}
-
 .buttonsBlock {
     display: flex;
     flex-direction: column;

@@ -4,6 +4,7 @@ import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?reac
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Text } from "@/shared/ui/Text/Text";
 import { LanguageSelector } from "@/widgets/LanguageSelector";
 import styles from "./SubmitModal.module.scss";
 
@@ -41,7 +42,8 @@ export const SubmitModal = (props: SubmitModalProps) => {
                         <LanguageSelector lang={lang} setLang={setLang} />
                         <AlertTriangleBig className={styles.alertTriangle} />
                         <Heading size="l" title={data.title} />
-                        <p className={styles.text}>{data.text}</p>
+                        <Text align="justify" className={styles.text} text={data.text} />
+                        {/* <p className={styles.text}>{data.text}</p> */}
                     </div>
 
                     <div className={styles.buttonsBlock}>

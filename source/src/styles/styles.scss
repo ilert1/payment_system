@@ -1,4 +1,10 @@
 /* stylelint-disable selector-class-pattern */
+html {
+    font-size: clamp(50%, calc(0.8vw + 0.2rem), 62.5%);
+
+    // font-size: clamp(37.5%, calc(0.8vw + 0.2rem), 62.5%);
+}
+
 html,
 body {
     margin: 0;

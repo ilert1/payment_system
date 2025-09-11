@@ -4,10 +4,12 @@ import cls from "./Text.module.scss";
 
 export type TextVariant = "primary" | "error" | "accent";
 
-export type TextAlign = "right" | "left" | "center";
+export type TextAlign = "right" | "left" | "center" | "justify";
 
 // 17 20 21 22 23 31 46
 export type TextSize = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
+
+export type TextWeight = "regular" | "medium" | "semiBold";
 
 interface TextProps {
     className?: string;
@@ -15,7 +17,7 @@ interface TextProps {
     variant?: TextVariant;
     align?: TextAlign;
     size?: TextSize;
-    bold?: boolean;
+    weight?: TextWeight;
     grow?: boolean;
     "data-testid"?: string;
 }
@@ -36,18 +38,18 @@ export const Text = memo((props: TextProps) => {
         text,
         variant = "primary",
         align = "left",
-        size = "m",
-        bold,
+        size = "xs",
+        weight = "regular",
         grow,
         "data-testid": dataTestId = "Paragraph"
     } = props;
 
     const sizeClass = mapSizeToClass[size];
 
-    const additionalClasses = [className, cls[variant], cls[align], sizeClass];
+    const additionalClasses = [className, cls[variant], cls[align], sizeClass, cls[weight]];
 
     return (
-        <div className={classNames(cls.Text, { [cls.bold]: bold, [cls.grow]: grow }, additionalClasses)}>
+        <div className={classNames(cls.Text, { [cls.grow]: grow }, additionalClasses)}>
             {text && (
                 <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
                     {text}
