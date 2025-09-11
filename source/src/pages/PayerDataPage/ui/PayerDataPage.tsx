@@ -64,8 +64,11 @@ const PayerDataPage = () => {
         // setCardNumberLast4(numbers);
     };
 
-    const handleSubmit = () => {
-        submitPayerData(
+    const handleSubmit = async () => {
+        if (isPressed) return;
+        setIsPressed(true);
+
+        await submitPayerData(
             {
                 cardNumber,
                 expiryDate,
@@ -78,11 +81,8 @@ const PayerDataPage = () => {
             ym,
             t
         );
-    };
 
-    const buttonCallback = () => {
-        setIsPressed(true);
-        handleSubmit();
+        setIsPressed(false);
     };
 
     const redirectCallback = () => {
@@ -140,7 +140,7 @@ const PayerDataPage = () => {
             {!isFetching && (
                 <Footer
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
-                    buttonCallback={isEcom && redirectUrl ? redirectCallback : buttonCallback}
+                    buttonCallback={isEcom && redirectUrl ? redirectCallback : handleSubmit}
                     nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
                     nextEnabled={!redirectUrl && isPlatformCard && waitTransfer ? false : nextEnabled}
                     approve={true}
