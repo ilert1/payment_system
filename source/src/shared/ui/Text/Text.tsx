@@ -6,7 +6,8 @@ export type TextVariant = "primary" | "error" | "accent";
 
 export type TextAlign = "right" | "left" | "center";
 
-export type TextSize = "m" | "l";
+// 17 20 21 22 23 31 46
+export type TextSize = "xxs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
 
 interface TextProps {
     className?: string;
@@ -20,8 +21,13 @@ interface TextProps {
 }
 
 const mapSizeToClass: Record<TextSize, string> = {
+    xxs: cls.size_xxs,
+    xs: cls.size_xs,
+    s: cls.size_s,
     m: cls.size_m,
-    l: cls.size_l
+    l: cls.size_l,
+    xl: cls.size_xl,
+    xxl: cls.size_xxl
 };
 
 export const Text = memo((props: TextProps) => {
@@ -33,7 +39,7 @@ export const Text = memo((props: TextProps) => {
         size = "m",
         bold,
         grow,
-        "data-testid": dataTestId = "Text"
+        "data-testid": dataTestId = "Paragraph"
     } = props;
 
     const sizeClass = mapSizeToClass[size];
@@ -43,7 +49,7 @@ export const Text = memo((props: TextProps) => {
     return (
         <div className={classNames(cls.Text, { [cls.bold]: bold, [cls.grow]: grow }, additionalClasses)}>
             {text && (
-                <p className={cls.title} data-testid={`${dataTestId}.Text`}>
+                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
                     {text}
                 </p>
             )}
