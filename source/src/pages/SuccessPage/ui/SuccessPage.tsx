@@ -2,8 +2,8 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
+import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 
@@ -29,11 +29,13 @@ export const SuccessPage = () => {
     return (
         <Page>
             <div className="content">
-                <div className="header-container grow wide center">
-                    <Heading align="center" size="l" title={t(payoutMode ? "payoutHeader" : "header", ns)} />
-                    <Text text={`+ ${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`} />
-                </div>
-
+                <HeadingContainer
+                    grow
+                    wide
+                    center
+                    headingText={t(payoutMode ? "payoutHeader" : "header", ns)}
+                    description={`+ ${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`}
+                />
                 {successUrl && (
                     <>
                         <Text text={t("timerText", ns)} />

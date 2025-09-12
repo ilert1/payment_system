@@ -19,7 +19,6 @@ const PaymentInstrumentPage = () => {
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
 
-    // Stex piti lini paymentInstruments
     const [paymentInstruments, setPaymentInstruments] = useState<PaymentInstrument[] | null>(null);
     const [instrumentSelectedEnable, setInstrumentSelectedEnable] = useState(false);
 

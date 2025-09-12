@@ -1,6 +1,6 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { Heading } from "@/shared/ui/Heading/Heading";
 import { ContentDescription } from "@/widgets/Content";
+import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
 import usePaymentPage from "../hooks/usePaymentPage";
@@ -31,20 +31,16 @@ const PayeeDataPage = () => {
         redirect(BFData?.[dest]?.method?.context?.back_redirect_url ?? "");
     };
 
+    const headingText =
+        t("waitConfirmation", ns) +
+        BFData?.[dest]?.amount +
+        "\u00A0" +
+        getCurrencySymbol(BFData?.[dest]?.currency ?? "");
+
     return (
         <Page>
             <div className="content">
-                <div className="header-container grow">
-                    <Heading
-                        size="l"
-                        title={
-                            t("waitConfirmation", ns) +
-                            BFData?.[dest]?.amount +
-                            "\u00A0" +
-                            getCurrencySymbol(BFData?.[dest]?.currency ?? "")
-                        }
-                    />
-                </div>
+                <HeadingContainer headingText={headingText} grow />
                 <ContentDescription text={t("waitComment", ns)} lowMb lowMt />
                 <Loader timer={true} statusText={t("waitTime", ns)} />
             </div>

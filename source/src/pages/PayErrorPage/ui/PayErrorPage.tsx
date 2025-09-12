@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import PlusCircle from "@/shared/assets/images/plus-circle.svg";
+import PlusCircleIcon from "@/shared/assets/images/plus-circle.svg?react";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
 import { ContentDescription } from "@/widgets/Content";
+import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./PayErrorPage.module.scss";
@@ -30,27 +30,22 @@ export const PayErrorPage = ({ notFound = false }) => {
 
     const ns = { ns: "PayError" };
 
+    const headingText = notFound ? t("notFound", ns) : t("payError", ns);
+
     return (
         <Page>
             <div className="content">
-                <div className="header-container grow">
-                    {!notFound ? (
-                        <Heading title={t("payError", ns)} size="l" />
-                    ) : (
-                        <Heading title={t("notFound", ns)} size="l" />
-                    )}
-                </div>
+                <HeadingContainer headingText={headingText} grow />
                 <ContentDescription
                     text={!notFound ? t("pleaseRepeatOrder", ns) : t("pleaseRepeatOrSupport", ns)}
                     lowMb
                     lowMt
                 />
-                <img className={styles.errorImage} src={PlusCircle} alt="" />
-
+                <PlusCircleIcon className={styles.errorImage} />
                 {failUrl && (
                     <>
-                        <Text text={t("timerText", ns)} />
-                        <DeadLineTimer timerSecondsTo={5} timerCallback={() => window.location.replace(failUrl)} />
+                        <Text align="center" text={t("timerText", ns)} />
+                        <DeadLineTimer timerSecondsTo={500} timerCallback={() => window.location.replace(failUrl)} />
                     </>
                 )}
             </div>

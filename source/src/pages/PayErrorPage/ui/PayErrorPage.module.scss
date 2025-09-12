@@ -1,11 +1,5 @@
 .errorImage {
-    margin-bottom: 35px;
-
-    @media (width <= 520px) {
-        $width: 116px;
-
-        width: $width;
-        height: $width;
-        margin-bottom: 25px;
-    }
+    width: 16.5rem;
+    height: 16.5rem;
+    margin-bottom: 3.5rem;
 }

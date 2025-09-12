@@ -3,9 +3,9 @@ import { useAppContext } from "@/AppContext";
 import PlusCircle from "@/shared/assets/images/plus-circle.svg";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
-import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
 import { ContentDescription } from "@/widgets/Content";
+import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./GeneralErrorPage.module.scss";
@@ -38,9 +38,7 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
     return (
         <Page>
             <div className="content">
-                <div className="header-container grow">
-                    <Heading size="l" title={t(cancel ? "cancelPage.cancel" : "error", ns)} />
-                </div>
+                <HeadingContainer grow headingText={t(cancel ? "cancelPage.cancel" : "error", ns)} />
                 <ContentDescription
                     text={t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}
                     lowMb

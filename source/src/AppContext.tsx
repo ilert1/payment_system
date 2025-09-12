@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
 import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
-import CurrencyLibrary from "./shared/assets/library/Currency.json";
+import { Currencies } from "./shared/assets/library/Currency";
 import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
 import { useBFStore } from "./shared/store/bfDataStore.js";
@@ -156,8 +156,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     const getCurrencySymbol = (code: string) => {
-        if (CurrencyLibrary.hasOwnProperty(code)) {
-            return CurrencyLibrary[code].symbol_native;
+        if (Currencies.hasOwnProperty(code)) {
+            return Currencies[code].symbol_native;
         }
         return code;
     };

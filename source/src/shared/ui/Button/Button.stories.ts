@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { ReactNode } from "react";
 import { fn } from "storybook/test";
 import { Button } from "./Button";
 
@@ -16,7 +15,7 @@ const meta = {
     argTypes: {
         variant: {
             control: "select",
-            options: ["default", "secondary", "outline", "danger", "dangerSolid", "ghost", "ghostDanger"]
+            options: ["default", "outline", "danger", "dangerSolid", "ghost", "ghostDanger"]
         },
         size: {
             control: "select",
