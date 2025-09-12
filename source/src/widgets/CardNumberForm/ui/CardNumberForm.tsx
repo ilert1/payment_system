@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useTranslation } from "react-i18next";
-import { useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
+import { useGetCardNumberFormData } from "@/pages/PayerDataPage/model/hooks/useGetCardNumberFormData";
 import { classNames } from "@/shared/lib/classNames";
 import { Label } from "@/shared/ui/Label";
 import { Text } from "@/shared/ui/Text/Text";

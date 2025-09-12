@@ -21,9 +21,6 @@ import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import styles from "./ThreeDsForm.module.scss";
 
 export const ThreeDsForm = () => {
-    const bfData = useBFStore.getState().BFData;
-    const payOutMode = Boolean(bfData?.payout);
-
     const status = useBFStore(state => state.status);
     const { fingerprintConfig } = useAppContext();
     const { t } = useTranslation("ThreeDsPage");

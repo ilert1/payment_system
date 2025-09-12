@@ -33,7 +33,7 @@
     height: $width;
     border-radius: 500px;
 
-    background-color: #6fc0f6;
+    background-color: var(--color-primary-light);
     filter: blur(71px);
 
     @media (width <= 520px) {

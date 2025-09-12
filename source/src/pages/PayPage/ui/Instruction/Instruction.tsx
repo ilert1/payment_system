@@ -1,5 +1,5 @@
 import { useAppContext } from "@/AppContext";
-import ArrowDown from "@/shared/assets/images/chevron-down.svg";
+import ArrowDown from "@/shared/assets/images/chevron-down.svg?react";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
 import { Text } from "@/shared/ui/Text/Text";
@@ -40,11 +40,7 @@ export const Instruction = (props: InstructionProps) => {
                     text={title}
                 />
                 <Button onClick={callback} variant="ghost" className={styles.btn}>
-                    <img
-                        className={classNames(styles.arrow, { [styles.arrowActive]: isActive })}
-                        src={ArrowDown}
-                        alt=""
-                    />
+                    <ArrowDown className={classNames(styles.arrow, { [styles.arrowActive]: isActive })} />
                 </Button>
             </div>
             {children ? children : <InstructionItems start={start} data={data ?? ""} isActive={isActive} />}

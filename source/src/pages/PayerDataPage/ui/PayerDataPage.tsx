@@ -11,7 +11,6 @@ import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumb
 import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
-import { Header } from "@/widgets/Header";
 import { Page } from "@/widgets/Page";
 import { usePaymentStore } from "../model/slice/PayerDataPageSlice";
 

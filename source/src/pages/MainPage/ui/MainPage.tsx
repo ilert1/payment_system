@@ -113,7 +113,6 @@ export const MainPage = () => {
                     <Footer buttonCaption={t("continue", ns)} nextPage={"true"} buttonCallback={buttonCallback} />
                 </>
             )}
-
             <Outlet />
         </Page>
     );

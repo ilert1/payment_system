@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useTimer, useStopwatch } from "react-timer-hook";
 
 interface TimeProps {

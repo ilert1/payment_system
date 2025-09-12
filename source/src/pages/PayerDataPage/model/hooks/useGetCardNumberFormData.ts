@@ -1,9 +1,8 @@
-import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
+import { usePayerDataStore } from "@/widgets/CardNumberForm";
 
 interface UseGetCardNumberFormDataProps {
     ns: {
