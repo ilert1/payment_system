@@ -3,6 +3,7 @@ import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { ProgressSteper } from "@/widgets/ProgressSteper";
@@ -40,7 +41,7 @@ const PayeeSearchPage = () => {
 
     return (
         <Page>
-            <div className="content">
+            <Content>
                 <Heading
                     size="l"
                     title={
@@ -54,7 +55,7 @@ const PayeeSearchPage = () => {
                     }
                 />
                 <ProgressSteper step={step} />
-            </div>
+            </Content>
 
             <Footer buttonCaption={t("approve", ns)} approve={true} />
         </Page>

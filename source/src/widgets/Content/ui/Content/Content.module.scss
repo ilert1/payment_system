@@ -1,0 +1,15 @@
+.content {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 29px;
+
+    @media (width <= 520px) {
+        margin-top: 0;
+    }
+}

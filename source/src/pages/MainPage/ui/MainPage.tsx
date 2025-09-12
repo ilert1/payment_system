@@ -11,7 +11,7 @@ import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Text } from "@/shared/ui/Text/Text";
-import { ContentDescription } from "@/widgets/Content";
+import { Content, ContentDescription } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./MainPage.module.scss";
@@ -69,12 +69,12 @@ export const MainPage = () => {
     return (
         <Page>
             {!BFData?.[dest]?.method ? (
-                <div className="content">
+                <Content>
                     <Loader />
-                </div>
+                </Content>
             ) : (
                 <>
-                    <div className="content">
+                    <Content>
                         {!payOutMode ? (
                             <>
                                 <Heading align="center" size="l" title={t("header", ns)} />
@@ -108,7 +108,7 @@ export const MainPage = () => {
                                 />
                             </>
                         )}
-                    </div>
+                    </Content>
 
                     <Footer buttonCaption={t("continue", ns)} nextPage={"true"} buttonCallback={buttonCallback} />
                 </>

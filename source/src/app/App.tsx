@@ -3,9 +3,9 @@ import { ToastContainer } from "react-toastify";
 import { useAppContext } from "@/AppContext";
 import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
-// import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader/Loader";
+import { Content } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { AppRouter } from "./providers/router";
 
@@ -55,9 +55,9 @@ const App = () => {
         <>
             {loading ? (
                 <Page header={false}>
-                    <div className="content">
+                    <Content>
                         <Loader />
-                    </div>
+                    </Content>
                 </Page>
             ) : (
                 <Suspense fallback={<div>Загрузка переводов...</div>}>

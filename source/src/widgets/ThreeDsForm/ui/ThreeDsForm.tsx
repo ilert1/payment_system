@@ -14,6 +14,7 @@ import { Label } from "@/shared/ui/Label";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
 import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
@@ -57,7 +58,6 @@ export const ThreeDsForm = () => {
         } catch (error) {
             if (error instanceof Error) toast.error(error.message);
             else toast.error("Something went wrong");
-
             navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
         } finally {
             setSubmitClicked(false);
@@ -82,15 +82,15 @@ export const ThreeDsForm = () => {
 
     if (status === "paymentAwaitingConfirmationByPayee") {
         return (
-            <div className="content">
+            <Content>
                 <Loader />
-            </div>
+            </Content>
         );
     }
 
     return (
         <>
-            <div className="content cardPage">
+            <Content>
                 <Heading size="l" title={t("title")} grow className={styles.h1} />
 
                 {/* onSubmit={threeDSForm.handleSubmit(onSubmit)} */}
@@ -140,7 +140,7 @@ export const ThreeDsForm = () => {
                         )}
                     </div>
                 </form>
-            </div>
+            </Content>
             <Footer
                 buttonCaption={t("continue")}
                 buttonCallback={threeDSForm.handleSubmit(onSubmit)}

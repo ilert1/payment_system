@@ -7,6 +7,7 @@ import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { PayInstruments } from "@/widgets/PayInstruments";
@@ -94,7 +95,7 @@ const PaymentInstrumentPage = () => {
 
     return (
         <Page>
-            <div className="content">
+            <Content>
                 <Heading size="l" title={t("amount", ns)} grow />
                 <div className={styles.amountContainer}>
                     <Text align="right" variant="primary" size="xxl" weight="semiBold" text={BFData?.[dest]?.amount} />
@@ -108,7 +109,7 @@ const PaymentInstrumentPage = () => {
                     />
                 </div>
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
-            </div>
+            </Content>
 
             <Footer
                 buttonCaption={t("next", ns)}

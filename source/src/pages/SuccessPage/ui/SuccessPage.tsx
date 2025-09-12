@@ -3,6 +3,7 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
+import { Content } from "@/widgets/Content";
 import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -28,7 +29,7 @@ export const SuccessPage = () => {
 
     return (
         <Page>
-            <div className="content">
+            <Content>
                 <HeadingContainer
                     grow
                     wide
@@ -42,7 +43,7 @@ export const SuccessPage = () => {
                         <DeadLineTimer timerSecondsTo={5} timerCallback={successCallback} />
                     </>
                 )}
-            </div>
+            </Content>
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}

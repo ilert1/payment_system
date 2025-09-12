@@ -6,6 +6,7 @@ import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./PaymentConfirmationPage.module.scss";
@@ -40,7 +41,7 @@ export const PaymentConfirmationPage = () => {
 
     return (
         <Page>
-            <div className="content">
+            <Content>
                 <Heading size="l" title={"Подтверждение оплаты"} grow />
                 <div className={styles.confirmationDeadlineInfo}>
                     <p>Прикрепите подтверждение оплаты для проверки</p>
@@ -65,7 +66,7 @@ export const PaymentConfirmationPage = () => {
                     children={<DropZoneContent />}
                 />
                 {/* <div id="drop-zone" className="drop-zone"></div> */}
-            </div>
+            </Content>
 
             <Footer
                 buttonCaption={t("Common.approve")}

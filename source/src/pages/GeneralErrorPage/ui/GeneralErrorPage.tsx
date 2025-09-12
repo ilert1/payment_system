@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import PlusCircle from "@/shared/assets/images/plus-circle.svg";
+import PlusCircleIcon from "@/shared/assets/images/plus-circle.svg?react";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
-import { ContentDescription } from "@/widgets/Content";
+import { Content, ContentDescription } from "@/widgets/Content";
 import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
@@ -37,16 +37,14 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
 
     return (
         <Page>
-            <div className="content">
+            <Content>
                 <HeadingContainer grow headingText={t(cancel ? "cancelPage.cancel" : "error", ns)} />
                 <ContentDescription
                     text={t(cancel ? "cancelPage.transactionCanceled" : "pleaseRepeatOrder", ns)}
                     lowMb
                     lowMt
                 />
-
-                <img className={styles.errorImage} src={PlusCircle} alt="" />
-
+                <PlusCircleIcon className={styles.errorImage} />;
                 {(failUrl || (cancelUrl && cancel)) && (
                     <>
                         <Text text={t("timerText", ns)} />
@@ -56,7 +54,7 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
                         />
                     </>
                 )}
-            </div>
+            </Content>
 
             <Footer
                 buttonCaption={t("returnBtn", ns)}

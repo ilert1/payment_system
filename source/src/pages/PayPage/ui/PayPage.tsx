@@ -11,6 +11,7 @@ import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import Loader from "@/shared/ui/Loader/Loader";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { PayHeader } from "@/widgets/PayHeader";
@@ -256,12 +257,12 @@ const PayPage = () => {
     return (
         <Page>
             {!trader || isFetching_BFData ? (
-                <div className="content">
+                <Content>
                     <Loader />
-                </div>
+                </Content>
             ) : (
                 <>
-                    <div className="content">
+                    <Content>
                         <PayHeader
                             amount={BFData?.[dest]?.amount ?? ""}
                             currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
@@ -293,7 +294,7 @@ const PayPage = () => {
                             countryName={[tjs, azn, abh].includes(caseName) ? caseName : ""}
                             transgran={transgran}
                         />
-                    </div>
+                    </Content>
                     {selectedFile && (
                         <FilePicker
                             value={selectedFile}

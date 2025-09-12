@@ -1,5 +1,5 @@
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { ContentDescription } from "@/widgets/Content";
+import { Content, ContentDescription } from "@/widgets/Content";
 import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
@@ -39,11 +39,11 @@ const PayeeDataPage = () => {
 
     return (
         <Page>
-            <div className="content">
+            <Content>
                 <HeadingContainer headingText={headingText} grow />
                 <ContentDescription text={t("waitComment", ns)} lowMb lowMt />
                 <Loader timer={true} statusText={t("waitTime", ns)} />
-            </div>
+            </Content>
 
             <Footer
                 buttonCallback={BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {}}

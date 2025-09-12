@@ -9,6 +9,7 @@ import Loader from "@/shared/ui/Loader/Loader";
 import { CardNumberForm } from "@/widgets/CardNumberForm";
 import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
 import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Header } from "@/widgets/Header";
 import { Page } from "@/widgets/Page";
@@ -113,7 +114,7 @@ const PayerDataPage = () => {
 
     return (
         <Page>
-            <div className="content cardPage">
+            <Content>
                 {isEcom ? (
                     !isFetching && !waitTransfer ? (
                         <>
@@ -136,7 +137,7 @@ const PayerDataPage = () => {
                         <CardNumberLast4 onComplete={onComplete} showHidden={!isSbp} />
                     </>
                 )}
-            </div>
+            </Content>
             {!isFetching && (
                 <Footer
                     buttonCaption={!redirectUrl ? t("approve", ns) : t("pay", ns)}
