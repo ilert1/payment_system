@@ -6,7 +6,6 @@ const buttonVariants = cva(styles.button, {
     variants: {
         variant: {
             default: styles.btnPrimary,
-            secondary: styles.btnSecondary,
             outline: styles.btnOutline,
             danger: styles.btnDanger,
             dangerSolid: styles.btnDangerSolid,

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
-import axios, { isCancel } from "axios";
+import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
