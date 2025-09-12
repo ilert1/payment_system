@@ -58,7 +58,6 @@ export const ThreeDsForm = () => {
         } catch (error) {
             if (error instanceof Error) toast.error(error.message);
             else toast.error("Something went wrong");
-            navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
         } finally {
             setSubmitClicked(false);
         }

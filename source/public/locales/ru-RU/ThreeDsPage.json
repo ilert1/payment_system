@@ -2,7 +2,7 @@
     "title": "Введите код подтверждения вашего банка",
     "threeDSForm": {
         "fields": {
-            "threeDsCode": "Код потверждения:",
+            "threeDsCode": "Код подтверждения:",
             "threeDsCodePlaceholder": "Код подтверждения"
         },
         "errors": {
