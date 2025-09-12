@@ -4,7 +4,9 @@ import { useAppContext } from "@/AppContext";
 import CheckCircle from "@/shared/assets/images/check-circle.svg?react";
 import CopyIcon from "@/shared/assets/images/copy.svg?react";
 import { classNames } from "@/shared/lib/classNames";
+import { Button } from "@/shared/ui/Button/Button";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Label } from "@/shared/ui/Label";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from "./PayeeDataItem.module.scss";
 
@@ -55,25 +57,26 @@ export const PayeeDataItem = (props: PayeeDataItemProps) => {
     return (
         <div className={classNames(styles.payeeDataItem, {}, [cl])}>
             <div className={styles.iconContainer}>
-                {typeof Img === "string" ? <img className={imgCl} src={Img} onError={onError} alt="" /> : <Img />}
+                {typeof Img === "string" ? (
+                    <img className={classNames(styles.img, {}, [imgCl])} src={Img} onError={onError} alt="" />
+                ) : (
+                    <Img className={classNames(styles.img, {}, [imgCl])} />
+                )}
             </div>
             <div className={styles.textContainer}>
-                <label>{label}</label>
+                <Label size="sm" text={label} />
                 <Heading size="m" title={value} />
-                {/* {comment && <Text text={comment} size="2xs" />} */}
-                {comment && <p>{comment}</p>}
+                {comment && <Text text={comment} size="xxs" />}
             </div>
             {copyData && (
                 <>
                     <CopyToClipboard text={copyData} onCopy={() => showPopupCallback(copyData)}>
-                        <button id="copy" className={styles.copy}>
-                            {/* <img src={CopyIcon} alt="" /> */}
-                            <CopyIcon />
-                        </button>
+                        <Button className={styles.copy} variant={"ghost"}>
+                            <CopyIcon className={styles.img} />
+                        </Button>
                     </CopyToClipboard>
-                    <div id="copy-popup" className={classNames(styles.popup, { [styles.active]: showPopup })}>
-                        {messageOnCopy}
-                        {/* <img src={CheckCircle} alt="" /> */}
+                    <div className={classNames(styles.popup, { [styles.active]: showPopup })}>
+                        <Text size="2xs" text={messageOnCopy} />
                         <CheckCircle />
                     </div>
                 </>

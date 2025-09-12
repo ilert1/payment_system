@@ -10,7 +10,9 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
+import { Label } from "@/shared/ui/Label";
 import Loader from "@/shared/ui/Loader/Loader";
+import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
 import { Footer } from "@/widgets/Footer";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
@@ -94,7 +96,7 @@ export const ThreeDsForm = () => {
                 {/* onSubmit={threeDSForm.handleSubmit(onSubmit)} */}
                 <form className={styles.form}>
                     <div className={styles.item}>
-                        <label className={styles.label}>{t("threeDSForm.fields.threeDsCode")}</label>
+                        <Label weight="medium" text={t("threeDSForm.fields.threeDsCode")} className={styles.label} />
                         <Controller
                             name="threeDsCode"
                             control={threeDSForm.control}
@@ -129,7 +131,12 @@ export const ThreeDsForm = () => {
                             )}
                         />
                         {threeDSForm.formState.errors.threeDsCode && (
-                            <span className={styles.errorMessage}>{t("threeDSForm.errors.generalError")}</span>
+                            <Text
+                                className={styles.errorMessage}
+                                size="xxs"
+                                variant="error"
+                                text={t("threeDSForm.errors.generalError")}
+                            />
                         )}
                     </div>
                 </form>

@@ -30,24 +30,10 @@
 
 .label {
     margin-bottom: 10px;
-
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 134%;
-    color: hsl(203deg 92% 5% / 100%);
-    text-align: left;
-    letter-spacing: 0%;
-
-    opacity: 0.5;
 }
 
 .errorMessage {
-    width: 100%;
     margin-top: 4px;
-
-    font-size: 12px !important;
-    color: rgb(177 14 14) !important;
-    text-align: left;
     overflow-wrap: break-word;
 }
 

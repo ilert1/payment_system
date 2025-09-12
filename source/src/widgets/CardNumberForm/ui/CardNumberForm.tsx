@@ -2,6 +2,7 @@
 import { useTranslation } from "react-i18next";
 import { useGetCardNumberFormData } from "@/hooks/useGetCardNumberFormData";
 import { classNames } from "@/shared/lib/classNames";
+import { Label } from "@/shared/ui/Label";
 import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
 import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
@@ -35,9 +36,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
             <form>
                 <div className={styles.wrapper}>
                     <div className={styles.item}>
-                        <label className={styles.label} htmlFor="cardNumber">
-                            {t("cardNumber", ns)}:
-                        </label>
+                        <Label text={t("cardNumber", ns)} weight="medium" />
                         <Input
                             {...register("cardNumber")}
                             id="cardNumber"
@@ -51,9 +50,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                     </div>
                     <div className={styles.bottom}>
                         <div className={styles.item}>
-                            <label className={styles.label} htmlFor="expiryDate">
-                                {t("expirationDate", ns)}:
-                            </label>
+                            <Label text={t("expirationDate", ns)} weight="medium" />
                             <Input
                                 {...register("expiryDate")}
                                 id="expiryDate"
@@ -70,9 +67,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                             )}
                         </div>
                         <div className={styles.item}>
-                            <label className={styles.label} htmlFor="cvv">
-                                CVV:
-                            </label>
+                            <Label text="CVV" weight="medium" />
                             <Input
                                 {...register("cvv")}
                                 onChange={handleCvvInputChange}
@@ -90,9 +85,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
                     </div>
                     {cardHolderVisible && (
                         <div className={styles.item}>
-                            <label className={styles.label} htmlFor="cardHolder">
-                                {t("cardHolder", ns)}:
-                            </label>
+                            <Label text={t("cardHolder", ns)} weight="medium" />
                             <Input
                                 {...register("cardHolder", { required: false })}
                                 id="cardHolder"
