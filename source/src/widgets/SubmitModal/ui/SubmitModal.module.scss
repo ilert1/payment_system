@@ -20,22 +20,6 @@
         translate 0.5s ease,
         opacity 0.3s ease;
 
-    // TODO: Redundant, should remove it
-    & > img {
-        user-select: none;
-
-        align-self: center;
-
-        width: 186px;
-        margin-bottom: 10px;
-
-        -webkit-user-drag: none;
-
-        @media (width <= 520px) {
-            width: 134px;
-        }
-    }
-
     @media (width <= 520px) {
         padding: 24px;
     }
@@ -142,16 +126,12 @@
 }
 
 .text {
-    /* font-size: 30px;
-    line-height: 40px; */
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
     text-align: justify;
 
     @media (width <= 520px) {
-        /* font-size: 16px;
-        line-height: 21px; */
         font-size: 16px;
         line-height: 22px;
         text-align: justify;
@@ -186,4 +166,13 @@
 .cancelButton {
     flex-grow: 1;
     width: 100%;
+}
+
+.uniqeness {
+    .alertTriangle {
+        & > path {
+            opacity: 0.3;
+            stroke: #010f18;
+        }
+    }
 }

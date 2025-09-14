@@ -273,7 +273,13 @@ export const Footer = (props: FooterProps) => {
                 </div>
             </footer>
             <SubmitModal show={dialogShow} setShow={setDialogShow} data={cancelModalData} isLoading={isLoading} />
-            <SubmitModal show={unicPopupShow} setShow={setUnicPopupShow} data={unicPopupModalData} isLoading={false} />
+            <SubmitModal
+                show={unicPopupShow}
+                setShow={setUnicPopupShow}
+                data={unicPopupModalData}
+                isLoading={false}
+                isUniqueness
+            />
         </>
     );
 };
