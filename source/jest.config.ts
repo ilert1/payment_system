@@ -12,7 +12,8 @@ const config: Config = {
         "^.+\\.(ts|tsx)$": "ts-jest"
     },
     moduleNameMapper: {
-        "\\.(css|scss)$": "identity-obj-proxy"
+        "\\.(css|scss)$": "identity-obj-proxy",
+        "^@/(.*)$": "<rootDir>/src/$1"
     },
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     testMatch: ["<rootDir>/src/**/*.test.(ts|tsx|js)", "<rootDir>/src/**/*.test.(ts|tsx|js)"],

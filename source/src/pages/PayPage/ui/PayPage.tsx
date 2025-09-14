@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import fileTypeChecker from "file-type-checker";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -20,7 +19,7 @@ import { PaymentInstructions } from "./PaymentInstructions";
 
 const azn = "azn";
 const tjs = "tjs";
-const iban = "iban";
+// const iban = "iban";
 const abh = "abh";
 
 const PayPage = () => {
@@ -57,7 +56,7 @@ const PayPage = () => {
     const [requisite, setRequisite] = useState<string | null>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
+    // const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
 
     const [buttonCallbackEnabled, setButtonCallbackEnabled] = useState(false);
 
@@ -74,7 +73,7 @@ const PayPage = () => {
                         reader.onload = () => resolve(reader.result as string);
                         reader.onerror = reject;
                     });
-                return new Promise((resolve, reject) => resolve(""));
+                return new Promise(resolve => resolve(""));
             };
             let pureBase64: string | null = null;
             if (isConfirmTypeFile) {
