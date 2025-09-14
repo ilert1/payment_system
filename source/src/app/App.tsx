@@ -1,8 +1,8 @@
 import { Suspense, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import { useAppContext } from "@/AppContext";
-import "@/shared/assets/css/fonts.css";
-import "@/shared/assets/css/styles.css";
+// import "@/shared/assets/css/fonts.css";
+// import "@/shared/assets/css/styles.css";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";

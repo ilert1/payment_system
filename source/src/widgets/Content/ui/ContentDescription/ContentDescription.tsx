@@ -21,7 +21,7 @@ export const ContentDescription = (props: ContentDescriptionProps) => {
 
     return (
         <div className={classNames(styles.description, modClasses)}>
-            {typeof text === "string" ? <Text text={text} /> : text}
+            {typeof text === "string" ? <Text align="center" text={text} /> : text}
         </div>
     );
 };

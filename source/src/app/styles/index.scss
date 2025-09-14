@@ -1,3 +1,65 @@
 @use "reset";
 @use "variables/global";
 @use "themes/base";
+@use "fonts/fonts";
+
+html {
+    font-size: clamp(50%, calc(0.8vw + 0.2rem), 62.5%);
+
+    // font-size: clamp(37.5%, calc(0.8vw + 0.2rem), 62.5%);
+}
+
+.Toastify {
+    /* stylelint-disable-next-line selector-class-pattern */
+    .Toastify__toast-container {
+        top: 10px;
+
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+
+        box-sizing: border-box;
+        width: 100%;
+        width: 630px;
+        max-width: 100%;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        .Toastify__toast {
+            gap: 12px;
+
+            margin-bottom: 0;
+            padding: 15px;
+            border-radius: 5px;
+
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 23px;
+            color: #fff;
+
+            background-color: #ea4444;
+            box-shadow:
+                0 1.34px 1.59px 0 #00000002,
+                0 3.03px 3.62px 0 #00000004,
+                0 5.28px 6.31px 0 #00000004,
+                0 8.39px 10.02px 0 #00000005,
+                0 12.94px 15.46px 0 #00000006,
+                0 20.2px 24.12px 0 #00000007,
+                0 33.53px 40.04px 0 #00000008,
+                0 67px 80px 0 #0000000a;
+
+            /* stylelint-disable-next-line selector-class-pattern */
+            .Toastify__toast-body {
+                padding: 0;
+            }
+
+            @media (width <= 520px) {
+                flex-direction: column;
+                align-items: stretch;
+                font-size: 14px;
+                line-height: 19px;
+            }
+        }
+    }
+}

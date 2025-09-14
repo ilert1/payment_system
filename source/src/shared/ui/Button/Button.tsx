@@ -32,11 +32,22 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, Var
     variant?: VariantProps<typeof buttonVariants>["variant"];
     className?: string;
     loading?: boolean;
+    "data-testid"?: string;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     (
-        { children, onClick, disabled = false, loading = false, variant = "default", size = "sm", className, ...props },
+        {
+            children,
+            onClick,
+            disabled = false,
+            loading = false,
+            variant = "default",
+            size = "sm",
+            className,
+            "data-testid": dataTestId = "Button",
+            ...props
+        },
         ref
     ) => {
         return (
@@ -45,7 +56,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                 onClick={onClick}
                 disabled={disabled || loading}
                 className={buttonVariants({ variant, size, loading, className })}
-                data-testid="custom-button"
+                data-testid={`${dataTestId}.Button`}
                 {...props}>
                 {loading ? null : children}
             </button>
