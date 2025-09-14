@@ -1,2 +1,4 @@
-import PayPage from "./ui/PayPage";
-export { PayPage };
+// import PayPage from "./ui/PayPage";
+// export { PayPage };
+
+export { PayPageAsync as PayPage } from "./ui/PayPage.async";
