@@ -20,7 +20,7 @@ export default defineConfig(({ mode }) => {
                     quality: [0.6, 0.8]
                 }
             }),
-            analyzer(),
+            analyzer({ analyzerPort: 9000 }),
             react(),
             svgr({
                 svgrOptions: {

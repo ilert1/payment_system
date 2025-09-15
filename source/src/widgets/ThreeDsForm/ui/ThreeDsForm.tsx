@@ -21,11 +21,16 @@ import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import styles from "./ThreeDsForm.module.scss";
 
 export const ThreeDsForm = () => {
-    const status = useBFStore(state => state.status);
-    const { fingerprintConfig } = useAppContext();
     const { t } = useTranslation("ThreeDsPage");
-    const { isFetching, submitForm } = useThreeDSFormStore();
     const navigate = useNavigate();
+    const { fingerprintConfig } = useAppContext();
+
+    const { isFetching, submitForm } = useThreeDSFormStore();
+
+    const status = useBFStore(state => state.status);
+    const bfData = useBFStore(state => state.BFData);
+    const payOutMode = Boolean(bfData?.payout);
+
     const [buttonEnabled, setButtonEnabled] = useState(false);
     const [submitClicked, setSubmitClicked] = useState(false);
 
@@ -53,8 +58,15 @@ export const ThreeDsForm = () => {
         try {
             submitForm({ formData: data, navigate, fingerprintConfig: fingerprintConfig.headers });
         } catch (error) {
-            if (error instanceof Error) toast.error(error.message);
-            else toast.error("Something went wrong");
+            if (error instanceof Error) {
+                if (error.message === "404") {
+                    navigate(`/${payOutMode ? AppRoutes.PAGE_PAYOUT_NOT_FOUND : AppRoutes.PAGE_PAYMENT_NOT_FOUND}`);
+                } else {
+                    toast.error(error.message);
+                }
+            } else {
+                toast.error("Something went wrong");
+            }
         } finally {
             setSubmitClicked(false);
         }

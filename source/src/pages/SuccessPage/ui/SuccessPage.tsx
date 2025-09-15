@@ -20,12 +20,12 @@ export const SuccessPage = () => {
 
     const successUrl = BFData?.[dest]?.method?.context?.success_redirect_url ?? "";
 
-    usePaymentPage({ absolutePath: false });
-
     const successCallback = () => {
         ym("reachGoal", "success-return-button", { success_url: successUrl });
         window.location.replace(successUrl);
     };
+
+    usePaymentPage({ absolutePath: false });
 
     return (
         <Page>

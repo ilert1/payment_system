@@ -17,8 +17,6 @@ export interface SubmitFormParams {
     setStatus: (data: string) => void;
     dest: string;
     bfId: string;
-    navigate: NavigateFunction;
-    payOutMode: boolean;
 }
 
 export interface SubmitFormSliceParams {
