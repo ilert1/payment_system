@@ -17,6 +17,7 @@ import { Button } from "@/shared/ui/Button/Button";
 import { BankCardInfo } from "@/widgets/BankCardInfo";
 import { PayeeInfo } from "@/widgets/PayeeInfo";
 import { SubmitModal } from "@/widgets/SubmitModal";
+import { useFooterStore } from "../model/slice/FooterSlice";
 import styles from "./Footer.module.scss";
 
 const bankIcon = (bank: string) => {
@@ -53,6 +54,7 @@ export const Footer = (props: FooterProps) => {
         hideRequisite = false,
         isUnicalization = false
     } = props;
+    // const { buttonCaption, nextPage, showCancelBtn, prevPage, nextEnabled, approve, focused, payeeCard, noIcon, buttonCallback, hideRequisite, isUnicalization } = useFooterStore();
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);

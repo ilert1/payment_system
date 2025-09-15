@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "@/AppContext";
+import { CardNumberForm } from "@/features/CardNumberForm";
+import { usePayerDataStore } from "@/features/CardNumberForm/model/slice/CardNumberFormSlice";
+import { CardNumberLast4 } from "@/features/CardNumberLast4";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router.js";
 import { useBFStore } from "@/shared/store/bfDataStore.js";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import Loader from "@/shared/ui/Loader/Loader";
-import { CardNumberForm } from "@/widgets/CardNumberForm";
-import { usePayerDataStore } from "@/widgets/CardNumberForm/model/slice/CardNumberFormSlice";
-import { CardNumberLast4 } from "@/widgets/CardNumberLast4";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";

@@ -1,7 +1,6 @@
+import { create } from "zustand";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { getPayment } from "../services/getPayment";
-import { useAppContext } from "@/AppContext";
-import { create } from "zustand";
 import { PaymentStore } from "../types/PayerDataPageTypes";
 
 export const usePaymentStore = create<PaymentStore>(set => ({
