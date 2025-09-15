@@ -1,4 +1,4 @@
-export type PaymentStore = {
+export type CardNumberFormsStore = {
     isFetching: boolean;
     setIsFetching: (state: boolean) => void;
     fetchPaymentInit: (params: {

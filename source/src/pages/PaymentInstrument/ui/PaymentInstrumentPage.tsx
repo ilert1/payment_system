@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { useAppContext } from "@/AppContext";
+import { PayInstruments } from "@/entities/PaymentInstruments";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
@@ -10,7 +11,6 @@ import { Text } from "@/shared/ui/Text/Text";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { PayInstruments } from "@/widgets/PayInstruments";
 import styles from "./PaymentInstrumentPage.module.scss";
 
 const PaymentInstrumentPage = () => {

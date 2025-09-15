@@ -1,5 +1,5 @@
 import { AppRoutes } from "@/shared/const/router";
-import { GetPaymentParams } from "../types/PayerDataPageTypes";
+import { GetPaymentParams } from "../types/CardNumberFormsTypes";
 
 export const getPayment = async ({
     bfId,

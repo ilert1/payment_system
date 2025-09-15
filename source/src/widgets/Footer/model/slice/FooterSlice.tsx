@@ -5,7 +5,6 @@ export const useFooterStore = create<FooterStoreType>(set => ({
     approve: false,
     focused: false,
     payeeCard: false,
-    noIcon: false,
     buttonCallback: () => {},
     hideRequisite: false,
     isUnicalization: false,
@@ -13,9 +12,10 @@ export const useFooterStore = create<FooterStoreType>(set => ({
     nextPage: "",
     showCancelBtn: false,
     prevPage: "",
-    nextEnabled: false,
+    nextEnabled: true,
+    noIcon: false,
 
-    setFooter: (data: FooterStoreType) => set(state => ({ ...state, ...data })),
+    setFooter: (data: FooterData) => set(state => ({ ...state, ...data })),
 
     reset: () =>
         set({
@@ -23,7 +23,7 @@ export const useFooterStore = create<FooterStoreType>(set => ({
             nextPage: "",
             showCancelBtn: false,
             prevPage: "",
-            nextEnabled: false,
+            nextEnabled: true,
             approve: false,
             focused: false,
             payeeCard: false,

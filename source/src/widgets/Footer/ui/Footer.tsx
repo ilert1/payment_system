@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAppContext } from "@/AppContext";
+import { BankCardInfo } from "@/entities/Card";
+import { PayeeInfo } from "@/entities/Payee";
 import ArrowRight from "@/shared/assets/images/arrow-right.svg";
 import DefaultBankIcon from "@/shared/assets/images/bank-icon.svg";
 import Check from "@/shared/assets/images/check.svg";
@@ -14,8 +16,6 @@ import { classNames } from "@/shared/lib/classNames";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Button } from "@/shared/ui/Button/Button";
-import { BankCardInfo } from "@/widgets/BankCardInfo";
-import { PayeeInfo } from "@/widgets/PayeeInfo";
 import { SubmitModal } from "@/widgets/SubmitModal";
 import { useFooterStore } from "../model/slice/FooterSlice";
 import styles from "./Footer.module.scss";
@@ -41,20 +41,21 @@ interface FooterProps {
 
 export const Footer = (props: FooterProps) => {
     const {
-        buttonCaption = "",
+        buttonCaption,
         nextPage,
-        showCancelBtn = true,
-        prevPage = "",
-        nextEnabled = true,
-        approve = false,
-        focused = false,
-        payeeCard = false,
-        noIcon = false,
-        buttonCallback = () => {},
-        hideRequisite = false,
-        isUnicalization = false
-    } = props;
-    // const { buttonCaption, nextPage, showCancelBtn, prevPage, nextEnabled, approve, focused, payeeCard, noIcon, buttonCallback, hideRequisite, isUnicalization } = useFooterStore();
+        showCancelBtn,
+        prevPage,
+        nextEnabled,
+        approve,
+        focused,
+        payeeCard,
+        noIcon,
+        buttonCallback,
+        hideRequisite,
+        isUnicalization
+    } = useFooterStore();
+
+    console.log(nextEnabled);
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);

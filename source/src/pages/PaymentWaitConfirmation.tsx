@@ -1,7 +1,6 @@
+import { ContentDescription } from "@/entities/payment";
 import Loader from "@/shared/ui/Loader/Loader";
-import { ContentDescription } from "@/widgets/Content";
-import { Content } from "@/widgets/Content";
-import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
+import { Content, HeadingContainer } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 

@@ -1,4 +1,4 @@
-interface FooterStoreType {
+interface FooterData {
     buttonCaption?: string;
     nextPage?: string;
     showCancelBtn?: boolean;
@@ -11,4 +11,10 @@ interface FooterStoreType {
     buttonCallback?: () => void;
     hideRequisite?: boolean;
     isUnicalization: boolean;
+}
+
+interface FooterStoreType extends FooterData {
+    setFooter: (data: FooterData) => void;
+
+    reset: () => void;
 }

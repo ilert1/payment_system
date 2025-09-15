@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFilePicker } from "use-file-picker";
 import { useAppContext } from "@/AppContext";
+import { PayeeData } from "@/entities/Payee";
+import { PayHeader } from "@/entities/payment";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
@@ -13,8 +15,6 @@ import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { PayHeader } from "@/widgets/PayHeader";
-import { PayeeData } from "@/widgets/PayeeData";
 import { PaymentInstructions } from "./PaymentInstructions";
 
 const azn = "azn";

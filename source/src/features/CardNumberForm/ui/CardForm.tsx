@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
 import { useTranslation } from "react-i18next";
-import { useGetCardNumberFormData } from "@/pages/PayerDataPage/model/hooks/useGetCardNumberFormData";
 import { classNames } from "@/shared/lib/classNames";
 import { Label } from "@/shared/ui/Label";
 import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
-import { usePayerDataStore } from "../model/slice/CardNumberFormSlice";
-import styles from "./CardNumberForm.module.scss";
+import { useGetCardNumberFormData } from "@/widgets/CardNumberForms/model/hooks/useGetCardNumberFormData";
+import { useCardFormStore } from "../model/slice/CardFormSlice";
+import styles from "./CardForm.module.scss";
 
 interface CardNumberFormProps {
     disabled: boolean;
@@ -17,7 +17,7 @@ export const CardNumberForm = (props: CardNumberFormProps) => {
     const ns = { ns: ["Common", "PayerData", "PayOut"] };
 
     const { t } = useTranslation();
-    const { cardNumber, expiryDate, cvv, cardHolder } = usePayerDataStore();
+    const { cardNumber, expiryDate, cvv, cardHolder } = useCardFormStore();
 
     const {
         register,

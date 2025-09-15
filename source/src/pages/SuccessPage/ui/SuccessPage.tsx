@@ -3,8 +3,7 @@ import usePaymentPage from "@/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
-import { Content } from "@/widgets/Content";
-import { HeadingContainer } from "@/widgets/Content/ui/HeadingContainer/HeadingContainer";
+import { Content, HeadingContainer } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 

@@ -1,8 +1,8 @@
 import React from "react";
+import { ExternalPayInfo } from "@/entities/payment";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Text } from "@/shared/ui/Text/Text";
-import { ExternalPayInfo } from "@/widgets/ExternalPayInfo";
 // import { Instruction } from "./Instruction/Instruction";
 import { InstructionItems } from "./Instruction/InstructionItems";
 import styles from "./PaymentInstructions.module.scss";

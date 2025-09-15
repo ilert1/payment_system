@@ -14,14 +14,14 @@ import { Label } from "@/shared/ui/Label";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
-import { Content } from "@/widgets/Content";
-import { Footer } from "@/widgets/Footer";
+import { useFooterStore } from "@/widgets/Footer/model/slice/FooterSlice";
 import { useThreeDSFormStore } from "../model/slice/ThreeDSFormSlice";
 import { ThreeDsFormValues } from "../model/types/threeDSFormTypes";
 import styles from "./ThreeDsForm.module.scss";
 
 export const ThreeDsForm = () => {
     const { t } = useTranslation("ThreeDsPage");
+    const setFooter = useFooterStore(state => state.setFooter);
     const navigate = useNavigate();
     const { fingerprintConfig } = useAppContext();
 
@@ -86,78 +86,74 @@ export const ThreeDsForm = () => {
         }
     }, [val]);
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("continue"),
+            buttonCallback: threeDSForm.handleSubmit(onSubmit),
+            nextPage: AppRoutes.PAYEE_SEARCH_PAGE,
+            nextEnabled: buttonEnabled && !isFetching,
+            approve: true,
+            focused: true,
+            showCancelBtn: false,
+            isUnicalization: false
+        });
+    }, []);
+
     usePaymentPage({ absolutePath: false });
 
     if (status === "paymentAwaitingConfirmationByPayee") {
-        return (
-            <Content>
-                <Loader />
-            </Content>
-        );
+        return <Loader />;
     }
 
     return (
         <>
-            <Content>
-                <Heading size="l" title={t("title")} grow className={styles.h1} />
-
-                {/* onSubmit={threeDSForm.handleSubmit(onSubmit)} */}
-                <form className={styles.form}>
-                    <div className={styles.item}>
-                        <Label weight="medium" text={t("threeDSForm.fields.threeDsCode")} className={styles.label} />
-                        <Controller
-                            name="threeDsCode"
-                            control={threeDSForm.control}
-                            disabled={submitClicked}
-                            rules={{
-                                required: true,
-                                minLength: 1,
-                                maxLength: 10,
-                                pattern: /^[a-zA-Z0-9]*$/
-                            }}
-                            render={({ field }) => (
-                                <Input
-                                    {...field}
-                                    textSize="lg"
-                                    placeholder={t("threeDSForm.fields.threeDsCodePlaceholder")}
-                                    onChange={e => {
-                                        if (e.target.value.length > 0 && !e.target.value.match(/[a-zA-Z0-9]/)) {
-                                            threeDSForm.setError("threeDsCode", {
-                                                type: "pattern",
-                                                message: t("threeDSForm.errors.regex")
-                                            });
-                                            return;
-                                        }
-                                        threeDSForm.clearErrors();
-                                        threeDSForm.setValue(
-                                            "threeDsCode",
-                                            e.target.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 10)
-                                        );
-                                    }}
-                                    className={styles.input}
-                                />
-                            )}
-                        />
-                        {threeDSForm.formState.errors.threeDsCode && (
-                            <Text
-                                className={styles.errorMessage}
-                                size="xxs"
-                                variant="error"
-                                text={t("threeDSForm.errors.generalError")}
+            <Heading size="l" title={t("title")} grow className={styles.h1} />
+            <form className={styles.form}>
+                <div className={styles.item}>
+                    <Label weight="medium" text={t("threeDSForm.fields.threeDsCode")} className={styles.label} />
+                    <Controller
+                        name="threeDsCode"
+                        control={threeDSForm.control}
+                        disabled={submitClicked}
+                        rules={{
+                            required: true,
+                            minLength: 1,
+                            maxLength: 10,
+                            pattern: /^[a-zA-Z0-9]*$/
+                        }}
+                        render={({ field }) => (
+                            <Input
+                                {...field}
+                                textSize="lg"
+                                placeholder={t("threeDSForm.fields.threeDsCodePlaceholder")}
+                                onChange={e => {
+                                    if (e.target.value.length > 0 && !e.target.value.match(/[a-zA-Z0-9]/)) {
+                                        threeDSForm.setError("threeDsCode", {
+                                            type: "pattern",
+                                            message: t("threeDSForm.errors.regex")
+                                        });
+                                        return;
+                                    }
+                                    threeDSForm.clearErrors();
+                                    threeDSForm.setValue(
+                                        "threeDsCode",
+                                        e.target.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 10)
+                                    );
+                                }}
+                                className={styles.input}
                             />
                         )}
-                    </div>
-                </form>
-            </Content>
-            <Footer
-                buttonCaption={t("continue")}
-                buttonCallback={threeDSForm.handleSubmit(onSubmit)}
-                nextPage={AppRoutes.PAYEE_SEARCH_PAGE}
-                nextEnabled={buttonEnabled && !isFetching}
-                approve={true}
-                focused={true}
-                showCancelBtn={false}
-            />
+                    />
+                    {threeDSForm.formState.errors.threeDsCode && (
+                        <Text
+                            className={styles.errorMessage}
+                            size="xxs"
+                            variant="error"
+                            text={t("threeDSForm.errors.generalError")}
+                        />
+                    )}
+                </div>
+            </form>
         </>
     );
 };

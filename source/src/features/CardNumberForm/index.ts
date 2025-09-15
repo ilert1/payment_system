@@ -1,2 +1,2 @@
-export { CardNumberForm } from "./ui/CardNumberForm";
-export { usePayerDataStore } from "./model/slice/CardNumberFormSlice";
+export { CardNumberForm } from "./ui/CardForm";
+export { useCardFormStore as useCardNumberFormStore } from "./model/slice/CardFormSlice";

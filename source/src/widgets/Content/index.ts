@@ -1,2 +1,2 @@
 export { Content } from "./ui/Content/Content";
-export { ContentDescription } from "./ui/ContentDescription/ContentDescription";
+export { HeadingContainer } from "./ui/HeadingContainer/HeadingContainer";

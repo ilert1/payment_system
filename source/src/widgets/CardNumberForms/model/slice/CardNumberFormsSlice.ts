@@ -1,11 +1,12 @@
 import { create } from "zustand";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { getPayment } from "../services/getPayment";
-import { PaymentStore } from "../types/PayerDataPageTypes";
+import { CardNumberFormsStore } from "../types/CardNumberFormsTypes";
 
-export const usePaymentStore = create<PaymentStore>(set => ({
+export const useCardNumberFormsStore = create<CardNumberFormsStore>(set => ({
     isFetching: false,
     setIsFetching: state => set({ isFetching: state }),
+
     fetchPaymentInit: async ({ dest, bfId, navigate, payOutMode, fingerprintConfig }) => {
         const setBfData = useBFStore.getState().setBfData;
 

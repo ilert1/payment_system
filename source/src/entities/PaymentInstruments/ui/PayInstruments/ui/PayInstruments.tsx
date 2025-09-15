@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
+import { BankItem, SearchPayMethod } from "@/entities/PaymentInstruments";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Loader } from "@/shared/ui/Loader/Loader";
-import SearchPayMethod from "@/shared/ui/SearchPayMethod/SearchPayMethod";
 import { Text } from "@/shared/ui/Text/Text";
-import { BankItem } from "@/widgets/BankItem";
 import styles from "./PayInstrument.module.scss";
 
 const bankIcon = (bank: string) => {

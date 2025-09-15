@@ -31,7 +31,7 @@ type PayerDataStore = {
     ) => Promise<void>;
 };
 
-export const usePayerDataStore = create<PayerDataStore>(set => ({
+export const useCardFormStore = create<PayerDataStore>(set => ({
     cardNumber: "",
     expiryDate: "",
     cvv: "",

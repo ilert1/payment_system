@@ -7,7 +7,7 @@ import DollarCircleIcon from "@/shared/assets/images/dollar-circle.svg?react";
 import User2Icon from "@/shared/assets/images/user2.svg?react";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { PayeeDataItem } from "@/widgets/PayeeDataItem";
+import { PayeeDataItem } from "../../PayeeDataItem";
 import styles from "./PayeeData.module.scss";
 
 const bankIcon = (bank: string) => {

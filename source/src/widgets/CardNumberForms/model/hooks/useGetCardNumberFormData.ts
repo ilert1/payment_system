@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { z } from "zod";
-import { usePayerDataStore } from "@/features/CardNumberForm";
+import { useCardFormStore } from "@/features/CardNumberForm/model/slice/CardFormSlice";
 
 interface UseGetCardNumberFormDataProps {
     ns: {
@@ -20,7 +20,7 @@ export type CardFormSchemaType = {
 export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) => {
     const { ns } = props;
     const { t } = useTranslation();
-    const { setCardNumber, setExpiryDate, setCvv, setCardHolder } = usePayerDataStore();
+    const { setCardNumber, setExpiryDate, setCvv, setCardHolder } = useCardFormStore();
 
     const cardFormSchema = z.object({
         cardNumber: z

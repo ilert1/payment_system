@@ -1,10 +1,15 @@
+import { ThreeDsForm } from "@/features/ThreeDsForm";
+import { Content } from "@/widgets/Content";
+import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { ThreeDsForm } from "@/widgets/ThreeDsForm";
 
 export const ThreeDSPage = () => {
     return (
         <Page>
-            <ThreeDsForm />
+            <Content>
+                <ThreeDsForm />
+            </Content>
+            <Footer />
         </Page>
     );
 };
