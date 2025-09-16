@@ -3,7 +3,6 @@ import { createContext, useState, useEffect, useCallback, useContext, startTrans
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
-import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
 import CurrencyLibrary from "./shared/assets/library/Currency.json";
 import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
@@ -319,7 +318,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     bankName
                 }}>
                 {children}
-                <CustomToastContainer />
             </AppContext.Provider>
         </>
     );

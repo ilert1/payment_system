@@ -1,10 +1,10 @@
 import { Suspense, useEffect } from "react";
-import { ToastContainer } from "react-toastify";
 import { useAppContext } from "@/AppContext";
 import "@/shared/assets/css/fonts.css";
 import "@/shared/assets/css/styles.css";
 // import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
 import Loader from "@/shared/ui/Loader";
 import { Page } from "@/widgets/Page";
 import { AppRouter } from "./providers/router";
@@ -66,7 +66,7 @@ const App = () => {
                     <AppRouter />
                 </Suspense>
             )}
-            <ToastContainer />
+            <CustomToastContainer />
         </>
     );
 };

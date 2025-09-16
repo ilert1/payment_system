@@ -11,6 +11,7 @@ describe("CustomToastContainer", () => {
 
     it("рендерит кастомную кнопку закрытия", () => {
         render(<CustomToastContainer />);
+        act(() => toast("Hello world!"));
         expect(screen.getByText("Окей")).toBeInTheDocument();
     });
 

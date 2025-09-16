@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { Outlet } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import WalletPayout from "@/shared/assets/images/payOut/wallet.png";
@@ -46,6 +47,11 @@ export const MainPage = () => {
                         throw new Error(data?.error_details ? data.error_details : data?.error);
                     }
                 }
+
+                toast.error(t("check_load_errors.generalError", ns), {
+                    closeButton: <></>,
+                    autoClose: 2000
+                });
             })
             .catch(e => {
                 ym("reachGoal", "error-message", { error: e?.message });
