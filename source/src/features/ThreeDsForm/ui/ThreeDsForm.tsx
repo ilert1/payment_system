@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { z } from "zod";
 import { useAppContext } from "@/AppContext";
-import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Label } from "@/shared/ui/Label";
@@ -98,8 +98,6 @@ export const ThreeDsForm = () => {
             isUnicalization: false
         });
     }, []);
-
-    usePaymentPage({ absolutePath: false });
 
     if (status === "paymentAwaitingConfirmationByPayee") {
         return <Loader />;

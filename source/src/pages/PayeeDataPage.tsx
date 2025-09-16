@@ -1,9 +1,9 @@
 import { ContentDescription } from "@/entities/payment";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Content, HeadingContainer } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
-import usePaymentPage from "../hooks/usePaymentPage";
 import { Loader } from "../shared/ui/Loader/Loader";
 import { Footer } from "../widgets/Footer";
 

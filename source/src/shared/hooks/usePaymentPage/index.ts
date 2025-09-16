@@ -1,0 +1,1 @@
+export { usePaymentPage } from "./usePaymentPage";

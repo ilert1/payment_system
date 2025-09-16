@@ -1,5 +1,5 @@
 import { useAppContext } from "@/AppContext";
-import usePaymentPage from "@/hooks/usePaymentPage";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { CardNumberForms } from "@/widgets/CardNumberForms";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";

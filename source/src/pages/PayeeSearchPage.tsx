@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
-import usePaymentPage from "@/hooks/usePaymentPage";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Content } from "@/widgets/Content";

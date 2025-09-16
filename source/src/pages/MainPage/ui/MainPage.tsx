@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useAppContext } from "@/AppContext";
 import { PaymentStart } from "@/features/PaymentStart/ui/PaymentStart";
-import usePaymentPage from "@/hooks/usePaymentPage";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";
