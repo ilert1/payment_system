@@ -40,7 +40,10 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     const BFData = useBFStore(state => state.BFData);
     const isConfirmTypeFile = BFData?.[dest]?.method?.context?.confirm_type === "file";
     // External pay info case
-    if (BFData?.[dest]?.method?.payee?.redirect_url && BFData?.[dest]?.method?.name === "phone_number") {
+    if (
+        BFData?.[dest]?.method?.payee?.redirect_url &&
+        ["payment_link", "phone_number"].includes(BFData?.[dest]?.method?.name)
+    ) {
         return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
     }
 
