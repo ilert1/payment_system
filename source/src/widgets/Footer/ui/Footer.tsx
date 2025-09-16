@@ -205,9 +205,9 @@ export const Footer = (props: FooterProps) => {
                     className={classNames(styles.top, {
                         [styles.bigFooterContainer]: (prevPage || nextPage) && payeeCard
                     })}>
-                    {payeeCard && (
+                    {payeeCard && (requisite || trader?.card_holder) && (
                         <div className={styles.payeeData}>
-                            {!hideRequisite && (
+                            {!hideRequisite && requisite && (
                                 <BankCardInfo
                                     bankIcon={bankIcon(trader?.bank_name ?? "")}
                                     onError={e => {
