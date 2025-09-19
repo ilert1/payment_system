@@ -35,6 +35,7 @@
         "i18next-http-backend": "^3.0.2",
         "identity-obj-proxy": "^3.0.0",
         "immer": "^10.1.1",
+        "jest-transformer-svg": "^2.1.0",
         "react": "^18.2.0",
         "react-copy-to-clipboard": "^5.1.0",
         "react-dom": "^18.2.0",

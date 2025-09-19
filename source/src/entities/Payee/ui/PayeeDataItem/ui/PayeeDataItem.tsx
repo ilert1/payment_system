@@ -43,8 +43,6 @@ export const PayeeDataItem = (props: PayeeDataItemProps) => {
     let popupTimeout: NodeJS.Timeout | undefined = undefined;
 
     const showPopupCallback = (value: string) => {
-        console.log(`copyed: ${value}`);
-
         ym("reachGoal", "copy", { labelCode: labelCode, label: label, value: value || "" });
         clearTimeout(popupTimeout);
         setShowPopup(true);
@@ -58,7 +56,13 @@ export const PayeeDataItem = (props: PayeeDataItemProps) => {
         <div className={classNames(styles.payeeDataItem, {}, [cl])}>
             <div className={styles.iconContainer}>
                 {typeof Img === "string" ? (
-                    <img className={classNames(styles.img, {}, [imgCl])} src={Img} onError={onError} alt="" />
+                    <img
+                        className={classNames(styles.img, {}, [imgCl])}
+                        src={Img}
+                        onError={onError}
+                        alt=""
+                        data-testid="PayeeDataItem.img"
+                    />
                 ) : (
                     <Img className={classNames(styles.img, {}, [imgCl])} />
                 )}
@@ -71,11 +75,13 @@ export const PayeeDataItem = (props: PayeeDataItemProps) => {
             {copyData && (
                 <>
                     <CopyToClipboard text={copyData} onCopy={() => showPopupCallback(copyData)}>
-                        <Button className={styles.copy} variant={"ghost"}>
+                        <Button className={styles.copy} variant={"ghost"} data-testid="PayeeDataItem">
                             <CopyIcon className={styles.img} />
                         </Button>
                     </CopyToClipboard>
-                    <div className={classNames(styles.popup, { [styles.active]: showPopup })}>
+                    <div
+                        className={classNames(styles.popup, { [styles.active]: showPopup })}
+                        data-testid="PayeeDataItem.popup">
                         <Text size="2xs" text={messageOnCopy} />
                         <CheckCircle />
                     </div>

@@ -8,21 +8,21 @@ describe("BankCardInfo", () => {
         expect(screen.getByText("**** **** **** 1234")).toBeInTheDocument();
     });
 
-    // it("renders bank icon with correct src", () => {
-    //     render(<BankCardInfo cardNumber="**** 1111" bankIcon="bank.png" onError={jest.fn()} />);
+    it("renders bank icon with correct src", () => {
+        render(<BankCardInfo cardNumber="**** 1111" bankIcon="bank.png" onError={jest.fn()} />);
 
-    //     const img = screen.getByRole("img");
-    //     expect(img).toHaveAttribute("src", "bank.png");
-    // });
+        const img = screen.getByTestId("BankCardInfo.BankIcon");
+        expect(img).toHaveAttribute("src", "bank.png");
+    });
 
-    // it("calls onError when image fails to load", () => {
-    //     const onErrorMock = jest.fn();
+    it("calls onError when image fails to load", () => {
+        const onErrorMock = jest.fn();
 
-    //     render(<BankCardInfo cardNumber="**** 2222" bankIcon="broken.png" onError={onErrorMock} />);
+        render(<BankCardInfo cardNumber="**** 2222" bankIcon="broken.png" onError={onErrorMock} />);
 
-    //     const img = screen.getByRole("img");
-    //     fireEvent.error(img);
+        const img = screen.getByTestId("BankCardInfo.BankIcon");
+        fireEvent.error(img);
 
-    //     expect(onErrorMock).toHaveBeenCalledTimes(1);
-    // });
+        expect(onErrorMock).toHaveBeenCalledTimes(1);
+    });
 });
