@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { BankCardInfo } from "./BankCardInfo";
 
 const meta: Meta<typeof BankCardInfo> = {
-    title: "Entities/BankCardInfo",
+    title: "Entities/Card/BankCardInfo",
     component: BankCardInfo,
     argTypes: {
         onError: { action: "onError" }

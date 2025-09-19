@@ -25,6 +25,7 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
                     value={url}
                     fgColor="#37a8f3"
                     viewBox={`0 0 256 256`}
+                    data-testid="qr-code"
                 />
             </div>
 
