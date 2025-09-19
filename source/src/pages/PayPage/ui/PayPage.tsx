@@ -9,6 +9,7 @@ import { PayeeData } from "@/entities/Payee";
 import { PayHeader } from "@/entities/payment";
 import { AppRoutes } from "@/shared/const/router";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import Loader from "@/shared/ui/Loader/Loader";
@@ -25,6 +26,7 @@ const abh = "abh";
 const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();
     ym("reachGoal", "pay-page");
+    const setFooter = useFooterStore(state => state.setFooter);
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
     const setStatus = useBFStore(state => state.setStatus);
@@ -253,6 +255,29 @@ const PayPage = () => {
         }
     });
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: !isConfirmTypeFile
+                ? t("approveTransfer", ns)
+                : selectedFile
+                  ? t("approveTransfer", ns)
+                  : t("selectFile", ns),
+            buttonCallback: !isConfirmTypeFile
+                ? () => {
+                      setButtonCallbackEnabled(true);
+                  }
+                : selectedFile
+                  ? () => {
+                        setButtonCallbackEnabled(true);
+                    }
+                  : () => openFilePicker(),
+            nextPage: nextPage,
+            nextEnabled: !isFetching_ButtonCallback,
+            approve: true,
+            isUnicalization: isUnicalization
+        });
+    }, []);
+
     return (
         <Page>
             {!trader || isFetching_BFData ? (
@@ -304,30 +329,7 @@ const PayPage = () => {
                         />
                     )}
 
-                    <Footer
-                        buttonCaption={
-                            !isConfirmTypeFile
-                                ? t("approveTransfer", ns)
-                                : selectedFile
-                                  ? t("approveTransfer", ns)
-                                  : t("selectFile", ns)
-                        }
-                        buttonCallback={
-                            !isConfirmTypeFile
-                                ? () => {
-                                      setButtonCallbackEnabled(true);
-                                  }
-                                : selectedFile
-                                  ? () => {
-                                        setButtonCallbackEnabled(true);
-                                    }
-                                  : () => openFilePicker()
-                        }
-                        nextPage={nextPage}
-                        nextEnabled={!isFetching_ButtonCallback}
-                        approve={true}
-                        isUnicalization={isUnicalization}
-                    />
+                    <Footer />
                 </>
             )}
         </Page>

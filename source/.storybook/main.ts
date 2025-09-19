@@ -11,9 +11,9 @@ const config: StorybookConfig = {
         config.css = {
             preprocessorOptions: {
                 scss: {
-                    additionalData: `
-            @use "@/app/styles/index.scss" as *;
-          `
+                    //             additionalData: `
+                    //     @use "@/app/styles/index.scss" as *;
+                    //   `
                 }
             }
         };

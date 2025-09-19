@@ -6,10 +6,10 @@ import { ContentDescription } from "@/entities/payment";
 import WalletPayout from "@/shared/assets/images/payOut/wallet.png";
 import Wallet from "@/shared/assets/images/wallet.png";
 import { classNames } from "@/shared/lib/classNames";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
-import { useFooterStore } from "@/widgets/Footer/model/slice/FooterSlice";
 import { usePaymentStartStore } from "../model/slice/PaymentStartSlice";
 import styles from "./PaymentStart.module.scss";
 

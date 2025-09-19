@@ -6,10 +6,10 @@ import { CardNumberForm } from "@/features/CardNumberForm";
 import { useCardFormStore } from "@/features/CardNumberForm/model/slice/CardFormSlice";
 import { CardNumberLast4 } from "@/features/CardNumberLast4";
 import { AppRoutes } from "@/shared/const/router";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import Loader from "@/shared/ui/Loader/Loader";
-import { useFooterStore } from "@/widgets/Footer/model/slice/FooterSlice";
 import { useCardNumberFormsStore } from "../model/slice/CardNumberFormsSlice";
 
 export const CardNumberForms = () => {

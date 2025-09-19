@@ -4,6 +4,7 @@ import { Text } from "./Text";
 const meta: Meta<typeof Text> = {
     title: "Shared/Text",
     component: Text,
+    tags: ["autodocs"],
     argTypes: {
         variant: {
             control: "select",

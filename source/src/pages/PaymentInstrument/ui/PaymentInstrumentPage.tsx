@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import { PayInstruments } from "@/entities/PaymentInstruments";
 import { AppRoutes } from "@/shared/const/router";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
@@ -16,6 +17,7 @@ import styles from "./PaymentInstrumentPage.module.scss";
 const PaymentInstrumentPage = () => {
     const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, t, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
@@ -93,6 +95,16 @@ const PaymentInstrumentPage = () => {
         setInstrumentSelectedEnable(true);
     };
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("next", ns),
+            buttonCallback: buttonCallback,
+            nextPage: `/${BFData?.[dest]?.id}/${AppRoutes.PAYER_DATA_PAGE}`,
+            nextEnabled: !instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false,
+            isUnicalization: false
+        });
+    }, []);
+
     return (
         <Page>
             <Content>
@@ -111,12 +123,7 @@ const PaymentInstrumentPage = () => {
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
             </Content>
 
-            <Footer
-                buttonCaption={t("next", ns)}
-                buttonCallback={buttonCallback}
-                nextPage={`/${BFData?.[dest]?.id}/${AppRoutes.PAYER_DATA_PAGE}`}
-                nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false}
-            />
+            <Footer />
         </Page>
     );
 };

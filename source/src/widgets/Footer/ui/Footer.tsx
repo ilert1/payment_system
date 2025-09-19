@@ -14,10 +14,10 @@ import Check from "@/shared/assets/images/check.svg";
 import { AppRoutes } from "@/shared/const/router";
 import { classNames } from "@/shared/lib/classNames";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Button } from "@/shared/ui/Button/Button";
 import { SubmitModal } from "@/widgets/SubmitModal";
-import { useFooterStore } from "../model/slice/FooterSlice";
 import styles from "./Footer.module.scss";
 
 const bankIcon = (bank: string) => {

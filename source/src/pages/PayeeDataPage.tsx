@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { ContentDescription } from "@/entities/payment";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Content, HeadingContainer } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
@@ -10,6 +12,7 @@ import { Footer } from "../widgets/Footer";
 const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     ym("reachGoal", "payee-data-page");
 
@@ -37,6 +40,23 @@ const PayeeDataPage = () => {
         "\u00A0" +
         getCurrencySymbol(BFData?.[dest]?.currency ?? "");
 
+    useEffect(() => {
+        setFooter({
+            buttonCallback: BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {},
+            buttonCaption: BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : "",
+            nextPage: BFData?.[dest]?.method?.context?.back_redirect_url,
+            payeeCard: true && !!BFData?.[dest]?.method?.payee?.data,
+            showCancelBtn: false,
+            hideRequisite:
+                BFData?.[dest]?.method?.payee?.data?.phone_number &&
+                BFData?.[dest]?.currency === "RUB" &&
+                BFData?.[dest]?.method?.payee?.redirect_url
+                    ? true
+                    : false,
+            isUnicalization: false
+        });
+    }, []);
+
     return (
         <Page>
             <Content>
@@ -44,21 +64,7 @@ const PayeeDataPage = () => {
                 <ContentDescription text={t("waitComment", ns)} lowMb lowMt />
                 <Loader timer={true} statusText={t("waitTime", ns)} />
             </Content>
-
-            <Footer
-                buttonCallback={BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {}}
-                buttonCaption={BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : ""}
-                nextPage={BFData?.[dest]?.method?.context?.back_redirect_url}
-                payeeCard={true && !!BFData?.[dest]?.method?.payee?.data}
-                showCancelBtn={false}
-                hideRequisite={
-                    BFData?.[dest]?.method?.payee?.data?.phone_number &&
-                    BFData?.[dest]?.currency === "RUB" &&
-                    BFData?.[dest]?.method?.payee?.redirect_url
-                        ? true
-                        : false
-                }
-            />
+            <Footer />
         </Page>
     );
 };

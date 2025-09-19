@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { useAppContext } from "@/AppContext";
 import FilePdfIcon from "@/shared/assets/images/file-pdf.svg";
 import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Content } from "@/widgets/Content";
@@ -30,6 +31,7 @@ const DropZoneContent = () => {
 
 export const PaymentConfirmationPage = () => {
     const { t } = useAppContext();
+    const setFooter = useFooterStore(state => state.setFooter);
 
     const [file, setFile] = useState(null);
 
@@ -38,6 +40,16 @@ export const PaymentConfirmationPage = () => {
     };
 
     const fileTypes = ["JPG", "PNG", "GIF"];
+
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("Common.approve"),
+            approve: true,
+            nextPage: AppRoutes.PAYMENT_WAIT_CONFIRMATION,
+            nextEnabled: !!file,
+            isUnicalization: false
+        });
+    }, [file]);
 
     return (
         <Page>
@@ -67,13 +79,7 @@ export const PaymentConfirmationPage = () => {
                 />
                 {/* <div id="drop-zone" className="drop-zone"></div> */}
             </Content>
-
-            <Footer
-                buttonCaption={t("Common.approve")}
-                approve={true}
-                nextPage={AppRoutes.PAYMENT_WAIT_CONFIRMATION}
-                nextEnabled={!!file}
-            />
+            <Footer />
         </Page>
     );
 };

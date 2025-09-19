@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { ContentDescription } from "@/entities/payment";
 import PlusCircleIcon from "@/shared/assets/images/plus-circle.svg?react";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
@@ -18,6 +20,7 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
     const { cancel } = props;
     const { ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     const { t } = useTranslation();
     const payOutMode = Boolean(BFData?.payout);
@@ -32,6 +35,18 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
         ym("reachGoal", "fail-return-button", { cancel_url: cancelUrl, fail_url: failUrl });
         window.location.replace(cancel && cancelUrl ? cancelUrl : failUrl);
     };
+
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("returnBtn", ns),
+            buttonCallback: returnCallback,
+            nextPage: cancel && cancelUrl ? cancelUrl : failUrl,
+            nextEnabled: cancel && cancelUrl ? Boolean(cancelUrl) : Boolean(failUrl),
+            noIcon: true,
+            showCancelBtn: false,
+            isUnicalization: false
+        });
+    }, []);
 
     ym("reachGoal", cancel ? "cancel-page" : "general-error-page");
 
@@ -56,14 +71,7 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
                 )}
             </Content>
 
-            <Footer
-                buttonCaption={t("returnBtn", ns)}
-                buttonCallback={returnCallback}
-                nextPage={cancel && cancelUrl ? cancelUrl : failUrl}
-                nextEnabled={cancel && cancelUrl ? Boolean(cancelUrl) : Boolean(failUrl)}
-                noIcon={true}
-                showCancelBtn={false}
-            />
+            <Footer />
         </Page>
     );
 };

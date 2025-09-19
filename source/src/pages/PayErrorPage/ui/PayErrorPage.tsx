@@ -1,7 +1,9 @@
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { ContentDescription } from "@/entities/payment";
 import PlusCircleIcon from "@/shared/assets/images/plus-circle.svg?react";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
 import { Text } from "@/shared/ui/Text/Text";
@@ -12,7 +14,7 @@ import styles from "./PayErrorPage.module.scss";
 
 export const PayErrorPage = ({ notFound = false }) => {
     const { ym } = useAppContext();
-
+    const setFooter = useFooterStore(state => state.setFooter);
     const { t } = useTranslation();
     const BFData = useBFStore(state => state.BFData);
 
@@ -32,6 +34,18 @@ export const PayErrorPage = ({ notFound = false }) => {
 
     const headingText = notFound ? t("notFound", ns) : t("payError", ns);
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("returnBtn", ns),
+            buttonCallback: buttonCallback,
+            nextPage: failUrl,
+            nextEnabled: !!failUrl,
+            noIcon: true,
+            showCancelBtn: false,
+            isUnicalization: false
+        });
+    }, []);
+
     return (
         <Page>
             <Content>
@@ -50,14 +64,7 @@ export const PayErrorPage = ({ notFound = false }) => {
                 )}
             </Content>
 
-            <Footer
-                buttonCaption={t("returnBtn", ns)}
-                buttonCallback={buttonCallback}
-                nextPage={failUrl}
-                nextEnabled={!!failUrl}
-                noIcon={true}
-                showCancelBtn={false}
-            />
+            <Footer />
         </Page>
     );
 };

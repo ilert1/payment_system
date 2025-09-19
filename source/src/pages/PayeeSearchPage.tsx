@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Content } from "@/widgets/Content";
@@ -11,6 +12,7 @@ import { ProgressSteper } from "@/widgets/ProgressSteper";
 const PayeeSearchPage = () => {
     const { currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     usePaymentPage({ absolutePath: false });
 
@@ -39,6 +41,14 @@ const PayeeSearchPage = () => {
         }, 1000);
     }, []);
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("approve", ns),
+            approve: true,
+            isUnicalization: false
+        });
+    }, []);
+
     return (
         <Page>
             <Content>
@@ -57,7 +67,7 @@ const PayeeSearchPage = () => {
                 <ProgressSteper step={step} />
             </Content>
 
-            <Footer buttonCaption={t("approve", ns)} approve={true} />
+            <Footer />
         </Page>
     );
 };

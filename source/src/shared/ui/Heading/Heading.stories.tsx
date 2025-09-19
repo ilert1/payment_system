@@ -3,6 +3,7 @@ import { Heading } from "./Heading";
 
 const meta: Meta<typeof Heading> = {
     title: "Shared/Heading",
+    tags: ["autodocs"],
     component: Heading,
     argTypes: {
         variant: {

@@ -10,6 +10,7 @@ const PayerDataPage = () => {
     ym("reachGoal", "payer-data-page");
 
     usePaymentPage({ absolutePath: false });
+
     return (
         <Page>
             <Content>
