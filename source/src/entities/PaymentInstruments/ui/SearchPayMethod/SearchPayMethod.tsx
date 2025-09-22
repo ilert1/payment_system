@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import Search from "@/shared/assets/images/search.svg?react";
-import { Input } from "../input/input";
+import { Input } from "@/shared/ui/input/input";
 import styles from "./SearchPayMethod.module.scss";
 
 // import Search from "../assets/images/search.svg";
