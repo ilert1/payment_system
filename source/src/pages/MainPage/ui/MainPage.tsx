@@ -21,8 +21,8 @@ export const MainPage = () => {
     const setStatus = useBFStore(state => state.setStatus);
 
     const payOutMode = Boolean(BFData?.payout);
-    const ns = { ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] };
-    const { t } = useTranslation(payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"]);
+    const ns = { ns: payOutMode ? ["PayOut", "Common", "Main", "Pay"] : ["Common", "Main", "Pay"] };
+    const { t } = useTranslation(payOutMode ? ["PayOut", "Common", "Main", "Pay"] : ["Common", "Main", "Pay"]);
 
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
@@ -47,11 +47,6 @@ export const MainPage = () => {
                         throw new Error(data?.error_details ? data.error_details : data?.error);
                     }
                 }
-
-                toast.error(t("check_load_errors.generalError", ns), {
-                    closeButton: <></>,
-                    autoClose: 2000
-                });
             })
             .catch(e => {
                 ym("reachGoal", "error-message", { error: e?.message });
