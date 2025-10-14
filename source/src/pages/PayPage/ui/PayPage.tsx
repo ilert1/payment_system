@@ -51,7 +51,7 @@ const PayPage = () => {
 
     const [needRefreshBFData, setNeedRefreshBFData] = useState(false);
 
-    const transgran = ["tsbp", "tcard2card"].includes(method?.name ?? "");
+    const transgran = ["tsbp", "tcard2card", "sbp_cross_border", "card2card_cross_border"].includes(method?.name ?? "");
 
     const [requisite, setRequisite] = useState<string | null>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
