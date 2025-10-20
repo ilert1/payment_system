@@ -8,6 +8,7 @@ import { useFilePicker } from "use-file-picker";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
+import { formatPhoneNumber } from "@/shared/lib/formatPhoneNumber";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import Loader from "@/shared/ui/Loader";
@@ -141,13 +142,15 @@ const PayPage = () => {
             setRequisite(trader.card_number);
         }
         if (trader?.phone) {
-            setRequisite(trader.phone);
+            const formattedPhone = formatPhoneNumber(trader.phone);
+            setRequisite(formattedPhone);
         }
         if (
             trader?.phone_number &&
             !(BFData?.[dest]?.currency == "RUB" && BFData?.[dest]?.method?.payee?.redirect_url)
         ) {
-            setRequisite(trader.phone_number);
+            const formattedPhone = formatPhoneNumber(trader.phone_number);
+            setRequisite(formattedPhone);
         }
         if (trader?.account_number) {
             setRequisite(trader.account_number);
