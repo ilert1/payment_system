@@ -30,8 +30,9 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
     const flags = useMemo(() => {
         let output: any[] = [];
 
-        Object.keys(LangVariants)?.forEach((item: string) => {
-            const langItem = item;
+        Object.entries(LangVariants)?.forEach(([itemkey, itemvalue]: [string, string]) => {
+            const langItem = itemkey;
+            const langLabel = itemvalue.split("-")[1];
 
             if (lang.substring(0, 2) != langItem) {
                 output.push(
@@ -44,7 +45,7 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
                             ym("reachGoal", "lang-select", { selectedLang: langItem });
                             setLang(langItem);
                         }}>
-                        <p>{langItem.toUpperCase()}</p>
+                        <p>{langLabel.toUpperCase()}</p>
                         <img src={`/flags/${langItem}.svg`} alt={langItem} />
                     </div>
                 );
