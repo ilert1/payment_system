@@ -1,8 +1,8 @@
-import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
+import { parsePhoneNumberFromString } from "libphonenumber-js";
 
-export function formatPhoneNumber(phone: string, country?: CountryCode) {
+export function formatPhoneNumber(phone: string) {
     try {
-        const phoneNumber = parsePhoneNumberFromString(phone, country);
+        const phoneNumber = parsePhoneNumberFromString(phone);
         if (!phoneNumber) return phone;
 
         return phoneNumber.formatInternational();
