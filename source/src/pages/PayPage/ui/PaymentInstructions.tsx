@@ -48,7 +48,10 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     }
 
     // Transgran tsbp cases for tjs/azn
-    if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
+    if (
+        [tjs, azn].includes(caseName) &&
+        ["sbp_cross_border", "tsbp"].includes(BFData?.[dest]?.method?.name ?? "") /* transgran */
+    ) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <div className="title">
