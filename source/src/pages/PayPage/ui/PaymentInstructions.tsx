@@ -42,7 +42,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     // External pay info case
     if (
         BFData?.[dest]?.method?.payee?.redirect_url &&
-        ["payment_link", "phone_number", "phone_number_payment"].includes(BFData?.[dest]?.method?.name)
+        ["payment_link", "phone_number"].includes(BFData?.[dest]?.method?.name)
     ) {
         return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
     }
