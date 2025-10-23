@@ -56,7 +56,7 @@ export const useGetCardNumberFormData = (props: UseGetCardNumberFormDataProps) =
 
     const handleCvvInputChange = (e: any) => {
         clearErrors("cvv");
-        let value = e.target.value.replace(/\D/g, "");
+        const value = e.target.value.replace(/\D/g, "");
         setCvv(value.slice(0, 3));
     };
 

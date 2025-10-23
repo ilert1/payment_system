@@ -20,7 +20,7 @@ const resources = {
 
 export const getLanguage = () => {
     let language = navigator.language;
-    let storedLang = localStorage.getItem("language");
+    const storedLang = localStorage.getItem("language");
     language = storedLang ? storedLang : language;
     localStorage.setItem("language", language);
     return language;
@@ -44,7 +44,7 @@ export const getLocalBankName = (display_name = {}, lang: string | null = null) 
     return "";
 };
 
-var language = getLanguage();
+const language = getLanguage();
 
 i18n.use(initReactI18next)
     .use(Backend)

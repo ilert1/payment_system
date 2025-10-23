@@ -11,15 +11,20 @@ interface TimeProps {
 
 export const Timer = (props: TimeProps) => {
     const { down, secondsToDo, className, timerCallback } = props;
-    let time = new Date();
+    const time = new Date();
 
-    if (!down) {
-        var { minutes, seconds } = useStopwatch({ autoStart: true });
-    } else {
-        time.setSeconds(time.getSeconds() + (secondsToDo || 0));
-        var { minutes, seconds } = useTimer({ expiryTimestamp: time, onExpire: timerCallback });
-    }
-    
+    // Always call both hooks, but only use the appropriate one
+    const stopwatchResult = useStopwatch({ autoStart: !down });
+    time.setSeconds(time.getSeconds() + (secondsToDo || 0));
+    const timerResult = useTimer({
+        expiryTimestamp: time,
+        onExpire: timerCallback,
+        autoStart: false
+    });
+
+    // Use the appropriate result based on the down prop
+    const { minutes, seconds } = down ? timerResult : stopwatchResult;
+
     return (
         <div id="timer" className={classNames(styles.timer, {}, [className])}>
             {`${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`}

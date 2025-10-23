@@ -10,7 +10,7 @@ export const useThreeDSFormStore = create<ThreeDsFormStore>(set => ({
         const setStatus = useBFStore.getState().setStatus;
 
         const bfData = useBFStore.getState().BFData;
-        const dest = Boolean(bfData?.payout) ? "payout" : "payment";
+        const dest = bfData?.payout ? "payout" : "payment";
 
         set({ isFetching: true });
 

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+ 
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "./CustomToastContainer.module.scss";

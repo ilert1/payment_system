@@ -29,7 +29,7 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
     const [dropDown, setDropDown] = useState(false);
 
     const flags = useMemo(() => {
-        let output: any[] = [];
+        const output: any[] = [];
 
         Object.keys(LangVariants)?.forEach((item: string) => {
             const langItem = item;

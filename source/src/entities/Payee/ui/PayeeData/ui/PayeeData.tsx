@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+ 
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import DefaultBankIcon from "@/shared/assets/images/bank.svg";

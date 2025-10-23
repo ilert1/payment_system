@@ -33,7 +33,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
     const [filterText, setFilterText] = useState("");
 
     const getInstruments = (paymentInstruments: PaymentInstrument[]) => {
-        let instrumentList: JSX.Element[] = [];
+        const instrumentList: JSX.Element[] = [];
 
         let filteredPaymentInstruments = paymentInstruments;
         if (filterText) {
@@ -63,7 +63,7 @@ export const PayInstruments = ({ paymentInstruments, isFetching }: PayInstrument
         return instrumentList;
     };
 
-    let instruments = getInstruments(paymentInstruments);
+    const instruments = getInstruments(paymentInstruments);
 
     return (
         <>

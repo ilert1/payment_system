@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+ 
 import { useAppContext } from "@/AppContext";
 import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?react";
 import { classNames } from "@/shared/lib/classNames";

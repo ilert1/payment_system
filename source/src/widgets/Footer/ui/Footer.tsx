@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+ 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRef, useEffect, useState } from "react";

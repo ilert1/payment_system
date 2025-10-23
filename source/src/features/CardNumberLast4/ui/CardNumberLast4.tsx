@@ -22,7 +22,7 @@ export const CardNumberLast4 = (props: CardNumberLast4Props) => {
             items[i].addEventListener("input", () => {
                 if (items[i].nodeValue != "") {
                     if (i >= items.length - 1) {
-                        let numbers = [];
+                        const numbers = [];
                         for (let j = 0; j < items.length; j++) {
                             numbers.push(items[j].nodeValue);
                         }

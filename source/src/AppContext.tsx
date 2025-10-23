@@ -43,7 +43,7 @@ const iban = "iban";
 const abh = "abh";
 const ars = "ars";
 
-// eslint-disable-next-line react/prop-types
+ 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
     const payOutMode = Boolean(BFData?.payout);
@@ -68,7 +68,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [fingerprint, setFingerprint] = useState("");
     const [fingerprintReady, setFingerprintReady] = useState(false);
-    let storedLang = getLanguage();
+    const storedLang = getLanguage();
 
     const [lang, setLang] = useState(storedLang);
 
@@ -115,7 +115,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }, [currentPaymentInstrument]);
 
     useEffect(() => {
-        let fp = `${getBrowserFingerprint({
+        const fp = `${getBrowserFingerprint({
             hardwareOnly: true,
             enableScreen: false
         })}`;

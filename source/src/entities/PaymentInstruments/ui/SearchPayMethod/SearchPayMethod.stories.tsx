@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof SearchPayMethod>;
 
 export const Default: Story = {
-    render: () => {
+    render: function DefaultRender() {
         const [filterText, setFilterText] = useState("");
         return (
             <div style={{ width: "300px" }}>
