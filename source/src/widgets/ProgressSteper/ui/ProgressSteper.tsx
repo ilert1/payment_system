@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames";
 import { Text } from "@/shared/ui/Text/Text";
-import { Timer } from "@/shared/ui/Timer";
+import { Timer } from "@/shared/ui/Timer/Timer";
 import styles from "./ProgressSteper.module.scss";
 
 interface ProgressSteperProps {

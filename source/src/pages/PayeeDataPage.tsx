@@ -35,9 +35,9 @@ const PayeeDataPage = () => {
     };
 
     const headingText =
-        t("waitConfirmation", ns) +
+        t("waitConfirmation", ns) + " " +
         BFData?.[dest]?.amount +
-        "\u00A0" +
+        "\u00A0" + 
         getCurrencySymbol(BFData?.[dest]?.currency ?? "");
 
     useEffect(() => {
@@ -60,7 +60,7 @@ const PayeeDataPage = () => {
     return (
         <Page>
             <Content>
-                <HeadingContainer headingText={headingText} grow />
+                <HeadingContainer headingText={headingText} grow center/>
                 <ContentDescription text={t("waitComment", ns)} lowMb lowMt />
                 <Loader timer={true} statusText={t("waitTime", ns)} />
             </Content>

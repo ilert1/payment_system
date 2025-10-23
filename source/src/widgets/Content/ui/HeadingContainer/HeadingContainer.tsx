@@ -22,7 +22,7 @@ export const HeadingContainer = (props: HeadingContainerProps) => {
 
     return (
         <div className={classNames(styles.headingContainer, modClasses)}>
-            <Heading title={headingText} size="l" />
+            <Heading title={headingText} size="l" align={center ? "center" : "left"} />
             {description && <Text text={description} />}
         </div>
     );

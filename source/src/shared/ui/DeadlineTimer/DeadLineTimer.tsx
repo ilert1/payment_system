@@ -1,5 +1,5 @@
 import Clock from "@/shared/assets/images/clock.svg?react";
-import Timer from "@/shared/ui/Timer";
+import Timer from "@/shared/ui/Timer/Timer";
 import styles from "./DeadLineTimer.module.scss";
 
 interface DeadLineTimerProps {

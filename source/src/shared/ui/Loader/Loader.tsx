@@ -1,6 +1,6 @@
 import LoaderIcon from "@/shared/assets/images/loader.svg?react";
 import { Text } from "../Text/Text";
-import Timer from "../Timer";
+import Timer from "../Timer/Timer";
 import styles from "./Loader.module.scss";
 
 interface LoaderProps {

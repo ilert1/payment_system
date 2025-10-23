@@ -1,4 +1,6 @@
 import { useTimer, useStopwatch } from "react-timer-hook";
+import { classNames } from "@/shared/lib/classNames";
+import styles from "./Timer.module.scss";
 
 interface TimeProps {
     down?: boolean;
@@ -17,9 +19,9 @@ export const Timer = (props: TimeProps) => {
         time.setSeconds(time.getSeconds() + (secondsToDo || 0));
         var { minutes, seconds } = useTimer({ expiryTimestamp: time, onExpire: timerCallback });
     }
-
+    
     return (
-        <div id="timer" className={className ? className : "timer"}>
+        <div id="timer" className={classNames(styles.timer, {}, [className])}>
             {`${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`}
         </div>
     );
