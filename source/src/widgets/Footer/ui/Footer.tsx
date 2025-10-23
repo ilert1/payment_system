@@ -207,9 +207,9 @@ export const Footer = (props: FooterProps) => {
                     className={classNames(styles.top, {
                         [styles.bigFooterContainer]: (prevPage || nextPage) && payeeCard
                     })}>
-                    {payeeCard && (
+                    {payeeCard && (requisite || trader?.card_holder) && (
                         <div className={styles.payeeData}>
-                            {!hideRequisite && (
+                            {!hideRequisite && requisite && (
                                 <BankCardInfo
                                     bankIcon={bankIcon(trader?.bank_name ?? "")}
                                     onError={e => {
@@ -275,7 +275,13 @@ export const Footer = (props: FooterProps) => {
                 </div>
             </footer>
             <SubmitModal show={dialogShow} setShow={setDialogShow} data={cancelModalData} isLoading={isLoading} />
-            <SubmitModal show={unicPopupShow} setShow={setUnicPopupShow} data={unicPopupModalData} isLoading={false} />
+            <SubmitModal
+                show={unicPopupShow}
+                setShow={setUnicPopupShow}
+                data={unicPopupModalData}
+                isLoading={false}
+                isUniqueness
+            />
         </>
     );
 };

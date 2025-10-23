@@ -20,22 +20,6 @@
         translate 0.5s ease,
         opacity 0.3s ease;
 
-    // TODO: Redundant, should remove it
-    & > img {
-        user-select: none;
-
-        align-self: center;
-
-        width: 186px;
-        margin-bottom: 10px;
-
-        -webkit-user-drag: none;
-
-        @media (width <= 520px) {
-            width: 134px;
-        }
-    }
-
     @media (width <= 520px) {
         padding: 24px;
     }
@@ -158,4 +142,13 @@
 .cancelButton {
     flex-grow: 1;
     width: 100%;
+}
+
+.uniqeness {
+    .alertTriangle {
+        & > path {
+            opacity: 0.3;
+            stroke: #010f18;
+        }
+    }
 }

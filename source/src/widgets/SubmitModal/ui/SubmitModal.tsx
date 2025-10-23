@@ -22,10 +22,11 @@ interface SubmitModalProps {
         closeCallback?: () => void;
     };
     isLoading: boolean;
+    isUniqueness?: boolean;
 }
 
 export const SubmitModal = (props: SubmitModalProps) => {
-    const { show, setShow, data, isLoading } = props;
+    const { show, setShow, data, isLoading, isUniqueness = false } = props;
     const { lang, setLang } = useAppContext();
 
     return (
@@ -36,7 +37,7 @@ export const SubmitModal = (props: SubmitModalProps) => {
                 onClick={e => {
                     e.stopPropagation();
                 }}
-                className={classNames(styles.dialog)}>
+                className={classNames(styles.dialog, { [styles.uniqeness]: isUniqueness })}>
                 <div className={styles.payoutDialog}>
                     <div className={styles.payoutDialogBlock}>
                         <LanguageSelector lang={lang} setLang={setLang} />

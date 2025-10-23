@@ -319,7 +319,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                     bankName
                 }}>
                 {children}
-                <CustomToastContainer />
             </AppContext.Provider>
         </>
     );

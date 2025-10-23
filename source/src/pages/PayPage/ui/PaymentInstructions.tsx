@@ -41,12 +41,18 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     const BFData = useBFStore(state => state.BFData);
     const isConfirmTypeFile = BFData?.[dest]?.method?.context?.confirm_type === "file";
     // External pay info case
-    if (BFData?.[dest]?.method?.payee?.redirect_url && BFData?.[dest]?.method?.name === "phone_number") {
+    if (
+        BFData?.[dest]?.method?.payee?.redirect_url &&
+        ["payment_link", "phone_number"].includes(BFData?.[dest]?.method?.name)
+    ) {
         return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
     }
 
     // Transgran tsbp cases for tjs/azn
-    if ([tjs, azn].includes(caseName) && BFData?.[dest]?.method?.name === "tsbp" /* transgran */) {
+    if (
+        [tjs, azn].includes(caseName) &&
+        ["sbp_cross_border", "tsbp"].includes(BFData?.[dest]?.method?.name ?? "") /* transgran */
+    ) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <Text text={t("steps_transgran_simple.tbankTitle", ns)} />
