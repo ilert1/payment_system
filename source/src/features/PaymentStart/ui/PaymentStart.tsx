@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
 import { useAppContext } from "@/AppContext";
 import { ContentDescription } from "@/entities/payment";
 import WalletPayout from "@/shared/assets/images/payOut/wallet.png";

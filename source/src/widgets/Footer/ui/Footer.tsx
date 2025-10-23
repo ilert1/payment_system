@@ -24,22 +24,7 @@ const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
 };
 
-interface FooterProps {
-    buttonCaption?: string;
-    nextPage?: string;
-    showCancelBtn?: boolean;
-    prevPage?: string;
-    nextEnabled?: boolean;
-    approve?: boolean;
-    focused?: boolean;
-    payeeCard?: boolean;
-    noIcon?: boolean;
-    buttonCallback?: () => void;
-    hideRequisite?: boolean;
-    isUnicalization?: boolean;
-}
-
-export const Footer = (props: FooterProps) => {
+export const Footer = () => {
     const {
         buttonCaption,
         nextPage,

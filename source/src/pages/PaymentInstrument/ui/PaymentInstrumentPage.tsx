@@ -31,7 +31,7 @@ const PaymentInstrumentPage = () => {
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 
-    const { data, isFetching } = useQuery({
+    const { isFetching } = useQuery({
         queryKey: ["getPaymentInstruments"],
         refetchOnWindowFocus: false,
         retry: true,
@@ -71,7 +71,7 @@ const PaymentInstrumentPage = () => {
                 console.log("paymentPayerSelectedInstrument payload:");
                 console.log(payload);
 
-                const { data } = await axios
+                const response = await axios
                     .post(
                         `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                         {
@@ -83,9 +83,13 @@ const PaymentInstrumentPage = () => {
                     )
                     .catch(e => {
                         console.log(e);
+                        return null;
                     });
-                console.log(data);
-                return data;
+                if (response) {
+                    console.log(response.data);
+                    return response.data;
+                }
+                return null;
             }
         }
     });

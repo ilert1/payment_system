@@ -8,7 +8,7 @@ interface PayeeInfoProps {
 }
 
 export const PayeeInfo = (props: PayeeInfoProps) => {
-    const { PayeeName, showPayeeData = false } = props;
+    const { PayeeName } = props;
     // const [showPopup, setShowPopup] = useState(false);
 
     // const { t } = useContext(AppContext);

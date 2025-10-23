@@ -26,7 +26,7 @@ interface SubmitModalProps {
 }
 
 export const SubmitModal = (props: SubmitModalProps) => {
-    const { show, setShow, data, isLoading, isUniqueness = false } = props;
+    const { show, data, isLoading, isUniqueness = false } = props;
     const { lang, setLang } = useAppContext();
 
     return (

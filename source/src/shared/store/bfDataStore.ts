@@ -18,7 +18,7 @@ interface BFStore {
     setBfData: (data: BFDataType) => void;
 }
 
-export const useBFStore = create<BFStore>((set, get) => ({
+export const useBFStore = create<BFStore>(set => ({
     blowfishId: "",
     BFData: null,
     status: "",
@@ -28,7 +28,6 @@ export const useBFStore = create<BFStore>((set, get) => ({
     init: async ({ id, payoutMode, fingerprintConfig, ym }) => {
         const baseApiURL = import.meta.env.VITE_API_URL;
         const dest = payoutMode ? "payout" : "payment";
-        const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
         set({ loading: true, error: false });
 
         try {
