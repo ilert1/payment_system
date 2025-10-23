@@ -30,11 +30,6 @@ export const PaymentStart = () => {
             await startPayment({ fingerprintHeaders: fingerprintConfig.headers });
         } catch (error) {
             if (error instanceof Error) ym("reachGoal", "error-message", { error: error?.message });
-
-            toast.error(t("check_load_errors.generalError", ns), {
-                closeButton: <></>,
-                autoClose: 2000
-            });
         }
     };
 
