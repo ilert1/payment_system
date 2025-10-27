@@ -1,12 +1,13 @@
-import { parsePhoneNumberFromString } from "libphonenumber-js";
+import { parsePhoneNumberWithError } from "libphonenumber-js";
 
 export function formatPhoneNumber(phone: string) {
     try {
-        const phoneNumber = parsePhoneNumberFromString(phone);
-        if (!phoneNumber) return phone;
+        const phoneWithPlus = phone.startsWith("+") ? phone : "+" + phone;
+        const formattedPhoneNumber = parsePhoneNumberWithError(phoneWithPlus);
 
-        return phoneNumber.formatInternational();
-    } catch {
+        if (!formattedPhoneNumber) return phone;
+        return formattedPhoneNumber.formatInternational();
+    } catch (err) {
         return phone;
     }
 }

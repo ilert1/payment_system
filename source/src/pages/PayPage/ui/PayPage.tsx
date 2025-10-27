@@ -142,15 +142,13 @@ const PayPage = () => {
             setRequisite(trader.card_number);
         }
         if (trader?.phone) {
-            const formattedPhone = formatPhoneNumber(trader.phone);
-            setRequisite(formattedPhone);
+            setRequisite(trader.phone);
         }
         if (
             trader?.phone_number &&
             !(BFData?.[dest]?.currency == "RUB" && BFData?.[dest]?.method?.payee?.redirect_url)
         ) {
-            const formattedPhone = formatPhoneNumber(trader.phone_number);
-            setRequisite(formattedPhone);
+            setRequisite(trader.phone_number);
         }
         if (trader?.account_number) {
             setRequisite(trader.account_number);
