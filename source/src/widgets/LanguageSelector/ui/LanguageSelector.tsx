@@ -54,6 +54,13 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
         return output;
     }, [lang]);
 
+    const safeLang = useMemo(() => {
+        if (!Object.keys(LangVariants).includes(lang)) {
+            return "en-US";
+        }
+        return lang;
+    }, [lang]);
+
     return (
         <div
             className={classNames(styles.languageSelector, { [styles.active]: dropDown })}
@@ -61,7 +68,7 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
                 setDropDown(!dropDown);
             }}>
             <div className={styles.flagContainer}>
-                <img src={`/flags/${lang.substring(0, 2)}.svg`} alt={lang} />
+                <img src={`/flags/${safeLang.substring(0, 2)}.svg`} alt={lang} />
             </div>
             <div className={classNames(styles.dropDown, { [styles.active]: dropDown })}>{flags}</div>
         </div>

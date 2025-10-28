@@ -9,6 +9,7 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
+    align-self: flex-end;
     justify-content: center;
 
     width: $size;
@@ -21,7 +22,6 @@
     line-height: 130%;
     color: #0e001a80;
     text-align: left;
-    align-self: flex-end;
 
     background-color: #cfeafc00;
 
