@@ -52,6 +52,13 @@ export const useBFStore = create<BFStore>((set, get) => ({
             tmpData[dest].method.payee.data.account_number = "0000147800000067840056";
             tmpData[dest].method.payee.data.card_number = null; */
 
+            // Блок для теста phone_number
+            /* let tmpData = structuredClone(data);
+            tmpData[dest].method.name = "phone_number";
+            tmpData[dest].currency = "RUB";
+            tmpData[dest].method.payee.data.card_holder = "Sofía Martínez";
+            tmpData[dest].method.payee.data.phone_number = "992372123456";*/
+
             set({
                 BFData: data, //подставить tmpData для тестов
                 status: data?.[dest]?.status,

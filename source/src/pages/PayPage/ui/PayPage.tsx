@@ -8,6 +8,7 @@ import { useFilePicker } from "use-file-picker";
 import { useAppContext } from "@/AppContext";
 import usePaymentPage from "@/hooks/usePaymentPage";
 import { AppRoutes } from "@/shared/const/router";
+import { formatPhoneNumber } from "@/shared/lib/formatPhoneNumber";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
 import Loader from "@/shared/ui/Loader";
