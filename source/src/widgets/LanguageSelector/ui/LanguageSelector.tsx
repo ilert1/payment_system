@@ -17,7 +17,8 @@ const LangVariants = {
     tr: "tr-TR",
     uk: "uk-UA",
     uz: "uz-UZ",
-    es: "es-ES"
+    es: "es-ES",
+    bn: "bn-BD"
 };
 
 export const LanguageSelector = (props: LanguageSelectorProps) => {

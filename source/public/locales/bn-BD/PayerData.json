@@ -1,0 +1,20 @@
+{
+    "enter4": "শেষ ৪টি সংখ্যা লিখুন",
+    "yourPhone": "আপনার ফোনের",
+    "yourCard": "আপনার কার্ডের",
+    "cardNumber": "কার্ড নম্বর",
+    "expirationDate": "মেয়াদ উত্তীর্ণের তারিখ",
+    "cardHolder": "কার্ডধারী",
+    "nameLastname": "কার্ডধারীর নাম",
+    "errors": {
+        "cardValidationError": "কার্ড নম্বরে ১৬টি সংখ্যা থাকতে হবে",
+        "expireDateError": "তারিখটি MM/YY ফরম্যাটে হতে হবে",
+        "expreDateRangeError": "তারিখ ভবিষ্যতের হতে হবে",
+        "cvvError": "CVV তে ৩টি সংখ্যা থাকতে হবে",
+        "paymentNotFound": "এই আইডি সহ কোনো পেমেন্ট পাওয়া যায়নি",
+        "cardHolderError": "নামটি লাতিন বর্ণে FIRSTNAME LASTNAME ফরম্যাটে লিখুন",
+        "unknownError": "অজানা ত্রুটি ঘটেছে"
+    },
+    "getCard": "আপনার কার্ড গৃহীত হয়েছে, পেমেন্ট করতে Pay বোতাম চাপুন",
+    "pay": "পেমেন্ট করুন"
+}
