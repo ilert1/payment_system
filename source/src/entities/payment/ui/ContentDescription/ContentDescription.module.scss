@@ -1,0 +1,28 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    max-width: 416px;
+    margin-bottom: 35px;
+}
+
+.lowMb {
+    margin-bottom: 45px;
+
+    @media (width <= 520px) {
+        margin-bottom: 25px;
+    }
+}
+
+.lowMt {
+    margin-top: 45px;
+
+    @media (width <= 520px) {
+        margin-top: 25px;
+    }
+}
+
+.grow {
+    flex-grow: 0.5;
+}

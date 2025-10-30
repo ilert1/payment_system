@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useAppContext } from "@/AppContext";
 import { classNames } from "@/shared/lib/classNames";
+import { Text } from "@/shared/ui/Text/Text";
 import styles from "./LanguageSelector.module.scss";
 
 interface LanguageSelectorProps {
@@ -29,7 +30,7 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
     const [dropDown, setDropDown] = useState(false);
 
     const flags = useMemo(() => {
-        let output: any[] = [];
+        const output: any[] = [];
 
         Object.entries(LangVariants)?.forEach(([itemkey, itemvalue]: [string, string]) => {
             const langItem = itemkey;
@@ -46,7 +47,7 @@ export const LanguageSelector = (props: LanguageSelectorProps) => {
                             ym("reachGoal", "lang-select", { selectedLang: langItem });
                             setLang(langItem);
                         }}>
-                        <p>{langLabel.toUpperCase()}</p>
+                        <Text variant="muted" size="2xs" text={langLabel.toUpperCase()} />
                         <img src={`/flags/${langItem}.svg`} alt={langItem} />
                     </div>
                 );

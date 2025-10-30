@@ -102,17 +102,6 @@
     }
 }
 
-.title {
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 43px;
-
-    @media (width <= 520px) {
-        font-size: 24px;
-        line-height: 32px;
-    }
-}
-
 .cardNumber {
     font-size: 30px;
     font-weight: 600;
@@ -122,19 +111,6 @@
     @media (width <= 520px) {
         font-size: 22px;
         line-height: 29px;
-    }
-}
-
-.text {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 30px;
-    text-align: justify;
-
-    @media (width <= 520px) {
-        font-size: 16px;
-        line-height: 22px;
-        text-align: justify;
     }
 }
 

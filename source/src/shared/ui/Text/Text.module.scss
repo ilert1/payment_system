@@ -1,31 +1,39 @@
-.title {
-    color: var(--text-redesigned);
+// Text colors
+.text {
+    text-wrap: balance;
 }
 
-.text {
-    color: var(--text-redesigned);
+.textBody {
+    .text {
+        color: var(--color-text);
+    }
+}
+
+.primary {
+    .text {
+        color: var(--color-primary);
+    }
+}
+
+.primary_light {
+    .text {
+        color: var(--color-primary-light);
+    }
 }
 
 .error {
-    .title {
-        color: var(--red-light);
-    }
-
     .text {
-        color: var(--red-dark);
+        color: var(--color-error);
     }
 }
 
-.accent {
-    .title {
-        color: var(--accent-redesigned);
-    }
-
+.muted {
     .text {
-        color: var(--accent-redesigned);
+        color: var(--color-text-neutral-muted);
     }
 }
 
+// Text alignment
 .left {
     text-align: left;
 }
@@ -38,63 +46,83 @@
     text-align: center;
 }
 
-.size_s {
-    .title {
-        font: var(--font-m-redesigned);
-    }
+.justify {
+    text-align: justify;
+}
 
+// 17 20 21 22 23 31 46
+// Font sizes
+.size_xxs {
     .text {
-        font: var(--font-s-redesigned);
+        font: var(--font-xxs);
+    }
+}
+
+.size_2xs {
+    .text {
+        font: var(--font-2xs);
+    }
+}
+
+.size_xs {
+    .text {
+        font: var(--font-xs);
+    }
+}
+
+.size_s {
+    .text {
+        font: var(--font-s);
     }
 }
 
 .size_m {
-    .title {
-        font: var(--font-l-redesigned);
-    }
-
     .text {
-        font: var(--font-m-redesigned);
+        font: var(--font-m);
     }
 }
 
 .size_l {
-    .title {
-        font: var(--font-xl-redesigned);
-    }
-
     .text {
-        font: var(--font-l-redesigned);
+        font: var(--font-l);
     }
 }
 
-.bold {
-    .title,
+.size_xl {
     .text {
-        font-weight: 700;
+        font: var(--font-xl);
     }
 }
 
-// p {
-//     font-size: 20px;
-//     font-weight: 400;
-//     line-height: 133%;
-//     color: #010f18;
-//     text-wrap: balance;
+.size_xxl {
+    .text {
+        font: var(--font-xxl);
+    }
+}
 
-//     @media (width <= 520px) {
-//         font-size: 14px;
-//     }
-// }
+// Font Weights
+.regular {
+    .text {
+        font-weight: 400;
+    }
+}
 
-// align-items: baseline;
+.medium {
+    .text {
+        font-weight: 500;
+    }
+}
 
-// // position: absolute;
-// font-size: 26px;
-// font-weight: 400;
-// line-height: 133%; // 61.41px;
-// color: #37a8f3;
+.semiBold {
+    .text {
+        font-weight: 600;
+    }
+}
 
-// @media (width <= 520px) {
-//     font-size: 18px;
-// }
+// Additional classes
+
+.grow {
+    .text {
+        flex-grow: 0.3;
+    }
+}

@@ -1,0 +1,21 @@
+:root {
+    --color-primary: #37a8f3; /* основной акцент */
+    --color-primary-dark: #0c78c0; /* акцент потемнее */
+    --color-primary-darkest: #095a90; /* еще темнее */
+    --color-primary-light: #6fc0f6; /* светлый акцент */
+    --color-primary-lightest: #9fd5f9; /* очень светлый акцент */
+    --color-primary-bg: #cfeafc; /* фоновые заливки под бренд */
+    --color-primary-bg-alt: #e7f5fe; /* альтернативный фон */
+
+    /* Neutral / Text */
+    --color-white: #fff;
+    --color-text: #010f18; /* основной текст */
+    --color-text-dark: #031e30; /* вторичный текст */
+    --color-text-muted: #063c60; /* приглушённый */
+    --color-text-neutral-muted: #0e001a80;
+
+    /* States */
+    --color-link: #3fabf3;
+    --color-error: #b10e0e;
+    --color-error-light: #ea4444;
+}

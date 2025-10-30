@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames";
 import styles from "./PayeeHint.module.scss";
 
-export const PayeeHint = ({ showPopup, payeeData }) => {
+export const PayeeHint = ({ showPopup, payeeData }: { showPopup: boolean; payeeData: string }) => {
     const { t } = useTranslation();
     //translation
     const ns = { ns: "PayeeHint" };

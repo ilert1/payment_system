@@ -1,14 +1,18 @@
+import { useEffect } from "react";
+import { ContentDescription } from "@/entities/payment";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Content, HeadingContainer } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { useAppContext } from "../AppContext";
-import usePaymentPage from "../hooks/usePaymentPage";
-import { Loader } from "../shared/ui/Loader";
-import { Timer } from "../shared/ui/Timer";
+import { Loader } from "../shared/ui/Loader/Loader";
 import { Footer } from "../widgets/Footer";
 
 const PayeeDataPage = () => {
     const { t, getCurrencySymbol, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     ym("reachGoal", "payee-data-page");
 
@@ -30,39 +34,37 @@ const PayeeDataPage = () => {
         redirect(BFData?.[dest]?.method?.context?.back_redirect_url ?? "");
     };
 
+    const headingText =
+        t("waitConfirmation", ns) + " " +
+        BFData?.[dest]?.amount +
+        "\u00A0" + 
+        getCurrencySymbol(BFData?.[dest]?.currency ?? "");
+
+    useEffect(() => {
+        setFooter({
+            buttonCallback: BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {},
+            buttonCaption: BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : "",
+            nextPage: BFData?.[dest]?.method?.context?.back_redirect_url,
+            payeeCard: true && !!BFData?.[dest]?.method?.payee?.data,
+            showCancelBtn: false,
+            hideRequisite:
+                BFData?.[dest]?.method?.payee?.data?.phone_number &&
+                BFData?.[dest]?.currency === "RUB" &&
+                BFData?.[dest]?.method?.payee?.redirect_url
+                    ? true
+                    : false,
+            isUnicalization: false
+        });
+    }, []);
+
     return (
         <Page>
-            <div className="content">
-                <div className="header-container grow">
-                    <h1>
-                        {t("waitConfirmation", ns)} {BFData?.[dest]?.amount}&nbsp;
-                        {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
-                    </h1>
-                </div>
-                <div className="description low-mb low-mt">
-                    <p>{t("waitComment", ns)}</p>
-                </div>
-                <div className="loader-container">
-                    <Loader />
-                    <Timer />
-                    <p className="status-comment">{t("waitTime", ns)}</p>
-                </div>
-            </div>
-
-            <Footer
-                buttonCallback={BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {}}
-                buttonCaption={BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : ""}
-                nextPage={BFData?.[dest]?.method?.context?.back_redirect_url}
-                payeeCard={true && !!BFData?.[dest]?.method?.payee?.data}
-                showCancelBtn={false}
-                hideRequisite={
-                    BFData?.[dest]?.method?.payee?.data?.phone_number &&
-                    BFData?.[dest]?.currency === "RUB" &&
-                    BFData?.[dest]?.method?.payee?.redirect_url
-                        ? true
-                        : false
-                }
-            />
+            <Content>
+                <HeadingContainer headingText={headingText} grow center/>
+                <ContentDescription text={t("waitComment", ns)} lowMb lowMt />
+                <Loader timer={true} statusText={t("waitTime", ns)} />
+            </Content>
+            <Footer />
         </Page>
     );
 };

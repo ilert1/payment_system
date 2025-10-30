@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { useAppContext } from "@/AppContext";
-import Clock from "@/shared/assets/images/clock.svg";
 import FilePdfIcon from "@/shared/assets/images/file-pdf.svg";
 import FileIcon from "@/shared/assets/images/file.svg";
 import { AppRoutes } from "@/shared/const/router";
-import { Timer } from "@/shared/ui/Timer";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
+import { DeadLineTimer } from "@/shared/ui/DeadlineTimer/DeadLineTimer";
+import { Heading } from "@/shared/ui/Heading/Heading";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import styles from "./PaymentConfirmationPage.module.scss";
@@ -29,9 +31,7 @@ const DropZoneContent = () => {
 
 export const PaymentConfirmationPage = () => {
     const { t } = useAppContext();
-
-    //translation
-    const ns = { ns: "PaymentConfirmation" };
+    const setFooter = useFooterStore(state => state.setFooter);
 
     const [file, setFile] = useState(null);
 
@@ -41,16 +41,23 @@ export const PaymentConfirmationPage = () => {
 
     const fileTypes = ["JPG", "PNG", "GIF"];
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("Common.approve"),
+            approve: true,
+            nextPage: AppRoutes.PAYMENT_WAIT_CONFIRMATION,
+            nextEnabled: !!file,
+            isUnicalization: false
+        });
+    }, [file]);
+
     return (
         <Page>
-            <div className="content">
-                <h1 className="grow">Подтверждение оплаты</h1>
+            <Content>
+                <Heading size="l" title={"Подтверждение оплаты"} grow />
                 <div className={styles.confirmationDeadlineInfo}>
-                    <p className="confirmation-comment">Прикрепите подтверждение оплаты для проверки</p>
-                    <div className="deadline-container">
-                        <img src={Clock} alt="" />
-                        <Timer down={true} className="deadline-timer" secondsToDo={60 * 15} />
-                    </div>
+                    <p>Прикрепите подтверждение оплаты для проверки</p>
+                    <DeadLineTimer timerSecondsTo={60 * 15} timerCallback={() => {}} />
                 </div>
 
                 <FileUploader
@@ -71,14 +78,8 @@ export const PaymentConfirmationPage = () => {
                     children={<DropZoneContent />}
                 />
                 {/* <div id="drop-zone" className="drop-zone"></div> */}
-            </div>
-
-            <Footer
-                buttonCaption={t("Common.approve")}
-                approve={true}
-                nextPage={AppRoutes.PAYMENT_WAIT_CONFIRMATION}
-                nextEnabled={!!file}
-            />
+            </Content>
+            <Footer />
         </Page>
     );
 };

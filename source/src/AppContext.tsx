@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useCallback, useContext, startTrans
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
-import CurrencyLibrary from "./shared/assets/library/Currency.json";
+import { Currencies } from "./shared/assets/library/Currency";
 import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
 import { useBFStore } from "./shared/store/bfDataStore.js";
@@ -43,7 +43,7 @@ const iban = "iban";
 const abh = "abh";
 const ars = "ars";
 
-// eslint-disable-next-line react/prop-types
+ 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
     const payOutMode = Boolean(BFData?.payout);
@@ -68,7 +68,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
     const [fingerprint, setFingerprint] = useState("");
     const [fingerprintReady, setFingerprintReady] = useState(false);
-    let storedLang = getLanguage();
+    const storedLang = getLanguage();
 
     const [lang, setLang] = useState(storedLang);
 
@@ -115,7 +115,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }, [currentPaymentInstrument]);
 
     useEffect(() => {
-        let fp = `${getBrowserFingerprint({
+        const fp = `${getBrowserFingerprint({
             hardwareOnly: true,
             enableScreen: false
         })}`;
@@ -155,8 +155,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }, []);
 
     const getCurrencySymbol = (code: string) => {
-        if (CurrencyLibrary.hasOwnProperty(code)) {
-            return CurrencyLibrary[code].symbol_native;
+        if (Currencies.hasOwnProperty(code)) {
+            return Currencies[code].symbol_native;
         }
         return code;
     };

@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames";
-import { Timer } from "@/shared/ui/Timer";
+import { Text } from "@/shared/ui/Text/Text";
+import { Timer } from "@/shared/ui/Timer/Timer";
 import styles from "./ProgressSteper.module.scss";
 
 interface ProgressSteperProps {
@@ -43,9 +44,9 @@ export const ProgressSteper = ({ step }: ProgressSteperProps) => {
             <div className={styles.status}>
                 <div className={styles.top}>
                     <Timer />
-                    <p className={styles.statusText}>{statusText}</p>
+                    <Text text={statusText} />
                 </div>
-                <p className={styles.statusComment}>{t("comment", ns)}</p>
+                <Text className={styles.statusComment} text={t("comment", ns)} />
             </div>
         </div>
     );

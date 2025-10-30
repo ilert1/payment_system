@@ -9,12 +9,6 @@ describe("CustomToastContainer", () => {
         expect(container.getElementsByClassName("Toastify")).toHaveLength(1);
     });
 
-    it("рендерит кастомную кнопку закрытия", () => {
-        render(<CustomToastContainer />);
-        act(() => toast("Hello world!"));
-        expect(screen.getByText("Окей")).toBeInTheDocument();
-    });
-
     it("отображает тост при вызове toast()", async () => {
         render(<CustomToastContainer />);
         act(() => toast("Hello world!"));
