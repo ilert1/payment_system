@@ -59,7 +59,11 @@ export const PayErrorPage = ({ notFound = false }) => {
                 {failUrl && (
                     <>
                         <Text align="center" text={t("timerText", ns)} />
-                        <DeadLineTimer timerSecondsTo={500} timerCallback={() => window.location.replace(failUrl)} />
+                        <DeadLineTimer
+                            timerSecondsTo={5}
+                            timerCallback={() => window.location.replace(failUrl)}
+                            orange={false}
+                        />
                     </>
                 )}
             </Content>
