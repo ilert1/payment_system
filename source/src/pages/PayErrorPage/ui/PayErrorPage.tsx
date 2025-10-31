@@ -42,8 +42,10 @@ export const PayErrorPage = ({ notFound = false }) => {
             nextEnabled: !!failUrl,
             noIcon: true,
             showCancelBtn: false,
-            isUnicalization: false
+            isUnicalization: false,
+            approve: false
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -67,7 +69,6 @@ export const PayErrorPage = ({ notFound = false }) => {
                     </>
                 )}
             </Content>
-
             <Footer />
         </Page>
     );
