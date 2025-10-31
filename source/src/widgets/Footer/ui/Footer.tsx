@@ -1,4 +1,3 @@
- 
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useRef, useEffect, useState } from "react";
@@ -249,6 +248,7 @@ export const Footer = () => {
                             <Button
                                 id="cancel-button"
                                 className={styles.cancelButton}
+                                size={"md"}
                                 variant={"ghostDanger"}
                                 onClick={() => {
                                     setDialogShow(true);

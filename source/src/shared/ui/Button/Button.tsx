@@ -14,6 +14,7 @@ const buttonVariants = cva(styles.button, {
         },
         size: {
             sm: styles.btnSmall,
+            md: styles.btnMedium,
             lg: styles.btnLarge,
             xl: styles.btnXl
         },

@@ -28,6 +28,7 @@
 .mainButton {
     flex-grow: 1;
     width: 100%;
+    font-weight: 500;
 
     &:disabled {
         img {
@@ -46,6 +47,7 @@
 .cancelButton {
     flex-grow: 1;
     width: 100%;
+    font-weight: 500;
 }
 
 .payeeData {

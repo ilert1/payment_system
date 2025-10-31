@@ -10,7 +10,7 @@ export const useFooterStore = create<FooterStoreType>(set => ({
     isUnicalization: false,
     buttonCaption: "",
     nextPage: "",
-    showCancelBtn: false,
+    showCancelBtn: true,
     prevPage: "",
     nextEnabled: true,
     noIcon: false,

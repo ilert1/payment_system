@@ -2,6 +2,13 @@
     display: inline-flex;
     gap: 8px;
     align-items: center;
+
+    padding: 0.4rem 1rem;
+    border-radius: 63px;
+
+    &.orange {
+        background-color: var(--color-primary-bg-alt);
+    }
 }
 
 .deadlineTimer {
@@ -20,15 +27,11 @@
 }
 
 .img {
-    $width: 28px;
+    width: 3.4rem;
+    height: 3.4rem;
+}
 
-    width: $width;
-    height: $width;
-
-    @media (width <= 520px) {
-        $width: 20px;
-
-        width: $width;
-        height: $width;
-    }
+.imgGray {
+    width: 2.9rem;
+    height: 2.9rem;
 }

@@ -50,15 +50,16 @@ export const SuccessPage = () => {
                     center
                     headingText={t(payoutMode ? "payoutHeader" : "header", ns)}
                     description={`+ ${BFData?.[dest]?.amount} ${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`}
+                    descriptionBig
+                    descriptionBlue
                 />
                 {successUrl && (
                     <>
                         <Text text={t("timerText", ns)} />
-                        <DeadLineTimer timerSecondsTo={5} timerCallback={successCallback} />
+                        <DeadLineTimer timerSecondsTo={5} timerCallback={successCallback} orange={false} />
                     </>
                 )}
             </Content>
-
             <Footer />
         </Page>
     );

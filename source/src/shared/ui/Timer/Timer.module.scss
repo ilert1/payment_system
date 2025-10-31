@@ -1,5 +1,13 @@
-.timer {
-    font-size: var(--font-size-l);
+.textMedium {
+    font: var(--font-l);
     font-weight: 600;
+}
+
+.textLarge {
+    font: var(--font-xl);
+    font-weight: 600;
+}
+
+.marginTop {
     margin-top: 1.4rem;
 }

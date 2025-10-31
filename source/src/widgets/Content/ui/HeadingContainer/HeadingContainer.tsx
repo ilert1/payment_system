@@ -10,9 +10,11 @@ interface HeadingContainerProps {
     grow?: boolean;
     wide?: boolean;
     center?: boolean;
+    descriptionBig?: boolean;
+    descriptionBlue?: boolean;
 }
 export const HeadingContainer = (props: HeadingContainerProps) => {
-    const { headingText, description, grow, wide, center } = props;
+    const { headingText, description, grow, wide, center, descriptionBig, descriptionBlue } = props;
 
     const modClasses: Mods = {
         [styles.grow]: grow,
@@ -23,7 +25,14 @@ export const HeadingContainer = (props: HeadingContainerProps) => {
     return (
         <div className={classNames(styles.headingContainer, modClasses)}>
             <Heading title={headingText} size="l" align={center ? "center" : "left"} />
-            {description && <Text text={description} />}
+            {description && (
+                <Text
+                    text={description}
+                    size={descriptionBig ? "xxl" : "m"}
+                    variant={descriptionBlue ? "primary" : "textBody"}
+                    weight={descriptionBig ? "semiBold" : "regular"}
+                />
+            )}
         </div>
     );
 };
