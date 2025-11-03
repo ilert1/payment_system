@@ -14,12 +14,18 @@ const labelVariant = cva(styles.label, {
         weight: {
             regular: styles.regular, // 400
             medium: styles.medium // 500
+        },
+        align: {
+            left: styles.left,
+            center: styles.center,
+            right: styles.right
         }
     },
     defaultVariants: {
         variant: "default",
         size: "md",
-        weight: "regular"
+        weight: "regular",
+        align: "left"
     }
 });
 
@@ -30,7 +36,7 @@ interface LabelProps extends React.ButtonHTMLAttributes<HTMLLabelElement>, Varia
     text: string | ReactNode;
 }
 
-export const Label = ({ variant, size, weight, className, text, ...props }: LabelProps) => {
+export const Label = ({ variant, size, weight, align, className, text, ...props }: LabelProps) => {
     return (
         <label {...props} className={labelVariant({ variant, size, weight, className })}>
             {text}

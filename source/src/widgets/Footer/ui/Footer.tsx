@@ -39,8 +39,6 @@ export const Footer = () => {
         isUnicalization
     } = useFooterStore();
 
-    console.log(nextEnabled);
-
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
     const setStatus = useBFStore(state => state.setStatus);

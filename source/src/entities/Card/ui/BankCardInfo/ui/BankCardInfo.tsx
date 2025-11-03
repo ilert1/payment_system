@@ -13,7 +13,7 @@ export const BankCardInfo = (props: BankCardInfoProps) => {
     return (
         <div className={styles.cardInfo}>
             <img src={bankIcon} onError={onError} alt="" className={styles.img} data-testid="BankCardInfo.BankIcon" />
-            <Text text={cardNumber} />
+            <Text text={cardNumber} size="l" />
         </div>
     );
 };

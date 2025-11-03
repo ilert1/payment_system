@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAppContext } from "@/AppContext";
 import { CardNumberForm } from "@/features/CardNumberForm";
 import { useCardFormStore } from "@/features/CardNumberForm/model/slice/CardFormSlice";
@@ -52,21 +53,28 @@ export const CardNumberForms = () => {
         if (isPressed) return;
         setIsPressed(true);
 
-        await submitPayerData(
-            {
-                cardNumber,
-                expiryDate,
-                cvv,
-                cardHolder,
-                dest
-            },
-            BFData?.[dest]?.method?.name ?? "",
-            dest,
-            ym,
-            t
-        );
+        try {
+            await submitPayerData(
+                {
+                    cardNumber,
+                    expiryDate,
+                    cvv,
+                    cardHolder,
+                    dest
+                },
+                BFData?.[dest]?.method?.name ?? "",
+                dest,
+                ym,
+                t
+            );
+        } catch (error: any) {
+            toast.error(error.message || "Unexpected error", { autoClose: 2000, closeButton: <></> });
+            setIsPressed(false);
+        }
 
-        setIsPressed(false);
+        if (methodName === "ecom_platform_card") {
+            setTimeout(() => setIsPressed(false), 1000);
+        }
     };
 
     const redirectCallback = () => {
@@ -103,7 +111,8 @@ export const CardNumberForms = () => {
             focused: false,
             showCancelBtn: status === "paymentPayerDataEntrу"
         });
-    }, [isFetching, BFData, isEcom, redirectUrl, isPlatformCard, waitTransfer, nextEnabled]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isFetching, BFData, isEcom, redirectUrl, isPlatformCard, waitTransfer, nextEnabled, isPressed, status]);
 
     return isEcom ? (
         !isFetching && !waitTransfer ? (
@@ -113,7 +122,7 @@ export const CardNumberForms = () => {
             </>
         ) : (
             <>
-                <Heading size="l" title={t("getCard", ns)} grow />
+                <Heading size="l" title={t("getCard", ns)} grow align="center" />
                 {(isPressed || isFetching) && <Loader />}
             </>
         )

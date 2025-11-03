@@ -26,35 +26,20 @@ interface TimerProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<
     marginTop?: boolean;
 }
 
-export const Timer = (props: TimerProps) => {
-    const { down, secondsToDo, className, timerCallback, size, marginTop } = props;
+const StopwatchTimer = ({ className, size, marginTop }: TimerProps) => {
+    const { minutes, seconds } = useStopwatch({ autoStart: true });
+    return <div className={timerVariants({ size, className, marginTop })}>{`${minutes}:${seconds}`}</div>;
+};
+
+const CountdownTimer = ({ secondsToDo = 0, timerCallback, className, size, marginTop }: TimerProps) => {
     const time = new Date();
+    time.setSeconds(time.getSeconds() + secondsToDo);
+    const { minutes, seconds } = useTimer({ expiryTimestamp: time, onExpire: timerCallback });
+    return <div className={timerVariants({ size, className, marginTop })}>{`${minutes}:${seconds}`}</div>;
+};
 
-    // Always call both hooks, but only use the appropriate one
-    // const stopwatchResult = useStopwatch({ autoStart: !down });
-
-    // time.setSeconds(time.getSeconds() + (secondsToDo || 0));
-    // const timerResult = useTimer({
-    //     expiryTimestamp: time,
-    //     onExpire: timerCallback,
-    //     autoStart: false
-    // });
-
-    if (!down) {
-        var { minutes, seconds } = useStopwatch({ autoStart: true });
-    } else {
-        time.setSeconds(time.getSeconds() + (secondsToDo || 0));
-        var { minutes, seconds } = useTimer({ expiryTimestamp: time, onExpire: timerCallback });
-    }
-
-    // Use the appropriate result based on the down prop
-    // const { minutes, seconds } = down ? timerResult : stopwatchResult;
-
-    return (
-        <div id="timer" className={timerVariants({ size, className, marginTop })}>
-            {`${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`}
-        </div>
-    );
+export const Timer = (props: TimerProps) => {
+    return props.down ? <CountdownTimer {...props} /> : <StopwatchTimer {...props} />;
 };
 
 export default Timer;

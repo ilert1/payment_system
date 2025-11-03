@@ -43,7 +43,6 @@ const iban = "iban";
 const abh = "abh";
 const ars = "ars";
 
- 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
     const payOutMode = Boolean(BFData?.payout);
@@ -194,15 +193,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
             default:
                 return "";
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [status]);
+    }, [BFData, dest, status]);
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
 
     useEffect(() => {
         setBankName(getLocalBankName(method?.bank?.display_name, lang));
-    }, [, method?.bank?.display_name, lang]);
+    }, [method?.bank?.display_name, lang]);
 
     useEffect(() => {
         setCaseName("");

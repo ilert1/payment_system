@@ -41,22 +41,24 @@ const PayeeDataPage = () => {
         "\u00A0" +
         getCurrencySymbol(BFData?.[dest]?.currency ?? "");
 
+    const backRedirectUrl = BFData?.[dest]?.method?.context?.back_redirect_url ?? "";
+    const trader = BFData?.[dest]?.method?.payee?.data;
+    const currency = BFData?.[dest]?.currency ?? "";
+    const redirectUrl = BFData?.[dest]?.method?.payee?.redirect_url ?? "";
+
     useEffect(() => {
         setFooter({
-            buttonCallback: BFData?.[dest]?.method?.context?.back_redirect_url ? buttonCallback : () => {},
-            buttonCaption: BFData?.[dest]?.method?.context?.back_redirect_url ? t("backToSite", ns) : "",
-            nextPage: BFData?.[dest]?.method?.context?.back_redirect_url,
-            payeeCard: true && !!BFData?.[dest]?.method?.payee?.data,
+            buttonCallback: backRedirectUrl ? buttonCallback : () => {},
+            buttonCaption: backRedirectUrl ? t("backToSite", ns) : "",
+            nextEnabled: backRedirectUrl ? true : false,
+            nextPage: backRedirectUrl,
+            payeeCard: true && !!trader,
             showCancelBtn: false,
-            hideRequisite:
-                BFData?.[dest]?.method?.payee?.data?.phone_number &&
-                BFData?.[dest]?.currency === "RUB" &&
-                BFData?.[dest]?.method?.payee?.redirect_url
-                    ? true
-                    : false,
-            isUnicalization: false
+            hideRequisite: trader?.phone_number && currency === "RUB" && redirectUrl ? true : false,
+            isUnicalization: false,
+            approve: false
         });
-    }, []);
+    }, [backRedirectUrl, trader, currency, redirectUrl, ns]);
 
     return (
         <Page>

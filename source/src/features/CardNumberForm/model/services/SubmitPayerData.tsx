@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 type PayerPayload = {
     cardNumber: string;
     expiryDate: string;
@@ -103,13 +101,10 @@ export const submitPayerData = async ({
                 if (result?.state) setStatus(result.state);
                 return;
             } else {
-                toast.error(result?.error_details ? result.error_details : result?.error, { autoClose: 2000 });
+                throw new Error(result?.error_details ? result.error_details : result?.error);
             }
         }
     } catch (error: any) {
-        toast.error(error.message || "Unexpected error", {
-            autoClose: 2000,
-            closeButton: <></>
-        });
+        throw new Error(error.message || "Unexpected error");
     }
 };

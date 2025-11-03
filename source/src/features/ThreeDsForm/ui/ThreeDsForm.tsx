@@ -24,7 +24,7 @@ export const ThreeDsForm = () => {
     const navigate = useNavigate();
     const { fingerprintConfig } = useAppContext();
 
-    const { isFetching, submitForm } = useThreeDSFormStore();
+    const { submitForm } = useThreeDSFormStore();
 
     const status = useBFStore(state => state.status);
     const bfData = useBFStore(state => state.BFData);
@@ -54,6 +54,7 @@ export const ThreeDsForm = () => {
     const onSubmit = (data: ThreeDsFormValues) => {
         if (submitClicked) return;
         setSubmitClicked(true);
+
         try {
             submitForm({ formData: data, navigate, fingerprintConfig: fingerprintConfig.headers });
         } catch (error) {
@@ -66,7 +67,6 @@ export const ThreeDsForm = () => {
             } else {
                 toast.error("Something went wrong");
             }
-        } finally {
             setSubmitClicked(false);
         }
     };
@@ -90,13 +90,14 @@ export const ThreeDsForm = () => {
             buttonCaption: t("continue"),
             buttonCallback: threeDSForm.handleSubmit(onSubmit),
             nextPage: AppRoutes.PAYEE_SEARCH_PAGE,
-            nextEnabled: buttonEnabled && !isFetching,
+            nextEnabled: !submitClicked && buttonEnabled,
             approve: true,
             focused: true,
             showCancelBtn: false,
             isUnicalization: false
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [buttonEnabled, submitClicked]);
 
     if (status === "paymentAwaitingConfirmationByPayee") {
         return <Loader />;

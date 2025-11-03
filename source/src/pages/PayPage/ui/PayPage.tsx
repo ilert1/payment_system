@@ -136,7 +136,7 @@ const PayPage = () => {
         } else {
             setNeedRefreshBFData(false);
         }
-    }, [, trader]);
+    }, [trader]);
 
     useEffect(() => {
         if (trader?.card_number) {
@@ -158,7 +158,7 @@ const PayPage = () => {
             setRequisite(trader.iban_number);
         }
         console.log(trader);
-    }, [trader]);
+    }, [BFData, dest, trader]);
 
     const { isFetching: isFetching_BFData } = useQuery({
         queryKey: ["exist"],
@@ -276,7 +276,8 @@ const PayPage = () => {
             approve: true,
             isUnicalization: isUnicalization
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isConfirmTypeFile, isFetching_ButtonCallback, isUnicalization, nextPage, selectedFile]);
 
     return (
         <Page>

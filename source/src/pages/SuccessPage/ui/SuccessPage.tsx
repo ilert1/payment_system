@@ -37,9 +37,11 @@ export const SuccessPage = () => {
             nextEnabled: Boolean(successUrl),
             noIcon: true,
             showCancelBtn: false,
-            isUnicalization: false
+            isUnicalization: false,
+            payeeCard: false
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [successUrl]);
 
     return (
         <Page>

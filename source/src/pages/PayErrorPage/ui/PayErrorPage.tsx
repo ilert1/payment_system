@@ -46,7 +46,7 @@ export const PayErrorPage = ({ notFound = false }) => {
             approve: false
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [failUrl]);
 
     return (
         <Page>
