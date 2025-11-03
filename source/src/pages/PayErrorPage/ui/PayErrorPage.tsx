@@ -43,7 +43,8 @@ export const PayErrorPage = ({ notFound = false }) => {
             noIcon: true,
             showCancelBtn: false,
             isUnicalization: false,
-            approve: false
+            approve: false,
+            payeeCard: false
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [failUrl]);

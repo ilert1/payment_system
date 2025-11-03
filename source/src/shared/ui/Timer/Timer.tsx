@@ -28,14 +28,28 @@ interface TimerProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<
 
 const StopwatchTimer = ({ className, size, marginTop }: TimerProps) => {
     const { minutes, seconds } = useStopwatch({ autoStart: true });
-    return <div className={timerVariants({ size, className, marginTop })}>{`${minutes}:${seconds}`}</div>;
+    return (
+        <div
+            className={timerVariants({
+                size,
+                className,
+                marginTop
+            })}>{`${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`}</div>
+    );
 };
 
 const CountdownTimer = ({ secondsToDo = 0, timerCallback, className, size, marginTop }: TimerProps) => {
     const time = new Date();
     time.setSeconds(time.getSeconds() + secondsToDo);
     const { minutes, seconds } = useTimer({ expiryTimestamp: time, onExpire: timerCallback });
-    return <div className={timerVariants({ size, className, marginTop })}>{`${minutes}:${seconds}`}</div>;
+    return (
+        <div
+            className={timerVariants({
+                size,
+                className,
+                marginTop
+            })}>{`${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`}</div>
+    );
 };
 
 export const Timer = (props: TimerProps) => {
