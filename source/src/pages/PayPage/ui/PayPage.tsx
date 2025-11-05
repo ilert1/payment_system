@@ -25,9 +25,6 @@ const tjs = "tjs";
 // const iban = "iban";
 const abh = "abh";
 
-const jpegBase64 =
-    "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEhIVFRUVFRUVFRUVFRUVFRUWFxUXFhUYFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGy0mICUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwQBAgUGB//EADYQAAEDAgQDBgQEBgMBAAAAAAEAAhEDIQQSMQVBUWEGEyJxgZGh8BRCUrHB0fAHM2Jy0eH/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAjEQEBAAICAgEFAQAAAAAAAAAAAAECESExAxJBUWETIlGB/9oADAMBAAIRAxEAPwD3lEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQB//2Q==";
-
 const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();
     ym("reachGoal", "pay-page");
@@ -95,33 +92,11 @@ const PayPage = () => {
                 pureBase64 = base64Data.split(",")[1];
             }
 
-            if (isConfirmTypeCode) {
-                const dummyJpeg = new File(
-                    [Uint8Array.from(atob(jpegBase64), c => c.charCodeAt(0))],
-                    "placeholder.jpg",
-                    { type: "image/jpeg" }
-                );
-
-                const base64Data = await fileToBase64(dummyJpeg);
-                pureBase64 = base64Data.split(",")[1];
-            }
-
             try {
                 const { data } = await axios.post(
                     `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                     {
                         event: "paymentPayerConfirm",
-                        ...(isConfirmTypeCode
-                            ? {
-                                  payload: {
-                                      attachment: {
-                                          type: "confirm",
-                                          format: "code",
-                                          data: pureBase64
-                                      }
-                                  }
-                              }
-                            : {}),
                         ...(isConfirmTypeFile
                             ? {
                                   payload: {
