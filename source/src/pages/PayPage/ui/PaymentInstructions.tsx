@@ -96,7 +96,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
     /* трансгран кейс для Таджикистана по tcard2card */
 
-    if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
+    if (caseName === tjs && ["tcard2card", "card2card_cross_border"].includes(BFData?.[dest]?.method?.name ?? "")) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
                 <Text text={t("steps_transgran_tcard2card.tbankTitle", ns)} />
