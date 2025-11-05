@@ -63,5 +63,22 @@
     "attention": "Make a transfer to the bank and amount specified in the form. Otherwise, we do not guarantee the crediting.",
     "agree": "Okay, understood",
     "scanQrCode": "Scan the QR code with your phone's standard camera.",
-    "linkToApp": "Go to the app"
+    "linkToApp": "Go to the app",
+    "transactionTypeForm": {
+        "title": "Transaction confirmation",
+        "description": "Please enter the transaction identifier",
+        "fields": {
+            "transactionType": "Transaction identifier",
+            "transactionTypePlaceholder": "Enter transaction identifier"
+        },
+        "errors": {
+            "generalError": "An error occurred while sending data. Please try again",
+            "cannotBeEmpty": "The transaction identifier cannot be empty",
+            "regex": "The transaction identifier can only contain Latin letters and numbers"
+        },
+        "buttons": {
+            "confirm": "Approve transfer",
+            "cancel": "Return"
+        }
+    }
 }

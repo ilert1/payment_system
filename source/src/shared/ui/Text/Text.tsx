@@ -21,6 +21,7 @@ interface TextProps {
     size?: TextSize;
     weight?: TextWeight;
     grow?: boolean;
+    noWrapBalance?: boolean;
     "data-testid"?: string;
     onClick?: () => void;
 }
@@ -56,7 +57,10 @@ export const Text = memo((props: TextProps) => {
     return (
         <div className={classNames(cls.text, { [cls.grow]: grow }, additionalClasses)}>
             {text && (
-                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`} onClick={onClick}>
+                <p
+                    className={classNames(cls.text, { [cls.noWrapBalance]: cls.noWrapBalance })}
+                    data-testid={`${dataTestId}.Paragraph`}
+                    onClick={onClick}>
                     {text}
                 </p>
             )}

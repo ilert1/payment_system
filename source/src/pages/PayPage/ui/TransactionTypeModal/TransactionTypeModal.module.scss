@@ -1,0 +1,150 @@
+.dialog {
+    cursor: auto;
+
+    z-index: 1000;
+    translate: 0 50px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+
+    max-width: 48rem;
+    padding: 3.5rem;
+    padding-bottom: 4.5rem;
+    border-radius: 5px;
+
+    opacity: 0;
+    background: white;
+
+    transition:
+        translate 0.5s ease,
+        opacity 0.3s ease;
+}
+
+.alertTriangle {
+    user-select: none;
+
+    align-self: center;
+
+    width: 18.6rem;
+    margin-bottom: 1rem;
+
+    -webkit-user-drag: none;
+
+    @media (width <= 520px) {
+        width: 13.4rem;
+    }
+}
+
+.overlay {
+    pointer-events: none;
+
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center center;
+
+    box-sizing: border-box;
+    height: 100vh;
+    padding: 15px;
+
+    opacity: 0;
+    background: #00173380;
+    backdrop-filter: blur(30px);
+
+    transition: opacity 0.5s ease;
+}
+
+.overlayActive {
+    pointer-events: all;
+    opacity: 1;
+
+    .dialog {
+        translate: 0;
+        opacity: 1;
+        transition:
+            translate 0.5s ease 0.2s,
+            opacity 0.3s ease 0.2s;
+    }
+}
+
+.payoutDialog {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 65px;
+    justify-content: space-between;
+
+    text-align: left;
+
+    @media (width <= 520px) {
+        gap: 65px;
+    }
+}
+
+.payoutDialogBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 21px;
+    justify-content: end;
+
+    .languageSelector {
+        align-self: end;
+    }
+}
+
+.cardNumber {
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 40px;
+    color: #37a8f3;
+
+    @media (width <= 520px) {
+        font-size: 22px;
+        line-height: 29px;
+    }
+}
+
+.buttonsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+
+    @media (width <= 520px) {
+        gap: 31px;
+    }
+}
+
+.buttonsSubmit {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+
+    @media (width <= 520px) {
+        gap: 10px;
+    }
+}
+
+.button {
+    flex-grow: 1;
+}
+
+.cancelButton {
+    flex-grow: 1;
+    width: 100%;
+}
+
+.uniqeness {
+    .alertTriangle {
+        & > path {
+            opacity: 0.3;
+            stroke: #010f18;
+        }
+    }
+}

@@ -16,12 +16,17 @@ import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
+import { SubmitModal } from "@/widgets/SubmitModal";
 import { PaymentInstructions } from "./PaymentInstructions";
+import { TransactionTypeModal } from "./TransactionTypeModal/TransactionTypeModal";
 
 const azn = "azn";
 const tjs = "tjs";
 // const iban = "iban";
 const abh = "abh";
+
+const jpegBase64 =
+    "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEhIVFRUVFRUVFRUVFRUVFRUWFxUXFhUYFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGy0mICUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwQBAgUGB//EADYQAAEDAgQDBgQEBgMBAAAAAAEAAhEDIQQSMQVBUWEGEyJxgZGh8BRCUrHB0fAHM2Jy0eH/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAjEQEBAAICAgEFAQAAAAAAAAAAAAECESExAxJBUWETIlGB/9oADAMBAAIRAxEAPwD3lEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQB//2Q==";
 
 const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();
@@ -42,8 +47,14 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
-    const isConfirmTypeFile = method?.context?.confirm_type === "file";
+    const isConfirmTypeFile = false;
+    const isConfirmTypeCode = true;
+    // const isConfirmTypeFile = method?.context?.confirm_type === "file";
+    // const isConfirmTypeCode = method?.context?.confirm_type === "code";
+
     console.log("confirm_type: ", method?.context?.confirm_type);
+    const [dialogShow, setDialogShow] = useState(false);
+    // const [dialogShow, setDialogShow] = useState(false);
 
     //Критерий уникализации суммы (на всякий случай сделал проверку на наличие original_amount, мало ли будут кейсы без него или он будет нулевой, чтобы не показался popup)
     const isUnicalization =
@@ -78,8 +89,20 @@ const PayPage = () => {
                 return new Promise(resolve => resolve(""));
             };
             let pureBase64: string | null = null;
+
             if (isConfirmTypeFile) {
                 const base64Data = await fileToBase64(selectedFile ?? null);
+                pureBase64 = base64Data.split(",")[1];
+            }
+
+            if (isConfirmTypeCode) {
+                const dummyJpeg = new File(
+                    [Uint8Array.from(atob(jpegBase64), c => c.charCodeAt(0))],
+                    "placeholder.jpg",
+                    { type: "image/jpeg" }
+                );
+
+                const base64Data = await fileToBase64(dummyJpeg);
                 pureBase64 = base64Data.split(",")[1];
             }
 
@@ -88,6 +111,17 @@ const PayPage = () => {
                     `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                     {
                         event: "paymentPayerConfirm",
+                        ...(isConfirmTypeCode
+                            ? {
+                                  payload: {
+                                      attachment: {
+                                          type: "confirm",
+                                          format: "code",
+                                          data: pureBase64
+                                      }
+                                  }
+                              }
+                            : {}),
                         ...(isConfirmTypeFile
                             ? {
                                   payload: {
@@ -256,21 +290,23 @@ const PayPage = () => {
     });
 
     useEffect(() => {
+        const buttonCallback = () => {
+            if (isConfirmTypeFile) {
+                setButtonCallbackEnabled(true);
+            } else if (isConfirmTypeCode) {
+                setDialogShow(true);
+            } else {
+                openFilePicker();
+            }
+        };
+
         setFooter({
             buttonCaption: !isConfirmTypeFile
                 ? t("approveTransfer", ns)
                 : selectedFile
                   ? t("approveTransfer", ns)
                   : t("selectFile", ns),
-            buttonCallback: !isConfirmTypeFile
-                ? () => {
-                      setButtonCallbackEnabled(true);
-                  }
-                : selectedFile
-                  ? () => {
-                        setButtonCallbackEnabled(true);
-                    }
-                  : () => openFilePicker(),
+            buttonCallback: buttonCallback,
             nextPage: nextPage,
             nextEnabled: !isFetching_ButtonCallback,
             approve: true,
@@ -278,6 +314,19 @@ const PayPage = () => {
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isConfirmTypeFile, isFetching_ButtonCallback, isUnicalization, nextPage, selectedFile]);
+
+    const modalData = {
+        title: t("cancelDialog.title", ns),
+        text: t("cancelDialog.text", ns),
+        primaryBtnText: t("cancel", ns),
+        secondaryBtnCallback: () => {
+            setDialogShow(false);
+        },
+        primaryBtnCallback: () => {
+            setDialogShow(false);
+            setButtonCallbackEnabled(true);
+        }
+    };
 
     return (
         <Page>
@@ -329,7 +378,7 @@ const PayPage = () => {
                             label={t("changeCheck", ns)}
                         />
                     )}
-
+                    <TransactionTypeModal show={dialogShow} setShow={setDialogShow} data={modalData} />
                     <Footer />
                 </>
             )}

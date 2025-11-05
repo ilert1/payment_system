@@ -19,7 +19,8 @@ export const PayHeader = (props: PayHeaderProps) => {
     const { t } = useTranslation();
 
     const now = new Date().getTime();
-    const timeLeft = (timestamp * 1000 + 15 * 1000 * 60 - now) / 1000;
+    const timeLeft = 500000;
+    // const timeLeft = (timestamp * 1000 + 15 * 1000 * 60 - now) / 1000;
 
     return (
         <div className={styles.payHeader}>

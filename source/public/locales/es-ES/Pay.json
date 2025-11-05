@@ -63,5 +63,22 @@
     "attention": "Realice la transferencia al banco y por el monto indicados en el formulario. De lo contrario, no garantizamos la acreditación.",
     "agree": "Ok, entendido",
     "scanQrCode": "Escanee el código QR con la cámara de su teléfono.",
-    "linkToApp": "Ir a la aplicación"
+    "linkToApp": "Ir a la aplicación",
+    "transactionTypeForm": {
+        "title": "Confirmación de transacción",
+        "description": "Por favor, introduzca el identificador de la transacción",
+        "fields": {
+            "transactionType": "Identificador de transacción",
+            "transactionTypePlaceholder": "Introduzca el identificador de transacción"
+        },
+        "errors": {
+            "generalError": "Error al enviar los datos. Inténtelo de nuevo",
+            "cannotBeEmpty": "El identificador de transacción no puede estar vacío",
+            "regex": "El identificador de transacción solo puede contener letras latinas y números"
+        },
+        "buttons": {
+            "confirm": "Confirmar transferencia",
+            "cancel": "Volver"
+        }
+    }
 }

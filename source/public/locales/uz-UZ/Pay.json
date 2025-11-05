@@ -63,5 +63,22 @@
     "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
     "agree": "Yaxshi, tushundim",
     "scanQrCode": "QR kodini telefonning standart kamerasi bilan skanerlang.",
-    "linkToApp": "Ilovaga o'ting"
+    "linkToApp": "Ilovaga o'ting",
+    "transactionTypeForm": {
+        "title": "Tranzaksiyani tasdiqlash",
+        "description": "Iltimos, tranzaksiya identifikatorini kiriting",
+        "fields": {
+            "transactionType": "Tranzaksiya identifikatori",
+            "transactionTypePlaceholder": "Tranzaksiya identifikatorini kiriting"
+        },
+        "errors": {
+            "generalError": "Maʼlumot yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring",
+            "cannotBeEmpty": "Tranzaksiya identifikatori bo'sh bo'lishi mumkin emas",
+            "regex": "Tranzaksiya identifikatori faqat lotin harflari va raqamlarni o'z ichiga olishi mumkin"
+        },
+        "buttons": {
+            "confirm": "O'tkazmani tasdiqlash",
+            "cancel": "Qaytish"
+        }
+    }
 }

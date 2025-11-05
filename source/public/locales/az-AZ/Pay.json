@@ -63,5 +63,22 @@
     "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
     "agree": "Tamam, başa düşdüm",
     "scanQrCode": "QR kodunu telefonunuzun stok kamerası ilə tarayın.",
-    "linkToApp": "Tətbiqə gedin"
+    "linkToApp": "Tətbiqə gedin",
+    "transactionTypeForm": {
+        "title": "Əməliyyatın təsdiqlənməsi",
+        "description": "Zəhmət olmasa əməliyyat identifikatorunu daxil edin",
+        "fields": {
+            "transactionType": "Əməliyyat identifikatoru",
+            "transactionTypePlaceholder": "Əməliyyat identifikatorunu daxil edin"
+        },
+        "errors": {
+            "generalError": "Məlumat göndərilərkən xəta baş verdi. Yenidən cəhd edin",
+            "cannotBeEmpty": "Əməliyyat identifikatoru boş ola bilməz",
+            "regex": "Əməliyyat identifikatoru yalnız Latın hərfləri və rəqəmləri ehtiva edə bilər"
+        },
+        "buttons": {
+            "confirm": "Köçürməni təsdiqlə",
+            "cancel": "Qayıt"
+        }
+    }
 }
