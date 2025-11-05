@@ -16,7 +16,7 @@ import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { SubmitModal } from "@/widgets/SubmitModal";
+// import { SubmitModal } from "@/widgets/SubmitModal";
 import { PaymentInstructions } from "./PaymentInstructions";
 import { TransactionTypeModal } from "./TransactionTypeModal/TransactionTypeModal";
 
@@ -24,9 +24,6 @@ const azn = "azn";
 const tjs = "tjs";
 // const iban = "iban";
 const abh = "abh";
-
-const jpegBase64 =
-    "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUQEhIVFRUVFRUVFRUVFRUVFRUWFxUXFhUYFRUYHSggGBolHRUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGhAQGy0mICUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAAAwQBAgUGB//EADYQAAEDAgQDBgQEBgMBAAAAAAEAAhEDIQQSMQVBUWEGEyJxgZGh8BRCUrHB0fAHM2Jy0eH/xAAZAQEBAQEBAQAAAAAAAAAAAAAAAQIDBAX/xAAjEQEBAAICAgEFAQAAAAAAAAAAAAECESExAxJBUWETIlGB/9oADAMBAAIRAxEAPwD3lEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQB//2Q==";
 
 const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();

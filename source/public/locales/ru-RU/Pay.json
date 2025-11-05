@@ -69,7 +69,7 @@
         "description": "Пожалуйста, введите идентификатор транзакции",
         "fields": {
             "transactionType": "Идентификатор транзакции",
-            "transactionTypePlaceholder": "Введите идентификатор транзакции"
+            "transactionTypePlaceholder": "Введите идентификатор"
         },
         "errors": {
             "generalError": "Ошибка при отправке данных. Повторите попытку",
