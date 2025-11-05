@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "@/shared/lib/classNames";
 import { Text } from "@/shared/ui/Text/Text";
@@ -13,7 +13,7 @@ export const ProgressSteper = ({ step }: ProgressSteperProps) => {
     const [statusText, setStatusText] = useState<string>("");
 
     const { t } = useTranslation();
-    const ns = { ns: "ProgressSteper" };
+    const ns = useMemo(() => ({ ns: "ProgressSteper" }), []);
 
     useEffect(() => {
         switch (step) {
@@ -32,7 +32,7 @@ export const ProgressSteper = ({ step }: ProgressSteperProps) => {
             default:
                 break;
         }
-    }, [step]);
+    }, [step, t, ns]);
 
     return (
         <div className={styles.progressContainer}>

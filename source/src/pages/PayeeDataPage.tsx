@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { ContentDescription } from "@/entities/payment";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
@@ -17,7 +17,7 @@ const PayeeDataPage = () => {
     ym("reachGoal", "payee-data-page");
 
     //translation
-    const ns = { ns: "PayeeData" };
+    const ns = useMemo(() => ({ ns: "PayeeData" }), []);
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
@@ -58,7 +58,7 @@ const PayeeDataPage = () => {
             isUnicalization: false,
             approve: false
         });
-    }, [backRedirectUrl, trader, currency, redirectUrl, ns]);
+    }, [backRedirectUrl, trader, currency, redirectUrl, ns, t, setFooter]);
 
     return (
         <Page>

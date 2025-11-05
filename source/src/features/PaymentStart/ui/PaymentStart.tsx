@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
 import { ContentDescription } from "@/entities/payment";
@@ -19,7 +19,7 @@ export const PaymentStart = () => {
     const payOutMode = Boolean(BFData?.payout);
 
     const { t } = useTranslation(payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"]);
-    const ns = { ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] };
+    const ns = useMemo(() => ({ ns: payOutMode ? ["PayOut", "Common", "Main"] : ["Common", "Main"] }), [payOutMode]);
 
     const setFooter = useFooterStore(state => state.setFooter);
     const dest = payOutMode ? "payout" : "payment";
@@ -41,7 +41,7 @@ export const PaymentStart = () => {
             buttonCallback: btnCallback,
             isUnicalization: false
         });
-    }, [BFData?.[dest]?.method]);
+    }, [t, ns, BFData, dest, setFooter]);
 
     return !payOutMode ? (
         <>

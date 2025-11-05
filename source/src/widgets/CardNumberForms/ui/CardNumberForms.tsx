@@ -112,7 +112,7 @@ export const CardNumberForms = () => {
             showCancelBtn: status === "paymentPayerDataEntrу"
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isFetching, BFData, isEcom, redirectUrl, isPlatformCard, waitTransfer, nextEnabled, isPressed, status]);
+    }, [isFetching, BFData, isEcom, redirectUrl, isPlatformCard, waitTransfer, nextEnabled, isPressed, status, t]);
 
     return isEcom ? (
         !isFetching && !waitTransfer ? (
