@@ -64,7 +64,7 @@
     "agree": "Добре, зрозуміло",
     "scanQrCode": "Відскануйте QR-код штатною камерою телефону.",
     "linkToApp": "Перейти в додаток",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "Підтвердження транзакції",
         "description": "Будь ласка, введіть ідентифікатор транзакції",
         "fields": {

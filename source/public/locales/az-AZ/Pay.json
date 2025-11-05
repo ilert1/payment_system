@@ -64,7 +64,7 @@
     "agree": "Tamam, başa düşdüm",
     "scanQrCode": "QR kodunu telefonunuzun stok kamerası ilə tarayın.",
     "linkToApp": "Tətbiqə gedin",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "Əməliyyatın təsdiqlənməsi",
         "description": "Zəhmət olmasa əməliyyat identifikatorunu daxil edin",
         "fields": {

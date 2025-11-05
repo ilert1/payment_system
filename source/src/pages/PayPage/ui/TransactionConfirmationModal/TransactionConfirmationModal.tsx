@@ -1,15 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?react";
 import { classNames } from "@/shared/lib/classNames";
-import { Button } from "@/shared/ui/Button/Button";
 import { Heading } from "@/shared/ui/Heading/Heading";
 import { Text } from "@/shared/ui/Text/Text";
 import { LanguageSelector } from "@/widgets/LanguageSelector";
-import { TransactionTypeForm } from "../TransactionTypeForm/TransactionTypeForm";
-import styles from "./TransactionTypeModal.module.scss";
+import { TransactionConfirmationForm } from "../TransactionConfirmationForm/TransactionConfirmationForm.module";
+import styles from "./TransactionConfirmationModal.module.scss";
 
-interface TransactionTypeModalProps {
+interface TransactionConfirmationModalProps {
     show: boolean;
     setShow: (show: boolean) => void;
     data: {
@@ -24,7 +22,7 @@ interface TransactionTypeModalProps {
     };
 }
 
-export const TransactionTypeModal = (props: TransactionTypeModalProps) => {
+export const TransactionConfirmationModal = (props: TransactionConfirmationModalProps) => {
     const { show, data } = props;
     const { lang, setLang } = useAppContext();
     const { t } = useTranslation("Pay");
@@ -41,10 +39,10 @@ export const TransactionTypeModal = (props: TransactionTypeModalProps) => {
                 <div className={styles.payoutDialog}>
                     <div className={styles.payoutDialogBlock}>
                         <LanguageSelector lang={lang} setLang={setLang} />
-                        <Heading size="l" title={t("transactionTypeForm.title")} align="center" />
-                        <Text size="l" text={t("transactionTypeForm.description")} align="center" />
+                        <Heading size="l" title={t("transactionConfirmationForm.title")} align="center" />
+                        <Text size="l" text={t("transactionConfirmationForm.description")} align="center" />
                     </div>
-                    <TransactionTypeForm data={data} />
+                    <TransactionConfirmationForm data={data} />
                 </div>
             </div>
         </div>

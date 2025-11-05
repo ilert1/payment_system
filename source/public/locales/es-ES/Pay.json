@@ -64,7 +64,7 @@
     "agree": "Ok, entendido",
     "scanQrCode": "Escanee el código QR con la cámara de su teléfono.",
     "linkToApp": "Ir a la aplicación",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "Confirmación de transacción",
         "description": "Por favor, introduzca el identificador de la transacción",
         "fields": {

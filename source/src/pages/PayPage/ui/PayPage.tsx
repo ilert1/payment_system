@@ -18,7 +18,7 @@ import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { SubmitModal } from "@/widgets/SubmitModal";
 import { PaymentInstructions } from "./PaymentInstructions";
-import { TransactionTypeModal } from "./TransactionTypeModal/TransactionTypeModal";
+import { TransactionConfirmationModal } from "./TransactionConfirmationModal/TransactionConfirmationModal";
 
 const azn = "azn";
 const tjs = "tjs";
@@ -353,7 +353,7 @@ const PayPage = () => {
                             label={t("changeCheck", ns)}
                         />
                     )}
-                    <TransactionTypeModal show={dialogShow} setShow={setDialogShow} data={modalData} />
+                    <TransactionConfirmationModal show={dialogShow} setShow={setDialogShow} data={modalData} />
                     <Footer />
                 </>
             )}

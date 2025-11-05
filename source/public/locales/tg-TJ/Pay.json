@@ -64,7 +64,7 @@
     "agree": "Хуб, фаҳмидам",
     "scanQrCode": "РАМЗИ QR-ро бо камераи пурраи телефон скан кунед.",
     "linkToApp": "Ба барнома равед",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "Тасдиқи муомила",
         "description": "Лутфан, идентификатори муомиларо ворид кунед",
         "fields": {

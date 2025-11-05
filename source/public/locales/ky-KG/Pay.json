@@ -64,7 +64,7 @@
     "agree": "Ооба, түшүндүм",
     "scanQrCode": "Сток телефон камерасы менен сув-кодун сканерлеңиз.",
     "linkToApp": "Колдонмого өтүү",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "Транзакцияны тастыктоо",
         "description": "Транзакция идентификаторун киргизиңиз",
         "fields": {

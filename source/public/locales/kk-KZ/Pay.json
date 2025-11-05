@@ -64,7 +64,7 @@
     "agree": "Жақсы, түсінікті",
     "scanQrCode": "Телефонның стандартты камерасымен QR кодын сканерлеңіз.",
     "linkToApp": "Қолданбаға өтіңіз",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "Транзакцияны растау",
         "description": "Транзакция идентификаторын енгізіңіз",
         "fields": {

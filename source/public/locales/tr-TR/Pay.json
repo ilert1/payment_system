@@ -64,7 +64,7 @@
     "agree": "Tamam, anladım",
     "scanQrCode": "QR kodunu telefonunuzun standart kamerasıyla tarayın.",
     "linkToApp": "Uygulamaya git",
-    "transactionTypeForm": {
+    "transactionConfirmationForm": {
         "title": "İşlem onayı",
         "description": "Lütfen işlem tanımlayıcısını girin",
         "fields": {

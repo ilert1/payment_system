@@ -6,13 +6,13 @@ import { Button } from "@/shared/ui/Button/Button";
 import { Label } from "@/shared/ui/Label";
 import { Text } from "@/shared/ui/Text/Text";
 import { Input } from "@/shared/ui/input/input";
-import styles from "./TransactionTypeForm.module.scss";
+import styles from "./TransactionConfirmationForm.module.scss";
 
-interface TransactionTypeFormValues {
+interface TransactionConfirmationFormValues {
     transactionType: string;
 }
 
-interface TransactionTypeFormProps {
+interface TransactionConfirmationForm {
     data: {
         title: string;
         text: string;
@@ -25,19 +25,19 @@ interface TransactionTypeFormProps {
     };
 }
 
-export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
+export const TransactionConfirmationForm = (props: TransactionConfirmationForm) => {
     const { data } = props;
     const { t } = useTranslation("Pay");
 
-    const TransactionTypeFormSchema = z.object({
+    const TransactionConfirmationFormSchema = z.object({
         transactionType: z
             .string()
-            .min(1, t("transactionTypeForm.errors.cannotBeEmpty"))
-            .regex(/^[A-Za-z0-9]+$/, t("transactionTypeForm.errors.regex"))
+            .min(1, t("transactionConfirmationForm.errors.cannotBeEmpty"))
+            .regex(/^[A-Za-z0-9]+$/, t("transactionConfirmationForm.errors.regex"))
     });
 
-    const transactionTypeForm = useForm<TransactionTypeFormValues>({
-        resolver: zodResolver(TransactionTypeFormSchema),
+    const transactionConfirmationForm = useForm<TransactionConfirmationFormValues>({
+        resolver: zodResolver(TransactionConfirmationFormSchema),
         mode: "all",
         defaultValues: {
             transactionType: ""
@@ -50,12 +50,12 @@ export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
                 <div className={styles.item}>
                     <Label
                         weight="medium"
-                        text={t("transactionTypeForm.fields.transactionType")}
+                        text={t("transactionConfirmationForm.fields.transactionType")}
                         className={styles.label}
                     />
                     <Controller
                         name="transactionType"
-                        control={transactionTypeForm.control}
+                        control={transactionConfirmationForm.control}
                         rules={{
                             required: true,
                             minLength: 1,
@@ -66,29 +66,29 @@ export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
                             <Input
                                 {...field}
                                 textSize="lg"
-                                placeholder={t("transactionTypeForm.fields.transactionTypePlaceholder")}
+                                placeholder={t("transactionConfirmationForm.fields.transactionTypePlaceholder")}
                                 onChange={e => {
                                     if (e.target.value.length > 0 && !/^[a-zA-Z0-9]*$/.test(e.target.value)) {
-                                        transactionTypeForm.setError("transactionType", {
+                                        transactionConfirmationForm.setError("transactionType", {
                                             type: "pattern",
-                                            message: t("transactionTypeForm.errors.regex")
+                                            message: t("transactionConfirmationForm.errors.regex")
                                         });
                                         return;
                                     }
                                     const val = e.target.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 50);
-                                    transactionTypeForm.clearErrors();
-                                    transactionTypeForm.setValue("transactionType", val);
+                                    transactionConfirmationForm.clearErrors();
+                                    transactionConfirmationForm.setValue("transactionType", val);
                                 }}
                                 className={styles.input}
                             />
                         )}
                     />
-                    {transactionTypeForm.formState.errors.transactionType && (
+                    {transactionConfirmationForm.formState.errors.transactionType && (
                         <Text
                             className={styles.errorMessage}
                             size="xxs"
                             variant="error"
-                            text={transactionTypeForm.formState.errors.transactionType.message}
+                            text={transactionConfirmationForm.formState.errors.transactionType.message}
                             noWrapBalance
                         />
                     )}
@@ -98,12 +98,12 @@ export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
             <div className={styles.buttonsBlock}>
                 <div className={styles.buttonsSubmit}>
                     <Button
-                        disabled={transactionTypeForm.getValues("transactionType").length === 0}
+                        disabled={transactionConfirmationForm.getValues("transactionType").length === 0}
                         onClick={data.primaryBtnCallback}
                         variant={"default"}
                         size={"lg"}
                         className={styles.button}>
-                        {t("transactionTypeForm.buttons.confirm")}&nbsp;
+                        {t("transactionConfirmationForm.buttons.confirm")}&nbsp;
                     </Button>
 
                     <Button
@@ -111,7 +111,7 @@ export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
                         variant={"outline"}
                         onClick={data.secondaryBtnCallback}
                         className={styles.button}>
-                        {t("transactionTypeForm.buttons.cancel")}
+                        {t("transactionConfirmationForm.buttons.cancel")}
                     </Button>
                 </div>
             </div>
