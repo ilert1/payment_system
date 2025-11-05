@@ -75,7 +75,7 @@ export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
                                         });
                                         return;
                                     }
-                                    const val = e.target.value.replace(/[^a-zA-Z0-9]/g, "");
+                                    const val = e.target.value.replace(/[^a-zA-Z0-9]/g, "").slice(0, 50);
                                     transactionTypeForm.clearErrors();
                                     transactionTypeForm.setValue("transactionType", val);
                                 }}
@@ -97,7 +97,12 @@ export const TransactionTypeForm = (props: TransactionTypeFormProps) => {
 
             <div className={styles.buttonsBlock}>
                 <div className={styles.buttonsSubmit}>
-                    <Button onClick={data.primaryBtnCallback} variant={"default"} size={"lg"} className={styles.button}>
+                    <Button
+                        disabled={transactionTypeForm.getValues("transactionType").length === 0}
+                        onClick={data.primaryBtnCallback}
+                        variant={"default"}
+                        size={"lg"}
+                        className={styles.button}>
                         {t("transactionTypeForm.buttons.confirm")}&nbsp;
                     </Button>
 
