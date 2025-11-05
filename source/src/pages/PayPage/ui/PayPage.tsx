@@ -16,7 +16,7 @@ import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { SubmitModal } from "@/widgets/SubmitModal";
+// import { SubmitModal } from "@/widgets/SubmitModal";
 import { PaymentInstructions } from "./PaymentInstructions";
 import { TransactionConfirmationModal } from "./TransactionConfirmationModal/TransactionConfirmationModal";
 

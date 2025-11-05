@@ -5,7 +5,8 @@
     "changeCheck": "Reemplazar RECIBO",
     "default_steps": {
         "steps_card": "Copie el número de la tarjeta y abra la aplicación de su banco|Realice la transferencia al número de tarjeta en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>",
-        "steps_phone": "Copie el número de teléfono y abra la aplicación de su banco|Realice la transferencia al número de teléfono en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>"
+        "steps_phone": "Copie el número de teléfono y abra la aplicación de su banco|Realice la transferencia al número de teléfono en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>",
+        "steps_account": "Copia el número de cuenta y abre la aplicación de tu banco|Realiza una transferencia al <s>{{bankName}}</s> usando el número de cuenta por un importe de <s>{{amount}}</s>|Haz clic en el botón <s>“{{buttonName}}”</s>"
     },
     "steps_transgran_simple": {
         "tbankTitle": "Instrucción T-Bank",

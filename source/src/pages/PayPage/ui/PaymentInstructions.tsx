@@ -25,6 +25,7 @@ const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
 const ars = "ars";
+const bdt = "bdt";
 
 export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     caseName,
@@ -151,12 +152,15 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     return (
         <div className={styles.instructionsNew}>
             <InstructionItems
-                data={t(`default_steps.${trader?.phone || trader?.phone_number ? "steps_phone" : "steps_card"}`, {
-                    amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
-                    bankName: bankName,
-                    buttonName: t("approveTransfer", ns),
-                    ...ns
-                })}
+                data={t(
+                    `default_steps.${trader?.phone || trader?.phone_number ? "steps_phone" : trader?.account_number ? "steps_account" : "steps_card"}`,
+                    {
+                        amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                        bankName: bankName,
+                        buttonName: t("approveTransfer", ns),
+                        ...ns
+                    }
+                )}
                 isActive
             />
         </div>

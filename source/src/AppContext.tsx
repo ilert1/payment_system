@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
 import { Currencies } from "./shared/assets/library/Currency";
-import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
+import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
 import { useBFStore } from "./shared/store/bfDataStore.js";
 
@@ -42,13 +42,14 @@ const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
 const ars = "ars";
+const bdt = "bdt";
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
-    const [bankName, setBankName] = useState("");
+    // const [bankName, setBankName] = useState("");
 
     const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
 
@@ -196,20 +197,18 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     }, [BFData, dest, status]);
 
     const method = BFData?.[dest]?.method;
-    const trader = method?.payee?.data;
 
-    useEffect(() => {
-        setBankName(getLocalBankName(method?.bank?.display_name, lang));
-    }, [method?.bank?.display_name, lang]);
+    const trader = method?.payee?.data;
+    const bankName = trader?.bank_name;
 
     useEffect(() => {
         setCaseName("");
 
-        console.log(`bankName: ${bankName}`);
-        const traderBankName = trader?.bank_name;
+        // console.log(`bankName: ${bankName}`);
+        const bankName = trader?.bank_name;
         //AZN case check
         if (
-            traderBankName &&
+            bankName &&
             [
                 "otherbankaz",
                 "mpay",
@@ -228,7 +227,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 "abbbank",
                 "expressbank",
                 "express24"
-            ].includes(traderBankName)
+            ].includes(bankName)
         ) {
             setCaseName(azn);
             console.log(`caseName: azn`);
@@ -236,7 +235,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
         //TJS case check
         if (
-            traderBankName &&
+            bankName &&
             [
                 "tcell",
                 "babilon-m",
@@ -256,20 +255,20 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 "dushanbe",
                 "alif",
                 "humo"
-            ].includes(traderBankName)
+            ].includes(bankName)
         ) {
             setCaseName(tjs);
             console.log(`caseName: tjs`);
         }
 
         //ABH case check
-        if (traderBankName && ["a-mobile"].includes(traderBankName)) {
+        if (bankName && ["a-mobile"].includes(bankName)) {
             setCaseName(abh);
             console.log(`caseName: abh`);
         }
 
         //IBAN case check
-        if (traderBankName && trader?.iban_number) {
+        if (bankName && trader?.iban_number) {
             setCaseName(iban);
             console.log(`caseName: iban`);
         }
@@ -278,6 +277,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         if (BFData?.[dest]?.currency && BFData?.[dest]?.currency === "ARS") {
             setCaseName(ars);
             console.log(`caseName: ars`);
+        }
+
+        //BDT case check
+        if (BFData?.[dest]?.currency && BFData?.[dest]?.currency === "BDT") {
+            setCaseName(bdt);
+            console.log(`caseName: bdt`);
         }
     }, [BFData?.[dest]?.currency, bankName, trader]);
 

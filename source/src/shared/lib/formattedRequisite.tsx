@@ -9,6 +9,9 @@ export const formatedRequisite = (req: string, isPhone: boolean, caseName: strin
             if (caseName === "ars") {
                 return req;
             }
+            if (caseName === "bdt") {
+                return req.replace(/(.{3})(.{4})(.{4})/, "$1 $2 $3");
+            }
             return req.replace(/(.{4})/g, "$1 ");
         }
     }
