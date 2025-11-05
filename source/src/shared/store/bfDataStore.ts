@@ -50,6 +50,8 @@ export const useBFStore = create<BFStore>(set => ({
             /* tmpData[dest].method.bank.display_name.name_en = "bKash";
             tmpData[dest].method.bank.display_name.name_ru = "bKash"; */
             tmpData[dest].method.payee.data.account_number = "01919443285";
+            tmpData[dest].method.context.confirm_type = "code";
+
             // tmpData[dest].method.payee.data.card_number = null;
 
             // Блок для теста phone_number
