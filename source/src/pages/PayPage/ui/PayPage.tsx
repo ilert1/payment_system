@@ -288,7 +288,7 @@ const PayPage = () => {
             isUnicalization: isUnicalization
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isConfirmTypeFile, isFetching_ButtonCallback, isUnicalization, nextPage, selectedFile]);
+    }, [isConfirmTypeFile, isFetching_ButtonCallback, isUnicalization, nextPage, selectedFile, t]);
 
     const modalData = {
         title: t("cancelDialog.title", ns),
