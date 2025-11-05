@@ -49,8 +49,6 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
 
-    // const [bankName, setBankName] = useState("");
-
     const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
 
     const safeYm = (...args: Parameters<typeof ym>) => {
@@ -199,13 +197,14 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const method = BFData?.[dest]?.method;
 
     const trader = method?.payee?.data;
-    const bankName = trader?.bank_name;
+    const bankName = trader?.bank_name ?? "";
 
     useEffect(() => {
         setCaseName("");
 
-        // console.log(`bankName: ${bankName}`);
         const bankName = trader?.bank_name;
+        // console.log(`bankName: ${bankName}`);
+
         //AZN case check
         if (
             bankName &&

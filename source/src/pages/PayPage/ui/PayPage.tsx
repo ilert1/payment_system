@@ -16,13 +16,11 @@ import Loader from "@/shared/ui/Loader/Loader";
 import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-// import { SubmitModal } from "@/widgets/SubmitModal";
 import { PaymentInstructions } from "./PaymentInstructions";
 import { TransactionConfirmationModal } from "./TransactionConfirmationModal/TransactionConfirmationModal";
 
 const azn = "azn";
 const tjs = "tjs";
-// const iban = "iban";
 const abh = "abh";
 
 const PayPage = () => {
@@ -44,14 +42,11 @@ const PayPage = () => {
 
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
-    const isConfirmTypeFile = false;
-    const isConfirmTypeCode = true;
-    // const isConfirmTypeFile = method?.context?.confirm_type === "file";
-    // const isConfirmTypeCode = method?.context?.confirm_type === "code";
+    const isConfirmTypeFile = method?.context?.confirm_type === "file";
+    const isConfirmTypeCode = method?.context?.confirm_type === "code";
 
     console.log("confirm_type: ", method?.context?.confirm_type);
     const [dialogShow, setDialogShow] = useState(false);
-    // const [dialogShow, setDialogShow] = useState(false);
 
     //Критерий уникализации суммы (на всякий случай сделал проверку на наличие original_amount, мало ли будут кейсы без него или он будет нулевой, чтобы не показался popup)
     const isUnicalization =
