@@ -16,17 +16,17 @@ describe("Timer component", () => {
 
     it("renders stopwatch (count up) by default", () => {
         render(<Timer />);
-        expect(screen.getByText("1:5")).toBeInTheDocument();
+        expect(screen.getByText("01:05")).toBeInTheDocument();
     });
 
     it("renders countdown timer when down=true", () => {
         render(<Timer down />);
-        expect(screen.getByText("2:30")).toBeInTheDocument();
+        expect(screen.getByText("02:30")).toBeInTheDocument();
     });
 
     it("applies custom className", () => {
         render(<Timer className="custom" />);
-        const timer = screen.getByText("1:5");
+        const timer = screen.getByText("01:05");
         expect(timer).toHaveClass("custom");
     });
 
@@ -51,6 +51,6 @@ describe("Timer component", () => {
         });
 
         render(<Timer />);
-        expect(screen.getByText("0:5")).toBeInTheDocument();
+        expect(screen.getByText("00:05")).toBeInTheDocument();
     });
 });
