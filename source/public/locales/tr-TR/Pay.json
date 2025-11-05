@@ -5,7 +5,8 @@
     "changeCheck": "Makbuzu değiştir",
     "default_steps": {
         "steps_card": "Kart numarasını kopyalayın ve banka uygulamanıza geçin|<s>{{bankName}}</s>’de kart numarasıyla <s>{{amount}}</s> tutarında transfer yapın|<s>“{{buttonName}}”</s> düğmesine basın",
-        "steps_phone": "Telefon numarasını kopyalayın ve banka uygulamanıza geçin|<s>{{bankName}}</s>’de telefon numarasıyla <s>{{amount}}</s> tutarında transfer yapın|<s>“{{buttonName}}”</s> düğmesine basın"
+        "steps_phone": "Telefon numarasını kopyalayın ve banka uygulamanıza geçin|<s>{{bankName}}</s>’de telefon numarasıyla <s>{{amount}}</s> tutarında transfer yapın|<s>“{{buttonName}}”</s> düğmesine basın",
+        "steps_account": "Hesap numarasını kopyalayın ve bankanızın uygulamasını açın|<s>{{amount}}</s> tutarında transferi hesap numarasıyla <s>{{bankName}}</s> üzerinden yapın|<s>“{{buttonName}}”</s> düğmesine basın"
     },
     "steps_transgran_simple": {
         "tbankTitle": "T-bank talimatı",

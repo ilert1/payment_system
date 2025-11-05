@@ -44,7 +44,7 @@ export const useBFStore = create<BFStore>(set => ({
             const tmpData = structuredClone(data);
             tmpData[dest].method.name = "bank_account_number";
             tmpData[dest].currency = "BDT";
-            tmpData[dest].method.payee.data.bank_name = "bKash";
+            tmpData[dest].method.payee.data.bank_name = "Nagad";
             // tmpData[dest].method.payee.data.card_holder = "Sofía Martínez";
             tmpData[dest].method.payee.data.card_holder = "";
             /* tmpData[dest].method.bank.display_name.name_en = "bKash";

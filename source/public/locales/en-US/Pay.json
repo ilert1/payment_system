@@ -5,7 +5,8 @@
     "changeCheck": "Replace receipt",
     "default_steps": {
         "steps_card": "Copy the card number and open your banking app|Make a transfer in <s>{{bankName}}</s> by card number for the amount of <s>{{amount}}</s>|Press the <s>“{{buttonName}}”</s> button",
-        "steps_phone": "Copy the phone number and open your banking app|Make a transfer in <s>{{bankName}}</s> by phone number for the amount of <s>{{amount}}</s>|Press the <s>“{{buttonName}}”</s> button"
+        "steps_phone": "Copy the phone number and open your banking app|Make a transfer in <s>{{bankName}}</s> by phone number for the amount of <s>{{amount}}</s>|Press the <s>“{{buttonName}}”</s> button",
+        "steps_account": "Copy the account number and open your banking app|Make a transfer to <s>{{bankName}}</s> using the account number for the amount of <s>{{amount}}</s>|Click the <s>“{{buttonName}}”</s> button"
     },
     "steps_transgran_simple": {
         "tbankTitle": "T-bank instructions",

@@ -42,6 +42,7 @@ const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
 const ars = "ars";
+const bdt = "bdt";
 
 export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
@@ -276,6 +277,12 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
         if (BFData?.[dest]?.currency && BFData?.[dest]?.currency === "ARS") {
             setCaseName(ars);
             console.log(`caseName: ars`);
+        }
+
+        //BDT case check
+        if (BFData?.[dest]?.currency && BFData?.[dest]?.currency === "BDT") {
+            setCaseName(bdt);
+            console.log(`caseName: bdt`);
         }
     }, [BFData?.[dest]?.currency, bankName, trader]);
 

@@ -5,7 +5,8 @@
     "changeCheck": "CHEK-ni almashtiring",
     "default_steps": {
         "steps_card": "Karta raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida karta raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing",
-        "steps_phone": "Telefon raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida telefon raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing"
+        "steps_phone": "Telefon raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida telefon raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing",
+        "steps_account": "Hisob raqamini nusxalang va bankingiz ilovasini oching|<s>{{amount}}</s> summasida o‘tkazmani hisob raqami orqali <s>{{bankName}}</s> bankiga amalga oshiring|<s>“{{buttonName}}”</s> tugmasini bosing"
     },
     "steps_transgran_simple": {
         "tbankTitle": "T-bank yo‘riqnoma",
