@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { FooterData, FooterStoreType } from "../types/FooterTypes";
 
 export const useFooterStore = create<FooterStoreType>(set => ({
     isFetching: false,

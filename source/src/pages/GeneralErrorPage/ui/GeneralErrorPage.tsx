@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import { ContentDescription } from "@/entities/payment";
+import { ContentDescription } from "@/entities/Payment";
 import PlusCircleIcon from "@/shared/assets/images/plus-circle.svg?react";
 import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
@@ -46,7 +46,8 @@ export const GeneralErrorPage = (props: GeneralErrorPageProps) => {
             showCancelBtn: false,
             isUnicalization: false
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [t, ns, cancel, cancelUrl, failUrl]);
 
     ym("reachGoal", cancel ? "cancel-page" : "general-error-page");
 

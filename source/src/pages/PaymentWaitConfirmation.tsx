@@ -1,4 +1,4 @@
-import { ContentDescription } from "@/entities/payment";
+import { ContentDescription } from "@/entities/Payment";
 import Loader from "@/shared/ui/Loader/Loader";
 import { Content, HeadingContainer } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
@@ -12,7 +12,6 @@ const PaymentWaitConfirmation = () => {
                 <ContentDescription text={"Как только провайдер подтвердит перевод, ваш счет пополнится"} lowMb lowMt />
                 <Loader timer={true} statusText={"Обычно проверка занимает до 20 минут"} />
             </Content>
-
             <Footer />
         </Page>
     );

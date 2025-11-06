@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { ContentDescription } from "@/entities/payment";
+import { ContentDescription } from "@/entities/Payment";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";

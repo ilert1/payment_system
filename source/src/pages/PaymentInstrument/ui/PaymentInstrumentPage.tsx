@@ -107,7 +107,8 @@ const PaymentInstrumentPage = () => {
             nextEnabled: !instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false,
             isUnicalization: false
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [t, ns, instrumentSelected_isFetching, currentPaymentInstrument]);
 
     return (
         <Page>

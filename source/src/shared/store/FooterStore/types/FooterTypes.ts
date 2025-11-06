@@ -1,4 +1,4 @@
-interface FooterData {
+export interface FooterData {
     buttonCaption?: string;
     nextPage?: string;
     showCancelBtn?: boolean;
@@ -13,7 +13,7 @@ interface FooterData {
     isUnicalization: boolean;
 }
 
-interface FooterStoreType extends FooterData {
+export interface FooterStoreType extends FooterData {
     setFooter: (data: FooterData) => void;
 
     reset: () => void;

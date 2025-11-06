@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useFilePicker } from "use-file-picker";
 import { useAppContext } from "@/AppContext";
 import { PayeeData } from "@/entities/Payee";
-import { PayHeader } from "@/entities/payment";
+import { PayHeader } from "@/entities/Payment";
 import { AppRoutes } from "@/shared/const/router";
 import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
 import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";

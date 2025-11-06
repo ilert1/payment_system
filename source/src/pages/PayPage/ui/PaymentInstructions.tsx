@@ -1,5 +1,5 @@
 import React from "react";
-import { ExternalPayInfo } from "@/entities/payment";
+import { ExternalPayInfo } from "@/entities/Payment";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Text } from "@/shared/ui/Text/Text";

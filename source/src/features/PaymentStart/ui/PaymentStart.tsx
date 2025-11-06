@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/AppContext";
-import { ContentDescription } from "@/entities/payment";
+import { ContentDescription } from "@/entities/Payment";
 import WalletPayout from "@/shared/assets/images/payOut/wallet.png";
 import Wallet from "@/shared/assets/images/wallet.png";
 import { classNames } from "@/shared/lib/classNames";

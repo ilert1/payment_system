@@ -27,19 +27,17 @@ const PayeeSearchPage = () => {
     let stepperInterval: NodeJS.Timeout | undefined = undefined;
     let stepperInterval_seconds = 0;
 
-    useEffect(() => {
-        stepperInterval = setInterval(() => {
-            stepperInterval_seconds++;
-            if (stepperInterval_seconds >= 10) {
-                setStep(3);
-                clearInterval(stepperInterval);
-            } else {
-                if (stepperInterval_seconds >= 3) {
-                    setStep(2);
-                }
+    stepperInterval = setInterval(() => {
+        stepperInterval_seconds++;
+        if (stepperInterval_seconds >= 10) {
+            setStep(3);
+            clearInterval(stepperInterval);
+        } else {
+            if (stepperInterval_seconds >= 3) {
+                setStep(2);
             }
-        }, 1000);
-    }, []);
+        }
+    }, 1000);
 
     useEffect(() => {
         setFooter({
@@ -47,7 +45,8 @@ const PayeeSearchPage = () => {
             approve: true,
             isUnicalization: false
         });
-    }, []);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [t, ns]);
 
     return (
         <Page>
