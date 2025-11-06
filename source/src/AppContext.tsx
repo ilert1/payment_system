@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import ym, { YMInitializer } from "react-yandex-metrika";
 import { Currencies } from "./shared/assets/library/Currency";
-import i18n, { getLanguage } from "./shared/config/i18n/Localization.js";
+import i18n, { getLanguage, getLocalBankName } from "./shared/config/i18n/Localization.js";
 import { AppRoutes } from "./shared/const/router.js";
 import { useBFStore } from "./shared/store/bfDataStore.js";
 
@@ -48,6 +48,8 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const { init, BFData, status, setStatus } = useBFStore();
     const payOutMode = Boolean(BFData?.payout);
     const dest = payOutMode ? "payout" : "payment";
+
+    const [bankName, setBankName] = useState("");
 
     const ymFunc: typeof ym | (() => void) = import.meta.env.VITE_YMETRICS_COUNTER ? ym : () => {};
 
@@ -197,17 +199,19 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
     const method = BFData?.[dest]?.method;
 
     const trader = method?.payee?.data;
-    const bankName = trader?.bank_name ?? "";
+
+    useEffect(() => {
+        setBankName(getLocalBankName(method?.bank?.display_name, lang));
+    }, [method?.bank?.display_name, lang]);
 
     useEffect(() => {
         setCaseName("");
 
-        const bankName = trader?.bank_name;
-        // console.log(`bankName: ${bankName}`);
+        const traderBankName = trader?.bank_name;
 
         //AZN case check
         if (
-            bankName &&
+            traderBankName &&
             [
                 "otherbankaz",
                 "mpay",
@@ -226,7 +230,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 "abbbank",
                 "expressbank",
                 "express24"
-            ].includes(bankName)
+            ].includes(traderBankName)
         ) {
             setCaseName(azn);
             console.log(`caseName: azn`);
@@ -234,7 +238,7 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
         //TJS case check
         if (
-            bankName &&
+            traderBankName &&
             [
                 "tcell",
                 "babilon-m",
@@ -254,20 +258,20 @@ export const AppProvider = ({ children }: { children: React.ReactNode }) => {
                 "dushanbe",
                 "alif",
                 "humo"
-            ].includes(bankName)
+            ].includes(traderBankName)
         ) {
             setCaseName(tjs);
             console.log(`caseName: tjs`);
         }
 
         //ABH case check
-        if (bankName && ["a-mobile"].includes(bankName)) {
+        if (traderBankName && ["a-mobile"].includes(traderBankName)) {
             setCaseName(abh);
             console.log(`caseName: abh`);
         }
 
         //IBAN case check
-        if (bankName && trader?.iban_number) {
+        if (traderBankName && trader?.iban_number) {
             setCaseName(iban);
             console.log(`caseName: iban`);
         }

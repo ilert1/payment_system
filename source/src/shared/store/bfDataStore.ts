@@ -41,16 +41,16 @@ export const useBFStore = create<BFStore>(set => ({
             }
 
             //блок для быстрой подстановки нужных данных
-            const tmpData = structuredClone(data);
+            /* const tmpData = structuredClone(data);
             tmpData[dest].method.name = "bank_account_number";
             tmpData[dest].currency = "BDT";
-            tmpData[dest].method.payee.data.bank_name = "Nagad";
+            tmpData[dest].method.payee.data.bank_name = "Nagad"; */
             // tmpData[dest].method.payee.data.card_holder = "Sofía Martínez";
-            tmpData[dest].method.payee.data.card_holder = "";
+            // tmpData[dest].method.payee.data.card_holder = "";
             /* tmpData[dest].method.bank.display_name.name_en = "bKash";
             tmpData[dest].method.bank.display_name.name_ru = "bKash"; */
-            tmpData[dest].method.payee.data.account_number = "01919443285";
-            tmpData[dest].method.context.confirm_type = "code";
+            /* tmpData[dest].method.payee.data.account_number = "01919443285";
+            tmpData[dest].method.context.confirm_type = "code"; */
 
             // tmpData[dest].method.payee.data.card_number = null;
 
@@ -62,7 +62,7 @@ export const useBFStore = create<BFStore>(set => ({
             tmpData[dest].method.payee.data.phone_number = "992372123456";*/
 
             set({
-                BFData: tmpData, //data, //подставить tmpData для тестов
+                BFData: data, //подставить tmpData для тестов
                 status: data?.[dest]?.status,
                 blowfishId: id
             });
