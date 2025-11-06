@@ -1,64 +1,66 @@
-import { memo } from "react";
+import { memo, ReactNode } from "react";
 import { classNames } from "@/shared/lib/classNames";
 import cls from "./Text.module.scss";
 
-export type TextVariant = "primary" | "error" | "accent";
+// primary - 37a8f3
+// primary_light - 6fc0f6
+export type TextVariant = "textBody" | "primary" | "primary_light" | "error" | "muted";
 
-export type TextAlign = "right" | "left" | "center";
+export type TextAlign = "right" | "left" | "center" | "justify";
 
-export type TextSize = "s" | "m" | "l";
+// 14 17 20 21 22 23 31 46
+export type TextSize = "xxs" | "2xs" | "xs" | "s" | "m" | "l" | "xl" | "xxl";
+
+export type TextWeight = "regular" | "medium" | "semiBold";
 
 interface TextProps {
     className?: string;
-    title?: string;
-    text?: string;
+    text: string | ReactNode;
     variant?: TextVariant;
     align?: TextAlign;
     size?: TextSize;
-    bold?: boolean;
+    weight?: TextWeight;
+    grow?: boolean;
+    noWrapBalance?: boolean;
     "data-testid"?: string;
+    onClick?: () => void;
 }
 
-type HeaderTagType = "h1" | "h2" | "h3";
-
 const mapSizeToClass: Record<TextSize, string> = {
+    xxs: cls.size_xxs,
+    "2xs": cls.size_2xs,
+    xs: cls.size_xs,
     s: cls.size_s,
     m: cls.size_m,
-    l: cls.size_l
-};
-
-const mapSizeToHeaderTag: Record<TextSize, HeaderTagType> = {
-    s: "h3",
-    m: "h2",
-    l: "h1"
+    l: cls.size_l,
+    xl: cls.size_xl,
+    xxl: cls.size_xxl
 };
 
 export const Text = memo((props: TextProps) => {
     const {
         className,
         text,
-        title,
-        variant = "primary",
+        variant = "textBody",
         align = "left",
-        size = "m",
-        bold,
-        "data-testid": dataTestId = "Text"
+        size = "xs",
+        weight = "regular",
+        grow,
+        "data-testid": dataTestId = "Paragraph",
+        onClick
     } = props;
 
-    const HeaderTag = mapSizeToHeaderTag[size];
     const sizeClass = mapSizeToClass[size];
 
-    const additionalClasses = [className, cls[variant], cls[align], sizeClass];
+    const additionalClasses = [className, cls[variant], cls[align], sizeClass, cls[weight]];
 
     return (
-        <div className={classNames(cls.Text, { [cls.bold]: bold }, additionalClasses)}>
-            {title && (
-                <HeaderTag className={cls.title} data-testid={`${dataTestId}.Header`}>
-                    {title}
-                </HeaderTag>
-            )}
+        <div className={classNames(cls.text, { [cls.grow]: grow }, additionalClasses)}>
             {text && (
-                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
+                <p
+                    className={classNames(cls.text, { [cls.noWrapBalance]: cls.noWrapBalance })}
+                    data-testid={`${dataTestId}.Paragraph`}
+                    onClick={onClick}>
                     {text}
                 </p>
             )}

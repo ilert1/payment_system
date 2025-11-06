@@ -18,7 +18,7 @@ interface BFStore {
     setBfData: (data: BFDataType) => void;
 }
 
-export const useBFStore = create<BFStore>((set, get) => ({
+export const useBFStore = create<BFStore>(set => ({
     blowfishId: "",
     BFData: null,
     status: "",
@@ -28,7 +28,6 @@ export const useBFStore = create<BFStore>((set, get) => ({
     init: async ({ id, payoutMode, fingerprintConfig, ym }) => {
         const baseApiURL = import.meta.env.VITE_API_URL;
         const dest = payoutMode ? "payout" : "payment";
-        const nextPage = `../${AppRoutes.PAYEE_DATA_PAGE}`;
         set({ loading: true, error: false });
 
         try {
@@ -42,15 +41,18 @@ export const useBFStore = create<BFStore>((set, get) => ({
             }
 
             //блок для быстрой подстановки нужных данных
-            /* let tmpData = structuredClone(data);
+            /* const tmpData = structuredClone(data);
             tmpData[dest].method.name = "bank_account_number";
-            tmpData[dest].currency = "ARS";
-            tmpData[dest].method.payee.data.bank_name = "bru";
-            tmpData[dest].method.payee.data.card_holder = "Sofía Martínez";
-            tmpData[dest].method.bank.display_name.name_en = "Brubank S.A.";
-            tmpData[dest].method.bank.display_name.name_ru = "Brubank S.A.";
-            tmpData[dest].method.payee.data.account_number = "0000147800000067840056";
-            tmpData[dest].method.payee.data.card_number = null; */
+            tmpData[dest].currency = "BDT";
+            tmpData[dest].method.payee.data.bank_name = "Nagad"; */
+            // tmpData[dest].method.payee.data.card_holder = "Sofía Martínez";
+            // tmpData[dest].method.payee.data.card_holder = "";
+            /* tmpData[dest].method.bank.display_name.name_en = "bKash";
+            tmpData[dest].method.bank.display_name.name_ru = "bKash"; */
+            /* tmpData[dest].method.payee.data.account_number = "01919443285";
+            tmpData[dest].method.context.confirm_type = "code"; */
+
+            // tmpData[dest].method.payee.data.card_number = null;
 
             // Блок для теста phone_number
             /* let tmpData = structuredClone(data);

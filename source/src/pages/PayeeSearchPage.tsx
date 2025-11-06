@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
-import usePaymentPage from "@/hooks/usePaymentPage";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Heading } from "@/shared/ui/Heading/Heading";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
 import { ProgressSteper } from "@/widgets/ProgressSteper";
@@ -9,6 +12,7 @@ import { ProgressSteper } from "@/widgets/ProgressSteper";
 const PayeeSearchPage = () => {
     const { currentPaymentInstrument, t, getCurrencySymbol } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     usePaymentPage({ absolutePath: false });
 
@@ -23,32 +27,46 @@ const PayeeSearchPage = () => {
     let stepperInterval: NodeJS.Timeout | undefined = undefined;
     let stepperInterval_seconds = 0;
 
-    useEffect(() => {
-        stepperInterval = setInterval(() => {
-            stepperInterval_seconds++;
-            if (stepperInterval_seconds >= 10) {
-                setStep(3);
-                clearInterval(stepperInterval);
-            } else {
-                if (stepperInterval_seconds >= 3) {
-                    setStep(2);
-                }
+    stepperInterval = setInterval(() => {
+        stepperInterval_seconds++;
+        if (stepperInterval_seconds >= 10) {
+            setStep(3);
+            clearInterval(stepperInterval);
+        } else {
+            if (stepperInterval_seconds >= 3) {
+                setStep(2);
             }
-        }, 1000);
-    }, []);
+        }
+    }, 1000);
+
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("approve", ns),
+            approve: true,
+            isUnicalization: false
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [t, ns]);
 
     return (
         <Page>
-            <div className="content">
-                <h1 className="grow">
-                    {t("lookingFor", ns)} {BFData?.[dest]?.amount}&nbsp;
-                    {getCurrencySymbol(BFData?.[dest]?.currency ?? "")} {t("via", ns)}{" "}
-                    {currentPaymentInstrument?.data?.bank_name}
-                </h1>
+            <Content>
+                <Heading
+                    size="l"
+                    title={
+                        t("lookingFor", ns) +
+                        BFData?.[dest]?.amount +
+                        "\u00A0" +
+                        getCurrencySymbol(BFData?.[dest]?.currency ?? "") +
+                        t("via", ns) +
+                        " " +
+                        currentPaymentInstrument?.data?.bank_name
+                    }
+                />
                 <ProgressSteper step={step} />
-            </div>
+            </Content>
 
-            <Footer buttonCaption={t("approve", ns)} approve={true} />
+            <Footer />
         </Page>
     );
 };

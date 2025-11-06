@@ -21,11 +21,13 @@ const resources = {
 
 export const getLanguage = () => {
     let language = navigator.language;
-    let storedLang = localStorage.getItem("language");
+    const storedLang = localStorage.getItem("language");
     language = storedLang ? storedLang : language;
     localStorage.setItem("language", language);
     return language;
 };
+
+const language = getLanguage();
 
 export const getLocalBankName = (display_name = {}, lang: string | null = null) => {
     const d_name: Record<string, string> = display_name;
@@ -44,8 +46,6 @@ export const getLocalBankName = (display_name = {}, lang: string | null = null) 
     }
     return "";
 };
-
-var language = getLanguage();
 
 i18n.use(initReactI18next)
     .use(Backend)

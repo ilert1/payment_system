@@ -1,11 +1,11 @@
 import { Suspense, useEffect } from "react";
 import { useAppContext } from "@/AppContext";
-import "@/shared/assets/css/fonts.css";
-import "@/shared/assets/css/styles.css";
-// import { AppRoutes, getRoutePaymentNotFound, getRoutePayoutNotFound } from "@/shared/const/router";
+// import "@/shared/assets/css/fonts.css";
+// import "@/shared/assets/css/styles.css";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { CustomToastContainer } from "@/shared/ui/CustomToastContainer";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
+import { Content } from "@/widgets/Content";
 import { Page } from "@/widgets/Page";
 import { AppRouter } from "./providers/router";
 
@@ -55,11 +55,9 @@ const App = () => {
         <>
             {loading ? (
                 <Page header={false}>
-                    <div className="content">
-                        <div className="loader-container">
-                            <Loader />
-                        </div>
-                    </div>
+                    <Content>
+                        <Loader />
+                    </Content>
                 </Page>
             ) : (
                 <Suspense fallback={<div>Загрузка переводов...</div>}>

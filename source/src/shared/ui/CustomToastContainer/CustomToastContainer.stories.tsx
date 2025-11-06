@@ -8,6 +8,7 @@ const meta: Meta<typeof CustomToastContainer> = {
     title: "shared/CustomToastContainer",
     component: CustomToastContainer,
     argTypes: {},
+    tags: ["autodocs"],
     parameters: {
         layout: "centered"
     }

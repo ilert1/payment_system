@@ -1,23 +1,27 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAppContext } from "@/AppContext";
-import usePaymentPage from "@/hooks/usePaymentPage";
+import { PayInstruments } from "@/entities/PaymentInstruments";
 import { AppRoutes } from "@/shared/const/router";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
+import { Heading } from "@/shared/ui/Heading/Heading";
+import { Text } from "@/shared/ui/Text/Text";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { PayInstruments } from "@/widgets/PayInstruments";
 import styles from "./PaymentInstrumentPage.module.scss";
 
 const PaymentInstrumentPage = () => {
     const { currentPaymentInstrument, fingerprintConfig, getCurrencySymbol, fingerprintReady, t, ym } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
+    const setFooter = useFooterStore(state => state.setFooter);
 
     //translation
     const ns = { ns: ["Common", "PaymentInstrument"] };
 
-    // Stex piti lini paymentInstruments
     const [paymentInstruments, setPaymentInstruments] = useState<PaymentInstrument[] | null>(null);
     const [instrumentSelectedEnable, setInstrumentSelectedEnable] = useState(false);
 
@@ -27,7 +31,7 @@ const PaymentInstrumentPage = () => {
     const dest = payOutMode ? "payout" : "payment";
     const baseApiURL = import.meta.env.VITE_API_URL;
 
-    const { data, isFetching } = useQuery({
+    const { isFetching } = useQuery({
         queryKey: ["getPaymentInstruments"],
         refetchOnWindowFocus: false,
         retry: true,
@@ -67,7 +71,7 @@ const PaymentInstrumentPage = () => {
                 console.log("paymentPayerSelectedInstrument payload:");
                 console.log(payload);
 
-                const { data } = await axios
+                const response = await axios
                     .post(
                         `${baseApiURL}/${dest}s/${BFData?.[dest]?.id}/events`,
                         {
@@ -79,9 +83,13 @@ const PaymentInstrumentPage = () => {
                     )
                     .catch(e => {
                         console.log(e);
+                        return null;
                     });
-                console.log(data);
-                return data;
+                if (response) {
+                    console.log(response.data);
+                    return response.data;
+                }
+                return null;
             }
         }
     });
@@ -91,23 +99,36 @@ const PaymentInstrumentPage = () => {
         setInstrumentSelectedEnable(true);
     };
 
+    useEffect(() => {
+        setFooter({
+            buttonCaption: t("next", ns),
+            buttonCallback: buttonCallback,
+            nextPage: `/${BFData?.[dest]?.id}/${AppRoutes.PAYER_DATA_PAGE}`,
+            nextEnabled: !instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false,
+            isUnicalization: false
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [t, ns, instrumentSelected_isFetching, currentPaymentInstrument]);
+
     return (
         <Page>
-            <div className="content">
-                <h1>{t("amount", ns)}</h1>
+            <Content>
+                <Heading size="l" title={t("amount", ns)} grow />
                 <div className={styles.amountContainer}>
-                    <p className={styles.amount}>{BFData?.[dest]?.amount}</p>
-                    <p className="currency">&nbsp;{getCurrencySymbol(BFData?.[dest]?.currency ?? "")}</p>
+                    <Text align="right" variant="primary" size="xxl" weight="semiBold" text={BFData?.[dest]?.amount} />
+                    <Text
+                        text={
+                            <>
+                                &nbsp;
+                                {getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
+                            </>
+                        }
+                    />
                 </div>
                 <PayInstruments isFetching={isFetching} paymentInstruments={paymentInstruments ?? []} />
-            </div>
+            </Content>
 
-            <Footer
-                buttonCaption={t("next", ns)}
-                buttonCallback={buttonCallback}
-                nextPage={`/${BFData?.[dest]?.id}/${AppRoutes.PAYER_DATA_PAGE}`}
-                nextEnabled={!instrumentSelected_isFetching && currentPaymentInstrument?.data != null ? true : false}
-            />
+            <Footer />
         </Page>
     );
 };

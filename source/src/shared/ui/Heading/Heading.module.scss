@@ -1,0 +1,75 @@
+// Variants
+.title {
+    color: var(--text-redesigned);
+}
+
+.error {
+    .title {
+        color: var(--red-light);
+    }
+}
+
+.accent {
+    .title {
+        color: var(--accent-redesigned);
+    }
+}
+
+// Alignment
+.left {
+    text-align: left;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+// Sizes
+.size_m {
+    .title {
+        font-size: 25px;
+        font-weight: 600;
+        line-height: 35px;
+        color: #010f18;
+        text-wrap: balance;
+
+        @media (width <= 520px) {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+}
+
+.size_l {
+    .title {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 133%;
+        color: #010f18;
+        text-wrap: balance;
+
+        &.grow {
+            flex-grow: 0.3;
+        }
+
+        @media (width <= 520px) {
+            font-size: 22px;
+            line-height: 32px;
+        }
+    }
+}
+
+// Mod classes
+.grow {
+    flex-grow: 0.3;
+}
+
+.bold {
+    .title {
+        font-weight: 700;
+    }
+}

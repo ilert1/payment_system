@@ -115,19 +115,6 @@
     }
 }
 
-.statusText {
-    font-weight: 400;
-}
-
 .statusComment {
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 133%;
-    color: #010f18;
-
     opacity: 0.5;
-
-    @media (width <= 520px) {
-        font-size: 14px;
-    }
 }

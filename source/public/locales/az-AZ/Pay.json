@@ -5,7 +5,8 @@
     "changeCheck": "ÇEK-i dəyişdirin",
     "default_steps": {
         "steps_card": "Kart nömrəsini kopyalayın və bank tətbiqinizə keçin|<s>{{bankName}}</s>-də kart nömrəsi üzrə <s>{{amount}}</s> məbləğində köçürmə edin|<s>“{{buttonName}}”</s> düyməsini basın",
-        "steps_phone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin|<s>{{bankName}}</s>-də telefon nömrəsi üzrə <s>{{amount}}</s> məbləğində köçürmə edin|<s>“{{buttonName}}”</s> düyməsini basın"
+        "steps_phone": "Telefon nömrəsini kopyalayın və bank tətbiqinizə keçin|<s>{{bankName}}</s>-də telefon nömrəsi üzrə <s>{{amount}}</s> məbləğində köçürmə edin|<s>“{{buttonName}}”</s> düyməsini basın",
+        "steps_account": "Hesab nömrəsini köçürüb bank tətbiqinizi açın|<s>{{amount}}</s> məbləğində köçürməni hesab nömrəsi ilə <s>{{bankName}}</s> bankına edin|<s>“{{buttonName}}”</s> düyməsini basın"
     },
     "steps_transgran_simple": {
         "tbankTitle": "T-bank təlimatı",
@@ -63,5 +64,22 @@
     "attention": "Formada göstərilən banka və məbləği köçürün. Aks halda, biz köçürmənin hesablanmasını təmin etmirik.",
     "agree": "Tamam, başa düşdüm",
     "scanQrCode": "QR kodunu telefonunuzun stok kamerası ilə tarayın.",
-    "linkToApp": "Tətbiqə gedin"
+    "linkToApp": "Tətbiqə gedin",
+    "transactionConfirmationForm": {
+        "title": "Əməliyyatın təsdiqlənməsi",
+        "description": "Zəhmət olmasa əməliyyat identifikatorunu daxil edin",
+        "fields": {
+            "transactionType": "Əməliyyat identifikatoru",
+            "transactionTypePlaceholder": "Əməliyyat identifikatorunu daxil edin"
+        },
+        "errors": {
+            "generalError": "Məlumat göndərilərkən xəta baş verdi. Yenidən cəhd edin",
+            "cannotBeEmpty": "Əməliyyat identifikatoru boş ola bilməz",
+            "regex": "Əməliyyat identifikatoru yalnız Latın hərfləri və rəqəmləri ehtiva edə bilər"
+        },
+        "buttons": {
+            "confirm": "Köçürməni təsdiqlə",
+            "cancel": "Qayıt"
+        }
+    }
 }

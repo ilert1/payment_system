@@ -1,0 +1,41 @@
+.bank_item {
+    cursor: pointer;
+
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    gap: 12px;
+    row-gap: 0;
+    align-items: center;
+
+    padding: 10.5px 14px;
+    border-radius: 5px;
+
+    color: #010f18;
+
+    transition: background-color 0.3s ease;
+
+    @media (width <= 520px) {
+        gap: 8px;
+        row-gap: 0;
+        padding: 10px;
+    }
+}
+
+.active {
+    background-color: #d7d7d7;
+}
+
+.img {
+    $width: 24px;
+
+    width: $width;
+    height: $width;
+
+    @media (width <= 520px) {
+        $width: 19px;
+
+        width: $width;
+        height: $width;
+    }
+}

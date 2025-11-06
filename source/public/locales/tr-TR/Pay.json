@@ -5,7 +5,8 @@
     "changeCheck": "Makbuzu değiştir",
     "default_steps": {
         "steps_card": "Kart numarasını kopyalayın ve banka uygulamanıza geçin|<s>{{bankName}}</s>’de kart numarasıyla <s>{{amount}}</s> tutarında transfer yapın|<s>“{{buttonName}}”</s> düğmesine basın",
-        "steps_phone": "Telefon numarasını kopyalayın ve banka uygulamanıza geçin|<s>{{bankName}}</s>’de telefon numarasıyla <s>{{amount}}</s> tutarında transfer yapın|<s>“{{buttonName}}”</s> düğmesine basın"
+        "steps_phone": "Telefon numarasını kopyalayın ve banka uygulamanıza geçin|<s>{{bankName}}</s>’de telefon numarasıyla <s>{{amount}}</s> tutarında transfer yapın|<s>“{{buttonName}}”</s> düğmesine basın",
+        "steps_account": "Hesap numarasını kopyalayın ve bankanızın uygulamasını açın|<s>{{amount}}</s> tutarında transferi hesap numarasıyla <s>{{bankName}}</s> üzerinden yapın|<s>“{{buttonName}}”</s> düğmesine basın"
     },
     "steps_transgran_simple": {
         "tbankTitle": "T-bank talimatı",
@@ -63,5 +64,22 @@
     "attention": "Formda belirtilen banka ve tutara transfer yapın. Aksi takdirde, hesaplama garantisi vermiyoruz.",
     "agree": "Tamam, anladım",
     "scanQrCode": "QR kodunu telefonunuzun standart kamerasıyla tarayın.",
-    "linkToApp": "Uygulamaya git"
+    "linkToApp": "Uygulamaya git",
+    "transactionConfirmationForm": {
+        "title": "İşlem onayı",
+        "description": "Lütfen işlem tanımlayıcısını girin",
+        "fields": {
+            "transactionType": "İşlem tanımlayıcısı",
+            "transactionTypePlaceholder": "İşlem tanımlayıcısını girin"
+        },
+        "errors": {
+            "generalError": "Veri gönderilirken bir hata oluştu. Lütfen tekrar deneyin",
+            "cannotBeEmpty": "İşlem tanımlayıcısı boş olamaz",
+            "regex": "İşlem tanımlayıcısı yalnızca Latin harfleri ve rakamları içerebilir"
+        },
+        "buttons": {
+            "confirm": "Transferi onayla",
+            "cancel": "Geri dön"
+        }
+    }
 }

@@ -1,0 +1,23 @@
+.headingContainer {
+    display: inline-flex;
+    gap: 0.73rem;
+    align-content: center;
+    align-items: center;
+}
+
+.grow {
+    flex-grow: 0.3;
+}
+
+.wide {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+}
+
+.center {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}

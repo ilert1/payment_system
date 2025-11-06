@@ -1,7 +1,8 @@
 import React from "react";
+import { ExternalPayInfo } from "@/entities/Payment";
 import { classNames } from "@/shared/lib/classNames";
 import { useBFStore } from "@/shared/store/bfDataStore";
-import { ExternalPayInfo } from "@/widgets/ExternalPayInfo";
+import { Text } from "@/shared/ui/Text/Text";
 // import { Instruction } from "./Instruction/Instruction";
 import { InstructionItems } from "./Instruction/InstructionItems";
 import styles from "./PaymentInstructions.module.scss";
@@ -24,6 +25,7 @@ const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
 const ars = "ars";
+const bdt = "bdt";
 
 export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     caseName,
@@ -54,9 +56,7 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     ) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                <div className="title">
-                    <p>{t("steps_transgran_simple.tbankTitle", ns)}</p>
-                </div>
+                <Text text={t("steps_transgran_simple.tbankTitle", ns)} />
                 <InstructionItems
                     data={t("steps_transgran_simple.steps", {
                         country: t(`steps_transgran_new.country.${caseName}`, ns),
@@ -77,10 +77,6 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                {/* <div className="title">
-                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
-                </div> */}
-
                 <InstructionItems
                     data={t("steps_with_check.steps", {
                         requisite: t(
@@ -100,12 +96,10 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
 
     /* трансгран кейс для Таджикистана по tcard2card */
 
-    if (caseName === tjs && BFData?.[dest]?.method?.name === "tcard2card") {
+    if (caseName === tjs && ["tcard2card", "card2card_cross_border"].includes(BFData?.[dest]?.method?.name ?? "")) {
         return (
             <div className={classNames(styles.instructionsNew, {}, [styles.transgran])}>
-                <div className="title">
-                    <p>{t("steps_transgran_tcard2card.tbankTitle", ns)}</p>
-                </div>
+                <Text text={t("steps_transgran_tcard2card.tbankTitle", ns)} />
 
                 <InstructionItems data={t("steps_transgran_tcard2card.tbank", ns)} isActive />
             </div>
@@ -158,12 +152,15 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     return (
         <div className={styles.instructionsNew}>
             <InstructionItems
-                data={t(`default_steps.${trader?.phone || trader?.phone_number ? "steps_phone" : "steps_card"}`, {
-                    amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
-                    bankName: bankName,
-                    buttonName: t("approveTransfer", ns),
-                    ...ns
-                })}
+                data={t(
+                    `default_steps.${trader?.phone || trader?.phone_number ? "steps_phone" : trader?.account_number ? "steps_account" : "steps_card"}`,
+                    {
+                        amount: `${BFData?.[dest]?.amount}\u00A0${getCurrencySymbol(BFData?.[dest]?.currency ?? "")}`,
+                        bankName: bankName,
+                        buttonName: t("approveTransfer", ns),
+                        ...ns
+                    }
+                )}
                 isActive
             />
         </div>

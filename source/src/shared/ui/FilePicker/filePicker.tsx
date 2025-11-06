@@ -1,5 +1,4 @@
 import React from "react";
-import { useFilePicker } from "use-file-picker";
 import PdfFileIcon from "@/shared/assets/images/file-pdf.svg?react";
 import FileImageIcon from "@/shared/assets/images/image.svg?react";
 import { classNames } from "@/shared/lib/classNames";
@@ -17,7 +16,6 @@ interface FilePickerProps {
 
 export const FilePicker: React.FC<FilePickerProps> = ({
     value,
-    onChange,
     label = "Выбрать файл",
     disabled = false,
     openFilePicker,

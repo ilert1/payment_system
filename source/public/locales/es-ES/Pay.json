@@ -5,7 +5,8 @@
     "changeCheck": "Reemplazar RECIBO",
     "default_steps": {
         "steps_card": "Copie el número de la tarjeta y abra la aplicación de su banco|Realice la transferencia al número de tarjeta en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>",
-        "steps_phone": "Copie el número de teléfono y abra la aplicación de su banco|Realice la transferencia al número de teléfono en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>"
+        "steps_phone": "Copie el número de teléfono y abra la aplicación de su banco|Realice la transferencia al número de teléfono en <s>{{bankName}}</s> por el monto de <s>{{amount}}</s>|Pulse el botón <s>“{{buttonName}}”</s>",
+        "steps_account": "Copia el número de cuenta y abre la aplicación de tu banco|Realiza una transferencia al <s>{{bankName}}</s> usando el número de cuenta por un importe de <s>{{amount}}</s>|Haz clic en el botón <s>“{{buttonName}}”</s>"
     },
     "steps_transgran_simple": {
         "tbankTitle": "Instrucción T-Bank",
@@ -63,5 +64,22 @@
     "attention": "Realice la transferencia al banco y por el monto indicados en el formulario. De lo contrario, no garantizamos la acreditación.",
     "agree": "Ok, entendido",
     "scanQrCode": "Escanee el código QR con la cámara de su teléfono.",
-    "linkToApp": "Ir a la aplicación"
+    "linkToApp": "Ir a la aplicación",
+    "transactionConfirmationForm": {
+        "title": "Confirmación de transacción",
+        "description": "Por favor, introduzca el identificador de la transacción",
+        "fields": {
+            "transactionType": "Identificador de transacción",
+            "transactionTypePlaceholder": "Introduzca el identificador de transacción"
+        },
+        "errors": {
+            "generalError": "Error al enviar los datos. Inténtelo de nuevo",
+            "cannotBeEmpty": "El identificador de transacción no puede estar vacío",
+            "regex": "El identificador de transacción solo puede contener letras latinas y números"
+        },
+        "buttons": {
+            "confirm": "Confirmar transferencia",
+            "cancel": "Volver"
+        }
+    }
 }

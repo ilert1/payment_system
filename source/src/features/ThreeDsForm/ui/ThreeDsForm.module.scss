@@ -1,0 +1,42 @@
+.form {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    max-width: 600px;
+
+    background-color: hsl(0deg 0% 96% / 100%);
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 600px;
+    padding: 38px 26px;
+}
+
+.input {
+    width: min(100%, 520px);
+    height: 85px;
+    padding: 0 14px;
+    border-radius: 5px;
+
+    @media (width <= 520px) {
+        height: 65px;
+    }
+}
+
+.label {
+    margin-bottom: 10px;
+}
+
+.errorMessage {
+    margin-top: 4px;
+    overflow-wrap: break-word;
+}
+
+.h1 {
+    margin-bottom: 20px;
+}

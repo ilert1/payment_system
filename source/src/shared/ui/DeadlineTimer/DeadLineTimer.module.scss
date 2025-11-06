@@ -1,0 +1,37 @@
+.deadlineContainer {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+
+    padding: 0.4rem 1rem;
+    border-radius: 63px;
+
+    &.orange {
+        background-color: var(--color-primary-bg-alt);
+    }
+}
+
+.deadlineTimer {
+    width: 100px;
+    padding-right: 10px;
+
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 133%;
+    color: #37a8f3;
+
+    @media (width <= 520px) {
+        width: 70px;
+        font-size: 22px;
+    }
+}
+
+.img {
+    width: 3.4rem;
+    height: 3.4rem;
+}
+
+.imgGray {
+    width: 2.9rem;
+    height: 2.9rem;
+}

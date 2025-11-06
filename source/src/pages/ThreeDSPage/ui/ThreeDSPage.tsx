@@ -1,11 +1,18 @@
-import { Header } from "@/widgets/Header";
+import { ThreeDsForm } from "@/features/ThreeDsForm";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { Content } from "@/widgets/Content";
+import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { ThreeDsForm } from "@/widgets/ThreeDsForm";
 
 export const ThreeDSPage = () => {
+    usePaymentPage({ absolutePath: false });
+
     return (
         <Page>
-            <ThreeDsForm />
+            <Content>
+                <ThreeDsForm />
+            </Content>
+            <Footer />
         </Page>
     );
 };

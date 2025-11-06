@@ -51,19 +51,12 @@ declare global {
         };
     };
 
-    // const LangVariants: {
-    //     en: "en";
-    //     az: "az";
-    //     ky: "ky";
-    //     tg: "tg";
-    //     kk: "kk";
-    //     ru: "ru";
-    //     tr: "tr";
-    //     uk: "uk";
-    //     uz: "uz";
-    // };
-
-    // type LangType = keyof typeof LangVariants;
+    type AppResponseType = {
+        success?: boolean;
+        error?: string;
+        state?: string;
+        error_details?: string;
+    };
 
     type BFDataType = {
         payout?: {

@@ -1,11 +1,11 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./app/App";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { AppProvider } from "./AppContext";
 import { BrowserRouter } from "react-router-dom";
-import "./shared/config/i18n/Localization";
 import "@/app/styles/index.scss";
+import { AppProvider } from "./AppContext";
+import App from "./app/App";
+import "./shared/config/i18n/Localization";
 
 const rootElement = document.getElementById("root");
 

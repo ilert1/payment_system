@@ -1,31 +1,32 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import fileTypeChecker from "file-type-checker";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useFilePicker } from "use-file-picker";
 import { useAppContext } from "@/AppContext";
-import usePaymentPage from "@/hooks/usePaymentPage";
+import { PayeeData } from "@/entities/Payee";
+import { PayHeader } from "@/entities/Payment";
 import { AppRoutes } from "@/shared/const/router";
-import { formatPhoneNumber } from "@/shared/lib/formatPhoneNumber";
+import { usePaymentPage } from "@/shared/hooks/usePaymentPage";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { FilePicker } from "@/shared/ui/FilePicker/filePicker";
-import Loader from "@/shared/ui/Loader";
+import Loader from "@/shared/ui/Loader/Loader";
+import { Content } from "@/widgets/Content";
 import { Footer } from "@/widgets/Footer";
 import { Page } from "@/widgets/Page";
-import { PayHeader } from "@/widgets/PayHeader";
-import { PayeeData } from "@/widgets/PayeeData";
 import { PaymentInstructions } from "./PaymentInstructions";
+import { TransactionConfirmationModal } from "./TransactionConfirmationModal/TransactionConfirmationModal";
 
 const azn = "azn";
 const tjs = "tjs";
-const iban = "iban";
 const abh = "abh";
 
 const PayPage = () => {
     const { fingerprintConfig, t, getCurrencySymbol, caseName, bankName, ym } = useAppContext();
     ym("reachGoal", "pay-page");
+    const setFooter = useFooterStore(state => state.setFooter);
     const BFData = useBFStore(state => state.BFData);
     const setBfData = useBFStore(state => state.setBfData);
     const setStatus = useBFStore(state => state.setStatus);
@@ -42,7 +43,10 @@ const PayPage = () => {
     const method = BFData?.[dest]?.method;
     const trader = method?.payee?.data;
     const isConfirmTypeFile = method?.context?.confirm_type === "file";
+    const isConfirmTypeCode = method?.context?.confirm_type === "code";
+
     console.log("confirm_type: ", method?.context?.confirm_type);
+    const [dialogShow, setDialogShow] = useState(false);
 
     //Критерий уникализации суммы (на всякий случай сделал проверку на наличие original_amount, мало ли будут кейсы без него или он будет нулевой, чтобы не показался popup)
     const isUnicalization =
@@ -57,7 +61,7 @@ const PayPage = () => {
     const [requisite, setRequisite] = useState<string | null>(null);
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-    const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
+    // const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
 
     const [buttonCallbackEnabled, setButtonCallbackEnabled] = useState(false);
 
@@ -74,9 +78,10 @@ const PayPage = () => {
                         reader.onload = () => resolve(reader.result as string);
                         reader.onerror = reject;
                     });
-                return new Promise((resolve, reject) => resolve(""));
+                return new Promise(resolve => resolve(""));
             };
             let pureBase64: string | null = null;
+
             if (isConfirmTypeFile) {
                 const base64Data = await fileToBase64(selectedFile ?? null);
                 pureBase64 = base64Data.split(",")[1];
@@ -135,7 +140,7 @@ const PayPage = () => {
         } else {
             setNeedRefreshBFData(false);
         }
-    }, [, trader]);
+    }, [trader]);
 
     useEffect(() => {
         if (trader?.card_number) {
@@ -157,7 +162,7 @@ const PayPage = () => {
             setRequisite(trader.iban_number);
         }
         console.log(trader);
-    }, [trader]);
+    }, [BFData, dest, trader]);
 
     const { isFetching: isFetching_BFData } = useQuery({
         queryKey: ["exist"],
@@ -254,17 +259,54 @@ const PayPage = () => {
         }
     });
 
+    useEffect(() => {
+        const buttonCallback = () => {
+            if (isConfirmTypeFile) {
+                setButtonCallbackEnabled(true);
+            } else if (isConfirmTypeCode) {
+                setDialogShow(true);
+            } else {
+                openFilePicker();
+            }
+        };
+
+        setFooter({
+            buttonCaption: !isConfirmTypeFile
+                ? t("approveTransfer", ns)
+                : selectedFile
+                  ? t("approveTransfer", ns)
+                  : t("selectFile", ns),
+            buttonCallback: buttonCallback,
+            nextPage: nextPage,
+            nextEnabled: !isFetching_ButtonCallback,
+            approve: true,
+            isUnicalization: isUnicalization
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isConfirmTypeFile, isFetching_ButtonCallback, isUnicalization, nextPage, selectedFile, t]);
+
+    const modalData = {
+        title: t("cancelDialog.title", ns),
+        text: t("cancelDialog.text", ns),
+        primaryBtnText: t("cancel", ns),
+        secondaryBtnCallback: () => {
+            setDialogShow(false);
+        },
+        primaryBtnCallback: () => {
+            setDialogShow(false);
+            setButtonCallbackEnabled(true);
+        }
+    };
+
     return (
         <Page>
             {!trader || isFetching_BFData ? (
-                <div className="content">
-                    <div className="loader-container">
-                        <Loader />
-                    </div>
-                </div>
+                <Content>
+                    <Loader />
+                </Content>
             ) : (
                 <>
-                    <div className="content">
+                    <Content>
                         <PayHeader
                             amount={BFData?.[dest]?.amount ?? ""}
                             currency={getCurrencySymbol(BFData?.[dest]?.currency ?? "")}
@@ -296,7 +338,7 @@ const PayPage = () => {
                             countryName={[tjs, azn, abh].includes(caseName) ? caseName : ""}
                             transgran={transgran}
                         />
-                    </div>
+                    </Content>
                     {selectedFile && (
                         <FilePicker
                             value={selectedFile}
@@ -306,31 +348,8 @@ const PayPage = () => {
                             label={t("changeCheck", ns)}
                         />
                     )}
-
-                    <Footer
-                        buttonCaption={
-                            !isConfirmTypeFile
-                                ? t("approveTransfer", ns)
-                                : selectedFile
-                                  ? t("approveTransfer", ns)
-                                  : t("selectFile", ns)
-                        }
-                        buttonCallback={
-                            !isConfirmTypeFile
-                                ? () => {
-                                      setButtonCallbackEnabled(true);
-                                  }
-                                : selectedFile
-                                  ? () => {
-                                        setButtonCallbackEnabled(true);
-                                    }
-                                  : () => openFilePicker()
-                        }
-                        nextPage={nextPage}
-                        nextEnabled={!isFetching_ButtonCallback}
-                        approve={true}
-                        isUnicalization={isUnicalization}
-                    />
+                    <TransactionConfirmationModal show={dialogShow} setShow={setDialogShow} data={modalData} />
+                    <Footer />
                 </>
             )}
         </Page>

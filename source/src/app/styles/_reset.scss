@@ -1,7 +1,7 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 li {
@@ -13,18 +13,49 @@ button,
 textarea,
 select {
     margin: 0;
-    font: inherit;
 }
 
 a {
     text-decoration: none;
 }
 
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6 {
-//     font-weight: 300;
-// }
+html,
+body {
+    margin: 0;
+
+    -webkit-tap-highlight-color: rgb(255 255 255 / 0%);
+}
+
+p,
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100dvh;
+
+    font-family: Inter, sans-serif;
+    line-height: 133%;
+    text-align: center;
+
+    @media (width <= 520px) {
+        align-items: stretch;
+    }
+}
+
+#root {
+    display: contents;
+}
+
+input,
+textarea,
+button {
+    outline: none;
+    caret-color: #37a8f3;
+}

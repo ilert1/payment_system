@@ -5,7 +5,8 @@
     "changeCheck": "CHEK-ni almashtiring",
     "default_steps": {
         "steps_card": "Karta raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida karta raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing",
-        "steps_phone": "Telefon raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida telefon raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing"
+        "steps_phone": "Telefon raqamini nusxa oling va bank ilovangizni oching|<s>{{bankName}}</s> ichida telefon raqami orqali <s>{{amount}}</s> miqdorida o‘tkazma qiling|<s>“{{buttonName}}”</s> tugmasini bosing",
+        "steps_account": "Hisob raqamini nusxalang va bankingiz ilovasini oching|<s>{{amount}}</s> summasida o‘tkazmani hisob raqami orqali <s>{{bankName}}</s> bankiga amalga oshiring|<s>“{{buttonName}}”</s> tugmasini bosing"
     },
     "steps_transgran_simple": {
         "tbankTitle": "T-bank yo‘riqnoma",
@@ -63,5 +64,22 @@
     "attention": "Shaklda ko'rsatilgan bank va miqdorga o'tkazma qiling. Aks holda, biz mablag'ni hisobga olishni kafolatlamaymiz.",
     "agree": "Yaxshi, tushundim",
     "scanQrCode": "QR kodini telefonning standart kamerasi bilan skanerlang.",
-    "linkToApp": "Ilovaga o'ting"
+    "linkToApp": "Ilovaga o'ting",
+    "transactionConfirmationForm": {
+        "title": "Tranzaksiyani tasdiqlash",
+        "description": "Iltimos, tranzaksiya identifikatorini kiriting",
+        "fields": {
+            "transactionType": "Tranzaksiya identifikatori",
+            "transactionTypePlaceholder": "Tranzaksiya identifikatorini kiriting"
+        },
+        "errors": {
+            "generalError": "Maʼlumot yuborishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring",
+            "cannotBeEmpty": "Tranzaksiya identifikatori bo'sh bo'lishi mumkin emas",
+            "regex": "Tranzaksiya identifikatori faqat lotin harflari va raqamlarni o'z ichiga olishi mumkin"
+        },
+        "buttons": {
+            "confirm": "O'tkazmani tasdiqlash",
+            "cancel": "Qaytish"
+        }
+    }
 }

@@ -32,20 +32,5 @@
 
 .amount {
     min-width: 1ch;
-    border: none;
-
-    font-family: inherit;
-    font-size: 46px;
-    font-weight: 600;
-    line-height: 130%;
-    color: #37a8f3;
-    text-align: right;
     white-space: nowrap;
-
-    background: none;
-    outline: none;
-
-    @media (width <= 520px) {
-        font-size: 32px;
-    }
 }

@@ -1,8 +1,10 @@
-/* eslint-disable react/prop-types */
+ 
 import { useAppContext } from "@/AppContext";
 import AlertTriangleBig from "@/shared/assets/images/alert-triangle-big.svg?react";
 import { classNames } from "@/shared/lib/classNames";
 import { Button } from "@/shared/ui/Button/Button";
+import { Heading } from "@/shared/ui/Heading/Heading";
+import { Text } from "@/shared/ui/Text/Text";
 import { LanguageSelector } from "@/widgets/LanguageSelector";
 import styles from "./SubmitModal.module.scss";
 
@@ -24,7 +26,7 @@ interface SubmitModalProps {
 }
 
 export const SubmitModal = (props: SubmitModalProps) => {
-    const { show, setShow, data, isLoading, isUniqueness = false } = props;
+    const { show, data, isLoading, isUniqueness = false } = props;
     const { lang, setLang } = useAppContext();
 
     return (
@@ -40,8 +42,8 @@ export const SubmitModal = (props: SubmitModalProps) => {
                     <div className={styles.payoutDialogBlock}>
                         <LanguageSelector lang={lang} setLang={setLang} />
                         <AlertTriangleBig className={styles.alertTriangle} />
-                        <h3 className={styles.title}>{data.title}</h3>
-                        <p className={styles.text}>{data.text}</p>
+                        <Heading size="l" title={data.title} />
+                        <Text align="justify" className={styles.text} text={data.text} />
                     </div>
 
                     <div className={styles.buttonsBlock}>

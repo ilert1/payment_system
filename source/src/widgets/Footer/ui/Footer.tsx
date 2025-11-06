@@ -1,22 +1,21 @@
-/* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
-import axios, { isCancel } from "axios";
+import axios from "axios";
 import { useRef, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAppContext } from "@/AppContext";
-import ArrowLeft from "@/shared/assets/images/arrow-left.svg?react";
+import { BankCardInfo } from "@/entities/Card";
+import { PayeeInfo } from "@/entities/Payee";
 import ArrowRight from "@/shared/assets/images/arrow-right.svg";
 import DefaultBankIcon from "@/shared/assets/images/bank-icon.svg";
 import Check from "@/shared/assets/images/check.svg";
 import { AppRoutes } from "@/shared/const/router";
 import { classNames } from "@/shared/lib/classNames";
 import { formatedRequisite } from "@/shared/lib/formattedRequisite";
+import { useFooterStore } from "@/shared/store/FooterStore/slice/FooterSlice";
 import { useBFStore } from "@/shared/store/bfDataStore";
 import { Button } from "@/shared/ui/Button/Button";
-import { BankCardInfo } from "@/widgets/BankCardInfo";
-import { PayeeInfo } from "@/widgets/PayeeInfo";
 import { SubmitModal } from "@/widgets/SubmitModal";
 import styles from "./Footer.module.scss";
 
@@ -24,36 +23,21 @@ const bankIcon = (bank: string) => {
     return bank ? `/banks/${bank}.svg` : DefaultBankIcon;
 };
 
-interface FooterProps {
-    buttonCaption?: string;
-    nextPage?: string;
-    showCancelBtn?: boolean;
-    prevPage?: string;
-    nextEnabled?: boolean;
-    approve?: boolean;
-    focused?: boolean;
-    payeeCard?: boolean;
-    noIcon?: boolean;
-    buttonCallback?: () => void;
-    hideRequisite?: boolean;
-    isUnicalization?: boolean;
-}
-
-export const Footer = (props: FooterProps) => {
+export const Footer = () => {
     const {
-        buttonCaption = "",
+        buttonCaption,
         nextPage,
-        showCancelBtn = true,
-        prevPage = "",
-        nextEnabled = true,
-        approve = false,
-        focused = false,
-        payeeCard = false,
-        noIcon = false,
-        buttonCallback = () => {},
-        hideRequisite = false,
-        isUnicalization = false
-    } = props;
+        showCancelBtn,
+        prevPage,
+        nextEnabled,
+        approve,
+        focused,
+        payeeCard,
+        noIcon,
+        buttonCallback,
+        hideRequisite,
+        isUnicalization
+    } = useFooterStore();
 
     const { fingerprintReady, fingerprintConfig, ym, caseName } = useAppContext();
     const BFData = useBFStore(state => state.BFData);
@@ -262,6 +246,7 @@ export const Footer = (props: FooterProps) => {
                             <Button
                                 id="cancel-button"
                                 className={styles.cancelButton}
+                                size={"md"}
                                 variant={"ghostDanger"}
                                 onClick={() => {
                                     setDialogShow(true);

@@ -1,0 +1,70 @@
+.form {
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    max-width: 60rem;
+
+    background-color: hsl(0deg 0% 96% / 100%);
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 60rem;
+    padding: 3.8rem 0;
+}
+
+.input {
+    width: min(100%, 52rem);
+    height: 8.5rem;
+    padding: 0 1.4rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+}
+
+.label {
+    margin-bottom: 1rem;
+}
+
+.errorMessage {
+    margin-top: 4px;
+    text-wrap: auto;
+    overflow-wrap: break-word;
+}
+
+.h1 {
+    margin-bottom: 2rem;
+}
+
+.buttonsBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 31px;
+
+    @media (width <= 520px) {
+        gap: 31px;
+    }
+}
+
+.buttonsSubmit {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+
+    @media (width <= 520px) {
+        gap: 10px;
+    }
+}
+
+.button {
+    flex-grow: 1;
+}
+
+.cancelButton {
+    flex-grow: 1;
+    width: 100%;
+}
