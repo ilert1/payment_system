@@ -65,6 +65,7 @@
     "agree": "ঠিক আছে, বুঝেছি",
     "scanQrCode": "আপনার ফোনের ক্যামেরা দিয়ে QR কোড স্ক্যান করুন।",
     "linkToApp": "অ্যাপে যান",
+    "paymintIsGoingThroughTBank": "পেমেন্ট T-Bank এর মাধ্যমে করা হচ্ছে",
     "transactionConfirmationForm": {
         "title": "লেনদেন নিশ্চিতকরণ",
         "description": "অনুগ্রহ করে লেনদেন শনাক্তকারী লিখুন",

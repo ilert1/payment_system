@@ -65,6 +65,7 @@
     "agree": "Tamam, anladım",
     "scanQrCode": "QR kodunu telefonunuzun standart kamerasıyla tarayın.",
     "linkToApp": "Uygulamaya git",
+    "paymintIsGoingThroughTBank": "Ödeme T-Bank üzerinden yapılıyor",
     "transactionConfirmationForm": {
         "title": "İşlem onayı",
         "description": "Lütfen işlem tanımlayıcısını girin",

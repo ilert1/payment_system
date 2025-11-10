@@ -65,6 +65,7 @@
     "agree": "Жақсы, түсінікті",
     "scanQrCode": "Телефонның стандартты камерасымен QR кодын сканерлеңіз.",
     "linkToApp": "Қолданбаға өтіңіз",
+    "paymintIsGoingThroughTBank": "Төлем T-Банк арқылы жүргізілуде",
     "transactionConfirmationForm": {
         "title": "Транзакцияны растау",
         "description": "Транзакция идентификаторын енгізіңіз",

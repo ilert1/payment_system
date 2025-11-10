@@ -1,6 +1,8 @@
 import { useTranslation } from "react-i18next";
 import QRCode from "react-qr-code";
 import LinkToAppIcon from "@/shared/assets/images/link-to-app-icon.svg?react";
+import TBankIcon from "@/shared/assets/images/t_bank.svg?react";
+import { Button } from "@/shared/ui/Button/Button";
 import { Text } from "@/shared/ui/Text/Text";
 import styles from "./ExternalPayInfo.module.scss";
 
@@ -18,6 +20,15 @@ interface ExternalPayInfoProps {
 }
 
 const detectOS = (): "android" | "ios" | "other" => {
+    // Check for mock OS in URL query parameter for testing
+    const urlParams = new URLSearchParams(window.location.search);
+    const mockOS = urlParams.get("mockOS");
+
+    if (mockOS === "android" || mockOS === "ios" || mockOS === "other") {
+        console.log(`[ExternalPayInfo] Mock OS detected: ${mockOS}`);
+        return mockOS;
+    }
+
     const userAgent = navigator.userAgent || (window as any).opera;
 
     if (/android/i.test(userAgent)) {
@@ -43,19 +54,29 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
     // Determine the actual URL to use
     let actualUrl = url;
     let showLink = true;
-    let placeholderText: string | null = null;
 
     if (isBankAppDeeplink && paymentMethod) {
         const os = detectOS();
+        console.log(`[ExternalPayInfo] Detected OS: ${os}`, {
+            hasAndroidDeeplink: !!paymentMethod.payee?.deeplink_android,
+            hasIosDeeplink: !!paymentMethod.payee?.deeplink_ios
+        });
 
         if (os === "android" && paymentMethod.payee?.deeplink_android) {
             actualUrl = paymentMethod.payee.deeplink_android;
+            console.log(`[ExternalPayInfo] Using Android deeplink: ${actualUrl}`);
         } else if (os === "ios" && paymentMethod.payee?.deeplink_ios) {
             actualUrl = paymentMethod.payee.deeplink_ios;
+            console.log(`[ExternalPayInfo] Using iOS deeplink: ${actualUrl}`);
         } else if (os === "other") {
-            // For other systems, show placeholder text instead of link
             showLink = false;
-            placeholderText = "Please use a mobile device to complete this payment";
+            console.log(`[ExternalPayInfo] Other OS detected - showing placeholder text`);
+        } else {
+            console.warn(`[ExternalPayInfo] OS is ${os} but no matching deeplink found`, {
+                os,
+                hasAndroidDeeplink: !!paymentMethod.payee?.deeplink_android,
+                hasIosDeeplink: !!paymentMethod.payee?.deeplink_ios
+            });
         }
     }
 
@@ -79,12 +100,15 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
                     <LinkToAppIcon />
                 </a>
             ) : showLink ? (
-                <a className={styles.link} href={actualUrl} target="_blank" rel="noopener noreferrer">
-                    <span>{t("linkToApp", ns)}</span>
-                    <LinkToAppIcon />
-                </a>
+                <Button
+                    variant="warning"
+                    onClick={() => window.open(actualUrl, "_blank")}
+                    className={styles.linkToTinkoffButton}>
+                    <span>Оплатить в Т-Банке </span>
+                    <TBankIcon />
+                </Button>
             ) : (
-                placeholderText && <Text text={placeholderText} />
+                <Text variant="error" text={t("paymintIsGoingThroughTBank", ns)} />
             )}
         </div>
     );

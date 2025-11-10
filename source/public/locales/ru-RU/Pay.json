@@ -65,6 +65,7 @@
     "agree": "Ок, понятно",
     "scanQrCode": "Отсканируйте QR-код штатной камерой телефона.",
     "linkToApp": "Перейти в приложение",
+    "paymintIsGoingThroughTBank": "Оплата происходит через Т-Банк",
     "transactionConfirmationForm": {
         "title": "Подтверждение транзакции",
         "description": "Пожалуйста, введите идентификатор транзакции",
