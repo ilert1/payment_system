@@ -25,7 +25,7 @@ const tjs = "tjs";
 const iban = "iban";
 const abh = "abh";
 const ars = "ars";
-const bdt = "bdt";
+// const bdt = "bdt";
 
 export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     caseName,
@@ -43,12 +43,17 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
     const isConfirmTypeFile = BFData?.[dest]?.method?.context?.confirm_type === "file";
     // External pay info case
     if (
-        BFData?.[dest]?.method?.payee?.redirect_url &&
-        ["payment_link", "phone_number", "bank_app_deeplink_cross_border"].includes(BFData?.[dest]?.method?.name)
+        (BFData?.[dest]?.method?.payee?.redirect_url &&
+            ["payment_link", "phone_number"].includes(BFData?.[dest]?.method?.name)) ||
+        BFData?.[dest]?.method?.name === "bank_app_deeplink_cross_border"
     ) {
         return (
             <ExternalPayInfo
-                url={BFData?.[dest]?.method?.payee?.redirect_url}
+                url={
+                    BFData?.[dest]?.method?.name === "bank_app_deeplink_cross_border"
+                        ? location.href
+                        : (BFData?.[dest]?.method?.payee?.redirect_url ?? "")
+                }
                 methodName={BFData?.[dest]?.method?.name}
                 paymentMethod={BFData?.[dest]?.method}
             />
