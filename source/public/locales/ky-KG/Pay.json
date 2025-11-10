@@ -66,6 +66,7 @@
     "scanQrCode": "Сток телефон камерасы менен сув-кодун сканерлеңиз.",
     "linkToApp": "Колдонмого өтүү",
     "paymintIsGoingThroughTBank": "Төлөм T-Банк аркылуу жүргүзүлүп жатат",
+    "payInTBank": "T-Банкте төлөңүз",
     "transactionConfirmationForm": {
         "title": "Транзакцияны тастыктоо",
         "description": "Транзакция идентификаторун киргизиңиз",

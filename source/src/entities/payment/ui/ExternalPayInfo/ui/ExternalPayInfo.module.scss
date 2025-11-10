@@ -2,7 +2,7 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: 14px;
+    gap: 1rem;
     align-items: center;
     justify-content: center;
 
@@ -44,5 +44,9 @@
 }
 
 .linkToTinkoffButton {
-    width: 100%;
+    width: 70%;
+
+    @media (width <= 520px) {
+        width: 100%;
+    }
 }

@@ -4,7 +4,7 @@ import cls from "./Text.module.scss";
 
 // primary - 37a8f3
 // primary_light - 6fc0f6
-export type TextVariant = "textBody" | "primary" | "primary_light" | "error" | "muted";
+export type TextVariant = "textBody" | "primary" | "primary_light" | "error" | "muted" | "warning";
 
 export type TextAlign = "right" | "left" | "center" | "justify";
 

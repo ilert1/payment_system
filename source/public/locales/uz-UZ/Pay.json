@@ -66,6 +66,7 @@
     "scanQrCode": "QR kodini telefonning standart kamerasi bilan skanerlang.",
     "linkToApp": "Ilovaga o'ting",
     "paymintIsGoingThroughTBank": "To'lov T-Bank orqali amalga oshirilmoqda",
+    "payInTBank": "T-Bank-da to'lang",
     "transactionConfirmationForm": {
         "title": "Tranzaksiyani tasdiqlash",
         "description": "Iltimos, tranzaksiya identifikatorini kiriting",

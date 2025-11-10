@@ -66,6 +66,7 @@
     "scanQrCode": "РАМЗИ QR-ро бо камераи пурраи телефон скан кунед.",
     "linkToApp": "Ба барнома равед",
     "paymintIsGoingThroughTBank": "Пардохт тавассути T-Банк иҷро мешавад",
+    "payInTBank": "Дар T-Бонк пардохт кунед",
     "transactionConfirmationForm": {
         "title": "Тасдиқи муомила",
         "description": "Лутфан, идентификатори муомиларо ворид кунед",

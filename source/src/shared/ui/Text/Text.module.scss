@@ -33,6 +33,12 @@
     }
 }
 
+.warning {
+    .text {
+        color: var(--color-warning-dark);
+    }
+}
+
 // Text alignment
 .left {
     text-align: left;

@@ -66,6 +66,7 @@
     "scanQrCode": "QR kodunu telefonunuzun stok kamerası ilə tarayın.",
     "linkToApp": "Tətbiqə gedin",
     "paymintIsGoingThroughTBank": "Ödəniş T-Bank vasitəsilə həyata keçirilir",
+    "payInTBank": "T-Bank-də ödə",
     "transactionConfirmationForm": {
         "title": "Əməliyyatın təsdiqlənməsi",
         "description": "Zəhmət olmasa əməliyyat identifikatorunu daxil edin",

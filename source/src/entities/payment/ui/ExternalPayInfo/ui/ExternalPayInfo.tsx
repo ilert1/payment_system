@@ -83,7 +83,7 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
     return (
         <div className={styles.externalPayInfo}>
             <Text text={t("scanQrCode", ns)} />
-
+            {!showLink && isBankAppDeeplink && <Text variant="warning" text={t("paymintIsGoingThroughTBank", ns)} />}
             <div>
                 <QRCode
                     size={256}
@@ -99,16 +99,17 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
                     <span>{t("linkToApp", ns)}</span>
                     <LinkToAppIcon />
                 </a>
-            ) : showLink ? (
-                <Button
-                    variant="warning"
-                    onClick={() => window.open(actualUrl, "_blank")}
-                    className={styles.linkToTinkoffButton}>
-                    <span>Оплатить в Т-Банке </span>
-                    <TBankIcon />
-                </Button>
             ) : (
-                <Text variant="error" text={t("paymintIsGoingThroughTBank", ns)} />
+                showLink && (
+                    <Button
+                        variant="warning"
+                        onClick={() => window.open(actualUrl, "_blank")}
+                        className={styles.linkToTinkoffButton}>
+                        {/* <span>{t("payInTBank", ns)} </span> */}
+                        <Text size="l" text={t("payInTBank", ns)} />
+                        <TBankIcon />
+                    </Button>
+                )
             )}
         </div>
     );

@@ -66,6 +66,7 @@
     "scanQrCode": "Escanee el código QR con la cámara de su teléfono.",
     "linkToApp": "Ir a la aplicación",
     "paymintIsGoingThroughTBank": "El pago se está realizando a través de T-Bank",
+    "payInTBank": "Pagar en T-Bank",
     "transactionConfirmationForm": {
         "title": "Confirmación de transacción",
         "description": "Por favor, introduzca el identificador de la transacción",
