@@ -46,7 +46,13 @@ export const PaymentInstructions: React.FC<PaymentInstructionsProps> = ({
         BFData?.[dest]?.method?.payee?.redirect_url &&
         ["payment_link", "phone_number", "bank_app_deeplink_cross_border"].includes(BFData?.[dest]?.method?.name)
     ) {
-        return <ExternalPayInfo url={BFData?.[dest]?.method?.payee?.redirect_url} />;
+        return (
+            <ExternalPayInfo
+                url={BFData?.[dest]?.method?.payee?.redirect_url}
+                methodName={BFData?.[dest]?.method?.name}
+                paymentMethod={BFData?.[dest]?.method}
+            />
+        );
     }
 
     // Transgran tsbp cases for tjs/azn

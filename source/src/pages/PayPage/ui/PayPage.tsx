@@ -260,28 +260,29 @@ const PayPage = () => {
     });
 
     useEffect(() => {
-        const buttonCallback = () => {
-            if (isConfirmTypeFile) {
-                setButtonCallbackEnabled(true);
-            } else if (isConfirmTypeCode) {
-                setDialogShow(true);
-            } else {
-                openFilePicker();
-            }
-        };
-
         setFooter({
             buttonCaption: !isConfirmTypeFile
                 ? t("approveTransfer", ns)
                 : selectedFile
                   ? t("approveTransfer", ns)
                   : t("selectFile", ns),
-            buttonCallback: buttonCallback,
+            buttonCallback: isConfirmTypeCode
+                ? () => setDialogShow(true)
+                : !isConfirmTypeFile
+                  ? () => {
+                        setButtonCallbackEnabled(true);
+                    }
+                  : selectedFile
+                    ? () => {
+                          setButtonCallbackEnabled(true);
+                      }
+                    : () => openFilePicker(),
             nextPage: nextPage,
             nextEnabled: !isFetching_ButtonCallback,
             approve: true,
             isUnicalization: isUnicalization
         });
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isConfirmTypeFile, isFetching_ButtonCallback, isUnicalization, nextPage, selectedFile, t]);
 
