@@ -67,6 +67,7 @@
     "linkToApp": "Tətbiqə gedin",
     "paymintIsGoingThroughTBank": "Ödəniş T-Bank vasitəsilə həyata keçirilir",
     "payInTBank": "T-Bank-də ödə",
+    "payWithOneClick": "Bir kliklə ödəmək üçün düyməni basın",
     "transactionConfirmationForm": {
         "title": "Əməliyyatın təsdiqlənməsi",
         "description": "Zəhmət olmasa əməliyyat identifikatorunu daxil edin",

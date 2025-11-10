@@ -67,6 +67,7 @@
     "linkToApp": "Қолданбаға өтіңіз",
     "paymintIsGoingThroughTBank": "Төлем T-Банк арқылы жүргізілуде",
     "payInTBank": "T-Банкте төлеңіз",
+    "payWithOneClick": "Бір рет басу арқылы төлеу үшін батырманы басыңыз",
     "transactionConfirmationForm": {
         "title": "Транзакцияны растау",
         "description": "Транзакция идентификаторын енгізіңіз",

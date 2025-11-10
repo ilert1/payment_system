@@ -44,9 +44,7 @@ const detectOS = (): "android" | "ios" | "other" => {
 
 export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
     const { url, methodName, paymentMethod } = props;
-    const { t } = useTranslation();
-
-    const ns = { ns: ["Pay"] };
+    const { t } = useTranslation("Pay");
 
     // Check if this is bank_app_deeplink_cross_border method
     const isBankAppDeeplink = methodName === "bank_app_deeplink_cross_border";
@@ -82,21 +80,27 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
 
     return (
         <div className={styles.externalPayInfo}>
-            <Text text={t("scanQrCode", ns)} />
-            {!showLink && isBankAppDeeplink && <Text variant="warning" text={t("paymintIsGoingThroughTBank", ns)} />}
-            <div>
-                <QRCode
-                    size={256}
-                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                    value={actualUrl}
-                    fgColor="#37a8f3"
-                    viewBox={`0 0 256 256`}
-                    data-testid="qr-code"
-                />
-            </div>
+            {isBankAppDeeplink && !showLink ? (
+                <Text text={t("scanQrCode")} />
+            ) : (
+                <Text variant="warning" text={t("payWithOneClick")} />
+            )}
+            {!showLink && isBankAppDeeplink && <Text variant="warning" text={t("paymintIsGoingThroughTBank")} />}
+            {isBankAppDeeplink && !showLink && (
+                <div>
+                    <QRCode
+                        size={256}
+                        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                        value={actualUrl}
+                        fgColor="#37a8f3"
+                        viewBox={`0 0 256 256`}
+                        data-testid="qr-code"
+                    />
+                </div>
+            )}
             {!isBankAppDeeplink ? (
                 <a className={styles.link} href={url} target="_blank" rel="noopener noreferrer">
-                    <span>{t("linkToApp", ns)}</span>
+                    <span>{t("linkToApp")}</span>
                     <LinkToAppIcon />
                 </a>
             ) : (
@@ -106,7 +110,7 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
                         onClick={() => window.open(actualUrl, "_blank")}
                         className={styles.linkToTinkoffButton}>
                         {/* <span>{t("payInTBank", ns)} </span> */}
-                        <Text size="l" text={t("payInTBank", ns)} />
+                        <Text size="l" text={t("payInTBank")} />
                         <TBankIcon />
                     </Button>
                 )

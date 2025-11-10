@@ -67,6 +67,7 @@
     "linkToApp": "Перейти в приложение",
     "paymintIsGoingThroughTBank": "Оплата происходит через Т-Банк",
     "payInTBank": "Оплатить в Т-Банке",
+    "payWithOneClick": "Для оплаты в один клик нажмите на кнопку",
     "transactionConfirmationForm": {
         "title": "Подтверждение транзакции",
         "description": "Пожалуйста, введите идентификатор транзакции",

@@ -67,6 +67,7 @@
     "linkToApp": "Go to the app",
     "paymintIsGoingThroughTBank": "Payment is going through T-Bank",
     "payInTBank": "Pay in T-Bank",
+    "payWithOneClick": "To pay with one click, press the button",
     "transactionConfirmationForm": {
         "title": "Transaction confirmation",
         "description": "Please enter the transaction identifier",

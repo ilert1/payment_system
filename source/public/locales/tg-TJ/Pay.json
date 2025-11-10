@@ -67,6 +67,7 @@
     "linkToApp": "Ба барнома равед",
     "paymintIsGoingThroughTBank": "Пардохт тавассути T-Банк иҷро мешавад",
     "payInTBank": "Дар T-Бонк пардохт кунед",
+    "payWithOneClick": "Барои пардохт бо як клик тугмаро пахш кунед",
     "transactionConfirmationForm": {
         "title": "Тасдиқи муомила",
         "description": "Лутфан, идентификатори муомиларо ворид кунед",

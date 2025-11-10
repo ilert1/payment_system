@@ -67,6 +67,7 @@
     "linkToApp": "Uygulamaya git",
     "paymintIsGoingThroughTBank": "Ödeme T-Bank üzerinden yapılıyor",
     "payInTBank": "T-Bank'ta öde",
+    "payWithOneClick": "Tek tıkla ödemek için düğmeye basın",
     "transactionConfirmationForm": {
         "title": "İşlem onayı",
         "description": "Lütfen işlem tanımlayıcısını girin",
