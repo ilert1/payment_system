@@ -61,16 +61,18 @@ export const useBFStore = create<BFStore>(set => ({
             tmpData[dest].method.payee.data.card_holder = "Sofía Martínez";
             tmpData[dest].method.payee.data.phone_number = "992372123456";*/
 
-            const tmpData = structuredClone(data);
-            tmpData[dest].method.name = "bank_app_deeplink_cross_border";
-            // tmpData[dest].currency = "RUB";
-            tmpData[dest].method.payee.deeplink_android = "https://www.google.com";
-            tmpData[dest].method.payee.deeplink_ios = "https://www.google.com";
-            tmpData[dest].method.payee.redirect_url = "https://www.google.com";
+            // Блок для теста bank_app_deeplink_cross_border
+
+            // const tmpData = structuredClone(data);
+            // tmpData[dest].method.name = "bank_app_deeplink_cross_border";
+            // // tmpData[dest].currency = "RUB";
+            // tmpData[dest].method.payee.deeplink_android = "https://www.google.com";
+            // tmpData[dest].method.payee.deeplink_ios = "https://www.google.com";
+            // tmpData[dest].method.payee.redirect_url = "https://www.google.com";
 
             set({
+                BFData: data, //подставить tmpData для тестов
                 // BFData: data, //подставить tmpData для тестов
-                BFData: tmpData, //подставить tmpData для тестов
                 status: data?.[dest]?.status,
                 blowfishId: id
             });

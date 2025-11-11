@@ -19,16 +19,17 @@ interface ExternalPayInfoProps {
     };
 }
 
+// Check for mock OS in URL query parameter for testing
+// MOCK FOR TESTING ANDROID AND IOS
+// const urlParams = new URLSearchParams(window.location.search);
+// const mockOS = urlParams.get("mockOS");
+
+// if (mockOS === "android" || mockOS === "ios" || mockOS === "other") {
+//     console.log(`[ExternalPayInfo] Mock OS detected: ${mockOS}`);
+//     return mockOS;
+// }
+
 const detectOS = (): "android" | "ios" | "other" => {
-    // Check for mock OS in URL query parameter for testing
-    const urlParams = new URLSearchParams(window.location.search);
-    const mockOS = urlParams.get("mockOS");
-
-    if (mockOS === "android" || mockOS === "ios" || mockOS === "other") {
-        console.log(`[ExternalPayInfo] Mock OS detected: ${mockOS}`);
-        return mockOS;
-    }
-
     const userAgent = navigator.userAgent || (window as any).opera;
 
     if (/android/i.test(userAgent)) {
@@ -51,69 +52,70 @@ export const ExternalPayInfo = (props: ExternalPayInfoProps) => {
 
     // Determine the actual URL to use
     let actualUrl = url;
-    let showLink = true;
+    let showLink = false;
 
     if (isBankAppDeeplink && paymentMethod) {
         const os = detectOS();
-        console.log(`[ExternalPayInfo] Detected OS: ${os}`, {
-            hasAndroidDeeplink: !!paymentMethod.payee?.deeplink_android,
-            hasIosDeeplink: !!paymentMethod.payee?.deeplink_ios
-        });
 
         if (os === "android" && paymentMethod.payee?.deeplink_android) {
             actualUrl = paymentMethod.payee.deeplink_android;
-            console.log(`[ExternalPayInfo] Using Android deeplink: ${actualUrl}`);
+            showLink = true;
         } else if (os === "ios" && paymentMethod.payee?.deeplink_ios) {
             actualUrl = paymentMethod.payee.deeplink_ios;
-            console.log(`[ExternalPayInfo] Using iOS deeplink: ${actualUrl}`);
+            showLink = true;
         } else if (os === "other") {
             showLink = false;
-            console.log(`[ExternalPayInfo] Other OS detected - showing placeholder text`);
-        } else {
-            console.warn(`[ExternalPayInfo] OS is ${os} but no matching deeplink found`, {
-                os,
-                hasAndroidDeeplink: !!paymentMethod.payee?.deeplink_android,
-                hasIosDeeplink: !!paymentMethod.payee?.deeplink_ios
-            });
         }
     }
 
     return (
         <div className={styles.externalPayInfo}>
-            {isBankAppDeeplink && !showLink ? (
-                <Text text={t("scanQrCode")} />
-            ) : (
-                <Text variant="warning" text={t("payWithOneClick")} />
-            )}
-            {!showLink && isBankAppDeeplink && <Text variant="warning" text={t("paymintIsGoingThroughTBank")} />}
-            {isBankAppDeeplink && !showLink && (
-                <div>
-                    <QRCode
-                        size={256}
-                        style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                        value={actualUrl}
-                        fgColor="#37a8f3"
-                        viewBox={`0 0 256 256`}
-                        data-testid="qr-code"
-                    />
-                </div>
-            )}
             {!isBankAppDeeplink ? (
-                <a className={styles.link} href={url} target="_blank" rel="noopener noreferrer">
-                    <span>{t("linkToApp")}</span>
-                    <LinkToAppIcon />
-                </a>
+                <>
+                    <div>
+                        <QRCode
+                            size={256}
+                            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                            value={actualUrl}
+                            fgColor="#37a8f3"
+                            viewBox={`0 0 256 256`}
+                            data-testid="qr-code"
+                        />
+                    </div>
+                    <a className={styles.link} href={url} target="_blank" rel="noopener noreferrer">
+                        <span>{t("linkToApp")}</span>
+                        <LinkToAppIcon />
+                    </a>
+                </>
             ) : (
-                showLink && (
-                    <Button
-                        variant="warning"
-                        onClick={() => window.open(actualUrl, "_blank")}
-                        className={styles.linkToTinkoffButton}>
-                        {/* <span>{t("payInTBank", ns)} </span> */}
-                        <Text size="l" text={t("payInTBank")} />
-                        <TBankIcon />
-                    </Button>
-                )
+                <>
+                    {showLink ? (
+                        <>
+                            <Text variant="warning" text={t("payWithOneClick")} />
+                            <Button
+                                variant="warning"
+                                onClick={() => window.open(actualUrl, "_blank")}
+                                className={styles.linkToTinkoffButton}>
+                                <Text size="l" text={t("payInTBank")} />
+                                <TBankIcon />
+                            </Button>
+                        </>
+                    ) : (
+                        <>
+                            <Text variant="warning" text={t("paymintIsGoingThroughTBank")} />
+                            <div>
+                                <QRCode
+                                    size={256}
+                                    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                    value={actualUrl}
+                                    fgColor="#37a8f3"
+                                    viewBox={`0 0 256 256`}
+                                    data-testid="qr-code"
+                                />
+                            </div>
+                        </>
+                    )}
+                </>
             )}
         </div>
     );
