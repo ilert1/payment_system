@@ -5,6 +5,11 @@ The project is implemented using **React, TypeScript, SCSS modules, and Zustand*
 
 PNP provides a scalable, multilingual, and analytics-ready frontend foundation for integrating various international payment methods.
 
+
+## 📌 My Contribution in the project
+
+I personally led and carried out the architectural redesign, the full migration from JavaScript to TypeScript, the implementation of the FSD architecture, and the development of the custom UI kit.
+
 ---
 
 ## ✨ Key Features
@@ -64,9 +69,3 @@ PNP provides a scalable, multilingual, and analytics-ready frontend foundation f
 - **Storybook**
 - **Yandex Metrica integration**
 
----
-
-## 📌 Project Status
-
-The project is still under active development.  
-I personally completed the architectural redesign, full migration to TypeScript, FSD implementation, and creation of the custom UI kit.
